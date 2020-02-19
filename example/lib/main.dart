@@ -32,6 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Provider<NeumorphicTheme>.value(
       value: NeumorphicTheme(
+        baseColor: NeumorphicColors.background,
         lightSource: LightSource.bottomLeft,
         distance: 5,
         blur: 6
@@ -39,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         backgroundColor: NeumorphicColors.background,
         appBar: AppBar(
-          backgroundColor: NeumorphicColors.background,
+          backgroundColor: Colors.transparent,
           title: Text(widget.title, style: Theme.of(context).textTheme.display1),
         ),
         body: Center(
@@ -47,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               NeumorphicContainer(
+                accent: Colors.blueAccent,
                 style: NeumorphicStyle(
                   borderRadius: 40,
                   shape: NeumorphicShape.concave,

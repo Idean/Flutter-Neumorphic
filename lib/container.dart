@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/theme_finder.dart';
 import 'package:provider/provider.dart';
 
 import 'flutter_neumorphic.dart';
@@ -14,19 +15,11 @@ class NeumorphicContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    NeumorphicTheme neumorphicTheme;
-
-    try {
-      neumorphicTheme = Provider.of<NeumorphicTheme>(context);
-    } catch (t) {
-      neumorphicTheme = null;
-    }
-
     final decorator = generateNeumorphicDecorator(
       base: NeumorphicColors.background,
       accent: this.accent,
       style: this.style,
-      theme: neumorphicTheme,
+      theme: findNeumorphicTheme(context),
     );
 
     return Container(

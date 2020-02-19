@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
+import 'package:flutter_neumorphic/colors.dart';
 
 import 'light_source.dart';
 import 'shape.dart';
@@ -13,14 +16,17 @@ const double _defaultBlur = 8;
 const double _defaultDistance = 4;
 const double _defaultIntensity = 0.25;
 const LightSource _defaultLightSource = LightSource.bottomRight;
+const Color _defaultBaseColor = NeumorphicColors.background;
 
 class NeumorphicTheme {
+  final Color baseColor;
   final double blur;
   final double distance;
   final double intensity;
   final LightSource lightSource;
 
   const NeumorphicTheme({
+    this.baseColor = _defaultBaseColor,
     this.distance = _defaultDistance,
     this.intensity = _defaultIntensity,
     this.blur = _defaultBlur,
@@ -42,11 +48,13 @@ class NeumorphicStyle extends NeumorphicTheme {
     this.borderRadius = _defaultBorderRaious,
     this.gradientBackground = true,
     this.shape = _defaultShape,
+    Color baseColor,
     LightSource lightSource,
     double blur,
     double distance,
     double intensity,
   }) : super(
+          baseColor: baseColor,
           lightSource: lightSource,
           blur: blur,
           distance: distance,
@@ -55,15 +63,14 @@ class NeumorphicStyle extends NeumorphicTheme {
 
   NeumorphicStyle copyWithThemeIfNull(NeumorphicTheme theme) {
     return new NeumorphicStyle(
-      borderRadius: this.borderRadius,
-      gradientBackground: this.gradientBackground,
-      shape: this.shape,
-
-      blur: this.blur ?? theme.blur,
-      distance: this.distance ?? theme.distance,
-      intensity: this.intensity ?? theme.intensity,
-      lightSource: this.lightSource ?? theme.lightSource,
-    );
+        borderRadius: this.borderRadius,
+        gradientBackground: this.gradientBackground,
+        shape: this.shape,
+        blur: this.blur ?? theme.blur,
+        distance: this.distance ?? theme.distance,
+        intensity: this.intensity ?? theme.intensity,
+        lightSource: this.lightSource ?? theme.lightSource,
+        baseColor: this.baseColor ?? theme.baseColor);
   }
 }
 //endregion

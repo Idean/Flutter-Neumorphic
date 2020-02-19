@@ -26,16 +26,16 @@ Offset sourceToOffset(LightSource source, double distance) {
   return off;
 }
 
-
-Offset mergeOffsetWithDistance(Offset offset, double distance, { bool capTo1 = false}) {
+Offset mergeOffsetWithDistance(Offset offset, double distance,
+    {bool capTo1 = false}) {
   double dx = offset.dx;
   double dy = offset.dy;
-  if(capTo1){
-    if(dx < 0) dx = 0;
-    if(dx > 1) dx = 1;
+  if (capTo1) {
+    if (dx < 0) dx = 0;
+    if (dx > 1) dx = 1;
 
-    if(dy < 0) dy = 0;
-    if(dy > 1) dy = 1;
+    if (dy < 0) dy = 0;
+    if (dy > 1) dy = 1;
   }
   return Offset(dx * distance, dy * distance);
 }
