@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,29 +28,41 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: NeumorphicColors.background,
-      appBar: AppBar(
-        backgroundColor: NeumorphicColors.background,
-        title: Text(widget.title, style: Theme.of(context).textTheme.display1),
+    return Provider<NeumorphicTheme>.value(
+      value: NeumorphicTheme(
+        lightSource: LightSource.bottomLeft,
+        distance: 5,
+        blur: 6
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            NeumorphicContainer(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Hello World",
-                  style: Theme.of(context).textTheme.display1,
+      child: Scaffold(
+        backgroundColor: NeumorphicColors.background,
+        appBar: AppBar(
+          backgroundColor: NeumorphicColors.background,
+          title: Text(widget.title, style: Theme.of(context).textTheme.display1),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              NeumorphicContainer(
+                style: NeumorphicStyle(
+                  gradientBackground: false,
+                ),
+                child: SizedBox(
+                  height: 200,
+                  width: 200,
+                  child: Center(
+                    child: Text(
+                      "Hello World",
+                      style: Theme.of(context).textTheme.display1,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -1,0 +1,4 @@
+enum NeumorphicShape {
+  concave,
+  convex,
+}
