@@ -54,8 +54,8 @@ BoxDecoration generateNeumorphicDecorator({Color base, /*nullable*/ Color accent
           offset.dy.clamp(-1, 1).toDouble(),
         ),
         colors: [
-          style.gradientBackground ? NeumorphicColors.generateShadowColors(base: base, intensity: style.shape == NeumorphicShape.concave ? 0.07 : -0.1) : base,
-          style.gradientBackground ? NeumorphicColors.generateShadowColors(base: base, intensity: style.shape == NeumorphicShape.concave ? -0.1 : 0.07) : base,
+          style.gradientBackground ? NeumorphicColors.generateShadowColors(base: base, intensity: style.shape == NeumorphicShape.convex ? 0.07 : -0.1) : base,
+          style.gradientBackground ? NeumorphicColors.generateShadowColors(base: base, intensity: style.shape == NeumorphicShape.convex ? -0.1 : 0.07) : base,
         ],
       ),
     );

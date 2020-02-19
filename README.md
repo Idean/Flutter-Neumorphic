@@ -1,6 +1,42 @@
 # flutter_neumorphic
 
-A new Flutter package.
+```dart
+NeumorphicContainer(
+  style: NeumorphicStyle(
+    borderRadius: 40,
+    shape: NeumorphicShape.concave,
+  ),
+  child: SizedBox(
+    height: 200,
+    width: 200,
+  ),
+)
+```
+
+```dart
+Provider<NeumorphicTheme>.value(
+      
+      value: NeumorphicTheme(
+        lightSource: LightSource.bottomLeft,
+        distance: 5,
+        blur: 6
+      ),
+      
+      ...
+      
+      child: NeumorphicContainer(
+        style: NeumorphicStyle(
+          borderRadius: 40,
+          shape: NeumorphicShape.concave,
+        ),
+        child: SizedBox(
+          height: 200,
+          width: 200,
+        ),
+      )
+      
+);
+```
 
 ## Getting Started
 

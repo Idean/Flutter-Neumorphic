@@ -30,7 +30,7 @@ class NeumorphicTheme {
 //endregion
 
 //region style
-const NeumorphicShape _defaultShape = NeumorphicShape.convex;
+const NeumorphicShape _defaultShape = NeumorphicShape.concave;
 const double _defaultBorderRaious = 5;
 
 class NeumorphicStyle extends NeumorphicTheme {

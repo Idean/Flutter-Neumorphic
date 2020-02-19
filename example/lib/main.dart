@@ -48,17 +48,12 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               NeumorphicContainer(
                 style: NeumorphicStyle(
-                  gradientBackground: false,
+                  borderRadius: 40,
+                  shape: NeumorphicShape.concave,
                 ),
                 child: SizedBox(
                   height: 200,
                   width: 200,
-                  child: Center(
-                    child: Text(
-                      "Hello World",
-                      style: Theme.of(context).textTheme.display1,
-                    ),
-                  ),
                 ),
               ),
             ],
