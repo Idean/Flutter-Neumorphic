@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               NeumorphicContainer(
-                accent: Colors.blueAccent,
+                //accent: Colors.blueAccent,
                 style: NeumorphicStyle(
                   borderRadius: 40,
                   shape: NeumorphicShape.concave,

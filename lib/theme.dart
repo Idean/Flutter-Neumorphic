@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_neumorphic/colors.dart';
 
 import 'light_source.dart';

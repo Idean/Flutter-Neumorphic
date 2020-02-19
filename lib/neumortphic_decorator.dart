@@ -2,7 +2,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 BoxDecoration generateNeumorphicDecorator(
-    {Color base,
+    {
     /*nullable*/ Color accent,
     /*nullable*/ NeumorphicStyle style,
     /*nullable*/ NeumorphicTheme theme}) {
@@ -22,12 +22,12 @@ BoxDecoration generateNeumorphicDecorator(
 
   final boxShadows = [
     BoxShadow(
-      color: NeumorphicColors.generateGradientColors(colorBase: base, intensity: -1 * style.intensity),
+      color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity),
       offset: offset,
       blurRadius: theme.blur,
     ),
     BoxShadow(
-      color: NeumorphicColors.generateGradientColors(colorBase: base, intensity: style.intensity),
+      color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity),
       offset: offset.scale(-1, -1),
       blurRadius: theme.blur,
     ),
@@ -35,7 +35,7 @@ BoxDecoration generateNeumorphicDecorator(
 
   final borderRadius = style.borderRadius == 0 ? null : BorderRadius.circular(style.borderRadius);
 
-  Color innerColor = accent ?? base;
+  Color innerColor = accent ?? style.baseColor;
 
   return BoxDecoration(
     borderRadius: borderRadius,
@@ -56,13 +56,13 @@ BoxDecoration generateNeumorphicDecorator(
                 colorBase: innerColor,
                 intensity: style.shape == NeumorphicShape.convex ? 0.07 : -0.1,
               )
-            : base,
+            : innerColor,
         style.gradientBackground
             ? NeumorphicColors.generateGradientColors(
                 colorBase: innerColor,
                 intensity: style.shape == NeumorphicShape.convex ? -0.1 : 0.07,
               )
-            : base,
+            : innerColor,
       ],
     ),
   );
