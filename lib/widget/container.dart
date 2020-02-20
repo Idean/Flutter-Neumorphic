@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/theme_finder.dart';
 
-import 'flutter_neumorphic.dart';
-
-export 'flutter_neumorphic.dart';
+import '../flutter_neumorphic.dart';
 
 class NeumorphicContainer extends StatelessWidget {
   final Widget child;
