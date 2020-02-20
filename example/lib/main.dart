@@ -33,9 +33,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return Provider<NeumorphicTheme>.value(
       value: NeumorphicTheme(
         baseColor: NeumorphicColors.background,
-        lightSource: LightSource.bottomLeft,
-        distance: 5,
-        blur: 6
+        lightSource: LightSource.bottomRight
+          ,
+        distance: 3,
+        blur: 6,
+        intensity: 0.2
       ),
       child: Scaffold(
         backgroundColor: NeumorphicColors.background,
@@ -50,12 +52,52 @@ class _MyHomePageState extends State<MyHomePage> {
               NeumorphicContainer(
                 //accent: Colors.blueAccent,
                 style: NeumorphicStyle(
+                  distance: 10,
+                  borderRadius: 40,
+                  shape: NeumorphicShape.emboss,
+                ),
+                child: SizedBox(
+                  height: 150,
+                  width: 150,
+                ),
+              ),
+              SizedBox(height: 30),
+              NeumorphicContainer(
+                //accent: Colors.blueAccent,
+                style: NeumorphicStyle(
+                  distance: 10,
+                  borderRadius: 40,
+                  shape: NeumorphicShape.flat,
+                ),
+                child: SizedBox(
+                  height: 150,
+                  width: 150,
+                ),
+              ),
+              SizedBox(height: 30),
+              NeumorphicContainer(
+                //accent: Colors.blueAccent,
+                style: NeumorphicStyle(
+                  distance: 8,
+                  borderRadius: 40,
+                  shape: NeumorphicShape.convex,
+                ),
+                child: SizedBox(
+                  height: 150,
+                  width: 150,
+                ),
+              ),
+              SizedBox(height: 30),
+              NeumorphicContainer(
+                //accent: Colors.blueAccent,
+                style: NeumorphicStyle(
+                  distance: 8,
                   borderRadius: 40,
                   shape: NeumorphicShape.concave,
                 ),
                 child: SizedBox(
-                  height: 200,
-                  width: 200,
+                  height: 150,
+                  width: 150,
                 ),
               ),
             ],

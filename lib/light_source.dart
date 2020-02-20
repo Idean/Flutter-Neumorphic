@@ -39,3 +39,38 @@ Offset mergeOffsetWithDistance(Offset offset, double distance,
   }
   return Offset(dx * distance, dy * distance);
 }
+
+Offset embrossOffset({LightSource lightSource, bool dark, double distance}){
+  if(dark){
+    switch(lightSource){
+      case LightSource.topLeft:
+        return  Offset(-distance, -distance);
+        break;
+      case LightSource.topRight:
+        return  Offset(distance, - distance);
+        break;
+      case LightSource.bottomLeft:
+        return  Offset(- distance, distance);
+        break;
+      case LightSource.bottomRight:
+        return  Offset(distance, distance);
+        break;
+    }
+  } else {
+    switch(lightSource){
+      case LightSource.topLeft:
+        return Offset(distance, distance);
+        break;
+      case LightSource.topRight:
+        return Offset(-distance, distance);
+        break;
+      case LightSource.bottomLeft:
+        return Offset(distance, -distance);
+        break;
+      case LightSource.bottomRight:
+        return Offset(-distance, -distance);
+        break;
+    }
+  }
+
+}

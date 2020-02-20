@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:flutter/painting.dart';
+
 class NeumorphicColors {
   static const background = Color(0xffF1F2F4);
 
@@ -20,5 +22,33 @@ class NeumorphicColors {
     }
 
     return Color(int.parse(o, radix: 16)).withAlpha(255);
+  }
+
+  static Gradient generateFlatGradients({Color color}) => LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      color,
+      color,
+    ],
+  );
+
+  static Color getAdjustColor(Color baseColor, double amount) {
+    Map<String, int> colors = {
+      'r': baseColor.red,
+      'g': baseColor.green,
+      'b': baseColor.blue
+    };
+
+    colors = colors.map((key, value) {
+      if (value + amount < 0) {
+        return MapEntry(key, 0);
+      }
+      if (value + amount > 255) {
+        return MapEntry(key, 255);
+      }
+      return MapEntry(key, (value + amount).floor());
+    });
+    return Color.fromRGBO(colors['r'], colors['g'], colors['b'], 1);
   }
 }

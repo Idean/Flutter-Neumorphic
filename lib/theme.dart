@@ -13,7 +13,7 @@ const NeumorphicTheme neumorphicDefaultTheme = NeumorphicTheme();
 //region theme
 const double _defaultBlur = 8;
 const double _defaultDistance = 4;
-const double _defaultIntensity = 0.25;
+const double _defaultIntensity = 0.2;
 const LightSource _defaultLightSource = LightSource.bottomRight;
 const Color _defaultBaseColor = NeumorphicColors.background;
 

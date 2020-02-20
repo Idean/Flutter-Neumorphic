@@ -20,7 +20,8 @@ class NeumorphicContainer extends StatelessWidget {
       theme: findNeumorphicTheme(context),
     );
 
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 150),
       child: child,
       decoration: decorator,
     );
