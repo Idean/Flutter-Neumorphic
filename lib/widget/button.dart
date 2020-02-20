@@ -8,10 +8,12 @@ class NeumorphicButton extends StatefulWidget {
   final Widget child;
   final NeumorphicStyle style;
   final double minDistance;
+  final BoxShape shape;
 
   const NeumorphicButton({
     Key key,
     this.child,
+    this.shape,
     this.minDistance = 0,
     this.style = const NeumorphicStyle(),
   }) : super(key: key);
@@ -81,7 +83,8 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       },
       child: AnimatedScale(
         scale: this.scale,
-        child: NeumorphicContainer(
+        child: Neumorphic(
+          shape: widget.shape,
           style: initialStyle.copyWith(distance: distance),
           child: widget.child,
         ),

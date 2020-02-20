@@ -6,7 +6,9 @@ BoxDecoration generateNeumorphicDecorator(
     {
     /*nullable*/ Color accent,
     /*nullable*/ NeumorphicStyle style,
-    /*nullable*/ NeumorphicTheme theme}) {
+    /*nullable*/ NeumorphicTheme theme,
+    /*nullable*/ BoxShape shape
+    }) {
   if (theme == null) {
     theme = neumorphicDefaultTheme;
   }
@@ -72,17 +74,6 @@ BoxDecoration generateNeumorphicDecorator(
         )
       ],
     );
-
-
-
-
-    return BoxDecoration(
-      borderRadius: borderRadius,
-      //color: innerColor,
-      boxShadow: boxShadows,
-      gradient: gradient,
-    );
-
   } else if (style.shape == NeumorphicShape.flat) {
     innerColor = accent ?? style.baseColor;
     final offset = sourceToOffset(style.lightSource, style.distance);
@@ -157,11 +148,22 @@ BoxDecoration generateNeumorphicDecorator(
     );
   }
 
+  if(shape == null){
+    shape = BoxShape.rectangle;
+  }
 
-  return BoxDecoration(
-    borderRadius: borderRadius,
-    //color: innerColor,
-    boxShadow: boxShadows,
-    gradient: gradient,
-  );
+  if(shape == BoxShape.circle){
+    return BoxDecoration(
+        boxShadow: boxShadows,
+        gradient: gradient,
+        shape: shape
+    );
+  } else {
+    return BoxDecoration(
+        borderRadius: borderRadius,
+        boxShadow: boxShadows,
+        gradient: gradient,
+        shape: shape
+    );
+  }
 }

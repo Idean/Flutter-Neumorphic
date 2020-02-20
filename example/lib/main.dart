@@ -32,14 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Provider<NeumorphicTheme>.value(
-      value: NeumorphicTheme(
-        baseColor: NeumorphicColors.background,
-        lightSource: LightSource.topLeft,
-        curveHeight: 15,
-        distance: 3,
-        blur: 6,
-        intensity: 0.2
-      ),
+      value: NeumorphicTheme(baseColor: NeumorphicColors.background, lightSource: LightSource.topLeft, curveHeight: 15, distance: 3, blur: 6, intensity: 0.2),
       child: Scaffold(
         backgroundColor: NeumorphicColors.background,
         appBar: AppBar(
@@ -56,7 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Row(
                   children: <Widget>[
-                    NeumorphicContainer(
+                    Neumorphic(
+                      shape: BoxShape.circle,
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
                         distance: 10,
@@ -76,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   children: <Widget>[
                     NeumorphicButton(
+                      shape: BoxShape.circle,
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
                         distance: 10,
@@ -95,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   children: <Widget>[
                     NeumorphicButton(
+                      shape: BoxShape.circle,
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
                         distance: 8,
@@ -114,6 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   children: <Widget>[
                     NeumorphicButton(
+                      shape: BoxShape.circle,
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
                         distance: 8,
