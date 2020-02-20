@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/container.dart';
 
 class NeumorphicButton extends StatefulWidget {
-
   final Widget child;
   final NeumorphicStyle style;
   final double minDistance;
@@ -11,7 +10,7 @@ class NeumorphicButton extends StatefulWidget {
     Key key,
     this.child,
     this.minDistance = 0,
-    this.style = const NeumorphicStyle()
+    this.style = const NeumorphicStyle(),
   }) : super(key: key);
 
   @override
@@ -19,12 +18,13 @@ class NeumorphicButton extends StatefulWidget {
 }
 
 class _NeumorphicButtonState extends State<NeumorphicButton> {
-
   NeumorphicStyle initialStyle;
-  double distance;
 
-  void updateInitialStyle(){
-    if(widget.style != initialStyle) {
+  double distance;
+  double scale = 1;
+
+  void updateInitialStyle() {
+    if (widget.style != initialStyle) {
       setState(() {
         this.initialStyle = widget.style;
         distance = widget.style.distance;
@@ -44,14 +44,23 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
     super.didChangeDependencies();
   }
 
-  void _changeDistance(){
+  @override
+  void didUpdateWidget(NeumorphicButton oldWidget) {
+    updateInitialStyle();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void _changeDistance() {
     setState(() {
+      scale = 0.95;
       distance = widget.minDistance;
     });
   }
-  void _resetDistance(){
+
+  void _resetDistance() {
     setState(() {
-      distance =  initialStyle.distance;
+      scale = 1;
+      distance = initialStyle.distance;
     });
   }
 
@@ -67,12 +76,66 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       onTapCancel: () {
         _resetDistance();
       },
-      child: NeumorphicContainer(
+      child: AnimatedScale(
+        scale: this.scale,
+        child: NeumorphicContainer(
+          style: initialStyle.copyWith(distance: distance),
           child: widget.child,
-          style: initialStyle.copyWith(
-            distance: this.distance
-          ),
+        ),
       ),
     );
+  }
+}
+
+class AnimatedScale extends StatefulWidget {
+  final Widget child;
+  final double scale;
+
+  const AnimatedScale({this.child, this.scale = 1});
+
+  @override
+  _AnimatedScaleState createState() => _AnimatedScaleState();
+}
+
+class _AnimatedScaleState extends State<AnimatedScale> with TickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<double> _animation;
+  double scale = 1;
+
+  void _onScaleChanged(double newScale) {
+    _controller?.dispose();
+    _controller = AnimationController(duration: const Duration(milliseconds: 150), vsync: this);
+    _animation = Tween<double>(begin: this.scale, end: newScale).animate(_controller)
+      ..addListener(() {
+        setState(() {
+          scale = _animation.value;
+        });
+      });
+    _controller.forward();
+  }
+
+  @override
+  void initState() {
+    _onScaleChanged(widget.scale);
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(AnimatedScale oldWidget) {
+    if (widget.scale != this.scale) {
+      _onScaleChanged(widget.scale);
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Transform.scale(scale: scale, alignment: Alignment.center, child: widget.child);
   }
 }
