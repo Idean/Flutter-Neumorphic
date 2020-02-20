@@ -26,7 +26,7 @@ BoxDecoration generateNeumorphicDecorator(
   if (style.shape == NeumorphicShape.emboss) {
     innerColor = accent ?? style.baseColor;
 
-    final whiteDistance = style.distance / 4;
+    final whiteDistance = style.distance / 3;
     final darkDistance = style.distance / 6;
 
     boxShadows = [
@@ -49,18 +49,22 @@ BoxDecoration generateNeumorphicDecorator(
     innerColor = accent ?? style.baseColor;
     final offset = sourceToOffset(style.lightSource, style.distance);
 
-    boxShadows = [
-      BoxShadow(
-        color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity),
-        offset: offset,
-        blurRadius: theme.blur,
-      ),
-      BoxShadow(
-        color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity),
-        offset: offset.scale(-1, -1),
-        blurRadius: theme.blur,
-      ),
-    ];
+    if(offset == Offset.zero){
+      boxShadows = [];
+    } else {
+      boxShadows = [
+        BoxShadow(
+          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity),
+          offset: offset,
+          blurRadius: theme.blur,
+        ),
+        BoxShadow(
+          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity),
+          offset: offset.scale(-1, -1),
+          blurRadius: theme.blur,
+        ),
+      ];
+    }
 
     gradient = NeumorphicColors.generateFlatGradients(
       color: NeumorphicColors.getAdjustColor(innerColor, 0 - style.distance / 2),
@@ -68,32 +72,39 @@ BoxDecoration generateNeumorphicDecorator(
   } else {
     final offset = sourceToOffset(style.lightSource, style.distance);
 
+    print("offset : $offset");
     innerColor = accent ?? style.baseColor;
 
-    boxShadows = [
-      BoxShadow(
-        color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity),
-        offset: offset,
-        blurRadius: theme.blur,
-      ),
-      BoxShadow(
-        color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity),
-        offset: offset.scale(-1, -1),
-        blurRadius: theme.blur,
-      ),
-    ];
+    if(offset == Offset.zero){
+      boxShadows = [];
+    } else {
+      boxShadows = [
+        BoxShadow(
+          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity),
+          offset: offset,
+          blurRadius: theme.blur,
+        ),
+        BoxShadow(
+          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity),
+          offset: offset.scale(-1, -1),
+          blurRadius: theme.blur,
+        ),
+      ];
+    }
 
-    double darkFactor = style.distance / 100 + 0.05;
-    double whiteFactor = style.distance / 200 + 0.06;
+    double darkFactor = style.curveHeight / 100 + 0.1;
+    double whiteFactor = style.curveHeight / 200 + 0.06;
+
+    final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveHeight);
 
     gradient = LinearGradient(
       begin: Alignment(
-        -offset.dx.clamp(-1, 1).toDouble(),
-        -offset.dy.clamp(-1, 1).toDouble(),
+        -convexConcaveOffset.dx.clamp(-1, 1).toDouble(),
+        -convexConcaveOffset.dy.clamp(-1, 1).toDouble(),
       ),
       end: Alignment(
-        offset.dx.clamp(-1, 1).toDouble(),
-        offset.dy.clamp(-1, 1).toDouble(),
+        convexConcaveOffset.dx.clamp(-1, 1).toDouble(),
+        convexConcaveOffset.dy.clamp(-1, 1).toDouble(),
       ),
       colors: [
         NeumorphicColors.generateGradientColors(

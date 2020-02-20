@@ -5,10 +5,12 @@ class NeumorphicButton extends StatefulWidget {
 
   final Widget child;
   final NeumorphicStyle style;
+  final double minDistance;
 
   const NeumorphicButton({
     Key key,
     this.child,
+    this.minDistance = 0,
     this.style = const NeumorphicStyle()
   }) : super(key: key);
 
@@ -44,7 +46,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
 
   void _changeDistance(){
     setState(() {
-      distance = 1;
+      distance = widget.minDistance;
     });
   }
   void _resetDistance(){

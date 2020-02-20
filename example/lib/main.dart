@@ -33,7 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Provider<NeumorphicTheme>.value(
       value: NeumorphicTheme(
         baseColor: NeumorphicColors.background,
-        lightSource: LightSource.bottomRight,
+        lightSource: LightSource.topLeft,
+        curveHeight: 15,
         distance: 3,
         blur: 6,
         intensity: 0.2

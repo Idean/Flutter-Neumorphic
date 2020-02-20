@@ -14,6 +14,7 @@ const NeumorphicTheme neumorphicDefaultTheme = NeumorphicTheme();
 const double _defaultBlur = 8;
 const double _defaultDistance = 4;
 const double _defaultIntensity = 0.2;
+const double _defaultCurveHeight = 6;
 const LightSource _defaultLightSource = LightSource.bottomRight;
 const Color _defaultBaseColor = NeumorphicColors.background;
 
@@ -23,6 +24,7 @@ class NeumorphicTheme {
   final double distance;
   final double intensity;
   final LightSource lightSource;
+  final double curveHeight;
 
   const NeumorphicTheme({
     this.baseColor = _defaultBaseColor,
@@ -30,6 +32,7 @@ class NeumorphicTheme {
     this.intensity = _defaultIntensity,
     this.blur = _defaultBlur,
     this.lightSource = _defaultLightSource,
+    this.curveHeight = _defaultCurveHeight
   });
 }
 //endregion
@@ -45,6 +48,7 @@ class NeumorphicStyle {
   final double distance;
   final double intensity;
   final LightSource lightSource;
+  final double curveHeight;
 
   final double borderRadius;
   final NeumorphicShape shape;
@@ -54,6 +58,7 @@ class NeumorphicStyle {
     this.shape = _defaultShape,
     this.lightSource,
     this.baseColor,
+    this.curveHeight,
     this.blur,
     this.distance,
     this.intensity,
@@ -67,6 +72,7 @@ class NeumorphicStyle {
         blur: this.blur ?? theme.blur,
         distance: this.distance ?? theme.distance,
         intensity: this.intensity ?? theme.intensity,
+        curveHeight: this.curveHeight ?? theme.curveHeight,
         lightSource: this.lightSource ?? theme.lightSource);
   }
 
@@ -78,6 +84,7 @@ class NeumorphicStyle {
               baseColor == other.baseColor &&
               blur == other.blur &&
               distance == other.distance &&
+              curveHeight == other.curveHeight &&
               intensity == other.intensity &&
               lightSource == other.lightSource &&
               borderRadius == other.borderRadius &&
@@ -88,6 +95,7 @@ class NeumorphicStyle {
       baseColor.hashCode ^
       blur.hashCode ^
       distance.hashCode ^
+      curveHeight.hashCode ^
       intensity.hashCode ^
       lightSource.hashCode ^
       borderRadius.hashCode ^
@@ -98,6 +106,7 @@ class NeumorphicStyle {
     double blur,
     double distance,
     double intensity,
+    double curveHeight,
     LightSource lightSource,
     double borderRadius,
     NeumorphicShape shape,
@@ -107,6 +116,7 @@ class NeumorphicStyle {
       blur: blur ?? this.blur,
       distance: distance ?? this.distance,
       intensity: intensity ?? this.intensity,
+      curveHeight: curveHeight ?? this.curveHeight,
       lightSource: lightSource ?? this.lightSource,
       borderRadius: borderRadius ?? this.borderRadius,
       shape: shape ?? this.shape,
