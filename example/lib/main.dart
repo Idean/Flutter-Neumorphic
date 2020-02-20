@@ -33,8 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Provider<NeumorphicTheme>.value(
       value: NeumorphicTheme(
         baseColor: NeumorphicColors.background,
-        lightSource: LightSource.bottomRight
-          ,
+        lightSource: LightSource.bottomRight,
         distance: 3,
         blur: 6,
         intensity: 0.2
@@ -75,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               SizedBox(height: 30),
-              NeumorphicContainer(
+              NeumorphicButton(
                 //accent: Colors.blueAccent,
                 style: NeumorphicStyle(
                   distance: 8,
@@ -88,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               SizedBox(height: 30),
-              NeumorphicContainer(
+              NeumorphicButton(
                 //accent: Colors.blueAccent,
                 style: NeumorphicStyle(
                   distance: 8,

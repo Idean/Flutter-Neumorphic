@@ -38,38 +38,80 @@ class NeumorphicTheme {
 const NeumorphicShape _defaultShape = NeumorphicShape.concave;
 const double _defaultBorderRaious = 5;
 
-class NeumorphicStyle extends NeumorphicTheme {
+class NeumorphicStyle {
+
+  final Color baseColor;
+  final double blur;
+  final double distance;
+  final double intensity;
+  final LightSource lightSource;
+
   final double borderRadius;
-  final bool gradientBackground;
   final NeumorphicShape shape;
 
   const NeumorphicStyle({
     this.borderRadius = _defaultBorderRaious,
-    this.gradientBackground = true,
     this.shape = _defaultShape,
-    Color baseColor,
-    LightSource lightSource,
-    double blur,
-    double distance,
-    double intensity,
-  }) : super(
-          baseColor: baseColor,
-          lightSource: lightSource,
-          blur: blur,
-          distance: distance,
-          intensity: intensity,
-        );
+    this.lightSource,
+    this.baseColor,
+    this.blur,
+    this.distance,
+    this.intensity,
+  });
 
   NeumorphicStyle copyWithThemeIfNull(NeumorphicTheme theme) {
     return new NeumorphicStyle(
         borderRadius: this.borderRadius,
-        gradientBackground: this.gradientBackground,
+        baseColor: this.baseColor ?? theme.baseColor,
         shape: this.shape,
         blur: this.blur ?? theme.blur,
         distance: this.distance ?? theme.distance,
         intensity: this.intensity ?? theme.intensity,
-        lightSource: this.lightSource ?? theme.lightSource,
-        baseColor: this.baseColor ?? theme.baseColor);
+        lightSource: this.lightSource ?? theme.lightSource);
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is NeumorphicStyle &&
+              runtimeType == other.runtimeType &&
+              baseColor == other.baseColor &&
+              blur == other.blur &&
+              distance == other.distance &&
+              intensity == other.intensity &&
+              lightSource == other.lightSource &&
+              borderRadius == other.borderRadius &&
+              shape == other.shape;
+
+  @override
+  int get hashCode =>
+      baseColor.hashCode ^
+      blur.hashCode ^
+      distance.hashCode ^
+      intensity.hashCode ^
+      lightSource.hashCode ^
+      borderRadius.hashCode ^
+      shape.hashCode;
+
+  NeumorphicStyle copyWith({
+    Color baseColor,
+    double blur,
+    double distance,
+    double intensity,
+    LightSource lightSource,
+    double borderRadius,
+    NeumorphicShape shape,
+  }) {
+    return new NeumorphicStyle(
+      baseColor: baseColor ?? this.baseColor,
+      blur: blur ?? this.blur,
+      distance: distance ?? this.distance,
+      intensity: intensity ?? this.intensity,
+      lightSource: lightSource ?? this.lightSource,
+      borderRadius: borderRadius ?? this.borderRadius,
+      shape: shape ?? this.shape,
+    );
+  }
+
 }
 //endregion

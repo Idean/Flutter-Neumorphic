@@ -96,18 +96,14 @@ BoxDecoration generateNeumorphicDecorator(
         offset.dy.clamp(-1, 1).toDouble(),
       ),
       colors: [
-        style.gradientBackground
-            ? NeumorphicColors.generateGradientColors(
+        NeumorphicColors.generateGradientColors(
                 colorBase: innerColor,
                 intensity: style.shape == NeumorphicShape.convex ? whiteFactor : -darkFactor,
-              )
-            : innerColor,
-        style.gradientBackground
-            ? NeumorphicColors.generateGradientColors(
+              ),
+        NeumorphicColors.generateGradientColors(
                 colorBase: innerColor,
                 intensity: style.shape == NeumorphicShape.convex ? -darkFactor : whiteFactor,
               )
-            : innerColor,
       ],
     );
   }

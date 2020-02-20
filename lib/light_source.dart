@@ -73,4 +73,6 @@ Offset embrossOffset({LightSource lightSource, bool dark, double distance}){
     }
   }
 
+  return null;
+
 }
