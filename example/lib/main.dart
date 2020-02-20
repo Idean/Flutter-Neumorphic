@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
@@ -45,62 +46,92 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Colors.transparent,
           title: Text(widget.title, style: Theme.of(context).textTheme.display1),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              NeumorphicContainer(
-                //accent: Colors.blueAccent,
-                style: NeumorphicStyle(
-                  distance: 10,
-                  borderRadius: 40,
-                  shape: NeumorphicShape.emboss,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Row(
+                  children: <Widget>[
+                    NeumorphicContainer(
+                      //accent: Colors.blueAccent,
+                      style: NeumorphicStyle(
+                        distance: 10,
+                        borderRadius: 40,
+                        shape: NeumorphicShape.emboss,
+                      ),
+                      child: SizedBox(
+                        height: 150,
+                        width: 150,
+                      ),
+                    ),
+                    SizedBox(width: 12),
+                    Text("Emboss")
+                  ],
                 ),
-                child: SizedBox(
-                  height: 150,
-                  width: 150,
+                SizedBox(height: 30),
+                Row(
+                  children: <Widget>[
+                    NeumorphicButton(
+                      //accent: Colors.blueAccent,
+                      style: NeumorphicStyle(
+                        distance: 10,
+                        borderRadius: 40,
+                        shape: NeumorphicShape.flat,
+                      ),
+                      child: SizedBox(
+                        height: 150,
+                        width: 150,
+                      ),
+                    ),
+                    SizedBox(width: 12),
+                    Text("Flat")
+                  ],
                 ),
-              ),
-              SizedBox(height: 30),
-              NeumorphicButton(
-                //accent: Colors.blueAccent,
-                style: NeumorphicStyle(
-                  distance: 10,
-                  borderRadius: 40,
-                  shape: NeumorphicShape.flat,
+                SizedBox(height: 30),
+                Row(
+                  children: <Widget>[
+                    NeumorphicButton(
+                      //accent: Colors.blueAccent,
+                      style: NeumorphicStyle(
+                        distance: 8,
+                        borderRadius: 40,
+                        shape: NeumorphicShape.convex,
+                      ),
+                      child: SizedBox(
+                        height: 150,
+                        width: 150,
+                      ),
+                    ),
+                    SizedBox(width: 12),
+                    Text("Convex")
+                  ],
                 ),
-                child: SizedBox(
-                  height: 150,
-                  width: 150,
+                SizedBox(height: 30),
+                Row(
+                  children: <Widget>[
+                    NeumorphicButton(
+                      //accent: Colors.blueAccent,
+                      style: NeumorphicStyle(
+                        distance: 8,
+                        borderRadius: 40,
+                        shape: NeumorphicShape.concave,
+                      ),
+                      child: SizedBox(
+                        height: 150,
+                        width: 150,
+                      ),
+                    ),
+                    SizedBox(width: 12),
+                    Text("Concave")
+                  ],
                 ),
-              ),
-              SizedBox(height: 30),
-              NeumorphicButton(
-                //accent: Colors.blueAccent,
-                style: NeumorphicStyle(
-                  distance: 8,
-                  borderRadius: 40,
-                  shape: NeumorphicShape.convex,
-                ),
-                child: SizedBox(
-                  height: 150,
-                  width: 150,
-                ),
-              ),
-              SizedBox(height: 30),
-              NeumorphicButton(
-                //accent: Colors.blueAccent,
-                style: NeumorphicStyle(
-                  distance: 8,
-                  borderRadius: 40,
-                  shape: NeumorphicShape.concave,
-                ),
-                child: SizedBox(
-                  height: 150,
-                  width: 150,
-                ),
-              ),
-            ],
+                SizedBox(height: 30),
+              ],
+            ),
           ),
         ),
       ),

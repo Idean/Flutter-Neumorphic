@@ -19,6 +19,8 @@ BoxDecoration generateNeumorphicDecorator(
 
   //will only use style from here, style is not null
 
+  final borderRadius = style.borderRadius == 0 ? null : BorderRadius.circular(style.borderRadius);
+
   List<BoxShadow> boxShadows;
   Color innerColor;
   Gradient gradient;
@@ -35,16 +37,51 @@ BoxDecoration generateNeumorphicDecorator(
         offset: embrossOffset(lightSource: style.lightSource, dark: false, distance: whiteDistance),
         blurRadius: whiteDistance,
       ),
-      BoxShadow(
-        color: NeumorphicColors.getAdjustColor(style.baseColor, 0 - style.distance),
-        offset: embrossOffset(lightSource: style.lightSource, dark: true, distance: darkDistance),
-        blurRadius: darkDistance,
-      ),
+      //BoxShadow(
+      //  color: NeumorphicColors.getAdjustColor(style.baseColor, 0 - style.distance),
+      //  offset: embrossOffset(lightSource: style.lightSource, dark: true, distance: darkDistance),
+      //  blurRadius: darkDistance,
+      //),
     ];
 
     gradient = NeumorphicColors.generateFlatGradients(
       color: NeumorphicColors.getAdjustColor(innerColor, 0 - style.distance / 2),
     );
+    final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveHeight);
+    double darkFactor = style.curveHeight / 100 + 0.1;
+
+    gradient = LinearGradient(
+      begin: Alignment(
+        -convexConcaveOffset.dx.clamp(-1, 1).toDouble(),
+        -convexConcaveOffset.dy.clamp(-1, 1).toDouble(),
+      ),
+      end: Alignment(
+        convexConcaveOffset.dx.clamp(-1, 1).toDouble(),
+        convexConcaveOffset.dy.clamp(-1, 1).toDouble(),
+      ),
+      colors: [
+       // Colors.grey,
+        NeumorphicColors.generateGradientColors(
+          colorBase: innerColor,
+          intensity: -darkFactor,
+        ),
+        NeumorphicColors.generateGradientColors(
+          colorBase: innerColor,
+          intensity: darkFactor,
+        )
+      ],
+    );
+
+
+
+
+    return BoxDecoration(
+      borderRadius: borderRadius,
+      //color: innerColor,
+      boxShadow: boxShadows,
+      gradient: gradient,
+    );
+
   } else if (style.shape == NeumorphicShape.flat) {
     innerColor = accent ?? style.baseColor;
     final offset = sourceToOffset(style.lightSource, style.distance);
@@ -119,7 +156,6 @@ BoxDecoration generateNeumorphicDecorator(
     );
   }
 
-  final borderRadius = style.borderRadius == 0 ? null : BorderRadius.circular(style.borderRadius);
 
   return BoxDecoration(
     borderRadius: borderRadius,

@@ -10,7 +10,7 @@ class NeumorphicColors {
   /// Positive intensity denotes a darker shade while negative intensity
   /// denotes a lighter shade.
   /// Credit for the algorithm goes to https://neumorphism.io
-  static Color generateGradientColors({Color colorBase, double intensity}) {
+  static Color generateGradientColors({Color colorBase, double intensity, bool updateAlpha = true}) {
     final t = intensity ?? 0;
     String e = colorBase.value.toRadixString(16).substring(2);
     if (e.length < 6) e = e[0] + e[0] + e[1] + e[1] + e[2] + e[2];
@@ -21,7 +21,12 @@ class NeumorphicColors {
       o += ('00' + a.toRadixString(16)).substring(a.toRadixString(16).length);
     }
 
-    return Color(int.parse(o, radix: 16)).withAlpha(255);
+    final generatedColor = Color(int.parse(o, radix: 16));
+    if(updateAlpha){
+      return generatedColor.withAlpha(255);
+    } else {
+      return generatedColor;
+    }
   }
 
   static Gradient generateFlatGradients({Color color}) => LinearGradient(
