@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               SizedBox(height: 30),
-              NeumorphicContainer(
+              NeumorphicButton(
                 //accent: Colors.blueAccent,
                 style: NeumorphicStyle(
                   distance: 10,

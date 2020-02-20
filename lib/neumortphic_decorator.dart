@@ -83,8 +83,8 @@ BoxDecoration generateNeumorphicDecorator(
       ),
     ];
 
-    double darkFactor = 0.2;
-    double whiteFactor = 0.06;
+    double darkFactor = style.distance / 100 + 0.05;
+    double whiteFactor = style.distance / 200 + 0.06;
 
     gradient = LinearGradient(
       begin: Alignment(
