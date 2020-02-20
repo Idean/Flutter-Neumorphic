@@ -1,8 +1,10 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_neumorphic/container.dart';
+
+import '../theme.dart';
+import 'animation/animated_scale.dart';
+import 'container.dart';
 
 class NeumorphicButton extends StatefulWidget {
-
   final Widget child;
   final NeumorphicStyle style;
   final double minDistance;
@@ -11,7 +13,7 @@ class NeumorphicButton extends StatefulWidget {
     Key key,
     this.child,
     this.minDistance = 0,
-    this.style = const NeumorphicStyle()
+    this.style = const NeumorphicStyle(),
   }) : super(key: key);
 
   @override
@@ -19,12 +21,13 @@ class NeumorphicButton extends StatefulWidget {
 }
 
 class _NeumorphicButtonState extends State<NeumorphicButton> {
-
   NeumorphicStyle initialStyle;
-  double distance;
 
-  void updateInitialStyle(){
-    if(widget.style != initialStyle) {
+  double distance;
+  double scale = 1;
+
+  void updateInitialStyle() {
+    if (widget.style != initialStyle) {
       setState(() {
         this.initialStyle = widget.style;
         distance = widget.style.distance;
@@ -44,14 +47,23 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
     super.didChangeDependencies();
   }
 
-  void _changeDistance(){
+  @override
+  void didUpdateWidget(NeumorphicButton oldWidget) {
+    updateInitialStyle();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void _changeDistance() {
     setState(() {
+      scale = 0.95;
       distance = widget.minDistance;
     });
   }
-  void _resetDistance(){
+
+  void _resetDistance() {
     setState(() {
-      distance =  initialStyle.distance;
+      scale = 1;
+      distance = initialStyle.distance;
     });
   }
 
@@ -67,11 +79,12 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       onTapCancel: () {
         _resetDistance();
       },
-      child: NeumorphicContainer(
+      child: AnimatedScale(
+        scale: this.scale,
+        child: NeumorphicContainer(
+          style: initialStyle.copyWith(distance: distance),
           child: widget.child,
-          style: initialStyle.copyWith(
-            distance: this.distance
-          ),
+        ),
       ),
     );
   }
