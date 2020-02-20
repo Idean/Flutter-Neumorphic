@@ -66,7 +66,8 @@ BoxDecoration generateNeumorphicDecorator(
           intensity: -darkFactor,
         ),
         NeumorphicColors.generateGradientColors(
-          colorBase: innerColor,
+          colorBase: innerColor.withOpacity(0.5),
+          updateAlpha: false,
           intensity: darkFactor,
         )
       ],
@@ -129,7 +130,7 @@ BoxDecoration generateNeumorphicDecorator(
       ];
     }
 
-    double darkFactor = style.curveHeight / 100 + 0.1;
+    double darkFactor = style.curveHeight / 60 + 0.1;
     double whiteFactor = style.curveHeight / 200 + 0.06;
 
     final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveHeight);
