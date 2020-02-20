@@ -42,13 +42,28 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
     super.didChangeDependencies();
   }
 
+  void _changeDistance(){
+    setState(() {
+      distance = 1;
+    });
+  }
+  void _resetDistance(){
+    setState(() {
+      distance =  initialStyle.distance;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          distance = 1;
-        });
+      onTapDown: (detail) {
+        _changeDistance();
+      },
+      onTapUp: (detail) {
+        _resetDistance();
+      },
+      onTapCancel: () {
+        _resetDistance();
       },
       child: NeumorphicContainer(
           child: widget.child,
