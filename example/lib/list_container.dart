@@ -16,7 +16,7 @@ class _ContainersListPageState extends State<ContainersListPage> {
       theme: NeumorphicTheme(
         baseColor: NeumorphicColors.background,
         lightSource: LightSource.topLeft,
-        curveHeight: 15,
+        curveFactor: 1,
         distance: 3,
         intensity: 0.2,
       ),

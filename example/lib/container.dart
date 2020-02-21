@@ -24,7 +24,7 @@ class _ContainerPageState extends State<ContainerPage> {
       theme: NeumorphicTheme(
         baseColor: NeumorphicColors.background,
         lightSource: LightSource.topLeft,
-        curveHeight: 1,
+        curveFactor: 1,
         distance: 6,
         intensity: 0.2,
       ),

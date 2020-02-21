@@ -49,8 +49,8 @@ BoxDecoration generateNeumorphicDecorator(
     gradient = NeumorphicColors.generateFlatGradients(
       color: NeumorphicColors.getAdjustColor(innerColor, 0 - style.distance / 2),
     );
-    final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveHeight);
-    double darkFactor = style.curveHeight / 100 + 0.1;
+    final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveFactor);
+    double darkFactor = style.curveFactor / 100 + 0.1;
 
     gradient = LinearGradient(
       begin: Alignment(
@@ -135,10 +135,10 @@ BoxDecoration generateNeumorphicDecorator(
       ];
     }
 
-    double darkFactor = style.distance / 80  + style.curveHeight / 15;
-    double whiteFactor =  style.distance/ 60 + style.curveHeight / 15;
+    double darkFactor = style.distance / 50  + style.curveFactor.clamp(0, 1) / 15;
+    double whiteFactor =  style.distance/ 60 + style.curveFactor.clamp(0, 1) / 15;
 
-    final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveHeight);
+    final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveFactor);
 
     gradient = LinearGradient(
       begin: Alignment(
