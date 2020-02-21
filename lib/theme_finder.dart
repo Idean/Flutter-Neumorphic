@@ -15,15 +15,15 @@ NeumorphicTheme findNeumorphicTheme(BuildContext context) {
 
 class NeumorphicThemeProvider extends StatelessWidget {
 
-  final NeumorphicTheme value;
+  final NeumorphicTheme theme;
   final Widget child;
 
-  NeumorphicThemeProvider({@required this.child, @required this.value});
+  NeumorphicThemeProvider({@required this.child, @required this.theme});
 
   @override
   Widget build(BuildContext context) {
     return Provider.value(
-      value: this.value,
+      value: this.theme,
       child: this.child
     );
   }
