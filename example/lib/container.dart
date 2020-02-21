@@ -54,7 +54,7 @@ class _ContainerPageState extends State<ContainerPage> {
       shape: boxShape,
       style: NeumorphicStyle(
         shape: this.shape,
-        distance: 4,
+        distance: 5,
         lightSource: this.lightSource,
       ),
       child: SizedBox(

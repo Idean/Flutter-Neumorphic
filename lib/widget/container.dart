@@ -11,8 +11,8 @@ class Neumorphic extends StatelessWidget {
   final BoxShape shape;
 
   //forces have 2 different widgets if the shape changes
-  GlobalKey _circleKey = GlobalKey();
-  GlobalKey _rectangleKey = GlobalKey();
+  Key _circleKey = Key("circle");
+  Key _rectangleKey = Key("rectangle");
 
   Neumorphic({
     Key key,
