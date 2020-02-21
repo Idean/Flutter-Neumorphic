@@ -7,7 +7,6 @@ class ContainerPage extends StatefulWidget {
 }
 
 class _ContainerPageState extends State<ContainerPage> {
-
   final Color buttonActiveColor = Colors.yellow;
   final Color buttonInnactiveColor = Colors.grey;
 
@@ -16,35 +15,57 @@ class _ContainerPageState extends State<ContainerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(),
-        body: Column(
-          children: <Widget>[
-            shapeWidget(),
-            Stack(
-              fit: StackFit.expand,
-              children: [
-                ...lightSourceWidgets(),
-                Center(
-                  child: Neumorphic(
-                    style: NeumorphicStyle(
-                      shape: NeumorphicShape.concave,
-                        lightSource: this.lightSource
+    return NeumorphicThemeProvider(
+      theme: NeumorphicTheme(
+        baseColor: NeumorphicColors.background,
+        lightSource: LightSource.topLeft,
+        curveHeight: 15,
+        distance: 6,
+        blur: 6,
+        intensity: 0.2,
+      ),
+      child: Scaffold(
+          backgroundColor: NeumorphicColors.background,
+          appBar: AppBar(
+            backgroundColor: Colors.grey,
+          ),
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              shapeWidget(),
+              Expanded(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    ...lightSourceWidgets(),
+                    Center(
+                      child: neumophic()
                     ),
-                    child: SizedBox(
-                      height: 200,
-                      width: 200,
-                    ),
-                  ),
+                  ],
                 ),
-              ],
-            )
-          ],
-        ));
+              )
+            ],
+          )),
+    );
+  }
+
+  Widget neumophic() {
+    return NeumorphicButton(
+      style: NeumorphicStyle(
+        shape: this.shape,
+        lightSource: this.lightSource,
+      ),
+      child: SizedBox(
+        height: 150,
+        width: 150,
+      ),
+    );
   }
 
   Widget shapeWidget() {
     return Row(
+      mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         RaisedButton(
           onPressed: () {
@@ -86,7 +107,7 @@ class _ContainerPageState extends State<ContainerPage> {
     );
   }
 
-    List<Widget> lightSourceWidgets() {
+  List<Widget> lightSourceWidgets() {
     return [
       Positioned(
         child: RaisedButton(
@@ -138,7 +159,7 @@ class _ContainerPageState extends State<ContainerPage> {
           child: Text("bottomRight"),
         ),
         bottom: 0,
-        left: 0,
+        right: 0,
       ),
     ];
   }

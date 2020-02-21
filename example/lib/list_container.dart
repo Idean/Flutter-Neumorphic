@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class ContainersListPage extends StatefulWidget {
-  ContainersListPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  ContainersListPage({Key key}) : super(key: key);
 
   @override
   _ContainersListPageState createState() => _ContainersListPageState();
@@ -28,7 +26,7 @@ class _ContainersListPageState extends State<ContainersListPage> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           title:
-              Text(widget.title, style: Theme.of(context).textTheme.display1),
+              Text("List", style: Theme.of(context).textTheme.display1),
         ),
         body: SingleChildScrollView(
           child: Padding(
