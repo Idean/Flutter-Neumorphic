@@ -27,10 +27,10 @@ class LightSource {
   @override
   int get hashCode => offset.hashCode;
 
-}
+  Offset toOffset(double distance) {
+    return offset.scale(distance, distance);
+  }
 
-Offset sourceToOffset(LightSource source, double distance) {
-  return source.offset.scale(distance, distance);
 }
 
 Offset mergeOffsetWithDistance(Offset offset, double distance,

@@ -44,7 +44,7 @@ class _ContainerPageState extends State<ContainerPage> {
                   fit: StackFit.expand,
                   children: [
                     ...lightSourceWidgets(),
-                    Center(child: neumophic()),
+                    Center(child: neumorphic()),
                   ],
                 ),
               )
@@ -53,7 +53,7 @@ class _ContainerPageState extends State<ContainerPage> {
     );
   }
 
-  Widget neumophic() {
+  Widget neumorphic() {
     return SizedBox(
       height: 200,
       width: 200,
