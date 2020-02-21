@@ -135,8 +135,8 @@ BoxDecoration generateNeumorphicDecorator(
       ];
     }
 
-    double darkFactor = style.curveHeight / 110 + 0.1;
-    double whiteFactor = style.curveHeight / 200 + 0.06;
+    double darkFactor = style.distance / 80  + style.curveHeight / 15;
+    double whiteFactor =  style.distance/ 60 + style.curveHeight / 15;
 
     final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveHeight);
 
@@ -155,13 +155,23 @@ BoxDecoration generateNeumorphicDecorator(
                 intensity: style.shape == NeumorphicShape.convex ? whiteFactor : -darkFactor,
               ),
         NeumorphicColors.generateGradientColors(
+          colorBase: innerColor,
+          intensity: style.shape == NeumorphicShape.convex ? whiteFactor : -darkFactor,
+        ),
+        NeumorphicColors.generateGradientColors(
                 colorBase: innerColor,
                 intensity: style.shape == NeumorphicShape.convex ? -darkFactor : whiteFactor,
-              )
+              ),
+        NeumorphicColors.generateGradientColors(
+          colorBase: innerColor,
+          intensity: style.shape == NeumorphicShape.convex ? -darkFactor : whiteFactor,
+        )
       ],
       stops: [
         0,
-        0.95
+        0.1,
+        0.8,
+        1
       ]
     );
   }
