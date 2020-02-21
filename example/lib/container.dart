@@ -12,6 +12,11 @@ class _ContainerPageState extends State<ContainerPage> {
 
   LightSource lightSource = LightSource.topLeft;
   NeumorphicShape shape = NeumorphicShape.concave;
+  BoxShape boxShape = BoxShape.rectangle;
+
+  //forces have 2 different widgets if the shape changes
+  GlobalKey circleKey = GlobalKey();
+  GlobalKey rectangleKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +39,13 @@ class _ContainerPageState extends State<ContainerPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               shapeWidget(),
+              boxshapeWidget(),
               Expanded(
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
                     ...lightSourceWidgets(),
-                    Center(
-                      child: neumophic()
-                    ),
+                    Center(child: neumophic()),
                   ],
                 ),
               )
@@ -52,6 +56,8 @@ class _ContainerPageState extends State<ContainerPage> {
 
   Widget neumophic() {
     return NeumorphicButton(
+      key: boxShape == BoxShape.circle ? circleKey : rectangleKey,
+      shape: boxShape,
       style: NeumorphicStyle(
         shape: this.shape,
         lightSource: this.lightSource,
@@ -60,6 +66,32 @@ class _ContainerPageState extends State<ContainerPage> {
         height: 150,
         width: 150,
       ),
+    );
+  }
+
+  Widget boxshapeWidget() {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        RaisedButton(
+          onPressed: () {
+            setState(() {
+              boxShape = BoxShape.rectangle;
+            });
+          },
+          color: boxShape == BoxShape.rectangle ? buttonActiveColor : buttonInnactiveColor,
+          child: Text("Rectangle"),
+        ),
+        RaisedButton(
+          onPressed: () {
+            setState(() {
+              boxShape = BoxShape.circle;
+            });
+          },
+          color: boxShape == BoxShape.circle ? buttonActiveColor : buttonInnactiveColor,
+          child: Text("Circle"),
+        ),
+      ],
     );
   }
 
