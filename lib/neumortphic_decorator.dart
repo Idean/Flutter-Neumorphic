@@ -49,38 +49,39 @@ BoxDecoration generateNeumorphicDecorator(
     gradient = NeumorphicColors.generateFlatGradients(
       color: NeumorphicColors.getAdjustColor(innerColor, 0 - style.distance / 2),
     );
-    final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveFactor);
-    double darkFactor = style.curveFactor / 100 + 0.1;
+    final convexConcaveOffset = sourceToOffset(style.lightSource, style.distance);
+    double darkFactor = style.distance / 80;
 
     gradient = LinearGradient(
       begin: Alignment(
-        -convexConcaveOffset.dx.clamp(-1, 1).toDouble(),
-        -convexConcaveOffset.dy.clamp(-1, 1).toDouble(),
-      ),
-      end: Alignment(
         convexConcaveOffset.dx.clamp(-1, 1).toDouble(),
         convexConcaveOffset.dy.clamp(-1, 1).toDouble(),
       ),
-      /*
+      end: Alignment(
+        -convexConcaveOffset.dx.clamp(-1, 1).toDouble(),
+        -convexConcaveOffset.dy.clamp(-1, 1).toDouble(),
+      ),
+
       colors: [
        // Colors.grey,
         NeumorphicColors.generateGradientColors(
           colorBase: innerColor,
-          intensity: -darkFactor,
-        ),
-        NeumorphicColors.generateGradientColors(
-          colorBase: innerColor.withOpacity(0.5),
           updateAlpha: false,
-          intensity: darkFactor,
-        )
+          intensity: 0,
+        ).withOpacity(0),
+        NeumorphicColors.generateGradientColors(
+          colorBase: innerColor,
+          intensity: -style.distance / 50,
+        ).withOpacity(0.3),
+        NeumorphicColors.generateGradientColors(
+          colorBase: innerColor,
+          intensity: -style.distance / 60,
+        ).withOpacity(0.8),
+        NeumorphicColors.generateGradientColors(
+          colorBase: innerColor,
+          intensity: -style.distance / 80,
+        ).withOpacity(1),
       ],
-       */
-        colors: [
-          Colors.grey[200].withOpacity(0.4),
-          Colors.grey[300].withOpacity(0.5),
-          Colors.grey[400].withOpacity(0.6),
-          Colors.grey[500],
-        ],
         stops: [
           0,
           0.6,
