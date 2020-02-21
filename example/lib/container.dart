@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:provider/provider.dart';
 
 class ContainerPage extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class _ContainerPageState extends State<ContainerPage> {
   LightSource lightSource = LightSource.topLeft;
   NeumorphicShape shape = NeumorphicShape.concave;
   BoxShape boxShape = BoxShape.rectangle;
+  double depth = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class _ContainerPageState extends State<ContainerPage> {
             children: <Widget>[
               shapeWidget(),
               boxshapeWidget(),
+              depthSelector(),
               Expanded(
                 child: Stack(
                   fit: StackFit.expand,
@@ -50,21 +53,52 @@ class _ContainerPageState extends State<ContainerPage> {
   }
 
   Widget neumophic() {
-    return NeumorphicButton(
-      shape: boxShape,
-      style: NeumorphicStyle(
-        shape: this.shape,
-        distance: 5,
-        lightSource: this.lightSource,
-      ),
-      child: SizedBox(
-        height: 150,
-        width: 150,
+    return SizedBox(
+      height: 200,
+      width: 200,
+      child: NeumorphicButton(
+        shape: boxShape,
+        style: NeumorphicStyle(
+          shape: this.shape,
+          distance: depth,
+          lightSource: this.lightSource,
+        ),
+        child: SizedBox(
+          height: 150,
+          width: 150,
+        ),
       ),
     );
   }
 
-  Widget boxshapeWidget() {
+  Widget depthSelector() {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(left: 12),
+          child: Text("Depth"),
+        ),
+        Expanded(
+          child: Slider(
+            min: 0,
+            max: 40,
+            value: depth,
+            onChanged: (value){
+              setState(() {
+                depth = value;
+              });
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: 12),
+          child: Text(depth.floor().toString()),
+        ),
+      ],
+    );
+  }
+
+    Widget boxshapeWidget() {
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
