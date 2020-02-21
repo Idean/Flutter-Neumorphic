@@ -114,7 +114,14 @@ BoxDecoration generateNeumorphicDecorator(
       color: NeumorphicColors.getAdjustColor(innerColor, 0 - style.distance / 2),
     );
   } else {
-    final offset = sourceToOffset(style.lightSource, style.distance);
+    var offset = sourceToOffset(style.lightSource, style.distance);
+
+    if(offset.dx < -6 || offset.dy < -6){
+      offset = Offset(-6, -6);
+    }
+    if(offset.dx > 6 || offset.dy > 6){
+      offset = Offset(6, 6);
+    }
 
     print("offset : $offset");
     innerColor = accent ?? style.baseColor;
@@ -124,14 +131,15 @@ BoxDecoration generateNeumorphicDecorator(
     } else {
       boxShadows = [
         BoxShadow(
-          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity / 2),
+          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 *  (style.intensity * style.distance) / 5),
           offset: offset.scale(-1, -1),
-          blurRadius: style.distance / 4, //TODO
+          blurRadius: style.distance / 2, //TODO
         ),
         BoxShadow(
-          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity / 2.5),
+          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: 1),
           offset: offset,
-          blurRadius: style.distance /4, //TODO
+          spreadRadius: style.distance / 10,
+          blurRadius: (style.distance / 3.5), //TODO
         ),
       ];
     }
