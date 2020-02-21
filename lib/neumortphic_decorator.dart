@@ -99,12 +99,12 @@ BoxDecoration generateNeumorphicDecorator(
         BoxShadow(
           color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity),
           offset: offset,
-          blurRadius: theme.blur,
+          blurRadius: style.distance, //TODO
         ),
         BoxShadow(
           color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity),
           offset: offset.scale(-1, -1),
-          blurRadius: theme.blur,
+          blurRadius: style.distance, //TODO
         ),
       ];
     }
@@ -125,12 +125,12 @@ BoxDecoration generateNeumorphicDecorator(
         BoxShadow(
           color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity),
           offset: offset,
-          blurRadius: theme.blur,
+          blurRadius: style.distance, //TODO
         ),
         BoxShadow(
           color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity),
           offset: offset.scale(-1, -1),
-          blurRadius: theme.blur,
+          blurRadius: style.distance, //TODO
         ),
       ];
     }

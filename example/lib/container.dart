@@ -26,7 +26,6 @@ class _ContainerPageState extends State<ContainerPage> {
         lightSource: LightSource.topLeft,
         curveHeight: 15,
         distance: 6,
-        blur: 6,
         intensity: 0.2,
       ),
       child: Scaffold(
@@ -99,41 +98,49 @@ class _ContainerPageState extends State<ContainerPage> {
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
-        RaisedButton(
-          onPressed: () {
-            setState(() {
-              shape = NeumorphicShape.concave;
-            });
-          },
-          color: shape == NeumorphicShape.concave ? buttonActiveColor : buttonInnactiveColor,
-          child: Text("Concave"),
+        Expanded(
+          child: RaisedButton(
+            onPressed: () {
+              setState(() {
+                shape = NeumorphicShape.concave;
+              });
+            },
+            color: shape == NeumorphicShape.concave ? buttonActiveColor : buttonInnactiveColor,
+            child: Text("Concave"),
+          ),
         ),
-        RaisedButton(
-          onPressed: () {
-            setState(() {
-              shape = NeumorphicShape.convex;
-            });
-          },
-          color: shape == NeumorphicShape.convex ? buttonActiveColor : buttonInnactiveColor,
-          child: Text("Convex"),
+        Expanded(
+          child: RaisedButton(
+            onPressed: () {
+              setState(() {
+                shape = NeumorphicShape.convex;
+              });
+            },
+            color: shape == NeumorphicShape.convex ? buttonActiveColor : buttonInnactiveColor,
+            child: Text("Convex"),
+          ),
         ),
-        RaisedButton(
-          onPressed: () {
-            setState(() {
-              shape = NeumorphicShape.flat;
-            });
-          },
-          color: shape == NeumorphicShape.flat ? buttonActiveColor : buttonInnactiveColor,
-          child: Text("Flat"),
+        Expanded(
+          child: RaisedButton(
+            onPressed: () {
+              setState(() {
+                shape = NeumorphicShape.flat;
+              });
+            },
+            color: shape == NeumorphicShape.flat ? buttonActiveColor : buttonInnactiveColor,
+            child: Text("Flat"),
+          ),
         ),
-        RaisedButton(
-          onPressed: () {
-            setState(() {
-              shape = NeumorphicShape.emboss;
-            });
-          },
-          color: shape == NeumorphicShape.emboss ? buttonActiveColor : buttonInnactiveColor,
-          child: Text("Emboss"),
+        Expanded(
+          child: RaisedButton(
+            onPressed: () {
+              setState(() {
+                shape = NeumorphicShape.emboss;
+              });
+            },
+            color: shape == NeumorphicShape.emboss ? buttonActiveColor : buttonInnactiveColor,
+            child: Text("Emboss"),
+          ),
         ),
       ],
     );

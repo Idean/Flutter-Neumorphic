@@ -18,7 +18,6 @@ class _ContainersListPageState extends State<ContainersListPage> {
         lightSource: LightSource.topLeft,
         curveHeight: 15,
         distance: 3,
-        blur: 6,
         intensity: 0.2,
       ),
       child: Scaffold(

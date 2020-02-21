@@ -11,7 +11,6 @@ export 'shape.dart';
 const NeumorphicTheme neumorphicDefaultTheme = NeumorphicTheme();
 
 //region theme
-const double _defaultBlur = 8;
 const double _defaultDistance = 4;
 const double _defaultIntensity = 0.2;
 const double _defaultCurveHeight = 6;
@@ -20,7 +19,6 @@ const Color _defaultBaseColor = NeumorphicColors.background;
 
 class NeumorphicTheme {
   final Color baseColor;
-  final double blur;
   final double distance;
   final double intensity;
   final LightSource lightSource;
@@ -30,7 +28,6 @@ class NeumorphicTheme {
     this.baseColor = _defaultBaseColor,
     this.distance = _defaultDistance,
     this.intensity = _defaultIntensity,
-    this.blur = _defaultBlur,
     this.lightSource = _defaultLightSource,
     this.curveHeight = _defaultCurveHeight
   });
@@ -44,7 +41,6 @@ const double _defaultBorderRaious = 5;
 class NeumorphicStyle {
 
   final Color baseColor;
-  final double blur;
   final double distance;
   final double intensity;
   final LightSource lightSource;
@@ -59,7 +55,6 @@ class NeumorphicStyle {
     this.lightSource,
     this.baseColor,
     this.curveHeight,
-    this.blur,
     this.distance,
     this.intensity,
   });
@@ -69,7 +64,6 @@ class NeumorphicStyle {
         borderRadius: this.borderRadius,
         baseColor: this.baseColor ?? theme.baseColor,
         shape: this.shape,
-        blur: this.blur ?? theme.blur,
         distance: this.distance ?? theme.distance,
         intensity: this.intensity ?? theme.intensity,
         curveHeight: this.curveHeight ?? theme.curveHeight,
@@ -82,7 +76,6 @@ class NeumorphicStyle {
           other is NeumorphicStyle &&
               runtimeType == other.runtimeType &&
               baseColor == other.baseColor &&
-              blur == other.blur &&
               distance == other.distance &&
               curveHeight == other.curveHeight &&
               intensity == other.intensity &&
@@ -93,7 +86,6 @@ class NeumorphicStyle {
   @override
   int get hashCode =>
       baseColor.hashCode ^
-      blur.hashCode ^
       distance.hashCode ^
       curveHeight.hashCode ^
       intensity.hashCode ^
@@ -103,7 +95,6 @@ class NeumorphicStyle {
 
   NeumorphicStyle copyWith({
     Color baseColor,
-    double blur,
     double distance,
     double intensity,
     double curveHeight,
@@ -113,7 +104,6 @@ class NeumorphicStyle {
   }) {
     return new NeumorphicStyle(
       baseColor: baseColor ?? this.baseColor,
-      blur: blur ?? this.blur,
       distance: distance ?? this.distance,
       intensity: intensity ?? this.intensity,
       curveHeight: curveHeight ?? this.curveHeight,
