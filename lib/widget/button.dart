@@ -69,17 +69,27 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
     });
   }
 
+  bool get clickable {
+    return initialStyle.shape != NeumorphicShape.emboss;
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (detail) {
-        _changeDistance();
+        if (clickable) {
+          _changeDistance();
+        }
       },
       onTapUp: (detail) {
-        _resetDistance();
+        if (clickable) {
+          _resetDistance();
+        }
       },
       onTapCancel: () {
-        _resetDistance();
+        if (clickable) {
+          _resetDistance();
+        }
       },
       child: AnimatedScale(
         scale: this.scale,
