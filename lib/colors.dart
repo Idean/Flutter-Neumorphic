@@ -29,6 +29,19 @@ class NeumorphicColors {
     }
   }
 
+  static Gradient generateEmbossGradients({Color color}) => LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        color.withOpacity(0.3),
+        color.withOpacity(0),
+      ],
+      stops: [
+        0.7,
+        1
+      ]
+  );
+
   static Gradient generateFlatGradients({Color color}) => LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
