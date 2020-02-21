@@ -205,6 +205,70 @@ class _ContainerPageState extends State<ContainerPage> {
         right: 0,
       ),
       Positioned(
+        child: Center(
+          child: RaisedButton(
+            onPressed: () {
+              setState(() {
+                lightSource = LightSource.top;
+              });
+            },
+            color: lightSource == LightSource.top ? buttonActiveColor : buttonInnactiveColor,
+            child: Text("top"),
+          ),
+        ),
+        top: 0,
+        left: 0,
+        right: 0,
+      ),
+      Positioned(
+        child: Center(
+          child: RaisedButton(
+            onPressed: () {
+              setState(() {
+                lightSource = LightSource.bottom;
+              });
+            },
+            color: lightSource == LightSource.bottom ? buttonActiveColor : buttonInnactiveColor,
+            child: Text("bottom"),
+          ),
+        ),
+        bottom: 0,
+        left: 0,
+        right: 0,
+      ),
+      Positioned(
+        child: Center(
+          child: RaisedButton(
+            onPressed: () {
+              setState(() {
+                lightSource = LightSource.left;
+              });
+            },
+            color: lightSource == LightSource.left ? buttonActiveColor : buttonInnactiveColor,
+            child: Text("left"),
+          ),
+        ),
+        top: 0,
+        bottom: 0,
+        left: 0,
+      ),
+      Positioned(
+        child: Center(
+          child: RaisedButton(
+            onPressed: () {
+              setState(() {
+                lightSource = LightSource.right;
+              });
+            },
+            color: lightSource == LightSource.right ? buttonActiveColor : buttonInnactiveColor,
+            child: Text("right"),
+          ),
+        ),
+        top: 0,
+        bottom: 0,
+        right: 0,
+      ),
+      Positioned(
         child: RaisedButton(
           onPressed: () {
             setState(() {

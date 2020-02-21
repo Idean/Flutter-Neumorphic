@@ -1,29 +1,36 @@
 import 'dart:ui';
 
-enum LightSource {
-  topLeft,
-  topRight,
-  bottomLeft,
-  bottomRight,
+class LightSource {
+  final double dx;
+  final double dy;
+
+  const LightSource(this.dx, this.dy);
+
+  Offset get offset => Offset(dx, dy);
+
+  static const top = const LightSource(0, -1);
+  static const topLeft = const LightSource(-1, -1);
+  static const topRight = const LightSource(1, -1);
+  static const bottom = const LightSource(0, 1);
+  static const bottomLeft = const LightSource(1, -1);
+  static const bottomRight = const LightSource(1, 1);
+  static const left = const LightSource(-1, 0);
+  static const right = const LightSource(1, 0);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is LightSource &&
+              runtimeType == other.runtimeType &&
+              offset == other.offset;
+
+  @override
+  int get hashCode => offset.hashCode;
+
 }
 
 Offset sourceToOffset(LightSource source, double distance) {
-  Offset off;
-  switch (source) {
-    case LightSource.bottomLeft:
-      off = Offset(distance, -distance);
-      break;
-    case LightSource.topLeft:
-      off = Offset(distance, distance);
-      break;
-    case LightSource.topRight:
-      off = Offset(-distance, distance);
-      break;
-    case LightSource.bottomRight:
-      off = Offset(-distance, -distance);
-      break;
-  }
-  return off;
+  return source.offset.scale(distance, distance);
 }
 
 Offset mergeOffsetWithDistance(Offset offset, double distance,
@@ -42,37 +49,8 @@ Offset mergeOffsetWithDistance(Offset offset, double distance,
 
 Offset embrossOffset({LightSource lightSource, bool dark, double distance}){
   if(dark){
-    switch(lightSource){
-      case LightSource.topLeft:
-        return  Offset(-distance, -distance);
-        break;
-      case LightSource.topRight:
-        return  Offset(distance, - distance);
-        break;
-      case LightSource.bottomLeft:
-        return  Offset(- distance, distance);
-        break;
-      case LightSource.bottomRight:
-        return  Offset(distance, distance);
-        break;
-    }
+    return lightSource.offset.scale(-distance, -distance);
   } else {
-    switch(lightSource){
-      case LightSource.topLeft:
-        return Offset(distance, distance);
-        break;
-      case LightSource.topRight:
-        return Offset(-distance, distance);
-        break;
-      case LightSource.bottomLeft:
-        return Offset(distance, -distance);
-        break;
-      case LightSource.bottomRight:
-        return Offset(-distance, -distance);
-        break;
-    }
+    return lightSource.offset.scale(distance, distance);
   }
-
-  return null;
-
 }
