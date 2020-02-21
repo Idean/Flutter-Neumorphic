@@ -3,12 +3,28 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import 'flutter_neumorphic.dart';
+import 'package:flutter/material.dart';
 
 NeumorphicTheme findNeumorphicTheme(BuildContext context) {
-  //TODO remove provider.of
   try {
     return  Provider.of<NeumorphicTheme>(context);
   } catch (t) {
     return null;
+  }
+}
+
+class NeumorphicThemeProvider extends StatelessWidget {
+
+  final NeumorphicTheme value;
+  final Widget child;
+
+  NeumorphicThemeProvider({@required this.child, @required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Provider.value(
+      value: this.value,
+      child: this.child
+    );
   }
 }

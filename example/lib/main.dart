@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,13 +30,21 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Provider<NeumorphicTheme>.value(
-      value: NeumorphicTheme(baseColor: NeumorphicColors.background, lightSource: LightSource.topLeft, curveHeight: 15, distance: 3, blur: 6, intensity: 0.2),
+    return NeumorphicThemeProvider(
+      value: NeumorphicTheme(
+        baseColor: NeumorphicColors.background,
+        lightSource: LightSource.topLeft,
+        curveHeight: 15,
+        distance: 3,
+        blur: 6,
+        intensity: 0.2,
+      ),
       child: Scaffold(
         backgroundColor: NeumorphicColors.background,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          title: Text(widget.title, style: Theme.of(context).textTheme.display1),
+          title:
+              Text(widget.title, style: Theme.of(context).textTheme.display1),
         ),
         body: SingleChildScrollView(
           child: Padding(
