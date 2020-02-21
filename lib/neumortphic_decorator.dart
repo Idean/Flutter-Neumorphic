@@ -98,14 +98,14 @@ BoxDecoration generateNeumorphicDecorator(
     } else {
       boxShadows = [
         BoxShadow(
-          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity),
-          offset: offset,
-          blurRadius: style.distance, //TODO
+          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity / 2),
+          offset: offset.scale(-1, -1),
+          blurRadius: style.distance / 4, //TODO
         ),
         BoxShadow(
-          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity),
-          offset: offset.scale(-1, -1),
-          blurRadius: style.distance, //TODO
+          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity / 2.5),
+          offset: offset,
+          blurRadius: style.distance /4, //TODO
         ),
       ];
     }
@@ -125,13 +125,13 @@ BoxDecoration generateNeumorphicDecorator(
       boxShadows = [
         BoxShadow(
           color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity / 2),
-          offset: offset,
-          blurRadius: style.distance / 1.5, //TODO
+          offset: offset.scale(-1, -1),
+          blurRadius: style.distance / 4, //TODO
         ),
         BoxShadow(
           color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity / 2.5),
-          offset: offset.scale(-1, -1),
-          blurRadius: style.distance / 1.5, //TODO
+          offset: offset,
+          blurRadius: style.distance /4, //TODO
         ),
       ];
     }
