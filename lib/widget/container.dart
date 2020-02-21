@@ -10,13 +10,18 @@ class Neumorphic extends StatelessWidget {
   final EdgeInsets padding;
   final BoxShape shape;
 
+  //forces have 2 different widgets if the shape changes
+  GlobalKey _circleKey = GlobalKey();
+  GlobalKey _rectangleKey = GlobalKey();
+
   Neumorphic({
+    Key key,
     this.child,
     this.style,
     this.accent,
     this.shape,
     this.padding = const EdgeInsets.all(4),
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +33,7 @@ class Neumorphic extends StatelessWidget {
     );
 
     return AnimatedContainer(
+      key: shape == BoxShape.circle ? _circleKey : _rectangleKey,
       duration: const Duration(milliseconds: 150),
       child: child,
       decoration: decorator,

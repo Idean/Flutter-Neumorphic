@@ -124,20 +124,20 @@ BoxDecoration generateNeumorphicDecorator(
     } else {
       boxShadows = [
         BoxShadow(
-          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity),
+          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity / 2),
           offset: offset,
-          blurRadius: style.distance, //TODO
+          blurRadius: style.distance / 1.5, //TODO
         ),
         BoxShadow(
-          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity),
+          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity / 2.5),
           offset: offset.scale(-1, -1),
-          blurRadius: style.distance, //TODO
+          blurRadius: style.distance / 1.5, //TODO
         ),
       ];
     }
 
-    double darkFactor = style.distance / 50  + style.curveFactor.clamp(0, 1) / 15;
-    double whiteFactor =  style.distance/ 60 + style.curveFactor.clamp(0, 1) / 15;
+    double darkFactor = (style.distance / 50  + style.curveFactor.clamp(0, 1) / 15) / 2;
+    double whiteFactor = (style.distance/ 60 + style.curveFactor.clamp(0, 1) / 15) / 2;
 
     final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveFactor);
 

@@ -14,22 +14,18 @@ class _ContainerPageState extends State<ContainerPage> {
   NeumorphicShape shape = NeumorphicShape.concave;
   BoxShape boxShape = BoxShape.rectangle;
 
-  //forces have 2 different widgets if the shape changes
-  GlobalKey circleKey = GlobalKey();
-  GlobalKey rectangleKey = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicThemeProvider(
       theme: NeumorphicTheme(
-        baseColor: NeumorphicColors.background,
+        baseColor: Color(0xffDDDDDD),
         lightSource: LightSource.topLeft,
         curveFactor: 1,
         distance: 6,
         intensity: 0.2,
       ),
       child: Scaffold(
-          backgroundColor: NeumorphicColors.background,
+          backgroundColor: Color(0xffDDDDDD),
           appBar: AppBar(
             backgroundColor: Colors.grey,
           ),
@@ -55,11 +51,10 @@ class _ContainerPageState extends State<ContainerPage> {
 
   Widget neumophic() {
     return NeumorphicButton(
-      key: boxShape == BoxShape.circle ? circleKey : rectangleKey,
       shape: boxShape,
       style: NeumorphicStyle(
         shape: this.shape,
-        distance: 20,
+        distance: 4,
         lightSource: this.lightSource,
       ),
       child: SizedBox(
