@@ -2,154 +2,127 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-BoxDecoration generateNeumorphicDecorator(
-    {
-    /*nullable*/ Color accent,
-    /*nullable*/ NeumorphicStyle style,
-    /*nullable*/ NeumorphicTheme theme,
-    /*nullable*/ BoxShape shape
-    }) {
-  if (theme == null) {
-    theme = neumorphicDefaultTheme;
-  }
+BoxDecoration generateNeumorphicDecoratorEmboss({
+  /*nullable*/ Color accent,
+  NeumorphicStyle style,
+  BoxShape shape,
+}) {
+  final Color innerColor = accent ?? style.baseColor;
+  final offset = sourceToOffset(style.lightSource, style.distance);
 
-  if (style == null) {
-    style = NeumorphicStyle();
-  }
-
-  style = style.copyWithThemeIfNull(theme);
-
-  //will only use style from here, style is not null
-
-  final borderRadius = style.borderRadius == 0 ? null : BorderRadius.circular(style.borderRadius);
-
-  List<BoxShadow> boxShadows;
-  Color innerColor;
-  Gradient gradient;
-
-  if (style.shape == NeumorphicShape.emboss) {
-    innerColor = accent ?? style.baseColor;
-
-    final whiteDistance = style.distance / 3;
-    final darkDistance = style.distance / 6;
-
+  // shadows
+  List<BoxShadow> boxShadows = [];
+  if (offset != Offset.zero) {
     boxShadows = [
       BoxShadow(
-        color: NeumorphicColors.getAdjustColor(style.baseColor, style.distance),
-        offset: embrossOffset(lightSource: style.lightSource, dark: false, distance: whiteDistance),
-        blurRadius: whiteDistance,
+        color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * (style.intensity * 0.5)),
+        offset: offset.scale(-1, -1),
+        blurRadius: style.distance,
       ),
-      //BoxShadow(
-      //  color: NeumorphicColors.getAdjustColor(style.baseColor, 0 - style.distance),
-      //  offset: embrossOffset(lightSource: style.lightSource, dark: true, distance: darkDistance),
-      //  blurRadius: darkDistance,
-      //),
+      BoxShadow(
+        color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity),
+        offset: offset,
+        blurRadius: style.distance,
+      ),
     ];
+  }
 
-    gradient = NeumorphicColors.generateFlatGradients(
-      color: NeumorphicColors.getAdjustColor(innerColor, 0 - style.distance / 2),
-    );
-    final convexConcaveOffset = sourceToOffset(style.lightSource, style.distance);
-    double darkFactor = style.distance / 80;
+  //body
+  final Gradient gradient = NeumorphicColors.generateEmbossGradients(
+    color: NeumorphicColors.generateGradientColors(colorBase: innerColor, intensity: -1 * style.intensity),
+  );
 
-    gradient = LinearGradient(
-      begin: Alignment(
-        convexConcaveOffset.dx.clamp(-1, 1).toDouble(),
-        convexConcaveOffset.dy.clamp(-1, 1).toDouble(),
-      ),
-      end: Alignment(
-        -convexConcaveOffset.dx.clamp(-1, 1).toDouble(),
-        -convexConcaveOffset.dy.clamp(-1, 1).toDouble(),
-      ),
-
-      colors: [
-       // Colors.grey,
-        NeumorphicColors.generateGradientColors(
-          colorBase: innerColor,
-          updateAlpha: false,
-          intensity: 0,
-        ).withOpacity(0),
-        NeumorphicColors.generateGradientColors(
-          colorBase: innerColor,
-          intensity: -style.distance / 50,
-        ).withOpacity(0.3),
-        NeumorphicColors.generateGradientColors(
-          colorBase: innerColor,
-          intensity: -style.distance / 60,
-        ).withOpacity(0.8),
-        NeumorphicColors.generateGradientColors(
-          colorBase: innerColor,
-          intensity: -style.distance / 80,
-        ).withOpacity(1),
-      ],
-        stops: [
-          0,
-          0.6,
-          0.9,
-          1
-        ]
-    );
-  } else if (style.shape == NeumorphicShape.flat) {
-    innerColor = accent ?? style.baseColor;
-    final offset = sourceToOffset(style.lightSource, style.distance);
-
-    if(offset == Offset.zero){
-      boxShadows = [];
-    } else {
-      boxShadows = [
-        BoxShadow(
-          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity / 2),
-          offset: offset.scale(-1, -1),
-          blurRadius: style.distance / 4, //TODO
-        ),
-        BoxShadow(
-          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity / 2.5),
-          offset: offset,
-          blurRadius: style.distance /4, //TODO
-        ),
-      ];
-    }
-
-    gradient = NeumorphicColors.generateFlatGradients(
-      color: NeumorphicColors.getAdjustColor(innerColor, 0 - style.distance / 2),
+  if (shape == BoxShape.circle) {
+    return BoxDecoration(
+      boxShadow: boxShadows,
+      gradient: gradient,
+      shape: shape,
     );
   } else {
-    var offset = sourceToOffset(style.lightSource, style.distance);
+    return BoxDecoration(
+      borderRadius: style.borderRadius == 0 ? null : BorderRadius.circular(style.borderRadius),
+      boxShadow: boxShadows,
+      gradient: gradient,
+      shape: shape,
+    );
+  }
+}
 
-    if(offset.dx < -6 || offset.dy < -6){
-      offset = Offset(-6, -6);
-    }
-    if(offset.dx > 6 || offset.dy > 6){
-      offset = Offset(6, 6);
-    }
+BoxDecoration generateNeumorphicDecoratorFlat({
+/*nullable*/ Color accent,
+  NeumorphicStyle style,
+  BoxShape shape,
+}) {
+  final offset = sourceToOffset(style.lightSource, style.distance);
+  final Color innerColor = accent ?? style.baseColor;
 
-    print("offset : $offset");
-    innerColor = accent ?? style.baseColor;
+  List<BoxShadow> boxShadows = [];
+  if (offset != Offset.zero) {
+    boxShadows = [
+      BoxShadow(
+        color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity),
+        offset: offset,
+        blurRadius: style.distance, //TODO
+      ),
+      BoxShadow(
+        color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity),
+        offset: offset.scale(-1, -1),
+        blurRadius: style.distance, //TODO
+      ),
+    ];
+  }
 
-    if(offset == Offset.zero){
-      boxShadows = [];
-    } else {
-      boxShadows = [
-        BoxShadow(
-          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 *  (style.intensity * style.distance) / 5),
-          offset: offset.scale(-1, -1),
-          blurRadius: style.distance / 2, //TODO
-        ),
-        BoxShadow(
-          color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: 1),
-          offset: offset,
-          spreadRadius: style.distance / 10,
-          blurRadius: (style.distance / 3.5), //TODO
-        ),
-      ];
-    }
+  final Gradient gradient = NeumorphicColors.generateFlatGradients(
+    color: NeumorphicColors.getAdjustColor(innerColor, 0 - style.distance / 2),
+  );
 
-    double darkFactor = (style.distance / 50  + style.curveFactor.clamp(0, 1) / 15) / 2;
-    double whiteFactor = (style.distance/ 60 + style.curveFactor.clamp(0, 1) / 15) / 2;
+  if (shape == BoxShape.circle) {
+    return BoxDecoration(
+      boxShadow: boxShadows,
+      gradient: gradient,
+      shape: shape,
+    );
+  } else {
+    return BoxDecoration(
+      borderRadius: style.borderRadius == 0 ? null : BorderRadius.circular(style.borderRadius),
+      boxShadow: boxShadows,
+      gradient: gradient,
+      shape: shape,
+    );
+  }
+}
 
-    final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveFactor);
+BoxDecoration generateNeumorphicDecoratorConcaveConvex({
+/*nullable*/ Color accent,
+  NeumorphicStyle style,
+  BoxShape shape,
+}) {
+  final offset = sourceToOffset(style.lightSource, style.distance);
 
-    gradient = LinearGradient(
+  final Color innerColor = accent ?? style.baseColor;
+
+  List<BoxShadow> boxShadows = [];
+  if (offset != Offset.zero) {
+    boxShadows = [
+      BoxShadow(
+        color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * style.intensity / 2),
+        offset: offset,
+        blurRadius: style.distance / 1.5, //TODO
+      ),
+      BoxShadow(
+        color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity / 2.5),
+        offset: offset.scale(-1, -1),
+        blurRadius: style.distance / 1.5, //TODO
+      ),
+    ];
+  }
+
+  double darkFactor = (style.distance / 50 + style.curveFactor.clamp(0, 1) / 15) / 2;
+  double whiteFactor = (style.distance / 60 + style.curveFactor.clamp(0, 1) / 15) / 2;
+
+  final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveFactor);
+
+  final Gradient gradient = LinearGradient(
       begin: Alignment(
         -convexConcaveOffset.dx.clamp(-1, 1).toDouble(),
         -convexConcaveOffset.dy.clamp(-1, 1).toDouble(),
@@ -159,18 +132,18 @@ BoxDecoration generateNeumorphicDecorator(
         convexConcaveOffset.dy.clamp(-1, 1).toDouble(),
       ),
       colors: [
-        NeumorphicColors.generateGradientColors(
-                colorBase: innerColor,
-                intensity: style.shape == NeumorphicShape.convex ? whiteFactor : -darkFactor,
-              ),
         NeumorphicColors.generateGradientColors(
           colorBase: innerColor,
           intensity: style.shape == NeumorphicShape.convex ? whiteFactor : -darkFactor,
         ),
         NeumorphicColors.generateGradientColors(
-                colorBase: innerColor,
-                intensity: style.shape == NeumorphicShape.convex ? -darkFactor : whiteFactor,
-              ),
+          colorBase: innerColor,
+          intensity: style.shape == NeumorphicShape.convex ? whiteFactor : -darkFactor,
+        ),
+        NeumorphicColors.generateGradientColors(
+          colorBase: innerColor,
+          intensity: style.shape == NeumorphicShape.convex ? -darkFactor : whiteFactor,
+        ),
         NeumorphicColors.generateGradientColors(
           colorBase: innerColor,
           intensity: style.shape == NeumorphicShape.convex ? -darkFactor : whiteFactor,
@@ -181,26 +154,40 @@ BoxDecoration generateNeumorphicDecorator(
         0.1,
         0.8,
         1
-      ]
-    );
-  }
+      ]);
 
-  if(shape == null){
-    shape = BoxShape.rectangle;
-  }
-
-  if(shape == BoxShape.circle){
+  if (shape == BoxShape.circle) {
     return BoxDecoration(
-        boxShadow: boxShadows,
-        gradient: gradient,
-        shape: shape
+      boxShadow: boxShadows,
+      gradient: gradient,
+      shape: shape,
     );
   } else {
     return BoxDecoration(
-        borderRadius: borderRadius,
-        boxShadow: boxShadows,
-        gradient: gradient,
-        shape: shape
+      borderRadius: style.borderRadius == 0 ? null : BorderRadius.circular(style.borderRadius),
+      boxShadow: boxShadows,
+      gradient: gradient,
+      shape: shape,
     );
   }
+}
+
+BoxDecoration generateNeumorphicDecorator(
+    {
+    /*nullable*/ Color accent,
+    NeumorphicStyle style,
+    /*nullable*/ BoxShape shape}) {
+  //will only use style from here, style is not null
+
+  if (style.shape == NeumorphicShape.emboss) {
+    return generateNeumorphicDecoratorEmboss(accent: accent, style: style, shape: shape);
+  } else if (style.shape == NeumorphicShape.flat) {
+    return generateNeumorphicDecoratorFlat(accent: accent, style: style, shape: shape);
+  } else {
+    return generateNeumorphicDecoratorConcaveConvex(accent: accent, style: style, shape: shape);
+  }
+}
+
+Widget generateNeumprphicChild({Color accent, NeumorphicStyle style, BoxShape shape, Widget child}) {
+  return child;
 }

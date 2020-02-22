@@ -25,11 +25,22 @@ class Neumorphic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final theme = findNeumorphicTheme(context) ?? neumorphicDefaultTheme;
+    final style = (this.style ?? NeumorphicStyle()).copyWithThemeIfNull(theme);
+    final shape = this.shape ?? BoxShape.rectangle;
+
     final decorator = generateNeumorphicDecorator(
       accent: this.accent,
-      style: this.style,
-      theme: findNeumorphicTheme(context),
+      style:  style,
       shape: shape
+    );
+
+    final child = generateNeumprphicChild(
+        accent: this.accent,
+        style:  style,
+        shape: this.shape,
+        child: this.child,
     );
 
     return AnimatedContainer(
@@ -40,4 +51,5 @@ class Neumorphic extends StatelessWidget {
       padding: this.padding,
     );
   }
+
 }
