@@ -9,9 +9,11 @@ class NeumorphicButton extends StatefulWidget {
   final NeumorphicStyle style;
   final double minDistance;
   final BoxShape shape;
+  final EdgeInsets padding;
 
   const NeumorphicButton({
     Key key,
+    this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     this.child,
     this.shape,
     this.minDistance = 0,
@@ -94,6 +96,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       child: AnimatedScale(
         scale: this.scale,
         child: Neumorphic(
+          padding: widget.padding,
           shape: widget.shape,
           style: initialStyle.copyWith(distance: distance),
           child: widget.child,
