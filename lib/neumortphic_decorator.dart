@@ -83,9 +83,9 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
     dark: true,
     color: color,
     offset:  limitOffset(offset, -30, 30),
-    intensity: -1 * (distance / 12) * intensity / 6,
+    intensity: -1.5 * (distance / 12) * intensity / 5,
     scaleFactor: -1.0,
-    blurRadius: distance / 2,
+    blurRadius: distance,
   ));
 
   //medium distance
@@ -93,9 +93,9 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
     dark: true,
     color: color,
     offset:  limitOffset(offset, -20, 20),
-    intensity: -1 * (distance / 12) * intensity / 2.5,
+    intensity: -1.5 * (distance / 12) * intensity / 4,
     scaleFactor: -0.5,
-    blurRadius: distance / 4,
+    blurRadius: distance / 2,
   ));
 
   //small & darken
@@ -103,7 +103,7 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
     dark: true,
     color: color,
     offset: limitOffset(offset, -10, 10),
-    intensity: -2 * (distance / 12) * intensity / 2,
+    intensity: -1.5 * (distance / 12) * intensity / 3,
     scaleFactor: -0.25,
     blurRadius: distance /8,
   ));

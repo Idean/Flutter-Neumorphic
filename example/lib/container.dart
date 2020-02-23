@@ -24,7 +24,7 @@ class _ContainerPageState extends State<ContainerPage> {
         lightSource: LightSource.topLeft,
         curveFactor: 1,
         distance: 6,
-        intensity: 0.2,
+        intensity: 1,
       ),
       child: Scaffold(
           backgroundColor: Color(0xffDDDDDD),
