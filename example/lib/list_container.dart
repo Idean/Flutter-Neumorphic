@@ -43,7 +43,7 @@ class _ContainersListPageState extends State<ContainersListPage> {
                       style: NeumorphicStyle(
                         distance: 10,
                         borderRadius: 40,
-                        shape: NeumorphicShape.emboss,
+                        shape: NeumorphicShape.concave,
                       ),
                       child: SizedBox(
                         height: 150,
