@@ -207,8 +207,12 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
 
   final curveFactor = style.curveFactor.clamp(0, 1);
 
-  final whiteFactor = 0.0 + ((curveFactor / 2.5) * style.distance / 40);
-  final darkFactor = 0.0 - ((curveFactor / 2.5) * (style.distance / 28));
+  final whiteFactor = 0 + ((curveFactor / 3.5) * style.distance / 300) + curveFactor / 3.5;
+  final darkFactor = 0 - ((curveFactor / 2.5) * (style.distance / 28)) - curveFactor / 20;
+
+  print("curveFactor: $curveFactor style.distance: ${style.distance}");
+  print("whiteFactor: $whiteFactor");
+  print("darkFactor: $darkFactor");
 
   final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveFactor);
 
@@ -242,7 +246,7 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
       stops: [
         0,
         0.30,
-        0.95,
+        0.9,
         1
       ]);
 
