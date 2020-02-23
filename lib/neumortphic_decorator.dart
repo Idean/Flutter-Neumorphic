@@ -12,48 +12,60 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
   if (offset == Offset.zero) {
     return [];
   }
-  return [
-    //white
-    //big and clear
-    BoxShadow(
-      color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * intensity / 3),
-      offset: offset,
-      blurRadius: distance / 2,
-    ),
-    //medium distance
-    BoxShadow(
-      color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * intensity),
-      offset: limitOffset(offset, -limit, limit),
-      blurRadius: distance / 4,
-    ),
-    ////small & darken
-    BoxShadow(
-      color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * intensity),
-      offset: limitOffset(offset, -limit, limit),
-      blurRadius: distance / 4,
-    ),
 
-    //dark
-    //big and clear
-    BoxShadow(
-      color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * -1 * intensity / 3),
-      offset: offset.scale(-1 * (distance / 50), -1 * (distance / 50)),
-      blurRadius: distance / 2,
-    ),
-    //medium distance
-    BoxShadow(
-      color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * -1 * intensity / 2),
-      offset: limitOffset(offset, -limit * (distance / 20), limit * (distance / 20)).scale(-1, -1),
-      blurRadius: distance / 4,
-    ),
-    //small & darken
-    BoxShadow(
-      color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * -1 * intensity),
-      offset: limitOffset(offset, -limit, limit).scale(-1, -1),
-      spreadRadius: 0.5,
-      blurRadius: distance / 4,
-    ),
-  ];
+  //white
+  final List<BoxShadow> lightShadows = [];
+
+  //big and clear
+  lightShadows.add(BoxShadow(
+    color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * intensity / 3),
+    offset: offset,
+    blurRadius: distance / 2,
+  ));
+
+  //medium distance
+  lightShadows.add(BoxShadow(
+    color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * intensity),
+    offset: limitOffset(offset, -limit, limit),
+    blurRadius: distance / 4,
+  ));
+
+  ////small & darken
+  lightShadows.add(BoxShadow(
+    color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * intensity),
+    offset: limitOffset(offset, -limit, limit),
+    blurRadius: distance / 4,
+  ));
+
+  final List<BoxShadow> darkShadows = [];
+
+  //big and clear
+  darkShadows.add(BoxShadow(
+    color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * -1 * intensity / 3),
+    offset: offset.scale(-1 * (distance / 50), -1 * (distance / 50)),
+    blurRadius: distance / 2,
+  ));
+
+  //medium distance
+  darkShadows.add(BoxShadow(
+    color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * -1 * intensity / 2),
+    offset: limitOffset(offset, -limit * (distance / 20), limit * (distance / 20)).scale(-1, -1),
+    blurRadius: distance / 4,
+  ));
+
+  //small & darken
+  darkShadows.add(BoxShadow(
+    color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * -1 * intensity),
+    offset: limitOffset(offset, -limit, limit).scale(-1, -1),
+    spreadRadius: 0.5,
+    blurRadius: distance / 4,
+  ));
+
+  final List<BoxShadow> shadows = [];
+  shadows.addAll(lightShadows);
+  shadows.addAll(darkShadows);
+
+  return shadows;
 }
 
 BoxDecoration generateNeumorphicDecoratorEmboss({
@@ -113,13 +125,8 @@ BoxDecoration generateNeumorphicDecoratorFlat({
 }) {
   final Color innerColor = accent ?? style.baseColor;
 
-  final List<BoxShadow> boxShadows = generateUsualBoxShadow(
-      offset:  sourceToOffset(style.lightSource, style.distance),
-      distance: style.distance,
-      intensity: style.intensity,
-      color: style.baseColor,
-      limit:  8.0
-  );
+  final List<BoxShadow> boxShadows =
+      generateUsualBoxShadow(offset: sourceToOffset(style.lightSource, style.distance), distance: style.distance, intensity: style.intensity, color: style.baseColor, limit: 8.0);
 
   final Gradient gradient = NeumorphicColors.generateFlatGradients(
     color: NeumorphicColors.getAdjustColor(innerColor, 0 - style.distance / 2),
@@ -148,13 +155,8 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
 }) {
   final Color innerColor = accent ?? style.baseColor;
 
-  final List<BoxShadow> boxShadows = generateUsualBoxShadow(
-      offset:  sourceToOffset(style.lightSource, style.distance),
-      distance: style.distance,
-      intensity: style.intensity,
-      color: style.baseColor,
-      limit:  8.0
-  );
+  final List<BoxShadow> boxShadows =
+      generateUsualBoxShadow(offset: sourceToOffset(style.lightSource, style.distance), distance: style.distance, intensity: style.intensity, color: style.baseColor, limit: 8.0);
 
   double darkFactor = (style.distance / 50 + style.curveFactor.clamp(0, 1) / 15) / 2;
   double whiteFactor = (style.distance / 60 + style.curveFactor.clamp(0, 1) / 15) / 2;
