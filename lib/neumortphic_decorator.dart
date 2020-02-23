@@ -264,9 +264,7 @@ BoxDecoration generateNeumorphicDecorator(
     {
     /*nullable*/ Color accent,
     NeumorphicStyle style,
-    /*nullable*/ BoxShape shape}) {
-  //will only use style from here, style is not null
-
+    BoxShape shape}) {
   if (style.shape == NeumorphicShape.emboss) {
     return generateNeumorphicDecoratorEmboss(accent: accent, style: style, shape: shape);
   } else if (style.shape == NeumorphicShape.flat) {
