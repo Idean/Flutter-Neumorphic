@@ -8,24 +8,32 @@ Offset limitOffset(Offset offset, double minXY, double maxXY) {
   return Offset(dx, dy);
 }
 
-List<BoxShadow> generateMultipleShadow({@required Color color, @required Offset offset, @required double intensity, @required double scaleFactor, @required double blurRadius}) {
-  return [
-    BoxShadow(
-      color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: intensity),
-      offset: offset.scale(scaleFactor, scaleFactor),
-      blurRadius: blurRadius,
-    ),
-    BoxShadow(
-      color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: intensity),
-      offset: offset.scale(scaleFactor, 0.2),
-      blurRadius: blurRadius,
-    ),
-    BoxShadow(
-      color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: intensity),
-      offset: offset.scale(0.2, scaleFactor),
-      blurRadius: blurRadius,
-    )
-  ];
+List<BoxShadow> generateMultipleShadow({@required Color color, bool dark, @required Offset offset, @required double intensity, @required double scaleFactor, @required double blurRadius}) {
+  if(dark){
+     return [BoxShadow(
+       color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: intensity),
+       offset: offset.scale(scaleFactor, scaleFactor),
+       blurRadius: blurRadius,
+     )];
+  } else {
+    return [
+      BoxShadow(
+        color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: intensity),
+        offset: offset.scale(scaleFactor, scaleFactor),
+        blurRadius: blurRadius,
+      ),
+      BoxShadow(
+        color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: intensity),
+        offset: offset.scale(scaleFactor, 0.2),
+        blurRadius: blurRadius,
+      ),
+      BoxShadow(
+        color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: intensity),
+        offset: offset.scale(0.25, scaleFactor),
+        blurRadius: blurRadius,
+      )
+    ];
+  }
 }
 
 List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color color, @required double intensity, @required double distance, @required double limit}) {
@@ -36,28 +44,33 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
   //white
   final List<BoxShadow> lightShadows = [];
 
+  //print("offset shadow : $offset");
+
   //big and clear
   lightShadows.addAll(generateMultipleShadow(
+    dark: false,
     color: color,
-    offset: offset,
-    intensity: (distance / 12) * intensity / 4,
+    offset:  limitOffset(offset, -30, 30),
+    intensity: (distance / 12) * intensity / 8,
     scaleFactor: 1.0,
     blurRadius: distance / 2,
   ));
 
   //medium distance
   lightShadows.addAll(generateMultipleShadow(
+    dark: false,
     color: color,
-    offset: offset, //limitOffset(offset, -limit, limit),
-    intensity: (distance / 12) * intensity / 3,
+    offset:  limitOffset(offset, -20, 20),
+    intensity: (distance / 12) * intensity / 5,
     scaleFactor: 0.5,
     blurRadius: distance / 4,
   ));
 
   //////small & lighten
   lightShadows.addAll(generateMultipleShadow(
+    dark: false,
     color: color,
-    offset: offset, //limitOffset(offset, -limit, limit),
+    offset: limitOffset(offset, -20, 20),
     intensity: (distance / 12) * intensity / 3,
     scaleFactor: 0.25,
     blurRadius: distance /8,
@@ -67,27 +80,30 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
 
   //big and clear
   darkShadows.addAll(generateMultipleShadow(
+    dark: true,
     color: color,
-    offset: offset,
-    intensity: -1 * (distance / 12) * intensity / 4,
+    offset:  limitOffset(offset, -30, 30),
+    intensity: -1 * (distance / 12) * intensity / 6,
     scaleFactor: -1.0,
     blurRadius: distance / 2,
   ));
 
   //medium distance
   darkShadows.addAll(generateMultipleShadow(
+    dark: true,
     color: color,
-    offset: offset, //limitOffset(offset, -limit, limit),
-    intensity: -1 * (distance / 12) * intensity / 3,
+    offset:  limitOffset(offset, -20, 20),
+    intensity: -1 * (distance / 12) * intensity / 2.5,
     scaleFactor: -0.5,
     blurRadius: distance / 4,
   ));
 
   //small & darken
   darkShadows.addAll(generateMultipleShadow(
+    dark: true,
     color: color,
-    offset: offset, //limitOffset(offset, -limit, limit),
-    intensity: -2 * (distance / 12) * intensity / 3,
+    offset: limitOffset(offset, -10, 10),
+    intensity: -2 * (distance / 12) * intensity / 2,
     scaleFactor: -0.25,
     blurRadius: distance /8,
   ));
@@ -189,8 +205,8 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
   final List<BoxShadow> boxShadows =
       generateUsualBoxShadow(offset: sourceToOffset(style.lightSource, style.distance), distance: style.distance, intensity: style.intensity, color: style.baseColor, limit: 8.0);
 
-  double darkFactor = (style.distance / 50 + style.curveFactor.clamp(0, 1) / 15) / 2;
-  double whiteFactor = (style.distance / 60 + style.curveFactor.clamp(0, 1) / 15) / 2;
+  final whiteFactor = ((1 - style.distance / 200) + style.curveFactor.clamp(0, 1) / 15);
+  final darkFactor = (style.distance / 200 + style.curveFactor.clamp(0, 1) / 15);
 
   final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveFactor);
 
@@ -223,8 +239,8 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
       ],
       stops: [
         0,
-        0.1,
-        0.8,
+        0.25,
+        0.95,
         1
       ]);
 
