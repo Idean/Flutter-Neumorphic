@@ -8,6 +8,26 @@ Offset limitOffset(Offset offset, double minXY, double maxXY) {
   return Offset(dx, dy);
 }
 
+List<BoxShadow> generateMultipleShadow({@required Color color, @required Offset offset, @required double intensity, @required double scaleFactor, @required double blurRadius}) {
+  return [
+    BoxShadow(
+      color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: intensity),
+      offset: offset.scale(scaleFactor, scaleFactor),
+      blurRadius: blurRadius,
+    ),
+    BoxShadow(
+      color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: intensity),
+      offset: offset.scale(scaleFactor, 0.2),
+      blurRadius: blurRadius,
+    ),
+    BoxShadow(
+      color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: intensity),
+      offset: offset.scale(0.2, scaleFactor),
+      blurRadius: blurRadius,
+    )
+  ];
+}
+
 List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color color, @required double intensity, @required double distance, @required double limit}) {
   if (offset == Offset.zero) {
     return [];
@@ -17,53 +37,64 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
   final List<BoxShadow> lightShadows = [];
 
   //big and clear
-  lightShadows.add(BoxShadow(
-    color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * intensity / 3),
+  lightShadows.addAll(generateMultipleShadow(
+    color: color,
     offset: offset,
+    intensity: (distance / 12) * intensity / 4,
+    scaleFactor: 1.0,
     blurRadius: distance / 2,
   ));
 
   //medium distance
-  lightShadows.add(BoxShadow(
-    color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * intensity),
-    offset: limitOffset(offset, -limit, limit),
+  lightShadows.addAll(generateMultipleShadow(
+    color: color,
+    offset: offset, //limitOffset(offset, -limit, limit),
+    intensity: (distance / 12) * intensity / 3,
+    scaleFactor: 0.5,
     blurRadius: distance / 4,
   ));
 
-  ////small & darken
-  lightShadows.add(BoxShadow(
-    color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * intensity),
-    offset: limitOffset(offset, -limit, limit),
-    blurRadius: distance / 4,
+  //////small & lighten
+  lightShadows.addAll(generateMultipleShadow(
+    color: color,
+    offset: offset, //limitOffset(offset, -limit, limit),
+    intensity: (distance / 12) * intensity / 3,
+    scaleFactor: 0.25,
+    blurRadius: distance /8,
   ));
 
   final List<BoxShadow> darkShadows = [];
 
   //big and clear
-  darkShadows.add(BoxShadow(
-    color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * -1 * intensity / 3),
-    offset: offset.scale(-1 * (distance / 50), -1 * (distance / 50)),
+  darkShadows.addAll(generateMultipleShadow(
+    color: color,
+    offset: offset,
+    intensity: -1 * (distance / 12) * intensity / 4,
+    scaleFactor: -1.0,
     blurRadius: distance / 2,
   ));
 
   //medium distance
-  darkShadows.add(BoxShadow(
-    color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * -1 * intensity / 2),
-    offset: limitOffset(offset, -limit * (distance / 20), limit * (distance / 20)).scale(-1, -1),
+  darkShadows.addAll(generateMultipleShadow(
+    color: color,
+    offset: offset, //limitOffset(offset, -limit, limit),
+    intensity: -1 * (distance / 12) * intensity / 3,
+    scaleFactor: -0.5,
     blurRadius: distance / 4,
   ));
 
   //small & darken
-  darkShadows.add(BoxShadow(
-    color: NeumorphicColors.generateGradientColors(colorBase: color, intensity: (distance / 10) * -1 * intensity),
-    offset: limitOffset(offset, -limit, limit).scale(-1, -1),
-    spreadRadius: 0.5,
-    blurRadius: distance / 4,
+  darkShadows.addAll(generateMultipleShadow(
+    color: color,
+    offset: offset, //limitOffset(offset, -limit, limit),
+    intensity: -2 * (distance / 12) * intensity / 3,
+    scaleFactor: -0.25,
+    blurRadius: distance /8,
   ));
 
   final List<BoxShadow> shadows = [];
-  shadows.addAll(lightShadows);
   shadows.addAll(darkShadows);
+  shadows.addAll(lightShadows);
 
   return shadows;
 }
