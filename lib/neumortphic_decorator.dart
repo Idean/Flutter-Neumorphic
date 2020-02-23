@@ -205,8 +205,10 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
   final List<BoxShadow> boxShadows =
       generateUsualBoxShadow(offset: sourceToOffset(style.lightSource, style.distance), distance: style.distance, intensity: style.intensity, color: style.baseColor, limit: 8.0);
 
-  final whiteFactor = ((1 - style.distance / 200) + style.curveFactor.clamp(0, 1) / 15);
-  final darkFactor = (style.distance / 200 + style.curveFactor.clamp(0, 1) / 15);
+  final curveFactor = style.curveFactor.clamp(0, 1);
+
+  final whiteFactor = 0.0 + ((curveFactor / 2.5) * style.distance / 40);
+  final darkFactor = 0.0 - ((curveFactor / 2.5) * (style.distance / 28));
 
   final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveFactor);
 
@@ -222,24 +224,24 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
       colors: [
         NeumorphicColors.generateGradientColors(
           colorBase: innerColor,
-          intensity: style.shape == NeumorphicShape.convex ? whiteFactor : -darkFactor,
+          intensity: style.shape == NeumorphicShape.convex ? whiteFactor : darkFactor,
         ),
+       NeumorphicColors.generateGradientColors(
+         colorBase: innerColor,
+         intensity: style.shape == NeumorphicShape.convex ? whiteFactor : darkFactor,
+       ),
+       NeumorphicColors.generateGradientColors(
+         colorBase: innerColor,
+         intensity: style.shape == NeumorphicShape.convex ? darkFactor : whiteFactor,
+       ),
         NeumorphicColors.generateGradientColors(
           colorBase: innerColor,
-          intensity: style.shape == NeumorphicShape.convex ? whiteFactor : -darkFactor,
-        ),
-        NeumorphicColors.generateGradientColors(
-          colorBase: innerColor,
-          intensity: style.shape == NeumorphicShape.convex ? -darkFactor : whiteFactor,
-        ),
-        NeumorphicColors.generateGradientColors(
-          colorBase: innerColor,
-          intensity: style.shape == NeumorphicShape.convex ? -darkFactor : whiteFactor,
+          intensity: style.shape == NeumorphicShape.convex ? darkFactor : whiteFactor,
         )
       ],
       stops: [
         0,
-        0.25,
+        0.30,
         0.95,
         1
       ]);

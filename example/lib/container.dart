@@ -15,6 +15,7 @@ class _ContainerPageState extends State<ContainerPage> {
   NeumorphicShape shape = NeumorphicShape.concave;
   BoxShape boxShape = BoxShape.rectangle;
   double depth = 1;
+  double curveFactor = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,7 @@ class _ContainerPageState extends State<ContainerPage> {
             children: <Widget>[
               shapeWidget(),
               boxshapeWidget(),
+              curveSelector(),
               depthSelector(),
               Expanded(
                 child: Stack(
@@ -61,6 +63,7 @@ class _ContainerPageState extends State<ContainerPage> {
         style: NeumorphicStyle(
           shape: this.shape,
           distance: depth,
+          curveFactor: curveFactor / 100,
           lightSource: this.lightSource,
         ),
         child: SizedBox(
@@ -98,7 +101,34 @@ class _ContainerPageState extends State<ContainerPage> {
     );
   }
 
-    Widget boxshapeWidget() {
+  Widget curveSelector() {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(left: 12),
+          child: Text("CurveFactor"),
+        ),
+        Expanded(
+          child: Slider(
+            min: 0,
+            max: 100,
+            value: curveFactor,
+            onChanged: (value){
+              setState(() {
+                curveFactor = value;
+              });
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: 12),
+          child: Text((curveFactor.floor() / 100).toString()),
+        ),
+      ],
+    );
+  }
+
+  Widget boxshapeWidget() {
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
