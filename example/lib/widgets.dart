@@ -50,6 +50,22 @@ class _ContainersListPageState extends State<WidgetsPage> {
                     SizedBox(width: 12),
                   ],
                 ),
+                SizedBox(height: 12),
+                Row(
+                  children: <Widget>[
+                    Text("Progress"),
+                    SizedBox(width: 12),
+                    Flexible(
+                      child: IndeterminateNeumorphicProgress(
+                        height: 10,
+                        style: ProgressStyle(
+                            depth: 15
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 12),
+                  ],
+                ),
                 SizedBox(height: 30),
               ],
             ),
