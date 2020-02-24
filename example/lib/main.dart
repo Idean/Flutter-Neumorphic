@@ -4,6 +4,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'container.dart';
 import 'list_container.dart';
+import 'widgets.dart';
 
 void main() => runApp(MyApp());
 
@@ -56,12 +57,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   }));
                 },
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 12),
               RaisedButton(
                 child: Text("containers list"),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context){
                     return ContainersListPage();
+                  }));
+                },
+              ),
+              SizedBox(height: 12),
+              RaisedButton(
+                child: Text("widgets"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                    return WidgetsPage();
                   }));
                 },
               ),

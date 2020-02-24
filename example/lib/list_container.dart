@@ -24,8 +24,7 @@ class _ContainersListPageState extends State<ContainersListPage> {
         backgroundColor: NeumorphicColors.background,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          title:
-              Text("List", style: Theme.of(context).textTheme.display1),
+          title: Text("List", style: Theme.of(context).textTheme.display1),
         ),
         body: SingleChildScrollView(
           child: Padding(

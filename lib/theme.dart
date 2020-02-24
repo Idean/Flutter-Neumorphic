@@ -23,8 +23,8 @@ class NeumorphicTheme {
   final LightSource lightSource;
   final double _curveFactor;
 
-  double get curveFactor => _curveFactor.clamp(Neumorphic.MIN_CURVE, Neumorphic.MAX_CURVE);
-  double get depth => _depth.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
+  double get curveFactor => _curveFactor?.clamp(Neumorphic.MIN_CURVE, Neumorphic.MAX_CURVE);
+  double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
 
   const NeumorphicTheme({
     this.baseColor = _defaultBaseColor,
@@ -63,8 +63,8 @@ class NeumorphicStyle {
     this.intensity,
   }) : this._depth = depth, this._curveFactor = curveFactor;
 
-  double get curveFactor => _curveFactor.clamp(Neumorphic.MIN_CURVE, Neumorphic.MAX_CURVE);
-  double get depth => _depth.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
+  double get curveFactor => _curveFactor?.clamp(Neumorphic.MIN_CURVE, Neumorphic.MAX_CURVE);
+  double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
 
   NeumorphicStyle copyWithThemeIfNull(NeumorphicTheme theme) {
     return new NeumorphicStyle(
