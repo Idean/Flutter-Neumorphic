@@ -51,29 +51,29 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
     dark: false,
     color: color,
     offset:  limitOffset(offset, -30, 30),
-    intensity: (distance / 12) * intensity / 8,
-    scaleFactor: 1.0,
-    blurRadius: distance / 2,
+    intensity: 0.05 * (distance / 40) * intensity / 5,
+    scaleFactor: 0.6,
+    blurRadius: distance / 4,
   ));
 
   //medium distance
   lightShadows.addAll(generateMultipleShadow(
     dark: false,
     color: color,
-    offset:  limitOffset(offset, -20, 20),
-    intensity: (distance / 12) * intensity / 5,
-    scaleFactor: 0.5,
-    blurRadius: distance / 4,
+    offset: limitOffset(offset, -20, 20).scale(1 + distance / 30, 1 + distance / 30),
+    intensity: 0.4 * (distance / 40) * intensity / 4,
+    scaleFactor: 0.3,
+    blurRadius: distance / 6,
   ));
 
   //////small & lighten
   lightShadows.addAll(generateMultipleShadow(
     dark: false,
     color: color,
-    offset: limitOffset(offset, -20, 20),
-    intensity: (distance / 12) * intensity / 3,
+    offset: limitOffset(offset, -20, 20).scale(distance / 30, distance / 30),
+    intensity: 0.4 * (distance / 40) * intensity / 3,
     scaleFactor: 0.25,
-    blurRadius: distance /8,
+    blurRadius: distance / 6,
   ));
 
   final List<BoxShadow> darkShadows = [];
@@ -205,8 +205,14 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
   final List<BoxShadow> boxShadows =
       generateUsualBoxShadow(offset: sourceToOffset(style.lightSource, style.distance), distance: style.distance, intensity: style.intensity, color: style.baseColor, limit: 8.0);
 
-  final whiteFactor = ((1 - style.distance / 200) + style.curveFactor.clamp(0, 1) / 15);
-  final darkFactor = (style.distance / 200 + style.curveFactor.clamp(0, 1) / 15);
+  final curveFactor = style.curveFactor.clamp(0, 1);
+
+  final whiteFactor = 0 + ((curveFactor / 3.5) * style.distance / 300) + curveFactor / 3.5;
+  final darkFactor = 0 - ((curveFactor / 2.5) * (style.distance / 28)) - curveFactor / 20;
+
+  //print("curveFactor: $curveFactor style.distance: ${style.distance}");
+  //print("whiteFactor: $whiteFactor");
+  //print("darkFactor: $darkFactor");
 
   final convexConcaveOffset = sourceToOffset(style.lightSource, style.curveFactor);
 
@@ -222,25 +228,25 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
       colors: [
         NeumorphicColors.generateGradientColors(
           colorBase: innerColor,
-          intensity: style.shape == NeumorphicShape.convex ? whiteFactor : -darkFactor,
+          intensity: style.shape == NeumorphicShape.convex ? whiteFactor : darkFactor,
         ),
+       NeumorphicColors.generateGradientColors(
+         colorBase: innerColor,
+         intensity: style.shape == NeumorphicShape.convex ? whiteFactor : darkFactor,
+       ),
+       NeumorphicColors.generateGradientColors(
+         colorBase: innerColor,
+         intensity: style.shape == NeumorphicShape.convex ? darkFactor : whiteFactor,
+       ),
         NeumorphicColors.generateGradientColors(
           colorBase: innerColor,
-          intensity: style.shape == NeumorphicShape.convex ? whiteFactor : -darkFactor,
-        ),
-        NeumorphicColors.generateGradientColors(
-          colorBase: innerColor,
-          intensity: style.shape == NeumorphicShape.convex ? -darkFactor : whiteFactor,
-        ),
-        NeumorphicColors.generateGradientColors(
-          colorBase: innerColor,
-          intensity: style.shape == NeumorphicShape.convex ? -darkFactor : whiteFactor,
+          intensity: style.shape == NeumorphicShape.convex ? darkFactor : whiteFactor,
         )
       ],
       stops: [
         0,
-        0.25,
-        0.95,
+        0.30,
+        0.9,
         1
       ]);
 
