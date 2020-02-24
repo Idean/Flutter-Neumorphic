@@ -24,10 +24,11 @@ class NeumorphicProgress extends StatefulWidget {
   final ProgressStyle style;
 
   const NeumorphicProgress({
+    Key key,
     this.percent = 1,
     this.height = 10,
     this.style = const ProgressStyle(),
-  });
+  }) : super(key: key);
 
   @override
   _NeumorphicProgressState createState() => _NeumorphicProgressState();
@@ -96,10 +97,11 @@ class IndeterminateNeumorphicProgress extends StatefulWidget {
   final Duration duration;
 
   const IndeterminateNeumorphicProgress({
+    Key key,
     this.height = 10,
     this.style = const ProgressStyle(),
     this.duration = const Duration(seconds: 3)
-  });
+  }) : super(key: key);
 
   @override
   createState() => _IndeterminateNeumorphicProgressState();
