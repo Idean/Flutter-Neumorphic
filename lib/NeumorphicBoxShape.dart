@@ -11,7 +11,7 @@ class NeumorphicBoxShape {
 
   NeumorphicBoxShape.circle() : this._(boxShape: BoxShape.circle);
   NeumorphicBoxShape.roundRect({BorderRadius borderRadius}) : this._(boxShape: BoxShape.rectangle, borderRadius: borderRadius);
-  NeumorphicBoxShape.stadium() : this._(boxShape: BoxShape.rectangle, borderRadius: BorderRadius.circular(30), stadium: true);
+  NeumorphicBoxShape.stadium() : this._(boxShape: BoxShape.rectangle, borderRadius: BorderRadius.circular(1000), stadium: true);
 
   bool get isStadium => boxShape == BoxShape.rectangle && this._stadium == true;
   bool get isCircle => boxShape == BoxShape.circle;
