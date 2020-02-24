@@ -38,10 +38,9 @@ class _ContainersListPageState extends State<ContainersListPage> {
                 Row(
                   children: <Widget>[
                     Neumorphic(
-                      shape: BoxShape.circle,
+                      shape: NeumorphicBoxShape.circle(),
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
-                        borderRadius: 40,
                         shape: NeumorphicShape.emboss,
                       ),
                       child: SizedBox(
@@ -57,10 +56,9 @@ class _ContainersListPageState extends State<ContainersListPage> {
                 Row(
                   children: <Widget>[
                     NeumorphicButton(
-                      shape: BoxShape.circle,
+                      shape: NeumorphicBoxShape.circle(),
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
-                        borderRadius: 40,
                         shape: NeumorphicShape.flat,
                       ),
                       child: SizedBox(
@@ -76,10 +74,9 @@ class _ContainersListPageState extends State<ContainersListPage> {
                 Row(
                   children: <Widget>[
                     NeumorphicButton(
-                      shape: BoxShape.circle,
+                      shape: NeumorphicBoxShape.circle(),
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
-                        borderRadius: 40,
                         shape: NeumorphicShape.convex,
                       ),
                       child: SizedBox(
@@ -95,10 +92,9 @@ class _ContainersListPageState extends State<ContainersListPage> {
                 Row(
                   children: <Widget>[
                     NeumorphicButton(
-                      shape: BoxShape.circle,
+                      shape: NeumorphicBoxShape.circle(),
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
-                        borderRadius: 40,
                         shape: NeumorphicShape.concave,
                       ),
                       child: SizedBox(
