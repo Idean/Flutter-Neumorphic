@@ -44,7 +44,7 @@ class Neumorphic extends StatelessWidget {
       shape: shape
     );
 
-    final child = generateNeumprphicChild(
+    final child = generateNeumorphicChild(
         accent: this.accent,
         style:  style,
         shape: this.shape,

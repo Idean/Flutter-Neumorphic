@@ -1,7 +1,10 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+
+import 'light_source.dart';
 
 class NeumorphicColors {
   static const background = Color(0xffF1F2F4);
@@ -10,7 +13,8 @@ class NeumorphicColors {
   /// Positive intensity denotes a darker shade while negative intensity
   /// denotes a lighter shade.
   /// Credit for the algorithm goes to https://neumorphism.io
-  static Color generateGradientColors({Color colorBase, double intensity, bool updateAlpha = true}) {
+  static Color generateGradientColors(
+      {Color colorBase, double intensity, bool updateAlpha = true}) {
     final t = intensity ?? 0;
     String e = colorBase.value.toRadixString(16).substring(2);
     if (e.length < 6) e = e[0] + e[0] + e[1] + e[1] + e[2] + e[2];
@@ -22,34 +26,67 @@ class NeumorphicColors {
     }
 
     final generatedColor = Color(int.parse(o, radix: 16));
-    if(updateAlpha){
+    if (updateAlpha) {
       return generatedColor.withAlpha(255);
     } else {
       return generatedColor;
     }
   }
 
-  static Gradient generateEmbossGradients({Color color}) => LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [
-        color.withOpacity(0.3),
-        color.withOpacity(0),
-      ],
-      stops: [
-        0.7,
-        1
-      ]
-  );
+  static Color darken(Color color, [double amount = .1]) {
+    assert(amount >= 0 && amount <= 1);
+
+    final hsl = HSLColor.fromColor(color);
+    final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+
+    return hslDark.toColor();
+  }
+
+  static Gradient generateEmbossGradients(
+      {@required LightSource source, @required Color color}) {
+    var begin;
+    var end;
+
+    if (source == LightSource.bottomLeft) {
+      begin = Alignment.bottomLeft;
+      end = Alignment.topRight;
+    } else if (source == LightSource.topLeft) {
+      begin = Alignment.topLeft;
+      end = Alignment.bottomRight;
+    } else if (source == LightSource.topRight) {
+      begin = Alignment.topRight;
+      end = Alignment.bottomLeft;
+    } else if (source == LightSource.bottomRight) {
+      begin = Alignment.bottomRight;
+      end = Alignment.topLeft;
+    } else if (source == LightSource.top) {
+      begin = Alignment.topCenter;
+      end = Alignment.bottomCenter;
+    } else if (source == LightSource.left) {
+      begin = Alignment.centerLeft;
+      end = Alignment.centerRight;
+    } else if (source == LightSource.right) {
+      begin = Alignment.centerRight;
+      end = Alignment.centerLeft;
+    } else if (source == LightSource.bottom) {
+      begin = Alignment.bottomCenter;
+      end = Alignment.topCenter;
+    }
+
+    return LinearGradient(begin: begin, end: end, colors: [
+      color,
+      color,
+    ]);
+  }
 
   static Gradient generateFlatGradients({Color color}) => LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    colors: [
-      color,
-      color,
-    ],
-  );
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          color,
+          color,
+        ],
+      );
 
   static Color getAdjustColor(Color baseColor, double amount) {
     Map<String, int> colors = {
