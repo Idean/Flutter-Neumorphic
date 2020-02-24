@@ -17,7 +17,7 @@ class _ContainersListPageState extends State<ContainersListPage> {
         baseColor: NeumorphicColors.background,
         lightSource: LightSource.topLeft,
         curveFactor: 1,
-        distance: 3,
+        depth: 3,
         intensity: 0.2,
       ),
       child: Scaffold(
@@ -41,7 +41,7 @@ class _ContainersListPageState extends State<ContainersListPage> {
                       shape: BoxShape.circle,
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
-                        distance: 10,
+                        depth: 10,
                         borderRadius: 40,
                         shape: NeumorphicShape.concave,
                       ),
@@ -61,7 +61,7 @@ class _ContainersListPageState extends State<ContainersListPage> {
                       shape: BoxShape.circle,
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
-                        distance: 10,
+                        depth: 10,
                         borderRadius: 40,
                         shape: NeumorphicShape.flat,
                       ),
@@ -81,7 +81,7 @@ class _ContainersListPageState extends State<ContainersListPage> {
                       shape: BoxShape.circle,
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
-                        distance: 8,
+                        depth: 8,
                         borderRadius: 40,
                         shape: NeumorphicShape.convex,
                       ),
@@ -101,7 +101,7 @@ class _ContainersListPageState extends State<ContainersListPage> {
                       shape: BoxShape.circle,
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
-                        distance: 8,
+                        depth: 8,
                         borderRadius: 40,
                         shape: NeumorphicShape.concave,
                       ),

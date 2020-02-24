@@ -2,16 +2,15 @@ import 'dart:ui';
 
 import 'package:flutter_neumorphic/colors.dart';
 
+import 'flutter_neumorphic.dart';
 import 'light_source.dart';
 import 'shape.dart';
 
 export 'light_source.dart';
 export 'shape.dart';
 
-const NeumorphicTheme neumorphicDefaultTheme = NeumorphicTheme();
-
 //region theme
-const double _defaultDistance = 4;
+const double _defaultDepth = 4;
 const double _defaultIntensity = 0.2;
 const double _defaultCurveFactor = 1;
 const LightSource _defaultLightSource = LightSource.bottomRight;
@@ -19,52 +18,60 @@ const Color _defaultBaseColor = NeumorphicColors.background;
 
 class NeumorphicTheme {
   final Color baseColor;
-  final double distance;
+  final double _depth;
   final double intensity;
   final LightSource lightSource;
-  final double curveFactor; /* 0 < x < 1 */
+  final double _curveFactor;
+
+  double get curveFactor => _curveFactor.clamp(Neumorphic.MIN_CURVE, Neumorphic.MAX_CURVE);
+  double get depth => _depth.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
 
   const NeumorphicTheme({
     this.baseColor = _defaultBaseColor,
-    this.distance = _defaultDistance,
+    double depth = _defaultDepth,
     this.intensity = _defaultIntensity,
     this.lightSource = _defaultLightSource,
-    this.curveFactor = _defaultCurveFactor
-  });
+    double curveFactor = _defaultCurveFactor
+  }) : this._depth = depth, this._curveFactor = curveFactor;
 }
 //endregion
 
 //region style
 const NeumorphicShape _defaultShape = NeumorphicShape.concave;
-const double _defaultBorderRaious = 5;
+const double _defaultBorderRadius = 5;
+
+const neumorphicDefaultTheme = NeumorphicTheme();
 
 class NeumorphicStyle {
 
   final Color baseColor;
-  final double distance;
+  final double _depth;
   final double intensity;
   final LightSource lightSource;
-  final double curveFactor;
+  final double _curveFactor;
 
   final double borderRadius;
   final NeumorphicShape shape;
 
   const NeumorphicStyle({
-    this.borderRadius = _defaultBorderRaious,
+    this.borderRadius = _defaultBorderRadius,
     this.shape = _defaultShape,
     this.lightSource,
     this.baseColor,
-    this.curveFactor,
-    this.distance,
+    double curveFactor,
+    double depth,
     this.intensity,
-  });
+  }) : this._depth = depth, this._curveFactor = curveFactor;
+
+  double get curveFactor => _curveFactor.clamp(Neumorphic.MIN_CURVE, Neumorphic.MAX_CURVE);
+  double get depth => _depth.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
 
   NeumorphicStyle copyWithThemeIfNull(NeumorphicTheme theme) {
     return new NeumorphicStyle(
         borderRadius: this.borderRadius,
         baseColor: this.baseColor ?? theme.baseColor,
         shape: this.shape,
-        distance: this.distance ?? theme.distance,
+        depth: this.depth ?? theme.depth,
         intensity: this.intensity ?? theme.intensity,
         curveFactor: this.curveFactor ?? theme.curveFactor,
         lightSource: this.lightSource ?? theme.lightSource);
@@ -76,7 +83,7 @@ class NeumorphicStyle {
           other is NeumorphicStyle &&
               runtimeType == other.runtimeType &&
               baseColor == other.baseColor &&
-              distance == other.distance &&
+              depth == other.depth &&
               curveFactor == other.curveFactor &&
               intensity == other.intensity &&
               lightSource == other.lightSource &&
@@ -86,7 +93,7 @@ class NeumorphicStyle {
   @override
   int get hashCode =>
       baseColor.hashCode ^
-      distance.hashCode ^
+      depth.hashCode ^
       curveFactor.hashCode ^
       intensity.hashCode ^
       lightSource.hashCode ^
@@ -95,7 +102,7 @@ class NeumorphicStyle {
 
   NeumorphicStyle copyWith({
     Color baseColor,
-    double distance,
+    double depth,
     double intensity,
     double curveFactor,
     LightSource lightSource,
@@ -104,7 +111,7 @@ class NeumorphicStyle {
   }) {
     return new NeumorphicStyle(
       baseColor: baseColor ?? this.baseColor,
-      distance: distance ?? this.distance,
+      depth: depth ?? this.depth,
       intensity: intensity ?? this.intensity,
       curveFactor: curveFactor ?? this.curveFactor,
       lightSource: lightSource ?? this.lightSource,
