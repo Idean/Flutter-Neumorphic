@@ -91,12 +91,12 @@ class _NeumorphicProgressState extends State<NeumorphicProgress> with SingleTick
   }
 }
 
-class IndeterminateNeumorphicProgress extends StatefulWidget {
+class NeumorphicProgressIndeterminate extends StatefulWidget {
   final double height;
   final ProgressStyle style;
   final Duration duration;
 
-  const IndeterminateNeumorphicProgress({
+  const NeumorphicProgressIndeterminate({
     Key key,
     this.height = 10,
     this.style = const ProgressStyle(),
@@ -104,10 +104,10 @@ class IndeterminateNeumorphicProgress extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  createState() => _IndeterminateNeumorphicProgressState();
+  createState() => _NeumorphicProgressIndeterminateState();
 }
 
-class _IndeterminateNeumorphicProgressState extends State<IndeterminateNeumorphicProgress> with SingleTickerProviderStateMixin {
+class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressIndeterminate> with SingleTickerProviderStateMixin {
   double percent = 0;
 
   AnimationController _controller;
