@@ -36,7 +36,7 @@ List<BoxShadow> generateMultipleShadow({@required Color color, bool dark, @requi
   }
 }
 
-List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color color, @required double intensity, @required double distance, @required double limit}) {
+List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color color, @required double intensity, @required double depth, @required double limit}) {
   if (offset == Offset.zero) {
     return [];
   }
@@ -47,33 +47,33 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
   //print("offset shadow : $offset");
 
   //big and clear
-  lightShadows.addAll(generateMultipleShadow(
-    dark: false,
-    color: color,
-    offset:  limitOffset(offset, -30, 30),
-    intensity: 0.05 * (distance / 40) * intensity / 5,
-    scaleFactor: 0.6,
-    blurRadius: distance / 4,
-  ));
+  //lightShadows.addAll(generateMultipleShadow(
+  //  dark: false,
+  //  color: color,
+  //  offset:  limitOffset(offset, -30, 30),
+  //  intensity: 0.05 * (depth / 40) * intensity / 5,
+  //  scaleFactor: 0.6,
+  //  blurRadius: depth / 4,
+  //));
 
-  //medium distance
+  //medium depth
   lightShadows.addAll(generateMultipleShadow(
     dark: false,
     color: color,
-    offset: limitOffset(offset, -20, 20).scale(1 + distance / 30, 1 + distance / 30),
-    intensity: 0.4 * (distance / 40) * intensity / 4,
+    offset: limitOffset(offset, -18, 18).scale(1 + depth / 40, 1 + depth / 40),
+    intensity: 0.25 * (depth / 40) * intensity / 4,
     scaleFactor: 0.3,
-    blurRadius: distance / 6,
+    blurRadius: depth / 6,
   ));
 
   //////small & lighten
   lightShadows.addAll(generateMultipleShadow(
     dark: false,
     color: color,
-    offset: limitOffset(offset, -20, 20).scale(distance / 30, distance / 30),
-    intensity: 0.4 * (distance / 40) * intensity / 3,
+    offset: limitOffset(offset, -20, 20).scale(depth / 30, depth / 30),
+    intensity: 0.4 * (depth / 40) * intensity / 3,
     scaleFactor: 0.25,
-    blurRadius: distance / 6,
+    blurRadius: depth / 6,
   ));
 
   final List<BoxShadow> darkShadows = [];
@@ -83,19 +83,19 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
     dark: true,
     color: color,
     offset:  limitOffset(offset, -30, 30),
-    intensity: -1.5 * (distance / 12) * intensity / 5,
+    intensity: -1.5 * (depth / 12) * intensity / 5,
     scaleFactor: -1.0,
-    blurRadius: distance,
+    blurRadius: depth,
   ));
 
-  //medium distance
+  //medium depth
   darkShadows.addAll(generateMultipleShadow(
     dark: true,
     color: color,
     offset:  limitOffset(offset, -20, 20),
-    intensity: -1.5 * (distance / 12) * intensity / 4,
+    intensity: -1.5 * (depth / 12) * intensity / 4,
     scaleFactor: -0.5,
-    blurRadius: distance / 2,
+    blurRadius: depth / 2,
   ));
 
   //small & darken
@@ -103,9 +103,9 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
     dark: true,
     color: color,
     offset: limitOffset(offset, -10, 10),
-    intensity: -1.5 * (distance / 12) * intensity / 3,
+    intensity: -1.5 * (depth / 12) * intensity / 3,
     scaleFactor: -0.25,
-    blurRadius: distance /8,
+    blurRadius: depth /8,
   ));
 
   final List<BoxShadow> shadows = [];
@@ -121,7 +121,7 @@ BoxDecoration generateNeumorphicDecoratorEmboss({
   BoxShape shape,
 }) {
   final Color innerColor = accent ?? style.baseColor;
-  var offset = sourceToOffset(style.lightSource, style.distance);
+  var offset = sourceToOffset(style.lightSource, style.depth);
 
   //limit offset
   offset = limitOffset(offset, -7, 7);
@@ -131,22 +131,22 @@ BoxDecoration generateNeumorphicDecoratorEmboss({
   if (offset != Offset.zero) {
     boxShadows = [
       BoxShadow(
-        color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * ((style.distance / 10) * style.intensity * 0.5)),
+        color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: -1 * ((style.depth / 10) * style.intensity * 0.5)),
         offset: offset.scale(-1, -1),
         spreadRadius: 2,
-        blurRadius: style.distance,
+        blurRadius: style.depth,
       ),
       BoxShadow(
         color: NeumorphicColors.generateGradientColors(colorBase: style.baseColor, intensity: style.intensity),
         offset: offset,
-        blurRadius: style.distance,
+        blurRadius: style.depth,
       ),
     ];
   }
 
   //body
   final Gradient gradient = NeumorphicColors.generateEmbossGradients(
-    color: NeumorphicColors.generateGradientColors(colorBase: innerColor, intensity: -1 * (1 + (style.distance / 5)) * style.intensity),
+    color: NeumorphicColors.generateGradientColors(colorBase: innerColor, intensity: -1 * (1 + (style.depth / 5)) * style.intensity),
   );
 
   if (shape == BoxShape.circle) {
@@ -173,10 +173,10 @@ BoxDecoration generateNeumorphicDecoratorFlat({
   final Color innerColor = accent ?? style.baseColor;
 
   final List<BoxShadow> boxShadows =
-      generateUsualBoxShadow(offset: sourceToOffset(style.lightSource, style.distance), distance: style.distance, intensity: style.intensity, color: style.baseColor, limit: 8.0);
+      generateUsualBoxShadow(offset: sourceToOffset(style.lightSource, style.depth), depth: style.depth, intensity: style.intensity, color: style.baseColor, limit: 8.0);
 
   final Gradient gradient = NeumorphicColors.generateFlatGradients(
-    color: NeumorphicColors.getAdjustColor(innerColor, 0 - style.distance / 2),
+    color: NeumorphicColors.getAdjustColor(innerColor, 0 - style.depth / 2),
   );
 
   if (shape == BoxShape.circle) {
@@ -201,16 +201,17 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
   BoxShape shape,
 }) {
   final Color innerColor = accent ?? style.baseColor;
+  final double depth = style.depth.clamp(0, Neumorphic.MAX_DEPTH);
 
   final List<BoxShadow> boxShadows =
-      generateUsualBoxShadow(offset: sourceToOffset(style.lightSource, style.distance), distance: style.distance, intensity: style.intensity, color: style.baseColor, limit: 8.0);
+      generateUsualBoxShadow(offset: sourceToOffset(style.lightSource, depth), depth: depth, intensity: style.intensity, color: style.baseColor, limit: 8.0);
 
   final curveFactor = style.curveFactor.clamp(0, 1);
 
-  final whiteFactor = 0 + ((curveFactor / 3.5) * style.distance / 300) + curveFactor / 3.5;
-  final darkFactor = 0 - ((curveFactor / 2.5) * (style.distance / 28)) - curveFactor / 20;
+  final whiteFactor = 0 + ((curveFactor / 3.5) * depth / 300) + curveFactor / 3.5;
+  final darkFactor = 0 - ((curveFactor / 2.5) * (depth / 28)) - curveFactor / 20;
 
-  //print("curveFactor: $curveFactor style.distance: ${style.distance}");
+  //print("curveFactor: $curveFactor style.depth: ${style.depth}");
   //print("whiteFactor: $whiteFactor");
   //print("darkFactor: $darkFactor");
 

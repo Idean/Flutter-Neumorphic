@@ -27,14 +27,14 @@ class NeumorphicButton extends StatefulWidget {
 class _NeumorphicButtonState extends State<NeumorphicButton> {
   NeumorphicStyle initialStyle;
 
-  double distance;
+  double depth;
   double scale = 1;
 
   void updateInitialStyle() {
     if (widget.style != initialStyle) {
       setState(() {
         this.initialStyle = widget.style;
-        distance = widget.style.distance;
+        depth = widget.style.depth;
       });
     }
   }
@@ -60,14 +60,14 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   void _changeDistance() {
     setState(() {
       scale = 0.95;
-      distance = widget.minDistance;
+      depth = widget.minDistance;
     });
   }
 
   void _resetDistance() {
     setState(() {
       scale = 1;
-      distance = initialStyle.distance;
+      depth = initialStyle.depth;
     });
   }
 
@@ -98,7 +98,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
         child: Neumorphic(
           padding: widget.padding,
           shape: widget.shape,
-          style: initialStyle.copyWith(distance: distance),
+          style: initialStyle.copyWith(depth: depth),
           child: widget.child,
         ),
       ),

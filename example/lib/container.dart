@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:provider/provider.dart';
 
 class ContainerPage extends StatefulWidget {
   @override
@@ -24,7 +23,7 @@ class _ContainerPageState extends State<ContainerPage> {
         baseColor: Color(0xffDDDDDD),
         lightSource: LightSource.topLeft,
         curveFactor: 1,
-        distance: 6,
+        depth: 6,
         intensity: 1,
       ),
       child: Scaffold(
@@ -62,7 +61,7 @@ class _ContainerPageState extends State<ContainerPage> {
         shape: boxShape,
         style: NeumorphicStyle(
           shape: this.shape,
-          distance: depth,
+          depth: depth,
           curveFactor: curveFactor / 100,
           lightSource: this.lightSource,
         ),
@@ -83,8 +82,8 @@ class _ContainerPageState extends State<ContainerPage> {
         ),
         Expanded(
           child: Slider(
-            min: 0,
-            max: 40,
+            min: Neumorphic.MIN_DEPTH,
+            max: Neumorphic.MAX_DEPTH,
             value: depth,
             onChanged: (value){
               setState(() {
@@ -110,8 +109,8 @@ class _ContainerPageState extends State<ContainerPage> {
         ),
         Expanded(
           child: Slider(
-            min: 0,
-            max: 100,
+            min: Neumorphic.MIN_CURVE * 100, //in case of != 0
+            max: Neumorphic.MAX_CURVE * 100,
             value: curveFactor,
             onChanged: (value){
               setState(() {
