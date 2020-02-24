@@ -337,7 +337,19 @@ BoxDecoration generateNeumorphicDecorator(
     {
     /*nullable*/ Color accent,
     NeumorphicStyle style,
-      NeumorphicBoxShape shape}) {
+    NeumorphicBoxShape shape}) {
+
+  //if depth is negative, force emboss
+  if(style.depth < 0){
+    return generateNeumorphicDecoratorEmboss(
+        accent: accent, style:
+        style.copyWith(
+          depth: -style.depth
+        ),
+        shape: shape,
+    );
+  }
+
   if (style.shape == NeumorphicShape.emboss) {
     return generateNeumorphicDecoratorEmboss(
         accent: accent, style: style, shape: shape);

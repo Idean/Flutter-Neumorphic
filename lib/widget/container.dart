@@ -7,7 +7,7 @@ import '../flutter_neumorphic.dart';
 @immutable
 class Neumorphic extends StatelessWidget {
 
-  static const double MIN_DEPTH = 0.0;
+  static const double MIN_DEPTH = -20.0;
   static const double MAX_DEPTH = 20.0;
 
   static const double MIN_CURVE = 0.0;
