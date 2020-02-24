@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+import '../NeumorphicBoxShape.dart';
 import '../theme.dart';
 import 'animation/animated_scale.dart';
 import 'container.dart';
@@ -8,7 +9,7 @@ class NeumorphicButton extends StatefulWidget {
   final Widget child;
   final NeumorphicStyle style;
   final double minDistance;
-  final BoxShape shape;
+  final NeumorphicBoxShape shape;
   final EdgeInsets padding;
 
   const NeumorphicButton({

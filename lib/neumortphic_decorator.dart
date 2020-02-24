@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+import 'NeumorphicBoxShape.dart';
+
 Offset limitOffset(Offset offset, double minXY, double maxXY) {
   final dx = offset.dx.clamp(minXY, maxXY);
   final dy = offset.dy.clamp(minXY, maxXY);
@@ -130,7 +132,7 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
 BoxDecoration generateNeumorphicDecoratorEmboss({
   /*nullable*/ Color accent,
   NeumorphicStyle style,
-  BoxShape shape,
+  NeumorphicBoxShape shape,
 }) {
   List<BoxShadow> boxShadows;
   var innerColor = accent ?? style.baseColor;
@@ -215,18 +217,16 @@ BoxDecoration generateNeumorphicDecoratorEmboss({
     ];
   }
 
-  if (shape == BoxShape.circle) {
+  if (shape.isCircle) {
     return BoxDecoration(
       boxShadow: boxShadows,
-      shape: shape,
+      shape: shape.boxShape,
     );
   } else {
     return BoxDecoration(
-      borderRadius: style.borderRadius == 0
-          ? null
-          : BorderRadius.circular(style.borderRadius),
+      borderRadius: shape.borderRadius,
       boxShadow: boxShadows,
-      shape: shape,
+      shape: shape.boxShape,
     );
   }
 }
@@ -234,7 +234,7 @@ BoxDecoration generateNeumorphicDecoratorEmboss({
 BoxDecoration generateNeumorphicDecoratorFlat({
 /*nullable*/ @required Color accent,
   @required NeumorphicStyle style,
-  @required BoxShape shape,
+  @required NeumorphicBoxShape shape,
 }) {
   final Color innerColor = accent ?? style.baseColor;
 
@@ -245,20 +245,18 @@ BoxDecoration generateNeumorphicDecoratorFlat({
     color: NeumorphicColors.getAdjustColor(innerColor, 0 - style.depth / 2),
   );
 
-  if (shape == BoxShape.circle) {
+  if (shape.isCircle) {
     return BoxDecoration(
       boxShadow: boxShadows,
       gradient: gradient,
-      shape: shape,
+      shape: shape.boxShape,
     );
   } else {
     return BoxDecoration(
-      borderRadius: style.borderRadius == 0
-          ? null
-          : BorderRadius.circular(style.borderRadius),
+      borderRadius: shape.borderRadius,
       boxShadow: boxShadows,
       gradient: gradient,
-      shape: shape,
+      shape: shape.boxShape,
     );
   }
 }
@@ -266,7 +264,7 @@ BoxDecoration generateNeumorphicDecoratorFlat({
 BoxDecoration generateNeumorphicDecoratorConcaveConvex({
 /*nullable*/ Color accent,
   NeumorphicStyle style,
-  BoxShape shape,
+  NeumorphicBoxShape shape,
 }) {
   final Color innerColor = accent ?? style.baseColor;
   final double depth = style.depth.clamp(0, Neumorphic.MAX_DEPTH);
@@ -319,20 +317,18 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
         1
       ]);
 
-  if (shape == BoxShape.circle) {
+  if (shape.isCircle) {
     return BoxDecoration(
       boxShadow: boxShadows,
       gradient: gradient,
-      shape: shape,
+      shape: shape.boxShape,
     );
   } else {
     return BoxDecoration(
-      borderRadius: style.borderRadius == 0
-          ? null
-          : BorderRadius.circular(style.borderRadius),
+      borderRadius: shape.borderRadius,
       boxShadow: boxShadows,
       gradient: gradient,
-      shape: shape,
+      shape: shape.boxShape,
     );
   }
 }
@@ -341,7 +337,7 @@ BoxDecoration generateNeumorphicDecorator(
     {
     /*nullable*/ Color accent,
     NeumorphicStyle style,
-    BoxShape shape}) {
+      NeumorphicBoxShape shape}) {
   if (style.shape == NeumorphicShape.emboss) {
     return generateNeumorphicDecoratorEmboss(
         accent: accent, style: style, shape: shape);
@@ -355,6 +351,6 @@ BoxDecoration generateNeumorphicDecorator(
 }
 
 Widget generateNeumorphicChild(
-    {Color accent, NeumorphicStyle style, BoxShape shape, Widget child}) {
+    {Color accent, NeumorphicStyle style, NeumorphicBoxShape shape, Widget child}) {
   return child;
 }

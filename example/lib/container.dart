@@ -12,9 +12,10 @@ class _ContainerPageState extends State<ContainerPage> {
 
   LightSource lightSource = LightSource.topLeft;
   NeumorphicShape shape = NeumorphicShape.concave;
-  BoxShape boxShape = BoxShape.rectangle;
+  NeumorphicBoxShape boxShape = NeumorphicBoxShape.roundRect();
   double depth = 1;
   double curveFactor = 1;
+  double cornerRadius = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +40,7 @@ class _ContainerPageState extends State<ContainerPage> {
               boxshapeWidget(),
               curveSelector(),
               depthSelector(),
+              cornerRadiusSelector(),
               Expanded(
                 child: Stack(
                   fit: StackFit.expand,
@@ -55,7 +57,7 @@ class _ContainerPageState extends State<ContainerPage> {
 
   Widget neumorphic() {
     return SizedBox(
-      height: 200,
+      height: 50,
       width: 200,
       child: NeumorphicButton(
         shape: boxShape,
@@ -100,6 +102,36 @@ class _ContainerPageState extends State<ContainerPage> {
     );
   }
 
+  Widget cornerRadiusSelector() {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(left: 12),
+          child: Text("Corner"),
+        ),
+        Expanded(
+          child: Slider(
+            min: 0,
+            max: 30,
+            value: cornerRadius,
+            onChanged: (value){
+              setState(() {
+                cornerRadius = value;
+                if(boxShape.isRoundRect) {
+                  boxShape = NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(this.cornerRadius));
+                }
+              });
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: 12),
+          child: Text(cornerRadius.floor().toString()),
+        ),
+      ],
+    );
+  }
+
   Widget curveSelector() {
     return Row(
       children: <Widget>[
@@ -134,20 +166,29 @@ class _ContainerPageState extends State<ContainerPage> {
         RaisedButton(
           onPressed: () {
             setState(() {
-              boxShape = BoxShape.rectangle;
+              boxShape = NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(this.cornerRadius));
             });
           },
-          color: boxShape == BoxShape.rectangle ? buttonActiveColor : buttonInnactiveColor,
+          color: boxShape.isRoundRect ? buttonActiveColor : buttonInnactiveColor,
           child: Text("Rectangle"),
         ),
         RaisedButton(
           onPressed: () {
             setState(() {
-              boxShape = BoxShape.circle;
+              boxShape = NeumorphicBoxShape.circle();
             });
           },
-          color: boxShape == BoxShape.circle ? buttonActiveColor : buttonInnactiveColor,
+          color: boxShape.isCircle ? buttonActiveColor : buttonInnactiveColor,
           child: Text("Circle"),
+        ),
+        RaisedButton(
+          onPressed: () {
+            setState(() {
+              boxShape = NeumorphicBoxShape.stadium();
+            });
+          },
+          color: boxShape.isStadium ? buttonActiveColor : buttonInnactiveColor,
+          child: Text("Stadium"),
         ),
       ],
     );

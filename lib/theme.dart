@@ -50,11 +50,9 @@ class NeumorphicStyle {
   final LightSource lightSource;
   final double _curveFactor;
 
-  final double borderRadius;
   final NeumorphicShape shape;
 
   const NeumorphicStyle({
-    this.borderRadius = _defaultBorderRadius,
     this.shape = _defaultShape,
     this.lightSource,
     this.baseColor,
@@ -68,7 +66,6 @@ class NeumorphicStyle {
 
   NeumorphicStyle copyWithThemeIfNull(NeumorphicTheme theme) {
     return new NeumorphicStyle(
-        borderRadius: this.borderRadius,
         baseColor: this.baseColor ?? theme.baseColor,
         shape: this.shape,
         depth: this.depth ?? theme.depth,
@@ -87,7 +84,6 @@ class NeumorphicStyle {
               curveFactor == other.curveFactor &&
               intensity == other.intensity &&
               lightSource == other.lightSource &&
-              borderRadius == other.borderRadius &&
               shape == other.shape;
 
   @override
@@ -97,7 +93,6 @@ class NeumorphicStyle {
       curveFactor.hashCode ^
       intensity.hashCode ^
       lightSource.hashCode ^
-      borderRadius.hashCode ^
       shape.hashCode;
 
   NeumorphicStyle copyWith({
@@ -115,7 +110,6 @@ class NeumorphicStyle {
       intensity: intensity ?? this.intensity,
       curveFactor: curveFactor ?? this.curveFactor,
       lightSource: lightSource ?? this.lightSource,
-      borderRadius: borderRadius ?? this.borderRadius,
       shape: shape ?? this.shape,
     );
   }
