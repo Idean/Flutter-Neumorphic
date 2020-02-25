@@ -10,6 +10,8 @@ class NeumorphicRadioStyle {
   final double selectedDepth;
   final double unselectedDepth;
 
+  //TODO add some stylable elements here
+
   const NeumorphicRadioStyle({
     this.selectedDepth: 3,
     this.unselectedDepth: -5,
@@ -23,7 +25,13 @@ class NeumorphicRadio<T> extends StatefulWidget {
   final NeumorphicRadioStyle style;
   final NeumorphicRadioListener<T> onChanged;
 
-  NeumorphicRadio({this.child, this.style = const NeumorphicRadioStyle(), this.value, this.groupValue, this.onChanged});
+  NeumorphicRadio({
+    this.child,
+    this.style = const NeumorphicRadioStyle(),
+    this.value,
+    this.groupValue,
+    this.onChanged,
+  });
 
   @override
   _NeumorphicRadioState createState() => _NeumorphicRadioState();
