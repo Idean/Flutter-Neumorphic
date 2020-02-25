@@ -16,6 +16,7 @@ class _ContainerPageState extends State<ContainerPage> {
   double depth = 5;
   double curveFactor = 1;
   double cornerRadius = 0;
+  double height = 0;
 
   @override
   Widget build(BuildContext context) {

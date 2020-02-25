@@ -54,7 +54,7 @@ class Neumorphic extends StatelessWidget {
 
     return AnimatedContainer(
       key: shape.isCircle ? _circleKey : _rectangleKey,
-      duration: const Duration(milliseconds: 150),
+      duration: const Duration(milliseconds: 100),
       child: child,
       decoration: decorator,
       padding: this.padding,
