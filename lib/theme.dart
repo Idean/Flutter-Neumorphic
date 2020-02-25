@@ -13,11 +13,15 @@ export 'shape.dart';
 const double _defaultDepth = 4;
 const double _defaultIntensity = 0.2;
 const double _defaultCurveFactor = 1;
+const Color _defaultAccent = NeumorphicColors.accent;
+const Color _defaultVariant = NeumorphicColors.variant;
 const LightSource _defaultLightSource = LightSource.bottomRight;
 const Color _defaultBaseColor = NeumorphicColors.background;
 
 class NeumorphicTheme {
   final Color baseColor;
+  final Color accentColor;
+  final Color variantColor;
   final double _depth;
   final double intensity;
   final LightSource lightSource;
@@ -30,6 +34,8 @@ class NeumorphicTheme {
     this.baseColor = _defaultBaseColor,
     double depth = _defaultDepth,
     this.intensity = _defaultIntensity,
+    this.accentColor = _defaultAccent,
+    this.variantColor = _defaultVariant,
     this.lightSource = _defaultLightSource,
     double curveFactor = _defaultCurveFactor
   }) : this._depth = depth, this._curveFactor = curveFactor;

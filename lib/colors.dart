@@ -8,6 +8,8 @@ import 'light_source.dart';
 
 class NeumorphicColors {
   static const background = Color(0xffF1F2F4);
+  static const accent = Colors.blue;
+  static const variant = Colors.cyan;
 
   /// Generate a shadow color from the [base] color and a relative [intensity].
   /// Positive intensity denotes a darker shade while negative intensity

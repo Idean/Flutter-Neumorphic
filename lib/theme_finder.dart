@@ -5,14 +5,6 @@ import 'package:provider/provider.dart';
 import 'flutter_neumorphic.dart';
 import 'package:flutter/material.dart';
 
-NeumorphicTheme findNeumorphicTheme(BuildContext context) {
-  try {
-    return  Provider.of<NeumorphicTheme>(context);
-  } catch (t) {
-    return null;
-  }
-}
-
 class NeumorphicThemeProvider extends StatelessWidget {
 
   final NeumorphicTheme theme;
@@ -27,4 +19,13 @@ class NeumorphicThemeProvider extends StatelessWidget {
       child: this.child
     );
   }
+
+  static NeumorphicTheme findNeumorphicTheme(BuildContext context) {
+    try {
+      return  Provider.of<NeumorphicTheme>(context);
+    } catch (t) {
+      return null;
+    }
+  }
+
 }
