@@ -49,6 +49,7 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
     final accent = widget.style.accent ?? theme.accentColor;
 
     return NeumorphicButton(
+      accent: isSelected ? accent : null,
       onClick: () {
         _onClick();
       },
@@ -65,7 +66,6 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
         ),
       ),
       style: NeumorphicStyle(
-        baseColor: isSelected ? accent : null,
         depth: isSelected ? widget.style.selectedDepth : widget.style.unselectedDepth,
         shape: NeumorphicShape.flat,
       ),

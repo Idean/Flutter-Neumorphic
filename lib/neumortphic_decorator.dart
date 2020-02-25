@@ -159,12 +159,12 @@ BoxDecoration generateNeumorphicDecoratorEmboss({
     boxShadows = [];
   } else {
     var blackShadow = NeumorphicColors.generateGradientColors(
-      colorBase: innerColor,
+      colorBase: style.baseColor,
       intensity: -1 * (style.intensity * 0.1),
     );
 
     var whiteShadow = NeumorphicColors.generateGradientColors(
-      colorBase: innerColor,
+      colorBase: style.baseColor,
       intensity: style.intensity * 0.1,
     );
 

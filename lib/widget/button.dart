@@ -10,6 +10,7 @@ typedef void NeumorphicButtonClickListener();
 class NeumorphicButton extends StatefulWidget {
   final Widget child;
   final NeumorphicStyle style;
+  final Color accent;
   final double minDistance;
   final NeumorphicBoxShape shape;
   final EdgeInsets padding;
@@ -20,6 +21,7 @@ class NeumorphicButton extends StatefulWidget {
     this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     this.child,
     this.shape,
+    this.accent,
     this.onClick,
     this.minDistance = 0,
     this.style = const NeumorphicStyle(),
@@ -102,6 +104,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       child: AnimatedScale(
         scale: this.scale,
         child: Neumorphic(
+          accent: widget.accent,
           padding: widget.padding,
           shape: widget.shape,
           style: initialStyle.copyWith(depth: depth),
