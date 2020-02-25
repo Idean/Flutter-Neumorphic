@@ -75,8 +75,9 @@ class _NeumorphicProgressState extends State<NeumorphicProgress> with SingleTick
       height: widget.height,
       width: double.maxFinite,
       child: Neumorphic(
+        shape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(widget.style.borderRadius)),
         padding: EdgeInsets.zero,
-        style: NeumorphicStyle(depth: widget.style.depth, shape: NeumorphicShape.flat, borderRadius: widget.style.borderRadius),
+        style: NeumorphicStyle(depth: widget.style.depth, shape: NeumorphicShape.flat),
         child: FractionallySizedBox(
           heightFactor: 1,
           alignment: Alignment.centerLeft,
@@ -169,8 +170,9 @@ class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressInde
       height: widget.height,
       width: double.maxFinite,
       child: Neumorphic(
+        shape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(widget.style.borderRadius)),
         padding: EdgeInsets.zero,
-        style: NeumorphicStyle(depth: widget.style.depth, shape: NeumorphicShape.flat, borderRadius: widget.style.borderRadius),
+        style: NeumorphicStyle(depth: widget.style.depth, shape: NeumorphicShape.flat),
         child: LayoutBuilder(builder: (context, constraints) {
           return Padding(
             padding: EdgeInsets.only(left: constraints.maxWidth * percent),
