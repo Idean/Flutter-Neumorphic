@@ -29,8 +29,8 @@ class _AnimatedScaleState extends State<AnimatedScale> with TickerProviderStateM
 
   @override
   void initState() {
-    _onScaleChanged(widget.scale);
     super.initState();
+    _onScaleChanged(widget.scale);
   }
 
   @override

@@ -5,18 +5,22 @@ import '../theme.dart';
 import 'animation/animated_scale.dart';
 import 'container.dart';
 
+typedef void NeumorphicButtonClickListener();
+
 class NeumorphicButton extends StatefulWidget {
   final Widget child;
   final NeumorphicStyle style;
   final double minDistance;
   final NeumorphicBoxShape shape;
   final EdgeInsets padding;
+  final NeumorphicButtonClickListener onClick;
 
   const NeumorphicButton({
     Key key,
     this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     this.child,
     this.shape,
+    this.onClick,
     this.minDistance = 0,
     this.style = const NeumorphicStyle(),
   }) : super(key: key);
@@ -42,20 +46,20 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
 
   @override
   void initState() {
-    updateInitialStyle();
     super.initState();
+    updateInitialStyle();
   }
 
   @override
   void didChangeDependencies() {
-    updateInitialStyle();
     super.didChangeDependencies();
+    updateInitialStyle();
   }
 
   @override
   void didUpdateWidget(NeumorphicButton oldWidget) {
-    updateInitialStyle();
     super.didUpdateWidget(oldWidget);
+    updateInitialStyle();
   }
 
   void _changeDistance() {
@@ -87,6 +91,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       onTapUp: (detail) {
         if (clickable) {
           _resetDistance();
+          widget.onClick();
         }
       },
       onTapCancel: () {

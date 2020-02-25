@@ -55,6 +55,7 @@ class _ContainersListPageState extends State<ContainersListPage> {
                 Row(
                   children: <Widget>[
                     NeumorphicButton(
+                      minDistance: -2,
                       shape: NeumorphicBoxShape.circle(),
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
