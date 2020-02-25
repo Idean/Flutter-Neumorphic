@@ -93,7 +93,9 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       onTapUp: (detail) {
         if (clickable) {
           _resetDistance();
-          widget.onClick();
+          if(widget.onClick != null) {
+            widget.onClick();
+          }
         }
       },
       onTapCancel: () {

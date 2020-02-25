@@ -71,6 +71,30 @@ class _ContainerPageState extends State<ContainerPage> {
         child: SizedBox(
           height: 150,
           width: 150,
+          /*
+          child: Center(
+            child: Text(
+              "hello world".toUpperCase(),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
+                color: Colors.black.withOpacity(0.3),
+                shadows: <Shadow>[
+                  Shadow(
+                    offset: Offset(2.0, 2.0),
+                    blurRadius: 3.0,
+                    color: Colors.white,
+                  ),
+                  Shadow(
+                    offset: Offset(-2.0, -2.0),
+                    blurRadius: 2.0,
+                    color: Colors.grey.withOpacity(0.3),
+                  ),
+                ],
+              ),
+            ),
+          ),
+           */
         ),
       ),
     );
