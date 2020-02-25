@@ -48,7 +48,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
   Widget _buildRadios() {
     return Row(
       children: <Widget>[
-        Text("Radiu"),
+        Text("Radio"),
         SizedBox(width: 12),
         NeumorphicRadio(
           child: SizedBox(
@@ -97,6 +97,45 @@ class _ContainersListPageState extends State<WidgetsPage> {
           onChanged: (value) {
             setState(() {
               _groupValue = value;
+            });
+          },
+        ),
+      ],
+    );
+  }
+
+  bool check1 = false;
+  bool check2 = false;
+  bool check3 = false;
+
+  Widget _buildChecks() {
+    return Row(
+      children: <Widget>[
+        Text("Checkbox"),
+        SizedBox(width: 12),
+        NeumorphicCheckbox(
+          value: check1,
+          onChanged: (value) {
+            setState(() {
+              check1 = value;
+            });
+          },
+        ),
+        SizedBox(width: 12),
+        NeumorphicCheckbox(
+          value: check2,
+          onChanged: (value) {
+            setState(() {
+              check2 = value;
+            });
+          },
+        ),
+        SizedBox(width: 12),
+        NeumorphicCheckbox(
+          value: check3,
+          onChanged: (value) {
+            setState(() {
+              check3 = value;
             });
           },
         ),
@@ -167,27 +206,46 @@ class _ContainersListPageState extends State<WidgetsPage> {
       ),
       child: Scaffold(
         backgroundColor: NeumorphicColors.background,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          title: Text("Widgets", style: Theme.of(context).textTheme.display1),
-        ),
         body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                _buildProgress(),
-                SizedBox(height: 12),
-                _buildIndeterminateProgress(),
-                SizedBox(height: 30),
-                _buildRadios(),
-                SizedBox(height: 30),
-                _buildIndicators(),
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Neumorphic(
+                child: AppBar(
+                  iconTheme: IconThemeData.fallback(),
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  title: Text("Widgets", style: TextStyle(color: Colors.black),),
+                ),
+                style: NeumorphicStyle(
+                  shape: NeumorphicShape.emboss,
+                  depth: 8
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    SizedBox(height: 30),
+                    _buildProgress(),
+                    SizedBox(height: 12),
+                    _buildIndeterminateProgress(),
+                    SizedBox(height: 30),
+                    _buildRadios(),
+                    SizedBox(height: 30),
+                    _buildIndicators(),
+                    SizedBox(height: 30),
+                    _buildChecks(),
+                    SizedBox(height: 30),
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       ),
