@@ -7,15 +7,15 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 class ProgressStyle {
   final double depth;
   final double borderRadius;
-  final Color startColor;
-  final Color endColor;
+  final Color accent;
+  final Color variant;
 
-  const ProgressStyle(
-      {this.depth,
-      this.borderRadius = 10.0,
-      this.startColor = Colors.blue, //TODO use accent
-      this.endColor = Colors.cyan //TODO use accent
-      });
+  const ProgressStyle({
+    this.depth,
+    this.borderRadius = 10.0,
+    this.accent,
+    this.variant,
+  });
 }
 
 class NeumorphicProgress extends StatefulWidget {
@@ -70,6 +70,7 @@ class _NeumorphicProgressState extends State<NeumorphicProgress> with SingleTick
 
   @override
   Widget build(BuildContext context) {
+    final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
     return SizedBox(
       height: widget.height,
       width: double.maxFinite,
@@ -83,7 +84,17 @@ class _NeumorphicProgressState extends State<NeumorphicProgress> with SingleTick
           child: ClipRRect(
             clipBehavior: Clip.antiAlias,
             borderRadius: BorderRadius.circular(widget.style.borderRadius),
-            child: Container(decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [widget.style.startColor, widget.style.endColor]))),
+            child: Container(
+                decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  widget.style.accent ?? theme.accentColor,
+                  widget.style.variant ?? theme.variantColor
+                ],
+              ),
+            )),
           ),
         ),
       ),
@@ -96,12 +107,7 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
   final ProgressStyle style;
   final Duration duration;
 
-  const NeumorphicProgressIndeterminate({
-    Key key,
-    this.height = 10,
-    this.style = const ProgressStyle(),
-    this.duration = const Duration(seconds: 3)
-  }) : super(key: key);
+  const NeumorphicProgressIndeterminate({Key key, this.height = 10, this.style = const ProgressStyle(), this.duration = const Duration(seconds: 3)}) : super(key: key);
 
   @override
   createState() => _NeumorphicProgressIndeterminateState();
@@ -127,7 +133,7 @@ class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressInde
     super.didUpdateWidget(oldWidget);
   }
 
-  void _createAnimation(){
+  void _createAnimation() {
     _controller?.dispose();
     _controller = AnimationController(vsync: this, duration: widget.duration);
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller)
@@ -144,9 +150,7 @@ class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressInde
 
   void loop() async {
     try {
-      await _controller
-          .repeat(min: 0, max: 1, reverse: false)
-          .orCancel;
+      await _controller.repeat(min: 0, max: 1, reverse: false).orCancel;
     } on TickerCanceled {}
   }
 
@@ -159,6 +163,8 @@ class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressInde
 
   @override
   Widget build(BuildContext context) {
+    final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
+
     return SizedBox(
       height: widget.height,
       width: double.maxFinite,
@@ -180,7 +186,10 @@ class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressInde
                     gradient: LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
-                      colors: [widget.style.startColor, widget.style.endColor],
+                      colors: [
+                        widget.style.accent ?? theme.accentColor,
+                        widget.style.variant ?? theme.variantColor
+                      ],
                     ),
                   ),
                 ),
