@@ -13,7 +13,7 @@ class _ContainerPageState extends State<ContainerPage> {
   LightSource lightSource = LightSource.topLeft;
   NeumorphicShape shape = NeumorphicShape.concave;
   NeumorphicBoxShape boxShape = NeumorphicBoxShape.roundRect();
-  double depth = 1;
+  double depth = 5;
   double curveFactor = 1;
   double cornerRadius = 0;
 
