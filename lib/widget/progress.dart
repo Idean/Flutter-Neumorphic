@@ -122,7 +122,7 @@ class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressInde
   }
 
   @override
-  void didUpdateWidget(IndeterminateNeumorphicProgress oldWidget) {
+  void didUpdateWidget(NeumorphicProgressIndeterminate oldWidget) {
     _createAnimation();
     super.didUpdateWidget(oldWidget);
   }

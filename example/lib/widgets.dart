@@ -56,7 +56,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
                     Text("Progress"),
                     SizedBox(width: 12),
                     Flexible(
-                      child: IndeterminateNeumorphicProgress(
+                      child: NeumorphicProgressIndeterminate(
                         height: 10,
                         style: ProgressStyle(
                             depth: 15
