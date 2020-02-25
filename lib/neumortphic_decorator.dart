@@ -151,7 +151,9 @@ BoxDecoration generateNeumorphicDecoratorEmboss({
 }) {
   List<BoxShadow> boxShadows;
   var innerColor = accent ?? style.baseColor;
-  final offset = style.lightSource.toOffset(style.depth);
+
+  final depth = style.depth / 2; //reduce speed
+  final offset = style.lightSource.toOffset(depth);
 
   if (offset == Offset.zero) {
     boxShadows = [];
@@ -168,67 +170,67 @@ BoxDecoration generateNeumorphicDecoratorEmboss({
 
     var depthShadow = NeumorphicColors.darken(innerColor, 0.2);
 
-    var spreadRadius = -style.depth * 0.9;
+    var spreadRadius = -depth * 0.9;
 
     boxShadows = [
       BoxShadow(
         color: blackShadow,
         offset: offset.scale(1, -1),
-        blurRadius: style.depth,
+        blurRadius: depth,
         spreadRadius: spreadRadius,
       ),
       BoxShadow(
         color: blackShadow,
         offset: offset.scale(-1, 1),
-        blurRadius: style.depth,
+        blurRadius: depth,
         spreadRadius: spreadRadius,
       ),
       BoxShadow(
         color: whiteShadow,
         offset: offset.scale(1, -1),
-        blurRadius: style.depth,
+        blurRadius: depth,
         spreadRadius: spreadRadius,
       ),
       BoxShadow(
         color: whiteShadow,
         offset: offset.scale(-1, 1),
-        blurRadius: style.depth,
+        blurRadius: depth,
         spreadRadius: spreadRadius,
       ),
       BoxShadow(
         color: blackShadow,
         offset: offset.scale(1, 1),
-        blurRadius: style.depth,
+        blurRadius: depth,
         spreadRadius: spreadRadius,
       ),
       BoxShadow(
         color: blackShadow,
         offset: offset.scale(0, 1),
-        blurRadius: style.depth,
+        blurRadius: depth,
         spreadRadius: spreadRadius,
       ),
       BoxShadow(
         color: blackShadow,
         offset: offset.scale(1, 0),
-        blurRadius: style.depth,
+        blurRadius: depth,
         spreadRadius: spreadRadius,
       ),
       BoxShadow(
         color: whiteShadow,
         offset: offset.scale(0, -1),
-        blurRadius: style.depth,
+        blurRadius: depth,
         spreadRadius: spreadRadius,
       ),
       BoxShadow(
         color: whiteShadow,
         offset: offset.scale(-1, 0),
-        blurRadius: style.depth,
+        blurRadius: depth,
         spreadRadius: spreadRadius,
       ),
       BoxShadow(
         color: whiteShadow,
         offset: offset.scale(-1, -1),
-        blurRadius: style.depth,
+        blurRadius: depth,
         spreadRadius: spreadRadius,
       ),
       BoxShadow(
@@ -238,7 +240,7 @@ BoxDecoration generateNeumorphicDecoratorEmboss({
       BoxShadow(
         color: innerColor,
         offset: offset.scale(-1, -1),
-        blurRadius: style.depth,
+        blurRadius: depth,
         spreadRadius: spreadRadius,
       )
     ];
