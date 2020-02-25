@@ -10,6 +10,8 @@ class WidgetsPage extends StatefulWidget {
 }
 
 class _ContainersListPageState extends State<WidgetsPage> {
+  int _groupValue;
+
   @override
   Widget build(BuildContext context) {
     return NeumorphicThemeProvider(
@@ -67,6 +69,62 @@ class _ContainersListPageState extends State<WidgetsPage> {
                   ],
                 ),
                 SizedBox(height: 30),
+                Row(
+                  children: <Widget>[
+                    Text("Radiu"),
+                    SizedBox(width: 12),
+                    NeumorphicRadio(
+                      child: SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: Center(
+                          child: Text("1"),
+                        ),
+                      ),
+                      value: 1,
+                      groupValue: _groupValue,
+                      onChanged: (value) {
+                        setState(() {
+                          _groupValue = value;
+                        });
+                      },
+                    ),
+                    SizedBox(width: 12),
+                    NeumorphicRadio(
+                      child: SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: Center(
+                          child: Text("2"),
+                        ),
+                      ),
+                      value: 2,
+                      groupValue: _groupValue,
+                      onChanged: (value) {
+                        setState(() {
+                          _groupValue = value;
+                        });
+                      },
+                    ),
+                    SizedBox(width: 12),
+                    NeumorphicRadio(
+                      child: SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: Center(
+                          child: Text("3"),
+                        ),
+                      ),
+                      value: 3,
+                      groupValue: _groupValue,
+                      onChanged: (value) {
+                        setState(() {
+                          _groupValue = value;
+                        });
+                      },
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

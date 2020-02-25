@@ -16,6 +16,24 @@ class ProgressStyle {
     this.accent,
     this.variant,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is ProgressStyle &&
+              runtimeType == other.runtimeType &&
+              depth == other.depth &&
+              borderRadius == other.borderRadius &&
+              accent == other.accent &&
+              variant == other.variant;
+
+  @override
+  int get hashCode =>
+      depth.hashCode ^
+      borderRadius.hashCode ^
+      accent.hashCode ^
+      variant.hashCode;
+
 }
 
 class NeumorphicProgress extends StatefulWidget {
@@ -32,18 +50,36 @@ class NeumorphicProgress extends StatefulWidget {
 
   @override
   _NeumorphicProgressState createState() => _NeumorphicProgressState();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is NeumorphicProgress &&
+              runtimeType == other.runtimeType &&
+              percent == other.percent &&
+              height == other.height &&
+              style == other.style;
+
+  @override
+  int get hashCode =>
+      percent.hashCode ^
+      height.hashCode ^
+      style.hashCode;
+
+
+
 }
 
-class _NeumorphicProgressState extends State<NeumorphicProgress> with SingleTickerProviderStateMixin {
+class _NeumorphicProgressState extends State<NeumorphicProgress> with TickerProviderStateMixin {
   double percent = 0;
   AnimationController _controller;
   Animation _animation;
 
   @override
   void initState() {
+    super.initState();
     percent = widget.percent ?? 0;
     _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 150));
-    super.initState();
   }
 
   @override
@@ -112,9 +148,27 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
 
   @override
   createState() => _NeumorphicProgressIndeterminateState();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is NeumorphicProgressIndeterminate &&
+              runtimeType == other.runtimeType &&
+              height == other.height &&
+              style == other.style &&
+              duration == other.duration;
+
+  @override
+  int get hashCode =>
+      height.hashCode ^
+      style.hashCode ^
+      duration.hashCode;
+
+
+
 }
 
-class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressIndeterminate> with SingleTickerProviderStateMixin {
+class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressIndeterminate> with TickerProviderStateMixin {
   double percent = 0;
 
   AnimationController _controller;
@@ -130,8 +184,10 @@ class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressInde
 
   @override
   void didUpdateWidget(NeumorphicProgressIndeterminate oldWidget) {
-    _createAnimation();
     super.didUpdateWidget(oldWidget);
+    if(oldWidget != widget) {
+      _createAnimation();
+    }
   }
 
   void _createAnimation() {
@@ -145,8 +201,6 @@ class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressInde
       });
 
     loop();
-
-    super.initState();
   }
 
   void loop() async {
