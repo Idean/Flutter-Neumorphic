@@ -202,7 +202,12 @@ class _ContainersListPageState extends State<WidgetsPage> {
         SizedBox(width: 12),
         NeumorphicSwitch(
           value: _switchEnable,
-          style: const NeumorphicSwitchStyle(),
+          style: NeumorphicSwitchStyle(
+              depth: -3,
+              activeTrackColor: NeumorphicColors.accent,
+              inactiveTrackColor: NeumorphicColors.background,
+              activeThumbColor: NeumorphicColors.background,
+              inactiveThumbColor: NeumorphicColors.background),
           onChanged: (value) {
             setState(() {
               _switchEnable = value;

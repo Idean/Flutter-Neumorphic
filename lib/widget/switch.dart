@@ -2,7 +2,15 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/NeumorphicBoxShape.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-typedef void NeumorphicSwitchListener<T>(T value);
+// Constants below are for easy scaling tests.
+// Can be removed later.
+const double SCALE = 1.0;
+const double TRACK_WIDTH = 90 * SCALE;
+const double TRACK_HEIGHT = 45 * SCALE;
+const double THUMB_WIDTH = 31.5 * SCALE;
+const double THUMB_HEIGHT = 31.5 * SCALE;
+const double THUMB_CONTAINER_WIDTH = 90 * SCALE;
+const double THUMB_CONTAINER_HEIGHT = 36 * SCALE;
 
 class NeumorphicSwitchStyle {
   final double depth;
@@ -58,12 +66,12 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
         ? widget.style.inactiveTrackColor ?? theme.baseColor
         : widget.style.activeTrackColor ?? theme.accentColor;
     return SizedBox(
-      height: 50,
-      width: 100,
+      height: TRACK_HEIGHT,
+      width: TRACK_WIDTH,
       child: Neumorphic(
         shape: NeumorphicBoxShape.stadium(),
         style: NeumorphicStyle(
-            depth: widget.style.depth,
+            depth: widget.style.depth * SCALE,
             shape: NeumorphicShape.emboss,
             baseColor: trackColor),
         child: ClipRRect(
@@ -107,8 +115,8 @@ class AnimatedThumb extends AnimatedWidget {
   Widget build(BuildContext context) {
     final animation = listenable as Animation<Alignment>;
     return Container(
-      height: 40,
-      width: 100,
+      height: THUMB_CONTAINER_HEIGHT,
+      width: THUMB_CONTAINER_WIDTH,
       child: Align(
         alignment: animation.value,
         child: ClipRRect(
@@ -118,11 +126,11 @@ class AnimatedThumb extends AnimatedWidget {
             shape: NeumorphicBoxShape.circle(),
             style: NeumorphicStyle(
                 shape: NeumorphicShape.emboss,
-                depth: -2,
+                depth: -2 * SCALE,
                 baseColor: NeumorphicColors.background),
             child: SizedBox(
-              height: 40,
-              width: 40,
+              height: THUMB_HEIGHT,
+              width: THUMB_WIDTH,
             ),
           ),
         ),
