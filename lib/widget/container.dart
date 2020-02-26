@@ -41,8 +41,9 @@ class Neumorphic extends StatelessWidget {
         duration: this.duration,
         style: this.style,
         builder: (context, style) {
-          //print("$style");
-          final decorator = generateNeumorphicDecorator(accent: this.accent, style: style, shape: shape);
+
+          //print("${style.depth}");
+          final decorator = NeumorphicBoxDecoration(style: style, shape: shape);
 
           final child = generateNeumorphicChild(
             accent: this.accent,
