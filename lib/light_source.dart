@@ -20,9 +20,9 @@ class LightSource {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is LightSource &&
-              runtimeType == other.runtimeType &&
-              offset == other.offset;
+      other is LightSource &&
+          runtimeType == other.runtimeType &&
+          offset == other.offset;
 
   @override
   int get hashCode => offset.hashCode;
@@ -36,7 +36,25 @@ class LightSource {
     return 'LightSource{dx: $dx, dy: $dy}';
   }
 
+  LightSource invert() {
+    return LightSource(dx * -1, dy * -1);
+  }
 
+  static LightSource lerp(LightSource a, LightSource b, double t) {
+    assert(t != null);
+
+    if (a == null && b == null) return null;
+    if (a == null) return b;
+    if (b == null) return a;
+    if (a == b) return a;
+    if (t == 0.0) return a;
+    if (t == 1.0) return b;
+
+    return LightSource(
+      a.dx != b.dx ? lerpDouble(a.dx, b.dx, t) : a.dx,
+      a.dy != b.dy ? lerpDouble(a.dy, b.dy, t) : a.dy,
+    );
+  }
 }
 
 Offset mergeOffsetWithDistance(Offset offset, double distance,
@@ -53,8 +71,8 @@ Offset mergeOffsetWithDistance(Offset offset, double distance,
   return Offset(dx * distance, dy * distance);
 }
 
-Offset embrossOffset({LightSource lightSource, bool dark, double distance}){
-  if(dark){
+Offset embrossOffset({LightSource lightSource, bool dark, double distance}) {
+  if (dark) {
     return lightSource.offset.scale(-distance, -distance);
   } else {
     return lightSource.offset.scale(distance, distance);
