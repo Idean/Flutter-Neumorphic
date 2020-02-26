@@ -20,54 +20,35 @@ class ProgressStyle {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is ProgressStyle &&
-              runtimeType == other.runtimeType &&
-              depth == other.depth &&
-              borderRadius == other.borderRadius &&
-              accent == other.accent &&
-              variant == other.variant;
+      other is ProgressStyle && runtimeType == other.runtimeType && depth == other.depth && borderRadius == other.borderRadius && accent == other.accent && variant == other.variant;
 
   @override
-  int get hashCode =>
-      depth.hashCode ^
-      borderRadius.hashCode ^
-      accent.hashCode ^
-      variant.hashCode;
-
+  int get hashCode => depth.hashCode ^ borderRadius.hashCode ^ accent.hashCode ^ variant.hashCode;
 }
 
 class NeumorphicProgress extends StatefulWidget {
-  final double percent;
+  final double _percent;
   final double height;
   final ProgressStyle style;
 
   const NeumorphicProgress({
     Key key,
-    this.percent = 1,
+    double percent,
     this.height = 10,
     this.style = const ProgressStyle(),
-  }) : super(key: key);
+  }) : this._percent = percent, super(key: key) ;
 
   @override
   _NeumorphicProgressState createState() => _NeumorphicProgressState();
 
+  double get percent => _percent.clamp(0, 1);
+
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-          other is NeumorphicProgress &&
-              runtimeType == other.runtimeType &&
-              percent == other.percent &&
-              height == other.height &&
-              style == other.style;
+      identical(this, other) || other is NeumorphicProgress && runtimeType == other.runtimeType && percent == other.percent && height == other.height && style == other.style;
 
   @override
-  int get hashCode =>
-      percent.hashCode ^
-      height.hashCode ^
-      style.hashCode;
-
-
-
+  int get hashCode => percent.hashCode ^ height.hashCode ^ style.hashCode;
 }
 
 class _NeumorphicProgressState extends State<NeumorphicProgress> with TickerProviderStateMixin {
@@ -109,29 +90,33 @@ class _NeumorphicProgressState extends State<NeumorphicProgress> with TickerProv
     final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
     return SizedBox(
       height: widget.height,
-      width: double.maxFinite,
-      child: Neumorphic(
-        shape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(widget.style.borderRadius)),
-        padding: EdgeInsets.zero,
-        style: NeumorphicStyle(depth: widget.style.depth, shape: NeumorphicShape.flat),
-        child: FractionallySizedBox(
-          heightFactor: 1,
-          alignment: Alignment.centerLeft,
-          widthFactor: this.percent,
-          child: ClipRRect(
-            clipBehavior: Clip.antiAlias,
-            borderRadius: BorderRadius.circular(widget.style.borderRadius),
-            child: Container(
-                decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  widget.style.accent ?? theme.accentColor,
-                  widget.style.variant ?? theme.variantColor
-                ],
-              ),
-            )),
+      child: FractionallySizedBox(
+        widthFactor: 1,
+        heightFactor: 1,
+        //width: constraints.maxWidth,
+        child: Neumorphic(
+          shape: NeumorphicBoxShape.roundRect(
+              borderRadius: BorderRadius.circular(
+            widget.style.borderRadius,
+          )),
+          padding: EdgeInsets.zero,
+          style: NeumorphicStyle(depth: widget.style.depth, shape: NeumorphicShape.flat),
+          child: FractionallySizedBox(
+            heightFactor: 1,
+            alignment: Alignment.centerLeft,
+            widthFactor: this.percent,
+            child: ClipRRect(
+              clipBehavior: Clip.antiAlias,
+              borderRadius: BorderRadius.circular(widget.style.borderRadius),
+              child: Container(
+                  decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [widget.style.accent ?? theme.accentColor, widget.style.variant ?? theme.variantColor],
+                ),
+              )),
+            ),
           ),
         ),
       ),
@@ -151,21 +136,10 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-          other is NeumorphicProgressIndeterminate &&
-              runtimeType == other.runtimeType &&
-              height == other.height &&
-              style == other.style &&
-              duration == other.duration;
+      identical(this, other) || other is NeumorphicProgressIndeterminate && runtimeType == other.runtimeType && height == other.height && style == other.style && duration == other.duration;
 
   @override
-  int get hashCode =>
-      height.hashCode ^
-      style.hashCode ^
-      duration.hashCode;
-
-
-
+  int get hashCode => height.hashCode ^ style.hashCode ^ duration.hashCode;
 }
 
 class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressIndeterminate> with TickerProviderStateMixin {
@@ -185,7 +159,7 @@ class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressInde
   @override
   void didUpdateWidget(NeumorphicProgressIndeterminate oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if(oldWidget != widget) {
+    if (oldWidget != widget) {
       _createAnimation();
     }
   }
@@ -220,39 +194,38 @@ class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressInde
   Widget build(BuildContext context) {
     final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
 
-    return SizedBox(
-      height: widget.height,
-      width: double.maxFinite,
-      child: Neumorphic(
-        shape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(widget.style.borderRadius)),
-        padding: EdgeInsets.zero,
-        style: NeumorphicStyle(depth: widget.style.depth, shape: NeumorphicShape.flat),
-        child: LayoutBuilder(builder: (context, constraints) {
-          return Padding(
-            padding: EdgeInsets.only(left: constraints.maxWidth * percent),
-            child: FractionallySizedBox(
-              heightFactor: 1,
-              alignment: Alignment.centerLeft,
-              widthFactor: this.percent,
-              child: ClipRRect(
-                clipBehavior: Clip.antiAlias,
-                borderRadius: BorderRadius.circular(widget.style.borderRadius),
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        widget.style.accent ?? theme.accentColor,
-                        widget.style.variant ?? theme.variantColor
-                      ],
+    return FractionallySizedBox(
+      widthFactor: 1,
+      child: SizedBox(
+        height: widget.height,
+        child: Neumorphic(
+          shape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(widget.style.borderRadius)),
+          padding: EdgeInsets.zero,
+          style: NeumorphicStyle(depth: widget.style.depth, shape: NeumorphicShape.flat),
+          child: LayoutBuilder(builder: (context, constraints) {
+            return Padding(
+              padding: EdgeInsets.only(left: constraints.maxWidth * percent),
+              child: FractionallySizedBox(
+                heightFactor: 1,
+                alignment: Alignment.centerLeft,
+                widthFactor: this.percent,
+                child: ClipRRect(
+                  clipBehavior: Clip.antiAlias,
+                  borderRadius: BorderRadius.circular(widget.style.borderRadius),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [widget.style.accent ?? theme.accentColor, widget.style.variant ?? theme.variantColor],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          );
-        }),
+            );
+          }),
+        ),
       ),
     );
   }
