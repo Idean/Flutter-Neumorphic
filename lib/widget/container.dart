@@ -39,6 +39,8 @@ class Neumorphic extends StatelessWidget {
     final style = (this.style ?? NeumorphicStyle()).copyWithThemeIfNull(theme);
     final shape = this.shape ?? NeumorphicBoxShape.roundRect();
 
+    //print("style.depth: ${style.depth}");
+
     final decorator = generateNeumorphicDecorator(
       accent: this.accent,
       style:  style,

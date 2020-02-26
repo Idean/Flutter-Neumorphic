@@ -29,12 +29,14 @@ class ProgressStyle {
 class NeumorphicProgress extends StatefulWidget {
   final double _percent;
   final double height;
+  final Duration duration;
   final ProgressStyle style;
 
   const NeumorphicProgress({
     Key key,
     double percent,
     this.height = 10,
+    this.duration = const Duration(milliseconds: 150),
     this.style = const ProgressStyle(),
   }) : this._percent = percent, super(key: key) ;
 
@@ -60,21 +62,27 @@ class _NeumorphicProgressState extends State<NeumorphicProgress> with TickerProv
   void initState() {
     super.initState();
     percent = widget.percent ?? 0;
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 150));
+    _controller = AnimationController(vsync: this, duration: widget.duration);
   }
 
   @override
   void didUpdateWidget(NeumorphicProgress oldWidget) {
     if (oldWidget.percent != widget.percent) {
       _controller.reset();
-      _animation = Tween<double>(begin: oldWidget.percent, end: widget.percent).animate(_controller)
-        ..addListener(() {
-          setState(() {
-            this.percent = _animation.value;
-          });
+      if(widget.duration.inMilliseconds == 0){
+        setState(() {
+          this.percent = widget.percent;
         });
+      } else {
+        _animation = Tween<double>(begin: oldWidget.percent, end: widget.percent).animate(_controller)
+          ..addListener(() {
+            setState(() {
+              this.percent = _animation.value;
+            });
+          });
 
-      _controller.forward();
+        _controller.forward();
+      }
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -87,6 +95,8 @@ class _NeumorphicProgressState extends State<NeumorphicProgress> with TickerProv
 
   @override
   Widget build(BuildContext context) {
+    //print("widget.style.depth: ${widget.style.depth}");
+
     final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
     return SizedBox(
       height: widget.height,
