@@ -44,7 +44,7 @@ class NeumorphicSeekBar extends StatefulWidget {
     this.min = 0,
     this.value = 0,
     this.max = 10,
-    this.height = 10,
+    this.height = 15,
     this.onChanged,
     this.onChangeStart,
     this.onChangeEnd,
@@ -118,11 +118,14 @@ class _NeumorphicSeekBarState extends State<NeumorphicSeekBar> {
   Widget _generateThumb(BuildContext context){
    final theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
    return Neumorphic(
+     style: NeumorphicStyle(
+       shape: NeumorphicShape.concave
+     ),
      accent: widget.style.accent ?? theme.accentColor,
       shape: NeumorphicBoxShape.circle(),
       child: SizedBox(
-        height: 15,
-        width: 15,
+        height: widget.height,
+        width: widget.height,
       ),
     );
   }
