@@ -194,6 +194,32 @@ class _ContainersListPageState extends State<WidgetsPage> {
     );
   }
 
+  double seekValue = 0;
+  Widget _buildSeekbar(){
+    return Row(
+      children: <Widget>[
+        Text("Seekbar"),
+        SizedBox(width: 12),
+        Flexible(
+          child: NeumorphicSeekBar(
+            height: 10,
+            value: seekValue,
+            min: 0,
+            max: 10,
+            onChanged: (value){
+              setState(() {
+                seekValue= value;
+              });
+            }
+          ),
+        ),
+        SizedBox(width: 12),
+        Text("value: ${seekValue.round()}"),
+        SizedBox(width: 12),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return NeumorphicThemeProvider(
@@ -231,16 +257,18 @@ class _ContainersListPageState extends State<WidgetsPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    SizedBox(height: 30),
+                    //SizedBox(height: 30),
                     _buildProgress(),
-                    SizedBox(height: 12),
-                    _buildIndeterminateProgress(),
+                    //SizedBox(height: 12),
+                    //_buildIndeterminateProgress(),
+                    //SizedBox(height: 30),
+                    //_buildRadios(),
+                    //SizedBox(height: 30),
+                    //_buildIndicators(),
+                    //SizedBox(height: 30),
+                    //_buildChecks(),
                     SizedBox(height: 30),
-                    _buildRadios(),
-                    SizedBox(height: 30),
-                    _buildIndicators(),
-                    SizedBox(height: 30),
-                    _buildChecks(),
+                    _buildSeekbar(),
                     SizedBox(height: 30),
                   ],
                 ),
