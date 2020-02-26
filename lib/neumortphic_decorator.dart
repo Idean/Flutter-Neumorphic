@@ -3,6 +3,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'NeumorphicBoxShape.dart';
+import 'emboss_painter.dart';
 
 Offset limitOffset(Offset offset, double minXY, double maxXY) {
   final dx = offset.dx.clamp(minXY, maxXY);
@@ -144,122 +145,6 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
   return shadows;
 }
 
-BoxDecoration generateNeumorphicDecoratorEmboss({
-  /*nullable*/ Color accent,
-  NeumorphicStyle style,
-  NeumorphicBoxShape shape,
-}) {
-  List<BoxShadow> boxShadows;
-  var innerColor = accent ?? style.baseColor;
-
-  final depth = style.depth / 2; //reduce speed
-  final offset = style.lightSource.toOffset(depth);
-
-  if (offset == Offset.zero) {
-    boxShadows = [];
-  } else {
-    var blackShadow = NeumorphicColors.generateGradientColors(
-      colorBase: style.baseColor,
-      intensity: -1 * (style.intensity * 0.1),
-    );
-
-    var whiteShadow = NeumorphicColors.generateGradientColors(
-      colorBase: style.baseColor,
-      intensity: style.intensity * 0.1,
-    );
-
-    var depthShadow = NeumorphicColors.darken(innerColor, 0.2);
-
-    var spreadRadius = -depth * 0.9;
-
-    boxShadows = [
-      BoxShadow(
-        color: blackShadow,
-        offset: offset.scale(1, -1),
-        blurRadius: depth,
-        spreadRadius: spreadRadius,
-      ),
-      BoxShadow(
-        color: blackShadow,
-        offset: offset.scale(-1, 1),
-        blurRadius: depth,
-        spreadRadius: spreadRadius,
-      ),
-      BoxShadow(
-        color: whiteShadow,
-        offset: offset.scale(1, -1),
-        blurRadius: depth,
-        spreadRadius: spreadRadius,
-      ),
-      BoxShadow(
-        color: whiteShadow,
-        offset: offset.scale(-1, 1),
-        blurRadius: depth,
-        spreadRadius: spreadRadius,
-      ),
-      BoxShadow(
-        color: blackShadow,
-        offset: offset.scale(1, 1),
-        blurRadius: depth,
-        spreadRadius: spreadRadius,
-      ),
-      BoxShadow(
-        color: blackShadow,
-        offset: offset.scale(0, 1),
-        blurRadius: depth,
-        spreadRadius: spreadRadius,
-      ),
-      BoxShadow(
-        color: blackShadow,
-        offset: offset.scale(1, 0),
-        blurRadius: depth,
-        spreadRadius: spreadRadius,
-      ),
-      BoxShadow(
-        color: whiteShadow,
-        offset: offset.scale(0, -1),
-        blurRadius: depth,
-        spreadRadius: spreadRadius,
-      ),
-      BoxShadow(
-        color: whiteShadow,
-        offset: offset.scale(-1, 0),
-        blurRadius: depth,
-        spreadRadius: spreadRadius,
-      ),
-      BoxShadow(
-        color: whiteShadow,
-        offset: offset.scale(-1, -1),
-        blurRadius: depth,
-        spreadRadius: spreadRadius,
-      ),
-      BoxShadow(
-        color: depthShadow,
-        offset: Offset(0, 0),
-      ),
-      BoxShadow(
-        color: innerColor,
-        offset: offset.scale(-1, -1),
-        blurRadius: depth,
-        spreadRadius: spreadRadius,
-      )
-    ];
-  }
-
-  if (shape.isCircle) {
-    return BoxDecoration(
-      boxShadow: boxShadows,
-      shape: shape.boxShape,
-    );
-  } else {
-    return BoxDecoration(
-      borderRadius: shape.borderRadius,
-      boxShadow: boxShadows,
-      shape: shape.boxShape,
-    );
-  }
-}
-
 BoxDecoration generateNeumorphicDecoratorFlat({
 /*nullable*/ @required Color accent,
   @required NeumorphicStyle style,
@@ -377,21 +262,9 @@ BoxDecoration generateNeumorphicDecorator(
     /*nullable*/ Color accent,
     NeumorphicStyle style,
     NeumorphicBoxShape shape}) {
-  //if depth is negative, force emboss
-  if (style.depth < 0) {
-    return generateNeumorphicDecoratorEmboss(
-      accent: accent,
-      style: style.copyWith(depth: -style.depth),
-      shape: shape,
-    );
-  }
 
   if (style.shape == NeumorphicShape.emboss) {
-    return generateNeumorphicDecoratorEmboss(
-      accent: accent,
-      style: style,
-      shape: shape,
-    );
+    return null;
   } else if (style.shape == NeumorphicShape.flat) {
     return generateNeumorphicDecoratorFlat(
       accent: accent,
@@ -407,11 +280,20 @@ BoxDecoration generateNeumorphicDecorator(
   }
 }
 
-Widget generateNeumorphicChild({
-  Color accent,
-  NeumorphicStyle style,
-  NeumorphicBoxShape shape,
-  Widget child,
-}) {
-  return child;
+
+Widget generateNeumorphicChild(
+    {Color accent,
+      NeumorphicStyle style,
+      NeumorphicBoxShape shape,
+      Widget child}) {
+  if (style.shape == NeumorphicShape.emboss) {
+    return CustomPaint(
+      child: child,
+      painter: EmbossPainter(
+          accent: accent, style: style, shape: shape
+      ),
+    );
+  } else {
+    return child;
+  }
 }
