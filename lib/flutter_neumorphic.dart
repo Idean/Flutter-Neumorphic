@@ -4,6 +4,7 @@ export 'colors.dart';
 export 'widget/container.dart';
 export 'widget/button.dart';
 export 'widget/radio.dart';
+export 'widget/switch.dart';
 export 'widget/indicator.dart';
 export 'widget/checkbox.dart';
 export 'widget/progress.dart';

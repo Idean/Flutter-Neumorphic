@@ -11,6 +11,7 @@ class WidgetsPage extends StatefulWidget {
 
 class _ContainersListPageState extends State<WidgetsPage> {
   int _groupValue;
+  bool _switchEnable = false;
 
   Widget _buildProgress() {
     return Row(
@@ -194,6 +195,25 @@ class _ContainersListPageState extends State<WidgetsPage> {
     );
   }
 
+  Widget _buildSwitches() {
+    return Row(
+      children: <Widget>[
+        Text("Switches"),
+        SizedBox(width: 12),
+        NeumorphicSwitch(
+          value: _switchEnable,
+          style: const NeumorphicSwitchStyle(),
+          onChanged: (value) {
+            setState(() {
+              _switchEnable = value;
+            });
+          },
+        ),
+        SizedBox(width: 12),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return NeumorphicThemeProvider(
@@ -231,16 +251,18 @@ class _ContainersListPageState extends State<WidgetsPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    SizedBox(height: 30),
-                    _buildProgress(),
-                    SizedBox(height: 12),
-                    _buildIndeterminateProgress(),
-                    SizedBox(height: 30),
-                    _buildRadios(),
-                    SizedBox(height: 30),
-                    _buildIndicators(),
-                    SizedBox(height: 30),
-                    _buildChecks(),
+                    //SizedBox(height: 30),
+                    //_buildProgress(),
+                    //SizedBox(height: 12),
+                    //_buildIndeterminateProgress(),
+                    //SizedBox(height: 30),
+                    //_buildRadios(),
+                    //SizedBox(height: 30),
+                    //_buildIndicators(),
+                    //SizedBox(height: 30),
+                    //_buildChecks(),
+                    //SizedBox(height: 30),
+                    _buildSwitches(),
                     SizedBox(height: 30),
                   ],
                 ),
