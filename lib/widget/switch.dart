@@ -60,11 +60,9 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
 
   @override
   Widget build(BuildContext context) {
-    final NeumorphicTheme theme =
-        NeumorphicThemeProvider.findNeumorphicTheme(context);
     final trackColor = widget.value == false
-        ? widget.style.inactiveTrackColor ?? theme.baseColor
-        : widget.style.activeTrackColor ?? theme.accentColor;
+        ? widget.style.inactiveTrackColor
+        : widget.style.activeTrackColor;
     return SizedBox(
       height: TRACK_HEIGHT,
       width: TRACK_WIDTH,
