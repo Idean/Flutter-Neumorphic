@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/NeumorphicBoxShape.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class WidgetsPage extends StatefulWidget {
@@ -19,9 +20,8 @@ class _ContainersListPageState extends State<WidgetsPage> {
         SizedBox(width: 12),
         Flexible(
           child: NeumorphicProgress(
-            height: 10,
+            height: 15,
             percent: 0.55,
-            style: ProgressStyle(depth: 15),
           ),
         ),
         SizedBox(width: 12),
@@ -37,7 +37,6 @@ class _ContainersListPageState extends State<WidgetsPage> {
         Flexible(
           child: NeumorphicProgressIndeterminate(
             height: 10,
-            style: ProgressStyle(depth: 15),
           ),
         ),
         SizedBox(width: 12),
@@ -195,23 +194,23 @@ class _ContainersListPageState extends State<WidgetsPage> {
   }
 
   double seekValue = 0;
-  Widget _buildSeekbar(){
+
+  Widget _buildSeekbar() {
     return Row(
       children: <Widget>[
         Text("Seekbar"),
         SizedBox(width: 12),
         Flexible(
           child: NeumorphicSeekBar(
-            height: 10,
-            value: seekValue,
-            min: 0,
-            max: 10,
-            onChanged: (value){
-              setState(() {
-                seekValue= value;
-              });
-            }
-          ),
+              height: 15,
+              value: seekValue,
+              min: 0,
+              max: 10,
+              onChanged: (value) {
+                setState(() {
+                  seekValue = value;
+                });
+              }),
         ),
         SizedBox(width: 12),
         Text("value: ${seekValue.round()}"),
@@ -227,7 +226,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
         baseColor: NeumorphicColors.background,
         lightSource: LightSource.topLeft,
         curveFactor: 1,
-        depth: 3,
+        depth: 5,
         intensity: 0.5,
       ),
       child: Scaffold(
@@ -243,12 +242,12 @@ class _ContainersListPageState extends State<WidgetsPage> {
                   iconTheme: IconThemeData.fallback(),
                   backgroundColor: Colors.transparent,
                   elevation: 0,
-                  title: Text("Widgets", style: TextStyle(color: Colors.black),),
+                  title: Text(
+                    "Widgets",
+                    style: TextStyle(color: Colors.black),
+                  ),
                 ),
-                style: NeumorphicStyle(
-                  shape: NeumorphicShape.emboss,
-                  depth: 8
-                ),
+                style: NeumorphicStyle(shape: NeumorphicShape.emboss, depth: 8),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
