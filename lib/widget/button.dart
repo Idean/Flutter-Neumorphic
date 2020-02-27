@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import '../NeumorphicBoxShape.dart';
@@ -88,6 +89,8 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       onTapDown: (detail) {
         if (clickable) {
           _changeDistance();
+          //haptic vibration
+          HapticFeedback.mediumImpact();
         }
       },
       onTapUp: (detail) {
