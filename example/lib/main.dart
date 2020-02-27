@@ -1,3 +1,4 @@
+import 'package:example/samples/audio_player_sample.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -72,6 +73,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context){
                     return WidgetsPage();
+                  }));
+                },
+              ),
+              SizedBox(height: 30),
+              RaisedButton(
+                child: Text("sample audio"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                    return AudioPlayerSample();
                   }));
                 },
               ),
