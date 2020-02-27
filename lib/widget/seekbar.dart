@@ -80,14 +80,21 @@ class _NeumorphicSeekBarState extends State<NeumorphicSeekBar> {
             }
           });
         },
+        onPanStart: (DragStartDetails details) {
+          //print("onPanStart");
+          if (widget.onChangeStart != null) {
+            widget.onChangeStart(widget.value);
+          }
+        },
         onTapUp: (details) {
-          print("onTapUp");
+          //print("onTapUp");
           if (widget.onChangeEnd != null) {
             widget.onChangeEnd(widget.value);
           }
         },
         onPanCancel: () {
-          print("onPanCancel");
+
+          //print("onPanCancel");
         },
         child: Stack(
           alignment: Alignment.center,
