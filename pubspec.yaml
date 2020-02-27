@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^4.0.4
 
 dev_dependencies:
   flutter_test:

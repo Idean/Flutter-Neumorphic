@@ -45,7 +45,7 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
 
   @override
   Widget build(BuildContext context) {
-    final NeumorphicTheme theme = NeumorphicThemeProvider.of(context);
+    final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
     final accent = widget.style.accent ?? theme.accentColor;
 
     return NeumorphicButton(

@@ -120,12 +120,12 @@ class _NeumorphicStyleAnimatorState extends State<_NeumorphicStyleAnimator> with
   }
 
   void _initStyle() {
-    _theme = NeumorphicThemeProvider.of(context) ?? neumorphicDefaultTheme;
+    _theme = NeumorphicThemeProvider.findNeumorphicTheme(context) ?? neumorphicDefaultTheme;
     _animatedStyle = (widget.style ?? NeumorphicStyle()).copyWithThemeIfNull(_theme);
   }
 
   void updateStyle(NeumorphicStyle oldStyle, NeumorphicStyle newStyle) {
-    final newTheme = NeumorphicThemeProvider.of(context) ?? neumorphicDefaultTheme;
+    final newTheme = NeumorphicThemeProvider.findNeumorphicTheme(context) ?? neumorphicDefaultTheme;
     if (newTheme != _theme) {
       _theme = newTheme;
     }

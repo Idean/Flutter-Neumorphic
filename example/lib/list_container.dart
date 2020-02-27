@@ -36,7 +36,7 @@ class _PageState extends State<Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: NeumorphicThemeProvider.of(context).baseColor,
+      backgroundColor: NeumorphicThemeProvider.findNeumorphicTheme(context).baseColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text("List", style: Theme.of(context).textTheme.display1),

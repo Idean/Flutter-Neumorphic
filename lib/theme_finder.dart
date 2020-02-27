@@ -3,7 +3,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
 
 import 'flutter_neumorphic.dart';
 
@@ -34,13 +33,30 @@ class ThemeHost {
       return theme;
     }
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is ThemeHost &&
+              runtimeType == other.runtimeType &&
+              theme == other.theme &&
+              darkTheme == other.darkTheme &&
+              currentTheme == other.currentTheme;
+
+  @override
+  int get hashCode =>
+      theme.hashCode ^
+      darkTheme.hashCode ^
+      currentTheme.hashCode;
+
 }
 
-class NeumorphicThemeProvider extends StatelessWidget {
+class NeumorphicThemeProvider extends InheritedWidget {
   final Widget child;
   final ThemeHost _themeHost;
 
   NeumorphicThemeProvider({
+    Key key,
     @required this.child,
     NeumorphicTheme theme = neumorphicDefaultTheme,
     NeumorphicTheme darkTheme = neumorphicDefaultDarkTheme,
@@ -52,13 +68,20 @@ class NeumorphicThemeProvider extends StatelessWidget {
         );
 
   @override
-  Widget build(BuildContext context) {
-    return Provider.value(value: this._themeHost, child: this.child);
+  bool updateShouldNotify(NeumorphicThemeProvider old) => _themeHost != old._themeHost;
+
+  static NeumorphicThemeProvider of(BuildContext context) {
+    try {
+      return context.dependOnInheritedWidgetOfExactType<NeumorphicThemeProvider>();
+    } catch(t) {
+      return null;
+    }
   }
 
-  static NeumorphicTheme of(BuildContext context) {
+  static NeumorphicTheme findNeumorphicTheme(BuildContext context) {
     try {
-      final ThemeHost host = Provider.of<ThemeHost>(context);
+      final provider = NeumorphicThemeProvider.of(context);
+      final ThemeHost host = provider._themeHost;
       return host.getCurrentTheme();
     } catch (t) {
       return null;
@@ -67,7 +90,8 @@ class NeumorphicThemeProvider extends StatelessWidget {
 
   static bool useDark(BuildContext context) {
     try {
-      final ThemeHost host = Provider.of<ThemeHost>(context);
+      final provider = NeumorphicThemeProvider.of(context);
+      final ThemeHost host = provider._themeHost;
       return host.useDark;
     } catch (t) {
       return null;
