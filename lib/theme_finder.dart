@@ -42,8 +42,8 @@ class NeumorphicThemeProvider extends StatelessWidget {
 
   NeumorphicThemeProvider({
     @required this.child,
-    @required NeumorphicTheme theme,
-    NeumorphicTheme darkTheme,
+    NeumorphicTheme theme = neumorphicDefaultTheme,
+    NeumorphicTheme darkTheme = neumorphicDefaultDarkTheme,
     CurrentTheme currentTheme,
   }) : this._themeHost = ThemeHost(
           theme: theme,
