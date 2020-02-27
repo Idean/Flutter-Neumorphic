@@ -37,31 +37,28 @@ class Neumorphic extends StatelessWidget {
   Widget build(BuildContext context) {
     final shape = this.shape ?? NeumorphicBoxShape.roundRect();
 
-    try {
-      return _NeumorphicStyleAnimator(
-          duration: this.duration,
-          style: this.style,
-          builder: (context, style) {
-            final decorator = generateNeumorphicDecorator(accent: this.accent, style: style, shape: shape);
+    return _NeumorphicStyleAnimator(
+        duration: this.duration,
+        style: this.style,
+        builder: (context, style) {
+          //print("$style");
+          final decorator = generateNeumorphicDecorator(accent: this.accent, style: style, shape: shape);
 
-            final child = generateNeumorphicChild(
-              accent: this.accent,
-              style: style,
-              shape: this.shape,
-              child: this.child,
-            );
+          final child = generateNeumorphicChild(
+            accent: this.accent,
+            style: style,
+            shape: this.shape,
+            child: this.child,
+          );
 
-            return AnimatedContainer(
-              key: shape.isCircle ? _circleKey : _rectangleKey,
-              duration: this.duration,
-              child: child,
-              decoration: decorator,
-              padding: this.padding,
-            );
-          });
-    } catch(t){
-      print(t);
-    }
+          return AnimatedContainer(
+            key: shape.isCircle ? _circleKey : _rectangleKey,
+            duration: this.duration,
+            child: child,
+            decoration: decorator,
+            padding: this.padding,
+          );
+        });
   }
 }
 
@@ -119,7 +116,7 @@ class _NeumorphicStyleAnimatorState extends State<_NeumorphicStyleAnimator> with
   @override
   void didUpdateWidget(_NeumorphicStyleAnimator oldWidget) {
     super.didUpdateWidget(oldWidget);
-    updateStyle(oldWidget.style, widget.style);
+    updateStyle(_animatedStyle, widget.style);
   }
 
   void _initStyle() {
@@ -142,25 +139,23 @@ class _NeumorphicStyleAnimatorState extends State<_NeumorphicStyleAnimator> with
         //region animate elements
 
         //not animated values
-        _animatedStyle = _animatedStyle.copyWith(
-          shape: styleWithTheme.shape
-        );
+        _animatedStyle = _animatedStyle.copyWith(shape: styleWithTheme.shape);
 
         //animated values
-        if(oldStyle.depth != styleWithTheme.depth) {
+        if (oldStyle.depth != styleWithTheme.depth) {
           _depthAnim = Tween(begin: oldStyle.depth, end: styleWithTheme.depth).animate(_controller);
         }
-        if(oldStyle.intensity != styleWithTheme.intensity) {
+        if (oldStyle.intensity != styleWithTheme.intensity) {
           _intensityAnim = Tween(begin: oldStyle.intensity, end: styleWithTheme.intensity).animate(_controller);
         }
-        if(oldStyle.curveFactor != styleWithTheme.curveFactor) {
+        if (oldStyle.curveFactor != styleWithTheme.curveFactor) {
           _curveFactoryAnim = Tween(begin: oldStyle.curveFactor, end: styleWithTheme.curveFactor).animate(_controller);
         }
-        if(oldStyle.lightSource != styleWithTheme.lightSource) {
-          print("old: ${oldStyle.lightSource.offset}, new: ${styleWithTheme.lightSource.offset}");
+        if (oldStyle.lightSource != styleWithTheme.lightSource) {
+          //print("old: ${oldStyle.lightSource.offset}, new: ${styleWithTheme.lightSource.offset}");
           _lightSourceAnim = Tween(begin: oldStyle.lightSource.offset, end: styleWithTheme.lightSource.offset).animate(_controller);
         }
-        if(oldStyle.baseColor != styleWithTheme.baseColor) {
+        if (oldStyle.baseColor != styleWithTheme.baseColor) {
           _baseColorAnim = ColorTween(begin: oldStyle.baseColor, end: styleWithTheme.baseColor).animate(_controller);
         }
 
@@ -176,7 +171,7 @@ class _NeumorphicStyleAnimatorState extends State<_NeumorphicStyleAnimator> with
 
   @override
   Widget build(BuildContext context) {
-    if(_theme == null){
+    if (_theme == null) {
       _initStyle();
     }
     //print("animatedStyle: ${_animatedStyle}");
