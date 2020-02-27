@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-typedef void NeumorphicSeekBarListener(double percent);
+typedef void NeumorphicSliderListener(double percent);
 
 class SeekBarStyle {
   final double depth;
@@ -26,19 +26,19 @@ class SeekBarStyle {
 }
 
 @immutable
-class NeumorphicSeekBar extends StatefulWidget {
+class NeumorphicSlider extends StatefulWidget {
   final SeekBarStyle style;
   final double min;
   final double value;
   final double max;
   final double height;
-  final NeumorphicSeekBarListener onChanged;
-  final NeumorphicSeekBarListener onChangeStart;
-  final NeumorphicSeekBarListener onChangeEnd;
+  final NeumorphicSliderListener onChanged;
+  final NeumorphicSliderListener onChangeStart;
+  final NeumorphicSliderListener onChangeEnd;
 
   final Widget thumb;
 
-  NeumorphicSeekBar({
+  NeumorphicSlider({
     Key key,
     this.style = const SeekBarStyle(),
     this.min = 0,
@@ -54,10 +54,10 @@ class NeumorphicSeekBar extends StatefulWidget {
   double get percent => value / (max - min);
 
   @override
-  createState() => _NeumorphicSeekBarState();
+  createState() => _NeumorphicSliderState();
 }
 
-class _NeumorphicSeekBarState extends State<NeumorphicSeekBar> {
+class _NeumorphicSliderState extends State<NeumorphicSlider> {
   @override
   Widget build(BuildContext context) {
     //print("percent : ${widget.percent}");

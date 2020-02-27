@@ -6,7 +6,7 @@ export 'widget/button.dart';
 export 'widget/radio.dart';
 export 'widget/indicator.dart';
 export 'widget/checkbox.dart';
-export 'widget/seekBar.dart';
+export 'widget/slider.dart';
 export 'widget/progress.dart';
 export 'theme.dart';
 export 'NeumorphicBoxShape.dart';

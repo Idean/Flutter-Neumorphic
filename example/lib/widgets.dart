@@ -200,7 +200,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
         Text("Seekbar"),
         SizedBox(width: 12),
         Flexible(
-          child: NeumorphicSeekBar(
+          child: NeumorphicSlider(
               height: 15,
               value: seekValue,
               min: 0,
