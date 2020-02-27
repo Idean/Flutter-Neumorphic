@@ -31,6 +31,12 @@ class LightSource {
     return offset.scale(distance, distance);
   }
 
+  @override
+  String toString() {
+    return 'LightSource{dx: $dx, dy: $dy}';
+  }
+
+
 }
 
 Offset mergeOffsetWithDistance(Offset offset, double distance,
