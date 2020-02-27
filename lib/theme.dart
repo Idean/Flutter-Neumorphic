@@ -39,6 +39,39 @@ class NeumorphicTheme {
     this.lightSource = _defaultLightSource,
     double curveFactor = _defaultCurveFactor
   }) : this._depth = depth, this._curveFactor = curveFactor;
+
+  @override
+  String toString() {
+    return 'NeumorphicTheme{baseColor: $baseColor, accentColor: $accentColor, variantColor: $variantColor, _depth: $_depth, intensity: $intensity, lightSource: $lightSource, _curveFactor: $_curveFactor}';
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is NeumorphicTheme &&
+              runtimeType == other.runtimeType &&
+              baseColor == other.baseColor &&
+              accentColor == other.accentColor &&
+              variantColor == other.variantColor &&
+              _depth == other._depth &&
+              intensity == other.intensity &&
+              lightSource == other.lightSource &&
+              _curveFactor == other._curveFactor;
+
+  @override
+  int get hashCode =>
+      baseColor.hashCode ^
+      accentColor.hashCode ^
+      variantColor.hashCode ^
+      _depth.hashCode ^
+      intensity.hashCode ^
+      lightSource.hashCode ^
+      _curveFactor.hashCode;
+
+
+
+
+
 }
 //endregion
 
@@ -119,6 +152,12 @@ class NeumorphicStyle {
       shape: shape ?? this.shape,
     );
   }
+
+  @override
+  String toString() {
+    return 'NeumorphicStyle{baseColor: $baseColor, _depth: $_depth, intensity: $intensity, lightSource: $lightSource, _curveFactor: $_curveFactor, shape: $shape}';
+  }
+
 
 }
 //endregion
