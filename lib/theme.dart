@@ -79,7 +79,16 @@ class NeumorphicTheme {
 const NeumorphicShape _defaultShape = NeumorphicShape.concave;
 const double _defaultBorderRadius = 5;
 
-const neumorphicDefaultTheme = NeumorphicTheme();
+const neumorphicDefaultTheme = NeumorphicTheme(
+  baseColor: NeumorphicColors.background,
+  accentColor: NeumorphicColors.accent,
+  variantColor: NeumorphicColors.variant,
+);
+const neumorphicDefaultDarkTheme = NeumorphicTheme(
+  baseColor: NeumorphicColors.darkBackground,
+  accentColor: NeumorphicColors.darkAccent,
+  variantColor: NeumorphicColors.darkVariant,
+);
 
 class NeumorphicStyle {
 

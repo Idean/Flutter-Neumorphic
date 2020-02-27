@@ -11,6 +11,10 @@ class NeumorphicColors {
   static const accent = Colors.blue;
   static const variant = Colors.cyan;
 
+  static const darkBackground = Color(0x2D2F2F);
+  static const darkAccent = Colors.green;
+  static const darkVariant = Colors.blueGrey;
+
   /// Generate a shadow color from the [base] color and a relative [intensity].
   /// Positive intensity denotes a darker shade while negative intensity
   /// denotes a lighter shade.
