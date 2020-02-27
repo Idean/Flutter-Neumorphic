@@ -114,7 +114,7 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator> with TickerPr
 
   @override
   Widget build(BuildContext context) {
-    final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
+    final NeumorphicTheme theme = NeumorphicThemeProvider.of(context);
     return SizedBox(
       height: widget.height,
       width: widget.width,

@@ -8,6 +8,7 @@ import 'light_source.dart';
 
 class NeumorphicColors {
   static const background = Color(0xffF1F2F4);
+  static const darkBackground = Color(0x2D2F2F);
   static const accent = Colors.blue;
   static const variant = Colors.cyan;
 
