@@ -42,7 +42,7 @@ class AudioPlayerSample extends StatelessWidget {
               onClick: () {
                 Navigator.of(context).pop();
               },
-              style: NeumorphicStyle(shape: NeumorphicShape.convex),
+              style: NeumorphicStyle(shape: NeumorphicShape.flat),
               shape: NeumorphicBoxShape.circle(),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -54,7 +54,7 @@ class AudioPlayerSample extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: NeumorphicButton(
-              style: NeumorphicStyle(shape: NeumorphicShape.convex),
+              style: NeumorphicStyle(shape: NeumorphicShape.flat),
               shape: NeumorphicBoxShape.circle(),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -120,7 +120,7 @@ class AudioPlayerSample extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         NeumorphicButton(
-          style: NeumorphicStyle(shape: NeumorphicShape.convex),
+          style: NeumorphicStyle(shape: NeumorphicShape.flat),
           shape: NeumorphicBoxShape.circle(),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
@@ -129,7 +129,7 @@ class AudioPlayerSample extends StatelessWidget {
         ),
         const SizedBox(width: 12),
         NeumorphicButton(
-          style: NeumorphicStyle(shape: NeumorphicShape.convex),
+          style: NeumorphicStyle(shape: NeumorphicShape.flat),
           shape: NeumorphicBoxShape.circle(),
           child: Padding(
             padding: const EdgeInsets.all(18.0),
@@ -141,7 +141,7 @@ class AudioPlayerSample extends StatelessWidget {
         ),
         const SizedBox(width: 12),
         NeumorphicButton(
-          style: NeumorphicStyle(shape: NeumorphicShape.convex),
+          style: NeumorphicStyle(shape: NeumorphicShape.flat),
           shape: NeumorphicBoxShape.circle(),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
