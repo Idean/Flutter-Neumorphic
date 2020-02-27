@@ -6,8 +6,10 @@ class AudioPlayerSample extends StatelessWidget {
   Widget build(BuildContext context) {
     return NeumorphicThemeProvider(
       theme: NeumorphicTheme(
-          //TODO
-          ),
+        intensity: 0.8,
+          lightSource: LightSource.topLeft,
+          depth: 10
+      ),
       child: Scaffold(
         body: SafeArea(
           child: Column(

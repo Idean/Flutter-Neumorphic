@@ -15,7 +15,7 @@ const double _defaultIntensity = 0.2;
 const double _defaultCurveFactor = 1;
 const Color _defaultAccent = NeumorphicColors.accent;
 const Color _defaultVariant = NeumorphicColors.variant;
-const LightSource _defaultLightSource = LightSource.bottomRight;
+const LightSource _defaultLightSource = LightSource.topLeft;
 const Color _defaultBaseColor = NeumorphicColors.background;
 
 class NeumorphicTheme {
