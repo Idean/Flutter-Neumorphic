@@ -55,7 +55,7 @@ class _PageState extends State<Page> {
                     shape: NeumorphicBoxShape.circle(),
                     //accent: Colors.blueAccent,
                     style: NeumorphicStyle(
-                      shape: NeumorphicShape.emboss,
+                      depth: -5,
                     ),
                     child: SizedBox(
                       height: 150,

@@ -19,23 +19,20 @@ class NeumorphicBoxDecoration extends Decoration {
 
   @override
   BoxPainter createBoxPainter([onChanged]) {
-    switch (style.shape) {
-      case NeumorphicShape.concave:
-      case NeumorphicShape.convex:
-      case NeumorphicShape.flat:
-        return NeumorphicBoxDecorationPainter(
-          style: style,
-          onChanged: onChanged,
-          shape: shape,
-          accent: accent,
-        );
-      default:
-        return NeumorphicEmbossBoxDecorationPainter(
-          style: style,
-          onChanged: onChanged,
-          shape: shape,
-          accent: accent,
-        );
+    if(style.depth > 0) {
+      return NeumorphicBoxDecorationPainter(
+        style: style,
+        onChanged: onChanged,
+        shape: shape,
+        accent: accent,
+      );
+    } else {
+      return NeumorphicEmbossBoxDecorationPainter(
+        style: style,
+        onChanged: onChanged,
+        shape: shape,
+        accent: accent,
+      );
     }
   }
 

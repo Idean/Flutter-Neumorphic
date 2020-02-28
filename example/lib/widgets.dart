@@ -246,7 +246,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
-                style: NeumorphicStyle(shape: NeumorphicShape.emboss, depth: 8),
+                style: NeumorphicStyle(depth: -8),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
