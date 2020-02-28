@@ -256,17 +256,6 @@ class _ContainerPageState extends State<ContainerPage> {
             child: Text("Flat"),
           ),
         ),
-        Expanded(
-          child: RaisedButton(
-            onPressed: () {
-              setState(() {
-                shape = NeumorphicShape.emboss;
-              });
-            },
-            color: shape == NeumorphicShape.emboss ? buttonActiveColor : buttonInnactiveColor,
-            child: Text("Emboss"),
-          ),
-        ),
       ],
     );
   }

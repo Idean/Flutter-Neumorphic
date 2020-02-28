@@ -110,7 +110,8 @@ class NeumorphicStyle {
         depth: this.depth ?? theme.depth,
         intensity: this.intensity ?? theme.intensity,
         curveFactor: this.curveFactor ?? theme.curveFactor,
-        lightSource: this.lightSource ?? theme.lightSource);
+        lightSource: this.lightSource ?? theme.lightSource
+    );
   }
 
   @override
@@ -155,7 +156,7 @@ class NeumorphicStyle {
 
   @override
   String toString() {
-    return 'NeumorphicStyle{baseColor: $baseColor, _depth: $_depth, intensity: $intensity, lightSource: $lightSource, _curveFactor: $_curveFactor, shape: $shape}';
+    return 'NeumorphicStyle{baseColor: $baseColor, _depth: $_depth, shape: $shape, intensity: $intensity, lightSource: $lightSource, _curveFactor: $_curveFactor}';
   }
 
 

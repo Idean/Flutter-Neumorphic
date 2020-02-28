@@ -40,7 +40,8 @@ class _ContainersListPageState extends State<ContainersListPage> {
                       shape: NeumorphicBoxShape.circle(),
                       //accent: Colors.blueAccent,
                       style: NeumorphicStyle(
-                        shape: NeumorphicShape.emboss,
+                        depth: -10,
+                        shape: NeumorphicShape.flat,
                       ),
                       child: SizedBox(
                         height: 150,

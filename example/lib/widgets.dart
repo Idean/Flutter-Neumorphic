@@ -220,8 +220,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
                   title: Text("Widgets", style: TextStyle(color: Colors.black),),
                 ),
                 style: NeumorphicStyle(
-                  shape: NeumorphicShape.emboss,
-                  depth: 8
+                  depth: -8
                 ),
               ),
               Padding(
