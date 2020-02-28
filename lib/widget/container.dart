@@ -40,13 +40,15 @@ class Neumorphic extends StatelessWidget {
   Widget build(BuildContext context) {
     final shape = this.shape ?? NeumorphicBoxShape.roundRect();
 
+    //print("this.accent : $accent");
+
     return _NeumorphicStyleAnimator(
         duration: this.duration,
         style: this.style,
         builder: (context, style) {
 
           //print("${style.depth}");
-          final decorator = NeumorphicBoxDecoration(style: style, shape: shape);
+          final decorator = NeumorphicBoxDecoration(accent: accent, style: style, shape: shape);
 
           final child = generateNeumorphicChild(
             accent: this.accent,

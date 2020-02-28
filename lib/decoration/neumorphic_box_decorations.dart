@@ -15,7 +15,7 @@ class NeumorphicBoxDecoration extends Decoration {
   final NeumorphicStyle style;
   final NeumorphicBoxShape shape;
 
-  NeumorphicBoxDecoration({this.accent, @required this.style, this.shape});
+  NeumorphicBoxDecoration({@required this.accent, @required this.style, this.shape});
 
   @override
   BoxPainter createBoxPainter([onChanged]) {
@@ -27,6 +27,7 @@ class NeumorphicBoxDecoration extends Decoration {
         accent: accent,
       );
     } else {
+      //print("emboss : $accent");
       return NeumorphicEmbossBoxDecorationPainter(
         style: style,
         onChanged: onChanged,

@@ -37,6 +37,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   Radius cornerRadius;
 
   LightSource source;
+  Color backgroundColor;
 
   RRect buttonRRect;
   RRect whiteShadowMaskRect;
@@ -49,11 +50,11 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       @required VoidCallback onChanged})
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
-    var color = accent ?? style.baseColor;
+    this.backgroundColor = accent ?? style.baseColor;
     var blackShadowColor = Colors.black45; // TODO : Add intensity ?
     var whiteShadowColor = Colors.white60; // TODO : Add intensity ?
 
-    backgroundPaint = Paint()..color = color;
+    backgroundPaint = Paint()..color = backgroundColor;
 
     whiteShadowPaint = Paint()..color = whiteShadowColor;
     whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
@@ -101,9 +102,14 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
 
     LightSource source = style.lightSource;
     var depth = style.depth.abs().clamp(0.0, radius / 5);
-    if (this.invalidate || this.source != source || this.depth != depth) {
+    var backgroundColor = accent ?? style.baseColor;
+    //print("accent: $accent");
+    if (this.invalidate || this.source != source || this.depth != depth || this.backgroundColor != backgroundColor) {
       this.depth = depth;
       this.source = source;
+      this.backgroundColor = backgroundColor;
+
+      backgroundPaint..color = backgroundColor;
 
       MaskFilter mask = MaskFilter.blur(BlurStyle.normal, depth);
       blackShadowMaskPaint..maskFilter = mask;
@@ -159,6 +165,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       );
       canvas.restore();
     } else {
+      //backgroundPaint..color = accent;
       canvas.drawRRect(buttonRRect, backgroundPaint);
 
       canvas.saveLayer(layerRect, whiteShadowPaint);
