@@ -203,11 +203,9 @@ class _ContainersListPageState extends State<WidgetsPage> {
         NeumorphicSwitch(
           value: _switchEnable,
           style: NeumorphicSwitchStyle(
-              depth: -3,
-              activeTrackColor: NeumorphicColors.accent,
-              inactiveTrackColor: NeumorphicColors.background,
-              activeThumbColor: NeumorphicColors.background,
-              inactiveThumbColor: NeumorphicColors.background),
+            trackDepth: -3.0,
+            thumbShape: NeumorphicShape.flat, // concave or flat with elevation
+          ),
           onChanged: (value) {
             setState(() {
               _switchEnable = value;
