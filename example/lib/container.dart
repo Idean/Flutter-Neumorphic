@@ -61,6 +61,9 @@ class _ContainerPageState extends State<ContainerPage> {
       height: 50,
       width: 200,
       child: NeumorphicButton(
+        onClick: (){
+
+        },
         shape: boxShape,
         style: NeumorphicStyle(
           shape: this.shape,
@@ -295,125 +298,6 @@ class _ContainerPageState extends State<ContainerPage> {
           ),
         ),
       ),
-
-      /**
-      Positioned(
-        child: RaisedButton(
-          onPressed: () {
-            setState(() {
-              lightSource = LightSource.topLeft;
-            });
-          },
-          color: lightSource == LightSource.topLeft ? buttonActiveColor : buttonInnactiveColor,
-          child: Text("topLeft"),
-        ),
-        top: 0,
-        left: 0,
-      ),
-      Positioned(
-        child: RaisedButton(
-          onPressed: () {
-            setState(() {
-              lightSource = LightSource.topRight;
-            });
-          },
-          color: lightSource == LightSource.topRight ? buttonActiveColor : buttonInnactiveColor,
-          child: Text("topRight"),
-        ),
-        top: 0,
-        right: 0,
-      ),
-      Positioned(
-        child: Center(
-          child: RaisedButton(
-            onPressed: () {
-              setState(() {
-                lightSource = LightSource.top;
-              });
-            },
-            color: lightSource == LightSource.top ? buttonActiveColor : buttonInnactiveColor,
-            child: Text("top"),
-          ),
-        ),
-        top: 0,
-        left: 0,
-        right: 0,
-      ),
-      Positioned(
-        child: Center(
-          child: RaisedButton(
-            onPressed: () {
-              setState(() {
-                lightSource = LightSource.bottom;
-              });
-            },
-            color: lightSource == LightSource.bottom ? buttonActiveColor : buttonInnactiveColor,
-            child: Text("bottom"),
-          ),
-        ),
-        bottom: 0,
-        left: 0,
-        right: 0,
-      ),
-      Positioned(
-        child: Center(
-          child: RaisedButton(
-            onPressed: () {
-              setState(() {
-                lightSource = LightSource.left;
-              });
-            },
-            color: lightSource == LightSource.left ? buttonActiveColor : buttonInnactiveColor,
-            child: Text("left"),
-          ),
-        ),
-        top: 0,
-        bottom: 0,
-        left: 0,
-      ),
-      Positioned(
-        child: Center(
-          child: RaisedButton(
-            onPressed: () {
-              setState(() {
-                lightSource = LightSource.right;
-              });
-            },
-            color: lightSource == LightSource.right ? buttonActiveColor : buttonInnactiveColor,
-            child: Text("right"),
-          ),
-        ),
-        top: 0,
-        bottom: 0,
-        right: 0,
-      ),
-      Positioned(
-        child: RaisedButton(
-          onPressed: () {
-            setState(() {
-              lightSource = LightSource.bottomLeft;
-            });
-          },
-          color: lightSource == LightSource.bottomLeft ? buttonActiveColor : buttonInnactiveColor,
-          child: Text("bottomLeft"),
-        ),
-        bottom: 0,
-        left: 0,
-      ),
-      Positioned(
-        child: RaisedButton(
-          onPressed: () {
-            setState(() {
-              lightSource = LightSource.bottomRight;
-            });
-          },
-          color: lightSource == LightSource.bottomRight ? buttonActiveColor : buttonInnactiveColor,
-          child: Text("bottomRight"),
-        ),
-        bottom: 0,
-        right: 0,
-      ),
-          */
     ];
   }
 }
