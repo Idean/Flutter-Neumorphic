@@ -30,7 +30,7 @@ class Neumorphic extends StatelessWidget {
     this.style,
     this.accent,
     this.shape,
-    this.padding = const EdgeInsets.all(4),
+    this.padding = const EdgeInsets.all(0),
   }) : super(key: key);
 
   @override
