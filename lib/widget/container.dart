@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/decoration/neumorphic_box_decorations.dart';
 import 'package:flutter_neumorphic/theme_finder.dart';
@@ -53,15 +55,36 @@ class Neumorphic extends StatelessWidget {
             child: this.child,
           );
 
+          Widget clippedChild;
+          if(shape.isCircle) {
+            clippedChild = ClipPath(clipper: CircleClipper(),child: child);
+          } else {
+            clippedChild = ClipRRect(borderRadius: shape.borderRadius, child: child);
+          }
+
           return AnimatedContainer(
             key: shape.isCircle ? _circleKey : _rectangleKey,
             duration: this.duration,
-            child: child,
+            child: clippedChild,
             decoration: decorator,
             padding: this.padding,
           );
         });
   }
+}
+
+class CircleClipper extends CustomClipper<Path>{
+  @override
+  Path getClip(Size size) {
+    return Path()
+      ..addOval(Rect.fromCircle(
+        center: Offset(size.width / 2.0, size.height / 2.0),
+        radius: min(size.width / 2.0, size.height / 2.0),
+      ));
+  }
+
+  @override
+  bool shouldReclip(CircleClipper oldClipper) => true;
 }
 
 typedef Widget _NeumorphicStyleBuilder(BuildContext context, NeumorphicStyle style);
