@@ -80,7 +80,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   }
 
   bool get clickable {
-    return initialStyle.shape != NeumorphicShape.emboss;
+    return widget.onClick != null;
   }
 
   @override

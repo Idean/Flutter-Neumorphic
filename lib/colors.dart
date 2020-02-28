@@ -48,43 +48,6 @@ class NeumorphicColors {
     return hslDark.toColor();
   }
 
-  static Gradient generateEmbossGradients(
-      {@required LightSource source, @required Color color}) {
-    var begin;
-    var end;
-
-    if (source == LightSource.bottomLeft) {
-      begin = Alignment.bottomLeft;
-      end = Alignment.topRight;
-    } else if (source == LightSource.topLeft) {
-      begin = Alignment.topLeft;
-      end = Alignment.bottomRight;
-    } else if (source == LightSource.topRight) {
-      begin = Alignment.topRight;
-      end = Alignment.bottomLeft;
-    } else if (source == LightSource.bottomRight) {
-      begin = Alignment.bottomRight;
-      end = Alignment.topLeft;
-    } else if (source == LightSource.top) {
-      begin = Alignment.topCenter;
-      end = Alignment.bottomCenter;
-    } else if (source == LightSource.left) {
-      begin = Alignment.centerLeft;
-      end = Alignment.centerRight;
-    } else if (source == LightSource.right) {
-      begin = Alignment.centerRight;
-      end = Alignment.centerLeft;
-    } else if (source == LightSource.bottom) {
-      begin = Alignment.bottomCenter;
-      end = Alignment.topCenter;
-    }
-
-    return LinearGradient(begin: begin, end: end, colors: [
-      color,
-      color,
-    ]);
-  }
-
   static Gradient generateFlatGradients({Color color}) => LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
