@@ -8,6 +8,9 @@ import 'flutter_neumorphic.dart';
 
 enum CurrentTheme { LIGHT, DARK, SYSTEM }
 
+//FORCE TO USE LIGHT THEME FOR NOW, WORK IN PROGRESS
+const _DARK_THEME_ENABLED = false;
+
 class ThemeHost {
   final NeumorphicTheme theme;
   final NeumorphicTheme darkTheme;
@@ -19,7 +22,7 @@ class ThemeHost {
     this.currentTheme = CurrentTheme.SYSTEM,
   });
 
-  bool get useDark => darkTheme != null && (
+  bool get useDark => _DARK_THEME_ENABLED && darkTheme != null && (
       //forced to use DARK by user
       currentTheme == CurrentTheme.DARK ||
       //The setting indicating the current brightness mode of the host platform. If the platform has no preference, platformBrightness defaults to Brightness.light.
