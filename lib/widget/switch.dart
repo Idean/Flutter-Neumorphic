@@ -86,7 +86,7 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
           shape: NeumorphicBoxShape.stadium(),
           style: NeumorphicStyle(
               depth: (widget.style.trackDepth ?? theme.depth) * SCALE,
-              shape: NeumorphicShape.emboss,
+              shape: NeumorphicShape.flat,
               baseColor: _getTrackColor(theme)),
           child: AnimatedThumb(
             animation: animation,
@@ -190,8 +190,6 @@ class AnimatedThumb extends AnimatedWidget {
       case NeumorphicShape.convex:
       case NeumorphicShape.flat:
         return 4.0;
-      case NeumorphicShape.emboss:
-        return -2.0;
       default:
         return theme.depth;
     }
@@ -207,7 +205,6 @@ class AnimatedThumb extends AnimatedWidget {
       case NeumorphicShape.convex:
       case NeumorphicShape.flat:
         return 4.0;
-      case NeumorphicShape.emboss:
       default:
         return theme.intensity;
     }
