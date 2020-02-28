@@ -9,18 +9,24 @@ import 'container.dart';
 typedef void NeumorphicButtonClickListener();
 
 class NeumorphicButton extends StatefulWidget {
+
+  static const double PRESSED_SCALE = 0.98;
+  static const double UNPRESSED_SCALE = 1.0;
+
   final Widget child;
   final NeumorphicStyle style;
   final Color accent;
   final double minDistance;
   final NeumorphicBoxShape shape;
   final EdgeInsets padding;
+  final bool pressed; //null, true, false
   final NeumorphicButtonClickListener onClick;
 
   const NeumorphicButton({
     Key key,
     this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     this.child,
+    this.pressed, //true/false if you want to change the state of the button
     this.shape,
     this.accent,
     this.onClick,
@@ -36,7 +42,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   NeumorphicStyle initialStyle;
 
   double depth;
-  double scale = 1;
+  bool pressed = false; //overwrite widget.pressed when click for animation
 
   void updateInitialStyle() {
     if (widget.style != initialStyle) {
@@ -67,14 +73,14 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
 
   void _changeDistance() {
     setState(() {
-      scale = 0.95;
+      pressed = true;
       depth = widget.minDistance;
     });
   }
 
   void _resetDistance() {
     setState(() {
-      scale = 1;
+      pressed = false;
       depth = initialStyle.depth;
     });
   }
@@ -107,7 +113,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
         }
       },
       child: AnimatedScale(
-        scale: this.scale,
+        scale: _getScale(),
         child: Neumorphic(
           accent: widget.accent,
           padding: widget.padding,
@@ -117,5 +123,13 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
         ),
       ),
     );
+  }
+
+  double _getScale() {
+    if(widget.pressed != null){ //defined by the widget that use it
+      return widget.pressed ? NeumorphicButton.PRESSED_SCALE : NeumorphicButton.UNPRESSED_SCALE;
+    } else {
+      return this.pressed ? NeumorphicButton.PRESSED_SCALE : NeumorphicButton.UNPRESSED_SCALE;
+    }
   }
 }

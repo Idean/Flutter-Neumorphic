@@ -51,6 +51,7 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
 
     return NeumorphicButton(
       accent: isSelected ? accent : null,
+      pressed: isSelected,
       onClick: () {
         _onClick();
       },

@@ -60,6 +60,7 @@ class _NeumorphicRadioState<T> extends State<NeumorphicRadio<T>> {
       onClick: () {
         _onClick();
       },
+      pressed: isSelected,
       minDistance: selectedDepth,
       shape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(5)),
       child: widget.child,

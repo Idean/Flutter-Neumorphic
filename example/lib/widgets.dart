@@ -196,10 +196,10 @@ class _ContainersListPageState extends State<WidgetsPage> {
 
   double seekValue = 0;
 
-  Widget _buildSeekbar() {
+  Widget _buildSlider() {
     return Row(
       children: <Widget>[
-        Text("Seekbar"),
+        Text("Slider"),
         SizedBox(width: 12),
         Flexible(
           child: NeumorphicSlider(
@@ -310,7 +310,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
                     SizedBox(height: 30),
                     _buildChecks(),
                     SizedBox(height: 30),
-                    _buildSeekbar(),
+                    _buildSlider(),
                     SizedBox(height: 30),
                     _buildSwitches(),
                     SizedBox(height: 30),
