@@ -8,6 +8,7 @@ export 'widget/indicator.dart';
 export 'widget/checkbox.dart';
 export 'widget/slider.dart';
 export 'widget/progress.dart';
+export 'widget/switch.dart';
 export 'theme.dart';
 export 'NeumorphicBoxShape.dart';
 export 'shape.dart';

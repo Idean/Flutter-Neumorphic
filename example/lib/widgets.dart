@@ -11,7 +11,9 @@ class WidgetsPage extends StatefulWidget {
 
 class _ContainersListPageState extends State<WidgetsPage> {
   int _groupValue;
-
+  bool _switchConcaveEnabled = false;
+  bool _switchConvexEnabled = false;
+  bool _switchFlatEnabled = false;
   Widget _buildProgress() {
     return Row(
       children: <Widget>[
@@ -218,6 +220,51 @@ class _ContainersListPageState extends State<WidgetsPage> {
     );
   }
 
+  Widget _buildSwitches() {
+    return Row(children: <Widget>[
+      Text("Switch"),
+      SizedBox(width: 15),
+      NeumorphicSwitch(
+        value: _switchConcaveEnabled,
+        style: NeumorphicSwitchStyle(
+          trackDepth: -3.0,
+          thumbShape: NeumorphicShape.concave, // concave or flat with elevation
+        ),
+        onChanged: (value) {
+          setState(() {
+            _switchConcaveEnabled = value;
+          });
+        },
+      ),
+      SizedBox(width: 15),
+      NeumorphicSwitch(
+        value: _switchFlatEnabled,
+        style: NeumorphicSwitchStyle(
+          trackDepth: -3.0,
+          thumbShape: NeumorphicShape.flat, // concave or flat with elevation
+        ),
+        onChanged: (value) {
+          setState(() {
+            _switchFlatEnabled = value;
+          });
+        },
+      ),
+      SizedBox(width: 15),
+      NeumorphicSwitch(
+        value: _switchConvexEnabled,
+        style: NeumorphicSwitchStyle(
+          trackDepth: -3.0,
+          thumbShape: NeumorphicShape.convex, // concave or flat with elevation
+        ),
+        onChanged: (value) {
+          setState(() {
+            _switchConvexEnabled = value;
+          });
+        },
+      ),
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return NeumorphicThemeProvider(
@@ -267,6 +314,8 @@ class _ContainersListPageState extends State<WidgetsPage> {
                     _buildChecks(),
                     SizedBox(height: 30),
                     _buildSeekbar(),
+                    SizedBox(height: 30),
+                    _buildSwitches(),
                     SizedBox(height: 30),
                   ],
                 ),
