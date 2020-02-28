@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/decoration/neumorphic_box_decorations.dart';
 import 'package:flutter_neumorphic/theme_finder.dart';
 
 import '../NeumorphicBoxShape.dart';
