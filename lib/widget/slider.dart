@@ -131,8 +131,8 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
      accent: widget.style.accent ?? theme.accentColor,
       shape: NeumorphicBoxShape.circle(),
       child: SizedBox(
-        height: widget.height,
-        width: widget.height,
+        height: widget.height * 1.5,
+        width: widget.height * 1.5,
       ),
     );
   }
