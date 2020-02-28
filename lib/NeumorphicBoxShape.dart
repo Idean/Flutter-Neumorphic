@@ -10,7 +10,7 @@ class NeumorphicBoxShape {
 
   NeumorphicBoxShape.circle() : this._(boxShape: BoxShape.circle);
 
-  NeumorphicBoxShape.roundRect({BorderRadius borderRadius})
+  NeumorphicBoxShape.roundRect({BorderRadius borderRadius = BorderRadius.zero})
       : this._(boxShape: BoxShape.rectangle, borderRadius: borderRadius);
 
   NeumorphicBoxShape.stadium()
