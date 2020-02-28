@@ -14,6 +14,7 @@ class AudioPlayerSample extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: <Widget>[
+              SizedBox(height: 14),
               _buildTopBar(context),
               SizedBox(height: 80),
               _buildImage(context),
@@ -73,7 +74,7 @@ class AudioPlayerSample extends StatelessWidget {
       child: Container(
         height: 200,
         width: 200,
-        color: Colors.blue,
+        child: Image.asset("assets/images/aya.jpg", fit: BoxFit.fill,)
       ),
     );
   }
@@ -82,8 +83,9 @@ class AudioPlayerSample extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Text("DjaDja", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 30)),
-        Text("Aya Nakamura", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14)),
+        Text("Pookie", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 34, color: Color(0xFF3E3E3E))),
+        const SizedBox(height: 4,),
+        Text("Aya Nakamura", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: Color(0xFF3E3E3E))),
       ],
     );
   }
@@ -120,6 +122,9 @@ class AudioPlayerSample extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         NeumorphicButton(
+          onClick: (){
+
+          },
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
           shape: NeumorphicBoxShape.circle(),
           child: Padding(
@@ -129,6 +134,9 @@ class AudioPlayerSample extends StatelessWidget {
         ),
         const SizedBox(width: 12),
         NeumorphicButton(
+          onClick: (){
+
+          },
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
           shape: NeumorphicBoxShape.circle(),
           child: Padding(
@@ -141,6 +149,9 @@ class AudioPlayerSample extends StatelessWidget {
         ),
         const SizedBox(width: 12),
         NeumorphicButton(
+          onClick: (){
+
+          },
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
           shape: NeumorphicBoxShape.circle(),
           child: Padding(

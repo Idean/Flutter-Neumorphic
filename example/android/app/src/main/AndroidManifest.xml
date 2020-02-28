@@ -7,6 +7,7 @@
          FlutterApplication and put your custom class here. -->
 
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name="io.flutter.app.FlutterApplication"
