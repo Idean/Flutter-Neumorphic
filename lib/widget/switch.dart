@@ -28,16 +28,6 @@ class NeumorphicSwitchStyle {
     this.activeThumbColor,
     this.inactiveThumbColor,
   });
-
-  // @override
-  // bool operator ==(Object other) =>
-  //     identical(this, other) ||
-  //     other is ProgressStyle && runtimeType == other.runtimeType && trackDepth == other.;
-
-  // @override
-  // int get hashCode => trackDepth.hashCode;
-// && borderRadius == other.borderRadius && accent == other.accent && variant == other.variant;
-
 }
 
 class NeumorphicSwitch extends StatefulWidget {

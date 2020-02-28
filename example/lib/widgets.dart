@@ -254,7 +254,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
         value: _switchConvexEnabled,
         style: NeumorphicSwitchStyle(
           trackDepth: -3.0,
-          thumbShape: NeumorphicShape.convex, // concave or flat with elevation
+          thumbShape: NeumorphicShape.convex,
         ),
         onChanged: (value) {
           setState(() {
