@@ -6,25 +6,28 @@ class AudioPlayerSample extends StatelessWidget {
   Widget build(BuildContext context) {
     return NeumorphicThemeProvider(
       theme: NeumorphicTheme(
+        baseColor: Colors.grey[200],
         intensity: 0.8,
           lightSource: LightSource.topLeft,
           depth: 10
       ),
       child: Scaffold(
         body: SafeArea(
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 14),
-              _buildTopBar(context),
-              SizedBox(height: 80),
-              _buildImage(context),
-              SizedBox(height: 30),
-              _buildTitle(context),
-              SizedBox(height: 30),
-              _buildSeekBar(context),
-              SizedBox(height: 30),
-              _buildControlsBar(context),
-            ],
+          child: NeumorphicBackground(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 14),
+                _buildTopBar(context),
+                SizedBox(height: 80),
+                _buildImage(context),
+                SizedBox(height: 30),
+                _buildTitle(context),
+                SizedBox(height: 30),
+                _buildSeekBar(context),
+                SizedBox(height: 30),
+                _buildControlsBar(context),
+              ],
+            ),
           ),
         ),
       ),
@@ -55,6 +58,9 @@ class AudioPlayerSample extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: NeumorphicButton(
+              onClick: (){
+
+              },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
               shape: NeumorphicBoxShape.circle(),
               child: Padding(

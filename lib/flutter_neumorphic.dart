@@ -3,6 +3,7 @@ library flutter_neumorphic;
 export 'colors.dart';
 export 'widget/container.dart';
 export 'widget/button.dart';
+export 'widget/background.dart';
 export 'widget/radio.dart';
 export 'widget/indicator.dart';
 export 'widget/checkbox.dart';
