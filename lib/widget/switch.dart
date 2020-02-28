@@ -2,16 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/NeumorphicBoxShape.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-// Constants below are for easy scaling tests.
-// Can be removed later.
-const double SCALE = 1.0;
-const double TRACK_WIDTH = 90 * SCALE;
-const double TRACK_HEIGHT = 52 * SCALE;
-const double THUMB_WIDTH = 30 * SCALE;
-const double THUMB_HEIGHT = 30 * SCALE;
-const double THUMB_CONTAINER_WIDTH = 90 * SCALE;
-const double THUMB_CONTAINER_HEIGHT = 37 * SCALE;
-
 class NeumorphicSwitchStyle {
   final double trackDepth;
   final Color activeTrackColor;
@@ -34,20 +24,21 @@ class NeumorphicSwitch extends StatefulWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
   final NeumorphicSwitchStyle style;
+  final double height;
 
   const NeumorphicSwitch({
     this.style,
     Key key,
     this.value = false,
     this.onChanged,
+    this.height = 40,
   }) : super(key: key);
 
   @override
   _NeumorphicSwitchState createState() => _NeumorphicSwitchState();
 }
 
-class _NeumorphicSwitchState extends State<NeumorphicSwitch>
-    with SingleTickerProviderStateMixin {
+class _NeumorphicSwitchState extends State<NeumorphicSwitch> with SingleTickerProviderStateMixin {
   Animation<Alignment> animation;
   AnimationController controller;
 
@@ -63,35 +54,36 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
 
   @override
   Widget build(BuildContext context) {
-    final NeumorphicTheme theme =
-        NeumorphicThemeProvider.findNeumorphicTheme(context);
+    final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
     return SizedBox(
-      height: TRACK_HEIGHT,
-      width: TRACK_WIDTH,
-      child: GestureDetector(
-        onTap: () {
-          // animation breaking prevention
-          if (controller.isAnimating) {
-            return;
-          }
-          if (widget.value == false) {
-            controller.forward();
-            _notifyOnChange(true);
-          } else {
-            controller.reverse();
-            _notifyOnChange(false);
-          }
-        },
-        child: Neumorphic(
-          shape: NeumorphicBoxShape.stadium(),
-          style: NeumorphicStyle(
-              depth: (widget.style.trackDepth ?? theme.depth) * SCALE,
-              shape: NeumorphicShape.flat,
-              baseColor: _getTrackColor(theme)),
-          child: AnimatedThumb(
-            animation: animation,
-            shape: _getThumbShape(),
-            thumbColor: _getThumbColor(theme),
+      height: widget.height,
+      child: AspectRatio(
+        aspectRatio: 2 / 1,
+        child: GestureDetector(
+          onTap: () {
+            // animation breaking prevention
+            if (controller.isAnimating) {
+              return;
+            }
+            if (widget.value == false) {
+              controller.forward();
+              _notifyOnChange(true);
+            } else {
+              controller.reverse();
+              _notifyOnChange(false);
+            }
+          },
+          child: Neumorphic(
+            shape: NeumorphicBoxShape.stadium(),
+            style: NeumorphicStyle(
+                depth: (widget.style.trackDepth ?? theme.depth),
+                shape: NeumorphicShape.flat,
+                baseColor: _getTrackColor(theme)),
+            child: AnimatedThumb(
+              animation: animation,
+              shape: _getThumbShape(),
+              thumbColor: _getThumbColor(theme),
+            ),
           ),
         ),
       ),
@@ -99,10 +91,7 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
   }
 
   NeumorphicShape _getThumbShape() {
-    if (widget.style.thumbShape == null) {
-      return NeumorphicShape.flat;
-    }
-    return widget.style.thumbShape;
+    return widget.style.thumbShape ?? NeumorphicShape.flat;
   }
 
   Color _getTrackColor(NeumorphicTheme theme) {
@@ -142,13 +131,12 @@ class AnimatedThumb extends AnimatedWidget {
   Widget build(BuildContext context) {
     final animation = listenable as Animation<Alignment>;
     final NeumorphicTheme theme =
-        NeumorphicThemeProvider.findNeumorphicTheme(context);
+    NeumorphicThemeProvider.findNeumorphicTheme(context);
     // This Container is actually the inner track containing the thumb
-    return Container(
-      height: THUMB_CONTAINER_HEIGHT,
-      width: THUMB_CONTAINER_WIDTH,
-      child: Align(
-        alignment: animation.value,
+    return Align(
+      alignment: animation.value,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
         child: Neumorphic(
           shape: NeumorphicBoxShape.circle(),
           style: NeumorphicStyle(
@@ -158,9 +146,13 @@ class AnimatedThumb extends AnimatedWidget {
             depth: _getThumbDepth(theme),
             baseColor: thumbColor,
           ),
-          child: SizedBox(
-            height: THUMB_HEIGHT,
-            width: THUMB_WIDTH,
+          child: AspectRatio(
+            aspectRatio: 1,
+            child: FractionallySizedBox(
+              heightFactor: 1,
+              child: Container(),
+              //width: THUMB_WIDTH,
+            ),
           ),
         ),
       ),
@@ -169,44 +161,42 @@ class AnimatedThumb extends AnimatedWidget {
 
   /// Returns the proper curveFactor according to the given shape.
   double _getThumbCurveFactor(NeumorphicTheme theme) {
-    if (shape == null) {
-      return theme.curveFactor;
+    if (shape != null) {
+      switch (shape) {
+        case NeumorphicShape.concave:
+          return 3.0;
+        default:
+          return theme.curveFactor;
+      }
     }
-    switch (shape) {
-      case NeumorphicShape.concave:
-        return 3.0;
-      default:
-        return theme.curveFactor;
-    }
+    return theme.curveFactor;
   }
 
   /// Returns the proper depth according to the given shape.
   double _getThumbDepth(NeumorphicTheme theme) {
-    if (shape == null) {
+    if (shape != null) {
+      switch (shape) {
+        case NeumorphicShape.concave:
+        case NeumorphicShape.convex:
+        case NeumorphicShape.flat:
+          return 4.0;
+      }
+
       return theme.depth;
-    }
-    switch (shape) {
-      case NeumorphicShape.concave:
-      case NeumorphicShape.convex:
-      case NeumorphicShape.flat:
-        return 4.0;
-      default:
-        return theme.depth;
     }
   }
 
   /// Returns the proper intensity according to the given shape.
   double _getThumbIntensity(NeumorphicTheme theme) {
-    if (shape == null) {
+    if (shape != null) {
+      switch (shape) {
+        case NeumorphicShape.concave:
+        case NeumorphicShape.convex:
+        case NeumorphicShape.flat:
+          return 4.0;
+      }
+
       return theme.intensity;
-    }
-    switch (shape) {
-      case NeumorphicShape.concave:
-      case NeumorphicShape.convex:
-      case NeumorphicShape.flat:
-        return 4.0;
-      default:
-        return theme.intensity;
     }
   }
 }
