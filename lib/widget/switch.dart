@@ -9,6 +9,7 @@ class NeumorphicSwitchStyle {
   final Color activeThumbColor;
   final Color inactiveThumbColor;
   final NeumorphicShape thumbShape;
+  final double thumbDepth;
 
   const NeumorphicSwitchStyle({
     this.trackDepth,
@@ -17,18 +18,24 @@ class NeumorphicSwitchStyle {
     this.inactiveTrackColor,
     this.activeThumbColor,
     this.inactiveThumbColor,
+    this.thumbDepth,
   });
 }
 
 class NeumorphicSwitch extends StatefulWidget {
+
+  static const MIN_EMBOSS_DEPTH = -1.0;
+
   final bool value;
   final ValueChanged<bool> onChanged;
   final NeumorphicSwitchStyle style;
   final double height;
+  final Duration duration;
 
   const NeumorphicSwitch({
     this.style,
     Key key,
+    this.duration = const Duration(milliseconds: 200),
     this.value = false,
     this.onChanged,
     this.height = 40,
@@ -46,9 +53,8 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch> with SingleTickerPr
   void initState() {
     super.initState();
     controller = AnimationController(
-        duration: const Duration(milliseconds: 200), vsync: this);
-    animation = Tween<Alignment>(
-            begin: Alignment.centerLeft, end: Alignment.centerRight)
+        duration: widget.duration, vsync: this);
+    animation = Tween<Alignment>(begin: Alignment.centerLeft, end: Alignment.centerRight)
         .animate(controller);
   }
 
@@ -76,10 +82,11 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch> with SingleTickerPr
           child: Neumorphic(
             shape: NeumorphicBoxShape.stadium(),
             style: NeumorphicStyle(
-                depth: (widget.style.trackDepth ?? theme.depth),
+                depth: _getTrackDepth(theme.depth),
                 shape: NeumorphicShape.flat,
                 baseColor: _getTrackColor(theme)),
             child: AnimatedThumb(
+              depth: widget.style.thumbDepth,
               animation: animation,
               shape: _getThumbShape(),
               thumbColor: _getThumbColor(theme),
@@ -92,6 +99,13 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch> with SingleTickerPr
 
   NeumorphicShape _getThumbShape() {
     return widget.style.thumbShape ?? NeumorphicShape.flat;
+  }
+
+  double _getTrackDepth(double themeDepth){
+    //force negative to have emboss
+    double depth =  -1 * (widget.style.trackDepth ?? themeDepth).abs();
+    depth = depth.clamp(Neumorphic.MIN_DEPTH, NeumorphicSwitch.MIN_EMBOSS_DEPTH);
+    return depth;
   }
 
   Color _getTrackColor(NeumorphicTheme theme) {
@@ -123,15 +137,14 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch> with SingleTickerPr
 class AnimatedThumb extends AnimatedWidget {
   final Color thumbColor;
   final NeumorphicShape shape;
+  final double depth;
   AnimatedThumb(
-      {Key key, Animation<Alignment> animation, this.thumbColor, this.shape})
+      {Key key, Animation<Alignment> animation, this.thumbColor, this.shape, this.depth})
       : super(key: key, listenable: animation);
 
   @override
   Widget build(BuildContext context) {
     final animation = listenable as Animation<Alignment>;
-    final NeumorphicTheme theme =
-    NeumorphicThemeProvider.findNeumorphicTheme(context);
     // This Container is actually the inner track containing the thumb
     return Align(
       alignment: animation.value,
@@ -141,9 +154,7 @@ class AnimatedThumb extends AnimatedWidget {
           shape: NeumorphicBoxShape.circle(),
           style: NeumorphicStyle(
             shape: shape,
-            curveFactor: _getThumbCurveFactor(theme),
-            intensity: _getThumbIntensity(theme),
-            depth: _getThumbDepth(theme),
+            depth: this.depth,
             baseColor: thumbColor,
           ),
           child: AspectRatio(
@@ -159,44 +170,4 @@ class AnimatedThumb extends AnimatedWidget {
     );
   }
 
-  /// Returns the proper curveFactor according to the given shape.
-  double _getThumbCurveFactor(NeumorphicTheme theme) {
-    if (shape != null) {
-      switch (shape) {
-        case NeumorphicShape.concave:
-          return 3.0;
-        default:
-          return theme.curveFactor;
-      }
-    }
-    return theme.curveFactor;
-  }
-
-  /// Returns the proper depth according to the given shape.
-  double _getThumbDepth(NeumorphicTheme theme) {
-    if (shape != null) {
-      switch (shape) {
-        case NeumorphicShape.concave:
-        case NeumorphicShape.convex:
-        case NeumorphicShape.flat:
-          return 4.0;
-      }
-
-      return theme.depth;
-    }
-  }
-
-  /// Returns the proper intensity according to the given shape.
-  double _getThumbIntensity(NeumorphicTheme theme) {
-    if (shape != null) {
-      switch (shape) {
-        case NeumorphicShape.concave:
-        case NeumorphicShape.convex:
-        case NeumorphicShape.flat:
-          return 4.0;
-      }
-
-      return theme.intensity;
-    }
-  }
 }

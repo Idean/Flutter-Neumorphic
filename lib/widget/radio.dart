@@ -13,8 +13,8 @@ class NeumorphicRadioStyle {
   //TODO add some stylable elements here
 
   const NeumorphicRadioStyle({
-    this.selectedDepth: -5,
-    this.unselectedDepth: 8,
+    this.selectedDepth,
+    this.unselectedDepth,
   });
 }
 
@@ -51,15 +51,20 @@ class _NeumorphicRadioState<T> extends State<NeumorphicRadio<T>> {
 
   @override
   Widget build(BuildContext context) {
+    final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
+
+    final double selectedDepth = -1 * (widget.style.selectedDepth ?? theme.depth).abs();
+    final double unselectedDepth = (widget.style.unselectedDepth ?? theme.depth).abs();
+
     return NeumorphicButton(
       onClick: () {
         _onClick();
       },
-      minDistance: widget.style.selectedDepth,
+      minDistance: selectedDepth,
       shape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(5)),
       child: widget.child,
       style: NeumorphicStyle(
-        depth: isSelected ? widget.style.selectedDepth : widget.style.unselectedDepth ,
+        depth: isSelected ? selectedDepth : unselectedDepth ,
         shape: NeumorphicShape.flat,
       ),
     );

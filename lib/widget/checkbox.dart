@@ -12,12 +12,10 @@ class NeumorphicCheckboxStyle {
   final double unselectedDepth;
   final Color accent;
 
-  //TODO add some stylable elements here
-
   const NeumorphicCheckboxStyle({
-    this.selectedDepth: -5,
+    this.selectedDepth,
     this.accent,
-    this.unselectedDepth: 8,
+    this.unselectedDepth,
   });
 }
 
@@ -48,12 +46,15 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
     final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
     final accent = widget.style.accent ?? theme.accentColor;
 
+    final double selectedDepth = -1 * (widget.style.selectedDepth ?? theme.depth).abs();
+    final double unselectedDepth = (widget.style.unselectedDepth ?? theme.depth).abs();
+
     return NeumorphicButton(
       accent: isSelected ? accent : null,
       onClick: () {
         _onClick();
       },
-      minDistance: widget.style.selectedDepth,
+      minDistance: -1 * selectedDepth.abs(),
       shape: NeumorphicBoxShape.roundRect(
         borderRadius: BorderRadius.circular(5),
       ),
@@ -66,9 +67,12 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
         ),
       ),
       style: NeumorphicStyle(
-        depth: isSelected ? widget.style.selectedDepth : widget.style.unselectedDepth,
+        depth: isSelected ?
+          selectedDepth :
+          unselectedDepth,
         shape: NeumorphicShape.flat,
       ),
     );
   }
+
 }

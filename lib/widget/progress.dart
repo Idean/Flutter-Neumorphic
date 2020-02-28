@@ -38,7 +38,8 @@ class NeumorphicProgress extends StatefulWidget {
     this.height = 10,
     this.duration = const Duration(milliseconds: 150),
     this.style = const ProgressStyle(),
-  }) : this._percent = percent, super(key: key) ;
+  })  : this._percent = percent,
+        super(key: key);
 
   @override
   _NeumorphicProgressState createState() => _NeumorphicProgressState();
@@ -69,7 +70,7 @@ class _NeumorphicProgressState extends State<NeumorphicProgress> with TickerProv
   void didUpdateWidget(NeumorphicProgress oldWidget) {
     if (oldWidget.percent != widget.percent) {
       _controller.reset();
-      if(widget.duration.inMilliseconds == 0){
+      if (widget.duration.inMilliseconds == 0) {
         setState(() {
           this.percent = widget.percent;
         });
@@ -110,7 +111,10 @@ class _NeumorphicProgressState extends State<NeumorphicProgress> with TickerProv
             widget.style.borderRadius,
           )),
           padding: EdgeInsets.zero,
-          style: NeumorphicStyle(depth: widget.style.depth, shape: NeumorphicShape.flat),
+          style: NeumorphicStyle(
+            depth: widget.style.depth,
+            shape: NeumorphicShape.flat,
+          ),
           child: FractionallySizedBox(
             heightFactor: 1,
             alignment: Alignment.centerLeft,

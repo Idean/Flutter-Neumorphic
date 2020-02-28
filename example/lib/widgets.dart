@@ -227,7 +227,6 @@ class _ContainersListPageState extends State<WidgetsPage> {
       NeumorphicSwitch(
         value: _switchConcaveEnabled,
         style: NeumorphicSwitchStyle(
-          trackDepth: -3.0,
           thumbShape: NeumorphicShape.concave, // concave or flat with elevation
         ),
         onChanged: (value) {
@@ -240,7 +239,6 @@ class _ContainersListPageState extends State<WidgetsPage> {
       NeumorphicSwitch(
         value: _switchFlatEnabled,
         style: NeumorphicSwitchStyle(
-          trackDepth: -3.0,
           thumbShape: NeumorphicShape.flat, // concave or flat with elevation
         ),
         onChanged: (value) {
@@ -253,7 +251,6 @@ class _ContainersListPageState extends State<WidgetsPage> {
       NeumorphicSwitch(
         value: _switchConvexEnabled,
         style: NeumorphicSwitchStyle(
-          trackDepth: -3.0,
           thumbShape: NeumorphicShape.convex,
         ),
         onChanged: (value) {
@@ -272,7 +269,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
         baseColor: NeumorphicColors.background,
         lightSource: LightSource.topLeft,
         curveFactor: 1,
-        depth: 5,
+        depth: 10,
         intensity: 0.5,
       ),
       child: Scaffold(

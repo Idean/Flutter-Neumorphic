@@ -3,13 +3,13 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 typedef void NeumorphicSliderListener(double percent);
 
-class SeekBarStyle {
+class SliderStyle {
   final double depth;
   final double borderRadius;
   final Color accent;
   final Color variant;
 
-  const SeekBarStyle({
+  const SliderStyle({
     this.depth,
     this.borderRadius = 10.0,
     this.accent,
@@ -27,7 +27,7 @@ class SeekBarStyle {
 
 @immutable
 class NeumorphicSlider extends StatefulWidget {
-  final SeekBarStyle style;
+  final SliderStyle style;
   final double min;
   final double value;
   final double max;
@@ -40,7 +40,7 @@ class NeumorphicSlider extends StatefulWidget {
 
   NeumorphicSlider({
     Key key,
-    this.style = const SeekBarStyle(),
+    this.style = const SliderStyle(),
     this.min = 0,
     this.value = 0,
     this.max = 10,
