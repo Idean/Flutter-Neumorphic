@@ -14,3 +14,4 @@ export 'NeumorphicBoxShape.dart';
 export 'shape.dart';
 export 'neumortphic_decorator.dart';
 export 'theme_finder.dart';
+export 'decoration/neumorphic_box_decorations.dart';

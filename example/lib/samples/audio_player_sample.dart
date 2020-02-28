@@ -73,7 +73,7 @@ class AudioPlayerSample extends StatelessWidget {
       child: Container(
         height: 200,
         width: 200,
-        //color: Colors.blue,
+        color: Colors.blue,
       ),
     );
   }

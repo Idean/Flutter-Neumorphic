@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/decoration/neumorphic_box_decorations.dart';
 import 'package:flutter_neumorphic/theme_finder.dart';
 
 import '../NeumorphicBoxShape.dart';
@@ -30,7 +33,7 @@ class Neumorphic extends StatelessWidget {
     this.style,
     this.accent,
     this.shape,
-    this.padding = const EdgeInsets.all(4),
+    this.padding = const EdgeInsets.all(0),
   }) : super(key: key);
 
   @override
@@ -41,8 +44,9 @@ class Neumorphic extends StatelessWidget {
         duration: this.duration,
         style: this.style,
         builder: (context, style) {
-          //print("$style");
-          final decorator = generateNeumorphicDecorator(accent: this.accent, style: style, shape: shape);
+
+          //print("${style.depth}");
+          final decorator = NeumorphicBoxDecoration(style: style, shape: shape);
 
           final child = generateNeumorphicChild(
             accent: this.accent,
@@ -51,15 +55,36 @@ class Neumorphic extends StatelessWidget {
             child: this.child,
           );
 
+          Widget clippedChild;
+          if(shape.isCircle) {
+            clippedChild = ClipPath(clipper: CircleClipper(),child: child);
+          } else {
+            clippedChild = ClipRRect(borderRadius: shape.borderRadius, child: child);
+          }
+
           return AnimatedContainer(
             key: shape.isCircle ? _circleKey : _rectangleKey,
             duration: this.duration,
-            child: child,
+            child: clippedChild,
             decoration: decorator,
             padding: this.padding,
           );
         });
   }
+}
+
+class CircleClipper extends CustomClipper<Path>{
+  @override
+  Path getClip(Size size) {
+    return Path()
+      ..addOval(Rect.fromCircle(
+        center: Offset(size.width / 2.0, size.height / 2.0),
+        radius: min(size.width / 2.0, size.height / 2.0),
+      ));
+  }
+
+  @override
+  bool shouldReclip(CircleClipper oldClipper) => true;
 }
 
 typedef Widget _NeumorphicStyleBuilder(BuildContext context, NeumorphicStyle style);
