@@ -1,1 +1,3 @@
 # flutter_neumorphic
+
+WORK IN PROGRESS, NOT READY FOR PRODUCTION
