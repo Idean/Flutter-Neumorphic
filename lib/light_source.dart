@@ -40,6 +40,8 @@ class LightSource {
     return LightSource(dx * -1, dy * -1);
   }
 
+
+
   static LightSource lerp(LightSource a, LightSource b, double t) {
     assert(t != null);
 
@@ -55,6 +57,17 @@ class LightSource {
       a.dy != b.dy ? lerpDouble(a.dy, b.dy, t) : a.dy,
     );
   }
+
+  LightSource copyWith({
+    double dx,
+    double dy,
+  }) {
+    return LightSource(
+      dx ?? this.dx,
+      dy ?? this.dy,
+    );
+  }
+
 }
 
 Offset mergeOffsetWithDistance(Offset offset, double distance,

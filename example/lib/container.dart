@@ -112,7 +112,7 @@ class _ContainerPageState extends State<ContainerPage> {
             min: Neumorphic.MIN_DEPTH,
             max: Neumorphic.MAX_DEPTH,
             value: depth,
-            onChanged: (value){
+            onChanged: (value) {
               setState(() {
                 depth = value;
               });
@@ -139,10 +139,10 @@ class _ContainerPageState extends State<ContainerPage> {
             min: 0,
             max: 30,
             value: cornerRadius,
-            onChanged: (value){
+            onChanged: (value) {
               setState(() {
                 cornerRadius = value;
-                if(boxShape.isRoundRect) {
+                if (boxShape.isRoundRect) {
                   boxShape = NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(this.cornerRadius));
                 }
               });
@@ -169,7 +169,7 @@ class _ContainerPageState extends State<ContainerPage> {
             min: Neumorphic.MIN_CURVE * 100, //in case of != 0
             max: Neumorphic.MAX_CURVE * 100,
             value: curveFactor,
-            onChanged: (value){
+            onChanged: (value) {
               setState(() {
                 curveFactor = value;
               });
@@ -262,6 +262,41 @@ class _ContainerPageState extends State<ContainerPage> {
 
   List<Widget> lightSourceWidgets() {
     return [
+      Positioned(
+        left: 10,
+        right: 10,
+        child: Slider(
+          min: -1,
+          max: 1,
+          value: lightSource.dx,
+          onChanged: (value) {
+            setState(() {
+              lightSource = lightSource.copyWith(dx: value);
+            });
+          },
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: 10,
+        bottom: 10,
+        child:
+        RotatedBox(
+          quarterTurns: 1,
+          child: Slider(
+            min: -1,
+            max: 1,
+            value: lightSource.dy,
+            onChanged: (value) {
+              setState(() {
+                lightSource = lightSource.copyWith(dy: value);
+              });
+            },
+          ),
+        ),
+      ),
+
+      /**
       Positioned(
         child: RaisedButton(
           onPressed: () {
@@ -378,6 +413,7 @@ class _ContainerPageState extends State<ContainerPage> {
         bottom: 0,
         right: 0,
       ),
+          */
     ];
   }
 }
