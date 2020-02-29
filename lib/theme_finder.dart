@@ -12,46 +12,45 @@ enum CurrentTheme { LIGHT, DARK, SYSTEM }
 const _DARK_THEME_ENABLED = true;
 
 class ThemeHost {
-  final NeumorphicTheme theme;
-  final NeumorphicTheme darkTheme;
-  final CurrentTheme currentTheme;
+  NeumorphicTheme theme;
+  NeumorphicTheme darkTheme;
+  CurrentTheme _currentTheme;
 
-  const ThemeHost({
+  ThemeHost({
     @required this.theme,
     this.darkTheme,
-    this.currentTheme = CurrentTheme.SYSTEM,
-  });
+    CurrentTheme currentTheme = CurrentTheme.SYSTEM,
+  }) : _currentTheme = currentTheme;
 
-  bool get useDark => _DARK_THEME_ENABLED && darkTheme != null && (
-      //forced to use DARK by user
-      currentTheme == CurrentTheme.DARK ||
-      //The setting indicating the current brightness mode of the host platform. If the platform has no preference, platformBrightness defaults to Brightness.light.
-      window.platformBrightness == Brightness.dark
-  );
+  bool get useDark =>
+      _DARK_THEME_ENABLED &&
+      darkTheme != null &&
+      (
+          //forced to use DARK by user
+          currentTheme == CurrentTheme.DARK ||
+              //The setting indicating the current brightness mode of the host platform. If the platform has no preference, platformBrightness defaults to Brightness.light.
+              window.platformBrightness == Brightness.dark);
 
   NeumorphicTheme getCurrentTheme() {
-    if(useDark){
+    if (useDark) {
       return darkTheme;
     } else {
       return theme;
     }
   }
 
+  CurrentTheme get currentTheme => _currentTheme;
+
+  set currentTheme(CurrentTheme value) {
+    _currentTheme = value;
+  }
+
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-          other is ThemeHost &&
-              runtimeType == other.runtimeType &&
-              theme == other.theme &&
-              darkTheme == other.darkTheme &&
-              currentTheme == other.currentTheme;
+      identical(this, other) || other is ThemeHost && runtimeType == other.runtimeType && theme == other.theme && darkTheme == other.darkTheme && currentTheme == other.currentTheme;
 
   @override
-  int get hashCode =>
-      theme.hashCode ^
-      darkTheme.hashCode ^
-      currentTheme.hashCode;
-
+  int get hashCode => theme.hashCode ^ darkTheme.hashCode ^ currentTheme.hashCode;
 }
 
 class NeumorphicThemeProvider extends InheritedWidget {
@@ -76,7 +75,7 @@ class NeumorphicThemeProvider extends InheritedWidget {
   static NeumorphicThemeProvider of(BuildContext context) {
     try {
       return context.dependOnInheritedWidgetOfExactType<NeumorphicThemeProvider>();
-    } catch(t) {
+    } catch (t) {
       return null;
     }
   }
@@ -84,20 +83,21 @@ class NeumorphicThemeProvider extends InheritedWidget {
   static NeumorphicTheme findNeumorphicTheme(BuildContext context) {
     try {
       final provider = NeumorphicThemeProvider.of(context);
-      final ThemeHost host = provider._themeHost;
-      return host.getCurrentTheme();
+      return provider.neumorphicTheme();
     } catch (t) {
       return null;
     }
   }
 
-  static bool useDark(BuildContext context) {
-    try {
-      final provider = NeumorphicThemeProvider.of(context);
-      final ThemeHost host = provider._themeHost;
-      return host.useDark;
-    } catch (t) {
-      return null;
-    }
+  NeumorphicTheme neumorphicTheme() {
+    return this._themeHost.getCurrentTheme();
+  }
+
+  bool isUsingDark() {
+    return _themeHost.useDark;
+  }
+
+  void setCurrentTheme(CurrentTheme currentTheme) {
+    _themeHost.currentTheme = currentTheme;
   }
 }
