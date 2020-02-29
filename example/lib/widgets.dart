@@ -265,6 +265,15 @@ class _ContainersListPageState extends State<WidgetsPage> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicThemeProvider(
+      currentTheme: CurrentTheme.DARK,
+      darkTheme: NeumorphicTheme(
+        baseColor: NeumorphicColors.darkBackground,
+        accentColor: NeumorphicColors.darkAccent,
+        lightSource: LightSource.topLeft,
+        curveFactor: 1,
+        depth: 10,
+        intensity: 0.5,
+      ),
       theme: NeumorphicTheme(
         baseColor: NeumorphicColors.background,
         lightSource: LightSource.topLeft,
@@ -273,51 +282,55 @@ class _ContainersListPageState extends State<WidgetsPage> {
         intensity: 0.5,
       ),
       child: Scaffold(
-        backgroundColor: NeumorphicColors.background,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Neumorphic(
-                child: AppBar(
-                  iconTheme: IconThemeData.fallback(),
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  title: Text(
-                    "Widgets",
-                    style: TextStyle(color: Colors.black),
+        body: FractionallySizedBox( //match parent height
+          heightFactor: 1,
+          child: NeumorphicBackground(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Neumorphic(
+                    child: AppBar(
+                      iconTheme: IconThemeData.fallback(),
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      title: Text(
+                        "Widgets",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                    style: NeumorphicStyle(depth: -8),
                   ),
-                ),
-                style: NeumorphicStyle(depth: -8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        SizedBox(height: 30),
+                        _buildProgress(),
+                        SizedBox(height: 12),
+                        _buildIndeterminateProgress(),
+                        SizedBox(height: 30),
+                        _buildRadios(),
+                        SizedBox(height: 30),
+                        _buildIndicators(),
+                        SizedBox(height: 30),
+                        _buildChecks(),
+                        SizedBox(height: 30),
+                        _buildSlider(),
+                        SizedBox(height: 30),
+                        _buildSwitches(),
+                        SizedBox(height: 30),
+                      ],
+                    ),
+                  )
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    SizedBox(height: 30),
-                    _buildProgress(),
-                    SizedBox(height: 12),
-                    _buildIndeterminateProgress(),
-                    SizedBox(height: 30),
-                    _buildRadios(),
-                    SizedBox(height: 30),
-                    _buildIndicators(),
-                    SizedBox(height: 30),
-                    _buildChecks(),
-                    SizedBox(height: 30),
-                    _buildSlider(),
-                    SizedBox(height: 30),
-                    _buildSwitches(),
-                    SizedBox(height: 30),
-                  ],
-                ),
-              )
-            ],
+            ),
           ),
         ),
       ),

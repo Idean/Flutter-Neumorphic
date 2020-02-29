@@ -9,7 +9,7 @@ import 'flutter_neumorphic.dart';
 enum CurrentTheme { LIGHT, DARK, SYSTEM }
 
 //FORCE TO USE LIGHT THEME FOR NOW, WORK IN PROGRESS
-const _DARK_THEME_ENABLED = false;
+const _DARK_THEME_ENABLED = true;
 
 class ThemeHost {
   final NeumorphicTheme theme;

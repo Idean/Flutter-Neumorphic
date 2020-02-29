@@ -11,7 +11,7 @@ class NeumorphicColors {
   static const accent = Colors.blue;
   static const variant = Colors.cyan;
 
-  static const darkBackground = Color(0x2D2F2F);
+  static const darkBackground = Color(0xFF2D2F2F);
   static const darkAccent = Colors.green;
   static const darkVariant = Colors.blueGrey;
 
