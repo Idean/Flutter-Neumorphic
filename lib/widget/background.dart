@@ -9,7 +9,8 @@ class NeumorphicBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 100),
       color: NeumorphicThemeProvider.findNeumorphicTheme(context).baseColor,
       child: this.child,
     );
