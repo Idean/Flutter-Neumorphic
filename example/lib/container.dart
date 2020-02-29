@@ -14,7 +14,7 @@ class _ContainerPageState extends State<ContainerPage> {
   NeumorphicShape shape = NeumorphicShape.concave;
   NeumorphicBoxShape boxShape = NeumorphicBoxShape.roundRect();
   double depth = 5;
-  double curveFactor = 1;
+  double intensity = 0.5;
   double cornerRadius = 0;
   double height = 0;
 
@@ -24,9 +24,8 @@ class _ContainerPageState extends State<ContainerPage> {
       theme: NeumorphicTheme(
         baseColor: Color(0xffDDDDDD),
         lightSource: LightSource.topLeft,
-        curveFactor: 1,
         depth: 6,
-        intensity: 1,
+        intensity: this.intensity,
       ),
       child: Scaffold(
           backgroundColor: Color(0xffDDDDDD),
@@ -39,7 +38,7 @@ class _ContainerPageState extends State<ContainerPage> {
             children: <Widget>[
               shapeWidget(),
               boxshapeWidget(),
-              curveSelector(),
+              intensitySelector(),
               depthSelector(),
               cornerRadiusSelector(),
               Expanded(
@@ -68,7 +67,6 @@ class _ContainerPageState extends State<ContainerPage> {
         style: NeumorphicStyle(
           shape: this.shape,
           depth: depth,
-          curveFactor: curveFactor / 100,
           lightSource: this.lightSource,
         ),
         child: SizedBox(
@@ -160,28 +158,28 @@ class _ContainerPageState extends State<ContainerPage> {
     );
   }
 
-  Widget curveSelector() {
+  Widget intensitySelector() {
     return Row(
       children: <Widget>[
         Padding(
           padding: EdgeInsets.only(left: 12),
-          child: Text("CurveFactor"),
+          child: Text("Intensity"),
         ),
         Expanded(
           child: Slider(
-            min: Neumorphic.MIN_CURVE * 100, //in case of != 0
-            max: Neumorphic.MAX_CURVE * 100,
-            value: curveFactor,
+            min: Neumorphic.MIN_INTENSITY, //in case of != 0
+            max: Neumorphic.MAX_INTENSITY,
+            value: intensity,
             onChanged: (value) {
               setState(() {
-                curveFactor = value;
+                intensity = value;
               });
             },
           ),
         ),
         Padding(
           padding: EdgeInsets.only(right: 12),
-          child: Text((curveFactor.floor() / 100).toString()),
+          child: Text(((intensity * 100).floor() / 100).toString()),
         ),
       ],
     );

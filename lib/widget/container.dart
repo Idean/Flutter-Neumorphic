@@ -12,6 +12,9 @@ class Neumorphic extends StatelessWidget {
   static const double MIN_DEPTH = -20.0;
   static const double MAX_DEPTH = 20.0;
 
+  static const double MIN_INTENSITY = 0.0;
+  static const double MAX_INTENSITY = 1.0;
+
   static const double MIN_CURVE = 0.0;
   static const double MAX_CURVE = 1.0;
 

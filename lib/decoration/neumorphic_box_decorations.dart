@@ -89,6 +89,7 @@ class NeumorphicBoxDecoration extends Decoration {
       shape: NeumorphicBoxShape.lerp(a.shape, b.shape, t),
       accent: Color.lerp(a.accent, b.accent, t),
       style: a.style.copyWith(
+        intensity: lerpDouble(aStyle.intensity, bStyle.intensity, t),
         depth: lerpDouble(aStyle.depth, bStyle.depth, t),
         baseColor: Color.lerp(aStyle.baseColor, bStyle.baseColor, t),
         lightSource: LightSource.lerp(aStyle.lightSource, bStyle.lightSource, t),

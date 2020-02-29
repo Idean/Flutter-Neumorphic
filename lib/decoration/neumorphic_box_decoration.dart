@@ -48,6 +48,11 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
 
   LightSource source;
 
+
+  static Color maxWhiteColor = Colors.white60; //for intensity = 1
+  static Color maxDarkColor = Colors.black45; //for intensity = 1
+
+
   NeumorphicBoxDecorationPainter(
       {this.accent,
       @required this.style,
@@ -56,8 +61,8 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
     var color = accent ?? style.baseColor;
-    var blackShadowColor = Colors.black45; // TODO : Add intensity ?
-    var whiteShadowColor = Colors.white60; // TODO : Add intensity ?
+    var blackShadowColor = maxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity
+    var whiteShadowColor = maxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity
 
     backgroundPaint = Paint()..color = color;
 
@@ -177,6 +182,9 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
         );
       }
     }
+
+    whiteShadowPaint..color =  maxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity;
+    blackShadowPaint..color = maxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity;
 
     if (shape.isCircle) {
       canvas.saveLayer(layerRect, whiteShadowPaint);

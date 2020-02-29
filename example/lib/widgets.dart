@@ -272,7 +272,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
         lightSource: LightSource.topLeft,
         curveFactor: 1,
         depth: 10,
-        intensity: 0.5,
+        intensity: 0.3,
       ),
       theme: NeumorphicTheme(
         baseColor: NeumorphicColors.background,

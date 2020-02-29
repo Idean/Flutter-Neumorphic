@@ -11,7 +11,7 @@ export 'shape.dart';
 
 //region theme
 const double _defaultDepth = 4;
-const double _defaultIntensity = 0.2;
+const double _defaultIntensity = 0.5;
 const double _defaultCurveFactor = 1;
 const Color _defaultAccent = NeumorphicColors.accent;
 const Color _defaultVariant = NeumorphicColors.variant;
@@ -23,22 +23,23 @@ class NeumorphicTheme {
   final Color accentColor;
   final Color variantColor;
   final double _depth;
-  final double intensity;
+  final double _intensity;
   final LightSource lightSource;
   final double _curveFactor;
 
   double get curveFactor => _curveFactor?.clamp(Neumorphic.MIN_CURVE, Neumorphic.MAX_CURVE);
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
+  double get intensity => _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
   const NeumorphicTheme({
     this.baseColor = _defaultBaseColor,
     double depth = _defaultDepth,
-    this.intensity = _defaultIntensity,
+    double intensity = _defaultIntensity,
     this.accentColor = _defaultAccent,
     this.variantColor = _defaultVariant,
     this.lightSource = _defaultLightSource,
     double curveFactor = _defaultCurveFactor
-  }) : this._depth = depth, this._curveFactor = curveFactor;
+  }) : this._depth = depth, this._curveFactor = curveFactor, this._intensity = intensity;
 
   @override
   String toString() {
@@ -94,7 +95,7 @@ class NeumorphicStyle {
 
   final Color baseColor;
   final double _depth;
-  final double intensity;
+  final double _intensity;
   final LightSource lightSource;
   final double _curveFactor;
 
@@ -106,11 +107,12 @@ class NeumorphicStyle {
     this.baseColor,
     double curveFactor,
     double depth,
-    this.intensity,
-  }) : this._depth = depth, this._curveFactor = curveFactor;
+    double intensity,
+  }) : this._depth = depth, this._curveFactor = curveFactor, this._intensity = intensity;
 
   double get curveFactor => _curveFactor?.clamp(Neumorphic.MIN_CURVE, Neumorphic.MAX_CURVE);
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
+  double get intensity => _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
   NeumorphicStyle copyWithThemeIfNull(NeumorphicTheme theme) {
     return new NeumorphicStyle(
