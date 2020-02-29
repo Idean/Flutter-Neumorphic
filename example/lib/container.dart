@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class ContainerPage extends StatefulWidget {
@@ -17,18 +18,19 @@ class _ContainerPageState extends State<ContainerPage> {
   double intensity = 0.5;
   double cornerRadius = 0;
   double height = 0;
+  Color baseColor = Color(0xffDDDDDD);
 
   @override
   Widget build(BuildContext context) {
     return NeumorphicThemeProvider(
       theme: NeumorphicTheme(
-        baseColor: Color(0xffDDDDDD),
+        baseColor: baseColor,
         lightSource: LightSource.topLeft,
         depth: 6,
         intensity: this.intensity,
       ),
       child: Scaffold(
-          backgroundColor: Color(0xffDDDDDD),
+          backgroundColor: this.baseColor,
           appBar: AppBar(
             backgroundColor: Colors.grey,
           ),
@@ -47,6 +49,7 @@ class _ContainerPageState extends State<ContainerPage> {
                   children: [
                     ...lightSourceWidgets(),
                     Center(child: neumorphic()),
+                    colorPicker(),
                   ],
                 ),
               )
@@ -55,12 +58,74 @@ class _ContainerPageState extends State<ContainerPage> {
     );
   }
 
+
+  Widget colorPicker() {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Row(
+        children: <Widget>[
+          RaisedButton(
+            child: Text("Color"),
+            onPressed: () {
+              changeColor();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  void changeColor() {
+    showDialog(
+      context: context,
+      child: AlertDialog(
+        title: const Text('Pick a color!'),
+        content: SingleChildScrollView(
+          child: ColorPicker(
+            pickerColor: this.baseColor,
+            onColorChanged: (color) {
+              setState(() {
+                this.baseColor = color;
+              });
+            },
+            showLabel: true,
+            pickerAreaHeightPercent: 0.8,
+          ),
+          // Use Material color picker:
+          //
+          // child: MaterialPicker(
+          //   pickerColor: pickerColor,
+          //   onColorChanged: changeColor,
+          //   showLabel: true, // only on portrait mode
+          // ),
+          //
+          // Use Block color picker:
+          //
+          // child: BlockPicker(
+          //   pickerColor: currentColor,
+          //   onColorChanged: changeColor,
+          // ),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: const Text('Close'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget neumorphic() {
     return SizedBox(
       height: 50,
       width: 200,
       child: NeumorphicButton(
-        onClick: (){
+        onClick: () {
 
         },
         shape: boxShape,
