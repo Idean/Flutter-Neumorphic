@@ -43,6 +43,9 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   RRect whiteShadowMaskRect;
   RRect blackShadowMaskRect;
 
+  static Color maxWhiteColor = Colors.white60; //for intensity = 1
+  static Color maxDarkColor = Colors.black45; //for intensity = 1
+
   NeumorphicEmbossBoxDecorationPainter(
       {this.accent,
       @required this.style,
@@ -51,8 +54,8 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
     this.backgroundColor = accent ?? style.baseColor;
-    var blackShadowColor = Colors.black45; // TODO : Add intensity ?
-    var whiteShadowColor = Colors.white60; // TODO : Add intensity ?
+    var blackShadowColor = maxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity
+    var whiteShadowColor = maxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity
 
     backgroundPaint = Paint()..color = backgroundColor;
 
@@ -143,6 +146,9 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
             cornerRadius);
       }
     }
+
+    whiteShadowPaint..color =  maxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity;
+    blackShadowPaint..color = maxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity;
 
     if (shape.isCircle) {
       canvas.drawCircle(circleOffset, radius, backgroundPaint);
