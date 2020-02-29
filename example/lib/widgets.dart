@@ -14,6 +14,9 @@ class _ContainersListPageState extends State<WidgetsPage> {
   bool _switchConcaveEnabled = false;
   bool _switchConvexEnabled = false;
   bool _switchFlatEnabled = false;
+
+  bool useDark = false;
+
   Widget _buildProgress() {
     return Row(
       children: <Widget>[
@@ -265,7 +268,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicThemeProvider(
-      currentTheme: CurrentTheme.LIGHT,
+      currentTheme: useDark ? CurrentTheme.DARK : CurrentTheme.LIGHT,
       darkTheme: NeumorphicTheme(
         baseColor: NeumorphicColors.darkBackground,
         accentColor: NeumorphicColors.darkAccent,
@@ -282,7 +285,8 @@ class _ContainersListPageState extends State<WidgetsPage> {
         intensity: 0.5,
       ),
       child: Scaffold(
-        body: FractionallySizedBox( //match parent height
+        body: FractionallySizedBox(
+          //match parent height
           heightFactor: 1,
           child: NeumorphicBackground(
             child: SingleChildScrollView(
@@ -291,17 +295,34 @@ class _ContainersListPageState extends State<WidgetsPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Neumorphic(
-                    child: AppBar(
-                      iconTheme: IconThemeData.fallback(),
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                      title: Text(
-                        "Widgets",
-                        style: TextStyle(color: Colors.black),
+                  Stack(
+                    children: <Widget>[
+                      Neumorphic(
+                        child: AppBar(
+                          iconTheme: IconThemeData.fallback(),
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                          title: Text(
+                            "Widgets",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                        style: NeumorphicStyle(depth: -8),
                       ),
-                    ),
-                    style: NeumorphicStyle(depth: -8),
+                      Positioned(
+                        right: 0,
+                        bottom: 0,
+                        child: NeumorphicButton(
+                          onClick: (){
+                            setState(() {
+                              useDark = !useDark;
+                            });
+                          },
+                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                          child: Text(useDark ? "Dark" : "Light"),
+                        ),
+                      )
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18.0),
