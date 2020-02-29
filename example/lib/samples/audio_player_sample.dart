@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-class AudioPlayerSample extends StatelessWidget {
+class AudioPlayerSample extends StatefulWidget {
+
+  @override
+  _AudioPlayerSampleState createState() => _AudioPlayerSampleState();
+}
+
+class _AudioPlayerSampleState extends State<AudioPlayerSample> {
+  bool _useDark = false;
+
   @override
   Widget build(BuildContext context) {
     return NeumorphicThemeProvider(
+      currentTheme: _useDark ? CurrentTheme.DARK : CurrentTheme.LIGHT,
       theme: NeumorphicTheme(
         baseColor: Colors.grey[200],
-        intensity: 0.8,
+        intensity: 0.5,
           lightSource: LightSource.topLeft,
           depth: 10
       ),
@@ -59,7 +68,9 @@ class AudioPlayerSample extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: NeumorphicButton(
               onClick: (){
-
+                setState(() {
+                  _useDark = !_useDark;
+                });
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
               shape: NeumorphicBoxShape.circle(),
