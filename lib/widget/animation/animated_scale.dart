@@ -27,7 +27,7 @@ class _AnimatedScaleState extends State<AnimatedScale> with TickerProviderStateM
       ..addListener(() {
         setState(() {
           scale = _animation.value;
-          print("scale $scale");
+          //print("scale $scale");
         });
       });
     _controller.forward();

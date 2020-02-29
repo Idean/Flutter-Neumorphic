@@ -17,31 +17,19 @@ class IndicatorStyle {
   });
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-          other is ProgressStyle &&
-              runtimeType == other.runtimeType &&
-              depth == other.depth &&
-              accent == other.accent &&
-              variant == other.variant;
+  bool operator ==(Object other) => identical(this, other) || other is ProgressStyle && runtimeType == other.runtimeType && depth == other.depth && accent == other.accent && variant == other.variant;
 
   @override
-  int get hashCode =>
-      depth.hashCode ^
-      accent.hashCode ^
-      variant.hashCode;
-
+  int get hashCode => depth.hashCode ^ accent.hashCode ^ variant.hashCode;
 }
 
-enum NeumorphicIndicatorOrientation {
-  vertical,
-  horizontal
-}
+enum NeumorphicIndicatorOrientation { vertical, horizontal }
 
 class NeumorphicIndicator extends StatefulWidget {
   final double percent;
   final double width;
   final double height;
+  final EdgeInsets padding;
   final NeumorphicIndicatorOrientation orientation;
   final IndicatorStyle style;
 
@@ -50,6 +38,7 @@ class NeumorphicIndicator extends StatefulWidget {
     this.percent = 0.5,
     this.orientation = NeumorphicIndicatorOrientation.vertical,
     this.height = double.maxFinite,
+    this.padding = EdgeInsets.zero,
     this.width = double.maxFinite,
     this.style = const IndicatorStyle(),
   }) : super(key: key);
@@ -60,22 +49,16 @@ class NeumorphicIndicator extends StatefulWidget {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is NeumorphicIndicator &&
-              runtimeType == other.runtimeType &&
-              percent == other.percent &&
-              width == other.width &&
-              height == other.height &&
-              orientation == other.orientation &&
-              style == other.style;
+      other is NeumorphicIndicator &&
+          runtimeType == other.runtimeType &&
+          percent == other.percent &&
+          width == other.width &&
+          height == other.height &&
+          orientation == other.orientation &&
+          style == other.style;
 
   @override
-  int get hashCode =>
-      percent.hashCode ^
-      width.hashCode ^
-      height.hashCode ^
-      orientation.hashCode ^
-      style.hashCode;
-
+  int get hashCode => percent.hashCode ^ width.hashCode ^ height.hashCode ^ orientation.hashCode ^ style.hashCode;
 }
 
 class _NeumorphicIndicatorState extends State<NeumorphicIndicator> with TickerProviderStateMixin {
@@ -126,20 +109,19 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator> with TickerPr
           heightFactor: widget.orientation == NeumorphicIndicatorOrientation.vertical ? widget.percent : 1,
           widthFactor: widget.orientation == NeumorphicIndicatorOrientation.horizontal ? widget.percent : 1,
           alignment: widget.orientation == NeumorphicIndicatorOrientation.horizontal ? Alignment.centerLeft : Alignment.bottomCenter,
-          child: ClipRRect(
-            clipBehavior: Clip.antiAlias,
-            borderRadius: NeumorphicBoxShape.stadium().borderRadius,
-            child: Container(
-                decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  widget.style.accent ?? theme.accentColor,
-                  widget.style.variant ?? theme.variantColor
-                ],
-              ),
-            )),
+          child: Padding(
+            padding: widget.padding,
+            child: Neumorphic(
+              shape: NeumorphicBoxShape.stadium(),
+              child: Container(
+                  decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [widget.style.accent ?? theme.accentColor, widget.style.variant ?? theme.variantColor],
+                ),
+              )),
+            ),
           ),
         ),
       ),

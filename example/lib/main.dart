@@ -1,4 +1,5 @@
 import 'package:example/samples/audio_player_sample.dart';
+import 'package:example/samples/credit_card_sample.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -77,11 +78,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
               SizedBox(height: 30),
+              Text("samples :"),
+              SizedBox(height: 12),
               RaisedButton(
                 child: Text("sample audio"),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context){
                     return AudioPlayerSample();
+                  }));
+                },
+              ),
+              SizedBox(height: 12),
+              RaisedButton(
+                child: Text("credit card"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                    return CreditCardSample();
                   }));
                 },
               ),

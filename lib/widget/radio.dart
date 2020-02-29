@@ -10,11 +10,16 @@ class NeumorphicRadioStyle {
   final double selectedDepth;
   final double unselectedDepth;
 
-  //TODO add some stylable elements here
+  final double intensity;
+  final NeumorphicBoxShape boxShape;
+  final NeumorphicShape shape;
 
   const NeumorphicRadioStyle({
     this.selectedDepth,
     this.unselectedDepth,
+    this.intensity,
+    this.boxShape,
+    this.shape
   });
 }
 
@@ -62,11 +67,12 @@ class _NeumorphicRadioState<T> extends State<NeumorphicRadio<T>> {
       },
       pressed: isSelected,
       minDistance: selectedDepth,
-      shape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(5)),
+      shape: widget.style.boxShape ?? NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(5)),
       child: widget.child,
       style: NeumorphicStyle(
+        intensity: widget.style.intensity,
         depth: isSelected ? selectedDepth : unselectedDepth ,
-        shape: NeumorphicShape.flat,
+        shape: widget.style.shape ?? NeumorphicShape.flat,
       ),
     );
   }
