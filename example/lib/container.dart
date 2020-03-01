@@ -29,33 +29,58 @@ class _ContainerPageState extends State<ContainerPage> {
         depth: 6,
         intensity: this.intensity,
       ),
-      child: Scaffold(
-          backgroundColor: this.baseColor,
-          appBar: AppBar(
-            backgroundColor: Colors.grey,
-          ),
-          body: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              shapeWidget(),
-              boxshapeWidget(),
-              intensitySelector(),
-              depthSelector(),
-              cornerRadiusSelector(),
-              Expanded(
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    ...lightSourceWidgets(),
-                    Center(child: neumorphic()),
-                    colorPicker(),
-                  ],
-                ),
-              )
-            ],
-          )),
+      child: _Page(),
     );
+  }
+
+}
+
+class _Page extends StatefulWidget {
+  @override
+  __PageState createState() => __PageState();
+}
+
+class __PageState extends State<_Page> {
+  final Color buttonActiveColor = Colors.yellow;
+  final Color buttonInnactiveColor = Colors.grey;
+
+  LightSource lightSource = LightSource.topLeft;
+  NeumorphicShape shape = NeumorphicShape.concave;
+  NeumorphicBoxShape boxShape = NeumorphicBoxShape.roundRect();
+  double depth = 5;
+  double intensity = 0.5;
+  double cornerRadius = 0;
+  double height = 0;
+  Color baseColor = Color(0xffDDDDDD);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: this.baseColor,
+        appBar: AppBar(
+          backgroundColor: Colors.grey,
+        ),
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            shapeWidget(),
+            boxshapeWidget(),
+            intensitySelector(),
+            depthSelector(),
+            cornerRadiusSelector(),
+            Expanded(
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  ...lightSourceWidgets(),
+                  Center(child: neumorphic()),
+                  colorPicker(),
+                ],
+              ),
+            )
+          ],
+        ));
   }
 
 
@@ -93,20 +118,6 @@ class _ContainerPageState extends State<ContainerPage> {
             showLabel: true,
             pickerAreaHeightPercent: 0.8,
           ),
-          // Use Material color picker:
-          //
-          // child: MaterialPicker(
-          //   pickerColor: pickerColor,
-          //   onColorChanged: changeColor,
-          //   showLabel: true, // only on portrait mode
-          // ),
-          //
-          // Use Block color picker:
-          //
-          // child: BlockPicker(
-          //   pickerColor: currentColor,
-          //   onColorChanged: changeColor,
-          // ),
         ),
         actions: <Widget>[
           FlatButton(
@@ -120,48 +131,43 @@ class _ContainerPageState extends State<ContainerPage> {
     );
   }
 
+  bool _oppositeLightSource = true;
+
   Widget neumorphic() {
     return SizedBox(
-      height: 50,
+      height: 100,
       width: 200,
       child: NeumorphicButton(
-        onClick: () {
-
-        },
-        shape: boxShape,
-        style: NeumorphicStyle(
-          shape: this.shape,
-          depth: depth,
-          lightSource: this.lightSource,
-        ),
-        child: SizedBox(
-          height: 150,
-          width: 150,
-          /*
-          child: Center(
-            child: Text(
-              "hello world".toUpperCase(),
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w800,
-                color: Colors.black.withOpacity(0.3),
-                shadows: <Shadow>[
-                  Shadow(
-                    offset: Offset(2.0, 2.0),
-                    blurRadius: 3.0,
-                    color: Colors.white,
-                  ),
-                  Shadow(
-                    offset: Offset(-2.0, -2.0),
-                    blurRadius: 2.0,
-                    color: Colors.grey.withOpacity(0.3),
-                  ),
-                ],
-              ),
+          border: NeumorphicBorder(
+              color: NeumorphicTheme.of(context).theme.accentColor,
+              width: 15,
+              oppositeLightSource: _oppositeLightSource
+          ),
+          onClick: () {
+            setState(() {
+              _oppositeLightSource = !_oppositeLightSource;
+            });
+          },
+          shape: boxShape,
+          style: NeumorphicStyle(
+            shape: this.shape,
+            depth: depth,
+            lightSource: this.lightSource,
+          ),
+          child: SizedBox.expand(
+            child: Center(child: Text("child")),
+          )
+        /*Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: NeumorphicButton(
+            shape: NeumorphicBoxShape.circle(),
+            style: NeumorphicStyle(
+              lightSource: lightSource.opposite(),
+              shape: NeumorphicShape.flat
             ),
           ),
-           */
         ),
+         */
       ),
     );
   }
@@ -364,3 +370,4 @@ class _ContainerPageState extends State<ContainerPage> {
     ];
   }
 }
+

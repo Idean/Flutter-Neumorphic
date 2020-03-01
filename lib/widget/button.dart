@@ -20,12 +20,14 @@ class NeumorphicButton extends StatefulWidget {
   final NeumorphicBoxShape shape;
   final EdgeInsets padding;
   final bool pressed; //null, true, false
+  final NeumorphicBorder border;
   final NeumorphicButtonClickListener onClick;
 
   const NeumorphicButton({
     Key key,
     this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     this.child,
+    this.border,
     this.pressed, //true/false if you want to change the state of the button
     this.shape,
     this.accent,
@@ -115,6 +117,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       child: AnimatedScale(
         scale: _getScale(),
         child: Neumorphic(
+          border: widget.border,
           accent: widget.accent,
           padding: widget.padding,
           shape: widget.shape,

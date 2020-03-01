@@ -68,6 +68,14 @@ class LightSource {
     );
   }
 
+  LightSource opposite() {
+    Offset offset = this.offset.scale(-1, -1);
+    return LightSource(
+      offset.dy,
+      offset.dx
+    );
+  }
+
 }
 
 Offset mergeOffsetWithDistance(Offset offset, double distance,

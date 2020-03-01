@@ -7,6 +7,25 @@ import 'package:flutter_neumorphic/theme_finder.dart';
 import '../NeumorphicBoxShape.dart';
 import '../flutter_neumorphic.dart';
 
+class NeumorphicBorder {
+  final Color color;
+  final double width;
+  final bool oppositeLightSource;
+
+  NeumorphicBorder({
+    this.color,
+    this.width,
+    this.oppositeLightSource = true,
+  });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is NeumorphicBorder && runtimeType == other.runtimeType && color == other.color && width == other.width && oppositeLightSource == other.oppositeLightSource;
+
+  @override
+  int get hashCode => color.hashCode ^ width.hashCode ^ oppositeLightSource.hashCode;
+}
+
 @immutable
 class Neumorphic extends StatelessWidget {
   static const double MIN_DEPTH = -20.0;
@@ -25,6 +44,8 @@ class Neumorphic extends StatelessWidget {
   final NeumorphicBoxShape shape;
   final Duration duration;
 
+  final NeumorphicBorder border;
+
   //forces have 2 different widgets if the shape changes
   final Key _circleKey = Key("circle");
   final Key _rectangleKey = Key("rectangle");
@@ -34,6 +55,7 @@ class Neumorphic extends StatelessWidget {
     this.child,
     this.duration = const Duration(milliseconds: 100),
     this.style,
+    this.border,
     this.accent,
     this.shape,
     this.padding = const EdgeInsets.all(0),
@@ -48,7 +70,33 @@ class Neumorphic extends StatelessWidget {
     return _NeumorphicStyleAnimator(
         duration: this.duration,
         style: this.style,
-        builder: (context, style) {
+        builder: (context, s) {
+          NeumorphicStyle style = s;
+
+          Widget widgetChild = this.child;
+          if (border != null) {
+            //if have a border, add a neumorphic with same boxshape
+            //and opposite lightsource
+            widgetChild = Padding(
+              padding: EdgeInsets.all(border.width ?? 0),
+              child: Neumorphic(
+                padding: this.padding,
+                shape: this.shape,
+                style: style.copyWith(
+                  lightSource: border.oppositeLightSource ? style.lightSource.opposite() : style.lightSource,
+                ),
+                child: this.child,
+              ),
+            );
+
+            //and used style have border color
+            style = style.copyWith(baseColor: border.color);
+          } else {
+            widgetChild = Padding(
+              padding: this.padding,
+              child: widgetChild,
+            );
+          }
 
           //print("${style.depth}");
           final decorator = NeumorphicBoxDecoration(accent: accent, style: style, shape: shape);
@@ -57,12 +105,12 @@ class Neumorphic extends StatelessWidget {
             accent: this.accent,
             style: style,
             shape: this.shape,
-            child: this.child,
+            child: widgetChild,
           );
 
           Widget clippedChild;
-          if(shape.isCircle) {
-            clippedChild = ClipPath(clipper: CircleClipper(),child: child);
+          if (shape.isCircle) {
+            clippedChild = ClipPath(clipper: CircleClipper(), child: child);
           } else {
             clippedChild = ClipRRect(borderRadius: shape.borderRadius, child: child);
           }
@@ -72,13 +120,12 @@ class Neumorphic extends StatelessWidget {
             duration: this.duration,
             child: clippedChild,
             decoration: decorator,
-            padding: this.padding,
           );
         });
   }
 }
 
-class CircleClipper extends CustomClipper<Path>{
+class CircleClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     return Path()
