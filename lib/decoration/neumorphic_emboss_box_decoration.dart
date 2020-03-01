@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' as materialColors; //TODO rmove this latr
 import 'package:flutter/painting.dart';
 
 import '../NeumorphicBoxShape.dart';
@@ -44,9 +43,6 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   RRect whiteShadowMaskRect;
   RRect blackShadowMaskRect;
 
-  static Color maxWhiteColor = materialColors.Colors.white60; //for intensity = 1
-  static Color maxDarkColor = materialColors.Colors.black45; //for intensity = 1
-
   NeumorphicEmbossBoxDecorationPainter(
       {this.accent,
       @required this.style,
@@ -55,8 +51,8 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
     this.backgroundColor = accent ?? style.baseColor;
-    var blackShadowColor = maxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity
-    var whiteShadowColor = maxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity
+    var blackShadowColor = NeumorphicColors.embossMaxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity
+    var whiteShadowColor = NeumorphicColors.embossMaxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity
 
     backgroundPaint = Paint()..color = backgroundColor;
 
@@ -148,8 +144,8 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       }
     }
 
-    whiteShadowPaint..color =  maxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity;
-    blackShadowPaint..color = maxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity;
+    whiteShadowPaint..color =  NeumorphicColors.embossMaxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity;
+    blackShadowPaint..color = NeumorphicColors.embossMaxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity;
 
     if (shape.isCircle) {
       canvas.drawCircle(circleOffset, radius, backgroundPaint);

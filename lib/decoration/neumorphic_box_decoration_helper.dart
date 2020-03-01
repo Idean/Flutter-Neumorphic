@@ -1,5 +1,4 @@
 
-import 'package:flutter/material.dart' as materialColors; //TODO rmove this later ?
 import 'package:flutter/widgets.dart';
 
 import '../flutter_neumorphic.dart';
@@ -13,8 +12,8 @@ Shader getGradientShader(Rect gradientRect, LightSource source) {
     begin: Alignment(source.dx, source.dy),
     end: Alignment(sourceInvert.dx, sourceInvert.dy),
     colors: <Color>[
-      materialColors.Colors.black12,
-      materialColors.Colors.white12,
+      NeumorphicColors.gradientShaderDarkColor,
+      NeumorphicColors.gradientShaderWhiteColor
     ],
     stops: [
       0,

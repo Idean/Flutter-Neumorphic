@@ -2,7 +2,6 @@ import 'dart:math';
 
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' as materialColors; //remove this later ?
 import 'package:flutter/painting.dart';
 
 import '../NeumorphicBoxShape.dart';
@@ -50,11 +49,6 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
 
   LightSource source;
 
-
-  static Color maxWhiteColor = materialColors.Colors.white; //for intensity = 1
-  static Color maxDarkColor = materialColors.Colors.black45; //for intensity = 1
-
-
   NeumorphicBoxDecorationPainter(
       {this.accent,
       @required this.style,
@@ -63,8 +57,8 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
     var color = accent ?? style.baseColor;
-    var blackShadowColor = maxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity
-    var whiteShadowColor = maxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity
+    var blackShadowColor = NeumorphicColors.decorationMaxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity
+    var whiteShadowColor = NeumorphicColors.decorationMaxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity
 
     backgroundPaint = Paint()..color = color;
 
@@ -185,8 +179,8 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
       }
     }
 
-    whiteShadowPaint..color =  maxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity;
-    blackShadowPaint..color = maxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity;
+    whiteShadowPaint..color =  NeumorphicColors.decorationMaxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity;
+    blackShadowPaint..color = NeumorphicColors.decorationMaxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity;
 
     if (shape.isCircle) {
       canvas.saveLayer(layerRect, whiteShadowPaint);
