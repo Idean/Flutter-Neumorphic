@@ -13,8 +13,8 @@ class _CreditCardSampleState extends State<CreditCardSample> {
 
   @override
   Widget build(BuildContext context) {
-    return NeumorphicThemeProvider(
-      theme: NeumorphicTheme(baseColor: Colors.grey[200], intensity: 0.5, lightSource: LightSource.topLeft, depth: 10),
+    return NeumorphicTheme(
+      theme: NeumorphicThemeData(baseColor: Colors.grey[200], intensity: 0.5, lightSource: LightSource.topLeft, depth: 10),
       child: Scaffold(
         body: SafeArea(
           child: NeumorphicBackground(child: _PageContent()),
@@ -201,7 +201,7 @@ class __PageContentState extends State<_PageContent> {
                 setState(() {
                   _useDark = !_useDark;
 
-                  NeumorphicThemeProvider.of(context).setCurrentTheme(
+                  NeumorphicTheme.of(context).setCurrentTheme(
                     _useDark ? CurrentTheme.DARK : CurrentTheme.LIGHT
                   );
 

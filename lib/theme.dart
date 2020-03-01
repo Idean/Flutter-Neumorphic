@@ -18,7 +18,7 @@ const Color _defaultVariant = NeumorphicColors.variant;
 const LightSource _defaultLightSource = LightSource.topLeft;
 const Color _defaultBaseColor = NeumorphicColors.background;
 
-class NeumorphicTheme {
+class NeumorphicThemeData {
   final Color baseColor;
   final Color accentColor;
   final Color variantColor;
@@ -31,7 +31,7 @@ class NeumorphicTheme {
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
   double get intensity => _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
-  const NeumorphicTheme({
+  const NeumorphicThemeData({
     this.baseColor = _defaultBaseColor,
     double depth = _defaultDepth,
     double intensity = _defaultIntensity,
@@ -49,7 +49,7 @@ class NeumorphicTheme {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is NeumorphicTheme &&
+          other is NeumorphicThemeData &&
               runtimeType == other.runtimeType &&
               baseColor == other.baseColor &&
               accentColor == other.accentColor &&
@@ -80,12 +80,12 @@ class NeumorphicTheme {
 const NeumorphicShape _defaultShape = NeumorphicShape.concave;
 const double _defaultBorderRadius = 5;
 
-const neumorphicDefaultTheme = NeumorphicTheme(
+const neumorphicDefaultTheme = NeumorphicThemeData(
   baseColor: NeumorphicColors.background,
   accentColor: NeumorphicColors.accent,
   variantColor: NeumorphicColors.variant,
 );
-const neumorphicDefaultDarkTheme = NeumorphicTheme(
+const neumorphicDefaultDarkTheme = NeumorphicThemeData(
   baseColor: NeumorphicColors.darkBackground,
   accentColor: NeumorphicColors.darkAccent,
   variantColor: NeumorphicColors.darkVariant,
@@ -114,7 +114,7 @@ class NeumorphicStyle {
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
   double get intensity => _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
-  NeumorphicStyle copyWithThemeIfNull(NeumorphicTheme theme) {
+  NeumorphicStyle copyWithThemeIfNull(NeumorphicThemeData theme) {
     return new NeumorphicStyle(
         baseColor: this.baseColor ?? theme.baseColor,
         shape: this.shape,

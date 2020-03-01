@@ -60,7 +60,7 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch> with SingleTickerPr
 
   @override
   Widget build(BuildContext context) {
-    final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
+    final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
     return SizedBox(
       height: widget.height,
       child: AspectRatio(
@@ -109,13 +109,13 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch> with SingleTickerPr
     return depth;
   }
 
-  Color _getTrackColor(NeumorphicTheme theme) {
+  Color _getTrackColor(NeumorphicThemeData theme) {
     return widget.value == true
         ? widget.style.activeTrackColor ?? theme.accentColor
         : widget.style.inactiveTrackColor ?? theme.baseColor;
   }
 
-  Color _getThumbColor(NeumorphicTheme theme) {
+  Color _getThumbColor(NeumorphicThemeData theme) {
     Color color = widget.value == true
         ? widget.style.activeThumbColor
         : widget.style.inactiveThumbColor;

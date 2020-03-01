@@ -56,7 +56,7 @@ class _NeumorphicRadioState<T> extends State<NeumorphicRadio<T>> {
 
   @override
   Widget build(BuildContext context) {
-    final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
+    final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
 
     final double selectedDepth = -1 * (widget.style.selectedDepth ?? theme.depth).abs();
     final double unselectedDepth = (widget.style.unselectedDepth ?? theme.depth).abs();

@@ -12,8 +12,8 @@ enum CurrentTheme { LIGHT, DARK, SYSTEM }
 const _DARK_THEME_ENABLED = true;
 
 class ThemeHost {
-  NeumorphicTheme theme;
-  NeumorphicTheme darkTheme;
+  NeumorphicThemeData theme;
+  NeumorphicThemeData darkTheme;
   CurrentTheme _currentTheme;
 
   ThemeHost({
@@ -31,7 +31,7 @@ class ThemeHost {
               //The setting indicating the current brightness mode of the host platform. If the platform has no preference, platformBrightness defaults to Brightness.light.
               window.platformBrightness == Brightness.dark);
 
-  NeumorphicTheme getCurrentTheme() {
+  NeumorphicThemeData getCurrentTheme() {
     if (useDark) {
       return darkTheme;
     } else {
@@ -53,15 +53,15 @@ class ThemeHost {
   int get hashCode => theme.hashCode ^ darkTheme.hashCode ^ currentTheme.hashCode;
 }
 
-class NeumorphicThemeProvider extends InheritedWidget {
+class NeumorphicTheme extends InheritedWidget {
   final Widget child;
   final ThemeHost _themeHost;
 
-  NeumorphicThemeProvider({
+  NeumorphicTheme({
     Key key,
     @required this.child,
-    NeumorphicTheme theme = neumorphicDefaultTheme,
-    NeumorphicTheme darkTheme = neumorphicDefaultDarkTheme,
+    NeumorphicThemeData theme = neumorphicDefaultTheme,
+    NeumorphicThemeData darkTheme = neumorphicDefaultDarkTheme,
     CurrentTheme currentTheme,
   }) : this._themeHost = ThemeHost(
           theme: theme,
@@ -70,26 +70,26 @@ class NeumorphicThemeProvider extends InheritedWidget {
         );
 
   @override
-  bool updateShouldNotify(NeumorphicThemeProvider old) => _themeHost != old._themeHost;
+  bool updateShouldNotify(NeumorphicTheme old) => _themeHost != old._themeHost;
 
-  static NeumorphicThemeProvider of(BuildContext context) {
+  static NeumorphicTheme of(BuildContext context) {
     try {
-      return context.dependOnInheritedWidgetOfExactType<NeumorphicThemeProvider>();
+      return context.dependOnInheritedWidgetOfExactType<NeumorphicTheme>();
     } catch (t) {
       return null;
     }
   }
 
-  static NeumorphicTheme findNeumorphicTheme(BuildContext context) {
+  static NeumorphicThemeData getCurrentTheme(BuildContext context) {
     try {
-      final provider = NeumorphicThemeProvider.of(context);
-      return provider.neumorphicTheme();
+      final provider = NeumorphicTheme.of(context);
+      return provider.current();
     } catch (t) {
       return null;
     }
   }
 
-  NeumorphicTheme neumorphicTheme() {
+  NeumorphicThemeData current() {
     return this._themeHost.getCurrentTheme();
   }
 

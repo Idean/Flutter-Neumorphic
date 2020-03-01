@@ -12,9 +12,9 @@ class _AudioPlayerSampleState extends State<AudioPlayerSample> {
 
   @override
   Widget build(BuildContext context) {
-    return NeumorphicThemeProvider(
+    return NeumorphicTheme(
       currentTheme: _useDark ? CurrentTheme.DARK : CurrentTheme.LIGHT,
-      theme: NeumorphicTheme(
+      theme: NeumorphicThemeData(
         baseColor: Colors.grey[200],
         intensity: 0.5,
           lightSource: LightSource.topLeft,

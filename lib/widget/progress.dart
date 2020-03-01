@@ -98,7 +98,7 @@ class _NeumorphicProgressState extends State<NeumorphicProgress> with TickerProv
   Widget build(BuildContext context) {
     //print("widget.style.depth: ${widget.style.depth}");
 
-    final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
+    final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
     return SizedBox(
       height: widget.height,
       child: FractionallySizedBox(
@@ -206,7 +206,7 @@ class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressInde
 
   @override
   Widget build(BuildContext context) {
-    final NeumorphicTheme theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
+    final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
 
     return FractionallySizedBox(
       widthFactor: 1,

@@ -107,7 +107,7 @@ class _NeumorphicStyleAnimator extends StatefulWidget {
 }
 
 class _NeumorphicStyleAnimatorState extends State<_NeumorphicStyleAnimator> with TickerProviderStateMixin {
-  NeumorphicTheme _theme;
+  NeumorphicThemeData _theme;
   NeumorphicStyle _animatedStyle;
 
   AnimationController _controller;
@@ -150,12 +150,12 @@ class _NeumorphicStyleAnimatorState extends State<_NeumorphicStyleAnimator> with
   }
 
   void _initStyle() {
-    _theme = NeumorphicThemeProvider.findNeumorphicTheme(context) ?? neumorphicDefaultTheme;
+    _theme = NeumorphicTheme.getCurrentTheme(context) ?? neumorphicDefaultTheme;
     _animatedStyle = (widget.style ?? NeumorphicStyle()).copyWithThemeIfNull(_theme);
   }
 
   void updateStyle(NeumorphicStyle oldStyle, NeumorphicStyle newStyle) {
-    final newTheme = NeumorphicThemeProvider.findNeumorphicTheme(context) ?? neumorphicDefaultTheme;
+    final newTheme = NeumorphicTheme.getCurrentTheme(context) ?? neumorphicDefaultTheme;
     if (newTheme != _theme) {
       _theme = newTheme;
     }

@@ -123,7 +123,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
   }
 
   Widget _generateThumb(BuildContext context){
-   final theme = NeumorphicThemeProvider.findNeumorphicTheme(context);
+   final theme = NeumorphicTheme.getCurrentTheme(context);
    return Neumorphic(
      style: NeumorphicStyle(
        shape: NeumorphicShape.concave

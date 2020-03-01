@@ -267,9 +267,9 @@ class _ContainersListPageState extends State<WidgetsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return NeumorphicThemeProvider(
+    return NeumorphicTheme(
       currentTheme: useDark ? CurrentTheme.DARK : CurrentTheme.LIGHT,
-      darkTheme: NeumorphicTheme(
+      darkTheme: NeumorphicThemeData(
         baseColor: NeumorphicColors.darkBackground,
         accentColor: NeumorphicColors.darkAccent,
         lightSource: LightSource.topLeft,
@@ -277,7 +277,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
         depth: 10,
         intensity: 0.3,
       ),
-      theme: NeumorphicTheme(
+      theme: NeumorphicThemeData(
         baseColor: NeumorphicColors.background,
         lightSource: LightSource.topLeft,
         curveFactor: 1,
