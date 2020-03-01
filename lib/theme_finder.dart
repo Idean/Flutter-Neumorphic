@@ -82,13 +82,13 @@ class NeumorphicTheme extends InheritedWidget {
   static NeumorphicThemeData getCurrentTheme(BuildContext context) {
     try {
       final provider = NeumorphicTheme.of(context);
-      return provider.current();
+      return provider.theme;
     } catch (t) {
       return null;
     }
   }
 
-  NeumorphicThemeData current() {
+  NeumorphicThemeData get theme {
     return this._themeHost.getCurrentTheme();
   }
 
