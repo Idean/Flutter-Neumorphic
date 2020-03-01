@@ -19,7 +19,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^4.0.4
 
   flutter_neumorphic:
     path: ../
