@@ -15,12 +15,11 @@ class _ContainersListPageState extends State<ContainersListPage> {
     return NeumorphicTheme(
       currentTheme: CurrentTheme.SYSTEM,
       theme: NeumorphicThemeData(
-        baseColor: NeumorphicColors.background,
         lightSource: LightSource.topLeft,
         curveFactor: 1,
         accentColor: NeumorphicColors.accent,
         depth: 8,
-        intensity: 0.2,
+        intensity: 0.5,
       ),
       child: Page(),
     );

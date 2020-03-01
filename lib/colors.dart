@@ -7,7 +7,7 @@ import 'package:flutter/painting.dart';
 import 'light_source.dart';
 
 class NeumorphicColors {
-  static const background = Color(0xffF1F2F4);
+  static const background = Color(0xFFDDE6E8);
   static const accent = Colors.blue;
   static const variant = Colors.cyan;
 
