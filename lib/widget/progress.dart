@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
@@ -10,10 +9,15 @@ class ProgressStyle {
   final Color accent;
   final Color variant;
 
+  final AlignmentGeometry progressGradientStart;
+  final AlignmentGeometry progressGradientEnd;
+
   const ProgressStyle({
     this.depth,
     this.borderRadius = 10.0,
     this.accent,
+    this.progressGradientStart,
+    this.progressGradientEnd,
     this.variant,
   });
 
@@ -125,8 +129,8 @@ class _NeumorphicProgressState extends State<NeumorphicProgress> with TickerProv
               child: Container(
                   decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
+                  begin: widget.style.progressGradientStart ?? Alignment.centerLeft,
+                  end: widget.style.progressGradientEnd ?? Alignment.centerRight,
                   colors: [widget.style.accent ?? theme.accentColor, widget.style.variant ?? theme.variantColor],
                 ),
               )),
@@ -229,8 +233,8 @@ class _NeumorphicProgressIndeterminateState extends State<NeumorphicProgressInde
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
+                        begin: widget.style.progressGradientStart ?? Alignment.centerLeft,
+                        end: widget.style.progressGradientEnd ?? Alignment.centerRight,
                         colors: [widget.style.accent ?? theme.accentColor, widget.style.variant ?? theme.variantColor],
                       ),
                     ),
