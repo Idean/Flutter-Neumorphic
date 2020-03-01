@@ -24,10 +24,26 @@ class ProgressStyle {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ProgressStyle && runtimeType == other.runtimeType && depth == other.depth && borderRadius == other.borderRadius && accent == other.accent && variant == other.variant;
+          other is ProgressStyle &&
+              runtimeType == other.runtimeType &&
+              depth == other.depth &&
+              borderRadius == other.borderRadius &&
+              accent == other.accent &&
+              variant == other.variant &&
+              progressGradientStart == other.progressGradientStart &&
+              progressGradientEnd == other.progressGradientEnd;
 
   @override
-  int get hashCode => depth.hashCode ^ borderRadius.hashCode ^ accent.hashCode ^ variant.hashCode;
+  int get hashCode =>
+      depth.hashCode ^
+      borderRadius.hashCode ^
+      accent.hashCode ^
+      variant.hashCode ^
+      progressGradientStart.hashCode ^
+      progressGradientEnd.hashCode;
+
+
+
 }
 
 class NeumorphicProgress extends StatefulWidget {
