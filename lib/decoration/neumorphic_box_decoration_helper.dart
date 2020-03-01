@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+
+import 'package:flutter/material.dart' as materialColors; //TODO rmove this later ?
+import 'package:flutter/widgets.dart';
 
 import '../flutter_neumorphic.dart';
 import '../theme.dart';
@@ -12,8 +13,8 @@ Shader getGradientShader(Rect gradientRect, LightSource source) {
     begin: Alignment(source.dx, source.dy),
     end: Alignment(sourceInvert.dx, sourceInvert.dy),
     colors: <Color>[
-      Colors.black12,
-      Colors.white12,
+      materialColors.Colors.black12,
+      materialColors.Colors.white12,
     ],
     stops: [
       0,

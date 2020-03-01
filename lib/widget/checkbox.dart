@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/NeumorphicBoxShape.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -62,7 +62,7 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Icon(
-          Icons.check,
+          material.Icons.check,
           color: isSelected ? theme.baseColor : accent,
           size: 20.0,
         ),

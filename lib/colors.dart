@@ -1,19 +1,17 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as material;
 import 'package:flutter/painting.dart';
-
-import 'light_source.dart';
 
 class NeumorphicColors {
   static const background = Color(0xFFDDE6E8);
-  static const accent = Colors.blue;
-  static const variant = Colors.cyan;
+  static const accent = material.Colors.blue;
+  static const variant = material.Colors.cyan;
 
   static const darkBackground = Color(0xFF2D2F2F);
-  static const darkAccent = Colors.green;
-  static const darkVariant = Colors.blueGrey;
+  static const darkAccent = material.Colors.green;
+  static const darkVariant = material.Colors.blueGrey;
 
   /// Generate a shadow color from the [base] color and a relative [intensity].
   /// Positive intensity denotes a darker shade while negative intensity

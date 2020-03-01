@@ -1,6 +1,5 @@
 import 'package:example/samples/audio_player_sample.dart';
 import 'package:example/samples/credit_card_sample.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 

@@ -1,7 +1,8 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart' as materialColors; //TODO rmove this latr
+import 'package:flutter/painting.dart';
 
 import '../NeumorphicBoxShape.dart';
 import '../flutter_neumorphic.dart';
@@ -43,8 +44,8 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   RRect whiteShadowMaskRect;
   RRect blackShadowMaskRect;
 
-  static Color maxWhiteColor = Colors.white60; //for intensity = 1
-  static Color maxDarkColor = Colors.black45; //for intensity = 1
+  static Color maxWhiteColor = materialColors.Colors.white60; //for intensity = 1
+  static Color maxDarkColor = materialColors.Colors.black45; //for intensity = 1
 
   NeumorphicEmbossBoxDecorationPainter(
       {this.accent,

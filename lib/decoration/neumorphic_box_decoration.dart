@@ -1,7 +1,9 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart' as materialColors; //remove this later ?
+import 'package:flutter/painting.dart';
 
 import '../NeumorphicBoxShape.dart';
 import '../flutter_neumorphic.dart';
@@ -49,8 +51,8 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
   LightSource source;
 
 
-  static Color maxWhiteColor = Colors.white; //for intensity = 1
-  static Color maxDarkColor = Colors.black45; //for intensity = 1
+  static Color maxWhiteColor = materialColors.Colors.white; //for intensity = 1
+  static Color maxDarkColor = materialColors.Colors.black45; //for intensity = 1
 
 
   NeumorphicBoxDecorationPainter(

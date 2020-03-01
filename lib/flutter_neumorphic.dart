@@ -1,5 +1,6 @@
 library flutter_neumorphic;
 
+export 'package:flutter/widgets.dart';
 export 'colors.dart';
 export 'widget/container.dart';
 export 'widget/button.dart';

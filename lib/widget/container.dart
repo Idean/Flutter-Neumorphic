@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/decoration/neumorphic_box_decorations.dart';
 import 'package:flutter_neumorphic/theme_finder.dart';
 
