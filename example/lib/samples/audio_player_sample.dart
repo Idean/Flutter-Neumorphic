@@ -15,7 +15,7 @@ class _AudioPlayerSampleState extends State<AudioPlayerSample> {
     return NeumorphicTheme(
       currentTheme: _useDark ? CurrentTheme.DARK : CurrentTheme.LIGHT,
       theme: NeumorphicThemeData(
-        baseColor: Colors.grey[200],
+        baseColor: Color(0xFFDDE6E8),
         intensity: 0.5,
           lightSource: LightSource.topLeft,
           depth: 10

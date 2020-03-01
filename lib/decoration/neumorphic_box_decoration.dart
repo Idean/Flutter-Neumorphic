@@ -49,7 +49,7 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
   LightSource source;
 
 
-  static Color maxWhiteColor = Colors.white60; //for intensity = 1
+  static Color maxWhiteColor = Colors.white; //for intensity = 1
   static Color maxDarkColor = Colors.black45; //for intensity = 1
 
 
@@ -158,7 +158,7 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
       this.depth = depth;
       this.source = source;
       this.depthOffset = this.source.offset.scale(this.depth, this.depth);
-      this.maskFilter = MaskFilter.blur(BlurStyle.normal, this.depth);
+      this.maskFilter = MaskFilter.blur(BlurStyle.normal, this.depth / 2); //<-- changed this to have a better white effect
       this.whiteShadowPaint..maskFilter = this.maskFilter;
       this.blackShadowPaint..maskFilter = this.maskFilter;
 
