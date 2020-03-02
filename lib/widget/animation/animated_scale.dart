@@ -18,7 +18,7 @@ class AnimatedScale extends StatefulWidget {
 
 class _AnimatedScaleState extends State<AnimatedScale> with TickerProviderStateMixin {
   AnimationController _controller;
-  Animation<double> _animation;
+  Animation<double> _animation;<<
   double scale = 1;
 
   void _onScaleChanged(double newScale) {
