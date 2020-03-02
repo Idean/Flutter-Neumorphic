@@ -10,11 +10,11 @@ typedef void NeumorphicCheckboxListener<T>(T value);
 class NeumorphicCheckboxStyle {
   final double selectedDepth;
   final double unselectedDepth;
-  final Color accent;
+  final Color selectedColor;
 
   const NeumorphicCheckboxStyle({
     this.selectedDepth,
-    this.accent,
+    this.selectedColor,
     this.unselectedDepth,
   });
 }
@@ -44,13 +44,12 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
   @override
   Widget build(BuildContext context) {
     final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
-    final accent = widget.style.accent ?? theme.accentColor;
+    final selectedColor = widget.style.selectedColor ?? theme.accentColor;
 
     final double selectedDepth = -1 * (widget.style.selectedDepth ?? theme.depth).abs();
     final double unselectedDepth = (widget.style.unselectedDepth ?? theme.depth).abs();
 
     return NeumorphicButton(
-      accent: isSelected ? accent : null,
       pressed: isSelected,
       onClick: () {
         _onClick();
@@ -63,11 +62,12 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
         padding: const EdgeInsets.all(8.0),
         child: Icon(
           material.Icons.check,
-          color: isSelected ? theme.baseColor : accent,
+          color: isSelected ? theme.baseColor : selectedColor,
           size: 20.0,
         ),
       ),
       style: NeumorphicStyle(
+        color: isSelected ? selectedColor : null,
         depth: isSelected ?
           selectedDepth :
           unselectedDepth,

@@ -80,11 +80,11 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch> with SingleTickerPr
             }
           },
           child: Neumorphic(
-            accent: _getTrackColor(theme),
             shape: NeumorphicBoxShape.stadium(),
             style: NeumorphicStyle(
                 depth: _getTrackDepth(theme.depth),
                 shape: NeumorphicShape.flat,
+                color: _getTrackColor(theme)
             ),
             child: AnimatedThumb(
               depth: widget.style.thumbDepth,

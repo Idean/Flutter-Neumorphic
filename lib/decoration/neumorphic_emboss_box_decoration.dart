@@ -10,7 +10,7 @@ import '../theme.dart';
 class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   bool invalidate = false;
 
-  Color accent;
+  //Color accent;
 
   NeumorphicStyle style;
   NeumorphicBoxShape shape;
@@ -44,13 +44,13 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   RRect blackShadowMaskRect;
 
   NeumorphicEmbossBoxDecorationPainter(
-      {this.accent,
+      {//this.accent,
       @required this.style,
       NeumorphicBoxShape shape,
       @required VoidCallback onChanged})
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
-    this.backgroundColor = accent ?? style.color;
+    this.backgroundColor = /*accent ??*/ style.color;
     var blackShadowColor = NeumorphicColors.embossMaxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity
     var whiteShadowColor = NeumorphicColors.embossMaxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity
 
@@ -102,7 +102,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
 
     LightSource source = style.lightSource;
     var depth = style.depth.abs().clamp(0.0, radius / 5);
-    var backgroundColor = accent ?? style.color;
+    var backgroundColor = /*accent ??*/ style.color;
     //print("accent: $accent");
     if (this.invalidate || this.source != source || this.depth != depth || this.backgroundColor != backgroundColor) {
       this.depth = depth;

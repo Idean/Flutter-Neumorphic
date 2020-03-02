@@ -22,7 +22,7 @@ class _AnimatedScaleState extends State<AnimatedScale> with TickerProviderStateM
   double scale = 1;
 
   void _onScaleChanged(double newScale) {
-    print("_onScaleChanged $newScale");
+    //print("_onScaleChanged $newScale");
     _controller.reset();
     _animation = Tween<double>(begin: this.scale, end: newScale).animate(_controller)
       ..addListener(() {

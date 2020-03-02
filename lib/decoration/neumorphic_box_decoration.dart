@@ -12,7 +12,7 @@ import 'neumorphic_box_decoration_helper.dart';
 class NeumorphicBoxDecorationPainter extends BoxPainter {
   bool invalidate = false;
 
-  Color accent;
+  //Color accent;
 
   NeumorphicStyle style;
   NeumorphicBoxShape shape;
@@ -50,13 +50,13 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
   LightSource source;
 
   NeumorphicBoxDecorationPainter(
-      {this.accent,
+      { /* this.accent, */
       @required this.style,
       NeumorphicBoxShape shape,
       @required VoidCallback onChanged})
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
-    var color = accent ?? style.color;
+    var color = /*accent ??*/ style.color;
     var blackShadowColor = NeumorphicColors.decorationMaxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity
     var whiteShadowColor = NeumorphicColors.decorationMaxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity
 

@@ -10,11 +10,11 @@ import '../theme.dart';
 
 class NeumorphicBoxDecoration extends Decoration {
 
-  final Color accent;
+  //final Color accent;
   final NeumorphicStyle style;
   final NeumorphicBoxShape shape;
 
-  NeumorphicBoxDecoration({@required this.accent, @required this.style, this.shape});
+  NeumorphicBoxDecoration({/*@required this.accent,*/ @required this.style, this.shape});
 
   @override
   BoxPainter createBoxPainter([onChanged]) {
@@ -23,7 +23,7 @@ class NeumorphicBoxDecoration extends Decoration {
         style: style,
         onChanged: onChanged,
         shape: shape,
-        accent: accent,
+        //accent: accent,
       );
     } else {
       //print("emboss : $accent");
@@ -31,7 +31,7 @@ class NeumorphicBoxDecoration extends Decoration {
         style: style,
         onChanged: onChanged,
         shape: shape,
-        accent: accent,
+        //accent: accent,
       );
     }
   }
@@ -57,7 +57,7 @@ class NeumorphicBoxDecoration extends Decoration {
   NeumorphicBoxDecoration scale(double factor) {
     return NeumorphicBoxDecoration(
         shape: NeumorphicBoxShape.lerp(null, shape, factor),
-        accent: Color.lerp(null, accent, factor),
+        //accent: Color.lerp(null, accent, factor),
         style: style.copyWith(
           color: Color.lerp(null, style.color, factor),
         )
@@ -86,7 +86,7 @@ class NeumorphicBoxDecoration extends Decoration {
 
     return NeumorphicBoxDecoration(
       shape: NeumorphicBoxShape.lerp(a.shape, b.shape, t),
-      accent: Color.lerp(a.accent, b.accent, t),
+      //accent: Color.lerp(a.accent, b.accent, t),
       style: a.style.copyWith(
         intensity: lerpDouble(aStyle.intensity, bStyle.intensity, t),
         depth: lerpDouble(aStyle.depth, bStyle.depth, t),
@@ -102,13 +102,13 @@ class NeumorphicBoxDecoration extends Decoration {
       identical(this, other) ||
           other is NeumorphicBoxDecoration &&
               runtimeType == other.runtimeType &&
-              accent == other.accent &&
+              //accent == other.accent &&
               style == other.style &&
               shape == other.shape;
 
   @override
   int get hashCode =>
-      accent.hashCode ^
+      //accent.hashCode ^
       style.hashCode ^
       shape.hashCode;
 

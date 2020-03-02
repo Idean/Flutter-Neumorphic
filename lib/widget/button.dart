@@ -15,7 +15,7 @@ class NeumorphicButton extends StatefulWidget {
 
   final Widget child;
   final NeumorphicStyle style;
-  final Color accent;
+  //inal Color accent;
   final double minDistance;
   final NeumorphicBoxShape shape;
   final EdgeInsets padding;
@@ -30,7 +30,7 @@ class NeumorphicButton extends StatefulWidget {
     this.border,
     this.pressed, //true/false if you want to change the state of the button
     this.shape,
-    this.accent,
+    //this.accent,
     this.onClick,
     this.minDistance = 0,
     this.style = const NeumorphicStyle(),
@@ -118,7 +118,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
         scale: _getScale(),
         child: Neumorphic(
           border: widget.border,
-          accent: widget.accent,
+          //accent: widget.accent,
           padding: widget.padding,
           shape: widget.shape,
           style: initialStyle.copyWith(depth: depth),

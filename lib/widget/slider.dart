@@ -126,9 +126,9 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
    final theme = NeumorphicTheme.getCurrentTheme(context);
    return Neumorphic(
      style: NeumorphicStyle(
-       shape: NeumorphicShape.concave
+       shape: NeumorphicShape.concave,
+       color: widget.style.accent ?? theme.accentColor,
      ),
-     accent: widget.style.accent ?? theme.accentColor,
       shape: NeumorphicBoxShape.circle(),
       child: SizedBox(
         height: widget.height * 1.5,

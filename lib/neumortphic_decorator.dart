@@ -146,11 +146,11 @@ List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color
 }
 
 BoxDecoration generateNeumorphicDecoratorFlat({
-/*nullable*/ @required Color accent,
+/*nullable*/ //@required Color accent,
   @required NeumorphicStyle style,
   @required NeumorphicBoxShape shape,
 }) {
-  final Color innerColor = accent ?? style.color;
+  final Color innerColor = /*accent ??*/ style.color;
 
   final List<BoxShadow> boxShadows = generateUsualBoxShadow(
     offset: style.lightSource.toOffset(style.depth),
@@ -181,11 +181,11 @@ BoxDecoration generateNeumorphicDecoratorFlat({
 }
 
 BoxDecoration generateNeumorphicDecoratorConcaveConvex({
-/*nullable*/ Color accent,
+/*nullable*/ //Color accent,
   NeumorphicStyle style,
   NeumorphicBoxShape shape,
 }) {
-  final Color innerColor = accent ?? style.color;
+  final Color innerColor = /* accent ??*/ style.color;
   final double depth = style.depth.clamp(0, Neumorphic.MAX_DEPTH);
 
   final List<BoxShadow> boxShadows = generateUsualBoxShadow(
@@ -258,7 +258,7 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
 }
 
 Widget generateNeumorphicChild(
-    {Color accent,
+    { /* Color accent, */
       NeumorphicStyle style,
       NeumorphicBoxShape shape,
       Widget child}) {

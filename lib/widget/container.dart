@@ -53,7 +53,7 @@ class Neumorphic extends StatelessWidget {
   static const double MAX_CURVE = 1.0;
 
   final Widget child;
-  final Color accent;
+  //final Color accent;
   final NeumorphicStyle style;
   final EdgeInsets padding;
   final NeumorphicBoxShape shape;
@@ -71,7 +71,7 @@ class Neumorphic extends StatelessWidget {
     this.duration = const Duration(milliseconds: 100),
     this.style,
     this.border,
-    this.accent,
+    //this.accent,
     this.shape,
     this.padding = const EdgeInsets.all(0),
   }) : super(key: key);
@@ -115,10 +115,10 @@ class Neumorphic extends StatelessWidget {
           }
 
           //print("${style.depth}");
-          final decorator = NeumorphicBoxDecoration(accent: accent, style: style, shape: shape);
+          final decorator = NeumorphicBoxDecoration(/*accent: accent,*/ style: style, shape: shape);
 
           final child = generateNeumorphicChild(
-            accent: this.accent,
+            //accent: this.accent,
             style: style,
             shape: this.shape,
             child: widgetChild,
