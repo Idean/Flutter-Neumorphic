@@ -35,6 +35,8 @@ class __PageContentState extends State<_PageContent> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
+      borderRadius: BorderRadius.circular(12),
+      margin: EdgeInsets.all(12),
       child: Column(
         children: <Widget>[
           SizedBox(height: 14),

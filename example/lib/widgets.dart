@@ -288,6 +288,8 @@ class _ContainersListPageState extends State<WidgetsPage> {
           //match parent height
           heightFactor: 1,
           child: NeumorphicBackground(
+            margin: EdgeInsets.all(10),
+            borderRadius: BorderRadius.circular(40),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
