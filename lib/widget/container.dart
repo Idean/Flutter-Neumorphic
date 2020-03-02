@@ -10,20 +10,35 @@ import '../flutter_neumorphic.dart';
 class NeumorphicBorder {
   final Color color;
   final double width;
+  final double depth;
   final bool oppositeLightSource;
 
   NeumorphicBorder({
     this.color,
     this.width,
+    this.depth,
     this.oppositeLightSource = true,
   });
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || other is NeumorphicBorder && runtimeType == other.runtimeType && color == other.color && width == other.width && oppositeLightSource == other.oppositeLightSource;
+      identical(this, other) ||
+          other is NeumorphicBorder &&
+              runtimeType == other.runtimeType &&
+              color == other.color &&
+              width == other.width &&
+              depth == other.depth &&
+              oppositeLightSource == other.oppositeLightSource;
 
   @override
-  int get hashCode => color.hashCode ^ width.hashCode ^ oppositeLightSource.hashCode;
+  int get hashCode =>
+      color.hashCode ^
+      width.hashCode ^
+      depth.hashCode ^
+      oppositeLightSource.hashCode;
+
+
+
 }
 
 @immutable
@@ -83,6 +98,7 @@ class Neumorphic extends StatelessWidget {
                 padding: this.padding,
                 shape: this.shape,
                 style: style.copyWith(
+                  depth: border.depth ?? style.depth,
                   lightSource: border.oppositeLightSource ? style.lightSource.opposite() : style.lightSource,
                 ),
                 child: this.child,

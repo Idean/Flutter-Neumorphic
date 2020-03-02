@@ -138,11 +138,6 @@ class __PageState extends State<_Page> {
       height: 100,
       width: 200,
       child: NeumorphicButton(
-          border: NeumorphicBorder(
-              color: NeumorphicTheme.of(context).theme.accentColor,
-              width: 15,
-              oppositeLightSource: _oppositeLightSource
-          ),
           onClick: () {
             setState(() {
               _oppositeLightSource = !_oppositeLightSource;

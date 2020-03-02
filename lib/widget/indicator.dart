@@ -9,17 +9,38 @@ class IndicatorStyle {
   final Color accent;
   final Color variant;
 
+  final AlignmentGeometry gradientStart;
+  final AlignmentGeometry gradientEnd;
+
   const IndicatorStyle({
     this.depth = -4,
     this.accent,
     this.variant,
+    this.gradientStart,
+    this.gradientEnd,
   });
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ProgressStyle && runtimeType == other.runtimeType && depth == other.depth && accent == other.accent && variant == other.variant;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is IndicatorStyle &&
+              runtimeType == other.runtimeType &&
+              depth == other.depth &&
+              accent == other.accent &&
+              variant == other.variant &&
+              gradientStart == other.gradientStart &&
+              gradientEnd == other.gradientEnd;
 
   @override
-  int get hashCode => depth.hashCode ^ accent.hashCode ^ variant.hashCode;
+  int get hashCode =>
+      depth.hashCode ^
+      accent.hashCode ^
+      variant.hashCode ^
+      gradientStart.hashCode ^
+      gradientEnd.hashCode;
+
+
+
 }
 
 enum NeumorphicIndicatorOrientation { vertical, horizontal }
@@ -115,8 +136,8 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator> with TickerPr
               child: Container(
                   decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
+                  begin: widget.style.gradientStart ?? Alignment.topCenter,
+                  end: widget.style.gradientEnd ?? Alignment.bottomCenter,
                   colors: [widget.style.accent ?? theme.accentColor, widget.style.variant ?? theme.variantColor],
                 ),
               )),
