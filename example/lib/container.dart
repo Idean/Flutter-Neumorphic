@@ -51,36 +51,37 @@ class __PageState extends State<_Page> {
   double intensity = 0.5;
   double cornerRadius = 0;
   double height = 0;
-  Color baseColor = Color(0xffDDDDDD);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: this.baseColor,
-        appBar: AppBar(
-          backgroundColor: Colors.grey,
-        ),
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            shapeWidget(),
-            boxshapeWidget(),
-            intensitySelector(),
-            depthSelector(),
-            cornerRadiusSelector(),
-            Expanded(
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  ...lightSourceWidgets(),
-                  Center(child: neumorphic()),
-                  colorPicker(),
-                ],
-              ),
-            )
-          ],
-        ));
+    return NeumorphicBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.grey,
+          ),
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              shapeWidget(),
+              boxshapeWidget(),
+              intensitySelector(),
+              depthSelector(),
+              cornerRadiusSelector(),
+              Expanded(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    ...lightSourceWidgets(),
+                    Center(child: neumorphic()),
+                    colorPicker(),
+                  ],
+                ),
+              )
+            ],
+          )),
+    );
   }
 
 
@@ -109,10 +110,10 @@ class __PageState extends State<_Page> {
         title: const Text('Pick a color!'),
         content: SingleChildScrollView(
           child: ColorPicker(
-            pickerColor: this.baseColor,
+            pickerColor: NeumorphicTheme.of(context).theme.baseColor,
             onColorChanged: (color) {
               setState(() {
-                this.baseColor = color;
+                NeumorphicTheme.of(context).updateCurrentTheme(NeumorphicThemeData(baseColor: color));
               });
             },
             showLabel: true,

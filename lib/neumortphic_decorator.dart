@@ -150,13 +150,13 @@ BoxDecoration generateNeumorphicDecoratorFlat({
   @required NeumorphicStyle style,
   @required NeumorphicBoxShape shape,
 }) {
-  final Color innerColor = accent ?? style.baseColor;
+  final Color innerColor = accent ?? style.color;
 
   final List<BoxShadow> boxShadows = generateUsualBoxShadow(
     offset: style.lightSource.toOffset(style.depth),
     depth: style.depth,
     intensity: style.intensity,
-    color: style.baseColor,
+    color: style.color,
     limit: 8.0,
   );
 
@@ -185,18 +185,18 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
   NeumorphicStyle style,
   NeumorphicBoxShape shape,
 }) {
-  final Color innerColor = accent ?? style.baseColor;
+  final Color innerColor = accent ?? style.color;
   final double depth = style.depth.clamp(0, Neumorphic.MAX_DEPTH);
 
   final List<BoxShadow> boxShadows = generateUsualBoxShadow(
     offset: style.lightSource.toOffset(depth),
     depth: depth,
     intensity: style.intensity,
-    color: style.baseColor,
+    color: style.color,
     limit: 8.0,
   );
 
-  final curveFactor = style.curveFactor.clamp(0, 1);
+  final curveFactor = 1; //TODO style.curveFactor.clamp(0, 1);
 
   final whiteFactor = 0 + ((curveFactor / 3.5) * depth / 300) + curveFactor / 3.5;
   final darkFactor = 0 - ((curveFactor / 2.5) * (depth / 28)) - curveFactor / 20;
@@ -205,7 +205,7 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
   //print("whiteFactor: $whiteFactor");
   //print("darkFactor: $darkFactor");
 
-  final convexConcaveOffset = style.lightSource.toOffset(style.curveFactor);
+  final convexConcaveOffset = style.lightSource.toOffset(/*TODO style.curveFactor*/ 1 );
 
   final Gradient gradient = LinearGradient(
       begin: Alignment(

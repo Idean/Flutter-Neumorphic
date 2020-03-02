@@ -156,7 +156,7 @@ class AnimatedThumb extends AnimatedWidget {
           style: NeumorphicStyle(
             shape: shape,
             depth: this.depth,
-            baseColor: thumbColor,
+            color: thumbColor,
           ),
           child: AspectRatio(
             aspectRatio: 1,

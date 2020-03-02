@@ -59,7 +59,7 @@ class NeumorphicBoxDecoration extends Decoration {
         shape: NeumorphicBoxShape.lerp(null, shape, factor),
         accent: Color.lerp(null, accent, factor),
         style: style.copyWith(
-          baseColor: Color.lerp(null, style.baseColor, factor),
+          color: Color.lerp(null, style.color, factor),
         )
     );
   }
@@ -90,7 +90,7 @@ class NeumorphicBoxDecoration extends Decoration {
       style: a.style.copyWith(
         intensity: lerpDouble(aStyle.intensity, bStyle.intensity, t),
         depth: lerpDouble(aStyle.depth, bStyle.depth, t),
-        baseColor: Color.lerp(aStyle.baseColor, bStyle.baseColor, t),
+        color: Color.lerp(aStyle.color, bStyle.color, t),
         lightSource: LightSource.lerp(aStyle.lightSource, bStyle.lightSource, t),
       )
     );

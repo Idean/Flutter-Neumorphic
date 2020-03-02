@@ -106,7 +106,7 @@ class Neumorphic extends StatelessWidget {
             );
 
             //and used style have border color
-            style = style.copyWith(baseColor: border.color);
+            style = style.copyWith(color: border.color);
           } else {
             widgetChild = Padding(
               padding: this.padding,
@@ -191,9 +191,9 @@ class _NeumorphicStyleAnimatorState extends State<_NeumorphicStyleAnimator> with
           _animatedStyle = _animatedStyle.copyWith(
             depth: _depthAnim?.value ?? _animatedStyle.depth,
             intensity: _intensityAnim?.value ?? _animatedStyle.intensity,
-            curveFactor: _curveFactoryAnim?.value ?? _animatedStyle.curveFactor,
+            //curveFactor: _curveFactoryAnim?.value ?? _animatedStyle.curveFactor,
             lightSource: _lightSourceAnim?.value != null ? LightSource(_lightSourceAnim.value.dx, _lightSourceAnim.value.dy) : _animatedStyle.lightSource,
-            baseColor: _baseColorAnim?.value != null ? _baseColorAnim.value : _animatedStyle.baseColor,
+            color: _baseColorAnim?.value != null ? _baseColorAnim.value : _animatedStyle.color,
           );
           //print("animatedStyle: ${_animatedStyle}");
         });
@@ -241,15 +241,15 @@ class _NeumorphicStyleAnimatorState extends State<_NeumorphicStyleAnimator> with
         if (oldStyle.intensity != styleWithTheme.intensity) {
           _intensityAnim = Tween(begin: oldStyle.intensity, end: styleWithTheme.intensity).animate(_controller);
         }
-        if (oldStyle.curveFactor != styleWithTheme.curveFactor) {
-          _curveFactoryAnim = Tween(begin: oldStyle.curveFactor, end: styleWithTheme.curveFactor).animate(_controller);
-        }
+       // if (oldStyle.curveFactor != styleWithTheme.curveFactor) {
+       //   _curveFactoryAnim = Tween(begin: oldStyle.curveFactor, end: styleWithTheme.curveFactor).animate(_controller);
+       // }
         if (oldStyle.lightSource != styleWithTheme.lightSource) {
           //print("old: ${oldStyle.lightSource.offset}, new: ${styleWithTheme.lightSource.offset}");
           _lightSourceAnim = Tween(begin: oldStyle.lightSource.offset, end: styleWithTheme.lightSource.offset).animate(_controller);
         }
-        if (oldStyle.baseColor != styleWithTheme.baseColor) {
-          _baseColorAnim = ColorTween(begin: oldStyle.baseColor, end: styleWithTheme.baseColor).animate(_controller);
+        if (oldStyle.color != styleWithTheme.color) {
+          _baseColorAnim = ColorTween(begin: oldStyle.color, end: styleWithTheme.color).animate(_controller);
         }
 
         //endregion

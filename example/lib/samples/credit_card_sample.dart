@@ -142,7 +142,7 @@ class __PageContentState extends State<_PageContent> {
                             children: <Widget>[
                               Neumorphic(
                                 shape: NeumorphicBoxShape.circle(),
-                                style: NeumorphicStyle(shape: NeumorphicShape.convex, depth: -10, baseColor: Colors.grey[300]),
+                                style: NeumorphicStyle(shape: NeumorphicShape.convex, depth: -10, color: Colors.grey[300]),
                                 child: const SizedBox(
                                   height: 30,
                                   width: 30,

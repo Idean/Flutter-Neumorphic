@@ -50,7 +50,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       @required VoidCallback onChanged})
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
-    this.backgroundColor = accent ?? style.baseColor;
+    this.backgroundColor = accent ?? style.color;
     var blackShadowColor = NeumorphicColors.embossMaxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity
     var whiteShadowColor = NeumorphicColors.embossMaxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity
 
@@ -102,7 +102,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
 
     LightSource source = style.lightSource;
     var depth = style.depth.abs().clamp(0.0, radius / 5);
-    var backgroundColor = accent ?? style.baseColor;
+    var backgroundColor = accent ?? style.color;
     //print("accent: $accent");
     if (this.invalidate || this.source != source || this.depth != depth || this.backgroundColor != backgroundColor) {
       this.depth = depth;

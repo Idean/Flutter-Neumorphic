@@ -1,6 +1,7 @@
 /* nullable */
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'flutter_neumorphic.dart';
@@ -50,6 +51,14 @@ class ThemeHost {
 
   @override
   int get hashCode => theme.hashCode ^ darkTheme.hashCode ^ currentTheme.hashCode;
+
+  void updateCurrentTheme(NeumorphicThemeData themeData) {
+    if(useDark){
+      darkTheme = darkTheme.copyFrom(other: themeData);
+    } else {
+      theme = theme.copyFrom(other: themeData);
+    }
+  }
 }
 
 class NeumorphicTheme extends InheritedWidget {
@@ -98,5 +107,9 @@ class NeumorphicTheme extends InheritedWidget {
 
   void setCurrentTheme(CurrentTheme currentTheme) {
     _themeHost.currentTheme = currentTheme;
+  }
+
+  void updateCurrentTheme(NeumorphicThemeData update) {
+    _themeHost.updateCurrentTheme(update);
   }
 }
