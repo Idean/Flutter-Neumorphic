@@ -47,6 +47,32 @@ class _ContainersListPageState extends State<WidgetsPage> {
     );
   }
 
+  Widget _buildButtons() {
+    return Row(
+      children: <Widget>[
+        Text("Buttons"),
+        SizedBox(width: 4),
+        NeumorphicButton(
+          boxShape: NeumorphicBoxShape.stadium(),
+          style: NeumorphicStyle(shape: NeumorphicShape.flat),
+          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 18),
+          child: Text("button 1"),
+          onClick:() {
+          },
+        ),
+        SizedBox(width: 10),
+        NeumorphicButton(
+          boxShape: NeumorphicBoxShape.stadium(),
+          style: NeumorphicStyle(shape: NeumorphicShape.flat),
+          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 18),
+          child: Text("button 2"),
+          onClick:() {
+          },
+        ),
+      ],
+    );
+  }
+
   Widget _buildRadios() {
     return Row(
       children: <Widget>[
@@ -286,8 +312,8 @@ class _ContainersListPageState extends State<WidgetsPage> {
           //match parent height
           heightFactor: 1,
           child: NeumorphicBackground(
-            margin: EdgeInsets.all(10),
-            borderRadius: BorderRadius.circular(40),
+            //margin: EdgeInsets.all(10),
+            //borderRadius: BorderRadius.circular(40),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -308,6 +334,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
                         ),
                         style: NeumorphicStyle(depth: -8),
                       ),
+                      /*
                       Positioned(
                         right: 0,
                         bottom: 0,
@@ -321,6 +348,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
                           child: Text(useDark ? "Dark" : "Light"),
                         ),
                       )
+                       */
                     ],
                   ),
                   Padding(
@@ -334,6 +362,8 @@ class _ContainersListPageState extends State<WidgetsPage> {
                         _buildProgress(),
                         SizedBox(height: 12),
                         _buildIndeterminateProgress(),
+                        SizedBox(height: 30),
+                        _buildButtons(),
                         SizedBox(height: 30),
                         _buildRadios(),
                         SizedBox(height: 30),
