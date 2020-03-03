@@ -182,16 +182,20 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
     whiteShadowPaint..color =  NeumorphicColors.decorationMaxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity;
     blackShadowPaint..color = NeumorphicColors.decorationMaxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity;
 
-    if (shape.isCircle) {
-      canvas.saveLayer(layerRect, whiteShadowPaint);
-      canvas.drawCircle(whiteShadowOffset, radius, whiteShadowPaint);
-      canvas.drawCircle(centerOffset, radius, whiteShadowMaskPaint);
-      canvas.restore();
+    //print("style.depth ${style.depth}");
 
-      canvas.saveLayer(layerRect, blackShadowPaint);
-      canvas.drawCircle(blackShadowOffset, radius, blackShadowPaint);
-      canvas.drawCircle(centerOffset, radius, blackShadowMaskPaint);
-      canvas.restore();
+    if (shape.isCircle) {
+      if(style.depth.abs() >= 0.1) { //avoid binking on android if depth near 0
+        canvas.saveLayer(layerRect, whiteShadowPaint);
+        canvas.drawCircle(whiteShadowOffset, radius, whiteShadowPaint);
+        canvas.drawCircle(centerOffset, radius, whiteShadowMaskPaint);
+        canvas.restore();
+
+        canvas.saveLayer(layerRect, blackShadowPaint);
+        canvas.drawCircle(blackShadowOffset, radius, blackShadowPaint);
+        canvas.drawCircle(centerOffset, radius, blackShadowMaskPaint);
+        canvas.restore();
+      }
 
       canvas.drawCircle(centerOffset, radius, backgroundPaint);
 
@@ -200,15 +204,17 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
         canvas.drawCircle(centerOffset, radius, gradientPaint);
       }
     } else {
-      canvas.saveLayer(layerRect, whiteShadowPaint);
-      canvas.drawRRect(whiteShadowRRect, whiteShadowPaint);
-      canvas.drawRRect(buttonRRect, whiteShadowMaskPaint);
-      canvas.restore();
+      if(style.depth.abs() >= 0.1) { //avoid binking on android if depth near 0
+        canvas.saveLayer(layerRect, whiteShadowPaint);
+        canvas.drawRRect(whiteShadowRRect, whiteShadowPaint);
+        canvas.drawRRect(buttonRRect, whiteShadowMaskPaint);
+        canvas.restore();
 
-      canvas.saveLayer(layerRect, blackShadowPaint);
-      canvas.drawRRect(blackShadowRRect, blackShadowPaint);
-      canvas.drawRRect(buttonRRect, blackShadowMaskPaint);
-      canvas.restore();
+        canvas.saveLayer(layerRect, blackShadowPaint);
+        canvas.drawRRect(blackShadowRRect, blackShadowPaint);
+        canvas.drawRRect(buttonRRect, blackShadowMaskPaint);
+        canvas.restore();
+      }
 
       canvas.drawRRect(buttonRRect, backgroundPaint);
 
