@@ -8,6 +8,12 @@ import '../theme_provider.dart';
 import '../NeumorphicBoxShape.dart';
 import '../theme.dart';
 
+export '../decoration/neumorphic_box_decorations.dart';
+export '../neumortphic_decorator.dart';
+export '../theme_provider.dart';
+export '../NeumorphicBoxShape.dart';
+export '../theme.dart';
+
 class NeumorphicBorder {
   final Color color;
   final double width;

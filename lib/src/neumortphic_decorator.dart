@@ -1,9 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-
-import 'NeumorphicBoxShape.dart';
+import './widget/container.dart';
 
 Offset limitOffset(Offset offset, double minXY, double maxXY) {
   final dx = offset.dx.clamp(minXY, maxXY);
