@@ -17,7 +17,7 @@ Shader getGradientShader(Rect gradientRect, LightSource source) {
     ],
     stops: [
       0,
-      0.75,
+      0.75, //was 1 but set to 0.75 to be less dark
     ],
   );
 
