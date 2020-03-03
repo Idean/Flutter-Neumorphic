@@ -76,7 +76,7 @@ class WidgetCalcButton extends StatelessWidget {
         onClick: () {},
         boxShape: NeumorphicBoxShape.circle(),
         style: NeumorphicStyle(
-          shape: NeumorphicShape.flat,
+          shape: NeumorphicShape.concave,
           color: _backgroundColor(context),
         ),
         child: Center(

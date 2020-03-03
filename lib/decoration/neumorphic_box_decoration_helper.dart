@@ -17,7 +17,7 @@ Shader getGradientShader(Rect gradientRect, LightSource source) {
     ],
     stops: [
       0,
-      1,
+      0.75,
     ],
   );
 
