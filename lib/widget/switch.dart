@@ -80,7 +80,7 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch> with SingleTickerPr
             }
           },
           child: Neumorphic(
-            shape: NeumorphicBoxShape.stadium(),
+            boxShape: NeumorphicBoxShape.stadium(),
             style: NeumorphicStyle(
                 depth: _getTrackDepth(theme.depth),
                 shape: NeumorphicShape.flat,
@@ -152,7 +152,7 @@ class AnimatedThumb extends AnimatedWidget {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Neumorphic(
-          shape: NeumorphicBoxShape.circle(),
+          boxShape: NeumorphicBoxShape.circle(),
           style: NeumorphicStyle(
             shape: shape,
             depth: this.depth,

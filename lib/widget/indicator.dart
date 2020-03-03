@@ -122,7 +122,7 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator> with TickerPr
       height: widget.height,
       width: widget.width,
       child: Neumorphic(
-        shape: NeumorphicBoxShape.stadium(),
+        boxShape: NeumorphicBoxShape.stadium(),
         padding: EdgeInsets.zero,
         style: NeumorphicStyle(depth: widget.style.depth, shape: NeumorphicShape.flat),
         child: FractionallySizedBox(
@@ -132,7 +132,7 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator> with TickerPr
           child: Padding(
             padding: widget.padding,
             child: Neumorphic(
-              shape: NeumorphicBoxShape.stadium(),
+              boxShape: NeumorphicBoxShape.stadium(),
               child: Container(
                   decoration: BoxDecoration(
                 gradient: LinearGradient(

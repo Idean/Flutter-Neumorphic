@@ -63,7 +63,7 @@ class __PageContentState extends State<_PageContent> {
           depth: 3,
           oppositeLightSource: true
         ),
-        shape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(20)),
+        boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(20)),
         style: NeumorphicStyle(
           depth: 10,
           shape: NeumorphicShape.flat,
@@ -119,7 +119,7 @@ class __PageContentState extends State<_PageContent> {
                         height: 60,
                         child: Neumorphic(
                           style: NeumorphicStyle(depth: 5, intensity: 0.8, lightSource: LightSource.topLeft),
-                          shape: NeumorphicBoxShape.roundRect(
+                          boxShape: NeumorphicBoxShape.roundRect(
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: RotatedBox(quarterTurns: 1, child: Image.asset("assets/images/credit_card_chip.png")),
@@ -141,7 +141,7 @@ class __PageContentState extends State<_PageContent> {
                           Stack(
                             children: <Widget>[
                               Neumorphic(
-                                shape: NeumorphicBoxShape.circle(),
+                                boxShape: NeumorphicBoxShape.circle(),
                                 style: NeumorphicStyle(shape: NeumorphicShape.convex, depth: -10, color: Colors.grey[300]),
                                 child: const SizedBox(
                                   height: 30,
@@ -151,7 +151,7 @@ class __PageContentState extends State<_PageContent> {
                               Padding(
                                 padding: EdgeInsets.only(left: 18),
                                 child: Neumorphic(
-                                  shape: NeumorphicBoxShape.circle(),
+                                  boxShape: NeumorphicBoxShape.circle(),
                                   style: NeumorphicStyle(shape: NeumorphicShape.convex, depth: 10),
                                   child: const SizedBox(
                                     height: 30,
@@ -187,7 +187,7 @@ class __PageContentState extends State<_PageContent> {
                 Navigator.of(context).pop();
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
-              shape: NeumorphicBoxShape.circle(),
+              boxShape: NeumorphicBoxShape.circle(),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Icon(Icons.navigate_before),
@@ -206,7 +206,7 @@ class __PageContentState extends State<_PageContent> {
                 });
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
-              shape: NeumorphicBoxShape.circle(),
+              boxShape: NeumorphicBoxShape.circle(),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Icon(Icons.loop),

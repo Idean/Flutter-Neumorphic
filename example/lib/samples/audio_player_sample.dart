@@ -56,7 +56,7 @@ class _AudioPlayerSampleState extends State<AudioPlayerSample> {
                 Navigator.of(context).pop();
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
-              shape: NeumorphicBoxShape.circle(),
+              boxShape: NeumorphicBoxShape.circle(),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Icon(Icons.navigate_before),
@@ -73,7 +73,7 @@ class _AudioPlayerSampleState extends State<AudioPlayerSample> {
                 });
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
-              shape: NeumorphicBoxShape.circle(),
+              boxShape: NeumorphicBoxShape.circle(),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Icon(Icons.favorite_border),
@@ -87,7 +87,7 @@ class _AudioPlayerSampleState extends State<AudioPlayerSample> {
 
   Widget _buildImage(BuildContext context) {
     return Neumorphic(
-      shape: NeumorphicBoxShape.circle(),
+      boxShape: NeumorphicBoxShape.circle(),
       child: Container(
         height: 200,
         width: 200,
@@ -143,7 +143,7 @@ class _AudioPlayerSampleState extends State<AudioPlayerSample> {
 
           },
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
-          shape: NeumorphicBoxShape.circle(),
+          boxShape: NeumorphicBoxShape.circle(),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Icon(Icons.skip_previous),
@@ -155,7 +155,7 @@ class _AudioPlayerSampleState extends State<AudioPlayerSample> {
 
           },
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
-          shape: NeumorphicBoxShape.circle(),
+          boxShape: NeumorphicBoxShape.circle(),
           child: Padding(
             padding: const EdgeInsets.all(18.0),
             child: Icon(
@@ -170,7 +170,7 @@ class _AudioPlayerSampleState extends State<AudioPlayerSample> {
 
           },
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
-          shape: NeumorphicBoxShape.circle(),
+          boxShape: NeumorphicBoxShape.circle(),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Icon(Icons.skip_next),

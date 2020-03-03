@@ -56,7 +56,7 @@ class Neumorphic extends StatelessWidget {
   //final Color accent;
   final NeumorphicStyle style;
   final EdgeInsets padding;
-  final NeumorphicBoxShape shape;
+  final NeumorphicBoxShape boxShape;
   final Duration duration;
 
   final NeumorphicBorder border;
@@ -72,13 +72,13 @@ class Neumorphic extends StatelessWidget {
     this.style,
     this.border,
     //this.accent,
-    this.shape,
+    this.boxShape,
     this.padding = const EdgeInsets.all(0),
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final shape = this.shape ?? NeumorphicBoxShape.roundRect();
+    final shape = this.boxShape ?? NeumorphicBoxShape.roundRect();
 
     //print("this.accent : $accent");
 
@@ -96,7 +96,7 @@ class Neumorphic extends StatelessWidget {
               padding: EdgeInsets.all(border.width ?? 0),
               child: Neumorphic(
                 padding: this.padding,
-                shape: this.shape,
+                boxShape: this.boxShape,
                 style: style.copyWith(
                   depth: border.depth ?? style.depth,
                   lightSource: border.oppositeLightSource ? style.lightSource.opposite() : style.lightSource,
@@ -120,7 +120,7 @@ class Neumorphic extends StatelessWidget {
           final child = generateNeumorphicChild(
             //accent: this.accent,
             style: style,
-            shape: this.shape,
+            shape: this.boxShape,
             child: widgetChild,
           );
 

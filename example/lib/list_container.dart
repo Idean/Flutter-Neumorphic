@@ -49,7 +49,7 @@ class _PageState extends State<Page> {
               Row(
                 children: <Widget>[
                   Neumorphic(
-                    shape: NeumorphicBoxShape.circle(),
+                    boxShape: NeumorphicBoxShape.circle(),
                     //accent: Colors.blueAccent,
                     style: NeumorphicStyle(
                       depth: -5,
@@ -68,7 +68,7 @@ class _PageState extends State<Page> {
                 children: <Widget>[
                   NeumorphicButton(
                     minDistance: -2,
-                    shape: NeumorphicBoxShape.circle(),
+                    boxShape: NeumorphicBoxShape.circle(),
                     //accent: Colors.blueAccent,
                     style: NeumorphicStyle(
                       shape: NeumorphicShape.flat,
@@ -86,7 +86,7 @@ class _PageState extends State<Page> {
               Row(
                 children: <Widget>[
                   NeumorphicButton(
-                    shape: NeumorphicBoxShape.circle(),
+                    boxShape: NeumorphicBoxShape.circle(),
                     //accent: Colors.blueAccent,
                     style: NeumorphicStyle(
                       shape: NeumorphicShape.convex,
@@ -104,7 +104,7 @@ class _PageState extends State<Page> {
               Row(
                 children: <Widget>[
                   NeumorphicButton(
-                    shape: NeumorphicBoxShape.circle(),
+                    boxShape: NeumorphicBoxShape.circle(),
                     //accent: Colors.blueAccent,
                     style: NeumorphicStyle(
                       shape: NeumorphicShape.concave,

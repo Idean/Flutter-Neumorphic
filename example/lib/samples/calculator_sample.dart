@@ -74,7 +74,7 @@ class WidgetCalcButton extends StatelessWidget {
       padding: EdgeInsets.only(top: 14),
       child: NeumorphicButton(
         onClick: () {},
-        shape: NeumorphicBoxShape.circle(),
+        boxShape: NeumorphicBoxShape.circle(),
         style: NeumorphicStyle(
           shape: NeumorphicShape.flat,
           color: _backgroundColor(context),
@@ -94,7 +94,7 @@ class _TopScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Neumorphic(
-      shape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(12)),
+      boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(12)),
       style: NeumorphicStyle(depth: -4),
       child: FractionallySizedBox(
         widthFactor: 1,
@@ -160,7 +160,7 @@ class __PageContentState extends State<_PageContent> {
                 Navigator.of(context).pop();
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
-              shape: NeumorphicBoxShape.circle(),
+              boxShape: NeumorphicBoxShape.circle(),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Icon(Icons.navigate_before),

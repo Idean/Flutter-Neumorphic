@@ -144,7 +144,7 @@ class __PageState extends State<_Page> {
               _oppositeLightSource = !_oppositeLightSource;
             });
           },
-          shape: boxShape,
+          boxShape: boxShape,
           style: NeumorphicStyle(
             shape: this.shape,
             depth: depth,

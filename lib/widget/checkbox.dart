@@ -55,7 +55,7 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
         _onClick();
       },
       minDistance: -1 * selectedDepth.abs(),
-      shape: NeumorphicBoxShape.roundRect(
+      boxShape: NeumorphicBoxShape.roundRect(
         borderRadius: BorderRadius.circular(5),
       ),
       child: Padding(

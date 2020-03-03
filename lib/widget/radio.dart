@@ -67,7 +67,7 @@ class _NeumorphicRadioState<T> extends State<NeumorphicRadio<T>> {
       },
       pressed: isSelected,
       minDistance: selectedDepth,
-      shape: widget.style.boxShape ?? NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(5)),
+      boxShape: widget.style.boxShape ?? NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(5)),
       child: widget.child,
       style: NeumorphicStyle(
         intensity: widget.style.intensity,
