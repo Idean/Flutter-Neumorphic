@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_neumorphic/NeumorphicBoxShape.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+
+import '../NeumorphicBoxShape.dart';
+import '../theme_provider.dart';
 
 class NeumorphicSwitchStyle {
   final double trackDepth;

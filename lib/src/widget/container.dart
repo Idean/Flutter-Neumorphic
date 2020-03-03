@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_neumorphic/decoration/neumorphic_box_decorations.dart';
-import 'package:flutter_neumorphic/theme_finder.dart';
 
+import '../decoration/neumorphic_box_decorations.dart';
+import '../neumortphic_decorator.dart';
+import '../theme_provider.dart';
 import '../NeumorphicBoxShape.dart';
-import '../flutter_neumorphic.dart';
+import '../theme.dart';
 
 class NeumorphicBorder {
   final Color color;
@@ -181,7 +182,7 @@ class _NeumorphicStyleAnimatorState extends State<_NeumorphicStyleAnimator> with
   //animated style
   Animation<double> _depthAnim;
   Animation<double> _intensityAnim;
-  Animation<double> _curveFactoryAnim;
+  //Animation<double> _curveFactoryAnim;
   Animation<Offset> _lightSourceAnim;
   Animation<Color> _baseColorAnim;
 

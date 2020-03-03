@@ -4,7 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'flutter_neumorphic.dart';
+import 'theme.dart';
+export 'theme.dart';
 
 enum CurrentTheme { LIGHT, DARK, SYSTEM }
 
@@ -12,15 +13,15 @@ enum CurrentTheme { LIGHT, DARK, SYSTEM }
 const _DARK_THEME_ENABLED = true;
 
 class ThemeHost {
-  NeumorphicThemeData theme;
-  NeumorphicThemeData darkTheme;
-  CurrentTheme _currentTheme;
+  final NeumorphicThemeData theme;
+  final NeumorphicThemeData darkTheme;
+  final CurrentTheme currentTheme;
 
-  ThemeHost({
+  const ThemeHost({
     @required this.theme,
     this.darkTheme,
-    CurrentTheme currentTheme = CurrentTheme.SYSTEM,
-  }) : _currentTheme = currentTheme;
+    this.currentTheme = CurrentTheme.SYSTEM,
+  });
 
   bool get useDark =>
       _DARK_THEME_ENABLED &&
@@ -39,12 +40,6 @@ class ThemeHost {
     }
   }
 
-  CurrentTheme get currentTheme => _currentTheme;
-
-  set currentTheme(CurrentTheme value) {
-    _currentTheme = value;
-  }
-
   @override
   bool operator ==(Object other) =>
       identical(this, other) || other is ThemeHost && runtimeType == other.runtimeType && theme == other.theme && darkTheme == other.darkTheme && currentTheme == other.currentTheme;
@@ -52,13 +47,18 @@ class ThemeHost {
   @override
   int get hashCode => theme.hashCode ^ darkTheme.hashCode ^ currentTheme.hashCode;
 
-  void updateCurrentTheme(NeumorphicThemeData themeData) {
-    if(useDark){
-      darkTheme = darkTheme.copyFrom(other: themeData);
-    } else {
-      theme = theme.copyFrom(other: themeData);
-    }
+  ThemeHost copyWith({
+    NeumorphicThemeData theme,
+    NeumorphicThemeData darkTheme,
+    CurrentTheme currentTheme,
+  }) {
+    return new ThemeHost(
+      theme: theme ?? this.theme,
+      darkTheme: darkTheme ?? this.darkTheme,
+      currentTheme: currentTheme ?? this.currentTheme,
+    );
   }
+
 }
 
 class NeumorphicTheme extends StatefulWidget {
@@ -182,12 +182,20 @@ class NeumorphicThemeInherited extends InheritedWidget {
   CurrentTheme get currentTheme => value.currentTheme;
 
   set currentTheme(CurrentTheme currentTheme) {
-    value.currentTheme = currentTheme;
-    this.onChanged(value);
+    this.onChanged(value.copyWith(
+        currentTheme: currentTheme
+    ));
   }
 
   void updateCurrentTheme(NeumorphicThemeData update) {
-    value.updateCurrentTheme(update);
-    this.onChanged(value);
+    if(value.useDark){
+      this.onChanged(value.copyWith(
+          theme: update
+      ));
+    } else {
+      this.onChanged(value.copyWith(
+          darkTheme: update
+      ));
+    }
   }
 }

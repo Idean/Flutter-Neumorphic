@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 
 import '../NeumorphicBoxShape.dart';
-import '../flutter_neumorphic.dart';
 import '../theme.dart';
 import 'neumorphic_box_decoration_helper.dart';
 

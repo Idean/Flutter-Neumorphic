@@ -1,13 +1,14 @@
 import 'dart:ui';
 
-import 'package:flutter_neumorphic/colors.dart';
-
-import 'flutter_neumorphic.dart';
+import 'colors.dart';
 import 'light_source.dart';
 import 'shape.dart';
+import 'widget/container.dart';
 
+export 'colors.dart';
 export 'light_source.dart';
 export 'shape.dart';
+export 'widget/container.dart';
 
 //region theme
 const double _defaultDepth = 4;
@@ -26,6 +27,7 @@ class NeumorphicThemeData {
   final LightSource lightSource;
 
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
+
   double get intensity => _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
   const NeumorphicThemeData({
@@ -35,7 +37,8 @@ class NeumorphicThemeData {
     this.accentColor = _defaultAccent,
     this.variantColor = _defaultVariant,
     this.lightSource = _defaultLightSource,
-  }) : this._depth = depth, this._intensity = intensity;
+  })  : this._depth = depth,
+        this._intensity = intensity;
 
   @override
   String toString() {
@@ -45,23 +48,17 @@ class NeumorphicThemeData {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is NeumorphicThemeData &&
-              runtimeType == other.runtimeType &&
-              baseColor == other.baseColor &&
-              accentColor == other.accentColor &&
-              variantColor == other.variantColor &&
-              _depth == other._depth &&
-              intensity == other.intensity &&
-              lightSource == other.lightSource;
+      other is NeumorphicThemeData &&
+          runtimeType == other.runtimeType &&
+          baseColor == other.baseColor &&
+          accentColor == other.accentColor &&
+          variantColor == other.variantColor &&
+          _depth == other._depth &&
+          intensity == other.intensity &&
+          lightSource == other.lightSource;
 
   @override
-  int get hashCode =>
-      baseColor.hashCode ^
-      accentColor.hashCode ^
-      variantColor.hashCode ^
-      _depth.hashCode ^
-      intensity.hashCode ^
-      lightSource.hashCode;
+  int get hashCode => baseColor.hashCode ^ accentColor.hashCode ^ variantColor.hashCode ^ _depth.hashCode ^ intensity.hashCode ^ lightSource.hashCode;
 
   NeumorphicThemeData copyWith({
     Color baseColor,
@@ -93,13 +90,12 @@ class NeumorphicThemeData {
       lightSource: other.lightSource ?? this.lightSource,
     );
   }
-
 }
 //endregion
 
 //region style
 const NeumorphicShape _defaultShape = NeumorphicShape.concave;
-const double _defaultBorderRadius = 5;
+//const double _defaultBorderRadius = 5;
 
 const neumorphicDefaultTheme = NeumorphicThemeData(
   baseColor: NeumorphicColors.background,
@@ -113,7 +109,6 @@ const neumorphicDefaultDarkTheme = NeumorphicThemeData(
 );
 
 class NeumorphicStyle {
-
   final Color color;
   final double _depth;
   final double _intensity;
@@ -127,38 +122,31 @@ class NeumorphicStyle {
     this.color,
     double depth,
     double intensity,
-  }) : this._depth = depth, this._intensity = intensity;
+  })  : this._depth = depth,
+        this._intensity = intensity;
 
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
+
   double get intensity => _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
   NeumorphicStyle copyWithThemeIfNull(NeumorphicThemeData theme) {
     return NeumorphicStyle(
-        color: this.color ?? theme.baseColor,
-        shape: this.shape,
-        depth: this.depth ?? theme.depth,
-        intensity: this.intensity ?? theme.intensity,
-        lightSource: this.lightSource ?? theme.lightSource);
+        color: this.color ?? theme.baseColor, shape: this.shape, depth: this.depth ?? theme.depth, intensity: this.intensity ?? theme.intensity, lightSource: this.lightSource ?? theme.lightSource);
   }
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is NeumorphicStyle &&
-              runtimeType == other.runtimeType &&
-              color == other.color &&
-              depth == other.depth &&
-              intensity == other.intensity &&
-              lightSource == other.lightSource &&
-              shape == other.shape;
+      other is NeumorphicStyle &&
+          runtimeType == other.runtimeType &&
+          color == other.color &&
+          depth == other.depth &&
+          intensity == other.intensity &&
+          lightSource == other.lightSource &&
+          shape == other.shape;
 
   @override
-  int get hashCode =>
-      color.hashCode ^
-      depth.hashCode ^
-      intensity.hashCode ^
-      lightSource.hashCode ^
-      shape.hashCode;
+  int get hashCode => color.hashCode ^ depth.hashCode ^ intensity.hashCode ^ lightSource.hashCode ^ shape.hashCode;
 
   NeumorphicStyle copyWith({
     Color color,
@@ -181,7 +169,5 @@ class NeumorphicStyle {
   String toString() {
     return 'NeumorphicStyle{color: $color, _depth: $_depth, intensity: $intensity, lightSource: $lightSource, shape: $shape}';
   }
-
-
 }
 //endregion

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
-import 'package:flutter_neumorphic/NeumorphicBoxShape.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+import '../NeumorphicBoxShape.dart';
+
+import '../theme.dart';
+import '../theme_provider.dart';
 import 'button.dart';
 
 typedef void NeumorphicCheckboxListener<T>(T value);

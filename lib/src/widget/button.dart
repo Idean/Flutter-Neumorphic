@@ -96,7 +96,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   }
 
   //used to stay pressed if no tap up
-  Future<void> _resetIfTapUp(){
+  void _resetIfTapUp(){
     if(hasFinishedAnimationDown == true && hasTapUp == true) {
       setState(() {
         pressed = false;
