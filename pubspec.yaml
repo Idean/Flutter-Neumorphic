@@ -1,8 +1,13 @@
 name: flutter_neumorphic
-description: A new Flutter package.
+description: A complete, ready to use, Neumorphic ui kit for Flutter.
 version: 1.0.0
-author: Florent Champigny <champigny.florent@gmail.com>
-homepage: https://github.com/florent37/Flutter-Neumorphic
+authors: [
+  Florent Champigny <champigny.florent@gmail.com>,
+  Olivier Bonvila,
+  Gyl Jean Lambert
+]
+homepage: https://github.com/Idean/Flutter-Neumorphic
+issue_tracker: https://github.com/Idean/Flutter-Neumorphic/issues
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
