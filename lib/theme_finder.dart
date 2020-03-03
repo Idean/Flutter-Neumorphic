@@ -61,33 +61,32 @@ class ThemeHost {
   }
 }
 
-class NeumorphicTheme extends InheritedWidget {
+class NeumorphicTheme extends StatefulWidget {
+
+  final NeumorphicThemeData theme;
+  final NeumorphicThemeData darkTheme;
   final Widget child;
-  final ThemeHost _themeHost;
+  final CurrentTheme currentTheme;
 
   NeumorphicTheme({
     Key key,
     @required this.child,
-    NeumorphicThemeData theme = neumorphicDefaultTheme,
-    NeumorphicThemeData darkTheme = neumorphicDefaultDarkTheme,
-    CurrentTheme currentTheme,
-  }) : this._themeHost = ThemeHost(
-          theme: theme,
-          currentTheme: currentTheme,
-          darkTheme: darkTheme,
-        );
+    this.theme = neumorphicDefaultTheme,
+    this.darkTheme = neumorphicDefaultDarkTheme,
+    this.currentTheme,
+  });
 
   @override
-  bool updateShouldNotify(NeumorphicTheme old) => _themeHost != old._themeHost;
+  _NeumorphicThemeState createState() => _NeumorphicThemeState();
 
-  static NeumorphicTheme of(BuildContext context) {
+
+  static NeumorphicThemeInherited of(BuildContext context) {
     try {
-      return context.dependOnInheritedWidgetOfExactType<NeumorphicTheme>();
+      return context.dependOnInheritedWidgetOfExactType<NeumorphicThemeInherited>();
     } catch (t) {
       return null;
     }
   }
-
 
   static Color accentColor(BuildContext context) {
     return getCurrentTheme(context).accentColor;
@@ -104,25 +103,84 @@ class NeumorphicTheme extends InheritedWidget {
   static NeumorphicThemeData getCurrentTheme(BuildContext context) {
     try {
       final provider = NeumorphicTheme.of(context);
-      return provider.theme;
+      return provider.current;
     } catch (t) {
       return null;
     }
   }
+}
 
-  NeumorphicThemeData get theme {
-    return this._themeHost.getCurrentTheme();
+class _NeumorphicThemeState extends State<NeumorphicTheme> {
+
+  ThemeHost _themeHost;
+
+  @override
+  void initState() {
+    super.initState();
+    _themeHost = ThemeHost(
+      theme: widget.theme,
+      currentTheme: widget.currentTheme,
+      darkTheme: widget.darkTheme,
+    );
+  }
+
+  @override
+  void didUpdateWidget(NeumorphicTheme oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    setState(() {
+      _themeHost = ThemeHost(
+        theme: widget.theme,
+        currentTheme: widget.currentTheme,
+        darkTheme: widget.darkTheme,
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return NeumorphicThemeInherited(
+      value: _themeHost,
+      onChanged: (value){
+        setState(() {
+
+        });
+      },
+      child: widget.child,
+    );
+  }
+}
+
+
+class NeumorphicThemeInherited extends InheritedWidget {
+  final Widget child;
+  final ThemeHost value;
+  final ValueChanged<ThemeHost> onChanged;
+
+  NeumorphicThemeInherited({
+    Key key,
+    @required this.child,
+    @required this.value,
+    @required this.onChanged
+  });
+
+  @override
+  bool updateShouldNotify(NeumorphicThemeInherited old) => value != old.value;
+
+  NeumorphicThemeData get current {
+    return this.value.getCurrentTheme();
   }
 
   bool isUsingDark() {
-    return _themeHost.useDark;
+    return value.useDark;
   }
 
   void setCurrentTheme(CurrentTheme currentTheme) {
-    _themeHost.currentTheme = currentTheme;
+    value.currentTheme = currentTheme;
+    this.onChanged(value);
   }
 
   void updateCurrentTheme(NeumorphicThemeData update) {
-    _themeHost.updateCurrentTheme(update);
+    value.updateCurrentTheme(update);
+    this.onChanged(value);
   }
 }

@@ -99,17 +99,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            NeumorphicProgress(
-              duration: Duration.zero,
-              percent: widget.percent,
-              height: widget.height,
-              style: ProgressStyle(
-                depth: widget.style.depth,
-                borderRadius: widget.style.borderRadius,
-                accent: widget.style.accent,
-                variant: widget.style.variant,
-              ),
-            ),
+            _generateSlider(),
             Align(
                 alignment: Alignment(
                     (widget.percent * 2) - 1, //because left = -1 & right = 1, so the "width" = 2, and minValue = 1
@@ -120,6 +110,22 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
         ),
       );
     });
+  }
+
+
+  Widget _generateSlider(){
+    final theme = NeumorphicTheme.getCurrentTheme(context);
+    return NeumorphicProgress(
+      duration: Duration.zero,
+      percent: widget.percent,
+      height: widget.height,
+      style: ProgressStyle(
+        depth: widget.style.depth,
+        borderRadius: widget.style.borderRadius,
+        accent: widget.style.accent ?? theme.accentColor,
+        variant: widget.style.variant ?? theme.variantColor,
+      ),
+    );
   }
 
   Widget _generateThumb(BuildContext context){

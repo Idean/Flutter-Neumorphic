@@ -110,7 +110,7 @@ class __PageState extends State<_Page> {
         title: const Text('Pick a color!'),
         content: SingleChildScrollView(
           child: ColorPicker(
-            pickerColor: NeumorphicTheme.of(context).theme.baseColor,
+            pickerColor: NeumorphicTheme.of(context).current.baseColor,
             onColorChanged: (color) {
               setState(() {
                 NeumorphicTheme.of(context).updateCurrentTheme(NeumorphicThemeData(baseColor: color));
