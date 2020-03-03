@@ -40,8 +40,6 @@ class LightSource {
     return LightSource(dx * -1, dy * -1);
   }
 
-
-
   static LightSource lerp(LightSource a, LightSource b, double t) {
     assert(t != null);
 
@@ -70,12 +68,8 @@ class LightSource {
 
   LightSource opposite() {
     Offset offset = this.offset.scale(-1, -1);
-    return LightSource(
-      offset.dy,
-      offset.dx
-    );
+    return LightSource(offset.dy, offset.dx);
   }
-
 }
 
 Offset mergeOffsetWithDistance(Offset offset, double distance,

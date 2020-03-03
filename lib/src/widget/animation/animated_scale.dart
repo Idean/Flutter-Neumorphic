@@ -1,4 +1,3 @@
-
 import 'package:flutter/widgets.dart';
 
 class AnimatedScale extends StatefulWidget {
@@ -16,7 +15,8 @@ class AnimatedScale extends StatefulWidget {
   _AnimatedScaleState createState() => _AnimatedScaleState();
 }
 
-class _AnimatedScaleState extends State<AnimatedScale> with TickerProviderStateMixin {
+class _AnimatedScaleState extends State<AnimatedScale>
+    with TickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
   double scale = 1;
@@ -24,13 +24,14 @@ class _AnimatedScaleState extends State<AnimatedScale> with TickerProviderStateM
   void _onScaleChanged(double newScale) {
     //print("_onScaleChanged $newScale");
     _controller.reset();
-    _animation = Tween<double>(begin: this.scale, end: newScale).animate(_controller)
-      ..addListener(() {
-        setState(() {
-          scale = _animation.value;
-          //print("scale $scale");
-        });
-      });
+    _animation =
+        Tween<double>(begin: this.scale, end: newScale).animate(_controller)
+          ..addListener(() {
+            setState(() {
+              scale = _animation.value;
+              //print("scale $scale");
+            });
+          });
     _controller.forward();
   }
 

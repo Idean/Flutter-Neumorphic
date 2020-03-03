@@ -13,10 +13,13 @@ class NeumorphicColors {
   static const darkAccent = material.Colors.green;
   static const darkVariant = material.Colors.blueGrey;
 
-  static Color decorationMaxWhiteColor = material.Colors.white; //for intensity = 1
-  static Color decorationMaxDarkColor = material.Colors.black45; //for intensity = 1
+  static Color decorationMaxWhiteColor =
+      material.Colors.white; //for intensity = 1
+  static Color decorationMaxDarkColor =
+      material.Colors.black45; //for intensity = 1
 
-  static Color embossMaxWhiteColor = material.Colors.white60; //for intensity = 1
+  static Color embossMaxWhiteColor =
+      material.Colors.white60; //for intensity = 1
   static Color embossMaxDarkColor = material.Colors.black45; //for intensity = 1
 
   static Color gradientShaderDarkColor = material.Colors.black12;

@@ -1,10 +1,8 @@
-
 import 'package:flutter/widgets.dart';
 
 import '../theme.dart';
 
 Shader getGradientShader(Rect gradientRect, LightSource source) {
-
   var sourceInvert = source.invert();
 
   final Gradient gradient = new LinearGradient(

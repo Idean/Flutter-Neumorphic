@@ -14,13 +14,12 @@ class NeumorphicRadioStyle {
   final NeumorphicBoxShape boxShape;
   final NeumorphicShape shape;
 
-  const NeumorphicRadioStyle({
-    this.selectedDepth,
-    this.unselectedDepth,
-    this.intensity,
-    this.boxShape,
-    this.shape
-  });
+  const NeumorphicRadioStyle(
+      {this.selectedDepth,
+      this.unselectedDepth,
+      this.intensity,
+      this.boxShape,
+      this.shape});
 }
 
 class NeumorphicRadio<T> extends StatefulWidget {
@@ -43,10 +42,11 @@ class NeumorphicRadio<T> extends StatefulWidget {
 }
 
 class _NeumorphicRadioState<T> extends State<NeumorphicRadio<T>> {
-  bool get isSelected => widget.value != null && widget.value == widget.groupValue;
+  bool get isSelected =>
+      widget.value != null && widget.value == widget.groupValue;
 
-  void _onClick(){
-    if(widget.value == widget.groupValue){
+  void _onClick() {
+    if (widget.value == widget.groupValue) {
       //unselect
       widget.onChanged(null);
     } else {
@@ -58,8 +58,10 @@ class _NeumorphicRadioState<T> extends State<NeumorphicRadio<T>> {
   Widget build(BuildContext context) {
     final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
 
-    final double selectedDepth = -1 * (widget.style.selectedDepth ?? theme.depth).abs();
-    final double unselectedDepth = (widget.style.unselectedDepth ?? theme.depth).abs();
+    final double selectedDepth =
+        -1 * (widget.style.selectedDepth ?? theme.depth).abs();
+    final double unselectedDepth =
+        (widget.style.unselectedDepth ?? theme.depth).abs();
 
     return NeumorphicButton(
       onClick: () {
@@ -67,11 +69,12 @@ class _NeumorphicRadioState<T> extends State<NeumorphicRadio<T>> {
       },
       pressed: isSelected,
       minDistance: selectedDepth,
-      boxShape: widget.style.boxShape ?? NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(5)),
+      boxShape: widget.style.boxShape ??
+          NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(5)),
       child: widget.child,
       style: NeumorphicStyle(
         intensity: widget.style.intensity,
-        depth: isSelected ? selectedDepth : unselectedDepth ,
+        depth: isSelected ? selectedDepth : unselectedDepth,
         shape: widget.style.shape ?? NeumorphicShape.flat,
       ),
     );

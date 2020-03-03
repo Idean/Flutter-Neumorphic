@@ -58,7 +58,12 @@ List<BoxShadow> generateMultipleShadow({
   }
 }
 
-List<BoxShadow> generateUsualBoxShadow({@required Offset offset, @required Color color, @required double intensity, @required double depth, @required double limit}) {
+List<BoxShadow> generateUsualBoxShadow(
+    {@required Offset offset,
+    @required Color color,
+    @required double intensity,
+    @required double depth,
+    @required double limit}) {
   if (offset == Offset.zero) {
     return [];
   }
@@ -196,14 +201,17 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
 
   final curveFactor = 1; //TODO style.curveFactor.clamp(0, 1);
 
-  final whiteFactor = 0 + ((curveFactor / 3.5) * depth / 300) + curveFactor / 3.5;
-  final darkFactor = 0 - ((curveFactor / 2.5) * (depth / 28)) - curveFactor / 20;
+  final whiteFactor =
+      0 + ((curveFactor / 3.5) * depth / 300) + curveFactor / 3.5;
+  final darkFactor =
+      0 - ((curveFactor / 2.5) * (depth / 28)) - curveFactor / 20;
 
   //print("curveFactor: $curveFactor style.depth: ${style.depth}");
   //print("whiteFactor: $whiteFactor");
   //print("darkFactor: $darkFactor");
 
-  final convexConcaveOffset = style.lightSource.toOffset(/*TODO style.curveFactor*/ 1 );
+  final convexConcaveOffset =
+      style.lightSource.toOffset(/*TODO style.curveFactor*/ 1);
 
   final Gradient gradient = LinearGradient(
       begin: Alignment(
@@ -217,19 +225,23 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
       colors: [
         NeumorphicColors.generateGradientColors(
           colorBase: innerColor,
-          intensity: style.shape == NeumorphicShape.convex ? whiteFactor : darkFactor,
+          intensity:
+              style.shape == NeumorphicShape.convex ? whiteFactor : darkFactor,
         ),
         NeumorphicColors.generateGradientColors(
           colorBase: innerColor,
-          intensity: style.shape == NeumorphicShape.convex ? whiteFactor : darkFactor,
+          intensity:
+              style.shape == NeumorphicShape.convex ? whiteFactor : darkFactor,
         ),
         NeumorphicColors.generateGradientColors(
           colorBase: innerColor,
-          intensity: style.shape == NeumorphicShape.convex ? darkFactor : whiteFactor,
+          intensity:
+              style.shape == NeumorphicShape.convex ? darkFactor : whiteFactor,
         ),
         NeumorphicColors.generateGradientColors(
           colorBase: innerColor,
-          intensity: style.shape == NeumorphicShape.convex ? darkFactor : whiteFactor,
+          intensity:
+              style.shape == NeumorphicShape.convex ? darkFactor : whiteFactor,
         )
       ],
       stops: [
@@ -256,9 +268,9 @@ BoxDecoration generateNeumorphicDecoratorConcaveConvex({
 }
 
 Widget generateNeumorphicChild(
-    { /* Color accent, */
-      NeumorphicStyle style,
-      NeumorphicBoxShape shape,
-      Widget child}) {
+    {/* Color accent, */
+    NeumorphicStyle style,
+    NeumorphicBoxShape shape,
+    Widget child}) {
   return child;
 }

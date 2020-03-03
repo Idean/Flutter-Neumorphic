@@ -42,10 +42,16 @@ class ThemeHost {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || other is ThemeHost && runtimeType == other.runtimeType && theme == other.theme && darkTheme == other.darkTheme && currentTheme == other.currentTheme;
+      identical(this, other) ||
+      other is ThemeHost &&
+          runtimeType == other.runtimeType &&
+          theme == other.theme &&
+          darkTheme == other.darkTheme &&
+          currentTheme == other.currentTheme;
 
   @override
-  int get hashCode => theme.hashCode ^ darkTheme.hashCode ^ currentTheme.hashCode;
+  int get hashCode =>
+      theme.hashCode ^ darkTheme.hashCode ^ currentTheme.hashCode;
 
   ThemeHost copyWith({
     NeumorphicThemeData theme,
@@ -58,11 +64,9 @@ class ThemeHost {
       currentTheme: currentTheme ?? this.currentTheme,
     );
   }
-
 }
 
 class NeumorphicTheme extends StatefulWidget {
-
   final NeumorphicThemeData theme;
   final NeumorphicThemeData darkTheme;
   final Widget child;
@@ -79,15 +83,14 @@ class NeumorphicTheme extends StatefulWidget {
   @override
   _NeumorphicThemeState createState() => _NeumorphicThemeState();
 
-
   static NeumorphicThemeInherited of(BuildContext context) {
     try {
-      return context.dependOnInheritedWidgetOfExactType<NeumorphicThemeInherited>();
+      return context
+          .dependOnInheritedWidgetOfExactType<NeumorphicThemeInherited>();
     } catch (t) {
       return null;
     }
   }
-
 
   static bool isUsingDark(BuildContext context) {
     return of(context).isUsingDark;
@@ -116,7 +119,6 @@ class NeumorphicTheme extends StatefulWidget {
 }
 
 class _NeumorphicThemeState extends State<NeumorphicTheme> {
-
   ThemeHost _themeHost;
 
   @override
@@ -145,7 +147,7 @@ class _NeumorphicThemeState extends State<NeumorphicTheme> {
   Widget build(BuildContext context) {
     return NeumorphicThemeInherited(
       value: _themeHost,
-      onChanged: (value){
+      onChanged: (value) {
         setState(() {
           _themeHost = value;
         });
@@ -155,18 +157,16 @@ class _NeumorphicThemeState extends State<NeumorphicTheme> {
   }
 }
 
-
 class NeumorphicThemeInherited extends InheritedWidget {
   final Widget child;
   final ThemeHost value;
   final ValueChanged<ThemeHost> onChanged;
 
-  NeumorphicThemeInherited({
-    Key key,
-    @required this.child,
-    @required this.value,
-    @required this.onChanged
-  });
+  NeumorphicThemeInherited(
+      {Key key,
+      @required this.child,
+      @required this.value,
+      @required this.onChanged});
 
   @override
   bool updateShouldNotify(NeumorphicThemeInherited old) => value != old.value;
@@ -182,20 +182,14 @@ class NeumorphicThemeInherited extends InheritedWidget {
   CurrentTheme get currentTheme => value.currentTheme;
 
   set currentTheme(CurrentTheme currentTheme) {
-    this.onChanged(value.copyWith(
-        currentTheme: currentTheme
-    ));
+    this.onChanged(value.copyWith(currentTheme: currentTheme));
   }
 
   void updateCurrentTheme(NeumorphicThemeData update) {
-    if(value.useDark){
-      this.onChanged(value.copyWith(
-          theme: update
-      ));
+    if (value.useDark) {
+      this.onChanged(value.copyWith(theme: update));
     } else {
-      this.onChanged(value.copyWith(
-          darkTheme: update
-      ));
+      this.onChanged(value.copyWith(darkTheme: update));
     }
   }
 }

@@ -24,7 +24,6 @@ class NeumorphicSwitchStyle {
 }
 
 class NeumorphicSwitch extends StatefulWidget {
-
   static const MIN_EMBOSS_DEPTH = -1.0;
 
   final bool value;
@@ -46,16 +45,17 @@ class NeumorphicSwitch extends StatefulWidget {
   _NeumorphicSwitchState createState() => _NeumorphicSwitchState();
 }
 
-class _NeumorphicSwitchState extends State<NeumorphicSwitch> with SingleTickerProviderStateMixin {
+class _NeumorphicSwitchState extends State<NeumorphicSwitch>
+    with SingleTickerProviderStateMixin {
   Animation<Alignment> animation;
   AnimationController controller;
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-        duration: widget.duration, vsync: this);
-    animation = Tween<Alignment>(begin: Alignment.centerLeft, end: Alignment.centerRight)
+    controller = AnimationController(duration: widget.duration, vsync: this);
+    animation = Tween<Alignment>(
+            begin: Alignment.centerLeft, end: Alignment.centerRight)
         .animate(controller);
   }
 
@@ -85,8 +85,7 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch> with SingleTickerPr
             style: NeumorphicStyle(
                 depth: _getTrackDepth(theme.depth),
                 shape: NeumorphicShape.flat,
-                color: _getTrackColor(theme)
-            ),
+                color: _getTrackColor(theme)),
             child: AnimatedThumb(
               depth: widget.style.thumbDepth,
               animation: animation,
@@ -103,10 +102,11 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch> with SingleTickerPr
     return widget.style.thumbShape ?? NeumorphicShape.flat;
   }
 
-  double _getTrackDepth(double themeDepth){
+  double _getTrackDepth(double themeDepth) {
     //force negative to have emboss
-    double depth =  -1 * (widget.style.trackDepth ?? themeDepth).abs();
-    depth = depth.clamp(Neumorphic.MIN_DEPTH, NeumorphicSwitch.MIN_EMBOSS_DEPTH);
+    double depth = -1 * (widget.style.trackDepth ?? themeDepth).abs();
+    depth =
+        depth.clamp(Neumorphic.MIN_DEPTH, NeumorphicSwitch.MIN_EMBOSS_DEPTH);
     return depth;
   }
 
@@ -141,7 +141,11 @@ class AnimatedThumb extends AnimatedWidget {
   final NeumorphicShape shape;
   final double depth;
   AnimatedThumb(
-      {Key key, Animation<Alignment> animation, this.thumbColor, this.shape, this.depth})
+      {Key key,
+      Animation<Alignment> animation,
+      this.thumbColor,
+      this.shape,
+      this.depth})
       : super(key: key, listenable: animation);
 
   @override
@@ -171,5 +175,4 @@ class AnimatedThumb extends AnimatedWidget {
       ),
     );
   }
-
 }

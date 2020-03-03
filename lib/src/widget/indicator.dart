@@ -24,13 +24,13 @@ class IndicatorStyle {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is IndicatorStyle &&
-              runtimeType == other.runtimeType &&
-              depth == other.depth &&
-              accent == other.accent &&
-              variant == other.variant &&
-              gradientStart == other.gradientStart &&
-              gradientEnd == other.gradientEnd;
+      other is IndicatorStyle &&
+          runtimeType == other.runtimeType &&
+          depth == other.depth &&
+          accent == other.accent &&
+          variant == other.variant &&
+          gradientStart == other.gradientStart &&
+          gradientEnd == other.gradientEnd;
 
   @override
   int get hashCode =>
@@ -39,9 +39,6 @@ class IndicatorStyle {
       variant.hashCode ^
       gradientStart.hashCode ^
       gradientEnd.hashCode;
-
-
-
 }
 
 enum NeumorphicIndicatorOrientation { vertical, horizontal }
@@ -79,10 +76,16 @@ class NeumorphicIndicator extends StatefulWidget {
           style == other.style;
 
   @override
-  int get hashCode => percent.hashCode ^ width.hashCode ^ height.hashCode ^ orientation.hashCode ^ style.hashCode;
+  int get hashCode =>
+      percent.hashCode ^
+      width.hashCode ^
+      height.hashCode ^
+      orientation.hashCode ^
+      style.hashCode;
 }
 
-class _NeumorphicIndicatorState extends State<NeumorphicIndicator> with TickerProviderStateMixin {
+class _NeumorphicIndicatorState extends State<NeumorphicIndicator>
+    with TickerProviderStateMixin {
   double percent = 0;
   AnimationController _controller;
   Animation _animation;
@@ -91,19 +94,21 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator> with TickerPr
   void initState() {
     super.initState();
     percent = widget.percent ?? 0;
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 150));
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 150));
   }
 
   @override
   void didUpdateWidget(NeumorphicIndicator oldWidget) {
     if (oldWidget.percent != widget.percent) {
       _controller.reset();
-      _animation = Tween<double>(begin: oldWidget.percent, end: widget.percent).animate(_controller)
-        ..addListener(() {
-          setState(() {
-            this.percent = _animation.value;
-          });
-        });
+      _animation = Tween<double>(begin: oldWidget.percent, end: widget.percent)
+          .animate(_controller)
+            ..addListener(() {
+              setState(() {
+                this.percent = _animation.value;
+              });
+            });
 
       _controller.forward();
     }
@@ -125,11 +130,21 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator> with TickerPr
       child: Neumorphic(
         boxShape: NeumorphicBoxShape.stadium(),
         padding: EdgeInsets.zero,
-        style: NeumorphicStyle(depth: widget.style.depth, shape: NeumorphicShape.flat),
+        style: NeumorphicStyle(
+            depth: widget.style.depth, shape: NeumorphicShape.flat),
         child: FractionallySizedBox(
-          heightFactor: widget.orientation == NeumorphicIndicatorOrientation.vertical ? widget.percent : 1,
-          widthFactor: widget.orientation == NeumorphicIndicatorOrientation.horizontal ? widget.percent : 1,
-          alignment: widget.orientation == NeumorphicIndicatorOrientation.horizontal ? Alignment.centerLeft : Alignment.bottomCenter,
+          heightFactor:
+              widget.orientation == NeumorphicIndicatorOrientation.vertical
+                  ? widget.percent
+                  : 1,
+          widthFactor:
+              widget.orientation == NeumorphicIndicatorOrientation.horizontal
+                  ? widget.percent
+                  : 1,
+          alignment:
+              widget.orientation == NeumorphicIndicatorOrientation.horizontal
+                  ? Alignment.centerLeft
+                  : Alignment.bottomCenter,
           child: Padding(
             padding: widget.padding,
             child: Neumorphic(
@@ -139,7 +154,10 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator> with TickerPr
                 gradient: LinearGradient(
                   begin: widget.style.gradientStart ?? Alignment.topCenter,
                   end: widget.style.gradientEnd ?? Alignment.bottomCenter,
-                  colors: [widget.style.accent ?? theme.accentColor, widget.style.variant ?? theme.variantColor],
+                  colors: [
+                    widget.style.accent ?? theme.accentColor,
+                    widget.style.variant ?? theme.variantColor
+                  ],
                 ),
               )),
             ),

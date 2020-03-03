@@ -48,8 +48,10 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
     final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
     final selectedColor = widget.style.selectedColor ?? theme.accentColor;
 
-    final double selectedDepth = -1 * (widget.style.selectedDepth ?? theme.depth).abs();
-    final double unselectedDepth = (widget.style.unselectedDepth ?? theme.depth).abs();
+    final double selectedDepth =
+        -1 * (widget.style.selectedDepth ?? theme.depth).abs();
+    final double unselectedDepth =
+        (widget.style.unselectedDepth ?? theme.depth).abs();
 
     return NeumorphicButton(
       pressed: isSelected,
@@ -70,12 +72,9 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
       ),
       style: NeumorphicStyle(
         color: isSelected ? selectedColor : null,
-        depth: isSelected ?
-          selectedDepth :
-          unselectedDepth,
+        depth: isSelected ? selectedDepth : unselectedDepth,
         shape: NeumorphicShape.flat,
       ),
     );
   }
-
 }

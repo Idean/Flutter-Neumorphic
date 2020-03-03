@@ -21,10 +21,19 @@ class SliderStyle {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ProgressStyle && runtimeType == other.runtimeType && depth == other.depth && borderRadius == other.borderRadius && accent == other.accent && variant == other.variant;
+      other is ProgressStyle &&
+          runtimeType == other.runtimeType &&
+          depth == other.depth &&
+          borderRadius == other.borderRadius &&
+          accent == other.accent &&
+          variant == other.variant;
 
   @override
-  int get hashCode => depth.hashCode ^ borderRadius.hashCode ^ accent.hashCode ^ variant.hashCode;
+  int get hashCode =>
+      depth.hashCode ^
+      borderRadius.hashCode ^
+      accent.hashCode ^
+      variant.hashCode;
 }
 
 @immutable
@@ -74,7 +83,8 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
             // print("tapPos : $tapPos");
             // print("newPercent : $newPercent");
 
-            final newValue = ((widget.max - widget.min) * newPercent).clamp(widget.min, widget.max);
+            final newValue = ((widget.max - widget.min) * newPercent)
+                .clamp(widget.min, widget.max);
 
             if (widget.onChanged != null) {
               //  print("onChanged : $newValue");
@@ -95,7 +105,6 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
           }
         },
         onPanCancel: () {
-
           //print("onPanCancel");
         },
         child: Stack(
@@ -104,18 +113,17 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
             _generateSlider(),
             Align(
                 alignment: Alignment(
-                    (widget.percent * 2) - 1, //because left = -1 & right = 1, so the "width" = 2, and minValue = 1
+                    (widget.percent * 2) -
+                        1, //because left = -1 & right = 1, so the "width" = 2, and minValue = 1
                     0),
-                child: _generateThumb(context)
-            )
+                child: _generateThumb(context))
           ],
         ),
       );
     });
   }
 
-
-  Widget _generateSlider(){
+  Widget _generateSlider() {
     final theme = NeumorphicTheme.getCurrentTheme(context);
     return NeumorphicProgress(
       duration: Duration.zero,
@@ -130,13 +138,13 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
     );
   }
 
-  Widget _generateThumb(BuildContext context){
-   final theme = NeumorphicTheme.getCurrentTheme(context);
-   return Neumorphic(
-     style: NeumorphicStyle(
-       shape: NeumorphicShape.concave,
-       color: widget.style.accent ?? theme.accentColor,
-     ),
+  Widget _generateThumb(BuildContext context) {
+    final theme = NeumorphicTheme.getCurrentTheme(context);
+    return Neumorphic(
+      style: NeumorphicStyle(
+        shape: NeumorphicShape.concave,
+        color: widget.style.accent ?? theme.accentColor,
+      ),
       boxShape: NeumorphicBoxShape.circle(),
       child: SizedBox(
         height: widget.height * 1.5,

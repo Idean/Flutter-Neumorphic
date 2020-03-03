@@ -9,7 +9,6 @@ import 'container.dart';
 typedef void NeumorphicButtonClickListener();
 
 class NeumorphicButton extends StatefulWidget {
-
   static const double PRESSED_SCALE = 0.98;
   static const double UNPRESSED_SCALE = 1.0;
 
@@ -96,8 +95,8 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   }
 
   //used to stay pressed if no tap up
-  void _resetIfTapUp(){
-    if(hasFinishedAnimationDown == true && hasTapUp == true) {
+  void _resetIfTapUp() {
+    if (hasFinishedAnimationDown == true && hasTapUp == true) {
       setState(() {
         pressed = false;
         depth = initialStyle.depth;
@@ -123,11 +122,11 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
           _handlePress();
         }
       },
-      onTapUp: (details){
+      onTapUp: (details) {
         hasTapUp = true;
         _resetIfTapUp();
       },
-      onTapCancel: (){
+      onTapCancel: () {
         hasTapUp = true;
         _resetIfTapUp();
       },
@@ -147,10 +146,15 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   }
 
   double _getScale() {
-    if(widget.pressed != null){ //defined by the widget that use it
-      return widget.pressed ? NeumorphicButton.PRESSED_SCALE : NeumorphicButton.UNPRESSED_SCALE;
+    if (widget.pressed != null) {
+      //defined by the widget that use it
+      return widget.pressed
+          ? NeumorphicButton.PRESSED_SCALE
+          : NeumorphicButton.UNPRESSED_SCALE;
     } else {
-      return this.pressed ? NeumorphicButton.PRESSED_SCALE : NeumorphicButton.UNPRESSED_SCALE;
+      return this.pressed
+          ? NeumorphicButton.PRESSED_SCALE
+          : NeumorphicButton.UNPRESSED_SCALE;
     }
   }
 }

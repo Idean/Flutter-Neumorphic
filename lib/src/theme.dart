@@ -28,7 +28,8 @@ class NeumorphicThemeData {
 
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
 
-  double get intensity => _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
+  double get intensity =>
+      _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
   const NeumorphicThemeData({
     this.baseColor = _defaultBaseColor,
@@ -58,7 +59,13 @@ class NeumorphicThemeData {
           lightSource == other.lightSource;
 
   @override
-  int get hashCode => baseColor.hashCode ^ accentColor.hashCode ^ variantColor.hashCode ^ _depth.hashCode ^ intensity.hashCode ^ lightSource.hashCode;
+  int get hashCode =>
+      baseColor.hashCode ^
+      accentColor.hashCode ^
+      variantColor.hashCode ^
+      _depth.hashCode ^
+      intensity.hashCode ^
+      lightSource.hashCode;
 
   NeumorphicThemeData copyWith({
     Color baseColor,
@@ -127,11 +134,16 @@ class NeumorphicStyle {
 
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
 
-  double get intensity => _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
+  double get intensity =>
+      _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
   NeumorphicStyle copyWithThemeIfNull(NeumorphicThemeData theme) {
     return NeumorphicStyle(
-        color: this.color ?? theme.baseColor, shape: this.shape, depth: this.depth ?? theme.depth, intensity: this.intensity ?? theme.intensity, lightSource: this.lightSource ?? theme.lightSource);
+        color: this.color ?? theme.baseColor,
+        shape: this.shape,
+        depth: this.depth ?? theme.depth,
+        intensity: this.intensity ?? theme.intensity,
+        lightSource: this.lightSource ?? theme.lightSource);
   }
 
   @override
@@ -146,7 +158,12 @@ class NeumorphicStyle {
           shape == other.shape;
 
   @override
-  int get hashCode => color.hashCode ^ depth.hashCode ^ intensity.hashCode ^ lightSource.hashCode ^ shape.hashCode;
+  int get hashCode =>
+      color.hashCode ^
+      depth.hashCode ^
+      intensity.hashCode ^
+      lightSource.hashCode ^
+      shape.hashCode;
 
   NeumorphicStyle copyWith({
     Color color,
