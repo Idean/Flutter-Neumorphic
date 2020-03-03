@@ -88,6 +88,19 @@ class NeumorphicTheme extends InheritedWidget {
     }
   }
 
+
+  static Color accentColor(BuildContext context) {
+    return getCurrentTheme(context).accentColor;
+  }
+
+  static Color baseColor(BuildContext context) {
+    return getCurrentTheme(context).baseColor;
+  }
+
+  static Color variantColor(BuildContext context) {
+    return getCurrentTheme(context).variantColor;
+  }
+
   static NeumorphicThemeData getCurrentTheme(BuildContext context) {
     try {
       final provider = NeumorphicTheme.of(context);

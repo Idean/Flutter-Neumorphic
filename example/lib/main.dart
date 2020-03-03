@@ -1,4 +1,5 @@
 import 'package:example/samples/audio_player_sample.dart';
+import 'package:example/samples/calculator_sample.dart';
 import 'package:example/samples/credit_card_sample.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -93,6 +94,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context){
                     return CreditCardSample();
+                  }));
+                },
+              ),
+              SizedBox(height: 12),
+              RaisedButton(
+                child: Text("calculator"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                    return CalculatorSample();
                   }));
                 },
               ),
