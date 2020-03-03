@@ -95,7 +95,7 @@ class _TopScreenWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Neumorphic(
       boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(12)),
-      style: NeumorphicStyle(depth: -4),
+      style: NeumorphicStyle(depth: -1 * NeumorphicTheme.of(context).current.depth),
       child: FractionallySizedBox(
         widthFactor: 1,
         child: Padding(
@@ -148,47 +148,77 @@ class __PageContentState extends State<_PageContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Align(
-          alignment: Alignment.topLeft,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 18.0, top: 8),
-            child: NeumorphicButton(
-              onClick: () {
-                Navigator.of(context).pop();
-              },
-              style: NeumorphicStyle(shape: NeumorphicShape.flat),
-              boxShape: NeumorphicBoxShape.circle(),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Icon(Icons.navigate_before),
+    return NeumorphicBackground(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 18.0, top: 8),
+              child: NeumorphicButton(
+                onClick: () {
+                  Navigator.of(context).pop();
+                },
+                style: NeumorphicStyle(shape: NeumorphicShape.flat),
+                boxShape: NeumorphicBoxShape.circle(),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Icon(Icons.navigate_before),
+                ),
               ),
             ),
           ),
-        ),
-        Expanded(
-          flex: 1,
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: _TopScreenWidget(),
+          Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: _TopScreenWidget(),
+            ),
           ),
-        ),
-        Expanded(
-          flex: 2,
-          child: GridView.count(
-            // Create a grid with 2 columns. If you change the scrollDirection to
-            // horizontal, this produces 2 rows.
-            crossAxisCount: 4,
-            padding: const EdgeInsets.only(left: 40, right: 40.0),
-            // Generate 100 widgets that display their index in the List.
-            children: List.generate(buttons.length, (index) {
-              return WidgetCalcButton(buttons[index]);
-            }),
+          Expanded(
+            flex: 2,
+            child: GridView.count(
+              // Create a grid with 2 columns. If you change the scrollDirection to
+              // horizontal, this produces 2 rows.
+              crossAxisCount: 4,
+              padding: const EdgeInsets.only(left: 40, right: 40.0),
+              // Generate 100 widgets that display their index in the List.
+              children: List.generate(buttons.length, (index) {
+                return WidgetCalcButton(buttons[index]);
+              }),
+            ),
           ),
-        ),
-      ],
+          Row(
+            children: <Widget>[
+              RaisedButton(
+                onPressed: (){
+                  setState(() {
+                    NeumorphicTheme.of(context).updateCurrentTheme(NeumorphicThemeData(
+                      depth: 1,
+                      intensity: 0.5,
+                      accentColor: Colors.cyan,
+                    ));
+                  });
+                },
+                child: Text("style 1",),
+              ),
+              RaisedButton(
+                onPressed: (){
+                  setState(() {
+                    NeumorphicTheme.of(context).updateCurrentTheme(NeumorphicThemeData(
+                      depth: 8,
+                      intensity: 0.3,
+                      accentColor: Colors.greenAccent,
+                    ));
+                  });
+                },
+                child: Text("style 2",),
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

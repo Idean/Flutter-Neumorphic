@@ -59,7 +59,7 @@ class _PageState extends State<Page> {
                       width: 150,
                     ),
                   ),
-                  SizedBox(width: 12),
+                  SizedBox(width: 30),
                   Text("Emboss")
                 ],
               ),
@@ -78,7 +78,7 @@ class _PageState extends State<Page> {
                       width: 150,
                     ),
                   ),
-                  SizedBox(width: 12),
+                  SizedBox(width: 30),
                   Text("Flat")
                 ],
               ),
@@ -96,7 +96,7 @@ class _PageState extends State<Page> {
                       width: 150,
                     ),
                   ),
-                  SizedBox(width: 12),
+                  SizedBox(width: 30),
                   Text("Convex")
                 ],
               ),
@@ -114,7 +114,7 @@ class _PageState extends State<Page> {
                       width: 150,
                     ),
                   ),
-                  SizedBox(width: 12),
+                  SizedBox(width: 30),
                   Text("Concave")
                 ],
               ),
