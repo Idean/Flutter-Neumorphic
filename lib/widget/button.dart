@@ -21,6 +21,7 @@ class NeumorphicButton extends StatefulWidget {
   final EdgeInsets padding;
   final bool pressed; //null, true, false
   final NeumorphicBorder border;
+  final Duration duration;
   final NeumorphicButtonClickListener onClick;
 
   const NeumorphicButton({
@@ -30,6 +31,7 @@ class NeumorphicButton extends StatefulWidget {
     this.border,
     this.pressed, //true/false if you want to change the state of the button
     this.boxShape,
+    this.duration = Neumorphic.DEFAULT_DURATION,
     //this.accent,
     this.onClick,
     this.minDistance = 0,
@@ -73,14 +75,21 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
     updateInitialStyle();
   }
 
-  void _changeDistance() {
+  Future<void> _handlePress() async {
     setState(() {
       pressed = true;
       depth = widget.minDistance;
     });
-  }
 
-  void _resetDistance() {
+    await Future.delayed(widget.duration); //wait until animation finished
+
+    //haptic vibration
+    HapticFeedback.lightImpact();
+
+    if(widget.onClick != null) {
+      widget.onClick();
+    }
+
     setState(() {
       pressed = false;
       depth = initialStyle.depth;
@@ -95,28 +104,14 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (detail) {
-        if (clickable) {
-          _changeDistance();
-          //haptic vibration
-          HapticFeedback.mediumImpact();
-        }
-      },
-      onTapUp: (detail) {
-        if (clickable) {
-          _resetDistance();
-          if(widget.onClick != null) {
-            widget.onClick();
-          }
-        }
-      },
-      onTapCancel: () {
-        if (clickable) {
-          _resetDistance();
+        if (clickable && !pressed) {
+          _handlePress();
         }
       },
       child: AnimatedScale(
         scale: _getScale(),
         child: Neumorphic(
+          duration: widget.duration,
           border: widget.border,
           //accent: widget.accent,
           padding: widget.padding,

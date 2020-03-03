@@ -43,6 +43,9 @@ class NeumorphicBorder {
 
 @immutable
 class Neumorphic extends StatelessWidget {
+
+  static const DEFAULT_DURATION = const Duration(milliseconds: 100);
+
   static const double MIN_DEPTH = -20.0;
   static const double MAX_DEPTH = 20.0;
 
@@ -68,7 +71,7 @@ class Neumorphic extends StatelessWidget {
   Neumorphic({
     Key key,
     this.child,
-    this.duration = const Duration(milliseconds: 100),
+    this.duration = Neumorphic.DEFAULT_DURATION,
     this.style,
     this.border,
     //this.accent,
