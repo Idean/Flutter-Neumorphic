@@ -7,19 +7,17 @@ class AudioPlayerSample extends StatefulWidget {
 }
 
 class _AudioPlayerSampleState extends State<AudioPlayerSample> {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
-      currentTheme: CurrentTheme.LIGHT,
-      theme: NeumorphicThemeData(
-        baseColor: Color(0xFFDDE6E8),
-        intensity: 0.5,
-        lightSource: LightSource.topLeft,
-        depth: 10,
-      ),
-      child: _Page()
-    );
+        currentTheme: CurrentTheme.LIGHT,
+        theme: NeumorphicThemeData(
+          baseColor: Color(0xFFDDE6E8),
+          intensity: 0.5,
+          lightSource: LightSource.topLeft,
+          depth: 10,
+        ),
+        child: _Page());
   }
 }
 
@@ -29,7 +27,6 @@ class _Page extends StatefulWidget {
 }
 
 class __PageState extends State<_Page> {
-
   bool _useDark = false;
 
   @override
@@ -79,7 +76,13 @@ class __PageState extends State<_Page> {
               ),
             ),
           ),
-          Align(alignment: Alignment.center, child: Text("Now Playing")),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              "Now Playing",
+              style: TextStyle(color: _textsColor()),
+            ),
+          ),
           Align(
             alignment: Alignment.centerRight,
             child: NeumorphicButton(
@@ -113,7 +116,7 @@ class __PageState extends State<_Page> {
           width: 200,
           child: Image.asset(
             "assets/images/weeknd.jpg",
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           )),
     );
   }
