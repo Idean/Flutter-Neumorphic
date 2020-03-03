@@ -76,29 +76,44 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   }
 
   Future<void> _handlePress() async {
+    hasFinishedAnimationDown = false;
     setState(() {
       pressed = true;
       depth = widget.minDistance;
     });
 
     await Future.delayed(widget.duration); //wait until animation finished
+    hasFinishedAnimationDown = true;
 
     //haptic vibration
     HapticFeedback.lightImpact();
 
-    if(widget.onClick != null) {
+    if (widget.onClick != null) {
       widget.onClick();
     }
 
-    setState(() {
-      pressed = false;
-      depth = initialStyle.depth;
-    });
+    _resetIfTapUp();
+  }
+
+  //used to stay pressed if no tap up
+  Future<void> _resetIfTapUp(){
+    if(hasFinishedAnimationDown == true && hasTapUp == true) {
+      setState(() {
+        pressed = false;
+        depth = initialStyle.depth;
+
+        hasFinishedAnimationDown = false;
+        hasTapUp = false;
+      });
+    }
   }
 
   bool get clickable {
     return widget.onClick != null;
   }
+
+  bool hasFinishedAnimationDown = false;
+  bool hasTapUp = false;
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +122,14 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
         if (clickable && !pressed) {
           _handlePress();
         }
+      },
+      onTapUp: (details){
+        hasTapUp = true;
+        _resetIfTapUp();
+      },
+      onTapCancel: (){
+        hasTapUp = true;
+        _resetIfTapUp();
       },
       child: AnimatedScale(
         scale: _getScale(),
