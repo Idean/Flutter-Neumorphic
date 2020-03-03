@@ -75,7 +75,7 @@ class __PageContentState extends State<_PageContent> {
             child: Stack(
               fit: StackFit.expand,
               children: <Widget>[
-                Image.asset("assets/images/map.jpg", fit: BoxFit.cover),
+                //Image.asset("assets/images/map.jpg", fit: BoxFit.cover),
                 BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
                   child: Container(
