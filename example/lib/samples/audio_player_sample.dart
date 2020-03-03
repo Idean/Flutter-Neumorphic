@@ -89,7 +89,7 @@ class __PageState extends State<_Page> {
               onClick: () {
                 setState(() {
                   _useDark = !_useDark;
-                  NeumorphicTheme.of(context).setCurrentTheme(_useDark ? CurrentTheme.DARK : CurrentTheme.LIGHT);
+                  NeumorphicTheme.of(context).currentTheme = _useDark ? CurrentTheme.DARK : CurrentTheme.LIGHT;
                 });
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
@@ -220,7 +220,7 @@ class __PageState extends State<_Page> {
 
   Color _iconsColor() {
     final theme = NeumorphicTheme.of(context);
-    if (theme.isUsingDark()) {
+    if (theme.isUsingDark) {
       return theme.current.accentColor;
     } else {
       return null;
@@ -228,8 +228,7 @@ class __PageState extends State<_Page> {
   }
 
   Color _textsColor() {
-    final theme = NeumorphicTheme.of(context);
-    if (theme.isUsingDark()) {
+    if (NeumorphicTheme.isUsingDark(context)) {
       return Colors.white70;
     } else {
       return Color(0xFF3E3E3E);

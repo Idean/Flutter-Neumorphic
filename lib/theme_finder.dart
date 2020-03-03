@@ -88,6 +88,11 @@ class NeumorphicTheme extends StatefulWidget {
     }
   }
 
+
+  static bool isUsingDark(BuildContext context) {
+    return of(context).isUsingDark;
+  }
+
   static Color accentColor(BuildContext context) {
     return getCurrentTheme(context).accentColor;
   }
@@ -142,7 +147,7 @@ class _NeumorphicThemeState extends State<NeumorphicTheme> {
       value: _themeHost,
       onChanged: (value){
         setState(() {
-
+          _themeHost = value;
         });
       },
       child: widget.child,
@@ -170,11 +175,13 @@ class NeumorphicThemeInherited extends InheritedWidget {
     return this.value.getCurrentTheme();
   }
 
-  bool isUsingDark() {
+  bool get isUsingDark {
     return value.useDark;
   }
 
-  void setCurrentTheme(CurrentTheme currentTheme) {
+  CurrentTheme get currentTheme => value.currentTheme;
+
+  set currentTheme(CurrentTheme currentTheme) {
     value.currentTheme = currentTheme;
     this.onChanged(value);
   }
