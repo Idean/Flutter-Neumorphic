@@ -18,7 +18,7 @@ class NeumorphicBoxDecoration extends Decoration {
 
   @override
   BoxPainter createBoxPainter([onChanged]) {
-    if(style.depth > 0) {
+    if(style.depth >= 0) {
       return NeumorphicBoxDecorationPainter(
         style: style,
         onChanged: onChanged,
