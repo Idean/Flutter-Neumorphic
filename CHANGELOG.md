@@ -1,3 +1,7 @@
+## 1.0.0+1
+
+* Added missing authors emails
+
 ## 1.0.0
 
 * First release of Flutter-Neumorphic
