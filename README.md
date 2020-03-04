@@ -2,7 +2,7 @@
 
 [![top_banner](./medias/top_banner.png)](https://www.idean.com/)
 
-[![neumorphic_widget](./medias/showcase_1_small.png)](https://github.com/Idean/Flutter-Neumorphic)
+[![neumorphic_widget](./medias/header_showcase.png)](https://github.com/Idean/Flutter-Neumorphic)
 [![neumorphic_widget](./medias/showcase_2_small.png)](https://github.com/Idean/Flutter-Neumorphic)
 
 A complete, ready to use, Neumorphic ui kit for Flutter
