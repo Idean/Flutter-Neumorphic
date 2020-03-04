@@ -16,10 +16,18 @@ class _ContainersListPageState extends State<WidgetsPage> {
 
   bool useDark = false;
 
+  Color _textColor(){
+    if(useDark)
+      return Colors.white70;
+    else {
+      return Colors.black;
+    }
+  }
+
   Widget _buildProgress() {
     return Row(
       children: <Widget>[
-        Text("Progress"),
+        Text("Progress", style: TextStyle(color: _textColor()),),
         SizedBox(width: 12),
         Flexible(
           child: NeumorphicProgress(
@@ -35,7 +43,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
   Widget _buildIndeterminateProgress() {
     return Row(
       children: <Widget>[
-        Text("Progress"),
+        Text("Progress", style: TextStyle(color: _textColor()),),
         SizedBox(width: 12),
         Flexible(
           child: NeumorphicProgressIndeterminate(
@@ -50,14 +58,17 @@ class _ContainersListPageState extends State<WidgetsPage> {
   Widget _buildButtons() {
     return Row(
       children: <Widget>[
-        Text("Buttons"),
+        Text("Buttons", style: TextStyle(color: _textColor()),),
         SizedBox(width: 4),
         NeumorphicButton(
           boxShape: NeumorphicBoxShape.stadium(),
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 18),
-          child: Text("button 1"),
+          child: Text("button 1", style: TextStyle(color: _textColor()),),
           onClick:() {
+            setState(() {
+              useDark = !useDark;
+            });
           },
         ),
         SizedBox(width: 10),
@@ -65,7 +76,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
           boxShape: NeumorphicBoxShape.stadium(),
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 18),
-          child: Text("button 2"),
+          child: Text("button 2", style: TextStyle(color: _textColor()),),
           onClick:() {
           },
         ),
@@ -76,14 +87,14 @@ class _ContainersListPageState extends State<WidgetsPage> {
   Widget _buildRadios() {
     return Row(
       children: <Widget>[
-        Text("Radio"),
+        Text("Radio", style: TextStyle(color: _textColor()),),
         SizedBox(width: 12),
         NeumorphicRadio(
           child: SizedBox(
             height: 50,
             width: 50,
             child: Center(
-              child: Text("1"),
+              child: Text("1", style: TextStyle(color: _textColor()),),
             ),
           ),
           value: 1,
@@ -100,7 +111,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
             height: 50,
             width: 50,
             child: Center(
-              child: Text("2"),
+              child: Text("2", style: TextStyle(color: _textColor()),),
             ),
           ),
           value: 2,
@@ -117,7 +128,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
             height: 50,
             width: 50,
             child: Center(
-              child: Text("3"),
+              child: Text("3", style: TextStyle(color: _textColor()),),
             ),
           ),
           value: 3,
@@ -139,7 +150,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
   Widget _buildChecks() {
     return Row(
       children: <Widget>[
-        Text("Checkbox"),
+        Text("Checkbox", style: TextStyle(color: _textColor()),),
         SizedBox(width: 12),
         NeumorphicCheckbox(
           value: check1,
@@ -227,7 +238,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
   Widget _buildSlider() {
     return Row(
       children: <Widget>[
-        Text("Slider"),
+        Text("Slider", style: TextStyle(color: _textColor()),),
         SizedBox(width: 12),
         Flexible(
           child: NeumorphicSlider(
@@ -242,7 +253,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
               }),
         ),
         SizedBox(width: 12),
-        Text("value: ${seekValue.round()}"),
+        Text("value: ${seekValue.round()}", style: TextStyle(color: _textColor()),),
         SizedBox(width: 12),
       ],
     );
@@ -250,7 +261,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
 
   Widget _buildSwitches() {
     return Row(children: <Widget>[
-      Text("Switch"),
+      Text("Switch", style: TextStyle(color: _textColor()),),
       SizedBox(width: 15),
       NeumorphicSwitch(
         value: _switchConcaveEnabled,
@@ -298,7 +309,7 @@ class _ContainersListPageState extends State<WidgetsPage> {
         baseColor: NeumorphicColors.darkBackground,
         accentColor: NeumorphicColors.darkAccent,
         lightSource: LightSource.topLeft,
-        depth: 10,
+        depth: 6,
         intensity: 0.3,
       ),
       theme: NeumorphicThemeData(
