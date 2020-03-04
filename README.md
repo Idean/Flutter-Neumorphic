@@ -5,6 +5,8 @@
 [![neumorphic_widget](./medias/showcase_1_small.png)]()
 [![neumorphic_widget](./medias/showcase_2_small.png)]()
 
+A complete, ready to use, Neumorphic ui kit for Flutter
+
 # ⚙️ Installation
 
 https://pub.dev/packages/flutter_neumorphic
