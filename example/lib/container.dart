@@ -139,6 +139,7 @@ class __PageState extends State<_Page> {
       height: 100,
       width: 200,
       child: NeumorphicButton(
+        duration: Duration(milliseconds: 300),
           onClick: () {
             setState(() {
               _oppositeLightSource = !_oppositeLightSource;
@@ -151,7 +152,7 @@ class __PageState extends State<_Page> {
             lightSource: this.lightSource,
           ),
           child: SizedBox.expand(
-            child: Center(child: Text("child")),
+            child: Center(child: Text("")),
           )
         /*Padding(
           padding: const EdgeInsets.all(8.0),
