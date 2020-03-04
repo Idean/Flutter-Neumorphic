@@ -164,8 +164,8 @@ Neumorphic(
 
 <tr>
   <td>Convex</td>
-  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/widget_concave.png"/></td>
-  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/concave.png"/> </td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/widget_convex.png"/></td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/convex.png"/> </td>
   <td>depth >= 0 && shape == Convex</td>
 </tr>
 
@@ -173,16 +173,16 @@ Neumorphic(
 
 <tr>
   <td>Concave</td>
-  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/widget_emboss.png"/></td>
-  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/emboss.png"/> </td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/widget_concave.png"/></td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/concave.png"/> </td>
   <td>depth >= 0 && shape == Concave</td>
 </tr>
 
 
 <tr>
   <td>Emboss</td>
-  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/widget_flat.png"/></td>
-  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/flat.png"/> </td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/widget_emboss.png"/></td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/emboss.png"/> </td>
   <td>depth < 0</td>
 </tr>
 
