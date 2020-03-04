@@ -38,18 +38,68 @@ Neumorphic card however pretends to extrude from the background. It’s a raised
 
 # 🗂 Widgets
 
-| Preview | Widget | Description | 
-|---------|--------|-------------|
-| [![neumorphic](./medias/widgets/container.gif)]()  | [Neumorphic](https://github.com/Idean/Flutter-Neumorphic) | The main Neumorphic Widget, a container which adds white/dark gradient depending on a lightsource and a depth |
-| [![button](./medias/widgets/button.gif)]() | [NeumorphicButton](https://github.com/Idean/Flutter-Neumorphic) | A neumorphic button that plays with the depth to respond to user interraction |
-| [![radio](./medias/widgets/radio.gif)]() | [NeumorphicRadio](https://github.com/Idean/Flutter-Neumorphic) | A set of neumorphic button whith only one selected at time, depending on a value & groupValue | 
-| [![checkbox](./medias/widgets/checkbox.gif)]() | [NeumorphicCheckbox](https://github.com/Idean/Flutter-Neumorphic) | A button associated with a value, can be checked/unckecked, if checked, takes the accent color |
-| [![switch](./medias/widgets/switch.gif)]() | [NeumorphicSwitch](https://github.com/Idean/Flutter-Neumorphic) | An On/Off toggle, associated with a value, if toggled, takes the accent color | 
-| [![slider](./medias/widgets/slider.gif)]() | [NeumorphicSlider](https://github.com/Idean/Flutter-Neumorphic) | A Neumorphic seekbar (range slider), the user can select a value in a range | 
-| [![progress](./medias/widgets/progress.gif)]()  | [NeumorphicProgress](https://github.com/Idean/Flutter-Neumorphic) | A determinate progress, takes the displayed percentage | 
-| [![indeterminate](./medias/widgets/indeterminate.gif)]()  | [NeumorphicIndeterminateProgress](https://github.com/Idean/Flutter-Neumorphic) | An inderminate progress-bar | 
-| [![indicator](./medias/widgets/indicator.gif)]() | [NeumorphicIndicator](https://github.com/Idean/Flutter-Neumorphic) | A vertical / horizontal indicator bar, takes a percentage | 
-| [![background](./medias/widgets/background.png)]() | [NeumorphicBackground](https://github.com/Idean/Flutter-Neumorphic) | Take the background color of the theme, can clip the screen with a borderRadius | 
+<table>
+<thead>
+<tr>
+<th>Preview</th>
+<th>Widget</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/container.gif"/></td>
+  <td>Neumorphic</td>
+  <td>The main Neumorphic Widget, a container which adds white/dark gradient depending on a lightsource and a depth </td>
+</tr>
+<tr>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/button.gif"/></td>
+  <td>NeumorphicButton</td>
+  <td>A neumorphic button that plays with the depth to respond to user interraction</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/radio.gif"/></td>
+  <td>NeumorphicRadio</td>
+  <td>A set of neumorphic button whith only one selected at time, depending on a value and groupValue</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/checkbox.gif"/></td>
+  <td>NeumorphicCheckbox</td>
+  <td> A button associated with a value, can be checked/unckecked, if checked, takes the accent color</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/switch.gif"/> </td>
+  <td>NeumorphicSwitch</td>
+  <td>An On/Off toggle, associated with a value, if toggled, takes the accent color </td>
+</tr>
+<tr>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/slider.gif"/></td>
+  <td>NeumorphicSlider</td>
+  <td>A Neumorphic seekbar (range slider), the user can select a value in a range</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/progress.gif"/></td>
+  <td>NeumorphicProgress </td>
+  <td>A determinate progress, takes the displayed percentage</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/indeterminate.gif"/> </td>
+  <td>NeumorphicIndeterminateProgress</td>
+  <td>An inderminate progress-bar</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/indicator.gif"/> </td>
+  <td>NeumorphicIndicator</td>
+  <td>A vertical / horizontal indicator bar, takes a percentage</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/background.png"/> </td>
+  <td>NeumorphicBackground </td>
+  <td>Take the background color of the theme, can clip the screen with a borderRadius</td>
+</tr>
+
+</tbody>
+</table>
 
 ## 📦 Neumorphic
 
@@ -89,14 +139,51 @@ Neumorphic(
 
 ### 🔧 Shapes
 
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Widget</th>
+<th>Image</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
 
-| Shape | WIDGET | IMAGE | CONDITION | 
-|-------|--------|-------|-----------|
-| Flat | [![neumorphic_flat](./medias/shapes/widget_flat.png)]()  | [![neumorphic_flat](./medias/shapes/flat.png)]() | depth >= 0 && shape == Flat |
-| Convex | [![neumorphic_convex](./medias/shapes/widget_convex.png)]()  | [![neumorphic_convex](./medias/shapes/convex.png)]() | depth >= 0 && shape == Convex |
-| Concave | [![neumorphic_concave](./medias/shapes/widget_concave.png)]() | [![neumorphic_concave](./medias/shapes/concave.png)]() | depth >= 0 && shape == Concave |
-| Emboss | [![neumorphic_emboss](./medias/shapes/widget_emboss.png)]()  | [![neumorphic_emboss](./medias/shapes/emboss.png)]() | depth < 0 |
+<tr>
+  <td>Flat</td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/widget_flat.png"/></td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/flat.png"/> </td>
+  <td>depth >= 0 && shape == Flat</td>
+</tr>
 
+
+<tr>
+  <td>Convex</td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/widget_concave.png"/></td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/concave.png"/> </td>
+  <td>depth >= 0 && shape == Convex</td>
+</tr>
+
+
+
+<tr>
+  <td>Concave</td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/widget_emboss.png"/></td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/emboss.png"/> </td>
+  <td>depth >= 0 && shape == Concave</td>
+</tr>
+
+
+<tr>
+  <td>Emboss</td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/widget_flat.png"/></td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/shapes/flat.png"/> </td>
+  <td>depth < 0</td>
+</tr>
+
+</tbody>
+</table>
 
 ## 🎨 Neumorphic Theme
 
