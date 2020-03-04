@@ -1,9 +1,9 @@
 # flutter_neumorphic
 
-[![top_banner](./medias/top_banner.png)]()
+[![top_banner](./medias/top_banner.png)](https://www.idean.com/)
 
-[![neumorphic_widget](./medias/showcase_1_small.png)]()
-[![neumorphic_widget](./medias/showcase_2_small.png)]()
+[![neumorphic_widget](./medias/showcase_1_small.png)](https://github.com/Idean/Flutter-Neumorphic)
+[![neumorphic_widget](./medias/showcase_2_small.png)](https://github.com/Idean/Flutter-Neumorphic)
 
 A complete, ready to use, Neumorphic ui kit for Flutter
 
@@ -40,16 +40,16 @@ Neumorphic card however pretends to extrude from the background. It’s a raised
 
 | Preview | Widget | Description | 
 |-|-|-|
-| [![neumorphic](./medias/widgets/container.gif)]()  | [Neumorphic]() | The main Neumorphic Widget, a container which adds white/dark gradient depending on a lightsource and a depth |
-| [![button](./medias/widgets/button.gif)]() | [NeumorphicButton]() | A neumorphic button that plays with the depth to respond to user interraction |
-| [![radio](./medias/widgets/radio.gif)]() | [NeumorphicRadio]() | A set of neumorphic button whith only one selected at time, depending on a value & groupValue | 
-| [![checkbox](./medias/widgets/checkbox.gif)]() | [NeumorphicCheckbox]() | A button associated with a value, can be checked/unckecked, if checked, takes the accent color |
-| [![switch](./medias/widgets/switch.gif)]() | [NeumorphicSwitch]() | An On/Off toggle, associated with a value, if toggled, takes the accent color | 
-| [![slider](./medias/widgets/slider.gif)]() | [NeumorphicSlider]() | A Neumorphic seekbar (range slider), the user can select a value in a range | 
-| [![progress](./medias/widgets/progress.gif)]()  | [NeumorphicProgress]() | A determinate progress, takes the displayed percentage | 
-| [![indeterminate](./medias/widgets/indeterminate.gif)]()  | [NeumorphicIndeterminateProgress]() | An inderminate progress-bar | 
-| [![indicator](./medias/widgets/indicator.gif)]() | [NeumorphicIndicator]() | A vertical / horizontal indicator bar, takes a percentage | 
-| [![background](./medias/widgets/background.png)]() | [NeumorphicBackground]() | Take the background color of the theme, can clip the screen with a borderRadius | 
+| [![neumorphic](./medias/widgets/container.gif)]()  | [Neumorphic](https://github.com/Idean/Flutter-Neumorphic) | The main Neumorphic Widget, a container which adds white/dark gradient depending on a lightsource and a depth |
+| [![button](./medias/widgets/button.gif)]() | [NeumorphicButton](https://github.com/Idean/Flutter-Neumorphic) | A neumorphic button that plays with the depth to respond to user interraction |
+| [![radio](./medias/widgets/radio.gif)]() | [NeumorphicRadio](https://github.com/Idean/Flutter-Neumorphic) | A set of neumorphic button whith only one selected at time, depending on a value & groupValue | 
+| [![checkbox](./medias/widgets/checkbox.gif)]() | [NeumorphicCheckbox](https://github.com/Idean/Flutter-Neumorphic) | A button associated with a value, can be checked/unckecked, if checked, takes the accent color |
+| [![switch](./medias/widgets/switch.gif)]() | [NeumorphicSwitch](https://github.com/Idean/Flutter-Neumorphic) | An On/Off toggle, associated with a value, if toggled, takes the accent color | 
+| [![slider](./medias/widgets/slider.gif)]() | [NeumorphicSlider](https://github.com/Idean/Flutter-Neumorphic) | A Neumorphic seekbar (range slider), the user can select a value in a range | 
+| [![progress](./medias/widgets/progress.gif)]()  | [NeumorphicProgress](https://github.com/Idean/Flutter-Neumorphic) | A determinate progress, takes the displayed percentage | 
+| [![indeterminate](./medias/widgets/indeterminate.gif)]()  | [NeumorphicIndeterminateProgress](https://github.com/Idean/Flutter-Neumorphic) | An inderminate progress-bar | 
+| [![indicator](./medias/widgets/indicator.gif)]() | [NeumorphicIndicator](https://github.com/Idean/Flutter-Neumorphic) | A vertical / horizontal indicator bar, takes a percentage | 
+| [![background](./medias/widgets/background.png)]() | [NeumorphicBackground](https://github.com/Idean/Flutter-Neumorphic) | Take the background color of the theme, can clip the screen with a borderRadius | 
 
 ## 📦 Neumorphic
 
@@ -67,8 +67,8 @@ Neumorphic(
 )
 ```
 
-[![Neumorphic](./medias/neumorphic_container.gif)]()
-[![Neumorphic](./medias/neumorphic_circle_container.gif)]()
+[![Neumorphic](./medias/neumorphic_container.gif)](https://github.com/Idean/Flutter-Neumorphic)
+[![Neumorphic](./medias/neumorphic_circle_container.gif)](https://github.com/Idean/Flutter-Neumorphic)
 
 ☝️ Playing with LightSource & Depth
 
@@ -97,8 +97,8 @@ Neumorphic(
 ## 🎨 Neumorphic Theme
 
 
-[![neumorphic_theme](./medias/toggleDark.gif)]()
-[![neumorphic_theme](./medias/toggleTheme.gif)]()
+[![neumorphic_theme](./medias/toggleDark.gif)](https://github.com/Idean/Flutter-Neumorphic)
+[![neumorphic_theme](./medias/toggleTheme.gif)](https://github.com/Idean/Flutter-Neumorphic)
 
 ```dart
 NeumorphicTheme(
