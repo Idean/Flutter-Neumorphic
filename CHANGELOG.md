@@ -1,3 +1,7 @@
+## 1.0.1
+
+* Fixed the sample theme update
+
 ## 1.0.0+1
 
 * Added missing authors emails
