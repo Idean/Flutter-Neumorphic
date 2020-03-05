@@ -18,6 +18,19 @@ const Color _defaultVariant = NeumorphicColors.variant;
 const LightSource _defaultLightSource = LightSource.topLeft;
 const Color _defaultBaseColor = NeumorphicColors.background;
 
+/// Used with the NeumorphicTheme
+///
+/// NeumorphicTheme(
+///   theme: AN INSTANCE OF NeumorphicThemeData()
+///   darkTheme: : AN INSTANCE OF NeumorphicThemeData()
+///   child: ...
+/// )
+///
+/// Contains all default values used in child Neumorphic Elements as
+/// default colors : baseColor, accentColor, variantColor
+/// default depth & intensities, used to generate white / dark shadows
+/// default lightsource, used to calculate the angle of the shadow
+///
 class NeumorphicThemeData {
   final Color baseColor;
   final Color accentColor;
@@ -26,8 +39,10 @@ class NeumorphicThemeData {
   final double _intensity;
   final LightSource lightSource;
 
+  /// Get this theme's depth, clamp to min/max neumorphic constants
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
 
+  /// Get this theme's intensity, clamp to min/max neumorphic constants
   double get intensity =>
       _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
@@ -67,6 +82,8 @@ class NeumorphicThemeData {
       intensity.hashCode ^
       lightSource.hashCode;
 
+  /// Create a copy of this theme
+  /// With possibly new values given from this method's arguments
   NeumorphicThemeData copyWith({
     Color baseColor,
     Color accentColor,
@@ -85,6 +102,8 @@ class NeumorphicThemeData {
     );
   }
 
+  /// Create a copy of this theme
+  /// With possibly new values given from the given second theme
   NeumorphicThemeData copyFrom({
     NeumorphicThemeData other,
   }) {

@@ -7,12 +7,21 @@ import 'package:flutter/widgets.dart';
 import 'theme.dart';
 export 'theme.dart';
 
+/// An enum that indicates to the NeumorphicTheme which theme to use
+/// LIGHT : the light theme (default theme)
+/// DARK : the dark theme
+/// SYSTEM : will depend on the user's system theme
+///
+/// @see Brightness
+/// @see window.platformBrightness
+///
 enum CurrentTheme { LIGHT, DARK, SYSTEM }
 
-//FORCE TO USE LIGHT THEME FOR NOW, WORK IN PROGRESS
-const _DARK_THEME_ENABLED = true;
-
+/// A immutable contained by the NeumorhicTheme
+/// That will save the current definition of the theme
+/// It will be accessible to the childs widgets by an InheritedWidget
 class ThemeHost {
+
   final NeumorphicThemeData theme;
   final NeumorphicThemeData darkTheme;
   final CurrentTheme currentTheme;
@@ -24,7 +33,6 @@ class ThemeHost {
   });
 
   bool get useDark =>
-      _DARK_THEME_ENABLED &&
       darkTheme != null &&
       (
           //forced to use DARK by user
@@ -66,6 +74,39 @@ class ThemeHost {
   }
 }
 
+/// The NeumorphicTheme (provider)
+/// 1. Defines the used neumorphic theme used in child widgets
+///
+///   @see NeumorphicThemeData
+///
+///   NeumorphicTheme(
+///     theme: NeumorphicThemeData(...),
+///     darkTheme: NeumorphicThemeData(...),
+///     currentTheme: CurrentTheme.LIGHT,
+///     child: ...
+///
+/// 2. Provide by static methods the current theme
+///
+///   NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
+///
+/// 3. Provide by static methods the current theme's colors
+///
+///   Color baseColor = NeumorphicTheme.baseColor(context);
+///   Color accent = NeumorphicTheme.accentColor(context);
+///   Color variant = NeumorphicTheme.variantColor(context);
+///
+/// 4. Tells if the current theme is dark
+///
+///   bool dark = NeumorphicTheme.isUsingDark(context);
+///
+/// 5. Provides a way to update the current theme
+///
+///   NeumorphicTheme.of(context).updateCurrentTheme(
+///     NeumorphicThemeData(
+///       /* new values */
+///     )
+///   )
+///
 class NeumorphicTheme extends StatefulWidget {
   final NeumorphicThemeData theme;
   final NeumorphicThemeData darkTheme;
