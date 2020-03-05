@@ -12,6 +12,11 @@ export '../theme_provider.dart';
 export '../NeumorphicBoxShape.dart';
 export '../theme.dart';
 
+///
+/// Work in progress
+/// Add a border inside a [Neumorphic] container
+/// The NeumorphicBorder code can changes over time
+///
 class NeumorphicBorder {
   final Color color;
   final double width;
@@ -43,6 +48,17 @@ class NeumorphicBorder {
       oppositeLightSource.hashCode;
 }
 
+/// The main container of the Neumorphic UI KIT
+/// it takes a Neumorphic style @see [NeumorphicStyle]
+///
+/// it's clipped using a [NeumorphicBoxShape] (circle, roundrect, stadium)
+///
+/// It can be, depending on its [NeumorphicStyle.shape] : [NeumorphicShape.concave],  [NeumorphicShape.convex],  [NeumorphicShape.flat]
+///
+/// if [NeumorphicStyle.depth] < 0 ----> use the emboss shape
+///
+/// The container animates any change for you, with [duration] ! (including style / theme / size / etc.)
+///
 @immutable
 class Neumorphic extends StatelessWidget {
   static const DEFAULT_DURATION = const Duration(milliseconds: 100);
