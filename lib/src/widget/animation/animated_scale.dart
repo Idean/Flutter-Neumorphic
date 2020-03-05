@@ -1,5 +1,25 @@
 import 'package:flutter/widgets.dart';
 
+/// A implicit animated widget than update the child's scale depending on the
+/// parameter `scale` and `duration`
+///
+/// eg: in an statefull widget
+///
+/// double _scale = 1;
+///
+/// AnimatedScale(
+///   scale: _scale,
+///   child: /* a widget */
+/// )
+///
+/// then use
+///
+/// setState((){
+///   _scale = 0.5
+/// });
+///
+/// This will aimate the child's scale from 1 to 0.5 in 150ms (default duration)
+///
 class AnimatedScale extends StatefulWidget {
   final Widget child;
   final double scale;

@@ -8,6 +8,34 @@ import 'container.dart';
 
 typedef void NeumorphicButtonClickListener();
 
+/// A Neumorphic Button
+///
+/// When pressed, it will fire a call to its `NeumorphicButtonClickListener` click parameter
+/// The animation starts from style.depth (or theme.depth is not defined in the style)
+/// And finished to `minDistance`, in `duration` (time)
+///
+/// You can force the pressed state using `pressed`
+/// - true : forced as pressed
+/// - false : forced as unpressed
+/// - null : can be pressed by user
+///
+/// It takes a `padding`, default `EdgeInsets.symmetric(horizontal: 8, vertical: 4)`
+///
+/// It takes a `NeumorphicStyle` @see Neumorphic
+///
+///  NeumorphicButton(
+///          onClick: () {
+///            setState(() {
+///               ...
+///            });
+///          },
+///          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
+///          style: NeumorphicStyle(
+///            shape: NeumorphicShape.flat,
+///          ),
+///          child: ...
+///  )
+///
 class NeumorphicButton extends StatefulWidget {
   static const double PRESSED_SCALE = 0.98;
   static const double UNPRESSED_SCALE = 1.0;
