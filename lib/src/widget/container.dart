@@ -3,13 +3,11 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 
 import '../decoration/neumorphic_box_decorations.dart';
-import '../neumortphic_decorator.dart';
 import '../theme_provider.dart';
 import '../NeumorphicBoxShape.dart';
 import '../theme.dart';
 
 export '../decoration/neumorphic_box_decorations.dart';
-export '../neumortphic_decorator.dart';
 export '../theme_provider.dart';
 export '../NeumorphicBoxShape.dart';
 export '../theme.dart';
@@ -106,7 +104,7 @@ class Neumorphic extends StatelessWidget {
                 style: style.copyWith(
                   depth: border.depth ?? style.depth,
                   lightSource: border.oppositeLightSource
-                      ? style.lightSource.opposite()
+                      ? style.lightSource.invert()
                       : style.lightSource,
                 ),
                 child: this.child,
@@ -127,19 +125,12 @@ class Neumorphic extends StatelessWidget {
               /*accent: accent,*/ style: style,
               shape: shape);
 
-          final child = generateNeumorphicChild(
-            //accent: this.accent,
-            style: style,
-            shape: this.boxShape,
-            child: widgetChild,
-          );
-
           Widget clippedChild;
           if (shape.isCircle) {
-            clippedChild = ClipPath(clipper: CircleClipper(), child: child);
+            clippedChild = ClipPath(clipper: CircleClipper(), child: widgetChild);
           } else {
             clippedChild =
-                ClipRRect(borderRadius: shape.borderRadius, child: child);
+                ClipRRect(borderRadius: shape.borderRadius, child: widgetChild);
           }
 
           return AnimatedContainer(

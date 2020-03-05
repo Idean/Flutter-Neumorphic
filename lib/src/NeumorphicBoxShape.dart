@@ -1,5 +1,28 @@
 import 'package:flutter/widgets.dart';
 
+/// Define a Neumorphic container box shape
+///
+/// default used : NeumorphicBoxShape.roundRect();
+///
+/// @see Neumorphic
+///
+/// Neumorphic(
+///   boxShape: NeumorphicBoxShape.cicle()
+///   style: ...
+///   child: ...
+/// )
+///
+/// it can be for now :
+///
+/// A CIRLCE : NeumorphicBoxShape.circle()
+///
+/// A ROUND_RECT : NeumorphicBoxShape.roundRect(BorderRadius.circular(12));
+///
+/// A STADIUM :  NeumorphicBoxShape.stadium();
+///                                                             _______
+/// a stadium is a roundrect with two circles on both side :   (       )
+///                                                             ‾‾‾‾‾‾‾
+///
 class NeumorphicBoxShape {
   final BoxShape boxShape;
   final BorderRadius borderRadius;
@@ -13,10 +36,13 @@ class NeumorphicBoxShape {
   NeumorphicBoxShape.roundRect({BorderRadius borderRadius = BorderRadius.zero})
       : this._(boxShape: BoxShape.rectangle, borderRadius: borderRadius);
 
+  ///                                                             _______
+  /// a stadium is a roundrect with two circles on both side :   (       )
+  ///                                                             ‾‾‾‾‾‾‾
   NeumorphicBoxShape.stadium()
       : this._(
             boxShape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(1000),
+            borderRadius: BorderRadius.circular(1000), //we handle this directly inside the neumorphic box decorator
             stadium: true);
 
   bool get isStadium => boxShape == BoxShape.rectangle && this._stadium == true;

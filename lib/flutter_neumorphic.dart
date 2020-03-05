@@ -14,5 +14,4 @@ export 'src/widget/switch.dart';
 export 'src/theme.dart';
 export 'src/NeumorphicBoxShape.dart';
 export 'src/shape.dart';
-export 'src/neumortphic_decorator.dart';
 export 'src/theme_provider.dart';

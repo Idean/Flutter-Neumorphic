@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
+
 import 'colors.dart';
 import 'light_source.dart';
 import 'shape.dart';
@@ -31,6 +33,7 @@ const Color _defaultBaseColor = NeumorphicColors.background;
 /// default depth & intensities, used to generate white / dark shadows
 /// default lightsource, used to calculate the angle of the shadow
 ///
+@immutable
 class NeumorphicThemeData {
   final Color baseColor;
   final Color accentColor;

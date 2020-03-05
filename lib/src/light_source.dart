@@ -1,5 +1,14 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
+
+/// A custom offset that define a source of light used to project a shadow of a widget
+/// left -1 <= dx <= 1 right
+/// top -1 <= dy <= 1 bottom
+///
+/// constants like "top", "topLeft", "topRight" are providen in LightSource
+///
+@immutable
 class LightSource {
   final double dx;
   final double dy;
@@ -36,9 +45,7 @@ class LightSource {
     return 'LightSource{dx: $dx, dy: $dy}';
   }
 
-  LightSource invert() {
-    return LightSource(dx * -1, dy * -1);
-  }
+  LightSource invert() => LightSource(dx * -1, dy * -1);
 
   static LightSource lerp(LightSource a, LightSource b, double t) {
     assert(t != null);
@@ -64,32 +71,5 @@ class LightSource {
       dx ?? this.dx,
       dy ?? this.dy,
     );
-  }
-
-  LightSource opposite() {
-    Offset offset = this.offset.scale(-1, -1);
-    return LightSource(offset.dy, offset.dx);
-  }
-}
-
-Offset mergeOffsetWithDistance(Offset offset, double distance,
-    {bool capTo1 = false}) {
-  double dx = offset.dx;
-  double dy = offset.dy;
-  if (capTo1) {
-    if (dx < 0) dx = 0;
-    if (dx > 1) dx = 1;
-
-    if (dy < 0) dy = 0;
-    if (dy > 1) dy = 1;
-  }
-  return Offset(dx * distance, dy * distance);
-}
-
-Offset embrossOffset({LightSource lightSource, bool dark, double distance}) {
-  if (dark) {
-    return lightSource.offset.scale(-distance, -distance);
-  } else {
-    return lightSource.offset.scale(distance, distance);
   }
 }
