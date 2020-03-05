@@ -5,6 +5,15 @@ import 'progress.dart';
 
 typedef void NeumorphicSliderListener(double percent);
 
+/// A style to customize the [NeumorphicSlider]
+///
+/// the gradient will use [accent] and [variant]
+///
+/// the gradient shape will be a roundrect, using [borderRadius]
+///
+/// you can define a custom [depth] for the roundrect
+///
+@immutable
 class SliderStyle {
   final double depth;
   final double borderRadius;
@@ -36,6 +45,43 @@ class SliderStyle {
       variant.hashCode;
 }
 
+/// A Neumorphic Design slider.
+///
+/// Used to select from a range of values.
+///
+/// The default is to use a continuous range of values from min to max.
+///
+/// listeners : [onChanged], [onChangeStart], [onChangeEnd]
+///
+/// ```
+///  //in a statefull widget
+///
+///  double seekValue = 0;
+///
+///  Widget _buildSlider() {
+///    return Row(
+///      children: <Widget>[
+///
+///        Flexible(
+///          child: NeumorphicSlider(
+///              height: 15,
+///              value: seekValue,
+///              min: 0,
+///              max: 10,
+///              onChanged: (value) {
+///                setState(() {
+///                  seekValue = value;
+///                });
+///              }),
+///        ),
+///
+///        Text("value: ${seekValue.round()}"),
+///
+///      ],
+///    );
+///  }
+///  ```
+///
 @immutable
 class NeumorphicSlider extends StatefulWidget {
   final SliderStyle style;

@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 
 import 'container.dart';
 
+/// A Style to customize the [NeumorphicIndicator]
 class IndicatorStyle {
   //final double borderRadius;
   final double depth;

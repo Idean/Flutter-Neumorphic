@@ -2,10 +2,20 @@ import 'package:flutter/widgets.dart';
 
 import '../theme.dart';
 
-/// A container that takes the current Neumorphic theme baseColor as backgroundColor
+/// A container that takes the current [NeumorphicTheme] baseColor as backgroundColor
+/// @see [NeumorphicTheme]
 ///
-/// It can provide too a roundRect clip of the screen border using `borderRadius`, `margin` and `backendColor`
 ///
+/// It can provide too a roundRect clip of the screen border using [borderRadius], [margin] and [backendColor]
+///
+/// ```
+/// NeumorphicBackground(
+///      borderRadius: BorderRadius.circular(12),
+///      margin: EdgeInsets.all(12),
+///      child: ...`
+/// )
+/// ```
+@immutable
 class NeumorphicBackground extends StatelessWidget {
   final Widget child;
   final EdgeInsets padding;

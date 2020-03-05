@@ -6,18 +6,18 @@ import 'button.dart';
 
 typedef void NeumorphicRadioListener<T>(T value);
 
-/// A Style used to customize a NeumorphicRadio
+/// A Style used to customize a [NeumorphicRadio]
 ///
-/// selectedDepth : the depth when checked
-/// unselectedDepth : the depth when unchecked (default : theme.depth)
+/// [selectedDepth] : the depth when checked
+/// [unselectedDepth] : the depth when unchecked (default : theme.depth)
 ///
-/// intensity : a customizable neumorphic intensity for this widget
+/// [intensity] : a customizable neumorphic intensity for this widget
 ///
-/// boxShape : a customizable neumorphic boxShape for this widget
-///   @see NeumorphicBoxShape
+/// [boxShape] : a customizable neumorphic boxShape for this widget
+///   @see [NeumorphicBoxShape]
 ///
-/// shape : a customizable neumorphic shape for this widget
-///   @see NeumorphicShape (concave, convex, flat)
+/// [shape] : a customizable neumorphic shape for this widget
+///   @see [NeumorphicShape] (concave, convex, flat)
 ///
 class NeumorphicRadioStyle {
   final double selectedDepth;
@@ -107,6 +107,7 @@ class NeumorphicRadioStyle {
 ///  }
 /// ```
 ///
+@immutable
 class NeumorphicRadio<T> extends StatefulWidget {
   final Widget child;
   final T value;

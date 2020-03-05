@@ -22,16 +22,19 @@ const Color _defaultBaseColor = NeumorphicColors.background;
 
 /// Used with the NeumorphicTheme
 ///
+/// ```
 /// NeumorphicTheme(
-///   theme: AN INSTANCE OF NeumorphicThemeData()
-///   darkTheme: : AN INSTANCE OF NeumorphicThemeData()
+///   theme: NeumorphicThemeData(...)
+///   darkTheme: : NeumorphicThemeData(...)
 ///   child: ...
-/// )
+/// )`
+/// ``
 ///
 /// Contains all default values used in child Neumorphic Elements as
 /// default colors : baseColor, accentColor, variantColor
 /// default depth & intensities, used to generate white / dark shadows
 /// default lightsource, used to calculate the angle of the shadow
+/// @see [LightSource]
 ///
 @immutable
 class NeumorphicThemeData {
