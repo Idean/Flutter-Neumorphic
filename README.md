@@ -13,7 +13,7 @@ https://pub.dev/packages/flutter_neumorphic
 
 [![pub package](https://img.shields.io/pub/v/flutter_neumorphic.svg)](
 https://pub.dartlang.org/packages/flutter_neumorphic)
-![pub package](https://api.codemagic.io/apps/5e6113f78b547c3c80edbdb3/5e6113f78b547c3c80edbdb2/status_badge.svg)
+[![pub package](https://api.codemagic.io/apps/5e6113f78b547c3c80edbdb3/5e6113f78b547c3c80edbdb2/status_badge.svg)](https://github.com/Idean/Flutter-Neumorphic)
 
 
 ```dart
