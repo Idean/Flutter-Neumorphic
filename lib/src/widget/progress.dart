@@ -4,6 +4,16 @@ import 'package:flutter/widgets.dart';
 
 import 'container.dart';
 
+/// A style to customize the [NeumorphicProgress]
+///
+/// the gradient will use [accent] and [variant]
+///
+/// the gradient shape will be a roundrect, using [borderRadius]
+///
+/// you can define a custom [depth] for the roundrect
+///
+/// you can update the gradient orientation using [progressGradientStart] & [progressGradientEnd]
+///
 class ProgressStyle {
   final double depth;
   final double borderRadius;
@@ -44,6 +54,21 @@ class ProgressStyle {
       progressGradientEnd.hashCode;
 }
 
+/// A widget that shows progress along a line.
+///
+/// NeumorphicProgress is determinate.
+///
+/// Determinate progress indicators have a specific value at each point in time,
+/// and the value should increase monotonically from 0.0 to 1.0, at which time the indicator is complete.
+/// To create a determinate progress indicator, use a non-null value between 0.0 and 1.0.
+///
+///  ```
+///  NeumorphicProgress(
+///      height: 15,
+///      percent: 0.55,
+///  );
+///  ```
+///
 class NeumorphicProgress extends StatefulWidget {
   final double _percent;
   final double height;
@@ -169,6 +194,22 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
   }
 }
 
+/// A widget that shows progress along a line.
+///
+/// NeumorphicProgressIndeterminate is indeterminate.
+///
+/// You can provide a custom animation [duration]
+///
+/// Indeterminate progress indicators do not have a specific value at each point in time and instead indicate that progress is being made
+/// without indicating how much progress remains. To create an indeterminate progress indicator, use a null value.
+///
+///  ```
+///  NeumorphicProgressIndeterminate(
+///      height: 15,
+///  );
+///
+///  ```
+///
 class NeumorphicProgressIndeterminate extends StatefulWidget {
   final double height;
   final ProgressStyle style;

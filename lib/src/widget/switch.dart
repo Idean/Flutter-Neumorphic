@@ -3,6 +3,14 @@ import 'package:flutter/widgets.dart';
 import '../NeumorphicBoxShape.dart';
 import '../theme_provider.dart';
 
+
+/// A style to customize the [NeumorphicSwitch]
+///
+/// you can define the track : [activeTrackColor], [inactiveTrackColor], [trackDepth]
+///
+/// you can define the thumb : [activeTrackColor], [inactiveTrackColor], [thumbDepth]
+/// and [thumbShape] @see [NeumorphicShape]
+///
 class NeumorphicSwitchStyle {
   final double trackDepth;
   final Color activeTrackColor;
@@ -23,6 +31,47 @@ class NeumorphicSwitchStyle {
   });
 }
 
+/// Used to toggle the on/off state of a single setting.
+///
+/// The switch itself does not maintain any state. Instead, when the state of the switch changes, the widget calls the onChanged callback.
+/// Most widgets that use a switch will listen for the onChanged callback and rebuild the switch with a new value to update the visual appearance of the switch.
+///
+/// ```
+///  bool _switch1Value = false;
+///  bool _switch2Value = false;
+///
+///  Widget _buildSwitches() {
+///    return Row(children: <Widget>[
+///
+///      NeumorphicSwitch(
+///        value: _switch1Value,
+///        style: NeumorphicSwitchStyle(
+///          thumbShape: NeumorphicShape.concave,
+///        ),
+///        onChanged: (value) {
+///          setState(() {
+///            _switch1Value = value;
+///          });
+///        },
+///      ),
+///
+///      NeumorphicSwitch(
+///        value: _switch2Value,
+///        style: NeumorphicSwitchStyle(
+///          thumbShape: NeumorphicShape.flat,
+///        ),
+///        onChanged: (value) {
+///          setState(() {
+///            _switch2Value = value;
+///          });
+///        },
+///      ),
+///
+///    ]);
+///  }
+///  ```
+///
+@immutable
 class NeumorphicSwitch extends StatefulWidget {
   static const MIN_EMBOSS_DEPTH = -1.0;
 
