@@ -6,6 +6,19 @@ import 'button.dart';
 
 typedef void NeumorphicRadioListener<T>(T value);
 
+/// A Style used to customize a NeumorphicRadio
+///
+/// selectedDepth : the depth when checked
+/// unselectedDepth : the depth when unchecked (default : theme.depth)
+///
+/// intensity : a customizable neumorphic intensity for this widget
+///
+/// boxShape : a customizable neumorphic boxShape for this widget
+///   @see NeumorphicBoxShape
+///
+/// shape : a customizable neumorphic shape for this widget
+///   @see NeumorphicShape (concave, convex, flat)
+///
 class NeumorphicRadioStyle {
   final double selectedDepth;
   final double unselectedDepth;
@@ -22,6 +35,78 @@ class NeumorphicRadioStyle {
       this.shape});
 }
 
+/// A Neumorphic Radio
+///
+/// It takes a `value` and a `groupValue`
+/// if (value == groupValue) => checked
+///
+/// takes a NeumorphicRadioStyle as `style`
+///
+/// notifies the parent when user interact with this widget with `onChanged`
+///
+/// ```
+/// int _groupValue;
+///
+/// Widget _buildRadios() {
+///    return Row(
+///      children: <Widget>[
+///
+///        NeumorphicRadio(
+///          child: SizedBox(
+///            height: 50,
+///            width: 50,
+///            child: Center(
+///              child: Text("1"),
+///            ),
+///          ),
+///          value: 1,
+///          groupValue: _groupValue,
+///          onChanged: (value) {
+///            setState(() {
+///              _groupValue = value;
+///            });
+///          },
+///        ),
+///
+///        NeumorphicRadio(
+///          child: SizedBox(
+///            height: 50,
+///            width: 50,
+///            child: Center(
+///              child: Text("2"),
+///            ),
+///          ),
+///          value: 2,
+///          groupValue: _groupValue,
+///          onChanged: (value) {
+///            setState(() {
+///              _groupValue = value;
+///            });
+///          },
+///        ),
+///
+///        NeumorphicRadio(
+///          child: SizedBox(
+///            height: 50,
+///            width: 50,
+///            child: Center(
+///              child: Text("3"),
+///            ),
+///          ),
+///          value: 3,
+///          groupValue: _groupValue,
+///          onChanged: (value) {
+///            setState(() {
+///              _groupValue = value;
+///            });
+///          },
+///        ),
+///
+///      ],
+///    );
+///  }
+/// ```
+///
 class NeumorphicRadio<T> extends StatefulWidget {
   final Widget child;
   final T value;

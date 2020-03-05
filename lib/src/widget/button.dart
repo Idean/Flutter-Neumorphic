@@ -23,6 +23,7 @@ typedef void NeumorphicButtonClickListener();
 ///
 /// It takes a `NeumorphicStyle` @see Neumorphic
 ///
+/// ```
 ///  NeumorphicButton(
 ///          onClick: () {
 ///            setState(() {
@@ -35,6 +36,7 @@ typedef void NeumorphicButtonClickListener();
 ///          ),
 ///          child: ...
 ///  )
+/// ```
 ///
 class NeumorphicButton extends StatefulWidget {
   static const double PRESSED_SCALE = 0.98;

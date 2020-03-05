@@ -9,6 +9,12 @@ import 'button.dart';
 
 typedef void NeumorphicCheckboxListener<T>(T value);
 
+/// A Style used to customize a NeumorphicCheckbox
+///
+/// selectedDepth : the depth when checked
+/// unselectedDepth : the depth when unchecked (default : theme.depth)
+/// selectedColor : the color when checked (default: theme.accent)
+///
 class NeumorphicCheckboxStyle {
   final double selectedDepth;
   final double unselectedDepth;
@@ -21,6 +27,55 @@ class NeumorphicCheckboxStyle {
   });
 }
 
+/// A Neumorphic Checkbox
+///
+/// takes a NeumorphicCheckboxStyle as `style`
+/// takes the current checked state as `value`
+///
+/// notifies the parent when user interact with this widget with `onChanged`
+///
+/// ```
+///  bool check1 = false;
+///  bool check2 = false;
+///  bool check3 = false;
+///
+///  Widget _buildChecks() {
+///    return Row(
+///      children: <Widget>[
+///
+///        NeumorphicCheckbox(
+///          value: check1,
+///          onChanged: (value) {
+///            setState(() {
+///              check1 = value;
+///            });
+///          },
+///        ),
+///
+///        NeumorphicCheckbox(
+///          value: check2,
+///          onChanged: (value) {
+///            setState(() {
+///              check2 = value;
+///            });
+///          },
+///        ),
+///
+///        NeumorphicCheckbox(
+///          value: check3,
+///          onChanged: (value) {
+///            setState(() {
+///              check3 = value;
+///            });
+///          },
+///        ),
+///
+///      ],
+///    );
+///  }
+/// ```
+///
+@immutable
 class NeumorphicCheckbox extends StatefulWidget {
   final bool value;
   final NeumorphicCheckboxStyle style;
