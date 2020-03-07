@@ -1,7 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 import '../NeumorphicBoxShape.dart';
-import '../theme_provider.dart';
+import '../theme/neumorphic_theme.dart';
+import 'container.dart';
 
 
 /// A style to customize the [NeumorphicSwitch]
@@ -110,7 +111,7 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
 
   @override
   Widget build(BuildContext context) {
-    final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
+    final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
     return SizedBox(
       height: widget.height,
       child: AspectRatio(

@@ -3,8 +3,7 @@ import 'package:flutter/widgets.dart';
 
 import '../NeumorphicBoxShape.dart';
 
-import '../theme.dart';
-import '../theme_provider.dart';
+import '../theme/neumorphic_theme.dart';
 import 'button.dart';
 
 typedef void NeumorphicCheckboxListener<T>(T value);
@@ -100,7 +99,7 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
 
   @override
   Widget build(BuildContext context) {
-    final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
+    final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
     final selectedColor = widget.style.selectedColor ?? theme.accentColor;
 
     final double selectedDepth =

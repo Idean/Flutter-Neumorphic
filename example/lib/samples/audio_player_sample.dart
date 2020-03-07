@@ -10,7 +10,7 @@ class _AudioPlayerSampleState extends State<AudioPlayerSample> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
-        currentTheme: CurrentTheme.LIGHT,
+        usedTheme: UsedTheme.LIGHT,
         theme: NeumorphicThemeData(
           baseColor: Color(0xFFDDE6E8),
           intensity: 0.5,
@@ -89,7 +89,7 @@ class __PageState extends State<_Page> {
               onClick: () {
                 setState(() {
                   _useDark = !_useDark;
-                  NeumorphicTheme.of(context).currentTheme = _useDark ? CurrentTheme.DARK : CurrentTheme.LIGHT;
+                  NeumorphicTheme.of(context).usedTheme = _useDark ? UsedTheme.DARK : UsedTheme.LIGHT;
                 });
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),

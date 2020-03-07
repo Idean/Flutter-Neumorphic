@@ -1,16 +1,15 @@
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter_neumorphic/src/widget/container.dart';
 
-import 'colors.dart';
-import 'light_source.dart';
-import 'shape.dart';
-import 'widget/container.dart';
+import '../colors.dart';
+import '../light_source.dart';
+import '../shape.dart';
 
-export 'colors.dart';
-export 'light_source.dart';
-export 'shape.dart';
-export 'widget/container.dart';
+export '../colors.dart';
+export '../light_source.dart';
+export '../shape.dart';
 
 //region theme
 const double _defaultDepth = 4;
@@ -67,17 +66,18 @@ class NeumorphicThemeData {
     return 'NeumorphicTheme{baseColor: $baseColor, accentColor: $accentColor, variantColor: $variantColor, _depth: $_depth, intensity: $intensity, lightSource: $lightSource}';
   }
 
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is NeumorphicThemeData &&
-          runtimeType == other.runtimeType &&
-          baseColor == other.baseColor &&
-          accentColor == other.accentColor &&
-          variantColor == other.variantColor &&
-          _depth == other._depth &&
-          intensity == other.intensity &&
-          lightSource == other.lightSource;
+          other is NeumorphicThemeData &&
+              runtimeType == other.runtimeType &&
+              baseColor == other.baseColor &&
+              accentColor == other.accentColor &&
+              variantColor == other.variantColor &&
+              _depth == other._depth &&
+              _intensity == other._intensity &&
+              lightSource == other.lightSource;
 
   @override
   int get hashCode =>
@@ -85,7 +85,7 @@ class NeumorphicThemeData {
       accentColor.hashCode ^
       variantColor.hashCode ^
       _depth.hashCode ^
-      intensity.hashCode ^
+      _intensity.hashCode ^
       lightSource.hashCode;
 
   /// Create a copy of this theme
@@ -147,8 +147,21 @@ class NeumorphicStyle {
   final LightSource lightSource;
 
   final NeumorphicShape shape;
+  final NeumorphicThemeData theme;
 
   const NeumorphicStyle({
+    this.shape = _defaultShape,
+    this.lightSource,
+    this.color,
+    double depth,
+    double intensity,
+  })  : this._depth = depth,
+        this.theme = null,
+        this._intensity = intensity;
+
+  // with theme constructor is only available privately, please use copyWithThemeIfNull
+  const NeumorphicStyle._withTheme({
+    this.theme,
     this.shape = _defaultShape,
     this.lightSource,
     this.color,
@@ -163,7 +176,8 @@ class NeumorphicStyle {
       _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
   NeumorphicStyle copyWithThemeIfNull(NeumorphicThemeData theme) {
-    return NeumorphicStyle(
+    return NeumorphicStyle._withTheme(
+        theme: theme,
         color: this.color ?? theme.baseColor,
         shape: this.shape,
         depth: this.depth ?? theme.depth,
@@ -171,24 +185,27 @@ class NeumorphicStyle {
         lightSource: this.lightSource ?? theme.lightSource);
   }
 
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is NeumorphicStyle &&
-          runtimeType == other.runtimeType &&
-          color == other.color &&
-          depth == other.depth &&
-          intensity == other.intensity &&
-          lightSource == other.lightSource &&
-          shape == other.shape;
+          other is NeumorphicStyle &&
+              runtimeType == other.runtimeType &&
+              color == other.color &&
+              _depth == other._depth &&
+              _intensity == other._intensity &&
+              lightSource == other.lightSource &&
+              shape == other.shape &&
+              theme == other.theme;
 
   @override
   int get hashCode =>
       color.hashCode ^
-      depth.hashCode ^
-      intensity.hashCode ^
+      _depth.hashCode ^
+      _intensity.hashCode ^
       lightSource.hashCode ^
-      shape.hashCode;
+      shape.hashCode ^
+      theme.hashCode;
 
   NeumorphicStyle copyWith({
     Color color,
@@ -198,9 +215,10 @@ class NeumorphicStyle {
     double borderRadius,
     NeumorphicShape shape,
   }) {
-    return new NeumorphicStyle(
+    return NeumorphicStyle._withTheme(
       color: color ?? this.color,
       depth: depth ?? this.depth,
+      theme: this.theme,
       intensity: intensity ?? this.intensity,
       lightSource: lightSource ?? this.lightSource,
       shape: shape ?? this.shape,
@@ -209,7 +227,7 @@ class NeumorphicStyle {
 
   @override
   String toString() {
-    return 'NeumorphicStyle{color: $color, _depth: $_depth, intensity: $intensity, lightSource: $lightSource, shape: $shape}';
+    return 'NeumorphicStyle{color: $color, _depth: $_depth, intensity: $intensity, lightSource: $lightSource, shape: $shape, theme: $theme}';
   }
 }
 //endregion

@@ -12,7 +12,7 @@ class _ContainersListPageState extends State<ContainersListPage> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
-      currentTheme: CurrentTheme.SYSTEM,
+      usedTheme: UsedTheme.SYSTEM,
       theme: NeumorphicThemeData(
         lightSource: LightSource.topLeft,
         accentColor: NeumorphicColors.accent,
@@ -33,7 +33,7 @@ class _PageState extends State<Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: NeumorphicTheme.getCurrentTheme(context).baseColor,
+      backgroundColor: NeumorphicTheme.baseColor(context),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text("List", style: Theme.of(context).textTheme.display1),

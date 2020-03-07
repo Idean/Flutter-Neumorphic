@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
-
-import '../theme.dart';
+import 'package:flutter_neumorphic/src/theme/neumorphic_theme.dart';
 
 /// A container that takes the current [NeumorphicTheme] baseColor as backgroundColor
 /// @see [NeumorphicTheme]
@@ -39,7 +38,7 @@ class NeumorphicBackground extends StatelessWidget {
       child: ClipRRect(
         borderRadius: this.borderRadius ?? BorderRadius.circular(0),
         child: AnimatedContainer(
-          color: NeumorphicTheme.getCurrentTheme(context).baseColor,
+          color: NeumorphicTheme.baseColor(context),
           padding: this.padding,
           duration: const Duration(milliseconds: 100),
           child: this.child,

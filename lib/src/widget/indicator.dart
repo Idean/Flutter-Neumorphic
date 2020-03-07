@@ -175,7 +175,7 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator>
 
   @override
   Widget build(BuildContext context) {
-    final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
+    final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
     return SizedBox(
       height: widget.height,
       width: widget.width,

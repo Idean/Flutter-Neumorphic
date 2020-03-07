@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import '../NeumorphicBoxShape.dart';
-import '../theme.dart';
+import '../theme/neumorphic_theme.dart';
 import 'animation/animated_scale.dart';
 import 'container.dart';
 

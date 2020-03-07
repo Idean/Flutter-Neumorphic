@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../NeumorphicBoxShape.dart';
-import '../theme_provider.dart';
+import '../theme/neumorphic_theme.dart';
 import 'button.dart';
 
 typedef void NeumorphicRadioListener<T>(T value);
@@ -142,7 +142,7 @@ class _NeumorphicRadioState<T> extends State<NeumorphicRadio<T>> {
 
   @override
   Widget build(BuildContext context) {
-    final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
+    final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
 
     final double selectedDepth =
         -1 * (widget.style.selectedDepth ?? theme.depth).abs();

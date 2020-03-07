@@ -3,19 +3,18 @@ import 'dart:ui';
 import 'package:flutter/widgets.dart';
 
 import '../NeumorphicBoxShape.dart';
-import '../theme.dart';
 import 'neumorphic_box_decoration.dart';
-import 'neumorphic_emboss_box_decoration.dart';
 
+import 'neumorphic_emboss_box_decoration.dart';
 export 'neumorphic_emboss_box_decoration.dart';
 
+@immutable
 class NeumorphicBoxDecoration extends Decoration {
   //final Color accent;
   final NeumorphicStyle style;
   final NeumorphicBoxShape shape;
 
-  NeumorphicBoxDecoration(
-      {/*@required this.accent,*/ @required this.style, this.shape});
+  const NeumorphicBoxDecoration({/*@required this.accent,*/ @required this.style, this.shape});
 
   @override
   BoxPainter createBoxPainter([onChanged]) {
@@ -40,16 +39,14 @@ class NeumorphicBoxDecoration extends Decoration {
   @override
   NeumorphicBoxDecoration lerpFrom(Decoration a, double t) {
     if (a == null) return scale(t);
-    if (a is NeumorphicBoxDecoration)
-      return NeumorphicBoxDecoration.lerp(a, this, t);
+    if (a is NeumorphicBoxDecoration) return NeumorphicBoxDecoration.lerp(a, this, t);
     return super.lerpFrom(a, t) as NeumorphicBoxDecoration;
   }
 
   @override
   NeumorphicBoxDecoration lerpTo(Decoration b, double t) {
     if (b == null) return scale(1.0 - t);
-    if (b is NeumorphicBoxDecoration)
-      return NeumorphicBoxDecoration.lerp(this, b, t);
+    if (b is NeumorphicBoxDecoration) return NeumorphicBoxDecoration.lerp(this, b, t);
     return super.lerpTo(b, t) as NeumorphicBoxDecoration;
   }
 
@@ -58,13 +55,16 @@ class NeumorphicBoxDecoration extends Decoration {
         shape: NeumorphicBoxShape.lerp(null, shape, factor),
         //accent: Color.lerp(null, accent, factor),
         style: style.copyWith(
-          color: Color.lerp(null, style.color, factor),
-        ));
+            //color: Color.lerp(null, style.color, factor),
+            ));
   }
 
-  static NeumorphicBoxDecoration lerp(
-      NeumorphicBoxDecoration a, NeumorphicBoxDecoration b, double t) {
+  static NeumorphicBoxDecoration lerp(NeumorphicBoxDecoration a, NeumorphicBoxDecoration b, double t) {
     assert(t != null);
+
+    //print("t : ${t}");
+    //print("a ${a.style}");
+    //print("b ${b.style}");
 
     if (a == null && b == null) return null;
     if (a == null) return b.scale(t);
@@ -76,6 +76,8 @@ class NeumorphicBoxDecoration extends Decoration {
     var aStyle = a.style;
     var bStyle = b.style;
 
+    //print("aColor: ${aStyle.color} bColor: ${bStyle.color} lerp: ${Color.lerp(aStyle.color, bStyle.color, t)}");
+
     return NeumorphicBoxDecoration(
         shape: NeumorphicBoxShape.lerp(a.shape, b.shape, t),
         //accent: Color.lerp(a.accent, b.accent, t),
@@ -83,8 +85,7 @@ class NeumorphicBoxDecoration extends Decoration {
           intensity: lerpDouble(aStyle.intensity, bStyle.intensity, t),
           depth: lerpDouble(aStyle.depth, bStyle.depth, t),
           color: Color.lerp(aStyle.color, bStyle.color, t),
-          lightSource:
-              LightSource.lerp(aStyle.lightSource, bStyle.lightSource, t),
+          lightSource: LightSource.lerp(aStyle.lightSource, bStyle.lightSource, t),
         ));
   }
 

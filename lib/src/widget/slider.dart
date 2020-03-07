@@ -170,7 +170,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
   }
 
   Widget _generateSlider() {
-    final theme = NeumorphicTheme.getCurrentTheme(context);
+    final theme = NeumorphicTheme.currentTheme(context);
     return NeumorphicProgress(
       duration: Duration.zero,
       percent: widget.percent,
@@ -185,7 +185,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
   }
 
   Widget _generateThumb(BuildContext context) {
-    final theme = NeumorphicTheme.getCurrentTheme(context);
+    final theme = NeumorphicTheme.currentTheme(context);
     return Neumorphic(
       style: NeumorphicStyle(
         shape: NeumorphicShape.concave,
