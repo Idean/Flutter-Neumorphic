@@ -1,6 +1,9 @@
 ## 1.0.1
 
-* Fixed the sample theme update
+* Improved performances
+* Renamed CurrentTheme to UsedTheme in NeumorphicTheme (Dark, Light, System)
+* Renamed NeumorphicTheme.getCurrentTheme(context) to NeumorphicTheme.currentTheme(context)
+* Fixed flickering effect when theme changes
 
 ## 1.0.0+1
 
