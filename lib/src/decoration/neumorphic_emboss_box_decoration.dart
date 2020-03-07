@@ -4,7 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 
 import '../NeumorphicBoxShape.dart';
-import '../theme.dart';
+import '../theme/theme.dart';
+export '../theme/theme.dart';
 
 class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   bool invalidate = false;

@@ -149,7 +149,7 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
   Widget build(BuildContext context) {
     //print("widget.style.depth: ${widget.style.depth}");
 
-    final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
+    final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
     return SizedBox(
       height: widget.height,
       child: FractionallySizedBox(
@@ -290,7 +290,7 @@ class _NeumorphicProgressIndeterminateState
 
   @override
   Widget build(BuildContext context) {
-    final NeumorphicThemeData theme = NeumorphicTheme.getCurrentTheme(context);
+    final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
 
     return FractionallySizedBox(
       widthFactor: 1,

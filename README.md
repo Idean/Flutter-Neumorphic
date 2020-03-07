@@ -199,7 +199,7 @@ Neumorphic(
 
 ```dart
 NeumorphicTheme(
-    currentTheme: CurrentTheme.LIGHT, //or DARK / SYSTEM
+    usedTheme: UsedTheme.LIGHT, //or DARK / SYSTEM
     darkTheme: NeumorphicThemeData(
         baseColor: Color(0xff333333),
         accentColor: Colors.green,
@@ -221,7 +221,7 @@ NeumorphicTheme(
 To retrieve the current used theme :
 
 ```dart
-final theme = NeumorphicTheme.getCurrentTheme(context);
+final theme = NeumorphicTheme.currentTheme(context);
 final baseColor = theme.baseColor;
 final accentColor = theme.accentColor;
 ...

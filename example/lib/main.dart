@@ -1,3 +1,4 @@
+import 'package:example/button.dart';
 import 'package:example/samples/audio_player_sample.dart';
 import 'package:example/samples/calculator_sample.dart';
 import 'package:example/samples/credit_card_sample.dart';
@@ -57,6 +58,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context){
                     return ContainerPage();
+                  }));
+                },
+              ),
+              RaisedButton(
+                child: Text("button"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                    return ButtonSample();
                   }));
                 },
               ),
