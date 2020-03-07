@@ -8,26 +8,15 @@ class ContainerPage extends StatefulWidget {
 }
 
 class _ContainerPageState extends State<ContainerPage> {
-  final Color buttonActiveColor = Colors.yellow;
-  final Color buttonInnactiveColor = Colors.grey;
-
-  LightSource lightSource = LightSource.topLeft;
-  NeumorphicShape shape = NeumorphicShape.concave;
-  NeumorphicBoxShape boxShape = NeumorphicBoxShape.roundRect();
-  double depth = 5;
-  double intensity = 0.5;
-  double cornerRadius = 0;
-  double height = 0;
-  Color baseColor = Color(0xffDDDDDD);
 
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
       theme: NeumorphicThemeData(
-        baseColor: baseColor,
+        baseColor: Color(0xffDDDDDD),
         lightSource: LightSource.topLeft,
         depth: 6,
-        intensity: this.intensity,
+        intensity: 0.5,
       ),
       child: _Page(),
     );
@@ -52,6 +41,16 @@ class __PageState extends State<_Page> {
   double cornerRadius = 0;
   double height = 0;
 
+  Color borderColor = Colors.cyan;
+  double borderWidth = 0;
+  bool oppositeLightSource = true;
+
+  @override
+  void initState() {
+    borderColor = Colors.blue;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -69,6 +68,7 @@ class __PageState extends State<_Page> {
               intensitySelector(),
               depthSelector(),
               cornerRadiusSelector(),
+              borderWidthSelector(),
               Expanded(
                 child: Stack(
                   fit: StackFit.expand,
@@ -96,6 +96,20 @@ class __PageState extends State<_Page> {
             child: Text("Color"),
             onPressed: () {
               changeColor();
+            },
+          ),
+          RaisedButton(
+            child: Text("BorderColor"),
+            onPressed: () {
+              changeBorderColor();
+            },
+          ),
+          RaisedButton(
+            child: Text("oppositeLightSource"),
+            onPressed: () {
+              setState(() {
+                this.oppositeLightSource = !oppositeLightSource;
+              });
             },
           ),
         ],
@@ -132,7 +146,35 @@ class __PageState extends State<_Page> {
     );
   }
 
-  bool _oppositeLightSource = true;
+  void changeBorderColor() {
+    showDialog(
+      context: context,
+      child: AlertDialog(
+        title: const Text('Pick a color!'),
+        content: SingleChildScrollView(
+          child: ColorPicker(
+            pickerColor: borderColor,
+            onColorChanged: (color) {
+              setState(() {
+                borderColor = color;
+              });
+            },
+            showLabel: true,
+            pickerAreaHeightPercent: 0.8,
+          ),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: const Text('Close'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
 
   Widget neumorphic() {
     return SizedBox(
@@ -142,10 +184,15 @@ class __PageState extends State<_Page> {
         duration: Duration(milliseconds: 300),
           onClick: () {
             setState(() {
-              _oppositeLightSource = !_oppositeLightSource;
+
             });
           },
           boxShape: boxShape,
+          border: NeumorphicBorder(
+            color: this.borderColor,
+            width: this.borderWidth,
+            oppositeLightSource: this.oppositeLightSource,
+          ),
           style: NeumorphicStyle(
             shape: this.shape,
             depth: depth,
@@ -221,6 +268,33 @@ class __PageState extends State<_Page> {
         Padding(
           padding: EdgeInsets.only(right: 12),
           child: Text(cornerRadius.floor().toString()),
+        ),
+      ],
+    );
+  }
+
+  Widget borderWidthSelector() {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(left: 12),
+          child: Text("BorderWidth"),
+        ),
+        Expanded(
+          child: Slider(
+            min: 0,
+            max: 30,
+            value: borderWidth,
+            onChanged: (value) {
+              setState(() {
+                borderWidth = value;
+              });
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: 12),
+          child: Text(borderWidth.floor().toString()),
         ),
       ],
     );
@@ -328,6 +402,7 @@ class __PageState extends State<_Page> {
       ],
     );
   }
+
 
   List<Widget> lightSourceWidgets() {
     return [
