@@ -61,8 +61,10 @@ class Neumorphic extends StatelessWidget {
       key: borderKey,
       style: style.copyWith(
         color: border.color,
+        depth: style.depth.clamp(0.0, Neumorphic.MAX_DEPTH),
         shape: NeumorphicShape.flat, //force flat for the boder "background"
       ),
+      gradientLightSource: style.lightSource,
       padding: EdgeInsets.all(border?.width ?? 0),
       boxShape: boxShape,
       duration: this.duration,
@@ -91,8 +93,9 @@ class Neumorphic extends StatelessWidget {
           padding: padding,
           boxShape: boxShape,
           duration: this.duration,
+          gradientLightSource: style.lightSource,
           style: style.copyWith(
-            //lightSource: ((border?.oppositeLightSource ?? false) && style.depth >= 0) ? style.lightSource.invert() : style.lightSource,
+            lightSource: ((border?.oppositeLightSource ?? false) && style.depth >= 0) ? style.lightSource.invert() : style.lightSource,
             depth: haveBorder ? (border?.depth ?? style.depth) : style.depth,
           ),
           child: child,
@@ -102,6 +105,7 @@ class Neumorphic extends StatelessWidget {
       return _NeumorphicContainer(
         key: contentKey,
         padding: padding,
+        gradientLightSource: style.lightSource,
         boxShape: boxShape,
         duration: this.duration,
         style: style,
@@ -115,6 +119,7 @@ class _NeumorphicContainer extends StatefulWidget {
   final NeumorphicStyle style;
   final NeumorphicBoxShape boxShape;
   final Widget child;
+  final LightSource gradientLightSource; //the lightsource used to display concave/convex
   final Duration duration;
   final EdgeInsets padding;
 
@@ -125,6 +130,7 @@ class _NeumorphicContainer extends StatefulWidget {
     @required this.duration,
     @required this.style,
     @required this.boxShape,
+    @required this.gradientLightSource,
   }) : super(key: key);
 
   @override
@@ -134,6 +140,7 @@ class _NeumorphicContainer extends StatefulWidget {
 class _NeumorphicContainerState extends State<_NeumorphicContainer> {
   @override
   Widget build(BuildContext context) {
+    print("widget.padding : ${widget.padding}");
     return AnimatedContainer(
         duration: widget.duration,
         child: NeumorphicBoxShapeClipper(
@@ -144,6 +151,7 @@ class _NeumorphicContainerState extends State<_NeumorphicContainer> {
           ),
         ),
         decoration: NeumorphicBoxDecoration(
+          gradientLightSource: widget.gradientLightSource,
           style: widget.style,
           shape: widget.boxShape,
         ));

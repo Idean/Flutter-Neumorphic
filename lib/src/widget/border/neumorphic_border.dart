@@ -14,7 +14,7 @@ class NeumorphicBorder {
   NeumorphicBorder({
     this.color,
     this.width,
-    this.depth,
+    this.depth = 5,
     this.oppositeLightSource = true,
   });
 

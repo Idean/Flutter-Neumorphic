@@ -1,8 +1,8 @@
-
 import 'package:flutter/widgets.dart';
 
 import '../../NeumorphicBoxShape.dart';
 import 'CircleClipper.dart';
+import 'RRectClipper.dart';
 
 class NeumorphicBoxShapeClipper extends StatelessWidget {
   final NeumorphicBoxShape shape;
@@ -14,9 +14,9 @@ class NeumorphicBoxShapeClipper extends StatelessWidget {
   Widget build(BuildContext context) {
     return shape.isCircle
         ? ClipPath(clipper: CircleClipper(), child: child)
-        : ClipRRect(
-      borderRadius: shape.borderRadius,
-      child: child,
-    );
+        : ClipPath(
+            clipper: RRectClipper(borderRadius: shape.borderRadius),
+            child: child,
+          );
   }
 }

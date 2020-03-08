@@ -8,7 +8,6 @@ class ContainerPage extends StatefulWidget {
 }
 
 class _ContainerPageState extends State<ContainerPage> {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
@@ -21,7 +20,6 @@ class _ContainerPageState extends State<ContainerPage> {
       child: _Page(),
     );
   }
-
 }
 
 class _Page extends StatefulWidget {
@@ -42,7 +40,8 @@ class __PageState extends State<_Page> {
   double height = 0;
 
   Color borderColor = Colors.cyan;
-  double borderWidth = 0;
+  double borderWidth = 5;
+  double borderDepth = 5;
   bool oppositeLightSource = true;
 
   @override
@@ -55,7 +54,7 @@ class __PageState extends State<_Page> {
   Widget build(BuildContext context) {
     return NeumorphicBackground(
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+          backgroundColor: Colors.transparent,
           appBar: AppBar(
             backgroundColor: Colors.grey,
           ),
@@ -69,6 +68,7 @@ class __PageState extends State<_Page> {
               depthSelector(),
               cornerRadiusSelector(),
               borderWidthSelector(),
+              borderDepthSelector(),
               Expanded(
                 child: Stack(
                   fit: StackFit.expand,
@@ -83,7 +83,6 @@ class __PageState extends State<_Page> {
           )),
     );
   }
-
 
   Widget colorPicker() {
     return Positioned(
@@ -175,43 +174,28 @@ class __PageState extends State<_Page> {
     );
   }
 
-
   Widget neumorphic() {
     return SizedBox(
       height: 100,
       width: 200,
       child: NeumorphicButton(
         duration: Duration(milliseconds: 300),
-          onClick: () {
-            setState(() {
-
-            });
-          },
-          boxShape: boxShape,
-          border: NeumorphicBorder(
-            color: this.borderColor,
-            width: this.borderWidth,
-            oppositeLightSource: this.oppositeLightSource,
-          ),
-          style: NeumorphicStyle(
-            shape: this.shape,
-            depth: depth,
-            lightSource: this.lightSource,
-          ),
-          child: SizedBox.expand(
-            child: Center(child: Text("")),
-          )
-        /*Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: NeumorphicButton(
-            shape: NeumorphicBoxShape.circle(),
-            style: NeumorphicStyle(
-              lightSource: lightSource.opposite(),
-              shape: NeumorphicShape.flat
-            ),
-          ),
+        onClick: () {
+          setState(() {});
+        },
+        boxShape: boxShape,
+        border: NeumorphicBorder(
+          color: this.borderColor,
+          width: this.borderWidth,
+          depth: this.borderDepth,
+          oppositeLightSource: this.oppositeLightSource,
         ),
-         */
+        style: NeumorphicStyle(
+          shape: this.shape,
+          depth: depth,
+          lightSource: this.lightSource,
+        ),
+        child: Center(child: Text("text")),
       ),
     );
   }
@@ -238,6 +222,33 @@ class __PageState extends State<_Page> {
         Padding(
           padding: EdgeInsets.only(right: 12),
           child: Text(depth.floor().toString()),
+        ),
+      ],
+    );
+  }
+
+  Widget borderDepthSelector() {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(left: 12),
+          child: Text("Border Depth"),
+        ),
+        Expanded(
+          child: Slider(
+            min: Neumorphic.MIN_DEPTH,
+            max: Neumorphic.MAX_DEPTH,
+            value: borderDepth,
+            onChanged: (value) {
+              setState(() {
+                borderDepth = value;
+              });
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: 12),
+          child: Text(borderDepth.floor().toString()),
         ),
       ],
     );
@@ -403,7 +414,6 @@ class __PageState extends State<_Page> {
     );
   }
 
-
   List<Widget> lightSourceWidgets() {
     return [
       Positioned(
@@ -424,8 +434,7 @@ class __PageState extends State<_Page> {
         left: 0,
         top: 10,
         bottom: 10,
-        child:
-        RotatedBox(
+        child: RotatedBox(
           quarterTurns: 1,
           child: Slider(
             min: -1,
@@ -442,4 +451,3 @@ class __PageState extends State<_Page> {
     ];
   }
 }
-
