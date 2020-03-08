@@ -58,7 +58,11 @@ class Neumorphic extends StatelessWidget {
 
   Widget _generateBorder({NeumorphicStyle style, Widget child}) {
     return _NeumorphicContainer(
-      style: style.copyWith(color: border.color),
+      key: borderKey,
+      style: style.copyWith(
+        color: border.color,
+        shape: NeumorphicShape.flat, //force flat for the boder "background"
+      ),
       padding: EdgeInsets.all(border?.width ?? 0),
       boxShape: boxShape,
       duration: this.duration,
@@ -67,6 +71,9 @@ class Neumorphic extends StatelessWidget {
   }
 
   bool get haveBorder => border != null && border.width > 0;
+
+  final Key contentKey = Key("content");
+  final Key borderKey = Key("border");
 
   @override
   Widget build(BuildContext context) {
@@ -80,27 +87,25 @@ class Neumorphic extends StatelessWidget {
           shape: NeumorphicShape.flat,
         ),
         child: _NeumorphicContainer(
+          key: contentKey,
           padding: padding,
           boxShape: boxShape,
           duration: this.duration,
           style: style.copyWith(
-            lightSource: ((border?.oppositeLightSource ?? false) && style.depth >= 0) ? style.lightSource.invert() : style.lightSource,
-            depth: haveBorder ? (border?.depth ?? style.depth) : style.depth ,
+            //lightSource: ((border?.oppositeLightSource ?? false) && style.depth >= 0) ? style.lightSource.invert() : style.lightSource,
+            depth: haveBorder ? (border?.depth ?? style.depth) : style.depth,
           ),
           child: child,
         ),
       );
     } else {
       return _NeumorphicContainer(
-        padding: EdgeInsets.zero,
+        key: contentKey,
+        padding: padding,
         boxShape: boxShape,
         duration: this.duration,
         style: style,
-        child: AnimatedContainer(
-          padding: padding,
-          duration: this.duration,
-          child: child,
-        ),
+        child: child,
       );
     }
   }
@@ -131,10 +136,12 @@ class _NeumorphicContainerState extends State<_NeumorphicContainer> {
   Widget build(BuildContext context) {
     return AnimatedContainer(
         duration: widget.duration,
-        padding: widget.padding,
         child: NeumorphicBoxShapeClipper(
           shape: widget.boxShape,
-          child: widget.child,
+          child: Padding(
+            padding: widget.padding,
+            child: widget.child,
+          ),
         ),
         decoration: NeumorphicBoxDecoration(
           style: widget.style,
