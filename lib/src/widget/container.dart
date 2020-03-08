@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_neumorphic/src/widget/clipper/CircleClipper.dart';
 
 import '../NeumorphicBoxShape.dart';
 import '../decoration/neumorphic_box_decorations.dart';
 import '../theme/neumorphic_theme.dart';
 import 'border/neumorphic_border.dart';
+import 'clipper/NeumorphicBoxShapeClipper.dart';
 
 export '../NeumorphicBoxShape.dart';
 export '../decoration/neumorphic_box_decorations.dart';
@@ -45,10 +45,6 @@ class Neumorphic extends StatelessWidget {
 
   final NeumorphicBorder border;
 
-  //forces have 2 different widgets if the shape changes
-  final Key _circleKey = Key("circle");
-  final Key _rectangleKey = Key("rectangle");
-
   Neumorphic({
     Key key,
     this.child,
@@ -60,45 +56,104 @@ class Neumorphic extends StatelessWidget {
     this.padding = const EdgeInsets.all(0),
   }) : super(key: key);
 
+  Widget _generateBorder({NeumorphicStyle style, Widget child}) {
+    return _NeumorphicContainer(
+      key: borderKey,
+      style: style.copyWith(
+        color: border.color,
+        depth: style.depth.clamp(0.0, Neumorphic.MAX_DEPTH),
+        shape: NeumorphicShape.flat, //force flat for the boder "background"
+      ),
+      gradientLightSource: style.lightSource,
+      padding: EdgeInsets.all(border?.width ?? 0),
+      boxShape: boxShape,
+      duration: this.duration,
+      child: child,
+    );
+  }
+
+  bool get haveBorder => border != null && border.width > 0;
+
+  final Key contentKey = Key("content");
+  final Key borderKey = Key("border");
+
   @override
   Widget build(BuildContext context) {
-    final shape = this.boxShape ?? NeumorphicBoxShape.roundRect();
+    final boxShape = this.boxShape ?? NeumorphicBoxShape.roundRect();
     final theme = NeumorphicTheme.currentTheme(context) ?? neumorphicDefaultTheme;
-    NeumorphicStyle style = (this.style ?? NeumorphicStyle()).copyWithThemeIfNull(theme);
+    final NeumorphicStyle style = (this.style ?? NeumorphicStyle()).copyWithThemeIfNull(theme);
 
-    Widget widgetChild = this.child;
-    if (border != null) {
-      //if have a border, add a neumorphic with same boxshape
-      //and opposite lightsource
-      widgetChild = Padding(
-        padding: EdgeInsets.all(border.width ?? 0),
-        child: Neumorphic(
-          padding: this.padding,
-          boxShape: this.boxShape,
+    if (haveBorder) {
+      return _generateBorder(
+        style: style.copyWith(
+          shape: NeumorphicShape.flat,
+        ),
+        child: _NeumorphicContainer(
+          key: contentKey,
+          padding: padding,
+          boxShape: boxShape,
+          duration: this.duration,
+          gradientLightSource: style.lightSource,
           style: style.copyWith(
-            depth: border.depth ?? style.depth,
-            lightSource: border.oppositeLightSource ? style.lightSource.invert() : style.lightSource,
+            lightSource: ((border?.oppositeLightSource ?? false) && style.depth >= 0) ? style.lightSource.invert() : style.lightSource,
+            depth: haveBorder ? (border?.depth ?? style.depth) : style.depth,
           ),
-          child: this.child,
+          child: child,
         ),
       );
-
-      //and used style have border color
-      style = style.copyWith(color: border.color);
     } else {
-      widgetChild = Padding(
-        padding: this.padding,
-        child: widgetChild,
+      return _NeumorphicContainer(
+        key: contentKey,
+        padding: padding,
+        gradientLightSource: style.lightSource,
+        boxShape: boxShape,
+        duration: this.duration,
+        style: style,
+        child: child,
       );
     }
+  }
+}
 
+class _NeumorphicContainer extends StatefulWidget {
+  final NeumorphicStyle style;
+  final NeumorphicBoxShape boxShape;
+  final Widget child;
+  final LightSource gradientLightSource; //the lightsource used to display concave/convex
+  final Duration duration;
+  final EdgeInsets padding;
+
+  _NeumorphicContainer({
+    Key key,
+    @required this.child,
+    @required this.padding,
+    @required this.duration,
+    @required this.style,
+    @required this.boxShape,
+    @required this.gradientLightSource,
+  }) : super(key: key);
+
+  @override
+  createState() => _NeumorphicContainerState();
+}
+
+class _NeumorphicContainerState extends State<_NeumorphicContainer> {
+  @override
+  Widget build(BuildContext context) {
+    print("widget.padding : ${widget.padding}");
     return AnimatedContainer(
-        key: shape.isCircle ? _circleKey : _rectangleKey,
-        duration: this.duration,
-        child: shape.isCircle ? ClipPath(clipper: CircleClipper(), child: widgetChild) : ClipRRect(borderRadius: shape.borderRadius, child: widgetChild),
+        duration: widget.duration,
+        child: NeumorphicBoxShapeClipper(
+          shape: widget.boxShape,
+          child: Padding(
+            padding: widget.padding,
+            child: widget.child,
+          ),
+        ),
         decoration: NeumorphicBoxDecoration(
-          style: style,
-          shape: shape,
+          gradientLightSource: widget.gradientLightSource,
+          style: widget.style,
+          shape: widget.boxShape,
         ));
   }
 }
