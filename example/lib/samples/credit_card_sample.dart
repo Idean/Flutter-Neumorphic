@@ -6,7 +6,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class CreditCardSample extends StatefulWidget {
   @override
-  _CreditCardSampleState createState() => _CreditCardSampleState();
+  createState() => _CreditCardSampleState();
 }
 
 class _CreditCardSampleState extends State<CreditCardSample> {
