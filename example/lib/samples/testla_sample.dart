@@ -70,6 +70,36 @@ class __PageContentState extends State<_PageContent> {
     return Stack(
       children: <Widget>[
         Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
+            child: NeumorphicButton(
+              onClick: (){
+                Navigator.of(context).pop();
+              },
+              border: NeumorphicBorder(
+                shape: NeumorphicShape.concave,
+                width: 2,
+                color: Color(0xFF111111),
+              ),
+              boxShape: NeumorphicBoxShape.circle(),
+              style: NeumorphicStyle(
+                color: Color(0xFF17181C),
+                depth: 8,
+                intensity: 0.3,
+                shape: NeumorphicShape.convex,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Align(
           alignment: Alignment.centerRight,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
