@@ -188,7 +188,7 @@ class __PageState extends State<_Page> {
           color: this.borderColor,
           width: this.borderWidth,
           depth: this.borderDepth,
-          oppositeLightSource: this.oppositeLightSource,
+          shape: NeumorphicShape.convex,
         ),
         style: NeumorphicStyle(
           shape: this.shape,

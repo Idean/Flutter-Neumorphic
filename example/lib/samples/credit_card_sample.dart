@@ -61,7 +61,7 @@ class __PageContentState extends State<_PageContent> {
         border: NeumorphicBorder(
           width: 8,
           depth: 3,
-          oppositeLightSource: true
+          shape: NeumorphicShape.convex,
         ),
         boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(20)),
         style: NeumorphicStyle(
