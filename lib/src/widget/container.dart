@@ -77,7 +77,7 @@ class Neumorphic extends StatelessWidget {
   final Key contentKey = Key("content");
   final Key borderKey = Key("border");
 
-  LightSource _generateLightsourceDependingBorder(){
+  LightSource _generateLightsourceDependingBorder(NeumorphicBorder border,NeumorphicStyle style){
     switch(border.shape){
       case NeumorphicShape.concave:
         return style.lightSource.invert();
@@ -92,7 +92,7 @@ class Neumorphic extends StatelessWidget {
     return null;
   }
 
-  double _generateDepthDependingBorder(){
+  double _generateDepthDependingBorder(NeumorphicBorder border, NeumorphicStyle style){
     if(style.depth < 0){ //emboss content
       return style.depth;
     } else {
@@ -130,8 +130,8 @@ class Neumorphic extends StatelessWidget {
           duration: this.duration,
           gradientLightSource: style.lightSource,
           style: style.copyWith(
-            lightSource: _generateLightsourceDependingBorder(),
-            depth: _generateDepthDependingBorder(),
+            lightSource: _generateLightsourceDependingBorder(border, style),
+            depth: _generateDepthDependingBorder(border, style),
           ),
           child: child,
         ),

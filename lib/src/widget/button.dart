@@ -168,7 +168,6 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
         child: Neumorphic(
           duration: widget.duration,
           border: widget.border,
-          //accent: widget.accent,
           padding: widget.padding,
           boxShape: widget.boxShape,
           style: initialStyle.copyWith(depth: depth),

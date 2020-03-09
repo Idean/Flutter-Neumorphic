@@ -7,6 +7,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'container.dart';
 import 'list_container.dart';
+import 'samples/testla_sample.dart';
 import 'widgets.dart';
 
 void main() => runApp(MyApp());
@@ -104,6 +105,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context){
                     return CreditCardSample();
+                  }));
+                },
+              ),
+              SizedBox(height: 12),
+              RaisedButton(
+                child: Text("tesla"),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                    return TeslaSample();
                   }));
                 },
               ),
