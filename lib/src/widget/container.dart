@@ -130,6 +130,7 @@ class Neumorphic extends StatelessWidget {
           duration: this.duration,
           gradientLightSource: style.lightSource,
           style: style.copyWith(
+            intensity: border.intensity ?? style.intensity,
             lightSource: _generateLightsourceDependingBorder(border, style),
             depth: _generateDepthDependingBorder(border, style),
           ),
