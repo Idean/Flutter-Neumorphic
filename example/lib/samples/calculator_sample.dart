@@ -17,7 +17,7 @@ class _CalculatorSampleState extends State<CalculatorSample> {
         intensity: 0.3,
         lightSource: LightSource.topLeft,
         variantColor: Colors.red,
-        depth: 5,
+        depth: 4,
       ),
       child: Scaffold(
         body: SafeArea(
@@ -76,6 +76,7 @@ class WidgetCalcButton extends StatelessWidget {
         onClick: () {},
         boxShape: NeumorphicBoxShape.circle(),
         style: NeumorphicStyle(
+          surfaceIntensity: 0.15,
           shape: NeumorphicShape.concave,
           color: _backgroundColor(context),
         ),

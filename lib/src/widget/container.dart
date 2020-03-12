@@ -22,6 +22,19 @@ export '../theme/neumorphic_theme.dart';
 ///
 /// The container animates any change for you, with [duration] ! (including style / theme / size / etc.)
 ///
+/// [drawSurfaceAboveChild] enable to draw emboss, concave, convex effect above this widget child
+///
+/// drawSurfaceAboveChild - UseCase 1 :
+///
+///   put an image inside a neumorphic(concave) :
+///   drawSurfaceAboveChild=false -> the concave effect is below the image
+///   drawSurfaceAboveChild=true -> the concave effect is above the image, the image seems concave
+///
+/// drawSurfaceAboveChild - UseCase 2 :
+///   put an image inside a neumorphic(emboss) :
+///   drawSurfaceAboveChild=false -> the emboss effect is below the image -> not visible
+///   drawSurfaceAboveChild=true -> the emboss effeect effect is above the image -> visible
+///
 @immutable
 class Neumorphic extends StatelessWidget {
   static const DEFAULT_DURATION = const Duration(milliseconds: 100);
@@ -106,6 +119,7 @@ class _NeumorphicContainerState extends State<_NeumorphicContainer> {
         duration: widget.duration,
         child: NeumorphicBoxShapeClipper(
           shape: widget.boxShape,
+
           child: Padding(
             padding: widget.padding,
             child: widget.child,
