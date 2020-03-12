@@ -11,20 +11,23 @@ import 'painter/neumorphic_foreground_decoration_painter.dart';
 class NeumorphicForegroundDecoration extends Decoration {
   final NeumorphicStyle style;
   final NeumorphicBoxShape shape;
+  final bool splitBackgroundForeground;
 
-  const NeumorphicForegroundDecoration({@required this.style, @required this.shape});
+  const NeumorphicForegroundDecoration({@required this.style, @required this.splitBackgroundForeground, @required this.shape});
 
   @override
   BoxPainter createBoxPainter([onChanged]) {
     if (style.depth >= 0) {
       return NeumorphicForegroundDecorationPainter(
         style: style,
+        enabled: splitBackgroundForeground,
         onChanged: onChanged,
         shape: shape,
       );
     } else {
       return NeumorphicEmbossForegroundDecorationPainter(
         style: style,
+        enabled: splitBackgroundForeground,
         onChanged: onChanged,
         shape: shape,
       );
@@ -47,6 +50,7 @@ class NeumorphicForegroundDecoration extends Decoration {
 
   NeumorphicForegroundDecoration scale(double factor) {
     return NeumorphicForegroundDecoration(
+        splitBackgroundForeground: this.splitBackgroundForeground,
         shape: NeumorphicBoxShape.lerp(null, shape, factor),
         style: style.copyWith());
   }
@@ -72,6 +76,7 @@ class NeumorphicForegroundDecoration extends Decoration {
 
     return NeumorphicForegroundDecoration(
         shape: NeumorphicBoxShape.lerp(a.shape, b.shape, t),
+        splitBackgroundForeground: a.splitBackgroundForeground,
         style: a.style.copyWith(
           intensity: lerpDouble(aStyle.intensity, bStyle.intensity, t),
           surfaceIntensity: lerpDouble(aStyle.surfaceIntensity, bStyle.surfaceIntensity, t),

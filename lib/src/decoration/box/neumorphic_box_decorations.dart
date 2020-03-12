@@ -12,13 +12,15 @@ export 'painter/neumorphic_emboss_box_decoration_painter.dart';
 class NeumorphicBoxDecoration extends Decoration {
   final NeumorphicStyle style;
   final NeumorphicBoxShape shape;
+  final bool splitBackgroundForeground;
 
-  const NeumorphicBoxDecoration({@required this.style, @required this.shape});
+  const NeumorphicBoxDecoration({@required this.style, @required this.splitBackgroundForeground, @required this.shape});
 
   @override
   BoxPainter createBoxPainter([onChanged]) {
     if (style.depth >= 0) {
       return NeumorphicBoxDecorationPainter(
+        drawGradient: !splitBackgroundForeground,
         style: style,
         onChanged: onChanged,
         shape: shape,
@@ -26,6 +28,7 @@ class NeumorphicBoxDecoration extends Decoration {
     } else {
       //print("emboss : $accent");
       return NeumorphicEmbossBoxDecorationPainter(
+        drawShadow: !splitBackgroundForeground,
         style: style,
         onChanged: onChanged,
         shape: shape,
@@ -49,6 +52,7 @@ class NeumorphicBoxDecoration extends Decoration {
 
   NeumorphicBoxDecoration scale(double factor) {
     return NeumorphicBoxDecoration(
+        splitBackgroundForeground: this.splitBackgroundForeground,
         shape: NeumorphicBoxShape.lerp(null, shape, factor),
         style: style.copyWith());
   }
@@ -74,6 +78,7 @@ class NeumorphicBoxDecoration extends Decoration {
 
     return NeumorphicBoxDecoration(
         shape: NeumorphicBoxShape.lerp(a.shape, b.shape, t),
+        splitBackgroundForeground: a.splitBackgroundForeground,
         style: a.style.copyWith(
           intensity: lerpDouble(aStyle.intensity, bStyle.intensity, t),
           depth: lerpDouble(aStyle.depth, bStyle.depth, t),

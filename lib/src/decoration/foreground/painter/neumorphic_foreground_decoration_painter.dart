@@ -45,11 +45,13 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
   Offset blackShadowOffset;
 
   LightSource externalShadowLightSource;
+  bool enabled;
 
   NeumorphicForegroundDecorationPainter({
     /* this.accent, */
     @required this.style,
-    NeumorphicBoxShape shape,
+    @required NeumorphicBoxShape shape,
+    @required this.enabled,
     @required VoidCallback onChanged,
   }) : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
@@ -172,13 +174,15 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
 
     //print("style.depth ${style.depth}");
 
-    if (shape.isCircle) {
-      if (style.shape == NeumorphicShape.concave || style.shape == NeumorphicShape.convex) {
-        canvas.drawCircle(centerOffset, radius, gradientPaint);
-      }
-    } else {
-      if (style.shape == NeumorphicShape.concave || style.shape == NeumorphicShape.convex) {
-        canvas.drawRRect(this.buttonRRect, gradientPaint);
+    if(enabled) {
+      if (shape.isCircle) {
+        if (style.shape == NeumorphicShape.concave || style.shape == NeumorphicShape.convex) {
+          canvas.drawCircle(centerOffset, radius, gradientPaint);
+        }
+      } else {
+        if (style.shape == NeumorphicShape.concave || style.shape == NeumorphicShape.convex) {
+          canvas.drawRRect(this.buttonRRect, gradientPaint);
+        }
       }
     }
   }

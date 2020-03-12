@@ -54,11 +54,13 @@ class NeumorphicButton extends StatefulWidget {
   final bool pressed; //null, true, false
   final Duration duration;
   final NeumorphicButtonClickListener onClick;
+  final bool splitBackgroundForeground;
 
   const NeumorphicButton({
     Key key,
     this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     this.child,
+    this.splitBackgroundForeground = true,
     this.pressed, //true/false if you want to change the state of the button
     this.boxShape,
     this.duration = Neumorphic.DEFAULT_DURATION,
@@ -164,6 +166,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       child: AnimatedScale(
         scale: _getScale(),
         child: Neumorphic(
+          splitBackgroundForeground: widget.splitBackgroundForeground,
           duration: widget.duration,
           padding: widget.padding,
           boxShape: widget.boxShape,

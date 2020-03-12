@@ -20,6 +20,7 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
   Paint whiteShadowMaskPaint;
   Paint blackShadowPaint;
   Paint blackShadowMaskPaint;
+  Paint gradientPaint;
 
   double width;
   double height;
@@ -45,11 +46,14 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
   Offset blackShadowOffset;
 
   LightSource externalShadowLightSource;
+  LightSource gradientLightSource;
+  bool drawGradient;
 
   NeumorphicBoxDecorationPainter({
     /* this.accent, */
     @required this.style,
-    NeumorphicBoxShape shape,
+    @required NeumorphicBoxShape shape,
+    @required this.drawGradient,
     @required VoidCallback onChanged,
   })  : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
@@ -64,6 +68,8 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
 
     blackShadowPaint = Paint()..color = blackShadowColor;
     blackShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
+
+    gradientPaint = Paint();
   }
 
   @override
@@ -89,6 +95,8 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
         this.height,
       );
 
+      this.gradientLightSource = style.lightSource;
+
       this.radius = min(middleWidth, middleHeight);
       this.centerOffset = offset.translate(middleWidth, middleHeight);
 
@@ -97,6 +105,15 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
           center: centerOffset,
           radius: this.radius * 2,
         );
+        gradientPaint
+          ..shader = getGradientShader(
+            gradientRect: Rect.fromCircle(
+              center: centerOffset,
+              radius: radius,
+            ),
+            intensity: style.surfaceIntensity,
+            source: style.shape == NeumorphicShape.concave ? this.gradientLightSource : this.gradientLightSource.invert(),
+          );
       } else {
         layerRect = Rect.fromLTRB(
           offset.dx - this.width,
@@ -104,6 +121,12 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
           offset.dx + 2 * this.width,
           offset.dy + 2 * this.height,
         );
+        gradientPaint
+          ..shader = getGradientShader(
+            gradientRect: rectRect,
+            intensity: style.surfaceIntensity,
+            source: style.shape == NeumorphicShape.concave ? this.gradientLightSource : this.gradientLightSource.invert(),
+          );
       }
     }
 
@@ -128,6 +151,7 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
     if (this.invalidate || this.externalShadowLightSource != source || this.depth != depth) {
       this.depth = depth;
       this.externalShadowLightSource = source;
+      this.gradientLightSource = source;
       this.depthOffset = this.externalShadowLightSource.offset.scale(this.depth, this.depth);
       this.maskFilter = MaskFilter.blur(BlurStyle.normal, this.depth);
       this.whiteShadowPaint..maskFilter = this.maskFilter;
@@ -174,6 +198,12 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
       }
 
       canvas.drawCircle(centerOffset, radius, backgroundPaint);
+
+      if(this.drawGradient) {
+        if (style.shape == NeumorphicShape.concave || style.shape == NeumorphicShape.convex) {
+          canvas.drawCircle(centerOffset, radius, gradientPaint);
+        }
+      }
     } else {
       if (style.depth.abs() >= 0.1) {
         //avoid binking on android if depth near 0
@@ -189,6 +219,12 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
       }
 
       canvas.drawRRect(buttonRRect, backgroundPaint);
+
+      if(this.drawGradient) {
+        if (style.shape == NeumorphicShape.concave || style.shape == NeumorphicShape.convex) {
+          canvas.drawRRect(this.buttonRRect, gradientPaint);
+        }
+      }
     }
   }
 }

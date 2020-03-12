@@ -16,6 +16,10 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   NeumorphicBoxShape shape;
 
   Paint backgroundPaint;
+  Paint whiteShadowPaint;
+  Paint whiteShadowMaskPaint;
+  Paint blackShadowPaint;
+  Paint blackShadowMaskPaint;
 
   double width;
   double height;
@@ -24,6 +28,8 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
 
   Offset originOffset;
   Offset circleOffset;
+  Offset whiteShadowMaskPaintOffset;
+  Offset blackShadowMaskPaintOffset;
 
   Rect layerRect;
   Rect backgroundRect;
@@ -34,17 +40,32 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   Color backgroundColor;
 
   RRect buttonRRect;
+  RRect whiteShadowMaskRect;
+  RRect blackShadowMaskRect;
+
+  bool drawShadow;
 
   NeumorphicEmbossBoxDecorationPainter(
       { //this.accent,
       @required this.style,
-      NeumorphicBoxShape shape,
+      @required NeumorphicBoxShape shape,
+      @required this.drawShadow,
       @required VoidCallback onChanged})
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
-    this.backgroundColor = style.color;
+    this.backgroundColor = /*accent ??*/ style.color;
+    var blackShadowColor = NeumorphicColors.embossMaxDarkColor
+        .withOpacity(style.intensity); //<-- intensity act on opacity
+    var whiteShadowColor = NeumorphicColors.embossMaxWhiteColor
+        .withOpacity(style.intensity); //<-- intensity act on opacity
 
     backgroundPaint = Paint()..color = backgroundColor;
+
+    whiteShadowPaint = Paint()..color = whiteShadowColor;
+    whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
+
+    blackShadowPaint = Paint()..color = blackShadowColor;
+    blackShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
   }
 
   @override
@@ -97,13 +118,84 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       this.backgroundColor = backgroundColor;
 
       backgroundPaint..color = backgroundColor;
+
+      MaskFilter mask = MaskFilter.blur(BlurStyle.normal, depth);
+      blackShadowMaskPaint..maskFilter = mask;
+      whiteShadowMaskPaint..maskFilter = mask;
+
+      if (shape.isCircle) {
+        whiteShadowMaskPaintOffset = circleOffset.translate(
+          this.depth * this.source.dx,
+          this.depth * this.source.dy,
+        );
+        blackShadowMaskPaintOffset = circleOffset.translate(
+          -this.depth * this.source.dx,
+          -this.depth * this.source.dy,
+        );
+      } else {
+        whiteShadowMaskRect = RRect.fromRectAndRadius(
+            getWhiteShadowMaskRect(
+              this.source,
+              configuration.size,
+              offset,
+              this.depth,
+            ),
+            cornerRadius);
+        blackShadowMaskRect = RRect.fromRectAndRadius(
+            getBlackShadowMaskRect(
+              this.source,
+              configuration.size,
+              offset,
+              this.depth,
+            ),
+            cornerRadius);
+      }
     }
+
+    whiteShadowPaint
+      ..color = NeumorphicColors.embossMaxWhiteColor
+          .withOpacity(style.intensity); //<-- intensity act on opacity;
+    blackShadowPaint
+      ..color = NeumorphicColors.embossMaxDarkColor
+          .withOpacity(style.intensity); //<-- intensity act on opacity;
 
     if (shape.isCircle) {
       canvas.drawCircle(circleOffset, radius, backgroundPaint);
+
+      if(drawShadow) {
+        canvas.saveLayer(layerRect, whiteShadowPaint);
+        canvas.drawCircle(circleOffset, radius, whiteShadowPaint);
+        canvas.drawCircle(
+          whiteShadowMaskPaintOffset,
+          radius,
+          whiteShadowMaskPaint,
+        );
+        canvas.restore();
+
+        canvas.saveLayer(layerRect, blackShadowPaint);
+        canvas.drawCircle(circleOffset, radius, blackShadowPaint);
+        canvas.drawCircle(
+          blackShadowMaskPaintOffset,
+          radius,
+          blackShadowMaskPaint,
+        );
+        canvas.restore();
+      }
     } else {
       //backgroundPaint..color = accent;
       canvas.drawRRect(buttonRRect, backgroundPaint);
+
+      if(drawShadow) {
+        canvas.saveLayer(layerRect, whiteShadowPaint);
+        canvas.drawRRect(buttonRRect, whiteShadowPaint);
+        canvas.drawRRect(whiteShadowMaskRect, whiteShadowMaskPaint);
+        canvas.restore();
+
+        canvas.saveLayer(layerRect, blackShadowPaint);
+        canvas.drawRRect(buttonRRect, blackShadowPaint);
+        canvas.drawRRect(blackShadowMaskRect, blackShadowMaskPaint);
+        canvas.restore();
+      }
     }
   }
 
