@@ -3,19 +3,16 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 
-import '../NeumorphicBoxShape.dart';
-import '../theme/theme.dart';
-export '../theme/theme.dart';
+import '../../../NeumorphicBoxShape.dart';
+import '../../../theme/theme.dart';
+export '../../../theme/theme.dart';
 
-class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
+class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
   bool invalidate = false;
-
-  //Color accent;
 
   NeumorphicStyle style;
   NeumorphicBoxShape shape;
 
-  Paint backgroundPaint;
   Paint whiteShadowPaint;
   Paint whiteShadowMaskPaint;
   Paint blackShadowPaint;
@@ -43,10 +40,13 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   RRect whiteShadowMaskRect;
   RRect blackShadowMaskRect;
 
-  NeumorphicEmbossBoxDecorationPainter(
+  bool enabled;
+
+  NeumorphicEmbossForegroundDecorationPainter(
       { //this.accent,
       @required this.style,
-      NeumorphicBoxShape shape,
+        @required this.enabled,
+      @required NeumorphicBoxShape shape,
       @required VoidCallback onChanged})
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
@@ -55,8 +55,6 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         .withOpacity(style.intensity); //<-- intensity act on opacity
     var whiteShadowColor = NeumorphicColors.embossMaxWhiteColor
         .withOpacity(style.intensity); //<-- intensity act on opacity
-
-    backgroundPaint = Paint()..color = backgroundColor;
 
     whiteShadowPaint = Paint()..color = whiteShadowColor;
     whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
@@ -114,8 +112,6 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       this.source = source;
       this.backgroundColor = backgroundColor;
 
-      backgroundPaint..color = backgroundColor;
-
       MaskFilter mask = MaskFilter.blur(BlurStyle.normal, depth);
       blackShadowMaskPaint..maskFilter = mask;
       whiteShadowMaskPaint..maskFilter = mask;
@@ -156,39 +152,36 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       ..color = NeumorphicColors.embossMaxDarkColor
           .withOpacity(style.intensity); //<-- intensity act on opacity;
 
-    if (shape.isCircle) {
-      canvas.drawCircle(circleOffset, radius, backgroundPaint);
+    if(enabled) {
+      if (shape.isCircle) {
+        canvas.saveLayer(layerRect, whiteShadowPaint);
+        canvas.drawCircle(circleOffset, radius, whiteShadowPaint);
+        canvas.drawCircle(
+          whiteShadowMaskPaintOffset,
+          radius,
+          whiteShadowMaskPaint,
+        );
+        canvas.restore();
 
-      canvas.saveLayer(layerRect, whiteShadowPaint);
-      canvas.drawCircle(circleOffset, radius, whiteShadowPaint);
-      canvas.drawCircle(
-        whiteShadowMaskPaintOffset,
-        radius,
-        whiteShadowMaskPaint,
-      );
-      canvas.restore();
+        canvas.saveLayer(layerRect, blackShadowPaint);
+        canvas.drawCircle(circleOffset, radius, blackShadowPaint);
+        canvas.drawCircle(
+          blackShadowMaskPaintOffset,
+          radius,
+          blackShadowMaskPaint,
+        );
+        canvas.restore();
+      } else {
+        canvas.saveLayer(layerRect, whiteShadowPaint);
+        canvas.drawRRect(buttonRRect, whiteShadowPaint);
+        canvas.drawRRect(whiteShadowMaskRect, whiteShadowMaskPaint);
+        canvas.restore();
 
-      canvas.saveLayer(layerRect, blackShadowPaint);
-      canvas.drawCircle(circleOffset, radius, blackShadowPaint);
-      canvas.drawCircle(
-        blackShadowMaskPaintOffset,
-        radius,
-        blackShadowMaskPaint,
-      );
-      canvas.restore();
-    } else {
-      //backgroundPaint..color = accent;
-      canvas.drawRRect(buttonRRect, backgroundPaint);
-
-      canvas.saveLayer(layerRect, whiteShadowPaint);
-      canvas.drawRRect(buttonRRect, whiteShadowPaint);
-      canvas.drawRRect(whiteShadowMaskRect, whiteShadowMaskPaint);
-      canvas.restore();
-
-      canvas.saveLayer(layerRect, blackShadowPaint);
-      canvas.drawRRect(buttonRRect, blackShadowPaint);
-      canvas.drawRRect(blackShadowMaskRect, blackShadowMaskPaint);
-      canvas.restore();
+        canvas.saveLayer(layerRect, blackShadowPaint);
+        canvas.drawRRect(buttonRRect, blackShadowPaint);
+        canvas.drawRRect(blackShadowMaskRect, blackShadowMaskPaint);
+        canvas.restore();
+      }
     }
   }
 

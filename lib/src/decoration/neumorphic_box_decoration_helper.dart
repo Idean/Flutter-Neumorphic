@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../theme/theme.dart';
 
-Shader getGradientShader({Rect gradientRect, LightSource source, double intensity=0.25}) {
+Shader getGradientShader({@required Rect gradientRect, @required LightSource source, double intensity=0.25}) {
   var sourceInvert = source.invert();
 
   final opacity = intensity * (3/5);

@@ -1,12 +1,14 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic/src/decoration/foreground/neumorphic_foreground_decorations.dart';
+import 'package:flutter_neumorphic/src/decoration/foreground/painter/neumorphic_foreground_decoration_painter.dart';
 
 import '../NeumorphicBoxShape.dart';
-import '../decoration/neumorphic_box_decorations.dart';
+import '../decoration/box/neumorphic_box_decorations.dart';
 import '../theme/neumorphic_theme.dart';
 import 'clipper/NeumorphicBoxShapeClipper.dart';
 
 export '../NeumorphicBoxShape.dart';
-export '../decoration/neumorphic_box_decorations.dart';
+export '../decoration/box/neumorphic_box_decorations.dart';
 export '../theme/neumorphic_theme.dart';
 
 /// The main container of the Neumorphic UI KIT
@@ -40,6 +42,7 @@ class Neumorphic extends StatelessWidget {
   final EdgeInsets margin;
   final NeumorphicBoxShape boxShape;
   final Duration duration;
+  final bool drawSurfaceAboveChild; //if true => boxDecoration & foreground decoration, else => boxDecoration does all the work
 
   Neumorphic({
     Key key,
@@ -49,6 +52,7 @@ class Neumorphic extends StatelessWidget {
     this.boxShape,
     this.margin = const EdgeInsets.all(0),
     this.padding = const EdgeInsets.all(0),
+    this.drawSurfaceAboveChild = true,
   }) : super(key: key);
 
   @override
@@ -59,8 +63,8 @@ class Neumorphic extends StatelessWidget {
 
     return _NeumorphicContainer(
       padding: this.padding,
-      gradientLightSource: style.lightSource,
       boxShape: boxShape,
+      drawSurfaceAboveChild: this.drawSurfaceAboveChild,
       duration: this.duration,
       style: style,
       margin: this.margin,
@@ -74,8 +78,8 @@ class _NeumorphicContainer extends StatefulWidget {
   final NeumorphicBoxShape boxShape;
   final Widget child;
   final EdgeInsets margin;
-  final LightSource gradientLightSource; //the lightsource used to display concave/convex
   final Duration duration;
+  final bool drawSurfaceAboveChild;
   final EdgeInsets padding;
 
   _NeumorphicContainer({
@@ -85,8 +89,8 @@ class _NeumorphicContainer extends StatefulWidget {
     @required this.margin,
     @required this.duration,
     @required this.style,
+    @required this.drawSurfaceAboveChild,
     @required this.boxShape,
-    @required this.gradientLightSource,
   }) : super(key: key);
 
   @override
@@ -107,8 +111,13 @@ class _NeumorphicContainerState extends State<_NeumorphicContainer> {
             child: widget.child,
           ),
         ),
+        foregroundDecoration: NeumorphicForegroundDecoration(
+          splitBackgroundForeground: widget.drawSurfaceAboveChild,
+          style: widget.style,
+          shape: widget.boxShape,
+        ),
         decoration: NeumorphicBoxDecoration(
-          gradientLightSource: widget.gradientLightSource,
+          splitBackgroundForeground: widget.drawSurfaceAboveChild,
           style: widget.style,
           shape: widget.boxShape,
         ));

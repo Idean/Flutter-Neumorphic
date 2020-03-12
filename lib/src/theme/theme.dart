@@ -222,6 +222,7 @@ class NeumorphicStyle {
     Color color,
     double depth,
     double intensity,
+    double surfaceIntensity,
     LightSource lightSource,
     double borderRadius,
     NeumorphicShape shape,
