@@ -131,6 +131,7 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
             }
           },
           child: Neumorphic(
+            splitBackgroundForeground: false,
             boxShape: NeumorphicBoxShape.stadium(),
             style: NeumorphicStyle(
                 depth: _getTrackDepth(theme.depth),
