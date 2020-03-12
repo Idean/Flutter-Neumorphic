@@ -222,6 +222,7 @@ class __PageContentState extends State<_PageContent> {
             child: NeumorphicButton(
               boxShape: NeumorphicBoxShape.circle(),
               style: NeumorphicStyle(
+                surfaceIntensity: 0.7,
                 depth: 0,
                 shape: NeumorphicShape.concave,
                 color: NeumorphicTheme.accentColor(context),

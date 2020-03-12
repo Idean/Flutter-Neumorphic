@@ -144,6 +144,7 @@ class NeumorphicStyle {
   final Color color;
   final double _depth;
   final double _intensity;
+  final double _surfaceIntensity;
   final LightSource lightSource;
 
   final NeumorphicShape shape;
@@ -155,9 +156,11 @@ class NeumorphicStyle {
     this.color,
     double depth,
     double intensity,
+    double surfaceIntensity = 0.25,
   })  : this._depth = depth,
         this.theme = null,
-        this._intensity = intensity;
+        this._intensity = intensity,
+        this._surfaceIntensity = surfaceIntensity;
 
   // with theme constructor is only available privately, please use copyWithThemeIfNull
   const NeumorphicStyle._withTheme({
@@ -167,13 +170,18 @@ class NeumorphicStyle {
     this.color,
     double depth,
     double intensity,
+    double surfaceIntensity = 0.25,
   })  : this._depth = depth,
-        this._intensity = intensity;
+        this._intensity = intensity,
+        this._surfaceIntensity = surfaceIntensity;
 
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
 
   double get intensity =>
       _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
+
+  double get surfaceIntensity =>
+      _surfaceIntensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
   NeumorphicStyle copyWithThemeIfNull(NeumorphicThemeData theme) {
     return NeumorphicStyle._withTheme(
@@ -182,6 +190,7 @@ class NeumorphicStyle {
         shape: this.shape,
         depth: this.depth ?? theme.depth,
         intensity: this.intensity ?? theme.intensity,
+        surfaceIntensity: this.surfaceIntensity,
         lightSource: this.lightSource ?? theme.lightSource);
   }
 
@@ -194,6 +203,7 @@ class NeumorphicStyle {
               color == other.color &&
               _depth == other._depth &&
               _intensity == other._intensity &&
+              _surfaceIntensity == other._surfaceIntensity &&
               lightSource == other.lightSource &&
               shape == other.shape &&
               theme == other.theme;
@@ -203,6 +213,7 @@ class NeumorphicStyle {
       color.hashCode ^
       _depth.hashCode ^
       _intensity.hashCode ^
+      _surfaceIntensity.hashCode ^
       lightSource.hashCode ^
       shape.hashCode ^
       theme.hashCode;
@@ -220,6 +231,7 @@ class NeumorphicStyle {
       depth: depth ?? this.depth,
       theme: this.theme,
       intensity: intensity ?? this.intensity,
+      surfaceIntensity: surfaceIntensity ?? this.surfaceIntensity,
       lightSource: lightSource ?? this.lightSource,
       shape: shape ?? this.shape,
     );

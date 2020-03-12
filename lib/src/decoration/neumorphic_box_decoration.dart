@@ -104,11 +104,12 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
         );
         gradientPaint
           ..shader = getGradientShader(
-            Rect.fromCircle(
+            gradientRect: Rect.fromCircle(
               center: centerOffset,
               radius: radius,
             ),
-            style.shape == NeumorphicShape.concave ? this.gradientLightSource : this.gradientLightSource.invert(),
+            intensity: style.surfaceIntensity,
+            source: style.shape == NeumorphicShape.concave ? this.gradientLightSource : this.gradientLightSource.invert(),
           );
       } else {
         layerRect = Rect.fromLTRB(
@@ -119,8 +120,9 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
         );
         gradientPaint
           ..shader = getGradientShader(
-            rectRect,
-            style.shape == NeumorphicShape.concave ? this.gradientLightSource : this.gradientLightSource.invert(),
+            gradientRect: rectRect,
+            intensity: style.surfaceIntensity,
+            source: style.shape == NeumorphicShape.concave ? this.gradientLightSource : this.gradientLightSource.invert(),
           );
       }
     }

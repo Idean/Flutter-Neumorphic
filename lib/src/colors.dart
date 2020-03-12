@@ -24,8 +24,8 @@ class NeumorphicColors {
       material.Colors.white60; //for intensity = 1
   static Color embossMaxDarkColor = material.Colors.black45; //for intensity = 1
 
-  static Color gradientShaderDarkColor = material.Colors.black12;
-  static Color gradientShaderWhiteColor = material.Colors.white12;
+  static Color gradientShaderDarkColor = material.Colors.black;
+  static Color gradientShaderWhiteColor = material.Colors.white;
 
   NeumorphicColors._();
 }
