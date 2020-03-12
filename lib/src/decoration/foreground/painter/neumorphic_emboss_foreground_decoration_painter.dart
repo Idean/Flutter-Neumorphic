@@ -3,19 +3,16 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 
-import '../NeumorphicBoxShape.dart';
-import '../theme/theme.dart';
-export '../theme/theme.dart';
+import '../../../NeumorphicBoxShape.dart';
+import '../../../theme/theme.dart';
+export '../../../theme/theme.dart';
 
-class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
+class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
   bool invalidate = false;
-
-  //Color accent;
 
   NeumorphicStyle style;
   NeumorphicBoxShape shape;
 
-  Paint backgroundPaint;
   Paint whiteShadowPaint;
   Paint whiteShadowMaskPaint;
   Paint blackShadowPaint;
@@ -43,7 +40,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   RRect whiteShadowMaskRect;
   RRect blackShadowMaskRect;
 
-  NeumorphicEmbossBoxDecorationPainter(
+  NeumorphicEmbossForegroundDecorationPainter(
       { //this.accent,
       @required this.style,
       NeumorphicBoxShape shape,
@@ -55,8 +52,6 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         .withOpacity(style.intensity); //<-- intensity act on opacity
     var whiteShadowColor = NeumorphicColors.embossMaxWhiteColor
         .withOpacity(style.intensity); //<-- intensity act on opacity
-
-    backgroundPaint = Paint()..color = backgroundColor;
 
     whiteShadowPaint = Paint()..color = whiteShadowColor;
     whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
@@ -114,8 +109,6 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       this.source = source;
       this.backgroundColor = backgroundColor;
 
-      backgroundPaint..color = backgroundColor;
-
       MaskFilter mask = MaskFilter.blur(BlurStyle.normal, depth);
       blackShadowMaskPaint..maskFilter = mask;
       whiteShadowMaskPaint..maskFilter = mask;
@@ -157,8 +150,6 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
           .withOpacity(style.intensity); //<-- intensity act on opacity;
 
     if (shape.isCircle) {
-      canvas.drawCircle(circleOffset, radius, backgroundPaint);
-
       canvas.saveLayer(layerRect, whiteShadowPaint);
       canvas.drawCircle(circleOffset, radius, whiteShadowPaint);
       canvas.drawCircle(
@@ -177,9 +168,6 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       );
       canvas.restore();
     } else {
-      //backgroundPaint..color = accent;
-      canvas.drawRRect(buttonRRect, backgroundPaint);
-
       canvas.saveLayer(layerRect, whiteShadowPaint);
       canvas.drawRRect(buttonRRect, whiteShadowPaint);
       canvas.drawRRect(whiteShadowMaskRect, whiteShadowMaskPaint);

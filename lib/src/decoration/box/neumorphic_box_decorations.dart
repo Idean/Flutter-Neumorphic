@@ -2,20 +2,18 @@ import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
 
-import '../NeumorphicBoxShape.dart';
-import 'neumorphic_box_decoration.dart';
+import '../../NeumorphicBoxShape.dart';
+import 'painter/neumorphic_box_decoration_painter.dart';
 
-import 'neumorphic_emboss_box_decoration.dart';
-export 'neumorphic_emboss_box_decoration.dart';
+import 'painter/neumorphic_emboss_box_decoration_painter.dart';
+export 'painter/neumorphic_emboss_box_decoration_painter.dart';
 
 @immutable
 class NeumorphicBoxDecoration extends Decoration {
-  //final Color accent;
   final NeumorphicStyle style;
   final NeumorphicBoxShape shape;
-  final LightSource gradientLightSource;
 
-  const NeumorphicBoxDecoration({/*@required this.accent,*/ @required this.style, @required this.shape, @required this.gradientLightSource});
+  const NeumorphicBoxDecoration({@required this.style, @required this.shape});
 
   @override
   BoxPainter createBoxPainter([onChanged]) {
@@ -24,8 +22,6 @@ class NeumorphicBoxDecoration extends Decoration {
         style: style,
         onChanged: onChanged,
         shape: shape,
-        gradientLightSource: gradientLightSource,
-        //accent: accent,
       );
     } else {
       //print("emboss : $accent");
@@ -33,8 +29,6 @@ class NeumorphicBoxDecoration extends Decoration {
         style: style,
         onChanged: onChanged,
         shape: shape,
-        //gradientLightSource: gradientLightSource,
-        //accent: accent,
       );
     }
   }
@@ -56,11 +50,7 @@ class NeumorphicBoxDecoration extends Decoration {
   NeumorphicBoxDecoration scale(double factor) {
     return NeumorphicBoxDecoration(
         shape: NeumorphicBoxShape.lerp(null, shape, factor),
-        gradientLightSource: LightSource.lerp(null, gradientLightSource, factor),
-        //accent: Color.lerp(null, accent, factor),
-        style: style.copyWith(
-            //color: Color.lerp(null, style.color, factor),
-            ));
+        style: style.copyWith());
   }
 
   static NeumorphicBoxDecoration lerp(NeumorphicBoxDecoration a, NeumorphicBoxDecoration b, double t) {
@@ -84,8 +74,6 @@ class NeumorphicBoxDecoration extends Decoration {
 
     return NeumorphicBoxDecoration(
         shape: NeumorphicBoxShape.lerp(a.shape, b.shape, t),
-        gradientLightSource: LightSource.lerp(a.gradientLightSource, b.gradientLightSource, t),
-        //accent: Color.lerp(a.accent, b.accent, t),
         style: a.style.copyWith(
           intensity: lerpDouble(aStyle.intensity, bStyle.intensity, t),
           depth: lerpDouble(aStyle.depth, bStyle.depth, t),
@@ -101,15 +89,11 @@ class NeumorphicBoxDecoration extends Decoration {
           runtimeType == other.runtimeType &&
           //accent == other.accent &&
           style == other.style &&
-          gradientLightSource == other.gradientLightSource &&
           shape == other.shape;
 
   @override
   int get hashCode =>
       style.hashCode ^
-      shape.hashCode ^
-      gradientLightSource.hashCode;
-
-
+      shape.hashCode;
 
 }

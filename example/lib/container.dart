@@ -36,6 +36,7 @@ class __PageState extends State<_Page> {
   NeumorphicBoxShape boxShape = NeumorphicBoxShape.roundRect();
   double depth = 5;
   double intensity = 0.5;
+  double surfaceIntensity = 0.5;
   double cornerRadius = 0;
   double height = 0;
 
@@ -54,6 +55,7 @@ class __PageState extends State<_Page> {
               shapeWidget(),
               boxshapeWidget(),
               intensitySelector(),
+              surfaceIntensitySelector(),
               depthSelector(),
               cornerRadiusSelector(),
               Expanded(
@@ -123,6 +125,7 @@ class __PageState extends State<_Page> {
       height: 100,
       width: 200,
       child: NeumorphicButton(
+        padding: EdgeInsets.zero,
         duration: Duration(milliseconds: 300),
         onClick: () {
           setState(() {});
@@ -131,10 +134,13 @@ class __PageState extends State<_Page> {
         style: NeumorphicStyle(
           shape: this.shape,
           intensity: this.intensity,
+          surfaceIntensity: this.surfaceIntensity,
           depth: depth,
           lightSource: this.lightSource,
         ),
-        child: Center(child: Text("text")),
+        child: Container(
+            //color: Colors.blue,
+            child: Center(child: Text("text"))),
       ),
     );
   }
@@ -218,6 +224,33 @@ class __PageState extends State<_Page> {
         Padding(
           padding: EdgeInsets.only(right: 12),
           child: Text(((intensity * 100).floor() / 100).toString()),
+        ),
+      ],
+    );
+  }
+
+  Widget surfaceIntensitySelector() {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(left: 12),
+          child: Text("SurfaceIntensity"),
+        ),
+        Expanded(
+          child: Slider(
+            min: Neumorphic.MIN_INTENSITY, //in case of != 0
+            max: Neumorphic.MAX_INTENSITY,
+            value: surfaceIntensity,
+            onChanged: (value) {
+              setState(() {
+                surfaceIntensity = value;
+              });
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: 12),
+          child: Text(((surfaceIntensity * 100).floor() / 100).toString()),
         ),
       ],
     );

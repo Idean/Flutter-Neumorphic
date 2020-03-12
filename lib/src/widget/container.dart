@@ -1,12 +1,14 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic/src/decoration/foreground/neumorphic_foreground_decorations.dart';
+import 'package:flutter_neumorphic/src/decoration/foreground/painter/neumorphic_foreground_decoration_painter.dart';
 
 import '../NeumorphicBoxShape.dart';
-import '../decoration/neumorphic_box_decorations.dart';
+import '../decoration/box/neumorphic_box_decorations.dart';
 import '../theme/neumorphic_theme.dart';
 import 'clipper/NeumorphicBoxShapeClipper.dart';
 
 export '../NeumorphicBoxShape.dart';
-export '../decoration/neumorphic_box_decorations.dart';
+export '../decoration/box/neumorphic_box_decorations.dart';
 export '../theme/neumorphic_theme.dart';
 
 /// The main container of the Neumorphic UI KIT
@@ -59,7 +61,6 @@ class Neumorphic extends StatelessWidget {
 
     return _NeumorphicContainer(
       padding: this.padding,
-      gradientLightSource: style.lightSource,
       boxShape: boxShape,
       duration: this.duration,
       style: style,
@@ -74,7 +75,6 @@ class _NeumorphicContainer extends StatefulWidget {
   final NeumorphicBoxShape boxShape;
   final Widget child;
   final EdgeInsets margin;
-  final LightSource gradientLightSource; //the lightsource used to display concave/convex
   final Duration duration;
   final EdgeInsets padding;
 
@@ -86,7 +86,6 @@ class _NeumorphicContainer extends StatefulWidget {
     @required this.duration,
     @required this.style,
     @required this.boxShape,
-    @required this.gradientLightSource,
   }) : super(key: key);
 
   @override
@@ -106,9 +105,13 @@ class _NeumorphicContainerState extends State<_NeumorphicContainer> {
             padding: widget.padding,
             child: widget.child,
           ),
+
+        ),
+        foregroundDecoration: NeumorphicForegroundDecoration(
+          style: widget.style,
+          shape: widget.boxShape,
         ),
         decoration: NeumorphicBoxDecoration(
-          gradientLightSource: widget.gradientLightSource,
           style: widget.style,
           shape: widget.boxShape,
         ));
