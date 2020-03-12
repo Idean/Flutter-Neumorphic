@@ -73,27 +73,31 @@ class __PageContentState extends State<_PageContent> {
           alignment: Alignment.centerLeft,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
-            child: NeumorphicButton(
-              onClick: (){
-                Navigator.of(context).pop();
-              },
-              border: NeumorphicBorder(
-                shape: NeumorphicShape.concave,
-                width: 2,
-                color: Color(0xFF111111),
-              ),
+            child: Neumorphic(
+              padding: EdgeInsets.all(2),
               boxShape: NeumorphicBoxShape.circle(),
               style: NeumorphicStyle(
-                color: Color(0xFF17181C),
+                color: Color(0xFF111111),
                 depth: 8,
                 intensity: 0.3,
-                shape: NeumorphicShape.convex,
+                shape: NeumorphicShape.concave,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.arrow_back,
-                  color: Colors.grey,
+              child: NeumorphicButton(
+                onClick: (){
+                  Navigator.of(context).pop();
+                },
+                boxShape: NeumorphicBoxShape.circle(),
+                style: NeumorphicStyle(
+                  color: Color(0xFF17181C),
+                  depth: 0,
+                  shape: NeumorphicShape.convex,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.arrow_back,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ),
@@ -103,24 +107,31 @@ class __PageContentState extends State<_PageContent> {
           alignment: Alignment.centerRight,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
-            child: NeumorphicButton(
-              border: NeumorphicBorder(
-                shape: NeumorphicShape.concave,
-                width: 2,
-                color: Color(0xFF111111),
-              ),
+            child: Neumorphic(
+              padding: EdgeInsets.all(2),
               boxShape: NeumorphicBoxShape.circle(),
               style: NeumorphicStyle(
-                color: Color(0xFF17181C),
+                color: Color(0xFF111111),
                 depth: 8,
                 intensity: 0.3,
-                shape: NeumorphicShape.convex,
+                shape: NeumorphicShape.concave,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.settings,
-                  color: Colors.grey,
+              child: NeumorphicButton(
+                onClick: (){
+
+                },
+                boxShape: NeumorphicBoxShape.circle(),
+                style: NeumorphicStyle(
+                  color: Color(0xFF17181C),
+                  depth: 0,
+                  shape: NeumorphicShape.convex,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.settings,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ),
@@ -200,28 +211,32 @@ class __PageContentState extends State<_PageContent> {
           SizedBox(
             height: 20,
           ),
-          NeumorphicButton(
-            onClick: (){
-
-            },
+          Neumorphic(
+            padding: EdgeInsets.all(4),
             boxShape: NeumorphicBoxShape.circle(),
-            border: NeumorphicBorder(
-              shape: NeumorphicShape.flat,
-              width: 3,
-              color: NeumorphicTheme.accentColor(context),
-            ),
             style: NeumorphicStyle(
               depth: 10,
               color: NeumorphicTheme.accentColor(context),
-              shape: NeumorphicShape.concave,
+              shape: NeumorphicShape.flat,
             ),
-            child: SizedBox(
-              height: 80,
-              width: 80,
-              child: Icon(
-                Icons.lock,
-                size: 30,
-                color: Colors.white,
+            child: NeumorphicButton(
+              boxShape: NeumorphicBoxShape.circle(),
+              style: NeumorphicStyle(
+                depth: 0,
+                shape: NeumorphicShape.concave,
+                color: NeumorphicTheme.accentColor(context),
+              ),
+              onClick: (){
+
+              },
+              child: SizedBox(
+                height: 80,
+                width: 80,
+                child: Icon(
+                  Icons.lock,
+                  size: 30,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

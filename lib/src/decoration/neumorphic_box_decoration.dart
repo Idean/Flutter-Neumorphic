@@ -147,7 +147,7 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
       this.depth = depth;
       this.externalShadowLightSource = source;
       this.depthOffset = this.externalShadowLightSource.offset.scale(this.depth, this.depth);
-      this.maskFilter = MaskFilter.blur(BlurStyle.normal, this.depth / 2); //<-- changed this to have a better white effect
+      this.maskFilter = MaskFilter.blur(BlurStyle.normal, this.depth);
       this.whiteShadowPaint..maskFilter = this.maskFilter;
       this.blackShadowPaint..maskFilter = this.maskFilter;
 

@@ -176,7 +176,7 @@ class _NeumorphicContainer extends StatefulWidget {
 class _NeumorphicContainerState extends State<_NeumorphicContainer> {
   @override
   Widget build(BuildContext context) {
-    print("widget.padding : ${widget.padding}");
+    //print("widget.padding : ${widget.padding}");
     return AnimatedContainer(
         duration: widget.duration,
         child: NeumorphicBoxShapeClipper(
