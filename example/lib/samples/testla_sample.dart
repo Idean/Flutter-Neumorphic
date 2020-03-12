@@ -211,7 +211,10 @@ class __PageContentState extends State<_PageContent> {
           SizedBox(
             height: 20,
           ),
-          Neumorphic(
+          NeumorphicButton(
+            onClick: (){
+
+            },
             padding: EdgeInsets.all(4),
             boxShape: NeumorphicBoxShape.circle(),
             style: NeumorphicStyle(
@@ -219,7 +222,7 @@ class __PageContentState extends State<_PageContent> {
               color: NeumorphicTheme.accentColor(context),
               shape: NeumorphicShape.flat,
             ),
-            child: NeumorphicButton(
+            child: Neumorphic(
               boxShape: NeumorphicBoxShape.circle(),
               style: NeumorphicStyle(
                 surfaceIntensity: 0.7,
@@ -227,9 +230,7 @@ class __PageContentState extends State<_PageContent> {
                 shape: NeumorphicShape.concave,
                 color: NeumorphicTheme.accentColor(context),
               ),
-              onClick: (){
 
-              },
               child: SizedBox(
                 height: 80,
                 width: 80,
