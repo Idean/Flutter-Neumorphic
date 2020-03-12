@@ -39,17 +39,6 @@ class __PageState extends State<_Page> {
   double cornerRadius = 0;
   double height = 0;
 
-  Color borderColor = Colors.cyan;
-  double borderWidth = 0;
-  double borderDepth = 5;
-  bool oppositeLightSource = true;
-
-  @override
-  void initState() {
-    borderColor = Colors.blue;
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -67,8 +56,6 @@ class __PageState extends State<_Page> {
               intensitySelector(),
               depthSelector(),
               cornerRadiusSelector(),
-              borderWidthSelector(),
-              borderDepthSelector(),
               Expanded(
                 child: Stack(
                   fit: StackFit.expand,
@@ -95,20 +82,6 @@ class __PageState extends State<_Page> {
             child: Text("Color"),
             onPressed: () {
               changeColor();
-            },
-          ),
-          RaisedButton(
-            child: Text("BorderColor"),
-            onPressed: () {
-              changeBorderColor();
-            },
-          ),
-          RaisedButton(
-            child: Text("oppositeLightSource"),
-            onPressed: () {
-              setState(() {
-                this.oppositeLightSource = !oppositeLightSource;
-              });
             },
           ),
         ],
@@ -145,35 +118,6 @@ class __PageState extends State<_Page> {
     );
   }
 
-  void changeBorderColor() {
-    showDialog(
-      context: context,
-      child: AlertDialog(
-        title: const Text('Pick a color!'),
-        content: SingleChildScrollView(
-          child: ColorPicker(
-            pickerColor: borderColor,
-            onColorChanged: (color) {
-              setState(() {
-                borderColor = color;
-              });
-            },
-            showLabel: true,
-            pickerAreaHeightPercent: 0.8,
-          ),
-        ),
-        actions: <Widget>[
-          FlatButton(
-            child: const Text('Close'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget neumorphic() {
     return SizedBox(
       height: 100,
@@ -184,12 +128,6 @@ class __PageState extends State<_Page> {
           setState(() {});
         },
         boxShape: boxShape,
-        border: NeumorphicBorder(
-          color: this.borderColor,
-          width: this.borderWidth,
-          depth: this.borderDepth,
-          shape: NeumorphicShape.convex,
-        ),
         style: NeumorphicStyle(
           shape: this.shape,
           intensity: this.intensity,
@@ -228,33 +166,6 @@ class __PageState extends State<_Page> {
     );
   }
 
-  Widget borderDepthSelector() {
-    return Row(
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(left: 12),
-          child: Text("Border Depth"),
-        ),
-        Expanded(
-          child: Slider(
-            min: Neumorphic.MIN_DEPTH,
-            max: Neumorphic.MAX_DEPTH,
-            value: borderDepth,
-            onChanged: (value) {
-              setState(() {
-                borderDepth = value;
-              });
-            },
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(right: 12),
-          child: Text(borderDepth.floor().toString()),
-        ),
-      ],
-    );
-  }
-
   Widget cornerRadiusSelector() {
     return Row(
       children: <Widget>[
@@ -280,33 +191,6 @@ class __PageState extends State<_Page> {
         Padding(
           padding: EdgeInsets.only(right: 12),
           child: Text(cornerRadius.floor().toString()),
-        ),
-      ],
-    );
-  }
-
-  Widget borderWidthSelector() {
-    return Row(
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(left: 12),
-          child: Text("BorderWidth"),
-        ),
-        Expanded(
-          child: Slider(
-            min: 0,
-            max: 30,
-            value: borderWidth,
-            onChanged: (value) {
-              setState(() {
-                borderWidth = value;
-              });
-            },
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(right: 12),
-          child: Text(borderWidth.floor().toString()),
         ),
       ],
     );

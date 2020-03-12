@@ -119,21 +119,26 @@ class NeumorphicIndicator extends StatefulWidget {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is NeumorphicIndicator &&
-          runtimeType == other.runtimeType &&
-          percent == other.percent &&
-          width == other.width &&
-          height == other.height &&
-          orientation == other.orientation &&
-          style == other.style;
+          super == other &&
+              other is NeumorphicIndicator &&
+              runtimeType == other.runtimeType &&
+              percent == other.percent &&
+              width == other.width &&
+              height == other.height &&
+              padding == other.padding &&
+              orientation == other.orientation &&
+              style == other.style;
 
   @override
   int get hashCode =>
+      super.hashCode ^
       percent.hashCode ^
       width.hashCode ^
       height.hashCode ^
+      padding.hashCode ^
       orientation.hashCode ^
       style.hashCode;
+
 }
 
 class _NeumorphicIndicatorState extends State<NeumorphicIndicator>

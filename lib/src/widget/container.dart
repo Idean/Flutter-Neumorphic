@@ -3,13 +3,11 @@ import 'package:flutter/widgets.dart';
 import '../NeumorphicBoxShape.dart';
 import '../decoration/neumorphic_box_decorations.dart';
 import '../theme/neumorphic_theme.dart';
-import 'border/neumorphic_border.dart';
 import 'clipper/NeumorphicBoxShapeClipper.dart';
 
 export '../NeumorphicBoxShape.dart';
 export '../decoration/neumorphic_box_decorations.dart';
 export '../theme/neumorphic_theme.dart';
-export 'border/neumorphic_border.dart';
 
 /// The main container of the Neumorphic UI KIT
 /// it takes a Neumorphic style @see [NeumorphicStyle]
@@ -37,80 +35,21 @@ class Neumorphic extends StatelessWidget {
 
   final Widget child;
 
-  //final Color accent;
   final NeumorphicStyle style;
   final EdgeInsets padding;
+  final EdgeInsets margin;
   final NeumorphicBoxShape boxShape;
   final Duration duration;
-
-  final NeumorphicBorder border;
 
   Neumorphic({
     Key key,
     this.child,
     this.duration = Neumorphic.DEFAULT_DURATION,
     this.style,
-    this.border,
-    //this.accent,
     this.boxShape,
+    this.margin = const EdgeInsets.all(0),
     this.padding = const EdgeInsets.all(0),
   }) : super(key: key);
-
-  Widget _generateBorder({NeumorphicStyle style, Widget child}) {
-    return _NeumorphicContainer(
-      key: borderKey,
-      style: style.copyWith(
-        color: border.color,
-        depth: style.depth.clamp(0.0, Neumorphic.MAX_DEPTH),
-        shape: NeumorphicShape.flat, //force flat for the boder "background"
-      ),
-      gradientLightSource: style.lightSource,
-      padding: EdgeInsets.all(border?.width ?? 0),
-      boxShape: boxShape,
-      duration: this.duration,
-      child: child,
-    );
-  }
-
-  bool get haveBorder => border != null && border.width > 0;
-
-  final Key contentKey = Key("content");
-  final Key borderKey = Key("border");
-
-  LightSource _generateLightsourceDependingBorder(NeumorphicBorder border,NeumorphicStyle style){
-    switch(border.shape){
-      case NeumorphicShape.concave:
-        return style.lightSource.invert();
-        break;
-      case NeumorphicShape.convex:
-        return style.lightSource;
-        break;
-      case NeumorphicShape.flat:
-        return style.lightSource;
-        break;
-    }
-    return null;
-  }
-
-  double _generateDepthDependingBorder(NeumorphicBorder border, NeumorphicStyle style){
-    if(style.depth < 0){ //emboss content
-      return style.depth;
-    } else {
-      double borderDepth = 0;
-      switch (border.shape) {
-        case NeumorphicShape.concave:
-          borderDepth = border.depth ?? style.depth / 2;
-          break;
-        case NeumorphicShape.convex:
-          borderDepth = border.depth ?? style.depth / 2;
-          break;
-        case NeumorphicShape.flat:
-          borderDepth = 0;
-          break;
-      }
-      return borderDepth; //.clamp(0.0, Neumorphic.MAX_DEPTH);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,36 +57,15 @@ class Neumorphic extends StatelessWidget {
     final theme = NeumorphicTheme.currentTheme(context) ?? neumorphicDefaultTheme;
     final NeumorphicStyle style = (this.style ?? NeumorphicStyle()).copyWithThemeIfNull(theme);
 
-    if (haveBorder) {
-      return _generateBorder(
-        style: style.copyWith(
-          shape: NeumorphicShape.flat,
-        ),
-        child: _NeumorphicContainer(
-          key: contentKey,
-          padding: padding,
-          boxShape: boxShape,
-          duration: this.duration,
-          gradientLightSource: style.lightSource,
-          style: style.copyWith(
-            intensity: border.intensity ?? style.intensity,
-            lightSource: _generateLightsourceDependingBorder(border, style),
-            depth: _generateDepthDependingBorder(border, style),
-          ),
-          child: child,
-        ),
-      );
-    } else {
-      return _NeumorphicContainer(
-        key: contentKey,
-        padding: padding,
-        gradientLightSource: style.lightSource,
-        boxShape: boxShape,
-        duration: this.duration,
-        style: style,
-        child: child,
-      );
-    }
+    return _NeumorphicContainer(
+      padding: this.padding,
+      gradientLightSource: style.lightSource,
+      boxShape: boxShape,
+      duration: this.duration,
+      style: style,
+      margin: this.margin,
+      child: this.child,
+    );
   }
 }
 
@@ -155,6 +73,7 @@ class _NeumorphicContainer extends StatefulWidget {
   final NeumorphicStyle style;
   final NeumorphicBoxShape boxShape;
   final Widget child;
+  final EdgeInsets margin;
   final LightSource gradientLightSource; //the lightsource used to display concave/convex
   final Duration duration;
   final EdgeInsets padding;
@@ -163,6 +82,7 @@ class _NeumorphicContainer extends StatefulWidget {
     Key key,
     @required this.child,
     @required this.padding,
+    @required this.margin,
     @required this.duration,
     @required this.style,
     @required this.boxShape,
@@ -178,6 +98,7 @@ class _NeumorphicContainerState extends State<_NeumorphicContainer> {
   Widget build(BuildContext context) {
     //print("widget.padding : ${widget.padding}");
     return AnimatedContainer(
+        margin: widget.margin,
         duration: widget.duration,
         child: NeumorphicBoxShapeClipper(
           shape: widget.boxShape,
