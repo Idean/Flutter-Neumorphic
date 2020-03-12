@@ -166,7 +166,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       child: AnimatedScale(
         scale: _getScale(),
         child: Neumorphic(
-          splitBackgroundForeground: widget.splitBackgroundForeground,
+          drawSurfaceAboveChild: widget.splitBackgroundForeground,
           duration: widget.duration,
           padding: widget.padding,
           boxShape: widget.boxShape,

@@ -74,7 +74,7 @@ class __PageContentState extends State<_PageContent> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
             child: Neumorphic(
-              splitBackgroundForeground:false,
+              drawSurfaceAboveChild:false,
               padding: EdgeInsets.all(2),
               boxShape: NeumorphicBoxShape.circle(),
               style: NeumorphicStyle(
@@ -109,7 +109,7 @@ class __PageContentState extends State<_PageContent> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
             child: Neumorphic(
-              splitBackgroundForeground:false,
+              drawSurfaceAboveChild:false,
               padding: EdgeInsets.all(2),
               boxShape: NeumorphicBoxShape.circle(),
               style: NeumorphicStyle(

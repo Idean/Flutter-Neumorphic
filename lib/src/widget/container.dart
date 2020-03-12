@@ -42,7 +42,7 @@ class Neumorphic extends StatelessWidget {
   final EdgeInsets margin;
   final NeumorphicBoxShape boxShape;
   final Duration duration;
-  final bool splitBackgroundForeground; //if true => boxDecoration & foreground decoration, else => boxDecoration does all the work
+  final bool drawSurfaceAboveChild; //if true => boxDecoration & foreground decoration, else => boxDecoration does all the work
 
   Neumorphic({
     Key key,
@@ -52,7 +52,7 @@ class Neumorphic extends StatelessWidget {
     this.boxShape,
     this.margin = const EdgeInsets.all(0),
     this.padding = const EdgeInsets.all(0),
-    this.splitBackgroundForeground = true,
+    this.drawSurfaceAboveChild = true,
   }) : super(key: key);
 
   @override
@@ -64,7 +64,7 @@ class Neumorphic extends StatelessWidget {
     return _NeumorphicContainer(
       padding: this.padding,
       boxShape: boxShape,
-      splitBackgroundForeground: this.splitBackgroundForeground,
+      drawSurfaceAboveChild: this.drawSurfaceAboveChild,
       duration: this.duration,
       style: style,
       margin: this.margin,
@@ -79,7 +79,7 @@ class _NeumorphicContainer extends StatefulWidget {
   final Widget child;
   final EdgeInsets margin;
   final Duration duration;
-  final bool splitBackgroundForeground;
+  final bool drawSurfaceAboveChild;
   final EdgeInsets padding;
 
   _NeumorphicContainer({
@@ -89,7 +89,7 @@ class _NeumorphicContainer extends StatefulWidget {
     @required this.margin,
     @required this.duration,
     @required this.style,
-    @required this.splitBackgroundForeground,
+    @required this.drawSurfaceAboveChild,
     @required this.boxShape,
   }) : super(key: key);
 
@@ -112,12 +112,12 @@ class _NeumorphicContainerState extends State<_NeumorphicContainer> {
           ),
         ),
         foregroundDecoration: NeumorphicForegroundDecoration(
-          splitBackgroundForeground: widget.splitBackgroundForeground,
+          splitBackgroundForeground: widget.drawSurfaceAboveChild,
           style: widget.style,
           shape: widget.boxShape,
         ),
         decoration: NeumorphicBoxDecoration(
-          splitBackgroundForeground: widget.splitBackgroundForeground,
+          splitBackgroundForeground: widget.drawSurfaceAboveChild,
           style: widget.style,
           shape: widget.boxShape,
         ));
