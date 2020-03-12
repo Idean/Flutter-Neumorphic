@@ -40,7 +40,7 @@ class __PageState extends State<_Page> {
   double height = 0;
 
   Color borderColor = Colors.cyan;
-  double borderWidth = 5;
+  double borderWidth = 0;
   double borderDepth = 5;
   bool oppositeLightSource = true;
 
@@ -192,6 +192,7 @@ class __PageState extends State<_Page> {
         ),
         style: NeumorphicStyle(
           shape: this.shape,
+          intensity: this.intensity,
           depth: depth,
           lightSource: this.lightSource,
         ),
