@@ -214,7 +214,7 @@ class __PageContentState extends State<_PageContent> {
             height: 20,
           ),
           NeumorphicButton(
-            splitBackgroundForeground:false,
+            drawSurfaceAboveChild: false,
             onClick: (){
 
             },
