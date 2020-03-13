@@ -51,10 +51,8 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
     this.backgroundColor = /*accent ??*/ style.color;
-    var blackShadowColor = NeumorphicColors.embossMaxDarkColor
-        .withOpacity(style.intensity); //<-- intensity act on opacity
-    var whiteShadowColor = NeumorphicColors.embossMaxWhiteColor
-        .withOpacity(style.intensity); //<-- intensity act on opacity
+    var blackShadowColor = NeumorphicColors.embossDarkColor(intensity: style.intensity);
+    var whiteShadowColor = NeumorphicColors.embossWhiteColor(intensity: style.intensity);
 
     whiteShadowPaint = Paint()..color = whiteShadowColor;
     whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
@@ -146,11 +144,9 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
     }
 
     whiteShadowPaint
-      ..color = NeumorphicColors.embossMaxWhiteColor
-          .withOpacity(style.intensity); //<-- intensity act on opacity;
+      ..color = NeumorphicColors.embossWhiteColor(intensity: style.intensity);
     blackShadowPaint
-      ..color = NeumorphicColors.embossMaxDarkColor
-          .withOpacity(style.intensity); //<-- intensity act on opacity;
+      ..color = NeumorphicColors.embossDarkColor(intensity: style.intensity);
 
     if(enabled) {
       if (shape.isCircle) {
