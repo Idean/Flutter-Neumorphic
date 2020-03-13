@@ -33,90 +33,92 @@ class Page extends StatefulWidget {
 class _PageState extends State<Page> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: NeumorphicBackground(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              TopBar(title: "Container",),
-              Row(
-                children: <Widget>[
-                  Neumorphic(
-                    boxShape: NeumorphicBoxShape.circle(),
-                    //accent: Colors.blueAccent,
-                    style: NeumorphicStyle(
-                      depth: -5,
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: NeumorphicBackground(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                TopBar(title: "Container",),
+                Row(
+                  children: <Widget>[
+                    Neumorphic(
+                      boxShape: NeumorphicBoxShape.circle(),
+                      //accent: Colors.blueAccent,
+                      style: NeumorphicStyle(
+                        depth: -5,
+                      ),
+                      child: SizedBox(
+                        height: 150,
+                        width: 150,
+                      ),
                     ),
-                    child: SizedBox(
-                      height: 150,
-                      width: 150,
+                    SizedBox(width: 30),
+                    Text("Emboss")
+                  ],
+                ),
+                SizedBox(height: 30),
+                Row(
+                  children: <Widget>[
+                    NeumorphicButton(
+                      minDistance: -2,
+                      boxShape: NeumorphicBoxShape.circle(),
+                      //accent: Colors.blueAccent,
+                      style: NeumorphicStyle(
+                        shape: NeumorphicShape.flat,
+                      ),
+                      child: SizedBox(
+                        height: 150,
+                        width: 150,
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 30),
-                  Text("Emboss")
-                ],
-              ),
-              SizedBox(height: 30),
-              Row(
-                children: <Widget>[
-                  NeumorphicButton(
-                    minDistance: -2,
-                    boxShape: NeumorphicBoxShape.circle(),
-                    //accent: Colors.blueAccent,
-                    style: NeumorphicStyle(
-                      shape: NeumorphicShape.flat,
+                    SizedBox(width: 30),
+                    Text("Flat")
+                  ],
+                ),
+                SizedBox(height: 30),
+                Row(
+                  children: <Widget>[
+                    NeumorphicButton(
+                      boxShape: NeumorphicBoxShape.circle(),
+                      //accent: Colors.blueAccent,
+                      style: NeumorphicStyle(
+                        shape: NeumorphicShape.convex,
+                      ),
+                      child: SizedBox(
+                        height: 150,
+                        width: 150,
+                      ),
                     ),
-                    child: SizedBox(
-                      height: 150,
-                      width: 150,
+                    SizedBox(width: 30),
+                    Text("Convex")
+                  ],
+                ),
+                SizedBox(height: 30),
+                Row(
+                  children: <Widget>[
+                    NeumorphicButton(
+                      boxShape: NeumorphicBoxShape.circle(),
+                      //accent: Colors.blueAccent,
+                      style: NeumorphicStyle(
+                        shape: NeumorphicShape.concave,
+                      ),
+                      child: SizedBox(
+                        height: 150,
+                        width: 150,
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 30),
-                  Text("Flat")
-                ],
-              ),
-              SizedBox(height: 30),
-              Row(
-                children: <Widget>[
-                  NeumorphicButton(
-                    boxShape: NeumorphicBoxShape.circle(),
-                    //accent: Colors.blueAccent,
-                    style: NeumorphicStyle(
-                      shape: NeumorphicShape.convex,
-                    ),
-                    child: SizedBox(
-                      height: 150,
-                      width: 150,
-                    ),
-                  ),
-                  SizedBox(width: 30),
-                  Text("Convex")
-                ],
-              ),
-              SizedBox(height: 30),
-              Row(
-                children: <Widget>[
-                  NeumorphicButton(
-                    boxShape: NeumorphicBoxShape.circle(),
-                    //accent: Colors.blueAccent,
-                    style: NeumorphicStyle(
-                      shape: NeumorphicShape.concave,
-                    ),
-                    child: SizedBox(
-                      height: 150,
-                      width: 150,
-                    ),
-                  ),
-                  SizedBox(width: 30),
-                  Text("Concave")
-                ],
-              ),
-              SizedBox(height: 30),
-            ],
+                    SizedBox(width: 30),
+                    Text("Concave")
+                  ],
+                ),
+                SizedBox(height: 30),
+              ],
+            ),
           ),
         ),
       ),

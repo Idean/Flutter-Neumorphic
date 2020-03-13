@@ -33,44 +33,46 @@ class SamplesHome extends StatelessWidget {
       theme: NeumorphicThemeData(depth: 8),
       child: Scaffold(
         backgroundColor: NeumorphicColors.background,
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                TopBar(),
-                _buildButton(
-                    text: "Tesla",
-                    onClick: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                        return TeslaSample();
-                      }));
-                    }),
-                _buildButton(
-                    text: "Audio Player",
-                    onClick: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                        return AudioPlayerSample();
-                      }));
-                    }),
-                _buildButton(
-                    text: "Calculator",
-                    onClick: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                        return CalculatorSample();
-                      }));
-                    }),
-                _buildButton(
-                    text: "CreditCard",
-                    onClick: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                        return CreditCardSample();
-                      }));
-                    }),
-              ],
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  TopBar(),
+                  _buildButton(
+                      text: "Tesla",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return TeslaSample();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "Audio Player",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return AudioPlayerSample();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "Calculator",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return CalculatorSample();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "CreditCard",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return CreditCardSample();
+                        }));
+                      }),
+                ],
+              ),
             ),
           ),
         ),

@@ -45,35 +45,37 @@ class __PageState extends State<_Page> {
 
   @override
   Widget build(BuildContext context) {
-    return NeumorphicBackground(
-      child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
-                child: TopBar(),
-              ),
-              shapeWidget(),
-              boxshapeWidget(),
-              intensitySelector(),
-              surfaceIntensitySelector(),
-              depthSelector(),
-              cornerRadiusSelector(),
-              Expanded(
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    ...lightSourceWidgets(),
-                    Center(child: neumorphic()),
-                    colorPicker(),
-                  ],
+    return SafeArea(
+      child: NeumorphicBackground(
+        child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                  child: TopBar(),
                 ),
-              )
-            ],
-          )),
+                shapeWidget(),
+                boxshapeWidget(),
+                intensitySelector(),
+                surfaceIntensitySelector(),
+                depthSelector(),
+                cornerRadiusSelector(),
+                Expanded(
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      ...lightSourceWidgets(),
+                      Center(child: neumorphic()),
+                      colorPicker(),
+                    ],
+                  ),
+                )
+              ],
+            )),
+      ),
     );
   }
 
