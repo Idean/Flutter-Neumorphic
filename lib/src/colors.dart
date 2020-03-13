@@ -19,7 +19,7 @@ class NeumorphicColors {
   static Color _decorationMaxWhiteColor =
       material.Colors.white; //for intensity = 1
   static Color _decorationMaxDarkColor =
-      material.Colors.black45; //for intensity = 1
+      material.Colors.black54; //for intensity = 1
 
   static Color _embossMaxWhiteColor =
       material.Colors.white60; //for intensity = 1
