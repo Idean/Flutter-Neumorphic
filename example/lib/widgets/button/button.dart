@@ -29,7 +29,7 @@ class _ButtonSampleState extends State<ButtonSample> {
 
 class _Page extends StatefulWidget {
   @override
-  __PageState createState() => __PageState();
+  createState() => __PageState();
 }
 
 class __PageState extends State<_Page> {
