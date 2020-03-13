@@ -58,8 +58,8 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
   })  : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
     var color = /*accent ??*/ style.color;
-    var blackShadowColor = NeumorphicColors.decorationMaxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity
-    var whiteShadowColor = NeumorphicColors.decorationMaxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity
+    var blackShadowColor = NeumorphicColors.decorationDarkColor(intensity: style.intensity); //<-- intensity act on opacity
+    var whiteShadowColor = NeumorphicColors.decorationWhiteColor(intensity:style.intensity); //<-- intensity act on opacity
 
     backgroundPaint = Paint()..color = color;
 
@@ -178,8 +178,8 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
       }
     }
 
-    whiteShadowPaint..color = NeumorphicColors.decorationMaxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity;
-    blackShadowPaint..color = NeumorphicColors.decorationMaxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity;
+    whiteShadowPaint..color = NeumorphicColors.decorationWhiteColor(intensity: style.intensity); //<-- intensity act on opacity;
+    blackShadowPaint..color = NeumorphicColors.decorationDarkColor(intensity:style.intensity); //<-- intensity act on opacity;
 
     //print("style.depth ${style.depth}");
 

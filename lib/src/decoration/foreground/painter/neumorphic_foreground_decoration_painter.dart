@@ -55,8 +55,8 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
     @required VoidCallback onChanged,
   }) : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
-    var blackShadowColor = NeumorphicColors.decorationMaxDarkColor.withOpacity(style.intensity); //<-- intensity act on opacity
-    var whiteShadowColor = NeumorphicColors.decorationMaxWhiteColor.withOpacity(style.intensity); //<-- intensity act on opacity
+    var blackShadowColor = NeumorphicColors.decorationDarkColor(intensity: style.intensity); //<-- intensity act on opacity
+    var whiteShadowColor = NeumorphicColors.decorationWhiteColor(intensity: style.intensity); //<-- intensity act on opacity
 
     whiteShadowPaint = Paint()..color = whiteShadowColor;
     whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;

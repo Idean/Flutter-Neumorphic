@@ -11,6 +11,7 @@ class _ContainerPageState extends State<ContainerPage> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
+      usedTheme: UsedTheme.LIGHT,
       theme: NeumorphicThemeData(
         baseColor: Color(0xffDDDDDD),
         lightSource: LightSource.topLeft,
