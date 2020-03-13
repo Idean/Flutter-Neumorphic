@@ -1,3 +1,4 @@
+import 'package:example/lib/back_button.dart';
 import 'package:example/samples/audio_player_sample.dart';
 import 'package:example/samples/calculator_sample.dart';
 import 'package:example/samples/credit_card_sample.dart';
@@ -11,18 +12,7 @@ class WidgetsHome extends StatelessWidget {
   Widget _buildTopBar(BuildContext context) {
     return Row(
       children: <Widget>[
-        NeumorphicButton(
-          margin: EdgeInsets.only(bottom: 12),
-          boxShape: NeumorphicBoxShape.circle(),
-          padding: EdgeInsets.all(18),
-          style: NeumorphicStyle(
-            shape: NeumorphicShape.flat,
-          ),
-          child: Icon(Icons.arrow_back),
-          onClick: () {
-            Navigator.of(context).pop();
-          },
-        )
+        NeumorphicBack(),
       ],
     );
   }

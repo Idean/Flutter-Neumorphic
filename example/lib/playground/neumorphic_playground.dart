@@ -1,3 +1,4 @@
+import 'package:example/lib/back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -75,18 +76,10 @@ class __PageState extends State<_Page> {
   Widget _buildTopBar(BuildContext context) {
     return Row(
       children: <Widget>[
-        NeumorphicButton(
-          margin: EdgeInsets.only(left: 12, bottom: 12, top: 8),
-          boxShape: NeumorphicBoxShape.circle(),
-          padding: EdgeInsets.all(18),
-          style: NeumorphicStyle(
-            shape: NeumorphicShape.flat,
-          ),
-          child: Icon(Icons.arrow_back),
-          onClick: () {
-            Navigator.of(context).pop();
-          },
-        )
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: NeumorphicBack(),
+        ),
       ],
     );
   }
