@@ -50,6 +50,7 @@ class NeumorphicButton extends StatefulWidget {
   final double minDistance;
   final NeumorphicBoxShape boxShape;
   final EdgeInsets padding;
+  final EdgeInsets margin;
   final bool pressed; //null, true, false
   final Duration duration;
   final NeumorphicButtonClickListener onClick;
@@ -58,6 +59,7 @@ class NeumorphicButton extends StatefulWidget {
   const NeumorphicButton({
     Key key,
     this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+    this.margin = EdgeInsets.zero,
     this.child,
     this.drawSurfaceAboveChild = true,
     this.pressed, //true/false if you want to change the state of the button
@@ -165,6 +167,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       child: AnimatedScale(
         scale: _getScale(),
         child: Neumorphic(
+          margin: widget.margin,
           drawSurfaceAboveChild: widget.drawSurfaceAboveChild,
           duration: widget.duration,
           padding: widget.padding,

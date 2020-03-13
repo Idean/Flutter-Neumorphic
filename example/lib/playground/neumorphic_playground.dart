@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-class ContainerPage extends StatefulWidget {
+class NeumorphicPlayground extends StatefulWidget {
   @override
-  _ContainerPageState createState() => _ContainerPageState();
+  _NeumorphicPlaygroundState createState() => _NeumorphicPlaygroundState();
 }
 
-class _ContainerPageState extends State<ContainerPage> {
+class _NeumorphicPlaygroundState extends State<NeumorphicPlayground> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
@@ -46,13 +46,11 @@ class __PageState extends State<_Page> {
     return NeumorphicBackground(
       child: Scaffold(
           backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            backgroundColor: Colors.grey,
-          ),
           body: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              _buildTopBar(context),
               shapeWidget(),
               boxshapeWidget(),
               intensitySelector(),
@@ -71,6 +69,25 @@ class __PageState extends State<_Page> {
               )
             ],
           )),
+    );
+  }
+
+  Widget _buildTopBar(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        NeumorphicButton(
+          margin: EdgeInsets.only(left: 12, bottom: 12, top: 8),
+          boxShape: NeumorphicBoxShape.circle(),
+          padding: EdgeInsets.all(18),
+          style: NeumorphicStyle(
+            shape: NeumorphicShape.flat,
+          ),
+          child: Icon(Icons.arrow_back),
+          onClick: () {
+            Navigator.of(context).pop();
+          },
+        )
+      ],
     );
   }
 
