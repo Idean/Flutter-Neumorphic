@@ -1,21 +1,12 @@
 import 'package:example/lib/back_button.dart';
-import 'package:example/samples/audio_player_sample.dart';
-import 'package:example/samples/calculator_sample.dart';
-import 'package:example/samples/credit_card_sample.dart';
-import 'package:example/samples/testla_sample.dart';
+import 'package:example/lib/top_bar.dart';
+import 'package:example/widgets/container/widget_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'widgets.dart';
 
 class WidgetsHome extends StatelessWidget {
-  Widget _buildTopBar(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        NeumorphicBack(),
-      ],
-    );
-  }
 
   Widget _buildButton({String text, VoidCallback onClick}) {
     return NeumorphicButton(
@@ -49,12 +40,12 @@ class WidgetsHome extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                _buildTopBar(context),
+                TopBar(title: "Container"),
                 _buildButton(
                     text: "Container",
                     onClick: () {
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                        return WidgetsPage();
+                        return ContainerWidgetPage();
                       }));
                     }),
                 _buildButton(

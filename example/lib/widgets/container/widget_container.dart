@@ -1,14 +1,15 @@
+import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-class ContainersListPage extends StatefulWidget {
-  ContainersListPage({Key key}) : super(key: key);
+class ContainerWidgetPage extends StatefulWidget {
+  ContainerWidgetPage({Key key}) : super(key: key);
 
   @override
-  _ContainersListPageState createState() => _ContainersListPageState();
+  _ContainerWidgetPageState createState() => _ContainerWidgetPageState();
 }
 
-class _ContainersListPageState extends State<ContainersListPage> {
+class _ContainerWidgetPageState extends State<ContainerWidgetPage> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
@@ -33,19 +34,15 @@ class _PageState extends State<Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: NeumorphicTheme.baseColor(context),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text("List", style: Theme.of(context).textTheme.display1),
-      ),
       body: SingleChildScrollView(
-        child: Padding(
+        child: NeumorphicBackground(
           padding: const EdgeInsets.all(12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
+              TopBar(title: "Container",),
               Row(
                 children: <Widget>[
                   Neumorphic(

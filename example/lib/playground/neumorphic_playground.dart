@@ -1,4 +1,5 @@
 import 'package:example/lib/back_button.dart';
+import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -51,7 +52,10 @@ class __PageState extends State<_Page> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              _buildTopBar(context),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                child: TopBar(),
+              ),
               shapeWidget(),
               boxshapeWidget(),
               intensitySelector(),
@@ -70,17 +74,6 @@ class __PageState extends State<_Page> {
               )
             ],
           )),
-    );
-  }
-
-  Widget _buildTopBar(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: NeumorphicBack(),
-        ),
-      ],
     );
   }
 
