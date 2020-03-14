@@ -41,7 +41,13 @@ class __PageState extends State<_Page> {
   double intensity = 0.5;
   double surfaceIntensity = 0.5;
   double cornerRadius = 0;
-  double height = 0;
+  double height = 100.0;
+  double width = 100.0;
+
+  static final minWidth = 50.0;
+  static final maxWidth = 200.0;
+  static final minHeight = 50.0;
+  static final maxHeight = 200.0;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +69,7 @@ class __PageState extends State<_Page> {
                 surfaceIntensitySelector(),
                 depthSelector(),
                 cornerRadiusSelector(),
+                sizeSelector(),
                 Expanded(
                   child: Stack(
                     fit: StackFit.expand,
@@ -128,8 +135,8 @@ class __PageState extends State<_Page> {
 
   Widget neumorphic() {
     return SizedBox(
-      height: 100,
-      width: 200,
+      height: width,
+      width: height,
       child: NeumorphicButton(
         padding: EdgeInsets.zero,
         duration: Duration(milliseconds: 300),
@@ -173,6 +180,40 @@ class __PageState extends State<_Page> {
         Padding(
           padding: EdgeInsets.only(right: 12),
           child: Text(depth.floor().toString()),
+        ),
+      ],
+    );
+  }
+
+  Widget sizeSelector() {
+    return Row(
+      children: <Widget>[
+        SizedBox(width: 12,),
+        Text("W: "),
+        Expanded(
+          child: Slider(
+            min: minWidth,
+            max: maxWidth,
+            value: width,
+            onChanged: (value) {
+              setState(() {
+                width = value;
+              });
+            },
+          ),
+        ),
+        Text("H: "),
+        Expanded(
+          child: Slider(
+            min: minHeight,
+            max: maxHeight,
+            value: height,
+            onChanged: (value) {
+              setState(() {
+                height = value;
+              });
+            },
+          ),
         ),
       ],
     );

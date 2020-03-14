@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic/src/widget/container.dart';
 
 import '../NeumorphicBoxShape.dart';
 
@@ -17,12 +18,16 @@ typedef void NeumorphicCheckboxListener<T>(T value);
 class NeumorphicCheckboxStyle {
   final double selectedDepth;
   final double unselectedDepth;
+  final double selectedIntensity;
+  final double unselectedIntensity;
   final Color selectedColor;
 
   const NeumorphicCheckboxStyle({
     this.selectedDepth,
     this.selectedColor,
     this.unselectedDepth,
+    this.selectedIntensity,
+    this.unselectedIntensity = 1,
   });
 }
 
@@ -106,6 +111,9 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
         -1 * (widget.style.selectedDepth ?? theme.depth).abs();
     final double unselectedDepth =
         (widget.style.unselectedDepth ?? theme.depth).abs();
+    final double selectedIntensity =
+    (widget.style.selectedIntensity ?? theme.intensity).abs().clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
+    final double unselectedIntensity = widget.style.unselectedIntensity.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
     return NeumorphicButton(
       pressed: isSelected,
@@ -127,6 +135,7 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
       style: NeumorphicStyle(
         color: isSelected ? selectedColor : null,
         depth: isSelected ? selectedDepth : unselectedDepth,
+        intensity: isSelected ? selectedIntensity : unselectedIntensity,
         shape: NeumorphicShape.flat,
       ),
     );
