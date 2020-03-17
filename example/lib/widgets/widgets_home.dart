@@ -1,20 +1,18 @@
-import 'package:example/lib/back_button.dart';
 import 'package:example/lib/top_bar.dart';
-import 'package:example/widgets/checkbox/widget_checkbox.dart';
-import 'package:example/widgets/container/widget_container.dart';
-import 'package:example/widgets/indeterminate_progress/widget_indeterminate_progress.dart';
-import 'package:example/widgets/progress/widget_progress.dart';
+import 'package:example/samples/widgets_sample.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+import 'checkbox/widget_checkbox.dart';
+import 'container/widget_container.dart';
+import 'indeterminate_progress/widget_indeterminate_progress.dart';
 import 'indicator/widget_indicator.dart';
 import 'radiobutton/widget_radio_button.dart';
 import 'slider/widget_slider.dart';
 import 'switch/widget_switch.dart';
-import 'widgets.dart';
+import 'progress/widget_progress.dart';
 
 class WidgetsHome extends StatelessWidget {
-
   Widget _buildButton({String text, VoidCallback onClick}) {
     return NeumorphicButton(
       margin: EdgeInsets.only(bottom: 12),
@@ -60,7 +58,7 @@ class WidgetsHome extends StatelessWidget {
                       text: "Button",
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return WidgetsPage();
+                          return WidgetsSample();
                         }));
                       }),
                   _buildButton(

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-class WidgetsPage extends StatefulWidget {
-  WidgetsPage({Key key}) : super(key: key);
+class WidgetsSample extends StatefulWidget {
+  WidgetsSample({Key key}) : super(key: key);
 
   @override
   createState() => _ContainersListPageState();
 }
 
-class _ContainersListPageState extends State<WidgetsPage> {
+class _ContainersListPageState extends State<WidgetsSample> {
   int _groupValue;
   bool _switchConcaveEnabled = false;
   bool _switchConvexEnabled = false;

@@ -7,6 +7,8 @@ import 'package:example/samples/testla_sample.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+import 'widgets_sample.dart';
+
 class SamplesHome extends StatelessWidget {
 
   Widget _buildButton({String text, VoidCallback onClick}) {
@@ -69,6 +71,13 @@ class SamplesHome extends StatelessWidget {
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return CreditCardSample();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "Widgets",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return WidgetsSample();
                         }));
                       }),
                 ],
