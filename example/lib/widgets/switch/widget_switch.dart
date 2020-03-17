@@ -143,7 +143,8 @@ bool isChecked;
 NeumorphicSwitch(
     value: isChecked,
     style: NeumorphicSwitchStyle(
-         thumbShape: NeumorphicShape.flat
+         thumbShape: NeumorphicShape.flat 
+         //or convex, concave
     ),
     onChanged: (value) {
         setState(() {
@@ -160,6 +161,7 @@ NeumorphicSwitch(
       padding: EdgeInsets.all(12),
       child: Column(
         children: <Widget>[
+          SizedBox(height: 12),
           Row(
             children: <Widget>[
               Container(
@@ -183,6 +185,7 @@ NeumorphicSwitch(
               )
             ],
           ),
+          SizedBox(height: 12),
           Row(
             children: <Widget>[
               Container(
@@ -206,6 +209,7 @@ NeumorphicSwitch(
               ),
             ],
           ),
+          SizedBox(height: 12),
           Row(
             children: <Widget>[
               Container(
