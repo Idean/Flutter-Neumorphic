@@ -134,7 +134,7 @@ class NeumorphicThemeData {
 //endregion
 
 //region style
-const NeumorphicShape _defaultShape = NeumorphicShape.concave;
+const NeumorphicShape _defaultShape = NeumorphicShape.flat;
 //const double _defaultBorderRadius = 5;
 
 const neumorphicDefaultTheme = NeumorphicThemeData(

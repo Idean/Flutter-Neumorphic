@@ -4,14 +4,14 @@ import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-class IndeterminateProgressWidgetPage extends StatefulWidget {
-  IndeterminateProgressWidgetPage({Key key}) : super(key: key);
+class IndicatorWidgetPage extends StatefulWidget {
+  IndicatorWidgetPage({Key key}) : super(key: key);
 
   @override
   createState() => _WidgetPageState();
 }
 
-class _WidgetPageState extends State<IndeterminateProgressWidgetPage> {
+class _WidgetPageState extends State<IndicatorWidgetPage> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
@@ -48,7 +48,7 @@ class _PageState extends State<_Page> {
       padding: EdgeInsets.all(8),
       child: Scaffold(
         appBar: TopBar(
-          title: "IndeterminateProgress",
+          title: "Indicator",
         ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
@@ -58,9 +58,8 @@ class _PageState extends State<_Page> {
             mainAxisSize: MainAxisSize.max,
             children: [
               _DefaultWidget(),
+              _DefaultOrientationWidget(),
               _ColorWidget(),
-              _SizedWidget(),
-              _DurationWidget(),
               SizedBox(height: 30),
             ],
           ),
@@ -79,8 +78,10 @@ class _DefaultWidgetState extends State<_DefaultWidget> {
 
   Widget _buildCode(BuildContext context){
     return Code("""
-Expanded(
-  child: NeumorphicProgressIndeterminate(),
+NeumorphicIndicator(
+    height: 100,
+    width: 20,
+    percent: 0.6,
 ),
 """);
   }
@@ -95,9 +96,61 @@ Expanded(
             style: TextStyle(color: _textColor(context)),
           ),
           SizedBox(width: 12),
-          Expanded(
-            child: NeumorphicProgressIndeterminate(
-            ),
+          NeumorphicIndicator(
+            height: 100,
+            width: 20,
+            percent: 0.6,
+          ),
+          SizedBox(width: 12),
+        ],
+      ),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+}
+
+class _DefaultOrientationWidget extends StatefulWidget {
+  @override
+  createState() => _DefaultOrientationWidgetState();
+}
+
+class _DefaultOrientationWidgetState extends State<_DefaultOrientationWidget> {
+
+  Widget _buildCode(BuildContext context){
+    return Code("""
+NeumorphicIndicator(
+     width: 150,
+     height: 15,
+     orientation: NeumorphicIndicatorOrientation.horizontal,
+     percent: 0.7,
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Orientation\nHorizontal",
+            style: TextStyle(color: _textColor(context)),
+          ),
+          SizedBox(width: 12),
+          NeumorphicIndicator(
+            width: 150,
+            height: 15,
+            orientation: NeumorphicIndicatorOrientation.horizontal,
+            percent: 0.7,
           ),
           SizedBox(width: 12),
         ],
@@ -125,13 +178,15 @@ class _ColorWidgetState extends State<_ColorWidget> {
 
   Widget _buildCode(BuildContext context){
     return Code("""
-Expanded(
-  child: NeumorphicProgressIndeterminate(
-      style: ProgressStyle(
-           accent: Colors.green,
-           variant: Colors.purple,
+NeumorphicIndicator(
+      width: 150,
+      height: 15,
+      orientation: NeumorphicIndicatorOrientation.horizontal,
+      percent: 0.7,
+      style: IndicatorStyle(
+        variant: variant,
+        accent: accent
       ),
-  ),
 ),
 """);
   }
@@ -172,124 +227,18 @@ Expanded(
           Row(
             children: <Widget>[
               Text(
-                "Default",
+                "Colorized",
                 style: TextStyle(color: _textColor(context)),
               ),
               SizedBox(width: 12),
-              Expanded(
-                child: NeumorphicProgressIndeterminate(
-                  style: ProgressStyle(
-                    accent: accent,
-                    variant: variant,
-                  ),
-                ),
-              ),
-              SizedBox(width: 12),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        _buildWidget(context),
-        _buildCode(context),
-      ],
-    );
-  }
-}
-
-class _SizedWidget extends StatefulWidget {
-  @override
-  createState() => _SizedWidgetState();
-}
-
-class _SizedWidgetState extends State<_SizedWidget> {
-
-  Widget _buildCode(BuildContext context){
-    return Code("""
-Expanded(
-  child: NeumorphicProgressIndeterminate(
-      height: 30,
-  ),
-),
-""");
-  }
-
-  Widget _buildWidget(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(12),
-      child: Column(
-        children: <Widget>[
-          SizedBox(height: 12),
-          Row(
-            children: <Widget>[
-              Text(
-                "Sized",
-                style: TextStyle(color: _textColor(context)),
-              ),
-              SizedBox(width: 12),
-              Expanded(
-                child: NeumorphicProgressIndeterminate(
-                  height: 30,
-                ),
-              ),
-              SizedBox(width: 12),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        _buildWidget(context),
-        _buildCode(context),
-      ],
-    );
-  }
-}
-
-class _DurationWidget extends StatefulWidget {
-  @override
-  createState() => _DurationWidgetState();
-}
-
-class _DurationWidgetState extends State<_DurationWidget> {
-
-  Widget _buildCode(BuildContext context){
-    return Code("""
-Expanded(
-  child: NeumorphicProgressIndeterminate(
-       duration: Duration(seconds: 10),
-  ),
-),
-""");
-  }
-
-  Widget _buildWidget(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(12),
-      child: Column(
-        children: <Widget>[
-          SizedBox(height: 12),
-          Row(
-            children: <Widget>[
-              Text(
-                "Duration",
-                style: TextStyle(color: _textColor(context)),
-              ),
-              SizedBox(width: 12),
-              Expanded(
-                child: NeumorphicProgressIndeterminate(
-                  duration: Duration(seconds: 10),
+              NeumorphicIndicator(
+                width: 150,
+                height: 15,
+                orientation: NeumorphicIndicatorOrientation.horizontal,
+                percent: 0.7,
+                style: IndicatorStyle(
+                  variant: variant,
+                  accent: accent
                 ),
               ),
               SizedBox(width: 12),

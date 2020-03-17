@@ -1,4 +1,3 @@
-import 'package:example/lib/back_button.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:example/samples/audio_player_sample.dart';
 import 'package:example/samples/calculator_sample.dart';
@@ -6,6 +5,8 @@ import 'package:example/samples/credit_card_sample.dart';
 import 'package:example/samples/testla_sample.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+
+import 'widgets_sample.dart';
 
 class SamplesHome extends StatelessWidget {
 
@@ -69,6 +70,13 @@ class SamplesHome extends StatelessWidget {
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return CreditCardSample();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "Widgets",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return WidgetsSample();
                         }));
                       }),
                 ],

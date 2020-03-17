@@ -55,20 +55,22 @@ class NeumorphicButton extends StatefulWidget {
   final Duration duration;
   final NeumorphicButtonClickListener onClick;
   final bool drawSurfaceAboveChild;
+  final bool isEnabled;
 
   const NeumorphicButton({
     Key key,
-    this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+    this.padding = const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
     this.margin = EdgeInsets.zero,
     this.child,
     this.drawSurfaceAboveChild = true,
     this.pressed, //true/false if you want to change the state of the button
-    this.boxShape,
+    this.boxShape = const NeumorphicBoxShape.roundRect(borderRadius: const BorderRadius.all(const Radius.circular(8))),
     this.duration = Neumorphic.DEFAULT_DURATION,
     //this.accent,
     this.onClick,
     this.minDistance = 0,
     this.style = const NeumorphicStyle(),
+    this.isEnabled = true,
   }) : super(key: key);
 
   @override
@@ -128,9 +130,16 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
     _resetIfTapUp();
   }
 
+  bool hasDisposed = false;
+  @override
+  void dispose() {
+    super.dispose();
+    hasDisposed = true;
+  }
+
   //used to stay pressed if no tap up
   void _resetIfTapUp() {
-    if (hasFinishedAnimationDown == true && hasTapUp == true) {
+    if (hasFinishedAnimationDown == true && hasTapUp == true && !hasDisposed) {
       setState(() {
         pressed = false;
         depth = initialStyle.depth;
@@ -152,8 +161,10 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (detail) {
-        if (clickable && !pressed) {
-          _handlePress();
+        if(widget.isEnabled) {
+          if (clickable && !pressed) {
+            _handlePress();
+          }
         }
       },
       onTapUp: (details) {
@@ -172,11 +183,19 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
           duration: widget.duration,
           padding: widget.padding,
           boxShape: widget.boxShape,
-          style: initialStyle.copyWith(depth: depth),
+          style: initialStyle.copyWith(depth: _getDepth()),
           child: widget.child,
         ),
       ),
     );
+  }
+
+  double _getDepth(){
+    if(widget.isEnabled){
+      return this.depth;
+    } else {
+      return 0;
+    }
   }
 
   double _getScale() {

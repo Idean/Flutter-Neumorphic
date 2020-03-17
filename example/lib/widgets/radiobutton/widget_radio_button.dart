@@ -1,5 +1,4 @@
 import 'package:example/lib/Code.dart';
-import 'package:example/lib/color_selector.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -58,9 +57,9 @@ class _PageState extends State<_Page> {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
-              DefaultRadios(),
+              _DefaultWidget(),
               CircleRadios(),
-              EnabledDisabledRadios(),
+              _EnabledDisabledWidget(),
               SizedBox(height: 30),
             ],
           ),
@@ -70,12 +69,12 @@ class _PageState extends State<_Page> {
   }
 }
 
-class DefaultRadios extends StatefulWidget {
+class _DefaultWidget extends StatefulWidget {
   @override
-  createState() => _DefaultRadiosState();
+  createState() => _DefaultWidgetState();
 }
 
-class _DefaultRadiosState extends State<DefaultRadios> {
+class _DefaultWidgetState extends State<_DefaultWidget> {
 
   int groupValue;
 
@@ -250,12 +249,12 @@ NeumorphicRadio(
 
 
 
-class EnabledDisabledRadios extends StatefulWidget {
+class _EnabledDisabledWidget extends StatefulWidget {
   @override
-  createState() => _EnabledDisabledRadiosState();
+  createState() => _EnabledDisabledWidgetState();
 }
 
-class _EnabledDisabledRadiosState extends State<EnabledDisabledRadios> {
+class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
 
   int groupValue;
 

@@ -60,7 +60,7 @@ class _PageState extends State<_Page> {
               _DefaultWidget(),
               _ColorizableWidget(),
               ColorizableThumbSwitch(),
-              FlatConcaveConvexSwitch(),
+              _FlatConcaveConvexWidget(),
               _EnabledDisabledWidget(),
               SizedBox(height: 30),
             ],
@@ -129,12 +129,12 @@ NeumorphicSwitch(
   }
 }
 
-class FlatConcaveConvexSwitch extends StatefulWidget {
+class _FlatConcaveConvexWidget extends StatefulWidget {
   @override
-  createState() => _FlatConcaveConvexSwitchState();
+  createState() => _FlatConcaveConvexWidgetState();
 }
 
-class _FlatConcaveConvexSwitchState extends State<FlatConcaveConvexSwitch> {
+class _FlatConcaveConvexWidgetState extends State<_FlatConcaveConvexWidget> {
 
   bool isChecked = false;
 
