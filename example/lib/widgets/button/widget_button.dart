@@ -62,6 +62,7 @@ class _PageState extends State<_Page> {
               _CircleWidget(),
               _ColorizableWidget(),
               _EnabledDisabledWidget(),
+              _FlatConcaveConvexWidget(),
               _DurationWidget(),
               SizedBox(height: 30),
             ],
@@ -193,13 +194,10 @@ class _ColorizableWidget extends StatefulWidget {
 
 class _ColorizableWidgetState extends State<_ColorizableWidget> {
 
-  bool isChecked = false;
   Color currentColor = Colors.green;
 
   Widget _buildCode(BuildContext context){
     return Code("""
-bool isChecked;
-
 NeumorphicButton(
     onClick: (){
 
@@ -338,10 +336,12 @@ class _DurationWidgetState extends State<_DurationWidget> {
 
   Widget _buildCode(BuildContext context){
     return Code("""
-Expanded(
-  child: NeumorphicProgressIndeterminate(
-       duration: Duration(seconds: 10),
-  ),
+NeumorphicButton(
+    onClick: (){
+
+    },
+    child: Text("Press me all night long"),
+    duration: Duration(seconds: 1),
 ),
 """);
   }
@@ -364,9 +364,125 @@ Expanded(
 
                 },
                 child: Text("Press me all night long"),
-                duration: Duration(seconds: 3),
+                duration: Duration(seconds: 1),
               ),
               SizedBox(width: 12),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+}
+
+class _FlatConcaveConvexWidget extends StatefulWidget {
+  @override
+  createState() => _FlatConcaveConvexWidgetState();
+}
+
+class _FlatConcaveConvexWidgetState extends State<_FlatConcaveConvexWidget> {
+
+  bool isChecked = false;
+
+  Widget _buildCode(BuildContext context){
+    return Code("""
+NeumorphicButton(
+    style: NeumorphicStyle(
+         shape: NeumorphicShape.flat 
+         //or convex, concave
+    ),
+    onClick: () {
+        
+    },
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 12),
+          Row(
+            children: <Widget>[
+              Container(
+                width: 100,
+                child: Text(
+                  "Flat",
+                  style: TextStyle(color: _textColor(context)),
+                ),
+              ),
+              SizedBox(width: 12),
+              NeumorphicButton(
+                boxShape: NeumorphicBoxShape.circle(),
+                style: NeumorphicStyle(shape: NeumorphicShape.flat),
+                onClick: () {
+                  setState(() {
+
+                  });
+                },
+                padding: EdgeInsets.all(18.0),
+                child: Icon(Icons.play_arrow),
+              ),
+            ],
+          ),
+          SizedBox(height: 12),
+          Row(
+            children: <Widget>[
+              Container(
+                width: 100,
+                child: Text(
+                  "Concave",
+                  style: TextStyle(color: _textColor(context)),
+                ),
+              ),
+              SizedBox(width: 12),
+              NeumorphicButton(
+                boxShape: NeumorphicBoxShape.circle(),
+                style: NeumorphicStyle(shape: NeumorphicShape.concave),
+                onClick: () {
+                  setState(() {
+
+                  });
+                },
+                padding: EdgeInsets.all(18.0),
+                child: Icon(Icons.play_arrow),
+              ),
+            ],
+          ),
+          SizedBox(height: 12),
+          Row(
+            children: <Widget>[
+              Container(
+                width: 100,
+                child: Text(
+                  "Convex",
+                  style: TextStyle(color: _textColor(context)),
+                ),
+              ),
+              SizedBox(width: 12),
+              NeumorphicButton(
+                boxShape: NeumorphicBoxShape.circle(),
+                style: NeumorphicStyle(shape: NeumorphicShape.convex),
+                onClick: () {
+                  setState(() {
+
+                  });
+                },
+                padding: EdgeInsets.all(18.0),
+                child: Icon(Icons.play_arrow),
+              ),
             ],
           ),
         ],
