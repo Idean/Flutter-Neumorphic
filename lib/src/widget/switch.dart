@@ -23,7 +23,7 @@ class NeumorphicSwitchStyle {
 
   const NeumorphicSwitchStyle({
     this.trackDepth,
-    this.thumbShape,
+    this.thumbShape = NeumorphicShape.concave,
     this.activeTrackColor,
     this.inactiveTrackColor,
     this.activeThumbColor,
@@ -83,7 +83,7 @@ class NeumorphicSwitch extends StatefulWidget {
   final Duration duration;
 
   const NeumorphicSwitch({
-    this.style,
+    this.style = const NeumorphicSwitchStyle(),
     Key key,
     this.duration = const Duration(milliseconds: 200),
     this.value = false,
@@ -103,10 +103,23 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(duration: widget.duration, vsync: this);
+    final defaultValue = widget.value ? 1.0 : 0.0;
+    controller = AnimationController(duration: widget.duration, value: defaultValue, vsync: this);
     animation = Tween<Alignment>(
             begin: Alignment.centerLeft, end: Alignment.centerRight)
         .animate(controller);
+  }
+
+  @override
+  void didUpdateWidget(NeumorphicSwitch oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if(oldWidget.value != widget.value){
+      if(widget.value){
+        controller.forward();
+      } else {
+        controller.reverse();
+      }
+    }
   }
 
   @override
@@ -122,13 +135,7 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
             if (controller.isAnimating) {
               return;
             }
-            if (widget.value == false) {
-              controller.forward();
-              _notifyOnChange(true);
-            } else {
-              controller.reverse();
-              _notifyOnChange(false);
-            }
+            _notifyOnChange(!widget.value);
           },
           child: Neumorphic(
             drawSurfaceAboveChild: false,
