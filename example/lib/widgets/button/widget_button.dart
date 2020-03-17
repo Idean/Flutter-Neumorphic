@@ -61,6 +61,7 @@ class _PageState extends State<_Page> {
               _DefaultWidget(),
               _CircleWidget(),
               _ColorizableWidget(),
+              _MinDistanceWidget(),
               _EnabledDisabledWidget(),
               _FlatConcaveConvexWidget(),
               _DurationWidget(),
@@ -79,8 +80,6 @@ class _DefaultWidget extends StatefulWidget {
 }
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
-
-  int groupValue;
 
   Widget _buildCode(BuildContext context){
     return Code("""
@@ -135,8 +134,6 @@ class _CircleWidget extends StatefulWidget {
 
 class _CircleWidgetState extends State<_CircleWidget> {
 
-  String groupValue;
-
   Widget _buildCode(BuildContext context){
     return Code("""
 NeumorphicButton(
@@ -161,6 +158,65 @@ NeumorphicButton(
           ),
           SizedBox(width: 12),
           NeumorphicButton(
+            boxShape: NeumorphicBoxShape.circle(),
+            onClick: () {
+              setState(() {
+
+              });
+            },
+            padding: EdgeInsets.all(18.0),
+            child: Icon(Icons.play_arrow),
+          ),
+          SizedBox(width: 12),
+        ],
+      ),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+}
+
+class _MinDistanceWidget extends StatefulWidget {
+  @override
+  createState() => _MinDistanceWidgetState();
+}
+
+class _MinDistanceWidgetState extends State<_MinDistanceWidget> {
+
+  Widget _buildCode(BuildContext context){
+    return Code("""
+NeumorphicButton(
+     boxShape: NeumorphicBoxShape.circle(),
+     minDistance: -5.0,
+     onClick: () {
+       
+     },
+     padding: EdgeInsets.all(18.0),
+     child: Icon(Icons.play_arrow),
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "MinDistance -5",
+            style: TextStyle(color: _textColor(context)),
+          ),
+          SizedBox(width: 12),
+          NeumorphicButton(
+            minDistance: -5.0,
             boxShape: NeumorphicBoxShape.circle(),
             onClick: () {
               setState(() {
@@ -404,6 +460,7 @@ NeumorphicButton(
     onClick: () {
         
     },
+    child: ...
 ),
 """);
   }
