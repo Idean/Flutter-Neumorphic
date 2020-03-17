@@ -21,6 +21,7 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
   Paint blackShadowMaskPaint;
   Paint gradientPaint;
 
+  ImageConfiguration configuration;
   double width;
   double height;
   double depth;
@@ -74,7 +75,7 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
     var width = configuration.size.width;
     var height = configuration.size.height;
 
-    if (this.originOffset != offset || this.width != width || this.height != height) {
+    if (this.originOffset != offset || this.configuration != configuration  || this.width != width || this.height != height) {
       this.width = width;
       this.height = height;
       this.originOffset = offset;
@@ -89,6 +90,8 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
         this.width,
         this.height,
       );
+
+      //print("rectRect (W): ${rectRect.width}");
 
       this.radius = min(middleWidth, middleHeight);
       this.centerOffset = offset.translate(middleWidth, middleHeight);
@@ -126,6 +129,7 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
     }
 
     var shapeRadius = (shape?.borderRadius?.topLeft ?? Radius.zero);
+
     if ((this.invalidate || this.shapeRadius != shapeRadius) && !shape.isCircle) {
       this.shapeRadius = shapeRadius;
 
@@ -136,8 +140,8 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
 
       if (this.cornerRadius != cornerRadius) {
         this.cornerRadius = cornerRadius;
-        this.buttonRRect = RRect.fromRectAndRadius(rectRect, this.cornerRadius);
       }
+      this.buttonRRect = RRect.fromRectAndRadius(rectRect, this.cornerRadius);
     }
 
     LightSource source = style.lightSource;
@@ -173,6 +177,8 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
     }
 
     //print("style.depth ${style.depth}");
+
+    //print("buttonRRect: ${this.buttonRRect.width}");
 
     if(enabled) {
       if (shape.isCircle) {

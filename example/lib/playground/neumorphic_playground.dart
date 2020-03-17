@@ -61,7 +61,9 @@ class __PageState extends State<_Page> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
-                  child: TopBar(),
+                  child: RaisedButton(child: Text("back"), onPressed: (){
+                    Navigator.pop(context);
+                  },),
                 ),
                 shapeWidget(),
                 boxshapeWidget(),
@@ -134,23 +136,23 @@ class __PageState extends State<_Page> {
   }
 
   Widget neumorphic() {
-    return SizedBox(
-      height: width,
-      width: height,
-      child: NeumorphicButton(
-        padding: EdgeInsets.zero,
-        duration: Duration(milliseconds: 300),
-        onClick: () {
-          setState(() {});
-        },
-        boxShape: boxShape,
-        style: NeumorphicStyle(
-          shape: this.shape,
-          intensity: this.intensity,
-          surfaceIntensity: this.surfaceIntensity,
-          depth: depth,
-          lightSource: this.lightSource,
-        ),
+    return NeumorphicButton(
+      padding: EdgeInsets.zero,
+      duration: Duration(milliseconds: 300),
+      onClick: () {
+        setState(() {});
+      },
+      boxShape: boxShape,
+      style: NeumorphicStyle(
+        shape: this.shape,
+        intensity: this.intensity,
+        surfaceIntensity: this.surfaceIntensity,
+        depth: depth,
+        lightSource: this.lightSource,
+      ),
+      child: SizedBox(
+        height: height,
+        width: width,
         child: Container(
             //color: Colors.blue,
             child: Center(child: Text("text"))),

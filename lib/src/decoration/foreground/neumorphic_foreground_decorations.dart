@@ -34,6 +34,10 @@ class NeumorphicForegroundDecoration extends Decoration {
     }
   }
 
+
+  @override
+  bool get isComplex => true;
+
   @override
   NeumorphicForegroundDecoration lerpFrom(Decoration a, double t) {
     if (a == null) return scale(t);
@@ -49,6 +53,7 @@ class NeumorphicForegroundDecoration extends Decoration {
   }
 
   NeumorphicForegroundDecoration scale(double factor) {
+    print("NeumorphicForegroundDecoration scale($factor)");
     return NeumorphicForegroundDecoration(
         splitBackgroundForeground: this.splitBackgroundForeground,
         shape: NeumorphicBoxShape.lerp(null, shape, factor),
@@ -57,6 +62,7 @@ class NeumorphicForegroundDecoration extends Decoration {
 
   static NeumorphicForegroundDecoration lerp(NeumorphicForegroundDecoration a, NeumorphicForegroundDecoration b, double t) {
     assert(t != null);
+    //print("NeumorphicForegroundDecoration lerp($t)");
 
     //print("t : ${t}");
     //print("a ${a.style}");
