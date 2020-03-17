@@ -63,6 +63,7 @@ class _PageState extends State<_Page> {
             children: [
               DefaultCheckboxes(),
               ColorCheckboxes(),
+              EnabledDisabledCheckboxes(),
               SizedBox(height: 30),
             ],
           ),
@@ -239,6 +240,83 @@ NeumorphicCheckbox(
           isChecked = value;
         });
     },
+),
+""");
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+}
+
+
+class EnabledDisabledCheckboxes extends StatefulWidget {
+  @override
+  createState() => _EnabledDisabledCheckboxesState();
+}
+
+class _EnabledDisabledCheckboxesState extends State<EnabledDisabledCheckboxes> {
+
+  bool check1 = false;
+  bool check2 = false;
+
+  Widget _buildWidget(BuildContext context){
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Enabled",
+            style: TextStyle(color: _textColor(context)),
+          ),
+          SizedBox(width: 12),
+          NeumorphicCheckbox(
+            value: check1,
+            onChanged: (value) {
+              setState(() {
+                check1 = value;
+              });
+            },
+          ),
+          SizedBox(width: 24),
+          Text(
+            "Disabled",
+            style: TextStyle(color: _textColor(context)),
+          ),
+          SizedBox(width: 12),
+          NeumorphicCheckbox(
+            isEnabled: false,
+            value: check2,
+            onChanged: (value) {
+              setState(() {
+                check2 = value;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCode(BuildContext context){
+    return Code("""
+    
+bool isChecked = false;  
+
+NeumorphicCheckbox(
+     isEnabled: false,
+     value: isChecked,
+     onChanged: (value) {
+       setState(() {
+         isChecked = value;
+       });
+     },
 ),
 """);
   }

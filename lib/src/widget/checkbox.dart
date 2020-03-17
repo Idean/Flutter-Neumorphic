@@ -21,13 +21,15 @@ class NeumorphicCheckboxStyle {
   final double selectedIntensity;
   final double unselectedIntensity;
   final Color selectedColor;
+  final Color disabledColor;
 
   const NeumorphicCheckboxStyle({
     this.selectedDepth,
     this.selectedColor,
     this.unselectedDepth,
-    this.selectedIntensity,
-    this.unselectedIntensity = 1,
+    this.disabledColor,
+    this.selectedIntensity = 1,
+    this.unselectedIntensity = 0.7,
   });
 }
 
@@ -84,11 +86,13 @@ class NeumorphicCheckbox extends StatefulWidget {
   final bool value;
   final NeumorphicCheckboxStyle style;
   final NeumorphicCheckboxListener onChanged;
+  final isEnabled;
 
   NeumorphicCheckbox({
     this.style = const NeumorphicCheckboxStyle(),
     this.value,
     this.onChanged,
+    this.isEnabled = true,
   });
 
   @override
@@ -115,12 +119,30 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
     (widget.style.selectedIntensity ?? theme.intensity).abs().clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
     final double unselectedIntensity = widget.style.unselectedIntensity.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
+    double depth = isSelected ? selectedDepth : unselectedDepth;
+    if(!widget.isEnabled){
+      depth = 0;
+    }
+
+    Color color = isSelected ? selectedColor : null;
+    if(!widget.isEnabled){
+      color = null;
+    }
+
+    Color iconColor = isSelected ? theme.baseColor : selectedColor;
+    if(!widget.isEnabled){
+      iconColor = theme.disabledColor;
+    }
+
     return NeumorphicButton(
       pressed: isSelected,
       onClick: () {
-        _onClick();
+        if(widget.isEnabled) {
+          _onClick();
+        }
       },
-      minDistance: -1 * selectedDepth.abs(),
+      drawSurfaceAboveChild: true,
+      minDistance: selectedDepth.abs(),
       boxShape: NeumorphicBoxShape.roundRect(
         borderRadius: BorderRadius.circular(5),
       ),
@@ -128,13 +150,13 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
         padding: const EdgeInsets.all(8.0),
         child: Icon(
           material.Icons.check,
-          color: isSelected ? theme.baseColor : selectedColor,
+          color: iconColor,
           size: 20.0,
         ),
       ),
       style: NeumorphicStyle(
-        color: isSelected ? selectedColor : null,
-        depth: isSelected ? selectedDepth : unselectedDepth,
+        color: color,
+        depth: depth,
         intensity: isSelected ? selectedIntensity : unselectedIntensity,
         shape: NeumorphicShape.flat,
       ),
