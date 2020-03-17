@@ -5,6 +5,7 @@ import 'package:example/widgets/container/widget_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+import 'radiobutton/widget_radio_button.dart';
 import 'widgets.dart';
 
 class WidgetsHome extends StatelessWidget {
@@ -61,7 +62,7 @@ class WidgetsHome extends StatelessWidget {
                       text: "RadioButton",
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return WidgetsPage();
+                          return RadioButtonWidgetPage();
                         }));
                       }),
                   _buildButton(
