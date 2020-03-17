@@ -4,14 +4,14 @@ import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-class SliderWidgetPage extends StatefulWidget {
-  SliderWidgetPage({Key key}) : super(key: key);
+class ProgressWidgetPage extends StatefulWidget {
+  ProgressWidgetPage({Key key}) : super(key: key);
 
   @override
   createState() => _WidgetPageState();
 }
 
-class _WidgetPageState extends State<SliderWidgetPage> {
+class _WidgetPageState extends State<ProgressWidgetPage> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
@@ -48,7 +48,7 @@ class _PageState extends State<_Page> {
       padding: EdgeInsets.all(8),
       child: Scaffold(
         appBar: TopBar(
-          title: "Slider",
+          title: "Progress",
         ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
@@ -59,6 +59,7 @@ class _PageState extends State<_Page> {
             children: [
               _DefaultWidget(),
               _ColorWidget(),
+              _SizedWidget(),
               SizedBox(height: 30),
             ],
           ),
@@ -75,22 +76,15 @@ class _DefaultWidget extends StatefulWidget {
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
 
-  double age = 20;
+  double percent = 0.2;
 
   Widget _buildCode(BuildContext context){
     return Code("""
-double age = 20;  
+double percent = 0.2;  
 
 Expanded(
-  child: NeumorphicSlider(
-      value: age,
-      min: 18,
-      max: 90,
-      onChanged: (value) {
-        setState(() {
-          age = value;
-        });
-      },
+  child: NeumorphicProgress(
+      percent: percent,
   ),
 ),
 """);
@@ -107,22 +101,11 @@ Expanded(
           ),
           SizedBox(width: 12),
           Expanded(
-            child: NeumorphicSlider(
-              value: age,
-              min: 18,
-              max: 90,
-              onChanged: (value) {
-                setState(() {
-                  age = value;
-                });
-              },
+            child: NeumorphicProgress(
+              percent: percent,
             ),
           ),
           SizedBox(width: 12),
-          Text(
-            "${age.round()}",
-            style: TextStyle(color: _textColor(context)),
-          ),
         ],
       ),
     );
@@ -146,26 +129,19 @@ class _ColorWidget extends StatefulWidget {
 
 class _ColorWidgetState extends State<_ColorWidget> {
 
-  double age = 50;
+  double percent = 0.5;
 
   Widget _buildCode(BuildContext context){
     return Code("""
-double age = 50;  
+double percent = 0.5;  
 
 Expanded(
-  child: NeumorphicSlider(
-      style: SliderStyle(
+  child: NeumorphicProgress(
+      style: ProgressStyle(
            accent: Colors.green,
            variant: Colors.purple,
       ),
-      value: age,
-      min: 18,
-      max: 90,
-      onChanged: (value) {
-        setState(() {
-          age = value;
-        });
-      },
+      percent: percent,
   ),
 ),
 """);
@@ -212,26 +188,75 @@ Expanded(
               ),
               SizedBox(width: 12),
               Expanded(
-                child: NeumorphicSlider(
-                  style: SliderStyle(
+                child: NeumorphicProgress(
+                  style: ProgressStyle(
                     accent: accent,
                     variant: variant,
                   ),
-                  value: age,
-                  min: 18,
-                  max: 90,
-                  onChanged: (value) {
-                    setState(() {
-                      age = value;
-                    });
-                  },
+                  percent: percent,
                 ),
               ),
               SizedBox(width: 12),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+}
+
+class _SizedWidget extends StatefulWidget {
+  @override
+  createState() => _SizedWidgetState();
+}
+
+class _SizedWidgetState extends State<_SizedWidget> {
+
+  double percent = 0.5;
+
+  Widget _buildCode(BuildContext context){
+    return Code("""
+double percent = 0.5;  
+
+Expanded(
+  child: NeumorphicProgress(
+      height: 30,
+      percent: percent,
+  ),
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 12),
+          Row(
+            children: <Widget>[
               Text(
-                "${age.round()}",
+                "Sized",
                 style: TextStyle(color: _textColor(context)),
               ),
+              SizedBox(width: 12),
+              Expanded(
+                child: NeumorphicProgress(
+                  height: 30,
+                  percent: percent,
+                ),
+              ),
+              SizedBox(width: 12),
             ],
           ),
         ],
