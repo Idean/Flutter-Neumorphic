@@ -48,7 +48,7 @@ class WidgetsHome extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  TopBar(title: "Container"),
+                  TopBar(title: "Widgets"),
                   _buildButton(
                       text: "Container",
                       onClick: () {
