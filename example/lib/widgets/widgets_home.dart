@@ -2,6 +2,7 @@ import 'package:example/lib/back_button.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:example/widgets/checkbox/widget_checkbox.dart';
 import 'package:example/widgets/container/widget_container.dart';
+import 'package:example/widgets/indeterminate_progress/widget_indeterminate_progress.dart';
 import 'package:example/widgets/progress/widget_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -107,7 +108,7 @@ class WidgetsHome extends StatelessWidget {
                       text: "IndeterminateProgress",
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return WidgetsPage();
+                          return IndeterminateProgressWidgetPage();
                         }));
                       }),
                 ],
