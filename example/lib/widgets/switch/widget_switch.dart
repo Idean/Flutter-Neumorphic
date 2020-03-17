@@ -58,8 +58,9 @@ class _PageState extends State<_Page> {
             mainAxisSize: MainAxisSize.max,
             children: [
               DefaultSwitch(),
-              FlatConcaveConvexSwitch(),
               ColorizableSwitch(),
+              ColorizableThumbSwitch(),
+              FlatConcaveConvexSwitch(),
               EnabledDisabledSwitch(),
               SizedBox(height: 30),
             ],
@@ -90,7 +91,6 @@ NeumorphicSwitch(
           isChecked = value;
         });
     },
-    child: Text("2012"),
 ),
 """);
   }
@@ -153,7 +153,6 @@ NeumorphicSwitch(
           isChecked = value;
         });
     },
-    child: Text("2012"),
 ),
 """);
   }
@@ -258,6 +257,62 @@ class ColorizableSwitch extends StatefulWidget {
 
 class _ColorizableSwitchState extends State<ColorizableSwitch> {
 
+  bool isChecked = false;
+  Color currentColor = Colors.green;
+
+  Widget _buildCode(BuildContext context){
+    return Code("""
+bool isChecked;
+
+NeumorphicSwitch(
+    value: isChecked,
+    style: NeumorphicSwitchStyle(
+        activeTrackColor: Colors.green
+    ),
+    onChanged: (value) {
+        setState(() {
+          isChecked = value;
+        });
+    },
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Color",
+            style: TextStyle(color: _textColor(context)),
+          ),
+          SizedBox(width: 12),
+          ColorSelector(
+            color: currentColor,
+            onColorChanged: (color){
+              setState(() {
+                currentColor = color;
+              });
+            },
+          ),
+          SizedBox(width: 12),
+          NeumorphicSwitch(
+            value: isChecked,
+            style: NeumorphicSwitchStyle(
+              activeTrackColor: currentColor
+            ),
+            onChanged: (value) {
+              setState(() {
+                isChecked = value;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -268,15 +323,98 @@ class _ColorizableSwitchState extends State<ColorizableSwitch> {
     );
   }
 
-  Widget _buildWidget(BuildContext context){
-    return Text("Colorizable");
-  }
+}
+
+class ColorizableThumbSwitch extends StatefulWidget {
+  @override
+  createState() => _ColorizableThumbSwitchState();
+}
+
+class _ColorizableThumbSwitchState extends State<ColorizableThumbSwitch> {
+
+  bool isChecked = false;
+  Color thumbColor = Colors.purple;
+  Color trackColor = Colors.lightGreen;
 
   Widget _buildCode(BuildContext context){
     return Code("""
-TODO
+bool isChecked;
+
+NeumorphicSwitch(
+    value: isChecked,
+    style: NeumorphicSwitchStyle(
+          activeTrackColor: Colors.lightGreen,
+          activeThumbColor: Colors.purple
+    ),
+    onChanged: (value) {
+        setState(() {
+          isChecked = value;
+        });
+    },
+),
 """);
   }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Track",
+            style: TextStyle(color: _textColor(context)),
+          ),
+          SizedBox(width: 12),
+          ColorSelector(
+            color: trackColor,
+            onColorChanged: (color){
+              setState(() {
+                trackColor = color;
+              });
+            },
+          ),
+          SizedBox(width: 12),
+          Text(
+            "Thumb",
+            style: TextStyle(color: _textColor(context)),
+          ),
+          SizedBox(width: 12),
+          ColorSelector(
+            color: thumbColor,
+            onColorChanged: (color){
+              setState(() {
+                thumbColor = color;
+              });
+            },
+          ),
+          SizedBox(width: 12),
+          NeumorphicSwitch(
+            value: isChecked,
+            style: NeumorphicSwitchStyle(
+                activeTrackColor: trackColor,
+                activeThumbColor: thumbColor
+            ),
+            onChanged: (value) {
+              setState(() {
+                isChecked = value;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+
 }
 
 class EnabledDisabledSwitch extends StatefulWidget {
@@ -286,6 +424,84 @@ class EnabledDisabledSwitch extends StatefulWidget {
 
 class _EnabledDisabledSwitchState extends State<EnabledDisabledSwitch> {
 
+  bool isChecked1 = false;
+  bool isChecked2 = false;
+
+  Widget _buildCode(BuildContext context){
+    return Code("""
+bool isChecked;
+
+NeumorphicSwitch(
+    value: isChecked,
+    isEnabled: false,
+    onChanged: (value) {
+        setState(() {
+          isChecked = value;
+        });
+    },
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 12),
+          Row(
+            children: <Widget>[
+              Container(
+                width: 100,
+                child: Text(
+                  "Enabled",
+                  style: TextStyle(color: _textColor(context)),
+                ),
+              ),
+              SizedBox(width: 12),
+              NeumorphicSwitch(
+                style: NeumorphicSwitchStyle(
+                    thumbShape: NeumorphicShape.concave
+                ),
+                value: isChecked1,
+                onChanged: (value) {
+                  setState(() {
+                    isChecked1 = value;
+                  });
+                },
+              ),
+            ],
+          ),
+          SizedBox(height: 12),
+          Row(
+            children: <Widget>[
+              Container(
+                width: 100,
+                child: Text(
+                  "Disabled",
+                  style: TextStyle(color: _textColor(context)),
+                ),
+              ),
+              SizedBox(width: 12),
+              NeumorphicSwitch(
+                isEnabled: false,
+                style: NeumorphicSwitchStyle(
+                    thumbShape: NeumorphicShape.convex
+                ),
+                value: isChecked2,
+                onChanged: (value) {
+                  setState(() {
+                    isChecked2 = value;
+                  });
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -294,15 +510,5 @@ class _EnabledDisabledSwitchState extends State<EnabledDisabledSwitch> {
         _buildCode(context),
       ],
     );
-  }
-
-  Widget _buildWidget(BuildContext context){
-    return Text("Enabled / Disabled");
-  }
-
-  Widget _buildCode(BuildContext context){
-    return Code("""
-TODO
-""");
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic/src/widget/animation/animated_scale.dart';
 
 import '../NeumorphicBoxShape.dart';
 import '../theme/neumorphic_theme.dart';
@@ -81,6 +82,7 @@ class NeumorphicSwitch extends StatefulWidget {
   final NeumorphicSwitchStyle style;
   final double height;
   final Duration duration;
+  final bool isEnabled;
 
   const NeumorphicSwitch({
     this.style = const NeumorphicSwitchStyle(),
@@ -89,6 +91,7 @@ class NeumorphicSwitch extends StatefulWidget {
     this.value = false,
     this.onChanged,
     this.height = 40,
+    this.isEnabled = true,
   }) : super(key: key);
 
   @override
@@ -132,7 +135,7 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
         child: GestureDetector(
           onTap: () {
             // animation breaking prevention
-            if (controller.isAnimating) {
+            if (controller.isAnimating || !widget.isEnabled) {
               return;
             }
             _notifyOnChange(!widget.value);
@@ -144,16 +147,26 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
                 depth: _getTrackDepth(theme.depth),
                 shape: NeumorphicShape.flat,
                 color: _getTrackColor(theme)),
-            child: AnimatedThumb(
-              depth: widget.style.thumbDepth,
-              animation: animation,
-              shape: _getThumbShape(),
-              thumbColor: _getThumbColor(theme),
+            child: AnimatedScale(
+              scale: widget.isEnabled ? 1 : 0,
+              child: AnimatedThumb(
+                depth: _thumbDepth(),
+                animation: animation,
+                shape: _getThumbShape(),
+                thumbColor: _getThumbColor(theme),
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  double _thumbDepth(){
+    if(!widget.isEnabled){
+      return 0;
+    }
+    else return widget.style.thumbDepth;
   }
 
   NeumorphicShape _getThumbShape() {
