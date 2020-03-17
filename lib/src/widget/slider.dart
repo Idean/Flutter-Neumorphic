@@ -108,7 +108,7 @@ class NeumorphicSlider extends StatefulWidget {
     this.thumb,
   });
 
-  double get percent => value / (max - min);
+  double get percent => (((value.clamp(min, max)) - min) / ((max - min)));
 
   @override
   createState() => _NeumorphicSliderState();
@@ -129,7 +129,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
             // print("tapPos : $tapPos");
             // print("newPercent : $newPercent");
 
-            final newValue = ((widget.max - widget.min) * newPercent)
+            final newValue = ((widget.min + (widget.max - widget.min) * newPercent))
                 .clamp(widget.min, widget.max);
 
             if (widget.onChanged != null) {

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'radiobutton/widget_radio_button.dart';
+import 'slider/widget_slider.dart';
 import 'switch/widget_switch.dart';
 import 'widgets.dart';
 
@@ -84,7 +85,7 @@ class WidgetsHome extends StatelessWidget {
                       text: "Slider",
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return WidgetsPage();
+                          return SliderWidgetPage();
                         }));
                       }),
                   _buildButton(
