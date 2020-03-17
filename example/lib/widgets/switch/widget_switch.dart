@@ -57,11 +57,11 @@ class _PageState extends State<_Page> {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
-              DefaultSwitch(),
-              ColorizableSwitch(),
+              _DefaultWidget(),
+              _ColorizableWidget(),
               ColorizableThumbSwitch(),
               FlatConcaveConvexSwitch(),
-              EnabledDisabledSwitch(),
+              _EnabledDisabledWidget(),
               SizedBox(height: 30),
             ],
           ),
@@ -71,12 +71,12 @@ class _PageState extends State<_Page> {
   }
 }
 
-class DefaultSwitch extends StatefulWidget {
+class _DefaultWidget extends StatefulWidget {
   @override
-  createState() => _DefaultSwitchState();
+  createState() => _DefaultWidgetState();
 }
 
-class _DefaultSwitchState extends State<DefaultSwitch> {
+class _DefaultWidgetState extends State<_DefaultWidget> {
 
   bool isChecked = false;
 
@@ -250,12 +250,12 @@ NeumorphicSwitch(
   }
 }
 
-class ColorizableSwitch extends StatefulWidget {
+class _ColorizableWidget extends StatefulWidget {
   @override
-  createState() => _ColorizableSwitchState();
+  createState() => _ColorizableWidgetState();
 }
 
-class _ColorizableSwitchState extends State<ColorizableSwitch> {
+class _ColorizableWidgetState extends State<_ColorizableWidget> {
 
   bool isChecked = false;
   Color currentColor = Colors.green;
@@ -417,12 +417,12 @@ NeumorphicSwitch(
 
 }
 
-class EnabledDisabledSwitch extends StatefulWidget {
+class _EnabledDisabledWidget extends StatefulWidget {
   @override
-  _EnabledDisabledSwitchState createState() => _EnabledDisabledSwitchState();
+  createState() => _EnabledDisabledWidgetState();
 }
 
-class _EnabledDisabledSwitchState extends State<EnabledDisabledSwitch> {
+class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
 
   bool isChecked1 = false;
   bool isChecked2 = false;

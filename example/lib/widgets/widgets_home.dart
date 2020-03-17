@@ -2,10 +2,13 @@ import 'package:example/lib/back_button.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:example/widgets/checkbox/widget_checkbox.dart';
 import 'package:example/widgets/container/widget_container.dart';
+import 'package:example/widgets/indeterminate_progress/widget_indeterminate_progress.dart';
+import 'package:example/widgets/progress/widget_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'radiobutton/widget_radio_button.dart';
+import 'slider/widget_slider.dart';
 import 'switch/widget_switch.dart';
 import 'widgets.dart';
 
@@ -84,7 +87,7 @@ class WidgetsHome extends StatelessWidget {
                       text: "Slider",
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return WidgetsPage();
+                          return SliderWidgetPage();
                         }));
                       }),
                   _buildButton(
@@ -98,14 +101,14 @@ class WidgetsHome extends StatelessWidget {
                       text: "Progress",
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return WidgetsPage();
+                          return ProgressWidgetPage();
                         }));
                       }),
                   _buildButton(
                       text: "IndeterminateProgress",
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return WidgetsPage();
+                          return IndeterminateProgressWidgetPage();
                         }));
                       }),
                 ],

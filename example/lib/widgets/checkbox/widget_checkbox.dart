@@ -42,10 +42,6 @@ class _Page extends StatefulWidget {
 
 class _PageState extends State<_Page> {
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -61,9 +57,9 @@ class _PageState extends State<_Page> {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
-              DefaultCheckboxes(),
-              ColorCheckboxes(),
-              EnabledDisabledCheckboxes(),
+              _DefaultWidget(),
+              _ColorWidget(),
+              _EnabledDisabledWidget(),
               SizedBox(height: 30),
             ],
           ),
@@ -73,12 +69,12 @@ class _PageState extends State<_Page> {
   }
 }
 
-class DefaultCheckboxes extends StatefulWidget {
+class _DefaultWidget extends StatefulWidget {
   @override
-  createState() => _DefaultCheckboxesState();
+  createState() => _DefaultWidgetState();
 }
 
-class _DefaultCheckboxesState extends State<DefaultCheckboxes> {
+class _DefaultWidgetState extends State<_DefaultWidget> {
 
   bool check1 = false;
   bool check2 = false;
@@ -153,12 +149,12 @@ NeumorphicCheckbox(
 }
 
 
-class ColorCheckboxes extends StatefulWidget {
+class _ColorWidget extends StatefulWidget {
   @override
-  createState() => _ColorCheckboxesState();
+  createState() => _ColorWidgetState();
 }
 
-class _ColorCheckboxesState extends State<ColorCheckboxes> {
+class _ColorWidgetState extends State<_ColorWidget> {
 
   Color customColor = Colors.green;
 
@@ -256,12 +252,12 @@ NeumorphicCheckbox(
 }
 
 
-class EnabledDisabledCheckboxes extends StatefulWidget {
+class _EnabledDisabledWidget extends StatefulWidget {
   @override
-  createState() => _EnabledDisabledCheckboxesState();
+  createState() => _EnabledDisabledWidgetState();
 }
 
-class _EnabledDisabledCheckboxesState extends State<EnabledDisabledCheckboxes> {
+class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
 
   bool check1 = false;
   bool check2 = false;
