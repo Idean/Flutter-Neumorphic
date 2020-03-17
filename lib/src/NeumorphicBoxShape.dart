@@ -28,12 +28,12 @@ class NeumorphicBoxShape {
   final BorderRadius borderRadius;
   final bool _stadium;
 
-  NeumorphicBoxShape._({this.boxShape, this.borderRadius, bool stadium = false})
+  const NeumorphicBoxShape._({this.boxShape, this.borderRadius, bool stadium = false})
       : this._stadium = stadium;
 
-  NeumorphicBoxShape.circle() : this._(boxShape: BoxShape.circle);
+  const NeumorphicBoxShape.circle() : this._(boxShape: BoxShape.circle);
 
-  NeumorphicBoxShape.roundRect({BorderRadius borderRadius = BorderRadius.zero})
+  const NeumorphicBoxShape.roundRect({BorderRadius borderRadius = BorderRadius.zero})
       : this._(boxShape: BoxShape.rectangle, borderRadius: borderRadius);
 
   ///                                                             _______

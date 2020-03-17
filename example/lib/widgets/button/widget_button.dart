@@ -4,14 +4,14 @@ import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-class RadioButtonWidgetPage extends StatefulWidget {
-  RadioButtonWidgetPage({Key key}) : super(key: key);
+class ButtonWidgetPage extends StatefulWidget {
+  ButtonWidgetPage({Key key}) : super(key: key);
 
   @override
   createState() => _WidgetPageState();
 }
 
-class _WidgetPageState extends State<RadioButtonWidgetPage> {
+class _WidgetPageState extends State<ButtonWidgetPage> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
@@ -49,7 +49,7 @@ class _PageState extends State<_Page> {
       padding: EdgeInsets.all(8),
       child: Scaffold(
         appBar: TopBar(
-          title: "Radios",
+          title: "Button",
         ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
@@ -59,8 +59,10 @@ class _PageState extends State<_Page> {
             mainAxisSize: MainAxisSize.max,
             children: [
               _DefaultWidget(),
-              CircleRadios(),
+              _CircleWidget(),
+              _ColorizableWidget(),
               _EnabledDisabledWidget(),
+              _DurationWidget(),
               SizedBox(height: 30),
             ],
           ),
@@ -81,17 +83,11 @@ class _DefaultWidgetState extends State<_DefaultWidget> {
 
   Widget _buildCode(BuildContext context){
     return Code("""
-int groupValue;
-
-NeumorphicRadio(
-    groupValue: groupValue
-    value: 1991,
-    onChanged: (value) {
-        setState(() {
-          groupValue = value;
-        });
-    },
-    child: Text("2012"),
+NeumorphicButton(
+     onClick: () {
+        
+     },
+     child: Text("Click me"),
 ),
 """);
   }
@@ -106,41 +102,15 @@ NeumorphicRadio(
             style: TextStyle(color: _textColor(context)),
           ),
           SizedBox(width: 12),
-          NeumorphicRadio(
-            groupValue: groupValue,
-            value: 1991,
-            onChanged: (value) {
+          NeumorphicButton(
+            onClick: () {
               setState(() {
-                groupValue = value;
+
               });
             },
-            padding: EdgeInsets.all(8.0),
-            child: Text("1991"),
+            child: Text("Click me"),
           ),
           SizedBox(width: 12),
-          NeumorphicRadio(
-            value: 2000,
-            groupValue: groupValue,
-            onChanged: (value) {
-              setState(() {
-                groupValue = value;
-              });
-            },
-            padding: EdgeInsets.all(8.0),
-            child: Text("2000"),
-          ),
-          SizedBox(width: 12),
-          NeumorphicRadio(
-            groupValue: groupValue,
-            value: 2012,
-            onChanged: (value) {
-              setState(() {
-                groupValue = value;
-              });
-            },
-            padding: EdgeInsets.all(8.0),
-            child: Text("2012"),
-          ),
         ],
       ),
     );
@@ -157,29 +127,24 @@ NeumorphicRadio(
   }
 }
 
-class CircleRadios extends StatefulWidget {
+class _CircleWidget extends StatefulWidget {
   @override
-  createState() => _CircleRadiosState();
+  createState() => _CircleWidgetState();
 }
 
-class _CircleRadiosState extends State<CircleRadios> {
+class _CircleWidgetState extends State<_CircleWidget> {
 
   String groupValue;
 
   Widget _buildCode(BuildContext context){
     return Code("""
-String groupValue;
-
-NeumorphicRadio(
-    groupValue: groupValue
-    style: NeumorphicRadioStyle(boxShape: NeumorphicBoxShape.circle()),
-    value: "A",
-    onChanged: (value) {
-        setState(() {
-          groupValue = value;
-        });
-    },
-    child: Text("A"),
+NeumorphicButton(
+     boxShape: NeumorphicBoxShape.circle(),
+     onClick: () {
+       
+     },
+     padding: EdgeInsets.all(18.0),
+     child: Icon(Icons.play_arrow),
 ),
 """);
   }
@@ -194,44 +159,17 @@ NeumorphicRadio(
             style: TextStyle(color: _textColor(context)),
           ),
           SizedBox(width: 12),
-          NeumorphicRadio(
+          NeumorphicButton(
             boxShape: NeumorphicBoxShape.circle(),
-            groupValue: groupValue,
-            value: "A",
-            onChanged: (value) {
+            onClick: () {
               setState(() {
-                groupValue = value;
+
               });
             },
             padding: EdgeInsets.all(18.0),
-            child: Text("A"),
+            child: Icon(Icons.play_arrow),
           ),
           SizedBox(width: 12),
-          NeumorphicRadio(
-            value: "B",
-            boxShape: NeumorphicBoxShape.circle(),
-            groupValue: groupValue,
-            onChanged: (value) {
-              setState(() {
-                groupValue = value;
-              });
-            },
-            padding: EdgeInsets.all(18.0),
-            child: Text("B"),
-          ),
-          SizedBox(width: 12),
-          NeumorphicRadio(
-            boxShape: NeumorphicBoxShape.circle(),
-            groupValue: groupValue,
-            value: "C",
-            onChanged: (value) {
-              setState(() {
-                groupValue = value;
-              });
-            },
-            padding: EdgeInsets.all(18.0),
-            child: Text("C"),
-          ),
         ],
       ),
     );
@@ -248,6 +186,76 @@ NeumorphicRadio(
   }
 }
 
+class _ColorizableWidget extends StatefulWidget {
+  @override
+  createState() => _ColorizableWidgetState();
+}
+
+class _ColorizableWidgetState extends State<_ColorizableWidget> {
+
+  bool isChecked = false;
+  Color currentColor = Colors.green;
+
+  Widget _buildCode(BuildContext context){
+    return Code("""
+bool isChecked;
+
+NeumorphicButton(
+    onClick: (){
+
+    },
+    style: NeumorphicStyle(
+        color: Colors.green
+    ),
+    child: Text("Click me"),
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Color",
+            style: TextStyle(color: _textColor(context)),
+          ),
+          SizedBox(width: 12),
+          ColorSelector(
+            color: currentColor,
+            onColorChanged: (color){
+              setState(() {
+                currentColor = color;
+              });
+            },
+          ),
+          SizedBox(width: 12),
+          NeumorphicButton(
+            onClick: (){
+
+            },
+            style: NeumorphicStyle(
+                color: currentColor
+            ),
+            child: Text("Click me"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+
+}
 
 
 class _EnabledDisabledWidget extends StatefulWidget {
@@ -256,8 +264,6 @@ class _EnabledDisabledWidget extends StatefulWidget {
 }
 
 class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
-
-  int groupValue;
 
   Widget _buildWidget(BuildContext context){
     return Padding(
@@ -269,14 +275,12 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
             style: TextStyle(color: _textColor(context)),
           ),
           SizedBox(width: 12),
-          NeumorphicRadio(
-            groupValue: groupValue,
-            value: 1,
+          NeumorphicButton(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
             child: Text("First"),
-            onChanged: (value) {
+            onClick: () {
               setState(() {
-                groupValue = value;
+
               });
             },
           ),
@@ -286,15 +290,13 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
             style: TextStyle(color: _textColor(context)),
           ),
           SizedBox(width: 12),
-          NeumorphicRadio(
+          NeumorphicButton(
             isEnabled: false,
-            groupValue: groupValue,
-            value: 2,
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
             child: Text("Second"),
-            onChanged: (value) {
+            onClick: () {
               setState(() {
-                groupValue = value;
+
               });
             },
           ),
@@ -305,20 +307,71 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
 
   Widget _buildCode(BuildContext context){
     return Code("""    
-int groupValue;
-
-NeumorphicRadio(
+NeumorphicButton(
      isEnabled: false,
-     groupValue: groupValue,
-     value: 2,
-     onChanged: (value) {
-       setState(() {
-         isChecked = value;
-       });
-     },
      child: Text("Second"),
+     onClick: () {
+       
+     },
 ),
 """);
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+}
+
+
+class _DurationWidget extends StatefulWidget {
+  @override
+  createState() => _DurationWidgetState();
+}
+
+class _DurationWidgetState extends State<_DurationWidget> {
+
+  Widget _buildCode(BuildContext context){
+    return Code("""
+Expanded(
+  child: NeumorphicProgressIndeterminate(
+       duration: Duration(seconds: 10),
+  ),
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 12),
+          Row(
+            children: <Widget>[
+              Text(
+                "Duration",
+                style: TextStyle(color: _textColor(context)),
+              ),
+              SizedBox(width: 12),
+              NeumorphicButton(
+                onClick: (){
+
+                },
+                child: Text("Press me all night long"),
+                duration: Duration(seconds: 3),
+              ),
+              SizedBox(width: 12),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   Widget build(BuildContext context) {
