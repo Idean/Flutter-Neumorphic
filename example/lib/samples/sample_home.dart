@@ -1,4 +1,3 @@
-import 'package:example/lib/back_button.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:example/samples/audio_player_sample.dart';
 import 'package:example/samples/calculator_sample.dart';

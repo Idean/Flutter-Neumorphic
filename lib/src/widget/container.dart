@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/src/decoration/foreground/neumorphic_foreground_decorations.dart';
-import 'package:flutter_neumorphic/src/decoration/foreground/painter/neumorphic_foreground_decoration_painter.dart';
 
 import '../NeumorphicBoxShape.dart';
 import '../decoration/box/neumorphic_box_decorations.dart';
