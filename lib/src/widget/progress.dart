@@ -181,8 +181,8 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
                   end:
                       widget.style.progressGradientEnd ?? Alignment.centerRight,
                   colors: [
+                    widget.style.variant ?? theme.variantColor,
                     widget.style.accent ?? theme.accentColor,
-                    widget.style.variant ?? theme.variantColor
                   ],
                 ),
               )),
