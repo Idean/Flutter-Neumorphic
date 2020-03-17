@@ -141,8 +141,8 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
 
       if (this.cornerRadius != cornerRadius) {
         this.cornerRadius = cornerRadius;
-        this.buttonRRect = RRect.fromRectAndRadius(rectRect, this.cornerRadius);
       }
+      this.buttonRRect = RRect.fromRectAndRadius(rectRect, this.cornerRadius);
     }
 
     LightSource source = style.lightSource;

@@ -1,13 +1,15 @@
+import 'package:example/lib/back_button.dart';
+import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-class ContainerPage extends StatefulWidget {
+class NeumorphicPlayground extends StatefulWidget {
   @override
-  _ContainerPageState createState() => _ContainerPageState();
+  _NeumorphicPlaygroundState createState() => _NeumorphicPlaygroundState();
 }
 
-class _ContainerPageState extends State<ContainerPage> {
+class _NeumorphicPlaygroundState extends State<NeumorphicPlayground> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
@@ -39,38 +41,50 @@ class __PageState extends State<_Page> {
   double intensity = 0.5;
   double surfaceIntensity = 0.5;
   double cornerRadius = 0;
-  double height = 0;
+  double height = 100.0;
+  double width = 100.0;
+
+  static final minWidth = 50.0;
+  static final maxWidth = 200.0;
+  static final minHeight = 50.0;
+  static final maxHeight = 200.0;
 
   @override
   Widget build(BuildContext context) {
-    return NeumorphicBackground(
-      child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            backgroundColor: Colors.grey,
-          ),
-          body: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              shapeWidget(),
-              boxshapeWidget(),
-              intensitySelector(),
-              surfaceIntensitySelector(),
-              depthSelector(),
-              cornerRadiusSelector(),
-              Expanded(
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    ...lightSourceWidgets(),
-                    Center(child: neumorphic()),
-                    colorPicker(),
-                  ],
+    return SafeArea(
+      child: NeumorphicBackground(
+        child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                  child: RaisedButton(child: Text("back"), onPressed: (){
+                    Navigator.pop(context);
+                  },),
                 ),
-              )
-            ],
-          )),
+                shapeWidget(),
+                boxshapeWidget(),
+                intensitySelector(),
+                surfaceIntensitySelector(),
+                depthSelector(),
+                cornerRadiusSelector(),
+                sizeSelector(),
+                Expanded(
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      ...lightSourceWidgets(),
+                      Center(child: neumorphic()),
+                      colorPicker(),
+                    ],
+                  ),
+                )
+              ],
+            )),
+      ),
     );
   }
 
@@ -122,23 +136,23 @@ class __PageState extends State<_Page> {
   }
 
   Widget neumorphic() {
-    return SizedBox(
-      height: 100,
-      width: 200,
-      child: NeumorphicButton(
-        padding: EdgeInsets.zero,
-        duration: Duration(milliseconds: 300),
-        onClick: () {
-          setState(() {});
-        },
-        boxShape: boxShape,
-        style: NeumorphicStyle(
-          shape: this.shape,
-          intensity: this.intensity,
-          surfaceIntensity: this.surfaceIntensity,
-          depth: depth,
-          lightSource: this.lightSource,
-        ),
+    return NeumorphicButton(
+      padding: EdgeInsets.zero,
+      duration: Duration(milliseconds: 300),
+      onClick: () {
+        setState(() {});
+      },
+      boxShape: boxShape,
+      style: NeumorphicStyle(
+        shape: this.shape,
+        intensity: this.intensity,
+        surfaceIntensity: this.surfaceIntensity,
+        depth: depth,
+        lightSource: this.lightSource,
+      ),
+      child: SizedBox(
+        height: height,
+        width: width,
         child: Container(
             //color: Colors.blue,
             child: Center(child: Text("text"))),
@@ -168,6 +182,40 @@ class __PageState extends State<_Page> {
         Padding(
           padding: EdgeInsets.only(right: 12),
           child: Text(depth.floor().toString()),
+        ),
+      ],
+    );
+  }
+
+  Widget sizeSelector() {
+    return Row(
+      children: <Widget>[
+        SizedBox(width: 12,),
+        Text("W: "),
+        Expanded(
+          child: Slider(
+            min: minWidth,
+            max: maxWidth,
+            value: width,
+            onChanged: (value) {
+              setState(() {
+                width = value;
+              });
+            },
+          ),
+        ),
+        Text("H: "),
+        Expanded(
+          child: Slider(
+            min: minHeight,
+            max: maxHeight,
+            value: height,
+            onChanged: (value) {
+              setState(() {
+                height = value;
+              });
+            },
+          ),
         ),
       ],
     );

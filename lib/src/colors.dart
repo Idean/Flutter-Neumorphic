@@ -11,10 +11,12 @@ class NeumorphicColors {
   static const background = Color(0xFFDDE6E8);
   static const accent = material.Colors.blue;
   static const variant = material.Colors.cyan;
+  static const disabled = material.Colors.grey;
 
   static const darkBackground = Color(0xFF2D2F2F);
   static const darkAccent = material.Colors.green;
   static const darkVariant = material.Colors.blueGrey;
+  static const darkDisabled = material.Colors.white70;
 
   static Color _decorationMaxWhiteColor =
       material.Colors.white; //for intensity = 1

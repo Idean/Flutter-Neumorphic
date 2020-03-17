@@ -96,6 +96,10 @@ class NeumorphicBoxDecoration extends Decoration {
           style == other.style &&
           shape == other.shape;
 
+
+  @override
+  bool get isComplex => true;
+
   @override
   int get hashCode =>
       style.hashCode ^
