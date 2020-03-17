@@ -59,6 +59,8 @@ class _PageState extends State<_Page> {
             children: [
               DefaultSwitch(),
               FlatConcaveConvexSwitch(),
+              ColorizableSwitch(),
+              EnabledDisabledSwitch(),
               SizedBox(height: 30),
             ],
           ),
@@ -246,5 +248,61 @@ NeumorphicSwitch(
         _buildCode(context),
       ],
     );
+  }
+}
+
+class ColorizableSwitch extends StatefulWidget {
+  @override
+  createState() => _ColorizableSwitchState();
+}
+
+class _ColorizableSwitchState extends State<ColorizableSwitch> {
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+
+  Widget _buildWidget(BuildContext context){
+    return Text("Colorizable");
+  }
+
+  Widget _buildCode(BuildContext context){
+    return Code("""
+TODO
+""");
+  }
+}
+
+class EnabledDisabledSwitch extends StatefulWidget {
+  @override
+  _EnabledDisabledSwitchState createState() => _EnabledDisabledSwitchState();
+}
+
+class _EnabledDisabledSwitchState extends State<EnabledDisabledSwitch> {
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+
+  Widget _buildWidget(BuildContext context){
+    return Text("Enabled / Disabled");
+  }
+
+  Widget _buildCode(BuildContext context){
+    return Code("""
+TODO
+""");
   }
 }
