@@ -7,6 +7,7 @@ import 'package:example/widgets/progress/widget_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+import 'indicator/widget_indicator.dart';
 import 'radiobutton/widget_radio_button.dart';
 import 'slider/widget_slider.dart';
 import 'switch/widget_switch.dart';
@@ -94,7 +95,7 @@ class WidgetsHome extends StatelessWidget {
                       text: "Indicator",
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return WidgetsPage();
+                          return IndicatorWidgetPage();
                         }));
                       }),
                   _buildButton(
