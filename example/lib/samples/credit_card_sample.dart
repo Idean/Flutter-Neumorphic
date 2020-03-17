@@ -283,9 +283,9 @@ class __PageContentState extends State<_PageContent> {
                 _dotIndex = value;
               });
             },
+            boxShape: NeumorphicBoxShape.circle(),
             style: NeumorphicRadioStyle(
               shape: NeumorphicShape.convex,
-              boxShape: NeumorphicBoxShape.circle(),
             ),
           ),
         ),
@@ -303,9 +303,9 @@ class __PageContentState extends State<_PageContent> {
                 _dotIndex = value;
               });
             },
+            boxShape: NeumorphicBoxShape.circle(),
             style: NeumorphicRadioStyle(
               shape: NeumorphicShape.convex,
-              boxShape: NeumorphicBoxShape.circle(),
             ),
           ),
         ),
@@ -323,9 +323,9 @@ class __PageContentState extends State<_PageContent> {
                 _dotIndex = value;
               });
             },
+            boxShape: NeumorphicBoxShape.circle(),
             style: NeumorphicRadioStyle(
               shape: NeumorphicShape.convex,
-              boxShape: NeumorphicBoxShape.circle(),
             ),
           ),
         )

@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic/src/widget/animation/animated_scale.dart';
 
 import '../NeumorphicBoxShape.dart';
 import '../theme/neumorphic_theme.dart';
@@ -23,7 +24,7 @@ class NeumorphicSwitchStyle {
 
   const NeumorphicSwitchStyle({
     this.trackDepth,
-    this.thumbShape,
+    this.thumbShape = NeumorphicShape.concave,
     this.activeTrackColor,
     this.inactiveTrackColor,
     this.activeThumbColor,
@@ -81,14 +82,16 @@ class NeumorphicSwitch extends StatefulWidget {
   final NeumorphicSwitchStyle style;
   final double height;
   final Duration duration;
+  final bool isEnabled;
 
   const NeumorphicSwitch({
-    this.style,
+    this.style = const NeumorphicSwitchStyle(),
     Key key,
     this.duration = const Duration(milliseconds: 200),
     this.value = false,
     this.onChanged,
     this.height = 40,
+    this.isEnabled = true,
   }) : super(key: key);
 
   @override
@@ -103,10 +106,23 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(duration: widget.duration, vsync: this);
+    final defaultValue = widget.value ? 1.0 : 0.0;
+    controller = AnimationController(duration: widget.duration, value: defaultValue, vsync: this);
     animation = Tween<Alignment>(
             begin: Alignment.centerLeft, end: Alignment.centerRight)
         .animate(controller);
+  }
+
+  @override
+  void didUpdateWidget(NeumorphicSwitch oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if(oldWidget.value != widget.value){
+      if(widget.value){
+        controller.forward();
+      } else {
+        controller.reverse();
+      }
+    }
   }
 
   @override
@@ -119,16 +135,10 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
         child: GestureDetector(
           onTap: () {
             // animation breaking prevention
-            if (controller.isAnimating) {
+            if (controller.isAnimating || !widget.isEnabled) {
               return;
             }
-            if (widget.value == false) {
-              controller.forward();
-              _notifyOnChange(true);
-            } else {
-              controller.reverse();
-              _notifyOnChange(false);
-            }
+            _notifyOnChange(!widget.value);
           },
           child: Neumorphic(
             drawSurfaceAboveChild: false,
@@ -137,16 +147,26 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
                 depth: _getTrackDepth(theme.depth),
                 shape: NeumorphicShape.flat,
                 color: _getTrackColor(theme)),
-            child: AnimatedThumb(
-              depth: widget.style.thumbDepth,
-              animation: animation,
-              shape: _getThumbShape(),
-              thumbColor: _getThumbColor(theme),
+            child: AnimatedScale(
+              scale: widget.isEnabled ? 1 : 0,
+              child: AnimatedThumb(
+                depth: _thumbDepth(),
+                animation: animation,
+                shape: _getThumbShape(),
+                thumbColor: _getThumbColor(theme),
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  double _thumbDepth(){
+    if(!widget.isEnabled){
+      return 0;
+    }
+    else return widget.style.thumbDepth;
   }
 
   NeumorphicShape _getThumbShape() {
