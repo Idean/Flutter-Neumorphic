@@ -5,7 +5,6 @@ import '../NeumorphicBoxShape.dart';
 import '../theme/neumorphic_theme.dart';
 import 'container.dart';
 
-
 /// A style to customize the [NeumorphicSwitch]
 ///
 /// you can define the track : [activeTrackColor], [inactiveTrackColor], [trackDepth]
@@ -107,7 +106,8 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
   void initState() {
     super.initState();
     final defaultValue = widget.value ? 1.0 : 0.0;
-    controller = AnimationController(duration: widget.duration, value: defaultValue, vsync: this);
+    controller = AnimationController(
+        duration: widget.duration, value: defaultValue, vsync: this);
     animation = Tween<Alignment>(
             begin: Alignment.centerLeft, end: Alignment.centerRight)
         .animate(controller);
@@ -116,8 +116,8 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
   @override
   void didUpdateWidget(NeumorphicSwitch oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if(oldWidget.value != widget.value){
-      if(widget.value){
+    if (oldWidget.value != widget.value) {
+      if (widget.value) {
         controller.forward();
       } else {
         controller.reverse();
@@ -162,11 +162,11 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
     );
   }
 
-  double _thumbDepth(){
-    if(!widget.isEnabled){
+  double _thumbDepth() {
+    if (!widget.isEnabled) {
       return 0;
-    }
-    else return widget.style.thumbDepth;
+    } else
+      return widget.style.thumbDepth;
   }
 
   NeumorphicShape _getThumbShape() {

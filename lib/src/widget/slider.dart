@@ -129,8 +129,9 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
             // print("tapPos : $tapPos");
             // print("newPercent : $newPercent");
 
-            final newValue = ((widget.min + (widget.max - widget.min) * newPercent))
-                .clamp(widget.min, widget.max);
+            final newValue =
+                ((widget.min + (widget.max - widget.min) * newPercent))
+                    .clamp(widget.min, widget.max);
 
             if (widget.onChanged != null) {
               //  print("onChanged : $newValue");

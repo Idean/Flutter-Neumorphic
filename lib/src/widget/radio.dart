@@ -27,20 +27,17 @@ class NeumorphicRadioStyle {
   final NeumorphicShape shape;
 
   const NeumorphicRadioStyle(
-      {this.selectedDepth,
-      this.unselectedDepth,
-      this.intensity,
-      this.shape});
+      {this.selectedDepth, this.unselectedDepth, this.intensity, this.shape});
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is NeumorphicRadioStyle &&
-              runtimeType == other.runtimeType &&
-              selectedDepth == other.selectedDepth &&
-              unselectedDepth == other.unselectedDepth &&
-              intensity == other.intensity &&
-              shape == other.shape;
+      other is NeumorphicRadioStyle &&
+          runtimeType == other.runtimeType &&
+          selectedDepth == other.selectedDepth &&
+          unselectedDepth == other.unselectedDepth &&
+          intensity == other.intensity &&
+          shape == other.shape;
 
   @override
   int get hashCode =>
@@ -48,9 +45,6 @@ class NeumorphicRadioStyle {
       unselectedDepth.hashCode ^
       intensity.hashCode ^
       shape.hashCode;
-
-
-
 }
 
 /// A Neumorphic Radio
@@ -173,8 +167,8 @@ class _NeumorphicRadioState<T> extends State<NeumorphicRadio<T>> {
     final double unselectedDepth =
         (widget.style.unselectedDepth ?? theme.depth).abs();
 
-    double depth =  isSelected ? selectedDepth : unselectedDepth;
-    if(!widget.isEnabled){
+    double depth = isSelected ? selectedDepth : unselectedDepth;
+    if (!widget.isEnabled) {
       depth = 0;
     }
 

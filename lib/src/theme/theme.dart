@@ -69,19 +69,18 @@ class NeumorphicThemeData {
     return 'NeumorphicTheme{baseColor: $baseColor, accentColor: $accentColor, variantColor: $variantColor, disabledColor: $disabledColor, _depth: $_depth, intensity: $intensity, lightSource: $lightSource}';
   }
 
-
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is NeumorphicThemeData &&
-              runtimeType == other.runtimeType &&
-              baseColor == other.baseColor &&
-              accentColor == other.accentColor &&
-              disabledColor == other.disabledColor &&
-              variantColor == other.variantColor &&
-              _depth == other._depth &&
-              _intensity == other._intensity &&
-              lightSource == other.lightSource;
+      other is NeumorphicThemeData &&
+          runtimeType == other.runtimeType &&
+          baseColor == other.baseColor &&
+          accentColor == other.accentColor &&
+          disabledColor == other.disabledColor &&
+          variantColor == other.variantColor &&
+          _depth == other._depth &&
+          _intensity == other._intensity &&
+          lightSource == other.lightSource;
 
   @override
   int get hashCode =>
@@ -190,8 +189,8 @@ class NeumorphicStyle {
   double get intensity =>
       _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
-  double get surfaceIntensity =>
-      _surfaceIntensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
+  double get surfaceIntensity => _surfaceIntensity?.clamp(
+      Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
   NeumorphicStyle copyWithThemeIfNull(NeumorphicThemeData theme) {
     return NeumorphicStyle._withTheme(
@@ -204,19 +203,18 @@ class NeumorphicStyle {
         lightSource: this.lightSource ?? theme.lightSource);
   }
 
-
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is NeumorphicStyle &&
-              runtimeType == other.runtimeType &&
-              color == other.color &&
-              _depth == other._depth &&
-              _intensity == other._intensity &&
-              _surfaceIntensity == other._surfaceIntensity &&
-              lightSource == other.lightSource &&
-              shape == other.shape &&
-              theme == other.theme;
+      other is NeumorphicStyle &&
+          runtimeType == other.runtimeType &&
+          color == other.color &&
+          _depth == other._depth &&
+          _intensity == other._intensity &&
+          _surfaceIntensity == other._surfaceIntensity &&
+          lightSource == other.lightSource &&
+          shape == other.shape &&
+          theme == other.theme;
 
   @override
   int get hashCode =>

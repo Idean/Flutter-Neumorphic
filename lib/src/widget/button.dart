@@ -64,7 +64,8 @@ class NeumorphicButton extends StatefulWidget {
     this.child,
     this.drawSurfaceAboveChild = true,
     this.pressed, //true/false if you want to change the state of the button
-    this.boxShape = const NeumorphicBoxShape.roundRect(borderRadius: const BorderRadius.all(const Radius.circular(8))),
+    this.boxShape = const NeumorphicBoxShape.roundRect(
+        borderRadius: const BorderRadius.all(const Radius.circular(8))),
     this.duration = Neumorphic.DEFAULT_DURATION,
     //this.accent,
     this.onClick,
@@ -161,7 +162,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (detail) {
-        if(widget.isEnabled) {
+        if (widget.isEnabled) {
           if (clickable && !pressed) {
             _handlePress();
           }
@@ -190,8 +191,8 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
     );
   }
 
-  double _getDepth(){
-    if(widget.isEnabled){
+  double _getDepth() {
+    if (widget.isEnabled) {
       return this.depth;
     } else {
       return 0;

@@ -54,10 +54,12 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
     @required NeumorphicBoxShape shape,
     @required this.enabled,
     @required VoidCallback onChanged,
-  }) : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
+  })  : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
-    var blackShadowColor = NeumorphicColors.decorationDarkColor(intensity: style.intensity); //<-- intensity act on opacity
-    var whiteShadowColor = NeumorphicColors.decorationWhiteColor(intensity: style.intensity); //<-- intensity act on opacity
+    var blackShadowColor = NeumorphicColors.decorationDarkColor(
+        intensity: style.intensity); //<-- intensity act on opacity
+    var whiteShadowColor = NeumorphicColors.decorationWhiteColor(
+        intensity: style.intensity); //<-- intensity act on opacity
 
     whiteShadowPaint = Paint()..color = whiteShadowColor;
     whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
@@ -75,7 +77,10 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
     var width = configuration.size.width;
     var height = configuration.size.height;
 
-    if (this.originOffset != offset || this.configuration != configuration  || this.width != width || this.height != height) {
+    if (this.originOffset != offset ||
+        this.configuration != configuration ||
+        this.width != width ||
+        this.height != height) {
       this.width = width;
       this.height = height;
       this.originOffset = offset;
@@ -110,7 +115,9 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
               radius: radius,
             ),
             intensity: style.surfaceIntensity,
-            source: style.shape == NeumorphicShape.concave ? this.externalShadowLightSource : this.externalShadowLightSource.invert(),
+            source: style.shape == NeumorphicShape.concave
+                ? this.externalShadowLightSource
+                : this.externalShadowLightSource.invert(),
           );
       } else {
         layerRect = Rect.fromLTRB(
@@ -123,14 +130,17 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
           ..shader = getGradientShader(
             gradientRect: rectRect,
             intensity: style.surfaceIntensity,
-            source: style.shape == NeumorphicShape.concave ? this.externalShadowLightSource : this.externalShadowLightSource.invert(),
+            source: style.shape == NeumorphicShape.concave
+                ? this.externalShadowLightSource
+                : this.externalShadowLightSource.invert(),
           );
       }
     }
 
     var shapeRadius = (shape?.borderRadius?.topLeft ?? Radius.zero);
 
-    if ((this.invalidate || this.shapeRadius != shapeRadius) && !shape.isCircle) {
+    if ((this.invalidate || this.shapeRadius != shapeRadius) &&
+        !shape.isCircle) {
       this.shapeRadius = shapeRadius;
 
       var cornerRadius = Radius.circular(this.shapeRadius.x.clamp(
@@ -147,10 +157,13 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
     LightSource source = style.lightSource;
     double depth = style.depth.abs().clamp(0.0, this.radius / 3);
 
-    if (this.invalidate || this.externalShadowLightSource != source || this.depth != depth) {
+    if (this.invalidate ||
+        this.externalShadowLightSource != source ||
+        this.depth != depth) {
       this.depth = depth;
       this.externalShadowLightSource = source;
-      this.depthOffset = this.externalShadowLightSource.offset.scale(this.depth, this.depth);
+      this.depthOffset =
+          this.externalShadowLightSource.offset.scale(this.depth, this.depth);
       this.maskFilter = MaskFilter.blur(BlurStyle.normal, this.depth);
       this.whiteShadowPaint..maskFilter = this.maskFilter;
       this.blackShadowPaint..maskFilter = this.maskFilter;
@@ -180,13 +193,15 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
 
     //print("buttonRRect: ${this.buttonRRect.width}");
 
-    if(enabled) {
+    if (enabled) {
       if (shape.isCircle) {
-        if (style.shape == NeumorphicShape.concave || style.shape == NeumorphicShape.convex) {
+        if (style.shape == NeumorphicShape.concave ||
+            style.shape == NeumorphicShape.convex) {
           canvas.drawCircle(centerOffset, radius, gradientPaint);
         }
       } else {
-        if (style.shape == NeumorphicShape.concave || style.shape == NeumorphicShape.convex) {
+        if (style.shape == NeumorphicShape.concave ||
+            style.shape == NeumorphicShape.convex) {
           canvas.drawRRect(this.buttonRRect, gradientPaint);
         }
       }

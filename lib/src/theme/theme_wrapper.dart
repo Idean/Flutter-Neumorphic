@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
@@ -13,7 +12,6 @@ export 'used_theme.dart';
 /// That will save the current definition of the theme
 /// It will be accessible to the childs widgets by an InheritedWidget
 class ThemeWrapper {
-
   final NeumorphicThemeData theme;
   final NeumorphicThemeData darkTheme;
   final UsedTheme usedTheme;
@@ -25,10 +23,11 @@ class ThemeWrapper {
   });
 
   bool get useDark =>
-              //forced to use DARK by user
-              usedTheme == UsedTheme.DARK ||
-                  //The setting indicating the current brightness mode of the host platform. If the platform has no preference, platformBrightness defaults to Brightness.light.
-                  (usedTheme == UsedTheme.SYSTEM && window.platformBrightness == Brightness.dark);
+      //forced to use DARK by user
+      usedTheme == UsedTheme.DARK ||
+      //The setting indicating the current brightness mode of the host platform. If the platform has no preference, platformBrightness defaults to Brightness.light.
+      (usedTheme == UsedTheme.SYSTEM &&
+          window.platformBrightness == Brightness.dark);
 
   NeumorphicThemeData get current {
     if (useDark) {
@@ -41,15 +40,14 @@ class ThemeWrapper {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is ThemeWrapper &&
-              runtimeType == other.runtimeType &&
-              theme == other.theme &&
-              darkTheme == other.darkTheme &&
-              usedTheme == other.usedTheme;
+      other is ThemeWrapper &&
+          runtimeType == other.runtimeType &&
+          theme == other.theme &&
+          darkTheme == other.darkTheme &&
+          usedTheme == other.usedTheme;
 
   @override
-  int get hashCode =>
-      theme.hashCode ^ darkTheme.hashCode ^ usedTheme.hashCode;
+  int get hashCode => theme.hashCode ^ darkTheme.hashCode ^ usedTheme.hashCode;
 
   ThemeWrapper copyWith({
     NeumorphicThemeData theme,

@@ -58,8 +58,10 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
   })  : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
     var color = /*accent ??*/ style.color;
-    var blackShadowColor = NeumorphicColors.decorationDarkColor(intensity: style.intensity); //<-- intensity act on opacity
-    var whiteShadowColor = NeumorphicColors.decorationWhiteColor(intensity:style.intensity); //<-- intensity act on opacity
+    var blackShadowColor = NeumorphicColors.decorationDarkColor(
+        intensity: style.intensity); //<-- intensity act on opacity
+    var whiteShadowColor = NeumorphicColors.decorationWhiteColor(
+        intensity: style.intensity); //<-- intensity act on opacity
 
     backgroundPaint = Paint()..color = color;
 
@@ -79,7 +81,9 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
     var width = configuration.size.width;
     var height = configuration.size.height;
 
-    if (this.originOffset != offset || this.width != width || this.height != height) {
+    if (this.originOffset != offset ||
+        this.width != width ||
+        this.height != height) {
       this.width = width;
       this.height = height;
       this.originOffset = offset;
@@ -112,7 +116,9 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
               radius: radius,
             ),
             intensity: style.surfaceIntensity,
-            source: style.shape == NeumorphicShape.concave ? this.gradientLightSource : this.gradientLightSource.invert(),
+            source: style.shape == NeumorphicShape.concave
+                ? this.gradientLightSource
+                : this.gradientLightSource.invert(),
           );
       } else {
         layerRect = Rect.fromLTRB(
@@ -125,13 +131,16 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
           ..shader = getGradientShader(
             gradientRect: rectRect,
             intensity: style.surfaceIntensity,
-            source: style.shape == NeumorphicShape.concave ? this.gradientLightSource : this.gradientLightSource.invert(),
+            source: style.shape == NeumorphicShape.concave
+                ? this.gradientLightSource
+                : this.gradientLightSource.invert(),
           );
       }
     }
 
     var shapeRadius = (shape?.borderRadius?.topLeft ?? Radius.zero);
-    if ((this.invalidate || this.shapeRadius != shapeRadius) && !shape.isCircle) {
+    if ((this.invalidate || this.shapeRadius != shapeRadius) &&
+        !shape.isCircle) {
       this.shapeRadius = shapeRadius;
 
       var cornerRadius = Radius.circular(this.shapeRadius.x.clamp(
@@ -148,11 +157,14 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
     LightSource source = style.lightSource;
     double depth = style.depth.abs().clamp(0.0, this.radius / 3);
 
-    if (this.invalidate || this.externalShadowLightSource != source || this.depth != depth) {
+    if (this.invalidate ||
+        this.externalShadowLightSource != source ||
+        this.depth != depth) {
       this.depth = depth;
       this.externalShadowLightSource = source;
       this.gradientLightSource = source;
-      this.depthOffset = this.externalShadowLightSource.offset.scale(this.depth, this.depth);
+      this.depthOffset =
+          this.externalShadowLightSource.offset.scale(this.depth, this.depth);
       this.maskFilter = MaskFilter.blur(BlurStyle.normal, this.depth);
       this.whiteShadowPaint..maskFilter = this.maskFilter;
       this.blackShadowPaint..maskFilter = this.maskFilter;
@@ -178,8 +190,12 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
       }
     }
 
-    whiteShadowPaint..color = NeumorphicColors.decorationWhiteColor(intensity: style.intensity); //<-- intensity act on opacity;
-    blackShadowPaint..color = NeumorphicColors.decorationDarkColor(intensity:style.intensity); //<-- intensity act on opacity;
+    whiteShadowPaint
+      ..color = NeumorphicColors.decorationWhiteColor(
+          intensity: style.intensity); //<-- intensity act on opacity;
+    blackShadowPaint
+      ..color = NeumorphicColors.decorationDarkColor(
+          intensity: style.intensity); //<-- intensity act on opacity;
 
     //print("style.depth ${style.depth}");
 
@@ -199,8 +215,9 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
 
       canvas.drawCircle(centerOffset, radius, backgroundPaint);
 
-      if(this.drawGradient) {
-        if (style.shape == NeumorphicShape.concave || style.shape == NeumorphicShape.convex) {
+      if (this.drawGradient) {
+        if (style.shape == NeumorphicShape.concave ||
+            style.shape == NeumorphicShape.convex) {
           canvas.drawCircle(centerOffset, radius, gradientPaint);
         }
       }
@@ -220,8 +237,9 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
 
       canvas.drawRRect(buttonRRect, backgroundPaint);
 
-      if(this.drawGradient) {
-        if (style.shape == NeumorphicShape.concave || style.shape == NeumorphicShape.convex) {
+      if (this.drawGradient) {
+        if (style.shape == NeumorphicShape.concave ||
+            style.shape == NeumorphicShape.convex) {
           canvas.drawRRect(this.buttonRRect, gradientPaint);
         }
       }

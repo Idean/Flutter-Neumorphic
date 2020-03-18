@@ -2,7 +2,6 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 
 class RRectClipper extends CustomClipper<Path> {
-
   final BorderRadius borderRadius;
 
   RRectClipper({this.borderRadius});

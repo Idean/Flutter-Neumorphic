@@ -54,7 +54,8 @@ class Neumorphic extends StatelessWidget {
   final EdgeInsets margin;
   final NeumorphicBoxShape boxShape;
   final Duration duration;
-  final bool drawSurfaceAboveChild; //if true => boxDecoration & foreground decoration, else => boxDecoration does all the work
+  final bool
+      drawSurfaceAboveChild; //if true => boxDecoration & foreground decoration, else => boxDecoration does all the work
 
   Neumorphic({
     Key key,
@@ -70,8 +71,10 @@ class Neumorphic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final boxShape = this.boxShape ?? NeumorphicBoxShape.roundRect();
-    final theme = NeumorphicTheme.currentTheme(context) ?? neumorphicDefaultTheme;
-    final NeumorphicStyle style = (this.style ?? NeumorphicStyle()).copyWithThemeIfNull(theme);
+    final theme =
+        NeumorphicTheme.currentTheme(context) ?? neumorphicDefaultTheme;
+    final NeumorphicStyle style =
+        (this.style ?? NeumorphicStyle()).copyWithThemeIfNull(theme);
 
     return _NeumorphicContainer(
       padding: this.padding,
@@ -118,7 +121,6 @@ class _NeumorphicContainerState extends State<_NeumorphicContainer> {
         duration: widget.duration,
         child: NeumorphicBoxShapeClipper(
           shape: widget.boxShape,
-
           child: Padding(
             padding: widget.padding,
             child: widget.child,

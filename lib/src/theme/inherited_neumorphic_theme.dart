@@ -14,7 +14,11 @@ class NeumorphicThemeInherited extends InheritedWidget {
   final ThemeWrapper value;
   final ValueChanged<ThemeWrapper> onChanged;
 
-  NeumorphicThemeInherited({Key key, @required this.child, @required this.value, @required this.onChanged});
+  NeumorphicThemeInherited(
+      {Key key,
+      @required this.child,
+      @required this.value,
+      @required this.onChanged});
 
   @override
   bool updateShouldNotify(NeumorphicThemeInherited old) => value != old.value;

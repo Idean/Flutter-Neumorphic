@@ -10,7 +10,6 @@ export 'theme_wrapper.dart';
 export 'used_theme.dart';
 export 'inherited_neumorphic_theme.dart';
 
-
 /// The NeumorphicTheme (provider)
 /// 1. Defines the used neumorphic theme used in child widgets
 ///
@@ -63,7 +62,8 @@ class NeumorphicTheme extends StatefulWidget {
 
   static NeumorphicThemeInherited of(BuildContext context) {
     try {
-      return context.dependOnInheritedWidgetOfExactType<NeumorphicThemeInherited>();
+      return context
+          .dependOnInheritedWidgetOfExactType<NeumorphicThemeInherited>();
     } catch (t) {
       return null;
     }

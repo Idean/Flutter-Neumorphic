@@ -62,17 +62,15 @@ class __PageState extends State<_Page> {
           Align(
             alignment: Alignment.centerLeft,
             child: NeumorphicButton(
+              padding: const EdgeInsets.all(18.0),
               onClick: () {
                 Navigator.of(context).pop();
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
               boxShape: NeumorphicBoxShape.circle(),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Icon(
-                  Icons.navigate_before,
-                  color: _iconsColor(),
-                ),
+              child: Icon(
+                Icons.navigate_before,
+                color: _iconsColor(),
               ),
             ),
           ),
@@ -86,6 +84,7 @@ class __PageState extends State<_Page> {
           Align(
             alignment: Alignment.centerRight,
             child: NeumorphicButton(
+              padding: const EdgeInsets.all(18.0),
               onClick: () {
                 setState(() {
                   _useDark = !_useDark;
@@ -94,12 +93,9 @@ class __PageState extends State<_Page> {
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
               boxShape: NeumorphicBoxShape.circle(),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Icon(
-                  Icons.favorite_border,
-                  color: _iconsColor(),
-                ),
+              child: Icon(
+                Icons.favorite_border,
+                color: _iconsColor(),
               ),
             ),
           ),
@@ -176,42 +172,36 @@ class __PageState extends State<_Page> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         NeumorphicButton(
+          padding: const EdgeInsets.all(18.0),
           onClick: () {},
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
           boxShape: NeumorphicBoxShape.circle(),
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Icon(
-              Icons.skip_previous,
-              color: _iconsColor(),
-            ),
+          child: Icon(
+            Icons.skip_previous,
+            color: _iconsColor(),
           ),
         ),
         const SizedBox(width: 12),
         NeumorphicButton(
+          padding: const EdgeInsets.all(24.0),
           onClick: () {},
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
           boxShape: NeumorphicBoxShape.circle(),
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Icon(
-              Icons.play_arrow,
-              size: 42,
-              color: _iconsColor(),
-            ),
+          child: Icon(
+            Icons.play_arrow,
+            size: 42,
+            color: _iconsColor(),
           ),
         ),
         const SizedBox(width: 12),
         NeumorphicButton(
+          padding: const EdgeInsets.all(18.0),
           onClick: () {},
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
           boxShape: NeumorphicBoxShape.circle(),
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Icon(
-              Icons.skip_next,
-              color: _iconsColor(),
-            ),
+          child: Icon(
+            Icons.skip_next,
+            color: _iconsColor(),
           ),
         ),
       ],
