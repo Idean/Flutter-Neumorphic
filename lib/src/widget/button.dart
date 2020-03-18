@@ -56,6 +56,7 @@ class NeumorphicButton extends StatefulWidget {
   final NeumorphicButtonClickListener onClick;
   final bool drawSurfaceAboveChild;
   final bool isEnabled;
+  final bool provideHapticFeedback;
 
   const NeumorphicButton({
     Key key,
@@ -72,6 +73,7 @@ class NeumorphicButton extends StatefulWidget {
     this.minDistance = 0,
     this.style = const NeumorphicStyle(),
     this.isEnabled = true,
+    this.provideHapticFeedback = true,
   }) : super(key: key);
 
   @override
@@ -122,7 +124,9 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
     hasFinishedAnimationDown = true;
 
     //haptic vibration
-    HapticFeedback.lightImpact();
+    if(widget.provideHapticFeedback) {
+      HapticFeedback.lightImpact();
+    }
 
     if (widget.onClick != null) {
       widget.onClick();
@@ -132,6 +136,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   }
 
   bool hasDisposed = false;
+
   @override
   void dispose() {
     super.dispose();
