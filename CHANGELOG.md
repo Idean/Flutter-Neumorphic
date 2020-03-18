@@ -1,3 +1,13 @@
+## 1.0.2
+
+* Fixed changing size/rotate re-draw bug
+* BoxShape is not anymore an element of Style
+* Added `isEnable` property on multiple widgets
+* Refactored the Sample
+* Tried support for web & desktop (mac)
+* Added surfaceIntensity (for concave / convex)
+* Small changes on Neumorphic colors (less dark)
+
 ## 1.0.1
 
 * Improved performances
