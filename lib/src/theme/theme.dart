@@ -156,6 +156,8 @@ class NeumorphicStyle {
   final double _surfaceIntensity;
   final LightSource lightSource;
 
+  final bool oppositeShadowLightSource;
+
   final NeumorphicShape shape;
   final NeumorphicThemeData theme;
 
@@ -166,6 +168,7 @@ class NeumorphicStyle {
     double depth,
     double intensity,
     double surfaceIntensity = 0.25,
+    this.oppositeShadowLightSource = false,
   })  : this._depth = depth,
         this.theme = null,
         this._intensity = intensity,
@@ -177,6 +180,7 @@ class NeumorphicStyle {
     this.shape = _defaultShape,
     this.lightSource,
     this.color,
+    this.oppositeShadowLightSource = false,
     double depth,
     double intensity,
     double surfaceIntensity = 0.25,
@@ -200,6 +204,7 @@ class NeumorphicStyle {
         depth: this.depth ?? theme.depth,
         intensity: this.intensity ?? theme.intensity,
         surfaceIntensity: this.surfaceIntensity,
+        oppositeShadowLightSource: this.oppositeShadowLightSource,
         lightSource: this.lightSource ?? theme.lightSource);
   }
 
@@ -213,6 +218,7 @@ class NeumorphicStyle {
           _intensity == other._intensity &&
           _surfaceIntensity == other._surfaceIntensity &&
           lightSource == other.lightSource &&
+          oppositeShadowLightSource == other.oppositeShadowLightSource &&
           shape == other.shape &&
           theme == other.theme;
 
@@ -223,6 +229,7 @@ class NeumorphicStyle {
       _intensity.hashCode ^
       _surfaceIntensity.hashCode ^
       lightSource.hashCode ^
+      oppositeShadowLightSource.hashCode ^
       shape.hashCode ^
       theme.hashCode;
 
@@ -233,6 +240,7 @@ class NeumorphicStyle {
     double surfaceIntensity,
     LightSource lightSource,
     double borderRadius,
+    bool oppositeShadowLightSource,
     NeumorphicShape shape,
   }) {
     return NeumorphicStyle._withTheme(
@@ -242,13 +250,14 @@ class NeumorphicStyle {
       intensity: intensity ?? this.intensity,
       surfaceIntensity: surfaceIntensity ?? this.surfaceIntensity,
       lightSource: lightSource ?? this.lightSource,
+      oppositeShadowLightSource: oppositeShadowLightSource ?? this.oppositeShadowLightSource,
       shape: shape ?? this.shape,
     );
   }
 
   @override
   String toString() {
-    return 'NeumorphicStyle{color: $color, _depth: $_depth, intensity: $intensity, lightSource: $lightSource, shape: $shape, theme: $theme}';
+    return 'NeumorphicStyle{color: $color, _depth: $_depth, intensity: $intensity, lightSource: $lightSource, shape: $shape, theme: $theme, oppositeShadowLightSource: $oppositeShadowLightSource}';
   }
 }
 //endregion

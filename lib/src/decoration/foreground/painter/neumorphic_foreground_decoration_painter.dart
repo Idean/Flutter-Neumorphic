@@ -45,7 +45,7 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
   Offset whiteShadowOffset;
   Offset blackShadowOffset;
 
-  LightSource externalShadowLightSource;
+  LightSource gradientLightSource;
   bool enabled;
 
   NeumorphicForegroundDecorationPainter({
@@ -101,7 +101,7 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
       this.radius = min(middleWidth, middleHeight);
       this.centerOffset = offset.translate(middleWidth, middleHeight);
 
-      this.externalShadowLightSource = style.lightSource;
+      this.gradientLightSource = style.lightSource;
 
       if (shape.isCircle) {
         layerRect = Rect.fromCircle(
@@ -116,8 +116,8 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
             ),
             intensity: style.surfaceIntensity,
             source: style.shape == NeumorphicShape.concave
-                ? this.externalShadowLightSource
-                : this.externalShadowLightSource.invert(),
+                ? this.gradientLightSource
+                : this.gradientLightSource.invert(),
           );
       } else {
         layerRect = Rect.fromLTRB(
@@ -131,8 +131,8 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
             gradientRect: rectRect,
             intensity: style.surfaceIntensity,
             source: style.shape == NeumorphicShape.concave
-                ? this.externalShadowLightSource
-                : this.externalShadowLightSource.invert(),
+                ? this.gradientLightSource
+                : this.gradientLightSource.invert(),
           );
       }
     }
@@ -154,16 +154,16 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
       this.buttonRRect = RRect.fromRectAndRadius(rectRect, this.cornerRadius);
     }
 
-    LightSource source = style.lightSource;
+    LightSource gradientLightSource = style.lightSource;
     double depth = style.depth.abs().clamp(0.0, this.radius / 3);
 
     if (this.invalidate ||
-        this.externalShadowLightSource != source ||
+        this.gradientLightSource != gradientLightSource ||
         this.depth != depth) {
       this.depth = depth;
-      this.externalShadowLightSource = source;
+      this.gradientLightSource = gradientLightSource;
       this.depthOffset =
-          this.externalShadowLightSource.offset.scale(this.depth, this.depth);
+          this.gradientLightSource.offset.scale(this.depth, this.depth);
       this.maskFilter = MaskFilter.blur(BlurStyle.normal, this.depth);
       this.whiteShadowPaint..maskFilter = this.maskFilter;
       this.blackShadowPaint..maskFilter = this.maskFilter;

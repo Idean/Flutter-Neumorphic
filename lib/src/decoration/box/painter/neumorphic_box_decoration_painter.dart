@@ -154,15 +154,20 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
       this.buttonRRect = RRect.fromRectAndRadius(rectRect, this.cornerRadius);
     }
 
-    LightSource source = style.lightSource;
+    LightSource externalShadowLightSource = style.lightSource;
+    if(style.oppositeShadowLightSource){
+      externalShadowLightSource = externalShadowLightSource.invert();
+    }
+    LightSource gradientLightSource = style.lightSource;
     double depth = style.depth.abs().clamp(0.0, this.radius / 3);
 
     if (this.invalidate ||
-        this.externalShadowLightSource != source ||
+        this.externalShadowLightSource != externalShadowLightSource ||
+        this.gradientLightSource != gradientLightSource ||
         this.depth != depth) {
       this.depth = depth;
-      this.externalShadowLightSource = source;
-      this.gradientLightSource = source;
+      this.externalShadowLightSource = externalShadowLightSource;
+      this.gradientLightSource = gradientLightSource;
       this.depthOffset =
           this.externalShadowLightSource.offset.scale(this.depth, this.depth);
       this.maskFilter = MaskFilter.blur(BlurStyle.normal, this.depth);

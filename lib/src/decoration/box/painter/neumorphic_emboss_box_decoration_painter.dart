@@ -36,7 +36,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
 
   Radius cornerRadius;
 
-  LightSource source;
+  LightSource shadowLightSource;
   Color backgroundColor;
 
   RRect buttonRRect;
@@ -105,16 +105,20 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
           RRect.fromRectAndRadius(backgroundRect, this.cornerRadius);
     }
 
-    LightSource source = style.lightSource;
+    LightSource shadowLightSource = style.lightSource;
+    if(style.oppositeShadowLightSource){
+      shadowLightSource = shadowLightSource.invert();
+    }
+
     var depth = style.depth.abs().clamp(0.0, radius / 5);
     var backgroundColor = /*accent ??*/ style.color;
     //print("accent: $accent");
     if (this.invalidate ||
-        this.source != source ||
+        this.shadowLightSource != shadowLightSource ||
         this.depth != depth ||
         this.backgroundColor != backgroundColor) {
       this.depth = depth;
-      this.source = source;
+      this.shadowLightSource = shadowLightSource;
       this.backgroundColor = backgroundColor;
 
       backgroundPaint..color = backgroundColor;
@@ -125,17 +129,17 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
 
       if (shape.isCircle) {
         whiteShadowMaskPaintOffset = circleOffset.translate(
-          this.depth * this.source.dx,
-          this.depth * this.source.dy,
+          this.depth * this.shadowLightSource.dx,
+          this.depth * this.shadowLightSource.dy,
         );
         blackShadowMaskPaintOffset = circleOffset.translate(
-          -this.depth * this.source.dx,
-          -this.depth * this.source.dy,
+          -this.depth * this.shadowLightSource.dx,
+          -this.depth * this.shadowLightSource.dy,
         );
       } else {
         whiteShadowMaskRect = RRect.fromRectAndRadius(
             getWhiteShadowMaskRect(
-              this.source,
+              this.shadowLightSource,
               configuration.size,
               offset,
               this.depth,
@@ -143,7 +147,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
             cornerRadius);
         blackShadowMaskRect = RRect.fromRectAndRadius(
             getBlackShadowMaskRect(
-              this.source,
+              this.shadowLightSource,
               configuration.size,
               offset,
               this.depth,

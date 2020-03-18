@@ -1,3 +1,4 @@
+import 'package:example/tips/tips_home.dart';
 import 'package:example/widgets/widgets_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -78,6 +79,13 @@ class FullSampleHomePage extends StatelessWidget {
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return WidgetsHome();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "Tips",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return TipsHome();
                         }));
                       }),
                   SizedBox(height: 12),

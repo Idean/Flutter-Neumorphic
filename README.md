@@ -20,7 +20,7 @@ https://pub.dartlang.org/packages/flutter_neumorphic)
 
 ```dart
 dependencies:
-  flutter_neumorphic: ^1.0.1
+  flutter_neumorphic: ^1.0.2+1
 ```
 
 The in your .dart files 
