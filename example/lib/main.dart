@@ -62,18 +62,24 @@ class MyHomePage extends StatelessWidget {
                 style: NeumorphicStyle(shape: NeumorphicShape.flat),
                 boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
                 padding: const EdgeInsets.all(12.0),
-                child: Text("Toggle Theme", style: TextStyle(color: _textColor(context)),)),
+                child: Text(
+                  "Toggle Theme",
+                  style: TextStyle(color: _textColor(context)),
+                )),
             NeumorphicButton(
                 margin: EdgeInsets.only(top: 12),
                 onClick: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
                     return FullSampleHomePage();
                   }));
                 },
                 style: NeumorphicStyle(shape: NeumorphicShape.flat),
                 boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
                 padding: const EdgeInsets.all(12.0),
-                child: Text("Go to full sampple", style: TextStyle(color: _textColor(context)),)),
+                child: Text(
+                  "Go to full sampple",
+                  style: TextStyle(color: _textColor(context)),
+                )),
           ],
         ),
       ),
