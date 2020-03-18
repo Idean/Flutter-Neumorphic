@@ -7,6 +7,7 @@
 * Tried support for web & desktop (mac)
 * Added surfaceIntensity (for concave / convex)
 * Small changes on Neumorphic colors (less dark)
+* Removed border (add Neumorphic inside Neumorphic to reproduce)
 
 ## 1.0.1
 
