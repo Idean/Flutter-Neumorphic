@@ -1,3 +1,7 @@
+## 1.0.2+1
+
+* Fixed default padding of checkboxes
+
 ## 1.0.2
 
 * Fixed changing size/rotate re-draw bug
