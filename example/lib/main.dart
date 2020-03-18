@@ -77,7 +77,7 @@ class MyHomePage extends StatelessWidget {
                 boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
-                  "Go to full sampple",
+                  "Go to full sample",
                   style: TextStyle(color: _textColor(context)),
                 )),
           ],
