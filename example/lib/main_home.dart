@@ -17,12 +17,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: FullSampleHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class FullSampleHomePage extends StatelessWidget {
   Widget _buildButton({String text, VoidCallback onClick}) {
     return NeumorphicButton(
       margin: EdgeInsets.only(bottom: 12),
