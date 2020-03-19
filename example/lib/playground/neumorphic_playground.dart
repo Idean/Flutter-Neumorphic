@@ -33,7 +33,7 @@ class __PageState extends State<_Page> {
   final Color buttonInnactiveColor = Colors.grey;
 
   LightSource lightSource = LightSource.topLeft;
-  NeumorphicShape shape = NeumorphicShape.concave;
+  NeumorphicShape shape = NeumorphicShape.flat;
   NeumorphicBoxShape boxShape = NeumorphicBoxShape.roundRect();
   double depth = 5;
   double intensity = 0.5;
