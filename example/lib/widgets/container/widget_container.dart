@@ -1,4 +1,5 @@
 import 'package:example/lib/Code.dart';
+import 'package:example/lib/ThemeConfigurator.dart';
 import 'package:example/lib/color_selector.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +49,9 @@ class _PageState extends State<_Page> {
       child: Scaffold(
         appBar: TopBar(
           title: "Container",
+          actions: <Widget>[
+            ThemeConfigurator(),
+          ],
         ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
@@ -508,9 +512,22 @@ Neumorphic(
                 ),
                 style: NeumorphicStyle(
                   surfaceIntensity: 1,
-                  intensity: 1,
                   shape: NeumorphicShape.concave,
-                  depth: 10.0,
+                ),
+              ),
+              SizedBox(width: 12),
+              Neumorphic(
+                child: Image.asset(
+                  "assets/images/weeknd.jpg",
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.cover,
+                ),
+                drawSurfaceAboveChild: true,
+                margin: EdgeInsets.all(8),
+                style: NeumorphicStyle(
+                  surfaceIntensity: 1,
+                  shape: NeumorphicShape.concave,
                 ),
               ),
               SizedBox(width: 12),
@@ -525,26 +542,7 @@ Neumorphic(
                 margin: EdgeInsets.all(8),
                 style: NeumorphicStyle(
                   intensity: 1,
-                  surfaceIntensity: 1,
-                  shape: NeumorphicShape.concave,
-                  depth: 10.0,
-                ),
-              ),
-              SizedBox(width: 12),
-              Neumorphic(
-                child: Image.asset(
-                  "assets/images/weeknd.jpg",
-                  height: 100,
-                  width: 100,
-                  fit: BoxFit.cover,
-                ),
-                drawSurfaceAboveChild: true,
-                margin: EdgeInsets.all(8),
-                style: NeumorphicStyle(
-                  intensity: 1,
-                  surfaceIntensity: 1,
                   shape: NeumorphicShape.convex,
-                  depth: 10.0,
                 ),
               ),
             ],
@@ -563,9 +561,7 @@ Neumorphic(
                 margin: EdgeInsets.all(8),
                 style: NeumorphicStyle(
                   surfaceIntensity: 1,
-                  intensity: 1,
                   shape: NeumorphicShape.concave,
-                  depth: 10.0,
                 ),
               ),
               SizedBox(width: 12),
@@ -581,9 +577,7 @@ Neumorphic(
                 boxShape: NeumorphicBoxShape.circle(),
                 style: NeumorphicStyle(
                   surfaceIntensity: 1,
-                  intensity: 1,
                   shape: NeumorphicShape.concave,
-                  depth: 10.0,
                 ),
               ),
               SizedBox(width: 12),
@@ -599,9 +593,7 @@ Neumorphic(
                 boxShape: NeumorphicBoxShape.circle(),
                 style: NeumorphicStyle(
                   surfaceIntensity: 1,
-                  intensity: 1,
                   shape: NeumorphicShape.convex,
-                  depth: 10.0,
                 ),
               ),
             ],

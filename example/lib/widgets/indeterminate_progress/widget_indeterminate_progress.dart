@@ -1,4 +1,5 @@
 import 'package:example/lib/Code.dart';
+import 'package:example/lib/ThemeConfigurator.dart';
 import 'package:example/lib/color_selector.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,9 @@ class _PageState extends State<_Page> {
       child: Scaffold(
         appBar: TopBar(
           title: "IndeterminateProgress",
+          actions: <Widget>[
+            ThemeConfigurator(),
+          ],
         ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
