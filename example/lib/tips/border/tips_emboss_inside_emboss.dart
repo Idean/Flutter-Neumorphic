@@ -1,6 +1,5 @@
 import 'package:example/lib/Code.dart';
-import 'package:example/lib/ThemeColorSelector.dart';
-import 'package:example/lib/color_selector.dart';
+import 'package:example/lib/ThemeConfigurator.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -29,7 +28,7 @@ class _WidgetPageState extends State<TipsRecursiveeEmbossPage> {
         lightSource: LightSource.topLeft,
         accentColor: NeumorphicColors.accent,
         depth: 4,
-        intensity: 0.5,
+        intensity: 0.6,
       ),
       child: _Page(),
     );
@@ -50,12 +49,7 @@ class _PageState extends State<_Page> {
         appBar: TopBar(
           title: "Emboss Recursive",
           actions: <Widget>[
-            Row(
-              children: <Widget>[
-                Text("Color : "),
-                ThemeColorSelector(),
-              ],
-            )
+            ThemeConfigurator(),
           ],
         ),
         backgroundColor: Colors.transparent,
@@ -93,7 +87,10 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
       element = Neumorphic(
         padding: EdgeInsets.all(20),
         boxShape: NeumorphicBoxShape.circle(),
-        style: NeumorphicStyle(depth: -8, oppositeShadowLightSource: (reverseEachPair && i % 2 == 0)),
+        style: NeumorphicStyle(
+          depth: -(NeumorphicTheme.depth(context).abs()), //force negative
+          oppositeShadowLightSource: (reverseEachPair && i % 2 == 0),
+        ),
         child: element,
       );
     }

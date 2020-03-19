@@ -69,6 +69,10 @@ class NeumorphicTheme extends StatefulWidget {
     }
   }
 
+  static void update(BuildContext context, NeumorphicThemeUpdater updater) {
+    return of(context).update(updater);
+  }
+
   static bool isUsingDark(BuildContext context) {
     return of(context).isUsingDark;
   }
@@ -87,6 +91,14 @@ class NeumorphicTheme extends StatefulWidget {
 
   static Color disabledColor(BuildContext context) {
     return currentTheme(context).disabledColor;
+  }
+
+  static double intensity(BuildContext context) {
+    return currentTheme(context).intensity;
+  }
+
+  static double depth(BuildContext context) {
+    return currentTheme(context).depth;
   }
 
   static NeumorphicThemeData currentTheme(BuildContext context) {

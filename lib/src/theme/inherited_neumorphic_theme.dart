@@ -9,7 +9,7 @@ export 'theme.dart';
 export 'theme_wrapper.dart';
 export 'used_theme.dart';
 
-typedef ThemeUpdater = NeumorphicThemeData Function(NeumorphicThemeData current);
+typedef NeumorphicThemeUpdater = NeumorphicThemeData Function(NeumorphicThemeData current);
 
 class NeumorphicThemeInherited extends InheritedWidget {
   final Widget child;
@@ -51,7 +51,7 @@ class NeumorphicThemeInherited extends InheritedWidget {
     }
   }
 
-  void update(ThemeUpdater themeUpdater) {
+  void update(NeumorphicThemeUpdater themeUpdater) {
     final update = themeUpdater(value.current);
     if (value.useDark) {
       final newValue = value.copyWith(darkTheme: update);
