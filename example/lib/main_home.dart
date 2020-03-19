@@ -81,6 +81,7 @@ class FullSampleHomePage extends StatelessWidget {
                           return WidgetsHome();
                         }));
                       }),
+                  SizedBox(height: 24),
                   _buildButton(
                       text: "Tips",
                       onClick: () {

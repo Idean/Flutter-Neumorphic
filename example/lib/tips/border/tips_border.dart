@@ -137,7 +137,6 @@ class _PageState extends State<_Page> {
                   shape: NeumorphicShape.convex,
                 ),
               ),
-              _EmbossmbossWidget(),
               SizedBox(height: 30),
             ],
           ),
@@ -169,156 +168,60 @@ class _CustomWidgetState extends State<_CustomWidget> {
   Widget _buildWidget(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(12),
-      child: Row(
-        children: <Widget>[
-          Text(
-            widget.title,
-            style: TextStyle(color: _textColor(context)),
-          ),
-          SizedBox(width: 12),
-          Neumorphic(
-            padding: EdgeInsets.all(20),
-            boxShape: NeumorphicBoxShape.circle(),
-            style: widget.firstStyle,
-            child: Neumorphic(
-              boxShape: NeumorphicBoxShape.circle(),
-              style: widget.secondStyle,
-              child: SizedBox(
-                height: 100,
-                width: 100,
-              ),
-            ),
-          ),
-          SizedBox(width: 12),
-          Text(
-            "opposite\nchild\nlightsource",
-            style: TextStyle(color: _textColor(context)),
-          ),
-          SizedBox(width: 12),
-          Neumorphic(
-            padding: EdgeInsets.all(20),
-            boxShape: NeumorphicBoxShape.circle(),
-            style: widget.firstStyle,
-            child: Neumorphic(
-              boxShape: NeumorphicBoxShape.circle(),
-              style: widget.secondStyle.copyWith(oppositeShadowLightSource: true),
-              child: SizedBox(
-                height: 100,
-                width: 100,
-              ),
-            ),
-          ),
-          SizedBox(width: 12),
-        ],
-      ),
-    );
-  }
-
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        _buildWidget(context),
-        _buildCode(context),
-      ],
-    );
-  }
-}
-
-class _EmbossmbossWidget extends StatefulWidget {
-  @override
-  createState() => _EmbossmbossWidgetState();
-}
-
-class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
-  Widget _buildCode(BuildContext context) {
-    return Code("""
-
-""");
-  }
-
-  Widget _generateEmbosss({int number, Widget child, bool reverseEachPair = false}) {
-    Widget element = child;
-    for(int i=0;i<number;++i){
-      element = Neumorphic(
-        padding: EdgeInsets.all(20),
-        boxShape: NeumorphicBoxShape.circle(),
-        style: NeumorphicStyle(
-          depth: -8,
-          oppositeShadowLightSource: (reverseEachPair && i%2 ==0)
-        ),
-        child: element,
-      );
-    }
-    return element;
-  }
-
-  Widget _buildWidget(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(12),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Row(
             children: <Widget>[
-              Text(
-                "Emboss\ninside Emboss\ninside Emboss\ninside Emboss",
-                style: TextStyle(color: _textColor(context)),
-              ),
-              SizedBox(width: 12),
-              _generateEmbosss(
-                number: 5,
-                child: SizedBox(
-                  height: 10,
-                  width: 10,
+              Container(
+                margin: EdgeInsets.only(left: 12, right: 12),
+                width: 100,
+                child: Text(
+                  widget.title,
+                  style: TextStyle(color: _textColor(context)),
                 ),
               ),
-              SizedBox(width: 12),
-              Text(
-                "Each pair number\nLightsource is reversed",
-                style: TextStyle(color: _textColor(context)),
-              ),
-              SizedBox(width: 12),
-              _generateEmbosss(
-                number: 5,
-                reverseEachPair: true,
-                child: SizedBox(
-                  height: 10,
-                  width: 10,
+              Neumorphic(
+                padding: EdgeInsets.all(20),
+                boxShape: NeumorphicBoxShape.circle(),
+                style: widget.firstStyle,
+                child: Neumorphic(
+                  boxShape: NeumorphicBoxShape.circle(),
+                  style: widget.secondStyle,
+                  child: SizedBox(
+                    height: 100,
+                    width: 100,
+                  ),
                 ),
               ),
               SizedBox(width: 12),
             ],
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 12),
           Row(
             children: <Widget>[
-              Text(
-                "Emboss\ninside Emboss\ninside Emboss\ninside Emboss",
-                style: TextStyle(color: _textColor(context)),
-              ),
-              SizedBox(width: 12),
-              _generateEmbosss(
-                number: 4,
-                child: SizedBox(
-                  height: 10,
-                  width: 10,
+              Container(
+                margin: EdgeInsets.only(left: 12, right: 12),
+                width: 100,
+                child: Text(
+                  "opposite\nchild\nlightsource",
+                  style: TextStyle(color: _textColor(context)),
                 ),
               ),
-              SizedBox(width: 12),
-              Text(
-                "Each pair number\nLightsource is reversed",
-                style: TextStyle(color: _textColor(context)),
-              ),
-              SizedBox(width: 12),
-              _generateEmbosss(
-                number: 4,
-                reverseEachPair: true,
-                child: SizedBox(
-                  height: 10,
-                  width: 10,
+              Neumorphic(
+                padding: EdgeInsets.all(20),
+                boxShape: NeumorphicBoxShape.circle(),
+                style: widget.firstStyle,
+                child: Neumorphic(
+                  boxShape: NeumorphicBoxShape.circle(),
+                  style: widget.secondStyle.copyWith(oppositeShadowLightSource: true),
+                  child: SizedBox(
+                    height: 100,
+                    width: 100,
+                  ),
                 ),
               ),
-              SizedBox(width: 12),
             ],
           ),
         ],

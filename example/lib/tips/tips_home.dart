@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'border/tips_border.dart';
+import 'border/tips_emboss_inside_emboss.dart';
 
 class TipsHome extends StatelessWidget {
   Widget _buildButton({String text, VoidCallback onClick}) {
@@ -44,6 +45,13 @@ class TipsHome extends StatelessWidget {
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return TipsBorderPage();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "Recursive Emboss",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return TipsRecursiveeEmbossPage();
                         }));
                       }),
                 ],
