@@ -150,11 +150,13 @@ class _NeumorphicRadioState<T> extends State<NeumorphicRadio<T>> {
       widget.value != null && widget.value == widget.groupValue;
 
   void _onClick() {
-    if (widget.value == widget.groupValue) {
-      //unselect
-      widget.onChanged(null);
-    } else {
-      widget.onChanged(widget.value);
+    if(widget.onChanged != null) {
+      if (widget.value == widget.groupValue) {
+        //unselect
+        widget.onChanged(null);
+      } else {
+        widget.onChanged(widget.value);
+      }
     }
   }
 

@@ -94,7 +94,7 @@ class NeumorphicTheme extends StatefulWidget {
       final provider = NeumorphicTheme.of(context);
       return provider.current;
     } catch (t) {
-      return null;
+      return neumorphicDefaultTheme;
     }
   }
 }
