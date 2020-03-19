@@ -27,8 +27,8 @@ class _WidgetPageState extends State<ContainerWidgetPage> {
   }
 }
 
-Color _textColor(BuildContext context){
-  if(NeumorphicTheme.isUsingDark(context))
+Color _textColor(BuildContext context) {
+  if (NeumorphicTheme.isUsingDark(context))
     return Colors.white70;
   else {
     return Colors.black;
@@ -41,8 +41,6 @@ class _Page extends StatefulWidget {
 }
 
 class _PageState extends State<_Page> {
-
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -80,8 +78,7 @@ class _DefaultWidget extends StatefulWidget {
 }
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
-
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 Neumorphic(
     child: SizedBox(
@@ -131,8 +128,7 @@ class _CircleWidget extends StatefulWidget {
 }
 
 class _CircleWidgetState extends State<_CircleWidget> {
-
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 Neumorphic(
      boxShape: NeumorphicBoxShape.circle(),
@@ -180,8 +176,7 @@ class _RoundRectWidget extends StatefulWidget {
 }
 
 class _RoundRectWidgetState extends State<_RoundRectWidget> {
-
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 Neumorphic(
      boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
@@ -229,10 +224,9 @@ class _ColorizableWidget extends StatefulWidget {
 }
 
 class _ColorizableWidgetState extends State<_ColorizableWidget> {
-
   Color currentColor = Colors.white;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 Neumorphic(
     style: NeumorphicStyle(
@@ -258,7 +252,7 @@ Neumorphic(
           SizedBox(width: 12),
           ColorSelector(
             color: currentColor,
-            onColorChanged: (color){
+            onColorChanged: (color) {
               setState(() {
                 currentColor = color;
               });
@@ -266,11 +260,12 @@ Neumorphic(
           ),
           SizedBox(width: 12),
           Neumorphic(
-            style: NeumorphicStyle(
-                color: currentColor
-            ),
+            style: NeumorphicStyle(color: currentColor),
             boxShape: NeumorphicBoxShape.circle(),
-            child: SizedBox(height: 100, width: 100,),
+            child: SizedBox(
+              height: 100,
+              width: 100,
+            ),
           ),
         ],
       ),
@@ -286,7 +281,6 @@ Neumorphic(
       ],
     );
   }
-
 }
 
 class _FlatConcaveConvexWidget extends StatefulWidget {
@@ -295,10 +289,9 @@ class _FlatConcaveConvexWidget extends StatefulWidget {
 }
 
 class _FlatConcaveConvexWidgetState extends State<_FlatConcaveConvexWidget> {
-
   bool isChecked = false;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 Neumorphic(
     style: NeumorphicStyle(
@@ -395,8 +388,7 @@ class _EmbossWidget extends StatefulWidget {
 }
 
 class _EmbossWidgetState extends State<_EmbossWidget> {
-
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 Neumorphic(
     child: Icon(Icons.play_arrow),
@@ -460,8 +452,7 @@ class _DrawAboveWidget extends StatefulWidget {
 }
 
 class _DrawAboveWidgetState extends State<_DrawAboveWidget> {
-
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 Neumorphic(
     child: ...,
@@ -480,17 +471,60 @@ Neumorphic(
       child: Column(
         children: <Widget>[
           SizedBox(height: 12),
+          Text(
+            "DrawAbove",
+            style: TextStyle(color: _textColor(context)),
+          ),
+          SizedBox(height: 12),
+          Row(children: [
+            Container(
+              margin: EdgeInsets.all(8),
+              width: 100,
+              child: Center(child: Text("false")),
+            ),
+            SizedBox(width: 12),
+            Container(
+              margin: EdgeInsets.all(8),
+              width: 100,
+              child: Center(child: Text("true\n(concave)")),
+            ),
+            SizedBox(width: 12),
+            Container(
+              margin: EdgeInsets.all(8),
+              width: 100,
+              child: Center(child: Text("true\n(convex)")),
+            ),
+          ]),
           Row(
             children: <Widget>[
-              Text(
-                "DrawAbove",
-                style: TextStyle(color: _textColor(context)),
+              Neumorphic(
+                drawSurfaceAboveChild: false,
+                margin: EdgeInsets.all(8),
+                child: Image.asset(
+                  "assets/images/weeknd.jpg",
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.cover,
+                ),
+                style: NeumorphicStyle(
+                  surfaceIntensity: 1,
+                  intensity: 1,
+                  shape: NeumorphicShape.concave,
+                  depth: 10.0,
+                ),
               ),
               SizedBox(width: 12),
               Neumorphic(
-                drawSurfaceAboveChild: false,
-                child: Image.asset("assets/images/weeknd.jpg", height: 100, width: 100, fit: BoxFit.cover,),
+                child: Image.asset(
+                  "assets/images/weeknd.jpg",
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.cover,
+                ),
+                drawSurfaceAboveChild: true,
+                margin: EdgeInsets.all(8),
                 style: NeumorphicStyle(
+                  intensity: 1,
                   surfaceIntensity: 1,
                   shape: NeumorphicShape.concave,
                   depth: 10.0,
@@ -498,11 +532,75 @@ Neumorphic(
               ),
               SizedBox(width: 12),
               Neumorphic(
-                child: Image.asset("assets/images/weeknd.jpg", height: 100, width: 100, fit: BoxFit.cover,),
+                child: Image.asset(
+                  "assets/images/weeknd.jpg",
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.cover,
+                ),
                 drawSurfaceAboveChild: true,
+                margin: EdgeInsets.all(8),
+                style: NeumorphicStyle(
+                  intensity: 1,
+                  surfaceIntensity: 1,
+                  shape: NeumorphicShape.convex,
+                  depth: 10.0,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Neumorphic(
+                drawSurfaceAboveChild: false,
+                child: Image.asset(
+                  "assets/images/weeknd.jpg",
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.cover,
+                ),
+                boxShape: NeumorphicBoxShape.circle(),
+                margin: EdgeInsets.all(8),
                 style: NeumorphicStyle(
                   surfaceIntensity: 1,
+                  intensity: 1,
                   shape: NeumorphicShape.concave,
+                  depth: 10.0,
+                ),
+              ),
+              SizedBox(width: 12),
+              Neumorphic(
+                child: Image.asset(
+                  "assets/images/weeknd.jpg",
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.cover,
+                ),
+                drawSurfaceAboveChild: true,
+                margin: EdgeInsets.all(8),
+                boxShape: NeumorphicBoxShape.circle(),
+                style: NeumorphicStyle(
+                  surfaceIntensity: 1,
+                  intensity: 1,
+                  shape: NeumorphicShape.concave,
+                  depth: 10.0,
+                ),
+              ),
+              SizedBox(width: 12),
+              Neumorphic(
+                child: Image.asset(
+                  "assets/images/weeknd.jpg",
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.cover,
+                ),
+                drawSurfaceAboveChild: true,
+                margin: EdgeInsets.all(8),
+                boxShape: NeumorphicBoxShape.circle(),
+                style: NeumorphicStyle(
+                  surfaceIntensity: 1,
+                  intensity: 1,
+                  shape: NeumorphicShape.convex,
                   depth: 10.0,
                 ),
               ),

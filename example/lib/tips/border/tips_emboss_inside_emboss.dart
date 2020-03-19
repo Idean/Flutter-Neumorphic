@@ -1,4 +1,5 @@
 import 'package:example/lib/Code.dart';
+import 'package:example/lib/ThemeColorSelector.dart';
 import 'package:example/lib/color_selector.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
@@ -47,17 +48,13 @@ class _PageState extends State<_Page> {
       padding: EdgeInsets.all(8),
       child: Scaffold(
         appBar: TopBar(
-          title: "IndeterminateProgress",
+          title: "Emboss Recursive",
           actions: <Widget>[
-            ColorSelector(
-              color: NeumorphicTheme.baseColor(context),
-              onColorChanged: (color){
-                NeumorphicTheme.of(context).update((current) =>
-                    current.copyWith(
-                      baseColor: color
-                    )
-                );
-              },
+            Row(
+              children: <Widget>[
+                Text("Color : "),
+                ThemeColorSelector(),
+              ],
             )
           ],
         ),

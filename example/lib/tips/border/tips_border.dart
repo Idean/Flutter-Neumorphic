@@ -1,4 +1,5 @@
 import 'package:example/lib/Code.dart';
+import 'package:example/lib/ThemeColorSelector.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -46,7 +47,15 @@ class _PageState extends State<_Page> {
       padding: EdgeInsets.all(8),
       child: Scaffold(
         appBar: TopBar(
-          title: "IndeterminateProgress",
+          title: "Border",
+          actions: <Widget>[
+            Row(
+              children: <Widget>[
+                Text("Color : "),
+                ThemeColorSelector(),
+              ],
+            )
+          ],
         ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(

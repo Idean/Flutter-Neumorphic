@@ -24,7 +24,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
             child: Text(
               this.title,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 16,
                 fontWeight: FontWeight.w800,
                 color: NeumorphicTheme.isUsingDark(context) ? Colors.white70 : Colors.black87,
               ),
