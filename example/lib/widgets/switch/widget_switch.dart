@@ -28,14 +28,6 @@ class _WidgetPageState extends State<SwitchWidgetPage> {
   }
 }
 
-Color _textColor(BuildContext context){
-  if(NeumorphicTheme.isUsingDark(context))
-    return Colors.white70;
-  else {
-    return Colors.black;
-  }
-}
-
 class _Page extends StatefulWidget {
   @override
   createState() => _PageState();
@@ -106,7 +98,7 @@ NeumorphicSwitch(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicSwitch(
@@ -173,7 +165,7 @@ NeumorphicSwitch(
                 width: 100,
                 child: Text(
                   "Flat",
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -197,7 +189,7 @@ NeumorphicSwitch(
                 width: 100,
                 child: Text(
                   "Concave",
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -221,7 +213,7 @@ NeumorphicSwitch(
                 width: 100,
                 child: Text(
                   "Convex",
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -289,7 +281,7 @@ NeumorphicSwitch(
         children: <Widget>[
           Text(
             "Color",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           ColorSelector(
@@ -366,7 +358,7 @@ NeumorphicSwitch(
         children: <Widget>[
           Text(
             "Track",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           ColorSelector(
@@ -380,7 +372,7 @@ NeumorphicSwitch(
           SizedBox(width: 12),
           Text(
             "Thumb",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           ColorSelector(
@@ -459,7 +451,7 @@ NeumorphicSwitch(
                 width: 100,
                 child: Text(
                   "Enabled",
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -483,7 +475,7 @@ NeumorphicSwitch(
                 width: 100,
                 child: Text(
                   "Disabled",
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),

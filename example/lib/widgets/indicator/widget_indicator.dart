@@ -28,14 +28,6 @@ class _WidgetPageState extends State<IndicatorWidgetPage> {
   }
 }
 
-Color _textColor(BuildContext context){
-  if(NeumorphicTheme.isUsingDark(context))
-    return Colors.white70;
-  else {
-    return Colors.black;
-  }
-}
-
 class _Page extends StatefulWidget {
   @override
   createState() => _PageState();
@@ -97,7 +89,7 @@ NeumorphicIndicator(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicIndicator(
@@ -147,7 +139,7 @@ NeumorphicIndicator(
         children: <Widget>[
           Text(
             "Orientation\nHorizontal",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicIndicator(
@@ -232,7 +224,7 @@ NeumorphicIndicator(
             children: <Widget>[
               Text(
                 "Colorized",
-                style: TextStyle(color: _textColor(context)),
+                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               NeumorphicIndicator(

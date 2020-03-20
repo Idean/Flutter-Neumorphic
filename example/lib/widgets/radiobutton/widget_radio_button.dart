@@ -27,14 +27,6 @@ class _WidgetPageState extends State<RadioButtonWidgetPage> {
   }
 }
 
-Color _textColor(BuildContext context){
-  if(NeumorphicTheme.isUsingDark(context))
-    return Colors.white70;
-  else {
-    return Colors.black;
-  }
-}
-
 class _Page extends StatefulWidget {
   @override
   createState() => _PageState();
@@ -106,7 +98,7 @@ NeumorphicRadio(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicRadio(
@@ -194,7 +186,7 @@ NeumorphicRadio(
         children: <Widget>[
           Text(
             "Circle",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicRadio(
@@ -269,7 +261,7 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
         children: <Widget>[
           Text(
             "Enabled :",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicRadio(
@@ -286,7 +278,7 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
           SizedBox(width: 24),
           Text(
             "Disabled :",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicRadio(

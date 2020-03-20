@@ -28,14 +28,6 @@ class _WidgetPageState extends State<ButtonWidgetPage> {
   }
 }
 
-Color _textColor(BuildContext context){
-  if(NeumorphicTheme.isUsingDark(context))
-    return Colors.white70;
-  else {
-    return Colors.black;
-  }
-}
-
 class _Page extends StatefulWidget {
   @override
   createState() => _PageState();
@@ -103,7 +95,7 @@ NeumorphicButton(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicButton(
@@ -158,7 +150,7 @@ NeumorphicButton(
         children: <Widget>[
           Text(
             "Circle",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicButton(
@@ -216,7 +208,7 @@ NeumorphicButton(
         children: <Widget>[
           Text(
             "MinDistance -5",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicButton(
@@ -277,7 +269,7 @@ NeumorphicButton(
         children: <Widget>[
           Text(
             "Color",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           ColorSelector(
@@ -330,7 +322,7 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
         children: <Widget>[
           Text(
             "Enabled :",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicButton(
@@ -345,7 +337,7 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
           SizedBox(width: 24),
           Text(
             "Disabled :",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicButton(
@@ -416,7 +408,7 @@ NeumorphicButton(
             children: <Widget>[
               Text(
                 "Duration",
-                style: TextStyle(color: _textColor(context)),
+                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               NeumorphicButton(
@@ -481,7 +473,7 @@ NeumorphicButton(
                 width: 100,
                 child: Text(
                   "Flat",
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -505,7 +497,7 @@ NeumorphicButton(
                 width: 100,
                 child: Text(
                   "Concave",
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -529,7 +521,7 @@ NeumorphicButton(
                 width: 100,
                 child: Text(
                   "Convex",
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),

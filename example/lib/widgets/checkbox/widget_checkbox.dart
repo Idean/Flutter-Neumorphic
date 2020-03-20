@@ -28,14 +28,6 @@ class _WidgetPageState extends State<CheckboxWidgetPage> {
   }
 }
 
-Color _textColor(BuildContext context){
-  if(NeumorphicTheme.isUsingDark(context))
-    return Colors.white70;
-  else {
-    return Colors.black;
-  }
-}
-
 class _Page extends StatefulWidget {
   @override
   createState() => _PageState();
@@ -107,7 +99,7 @@ NeumorphicCheckbox(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicCheckbox(
@@ -173,7 +165,7 @@ class _ColorWidgetState extends State<_ColorWidget> {
         children: <Widget>[
           Text(
             "Colorizable",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           ColorSelector(
@@ -273,7 +265,7 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
         children: <Widget>[
           Text(
             "Enabled",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicCheckbox(
@@ -287,7 +279,7 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
           SizedBox(width: 24),
           Text(
             "Disabled",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicCheckbox(

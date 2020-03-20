@@ -27,14 +27,6 @@ class _WidgetPageState extends State<ProgressWidgetPage> {
   }
 }
 
-Color _textColor(BuildContext context){
-  if(NeumorphicTheme.isUsingDark(context))
-    return Colors.white70;
-  else {
-    return Colors.black;
-  }
-}
-
 class _Page extends StatefulWidget {
   @override
   createState() => _PageState();
@@ -97,7 +89,7 @@ Expanded(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           Expanded(
@@ -184,7 +176,7 @@ Expanded(
             children: <Widget>[
               Text(
                 "Default",
-                style: TextStyle(color: _textColor(context)),
+                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               Expanded(
@@ -247,7 +239,7 @@ Expanded(
             children: <Widget>[
               Text(
                 "Sized",
-                style: TextStyle(color: _textColor(context)),
+                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               Expanded(

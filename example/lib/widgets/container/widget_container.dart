@@ -28,14 +28,6 @@ class _WidgetPageState extends State<ContainerWidgetPage> {
   }
 }
 
-Color _textColor(BuildContext context) {
-  if (NeumorphicTheme.isUsingDark(context))
-    return Colors.white70;
-  else {
-    return Colors.black;
-  }
-}
-
 class _Page extends StatefulWidget {
   @override
   createState() => _PageState();
@@ -100,7 +92,7 @@ Neumorphic(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           Neumorphic(
@@ -149,7 +141,7 @@ Neumorphic(
         children: <Widget>[
           Text(
             "Circle",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           Neumorphic(
@@ -197,7 +189,7 @@ Neumorphic(
         children: <Widget>[
           Text(
             "RoundRect",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           Neumorphic(
@@ -251,7 +243,7 @@ Neumorphic(
         children: <Widget>[
           Text(
             "Color",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           ColorSelector(
@@ -320,7 +312,7 @@ Neumorphic(
                 width: 100,
                 child: Text(
                   "Flat",
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -339,7 +331,7 @@ Neumorphic(
                 width: 100,
                 child: Text(
                   "Concave",
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -358,7 +350,7 @@ Neumorphic(
                 width: 100,
                 child: Text(
                   "Convex",
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -413,7 +405,7 @@ Neumorphic(
             children: <Widget>[
               Text(
                 "Emboss",
-                style: TextStyle(color: _textColor(context)),
+                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               Neumorphic(
@@ -477,7 +469,7 @@ Neumorphic(
           SizedBox(height: 12),
           Text(
             "DrawAbove",
-            style: TextStyle(color: _textColor(context)),
+            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(height: 12),
           Row(children: [
