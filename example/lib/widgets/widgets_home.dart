@@ -2,6 +2,7 @@ import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+import 'background/widget_background.dart';
 import 'button/widget_button.dart';
 import 'checkbox/widget_checkbox.dart';
 import 'container/widget_container.dart';
@@ -108,6 +109,13 @@ class WidgetsHome extends StatelessWidget {
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return IndeterminateProgressWidgetPage();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "Background",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return BackgroundWidgetPage();
                         }));
                       }),
                 ],
