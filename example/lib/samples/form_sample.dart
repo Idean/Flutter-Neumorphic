@@ -1,5 +1,4 @@
 import 'package:example/lib/ThemeConfigurator.dart';
-import 'package:example/lib/back_button.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -34,8 +33,8 @@ class _Page extends StatefulWidget {
 enum Gender { MALE, FEMALE, NON_BINARY }
 
 class __PageState extends State<_Page> {
-  String firstName;
-  String lastName;
+  String firstName = "";
+  String lastName = "";
   double age = 12;
   Gender gender;
   Set<String> rides = Set();
@@ -64,7 +63,9 @@ class __PageState extends State<_Page> {
                 height: 20,
               ),
               _AvatarField(),
-              SizedBox(height: 8,),
+              SizedBox(
+                height: 8,
+              ),
               _TextField(
                 label: "First name",
                 hint: "",
@@ -74,7 +75,9 @@ class __PageState extends State<_Page> {
                   });
                 },
               ),
-              SizedBox(height: 8,),
+              SizedBox(
+                height: 8,
+              ),
               _TextField(
                 label: "Last name",
                 hint: "",
@@ -84,7 +87,9 @@ class __PageState extends State<_Page> {
                   });
                 },
               ),
-              SizedBox(height: 8,),
+              SizedBox(
+                height: 8,
+              ),
               _AgeField(
                 age: this.age,
                 onChanged: (age) {
@@ -93,7 +98,9 @@ class __PageState extends State<_Page> {
                   });
                 },
               ),
-              SizedBox(height: 8,),
+              SizedBox(
+                height: 8,
+              ),
               _GenderField(
                 gender: gender,
                 onChanged: (gender) {
@@ -102,7 +109,9 @@ class __PageState extends State<_Page> {
                   });
                 },
               ),
-              SizedBox(height: 8,),
+              SizedBox(
+                height: 8,
+              ),
               _RideField(
                 rides: this.rides,
                 onChanged: (rides) {
@@ -112,6 +121,22 @@ class __PageState extends State<_Page> {
                 },
               ),
               SizedBox(
+                height: 28,
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: NeumorphicButton(
+                  onClick: () {},
+                  isEnabled: _isButtonEnabled(),
+                  margin: EdgeInsets.only(right: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  child: Text(
+                    "Sign Up",
+                    style: TextStyle(fontWeight: FontWeight.w800),
+                  ),
+                ),
+              ),
+              SizedBox(
                 height: 20,
               ),
             ],
@@ -119,6 +144,10 @@ class __PageState extends State<_Page> {
         )
       ],
     );
+  }
+
+  bool _isButtonEnabled(){
+    return this.firstName.isNotEmpty && this.lastName.isNotEmpty;
   }
 }
 
@@ -189,14 +218,26 @@ class _AgeField extends StatelessWidget {
   }
 }
 
-class _TextField extends StatelessWidget {
+class _TextField extends StatefulWidget {
   final String label;
   final String hint;
 
   final ValueChanged<String> onChanged;
-  final TextEditingController _controller = TextEditingController();
 
   _TextField({@required this.label, @required this.hint, this.onChanged});
+
+  @override
+  __TextFieldState createState() => __TextFieldState();
+}
+
+class __TextFieldState extends State<_TextField> {
+  TextEditingController _controller;
+
+  @override
+  void initState() {
+    _controller = TextEditingController(text: widget.hint);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -206,7 +247,7 @@ class _TextField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
           child: Text(
-            this.label,
+            this.widget.label,
             style: TextStyle(
               fontWeight: FontWeight.w700,
               color: NeumorphicTheme.defaultTextColor(context),
@@ -219,9 +260,9 @@ class _TextField extends StatelessWidget {
           style: NeumorphicStyle(depth: NeumorphicTheme.embossDepth(context)),
           padding: EdgeInsets.symmetric(vertical: 2, horizontal: 18),
           child: TextField(
-            onChanged: this.onChanged,
+            onChanged: this.widget.onChanged,
             controller: _controller,
-            decoration: InputDecoration.collapsed(hintText: this.hint),
+            decoration: InputDecoration.collapsed(hintText: this.widget.hint),
           ),
         )
       ],
@@ -310,7 +351,7 @@ class _RideField extends StatelessWidget {
     this.onChanged(this.rides);
   }
 
-  Widget _buildCheck(String text, String value){
+  Widget _buildCheck(String text, String value) {
     return Row(
       children: <Widget>[
         Text("$text :"),
