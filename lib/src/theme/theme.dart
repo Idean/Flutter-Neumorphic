@@ -67,6 +67,19 @@ class NeumorphicThemeData {
   })  : this._depth = depth,
         this._intensity = intensity;
 
+  const NeumorphicThemeData.dark({
+    this.baseColor = NeumorphicColors.darkBackground,
+    double depth = _defaultDepth,
+    double intensity = _defaultIntensity,
+    this.accentColor = _defaultAccent,
+    this.variantColor = NeumorphicColors.darkVariant,
+    this.disabledColor = NeumorphicColors.darkDisabled,
+    this.defaultTextColor = NeumorphicColors.darkDefaultTextColor,
+    this.lightSource = _defaultLightSource,
+  })  : this._depth = depth,
+        this._intensity = intensity;
+
+
   @override
   String toString() {
     return 'NeumorphicTheme{baseColor: $baseColor, accentColor: $accentColor, variantColor: $variantColor, disabledColor: $disabledColor, _depth: $_depth, intensity: $intensity, lightSource: $lightSource}';

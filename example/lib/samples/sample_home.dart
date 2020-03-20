@@ -2,6 +2,7 @@ import 'package:example/lib/top_bar.dart';
 import 'package:example/samples/audio_player_sample.dart';
 import 'package:example/samples/calculator_sample.dart';
 import 'package:example/samples/credit_card_sample.dart';
+import 'package:example/samples/form_sample.dart';
 import 'package:example/samples/testla_sample.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -32,6 +33,7 @@ class SamplesHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return NeumorphicTheme(
       theme: NeumorphicThemeData(depth: 8),
+      darkTheme: NeumorphicThemeData(depth: 8),
       child: Scaffold(
         backgroundColor: NeumorphicColors.background,
         body: SafeArea(
@@ -63,6 +65,13 @@ class SamplesHome extends StatelessWidget {
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return CalculatorSample();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "Form",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return FormSample();
                         }));
                       }),
                   _buildButton(
