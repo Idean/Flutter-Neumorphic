@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'container.dart';
 import 'progress.dart';
@@ -16,13 +17,13 @@ typedef void NeumorphicSliderListener(double percent);
 @immutable
 class SliderStyle {
   final double depth;
-  final double borderRadius;
+  final BorderRadius borderRadius;
   final Color accent;
   final Color variant;
 
   const SliderStyle({
     this.depth,
-    this.borderRadius = 10.0,
+    this.borderRadius = const BorderRadius.all(Radius.circular(10)),
     this.accent,
     this.variant,
   });
