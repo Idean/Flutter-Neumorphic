@@ -15,9 +15,8 @@ class FormSample extends StatelessWidget {
         intensity: 0.65,
       ),
       usedTheme: UsedTheme.LIGHT,
-      child: Scaffold(
-        body: NeumorphicBackground(
-          padding: EdgeInsets.all(12),
+      child: Material(
+        child: NeumorphicBackground(
           child: _Page(),
         ),
       ),
@@ -41,112 +40,118 @@ class __PageState extends State<_Page> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        TopBar(
-          actions: <Widget>[
-            ThemeConfigurator(),
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(left: 12, right: 12, top: 10),
+              child: TopBar(
+                actions: <Widget>[
+                  ThemeConfigurator(),
+                ],
+              ),
+            ),
+            Neumorphic(
+              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(12)),
+              style: NeumorphicStyle(),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 20,
+                  ),
+                  _AvatarField(),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  _TextField(
+                    label: "First name",
+                    hint: "",
+                    onChanged: (firstName) {
+                      setState(() {
+                        this.firstName = firstName;
+                      });
+                    },
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  _TextField(
+                    label: "Last name",
+                    hint: "",
+                    onChanged: (lastName) {
+                      setState(() {
+                        this.lastName = lastName;
+                      });
+                    },
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  _AgeField(
+                    age: this.age,
+                    onChanged: (age) {
+                      setState(() {
+                        this.age = age;
+                      });
+                    },
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  _GenderField(
+                    gender: gender,
+                    onChanged: (gender) {
+                      setState(() {
+                        this.gender = gender;
+                      });
+                    },
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  /*
+                  _RideField(
+                    rides: this.rides,
+                    onChanged: (rides) {
+                      setState(() {
+                        this.rides = rides;
+                      });
+                    },
+                  ),
+                  SizedBox(
+                    height: 28,
+                  ),
+                   */
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: NeumorphicButton(
+                      onClick: () {},
+                      isEnabled: _isButtonEnabled(),
+                      margin: EdgeInsets.only(right: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(fontWeight: FontWeight.w800),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
+            )
           ],
         ),
-        SizedBox(
-          height: 12,
-        ),
-        Neumorphic(
-          margin: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-          boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(12)),
-          style: NeumorphicStyle(),
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 20,
-              ),
-              _AvatarField(),
-              SizedBox(
-                height: 8,
-              ),
-              _TextField(
-                label: "First name",
-                hint: "",
-                onChanged: (firstName) {
-                  setState(() {
-                    this.firstName = firstName;
-                  });
-                },
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              _TextField(
-                label: "Last name",
-                hint: "",
-                onChanged: (lastName) {
-                  setState(() {
-                    this.lastName = lastName;
-                  });
-                },
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              _AgeField(
-                age: this.age,
-                onChanged: (age) {
-                  setState(() {
-                    this.age = age;
-                  });
-                },
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              _GenderField(
-                gender: gender,
-                onChanged: (gender) {
-                  setState(() {
-                    this.gender = gender;
-                  });
-                },
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              _RideField(
-                rides: this.rides,
-                onChanged: (rides) {
-                  setState(() {
-                    this.rides = rides;
-                  });
-                },
-              ),
-              SizedBox(
-                height: 28,
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: NeumorphicButton(
-                  onClick: () {},
-                  isEnabled: _isButtonEnabled(),
-                  margin: EdgeInsets.only(right: 10),
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(fontWeight: FontWeight.w800),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-            ],
-          ),
-        )
-      ],
+      ),
     );
   }
 
-  bool _isButtonEnabled(){
+  bool _isButtonEnabled() {
     return this.firstName.isNotEmpty && this.lastName.isNotEmpty;
   }
 }
@@ -354,9 +359,10 @@ class _RideField extends StatelessWidget {
   Widget _buildCheck(String text, String value) {
     return Row(
       children: <Widget>[
-        Text("$text :"),
+        Container(width: 60, child: Text("$text :")),
         SizedBox(width: 12),
         NeumorphicCheckbox(
+          margin: EdgeInsets.all(10),
           value: rides.contains(value),
           padding: EdgeInsets.all(20),
           onChanged: (selected) {
@@ -382,13 +388,11 @@ class _RideField extends StatelessWidget {
             ),
           ),
         ),
-        Row(
+        Column(
           children: <Widget>[
             SizedBox(width: 20),
             _buildCheck("Car", "car"),
-            SizedBox(width: 12),
             _buildCheck("Bike", "bike"),
-            SizedBox(width: 12),
             _buildCheck("Plane", "plane"),
             SizedBox(
               width: 18,

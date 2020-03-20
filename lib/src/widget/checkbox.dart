@@ -88,12 +88,14 @@ class NeumorphicCheckbox extends StatefulWidget {
   final NeumorphicCheckboxListener onChanged;
   final isEnabled;
   final EdgeInsets padding;
+  final EdgeInsets margin;
 
   NeumorphicCheckbox({
     this.style = const NeumorphicCheckboxStyle(),
     @required this.value,
     @required this.onChanged,
     this.padding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+    this.margin = const EdgeInsets.all(0),
     this.isEnabled = true,
   });
 
@@ -142,6 +144,7 @@ class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
     return NeumorphicButton(
       padding: widget.padding,
       pressed: isSelected,
+      margin: widget.margin,
       onClick: () {
         if (widget.isEnabled) {
           _onClick();
