@@ -34,18 +34,24 @@ class __PageState extends State<_Page> {
 
   LightSource lightSource = LightSource.topLeft;
   NeumorphicShape shape = NeumorphicShape.flat;
-  NeumorphicBoxShape boxShape = NeumorphicBoxShape.roundRect();
+  NeumorphicBoxShape boxShape;
   double depth = 5;
   double intensity = 0.5;
   double surfaceIntensity = 0.5;
-  double cornerRadius = 0;
-  double height = 100.0;
-  double width = 100.0;
+  double cornerRadius = 20;
+  double height = 150.0;
+  double width = 150.0;
 
   static final minWidth = 50.0;
   static final maxWidth = 200.0;
   static final minHeight = 50.0;
   static final maxHeight = 200.0;
+
+  @override
+  void initState() {
+    boxShape = NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(this.cornerRadius));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

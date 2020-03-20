@@ -101,6 +101,10 @@ class NeumorphicTheme extends StatefulWidget {
     return currentTheme(context).depth;
   }
 
+  static Color defaultTextColor(BuildContext context) {
+    return currentTheme(context).defaultTextColor;
+  }
+
   static NeumorphicThemeData currentTheme(BuildContext context) {
     try {
       final provider = NeumorphicTheme.of(context);

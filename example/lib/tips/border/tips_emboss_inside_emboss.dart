@@ -11,14 +11,6 @@ class TipsRecursiveeEmbossPage extends StatefulWidget {
   createState() => _WidgetPageState();
 }
 
-Color _textColor(BuildContext context) {
-  if (NeumorphicTheme.isUsingDark(context))
-    return Colors.white70;
-  else {
-    return Colors.black;
-  }
-}
-
 class _WidgetPageState extends State<TipsRecursiveeEmbossPage> {
   @override
   Widget build(BuildContext context) {
@@ -111,7 +103,7 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
                     margin: EdgeInsets.only(left: 12, right: 12),
                     child: Text(
                       "Recursive Emboss",
-                      style: TextStyle(color: _textColor(context)),
+                      style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
                     ),
                   ),
                   _generateEmbosss(
@@ -131,7 +123,7 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
                     margin: EdgeInsets.only(left: 12, right: 12),
                     child: Text(
                       "Each pair number\nLightsource is reversed",
-                      style: TextStyle(color: _textColor(context)),
+                      style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
                     ),
                   ),
                   _generateEmbosss(
@@ -156,7 +148,7 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
                     margin: EdgeInsets.only(left: 12, right: 12),
                     child: Text(
                       "Recursive Emboss",
-                      style: TextStyle(color: _textColor(context)),
+                      style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
                     ),
                   ),
                   _generateEmbosss(
@@ -176,7 +168,7 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
                     margin: EdgeInsets.only(left: 12, right: 12),
                     child: Text(
                       "Each pair number\nLightsource is reversed",
-                      style: TextStyle(color: _textColor(context)),
+                      style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
                     ),
                   ),
                   _generateEmbosss(

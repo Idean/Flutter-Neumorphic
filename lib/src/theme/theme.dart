@@ -17,6 +17,7 @@ const double _defaultIntensity = 0.5;
 const Color _defaultAccent = NeumorphicColors.accent;
 const Color _defaultVariant = NeumorphicColors.variant;
 const Color _defaultDisabledColor = NeumorphicColors.disabled;
+const Color _defaultTextColor = NeumorphicColors.defaultTextColor;
 const LightSource _defaultLightSource = LightSource.topLeft;
 const Color _defaultBaseColor = NeumorphicColors.background;
 
@@ -42,6 +43,7 @@ class NeumorphicThemeData {
   final Color accentColor;
   final Color variantColor;
   final Color disabledColor;
+  final Color defaultTextColor; //TODO maybe use TextStyle here
   final double _depth;
   final double _intensity;
   final LightSource lightSource;
@@ -60,6 +62,7 @@ class NeumorphicThemeData {
     this.accentColor = _defaultAccent,
     this.variantColor = _defaultVariant,
     this.disabledColor = _defaultDisabledColor,
+    this.defaultTextColor = _defaultTextColor,
     this.lightSource = _defaultLightSource,
   })  : this._depth = depth,
         this._intensity = intensity;
@@ -78,6 +81,7 @@ class NeumorphicThemeData {
           accentColor == other.accentColor &&
           disabledColor == other.disabledColor &&
           variantColor == other.variantColor &&
+          defaultTextColor == other.defaultTextColor &&
           _depth == other._depth &&
           _intensity == other._intensity &&
           lightSource == other.lightSource;
@@ -88,6 +92,7 @@ class NeumorphicThemeData {
       accentColor.hashCode ^
       variantColor.hashCode ^
       disabledColor.hashCode ^
+      defaultTextColor.hashCode ^
       _depth.hashCode ^
       _intensity.hashCode ^
       lightSource.hashCode;
@@ -99,6 +104,7 @@ class NeumorphicThemeData {
     Color accentColor,
     Color variantColor,
     Color disabledColor,
+    Color defaultTextColor,
     double depth,
     double intensity,
     LightSource lightSource,
@@ -108,6 +114,7 @@ class NeumorphicThemeData {
       accentColor: accentColor ?? this.accentColor,
       variantColor: variantColor ?? this.variantColor,
       disabledColor: disabledColor ?? this.disabledColor,
+      defaultTextColor: defaultTextColor ?? this.defaultTextColor,
       depth: depth ?? this._depth,
       intensity: intensity ?? this._intensity,
       lightSource: lightSource ?? this.lightSource,
@@ -124,6 +131,7 @@ class NeumorphicThemeData {
       accentColor: other.accentColor ?? this.accentColor,
       variantColor: other.variantColor ?? this.variantColor,
       disabledColor: other.disabledColor ?? this.disabledColor,
+      defaultTextColor: other.defaultTextColor ?? this.defaultTextColor,
       depth: other.depth ?? this._depth,
       intensity: other.intensity ?? this._intensity,
       lightSource: other.lightSource ?? this.lightSource,
@@ -141,12 +149,14 @@ const neumorphicDefaultTheme = NeumorphicThemeData(
   accentColor: NeumorphicColors.accent,
   variantColor: NeumorphicColors.variant,
   disabledColor: NeumorphicColors.disabled,
+  defaultTextColor: NeumorphicColors.defaultTextColor,
 );
 const neumorphicDefaultDarkTheme = NeumorphicThemeData(
   baseColor: NeumorphicColors.darkBackground,
   accentColor: NeumorphicColors.darkAccent,
   variantColor: NeumorphicColors.darkVariant,
   disabledColor: NeumorphicColors.darkDisabled,
+  defaultTextColor: NeumorphicColors.darkDefaultTextColor,
 );
 
 class NeumorphicStyle {

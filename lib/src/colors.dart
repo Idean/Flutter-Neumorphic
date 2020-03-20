@@ -17,19 +17,22 @@ class NeumorphicColors {
   static const darkAccent = material.Colors.green;
   static const darkVariant = material.Colors.blueGrey;
   static const darkDisabled = material.Colors.white70;
+  static const darkDefaultTextColor = material.Colors.white70;
 
-  static Color _decorationMaxWhiteColor =
+  static const Color _decorationMaxWhiteColor =
       material.Colors.white; //for intensity = 1
-  static Color _decorationMaxDarkColor =
+  static const Color _decorationMaxDarkColor =
       material.Colors.black54; //for intensity = 1
 
-  static Color _embossMaxWhiteColor =
+  static const Color _embossMaxWhiteColor =
       material.Colors.white60; //for intensity = 1
-  static Color _embossMaxDarkColor =
+  static const Color _embossMaxDarkColor =
       material.Colors.black45; //for intensity = 1
 
-  static Color _gradientShaderDarkColor = material.Colors.black54;
-  static Color _gradientShaderWhiteColor = material.Colors.white;
+  static const Color _gradientShaderDarkColor = material.Colors.black54;
+  static const Color _gradientShaderWhiteColor = material.Colors.white;
+
+  static const Color defaultTextColor = material.Colors.black;
 
   NeumorphicColors._();
 

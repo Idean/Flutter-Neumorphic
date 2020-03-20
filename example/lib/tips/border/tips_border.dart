@@ -12,14 +12,6 @@ class TipsBorderPage extends StatefulWidget {
   createState() => _WidgetPageState();
 }
 
-Color _textColor(BuildContext context) {
-  if (NeumorphicTheme.isUsingDark(context))
-    return Colors.white70;
-  else {
-    return Colors.black;
-  }
-}
-
 class _WidgetPageState extends State<TipsBorderPage> {
   @override
   Widget build(BuildContext context) {
@@ -184,7 +176,7 @@ class _CustomWidgetState extends State<_CustomWidget> {
                 width: 100,
                 child: Text(
                   widget.title,
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               Neumorphic(
@@ -211,7 +203,7 @@ class _CustomWidgetState extends State<_CustomWidget> {
                 width: 100,
                 child: Text(
                   "opposite\nchild\nlightsource",
-                  style: TextStyle(color: _textColor(context)),
+                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               Neumorphic(
