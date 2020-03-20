@@ -91,8 +91,8 @@ class NeumorphicCheckbox extends StatefulWidget {
 
   NeumorphicCheckbox({
     this.style = const NeumorphicCheckboxStyle(),
-    this.value,
-    this.onChanged,
+    @required this.value,
+    @required this.onChanged,
     this.padding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
     this.isEnabled = true,
   });
