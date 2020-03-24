@@ -118,30 +118,21 @@ class NeumorphicSlider extends StatefulWidget {
 class _NeumorphicSliderState extends State<NeumorphicSlider> {
   @override
   Widget build(BuildContext context) {
-    //print("percent : ${widget.percent}");
     return LayoutBuilder(builder: (context, constraints) {
       return GestureDetector(
-        //onPanDown: (details) => setState(() => _initialTapPosition = details.globalPosition),
         onPanUpdate: (DragUpdateDetails details) {
-          setState(() {
-            final RenderBox box = context.findRenderObject();
-            final tapPos = box.globalToLocal(details.globalPosition);
-            final newPercent = tapPos.dx / constraints.maxWidth;
-            // print("tapPos : $tapPos");
-            // print("newPercent : $newPercent");
+          final RenderBox box = context.findRenderObject();
+          final tapPos = box.globalToLocal(details.globalPosition);
+          final newPercent = tapPos.dx / constraints.maxWidth;
+          final newValue =
+              ((widget.min + (widget.max - widget.min) * newPercent))
+                  .clamp(widget.min, widget.max);
 
-            final newValue =
-                ((widget.min + (widget.max - widget.min) * newPercent))
-                    .clamp(widget.min, widget.max);
-
-            if (widget.onChanged != null) {
-              //  print("onChanged : $newValue");
-              widget.onChanged(newValue);
-            }
-          });
+          if (widget.onChanged != null) {
+            widget.onChanged(newValue);
+          }
         },
         onPanStart: (DragStartDetails details) {
-          //print("onPanStart");
           if (widget.onChangeStart != null) {
             widget.onChangeStart(widget.value);
           }
@@ -152,26 +143,28 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
             widget.onChangeEnd(widget.value);
           }
         },
-        onPanCancel: () {
-          //print("onPanCancel");
-        },
-        child: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            _generateSlider(),
-            Align(
-                alignment: Alignment(
-                    (widget.percent * 2) -
-                        1, //because left = -1 & right = 1, so the "width" = 2, and minValue = 1
-                    0),
-                child: _generateThumb(context))
-          ],
-        ),
+        child: _widget(context),
       );
     });
   }
 
-  Widget _generateSlider() {
+  Widget _widget(BuildContext context){
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        _generateSlider(context),
+        Align(
+            alignment: Alignment(
+              //because left = -1 & right = 1, so the "width" = 2, and minValue = 1
+                (widget.percent * 2) - 1,
+                0
+            ),
+            child: _generateThumb(context))
+      ],
+    );
+  }
+
+  Widget _generateSlider(BuildContext context) {
     final theme = NeumorphicTheme.currentTheme(context);
     return NeumorphicProgress(
       duration: Duration.zero,
