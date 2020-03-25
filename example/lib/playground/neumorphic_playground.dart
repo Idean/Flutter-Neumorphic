@@ -159,7 +159,7 @@ class __PageState extends State<_Page> {
         width: width,
         child: Container(
             //color: Colors.blue,
-            child: Center(child: Text("text"))),
+            child: Center(child: Text(""))),
       ),
     );
   }

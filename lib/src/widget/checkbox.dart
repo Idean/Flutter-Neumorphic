@@ -82,7 +82,7 @@ class NeumorphicCheckboxStyle {
 /// ```
 ///
 @immutable
-class NeumorphicCheckbox extends StatefulWidget {
+class NeumorphicCheckbox extends StatelessWidget {
   final bool value;
   final NeumorphicCheckboxStyle style;
   final NeumorphicCheckboxListener onChanged;
@@ -99,54 +99,49 @@ class NeumorphicCheckbox extends StatefulWidget {
     this.isEnabled = true,
   });
 
-  @override
-  createState() => _NeumorphicCheckboxState();
-}
-
-class _NeumorphicCheckboxState extends State<NeumorphicCheckbox> {
-  bool get isSelected => widget.value;
+  bool get isSelected => this.value;
 
   void _onClick() {
-    widget.onChanged(!widget.value);
+    this.onChanged(!this.value);
   }
 
   @override
   Widget build(BuildContext context) {
     final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
-    final selectedColor = widget.style.selectedColor ?? theme.accentColor;
+    final selectedColor = this.style.selectedColor ?? theme.accentColor;
 
     final double selectedDepth =
-        -1 * (widget.style.selectedDepth ?? theme.depth).abs();
+        -1 * (this.style.selectedDepth ?? theme.depth).abs();
     final double unselectedDepth =
-        (widget.style.unselectedDepth ?? theme.depth).abs();
+        (this.style.unselectedDepth ?? theme.depth).abs();
     final double selectedIntensity =
-        (widget.style.selectedIntensity ?? theme.intensity)
+        (this.style.selectedIntensity ?? theme.intensity)
             .abs()
             .clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
-    final double unselectedIntensity = widget.style.unselectedIntensity
+    final double unselectedIntensity = this.style.unselectedIntensity
         .clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
     double depth = isSelected ? selectedDepth : unselectedDepth;
-    if (!widget.isEnabled) {
+    if (!this.isEnabled) {
       depth = 0;
     }
 
     Color color = isSelected ? selectedColor : null;
-    if (!widget.isEnabled) {
+    if (!this.isEnabled) {
       color = null;
     }
 
     Color iconColor = isSelected ? theme.baseColor : selectedColor;
-    if (!widget.isEnabled) {
+    if (!this.isEnabled) {
       iconColor = theme.disabledColor;
     }
 
     return NeumorphicButton(
-      padding: widget.padding,
+      padding: this.padding,
       pressed: isSelected,
-      margin: widget.margin,
+      margin: this.margin,
       onClick: () {
-        if (widget.isEnabled) {
+        if (this.isEnabled) {
           _onClick();
         }
       },
