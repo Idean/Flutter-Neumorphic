@@ -88,7 +88,7 @@ class Neumorphic extends StatelessWidget {
   }
 }
 
-class _NeumorphicContainer extends StatefulWidget {
+class _NeumorphicContainer extends StatelessWidget {
   final NeumorphicStyle style;
   final NeumorphicBoxShape boxShape;
   final Widget child;
@@ -108,33 +108,29 @@ class _NeumorphicContainer extends StatefulWidget {
     @required this.boxShape,
   }) : super(key: key);
 
-  @override
-  createState() => _NeumorphicContainerState();
-}
 
-class _NeumorphicContainerState extends State<_NeumorphicContainer> {
   @override
   Widget build(BuildContext context) {
     //print("widget.padding : ${widget.padding}");
     return AnimatedContainer(
-        margin: widget.margin,
-        duration: widget.duration,
+        margin: this.margin,
+        duration: this.duration,
         child: NeumorphicBoxShapeClipper(
-          shape: widget.boxShape,
+          shape: this.boxShape,
           child: Padding(
-            padding: widget.padding,
-            child: widget.child,
+            padding: this.padding,
+            child: this.child,
           ),
         ),
         foregroundDecoration: NeumorphicForegroundDecoration(
-          splitBackgroundForeground: widget.drawSurfaceAboveChild,
-          style: widget.style,
-          shape: widget.boxShape,
+          splitBackgroundForeground: this.drawSurfaceAboveChild,
+          style: this.style,
+          shape: this.boxShape,
         ),
         decoration: NeumorphicBoxDecoration(
-          splitBackgroundForeground: widget.drawSurfaceAboveChild,
-          style: widget.style,
-          shape: widget.boxShape,
+          splitBackgroundForeground: this.drawSurfaceAboveChild,
+          style: this.style,
+          shape: this.boxShape,
         ));
   }
 }
