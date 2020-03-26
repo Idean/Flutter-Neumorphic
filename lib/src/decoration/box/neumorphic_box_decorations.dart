@@ -66,10 +66,6 @@ class NeumorphicBoxDecoration extends Decoration {
       NeumorphicBoxDecoration a, NeumorphicBoxDecoration b, double t) {
     assert(t != null);
 
-    //print("t : ${t}");
-    //print("a ${a.style}");
-    //print("b ${b.style}");
-
     if (a == null && b == null) return null;
     if (a == null) return b.scale(t);
     if (b == null) return a.scale(1.0 - t);
@@ -79,8 +75,6 @@ class NeumorphicBoxDecoration extends Decoration {
 
     var aStyle = a.style;
     var bStyle = b.style;
-
-    //print("aColor: ${aStyle.color} bColor: ${bStyle.color} lerp: ${Color.lerp(aStyle.color, bStyle.color, t)}");
 
     return NeumorphicBoxDecoration(
         shape: NeumorphicBoxShape.lerp(a.shape, b.shape, t),
