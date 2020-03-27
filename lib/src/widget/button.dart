@@ -128,10 +128,6 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       HapticFeedback.lightImpact();
     }
 
-    if (widget.onClick != null) {
-      widget.onClick();
-    }
-
     _resetIfTapUp();
   }
 
@@ -157,7 +153,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   }
 
   bool get clickable {
-    return widget.onClick != null;
+    return widget.isEnabled && widget.onClick != null;
   }
 
   bool hasFinishedAnimationDown = false;
@@ -167,13 +163,14 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (detail) {
-        if (widget.isEnabled) {
-          if (clickable && !pressed) {
-            _handlePress();
-          }
+        if (clickable && !pressed) {
+          _handlePress();
         }
       },
       onTapUp: (details) {
+        if (clickable) {
+          widget.onClick();
+        }
         hasTapUp = true;
         _resetIfTapUp();
       },
