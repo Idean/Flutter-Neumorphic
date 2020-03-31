@@ -72,8 +72,9 @@ class Neumorphic extends StatelessWidget {
   Widget build(BuildContext context) {
     final boxShape = this.boxShape ?? NeumorphicBoxShape.roundRect();
     final theme = NeumorphicTheme.currentTheme(context);
-    final NeumorphicStyle style =
-        (this.style ?? NeumorphicStyle()).copyWithThemeIfNull(theme);
+    final NeumorphicStyle style = (this.style ?? NeumorphicStyle())
+        .copyWithThemeIfNull(theme)
+        .applyDisableDepth();
 
     return _NeumorphicContainer(
       padding: this.padding,
