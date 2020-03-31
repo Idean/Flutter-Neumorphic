@@ -10,18 +10,34 @@ class NeumorphicToggleStyle {
   final double depth;
   final bool disableDepth;
   final BorderRadius borderRadius;
+  final bool animateOpacity;
 
   const NeumorphicToggleStyle({
     this.depth,
+    this.animateOpacity = true,
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.disableDepth,
   });
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is NeumorphicToggleStyle && runtimeType == other.runtimeType && depth == other.depth && disableDepth == other.disableDepth;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is NeumorphicToggleStyle &&
+              runtimeType == other.runtimeType &&
+              depth == other.depth &&
+              disableDepth == other.disableDepth &&
+              borderRadius == other.borderRadius &&
+              animateOpacity == other.animateOpacity;
 
   @override
-  int get hashCode => depth.hashCode ^ disableDepth.hashCode;
+  int get hashCode =>
+      depth.hashCode ^
+      disableDepth.hashCode ^
+      borderRadius.hashCode ^
+      animateOpacity.hashCode;
+
+
+
 }
 
 class ToggleElement {
@@ -124,6 +140,14 @@ class NeumorphicToggle extends StatelessWidget {
 
   Widget _foregroundAtIndex(int index) {
     Widget child = (!this.displayForegroundOnlyIfSelected) || (this.displayForegroundOnlyIfSelected && this.selectedIndex == index) ? this.children[index].foreground : SizedBox.expand();
+    //wrap with opacity animation
+    if(style.animateOpacity) {
+      child = AnimatedOpacity(
+        opacity: this.selectedIndex == index ? 1 : 0,
+        duration: this.duration,
+        child: child,
+      );
+    }
     return Expanded(
         flex: 1,
         child: GestureDetector(
