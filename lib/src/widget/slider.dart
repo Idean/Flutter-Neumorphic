@@ -169,6 +169,12 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
       percent: widget.percent,
       height: widget.height,
       style: ProgressStyle(
+        gradientBorderRadius: BorderRadius.only(
+          topLeft: widget.style.borderRadius.topLeft,
+          topRight: Radius.circular(0),
+          bottomLeft: widget.style.borderRadius.bottomLeft,
+          bottomRight: Radius.circular(0),
+        ),
         depth: widget.style.depth,
         borderRadius: widget.style.borderRadius,
         accent: widget.style.accent ?? theme.accentColor,

@@ -17,6 +17,7 @@ import 'container.dart';
 class ProgressStyle {
   final double depth;
   final BorderRadius borderRadius;
+  final BorderRadius gradientBorderRadius;
   final Color accent;
   final Color variant;
 
@@ -26,6 +27,7 @@ class ProgressStyle {
   const ProgressStyle({
     this.depth,
     this.borderRadius = const BorderRadius.all(Radius.circular(10.0)),
+    this.gradientBorderRadius,
     this.accent,
     this.progressGradientStart,
     this.progressGradientEnd,
@@ -39,6 +41,7 @@ class ProgressStyle {
           runtimeType == other.runtimeType &&
           depth == other.depth &&
           borderRadius == other.borderRadius &&
+          gradientBorderRadius == other.gradientBorderRadius &&
           accent == other.accent &&
           variant == other.variant &&
           progressGradientStart == other.progressGradientStart &&
@@ -48,6 +51,7 @@ class ProgressStyle {
   int get hashCode =>
       depth.hashCode ^
       borderRadius.hashCode ^
+      gradientBorderRadius.hashCode ^
       accent.hashCode ^
       variant.hashCode ^
       progressGradientStart.hashCode ^
@@ -167,7 +171,7 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
             alignment: Alignment.centerLeft,
             widthFactor: this.percent,
             child: _GradientProgress(
-              borderRadius: widget.style.borderRadius,
+              borderRadius: widget.style.gradientBorderRadius ?? widget.style.borderRadius,
               begin: widget.style.progressGradientStart ?? Alignment.centerLeft,
               end: widget.style.progressGradientEnd ?? Alignment.centerRight,
               colors: [
@@ -300,7 +304,7 @@ class _NeumorphicProgressIndeterminateState
                 alignment: Alignment.centerLeft,
                 widthFactor: this.percent,
                 child: _GradientProgress(
-                  borderRadius: widget.style.borderRadius,
+                  borderRadius: widget.style.gradientBorderRadius ?? widget.style.borderRadius,
                   begin: widget.style.progressGradientStart ??
                       Alignment.centerLeft,
                   end:
