@@ -1,7 +1,8 @@
-import 'package:example/lib/ThemeConfigurator.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+
+import 'clock_second_sample.dart';
 
 class ClockSample extends StatelessWidget {
   @override
@@ -63,6 +64,11 @@ class _ClockFirstPageState extends State<_ClockFirstPage> {
                         Icons.add,
                         color: Color(0xFFC1CDE5),
                       ),
+                      onClick: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                          return ClockAlarmPage();
+                        }));
+                      },
                       style: NeumorphicStyle(depth: -1),
                     ),
                   ),
