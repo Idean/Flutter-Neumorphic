@@ -1,3 +1,7 @@
+## 1.0.3
+
+* Added a `disableDepth` boolean configuration in theme & styles
+
 ## 1.0.2+2
 
 * Some widgets are now stateless
