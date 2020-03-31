@@ -70,7 +70,7 @@ class _DefaultWidget extends StatefulWidget {
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
 
-  bool _firstSelected = false;
+  int _selectedIndex = 0;
 
   Widget _buildCode(BuildContext context){
     return Code("""
@@ -91,23 +91,25 @@ class _DefaultWidgetState extends State<_DefaultWidget> {
           Expanded(
             child: NeumorphicToggle(
               height: 50,
-              firstSelected: _firstSelected,
+              selectedIndex: _selectedIndex,
               displayForegroundOnlyIfSelected: true,
-              first: ToggleElement(
-                background: Center(child: Text("This week", style: TextStyle(fontWeight: FontWeight.w500),)),
-                foreground: Center(child: Text("This week", style: TextStyle(fontWeight: FontWeight.w700),)),
-              ),
+              children: [
+                ToggleElement(
+                  background: Center(child: Text("This week", style: TextStyle(fontWeight: FontWeight.w500),)),
+                  foreground: Center(child: Text("This week", style: TextStyle(fontWeight: FontWeight.w700),)),
+                ),
+                ToggleElement(
+                  background: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w500),)),
+                  foreground: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w700),)),
+                )
+              ],
               thumb: Neumorphic(
                 boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.all(Radius.circular(12))),
               ),
-              second: ToggleElement(
-                background: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w500),)),
-                foreground: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w700),)),
-              ),
               onChanged: (value) {
                 setState(() {
-                  _firstSelected = value;
-                  print("_firstSelected: $_firstSelected");
+                  _selectedIndex = value;
+                  print("_firstSelected: $_selectedIndex");
                 });
               },
             ),
