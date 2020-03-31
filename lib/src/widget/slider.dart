@@ -17,12 +17,14 @@ typedef void NeumorphicSliderListener(double percent);
 @immutable
 class SliderStyle {
   final double depth;
+  final bool disableDepth;
   final BorderRadius borderRadius;
   final Color accent;
   final Color variant;
 
   const SliderStyle({
     this.depth,
+    this.disableDepth,
     this.borderRadius = const BorderRadius.all(Radius.circular(10)),
     this.accent,
     this.variant,
@@ -34,6 +36,7 @@ class SliderStyle {
       other is ProgressStyle &&
           runtimeType == other.runtimeType &&
           depth == other.depth &&
+          disableDepth == other.disableDepth &&
           borderRadius == other.borderRadius &&
           accent == other.accent &&
           variant == other.variant;
@@ -41,6 +44,7 @@ class SliderStyle {
   @override
   int get hashCode =>
       depth.hashCode ^
+      disableDepth.hashCode ^
       borderRadius.hashCode ^
       accent.hashCode ^
       variant.hashCode;
@@ -175,6 +179,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
           bottomLeft: widget.style.borderRadius.bottomLeft,
           bottomRight: Radius.circular(0),
         ),
+        disableDepth: widget.style.disableDepth,
         depth: widget.style.depth,
         borderRadius: widget.style.borderRadius,
         accent: widget.style.accent ?? theme.accentColor,
@@ -187,6 +192,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
     final theme = NeumorphicTheme.currentTheme(context);
     return Neumorphic(
       style: NeumorphicStyle(
+        disableDepth: widget.style.disableDepth,
         shape: NeumorphicShape.concave,
         color: widget.style.accent ?? theme.accentColor,
       ),
