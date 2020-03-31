@@ -101,6 +101,10 @@ class _DefaultWidgetState extends State<_DefaultWidget> {
                 ToggleElement(
                   background: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w500),)),
                   foreground: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w700),)),
+                ),
+                ToggleElement(
+                  background: Center(child: Text("This year", style: TextStyle(fontWeight: FontWeight.w500),)),
+                  foreground: Center(child: Text("This year", style: TextStyle(fontWeight: FontWeight.w700),)),
                 )
               ],
               thumb: Neumorphic(

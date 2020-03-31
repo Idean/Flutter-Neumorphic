@@ -73,16 +73,13 @@ class NeumorphicToggle extends StatelessWidget {
         _background(context),
         Row(
           mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            _backgroundAtIndex(0),
-            _backgroundAtIndex(1),
-          ],
+          children: _generateBackgrounds(),
         ),
         AnimatedAlign(
           alignment: _alignment(),
           duration: this.duration,
           child: FractionallySizedBox(
-            widthFactor: 0.5,
+            widthFactor: 1 / this.children.length,
             heightFactor: 1,
             child: Neumorphic(
               margin: this.padding,
@@ -93,19 +90,31 @@ class NeumorphicToggle extends StatelessWidget {
         ),
         Row(
           mainAxisSize: MainAxisSize.max,
-          children: [
-            _foregroundAtIndex(0),
-            _foregroundAtIndex(1),
-          ],
+          children: _generateForegrounds(),
         ),
       ],
     );
   }
 
+  List<Widget> _generateBackgrounds() {
+    final List<Widget> widgets = [];
+    for (int i = 0; i < this.children.length; ++i) {
+      widgets.add(_backgroundAtIndex(i));
+    }
+    return widgets;
+  }
+
+  List<Widget> _generateForegrounds() {
+    final List<Widget> widgets = [];
+    for (int i = 0; i < this.children.length; ++i) {
+      widgets.add(_foregroundAtIndex(i));
+    }
+    return widgets;
+  }
+
   Alignment _alignment() {
     double percentX = selectedIndex / (this.children.length - 1);
     double aligmentX = -1.0 + (2.0 * percentX);
-    print("aligmentX: $aligmentX");
     return Alignment(aligmentX, 0.0);
   }
 
