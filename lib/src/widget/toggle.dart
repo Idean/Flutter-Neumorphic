@@ -40,6 +40,41 @@ class NeumorphicToggleStyle {
 
 }
 
+/// Direct child of NeumorphicToggle
+/// Contains two widgets : background & foreground
+///
+/// The thumb is displayed between background & foreground
+///
+/// Expanded(
+///  child: NeumorphicToggle(
+///    height: 50,
+///    selectedIndex: _selectedIndex,
+///    displayForegroundOnlyIfSelected: true,
+///    children: [
+///      ToggleElement(
+///        background: Center(child: Text("This week", style: TextStyle(fontWeight: FontWeight.w500),)),
+///        foreground: Center(child: Text("This week", style: TextStyle(fontWeight: FontWeight.w700),)),
+///      ),
+///      ToggleElement(
+///        background: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w500),)),
+///        foreground: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w700),)),
+///      ),
+///      ToggleElement(
+///        background: Center(child: Text("This year", style: TextStyle(fontWeight: FontWeight.w500),)),
+///        foreground: Center(child: Text("This year", style: TextStyle(fontWeight: FontWeight.w700),)),
+///      )
+///    ],
+///    thumb: Neumorphic(
+///      boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.all(Radius.circular(12))),
+///    ),
+///    onChanged: (value) {
+///      setState(() {
+///        _selectedIndex = value;
+///        print("_firstSelected: $_selectedIndex");
+///      });
+///    },
+///  ),
+///),
 class ToggleElement {
   final Widget background;
   final Widget foreground;
@@ -50,6 +85,43 @@ class ToggleElement {
   });
 }
 
+///
+/// Switch with custom thumb (defined with list of ToggleElements)
+///
+/// does not save the state
+///   - notifies a `ValueChanged<int>` : onChanged
+///   - need a `selectedIndex` parameter
+///oggle
+/// Expanded(
+///  child: NeumorphicToggle(
+///    height: 50,
+///    selectedIndex: _selectedIndex,
+///    displayForegroundOnlyIfSelected: true,
+///    children: [
+///      ToggleElement(
+///        background: Center(child: Text("This week", style: TextStyle(fontWeight: FontWeight.w500),)),
+///        foreground: Center(child: Text("This week", style: TextStyle(fontWeight: FontWeight.w700),)),
+///      ),
+///      ToggleElement(
+///        background: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w500),)),
+///        foreground: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w700),)),
+///      ),
+///      ToggleElement(
+///        background: Center(child: Text("This year", style: TextStyle(fontWeight: FontWeight.w500),)),
+///        foreground: Center(child: Text("This year", style: TextStyle(fontWeight: FontWeight.w700),)),
+///      )
+///    ],
+///    thumb: Neumorphic(
+///      boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.all(Radius.circular(12))),
+///    ),
+///    onChanged: (value) {
+///      setState(() {
+///        _selectedIndex = value;
+///        print("_firstSelected: $_selectedIndex");
+///      });
+///    },
+///  ),
+///),
 @immutable
 class NeumorphicToggle extends StatelessWidget {
   static const MIN_EMBOSS_DEPTH = -1.0;
