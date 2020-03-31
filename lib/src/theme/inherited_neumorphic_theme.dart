@@ -9,7 +9,8 @@ export 'theme.dart';
 export 'theme_wrapper.dart';
 export 'used_theme.dart';
 
-typedef NeumorphicThemeUpdater = NeumorphicThemeData Function(NeumorphicThemeData current);
+typedef NeumorphicThemeUpdater = NeumorphicThemeData Function(
+    NeumorphicThemeData current);
 
 class NeumorphicThemeInherited extends InheritedWidget {
   final Widget child;

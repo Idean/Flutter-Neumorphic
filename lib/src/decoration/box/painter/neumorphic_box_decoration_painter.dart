@@ -155,7 +155,7 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
     }
 
     LightSource externalShadowLightSource = style.lightSource;
-    if(style.oppositeShadowLightSource){
+    if (style.oppositeShadowLightSource) {
       externalShadowLightSource = externalShadowLightSource.invert();
     }
     LightSource gradientLightSource = style.lightSource;

@@ -141,11 +141,10 @@ class NeumorphicRadio<T> extends StatelessWidget {
     this.isEnabled = true,
   });
 
-  bool get isSelected =>
-      this.value != null && this.value == this.groupValue;
+  bool get isSelected => this.value != null && this.value == this.groupValue;
 
   void _onClick() {
-    if(this.onChanged != null) {
+    if (this.onChanged != null) {
       if (this.value == this.groupValue) {
         //unselect
         this.onChanged(null);

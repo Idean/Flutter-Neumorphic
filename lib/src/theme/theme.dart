@@ -79,7 +79,6 @@ class NeumorphicThemeData {
   })  : this._depth = depth,
         this._intensity = intensity;
 
-
   @override
   String toString() {
     return 'NeumorphicTheme{baseColor: $baseColor, accentColor: $accentColor, variantColor: $variantColor, disabledColor: $disabledColor, _depth: $_depth, intensity: $intensity, lightSource: $lightSource}';
@@ -273,7 +272,8 @@ class NeumorphicStyle {
       intensity: intensity ?? this.intensity,
       surfaceIntensity: surfaceIntensity ?? this.surfaceIntensity,
       lightSource: lightSource ?? this.lightSource,
-      oppositeShadowLightSource: oppositeShadowLightSource ?? this.oppositeShadowLightSource,
+      oppositeShadowLightSource:
+          oppositeShadowLightSource ?? this.oppositeShadowLightSource,
       shape: shape ?? this.shape,
     );
   }

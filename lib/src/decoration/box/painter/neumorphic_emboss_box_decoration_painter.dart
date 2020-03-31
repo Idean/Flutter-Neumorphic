@@ -106,7 +106,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
     }
 
     LightSource shadowLightSource = style.lightSource;
-    if(style.oppositeShadowLightSource){
+    if (style.oppositeShadowLightSource) {
       shadowLightSource = shadowLightSource.invert();
     }
 

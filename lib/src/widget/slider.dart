@@ -147,17 +147,16 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
     });
   }
 
-  Widget _widget(BuildContext context){
+  Widget _widget(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
         _generateSlider(context),
         Align(
             alignment: Alignment(
-              //because left = -1 & right = 1, so the "width" = 2, and minValue = 1
+                //because left = -1 & right = 1, so the "width" = 2, and minValue = 1
                 (widget.percent * 2) - 1,
-                0
-            ),
+                0),
             child: _generateThumb(context))
       ],
     );

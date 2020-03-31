@@ -124,7 +124,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
     hasFinishedAnimationDown = true;
 
     //haptic vibration
-    if(widget.provideHapticFeedback) {
+    if (widget.provideHapticFeedback) {
       HapticFeedback.lightImpact();
     }
 

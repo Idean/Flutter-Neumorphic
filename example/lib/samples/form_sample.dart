@@ -61,7 +61,19 @@ class __PageState extends State<_Page> {
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: 20,
+                    height: 8,
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: NeumorphicButton(
+                      onClick: () {},
+                      isEnabled: _isButtonEnabled(),
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(fontWeight: FontWeight.w800),
+                      ),
+                    ),
                   ),
                   _AvatarField(),
                   SizedBox(
@@ -126,19 +138,6 @@ class __PageState extends State<_Page> {
                     height: 28,
                   ),
                    */
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: NeumorphicButton(
-                      onClick: () {},
-                      isEnabled: _isButtonEnabled(),
-                      margin: EdgeInsets.only(right: 10),
-                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                      child: Text(
-                        "Sign Up",
-                        style: TextStyle(fontWeight: FontWeight.w800),
-                      ),
-                    ),
-                  ),
                   SizedBox(
                     height: 20,
                   ),
