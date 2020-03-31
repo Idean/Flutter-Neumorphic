@@ -81,6 +81,11 @@ Here's a Nereumorphic Button tap (slowed x2) from the sample app, you can see ho
   <td>An On/Off toggle, associated with a value, if toggled, takes the accent color </td>
 </tr>
 <tr>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/toggle.png"/> </td>
+  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicSwitch.md">NeumorphicToggle</a></td>
+  <td>An mutiple value toggle, associated with a selecteedIndex</td>
+</tr>
+<tr>
   <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/slider.gif"/></td>
   <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicSlider.md">NeumorphicSlider</a></td>
   <td>A Neumorphic seekbar (range slider), the user can select a value in a range</td>
