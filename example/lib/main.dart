@@ -45,7 +45,9 @@ class MyHomePage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             NeumorphicButton(
-              onClick: () {},
+              onClick: () {
+                print("onClick");
+              },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
               boxShape: NeumorphicBoxShape.circle(),
               padding: const EdgeInsets.all(12.0),

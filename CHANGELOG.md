@@ -1,3 +1,7 @@
+## 1.0.2+2
+
+* Some widgets are now stateless
+
 ## 1.0.2+1
 
 * Fixed default padding of checkboxes
