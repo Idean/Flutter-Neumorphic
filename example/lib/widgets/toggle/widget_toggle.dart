@@ -74,6 +74,36 @@ class _DefaultWidgetState extends State<_DefaultWidget> {
 
   Widget _buildCode(BuildContext context){
     return Code("""
+Expanded(
+  child: NeumorphicToggle(
+    height: 50,
+    selectedIndex: _selectedIndex,
+    displayForegroundOnlyIfSelected: true,
+    children: [
+      ToggleElement(
+        background: Center(child: Text("This week", style: TextStyle(fontWeight: FontWeight.w500),)),
+        foreground: Center(child: Text("This week", style: TextStyle(fontWeight: FontWeight.w700),)),
+      ),
+      ToggleElement(
+        background: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w500),)),
+        foreground: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w700),)),
+      ),
+      ToggleElement(
+        background: Center(child: Text("This year", style: TextStyle(fontWeight: FontWeight.w500),)),
+        foreground: Center(child: Text("This year", style: TextStyle(fontWeight: FontWeight.w700),)),
+      )
+    ],
+    thumb: Neumorphic(
+      boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.all(Radius.circular(12))),
+    ),
+    onChanged: (value) {
+      setState(() {
+        _selectedIndex = value;
+        print("_firstSelected: $_selectedIndex");
+      });
+    },
+  ),
+),
 """);
   }
 
