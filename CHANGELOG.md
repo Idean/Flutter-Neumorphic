@@ -1,3 +1,7 @@
+## 1.0.4
+
+* Added `NeumorphicToggle` widget
+
 ## 1.0.3
 
 * Added a `disableDepth` boolean configuration in theme & styles
