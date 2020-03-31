@@ -17,6 +17,7 @@ import 'container.dart';
 class IndicatorStyle {
   //final double borderRadius;
   final double depth;
+  final bool disableDepth;
   final Color accent;
   final Color variant;
 
@@ -27,6 +28,7 @@ class IndicatorStyle {
     this.depth = -4,
     this.accent,
     this.variant,
+    this.disableDepth,
     this.gradientStart,
     this.gradientEnd,
   });
@@ -37,6 +39,7 @@ class IndicatorStyle {
       other is IndicatorStyle &&
           runtimeType == other.runtimeType &&
           depth == other.depth &&
+          disableDepth == other.disableDepth &&
           accent == other.accent &&
           variant == other.variant &&
           gradientStart == other.gradientStart &&
@@ -45,6 +48,7 @@ class IndicatorStyle {
   @override
   int get hashCode =>
       depth.hashCode ^
+      disableDepth.hashCode ^
       accent.hashCode ^
       variant.hashCode ^
       gradientStart.hashCode ^
@@ -187,7 +191,10 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator>
         boxShape: NeumorphicBoxShape.stadium(),
         padding: EdgeInsets.zero,
         style: NeumorphicStyle(
-            depth: widget.style.depth, shape: NeumorphicShape.flat),
+          disableDepth: widget.style.disableDepth,
+          depth: widget.style.depth,
+          shape: NeumorphicShape.flat,
+        ),
         child: FractionallySizedBox(
           heightFactor:
               widget.orientation == NeumorphicIndicatorOrientation.vertical

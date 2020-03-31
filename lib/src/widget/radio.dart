@@ -22,18 +22,25 @@ typedef void NeumorphicRadioListener<T>(T value);
 class NeumorphicRadioStyle {
   final double selectedDepth;
   final double unselectedDepth;
+  final bool disableDepth;
 
   final double intensity;
   final NeumorphicShape shape;
 
-  const NeumorphicRadioStyle(
-      {this.selectedDepth, this.unselectedDepth, this.intensity, this.shape});
+  const NeumorphicRadioStyle({
+    this.selectedDepth,
+    this.unselectedDepth,
+    this.disableDepth,
+    this.intensity,
+    this.shape,
+  });
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is NeumorphicRadioStyle &&
           runtimeType == other.runtimeType &&
+          disableDepth == other.disableDepth &&
           selectedDepth == other.selectedDepth &&
           unselectedDepth == other.unselectedDepth &&
           intensity == other.intensity &&
@@ -41,6 +48,7 @@ class NeumorphicRadioStyle {
 
   @override
   int get hashCode =>
+      disableDepth.hashCode ^
       selectedDepth.hashCode ^
       unselectedDepth.hashCode ^
       intensity.hashCode ^
@@ -158,10 +166,8 @@ class NeumorphicRadio<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
 
-    final double selectedDepth =
-        -1 * (this.style.selectedDepth ?? theme.depth).abs();
-    final double unselectedDepth =
-        (this.style.unselectedDepth ?? theme.depth).abs();
+    final double selectedDepth = -1 * (this.style.selectedDepth ?? theme.depth).abs();
+    final double unselectedDepth = (this.style.unselectedDepth ?? theme.depth).abs();
 
     double depth = isSelected ? selectedDepth : unselectedDepth;
     if (!this.isEnabled) {
@@ -179,6 +185,7 @@ class NeumorphicRadio<T> extends StatelessWidget {
           NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(5)),
       child: this.child,
       style: NeumorphicStyle(
+        disableDepth: this.style.disableDepth,
         intensity: this.style.intensity,
         depth: depth,
         shape: this.style.shape ?? NeumorphicShape.flat,

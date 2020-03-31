@@ -18,6 +18,7 @@ typedef void NeumorphicCheckboxListener<T>(T value);
 class NeumorphicCheckboxStyle {
   final double selectedDepth;
   final double unselectedDepth;
+  final bool disableDepth;
   final double selectedIntensity;
   final double unselectedIntensity;
   final Color selectedColor;
@@ -27,10 +28,36 @@ class NeumorphicCheckboxStyle {
     this.selectedDepth,
     this.selectedColor,
     this.unselectedDepth,
+    this.disableDepth,
     this.disabledColor,
     this.selectedIntensity = 1,
     this.unselectedIntensity = 0.7,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is NeumorphicCheckboxStyle &&
+              runtimeType == other.runtimeType &&
+              selectedDepth == other.selectedDepth &&
+              unselectedDepth == other.unselectedDepth &&
+              disableDepth == other.disableDepth &&
+              selectedIntensity == other.selectedIntensity &&
+              unselectedIntensity == other.unselectedIntensity &&
+              selectedColor == other.selectedColor &&
+              disabledColor == other.disabledColor;
+
+  @override
+  int get hashCode =>
+      selectedDepth.hashCode ^
+      unselectedDepth.hashCode ^
+      disableDepth.hashCode ^
+      selectedIntensity.hashCode ^
+      unselectedIntensity.hashCode ^
+      selectedColor.hashCode ^
+      disabledColor.hashCode;
+
+
 }
 
 /// A Neumorphic Checkbox
@@ -160,6 +187,7 @@ class NeumorphicCheckbox extends StatelessWidget {
       style: NeumorphicStyle(
         color: color,
         depth: depth,
+        disableDepth: this.style.disableDepth,
         intensity: isSelected ? selectedIntensity : unselectedIntensity,
         shape: NeumorphicShape.flat,
       ),

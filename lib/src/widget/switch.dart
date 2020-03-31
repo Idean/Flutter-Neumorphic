@@ -20,6 +20,7 @@ class NeumorphicSwitchStyle {
   final Color inactiveThumbColor;
   final NeumorphicShape thumbShape;
   final double thumbDepth;
+  final bool disableDepth;
 
   const NeumorphicSwitchStyle({
     this.trackDepth,
@@ -29,7 +30,36 @@ class NeumorphicSwitchStyle {
     this.activeThumbColor,
     this.inactiveThumbColor,
     this.thumbDepth,
+    this.disableDepth,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is NeumorphicSwitchStyle &&
+              runtimeType == other.runtimeType &&
+              trackDepth == other.trackDepth &&
+              activeTrackColor == other.activeTrackColor &&
+              inactiveTrackColor == other.inactiveTrackColor &&
+              activeThumbColor == other.activeThumbColor &&
+              inactiveThumbColor == other.inactiveThumbColor &&
+              thumbShape == other.thumbShape &&
+              thumbDepth == other.thumbDepth &&
+              disableDepth == other.disableDepth;
+
+  @override
+  int get hashCode =>
+      trackDepth.hashCode ^
+      activeTrackColor.hashCode ^
+      inactiveTrackColor.hashCode ^
+      activeThumbColor.hashCode ^
+      inactiveThumbColor.hashCode ^
+      thumbShape.hashCode ^
+      thumbDepth.hashCode ^
+      disableDepth.hashCode;
+
+
+
 }
 
 /// Used to toggle the on/off state of a single setting.
@@ -144,12 +174,14 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
             drawSurfaceAboveChild: false,
             boxShape: NeumorphicBoxShape.stadium(),
             style: NeumorphicStyle(
+                disableDepth: widget.style.disableDepth,
                 depth: _getTrackDepth(theme.depth),
                 shape: NeumorphicShape.flat,
                 color: _getTrackColor(theme)),
             child: AnimatedScale(
               scale: widget.isEnabled ? 1 : 0,
               child: AnimatedThumb(
+                disableDepth: this.widget.style.disableDepth,
                 depth: _thumbDepth(),
                 animation: animation,
                 shape: _getThumbShape(),
@@ -175,10 +207,8 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
 
   double _getTrackDepth(double themeDepth) {
     //force negative to have emboss
-    double depth = -1 * (widget.style.trackDepth ?? themeDepth).abs();
-    depth =
-        depth.clamp(Neumorphic.MIN_DEPTH, NeumorphicSwitch.MIN_EMBOSS_DEPTH);
-    return depth;
+    final double depth = -1 * (widget.style.trackDepth ?? themeDepth).abs();
+    return depth.clamp(Neumorphic.MIN_DEPTH, NeumorphicSwitch.MIN_EMBOSS_DEPTH);
   }
 
   Color _getTrackColor(NeumorphicThemeData theme) {
@@ -211,13 +241,16 @@ class AnimatedThumb extends AnimatedWidget {
   final Color thumbColor;
   final NeumorphicShape shape;
   final double depth;
-  AnimatedThumb(
-      {Key key,
-      Animation<Alignment> animation,
-      this.thumbColor,
-      this.shape,
-      this.depth})
-      : super(key: key, listenable: animation);
+  final bool disableDepth;
+
+  AnimatedThumb({
+    Key key,
+    Animation<Alignment> animation,
+    this.thumbColor,
+    this.shape,
+    this.disableDepth,
+    this.depth
+  }) : super(key: key, listenable: animation);
 
   @override
   Widget build(BuildContext context) {
@@ -230,6 +263,7 @@ class AnimatedThumb extends AnimatedWidget {
         child: Neumorphic(
           boxShape: NeumorphicBoxShape.circle(),
           style: NeumorphicStyle(
+            disableDepth: this.disableDepth,
             shape: shape,
             depth: this.depth,
             color: thumbColor,

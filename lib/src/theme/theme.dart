@@ -47,6 +47,7 @@ class NeumorphicThemeData {
   final double _depth;
   final double _intensity;
   final LightSource lightSource;
+  final bool disableDepth;
 
   /// Get this theme's depth, clamp to min/max neumorphic constants
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
@@ -64,6 +65,7 @@ class NeumorphicThemeData {
     this.disabledColor = _defaultDisabledColor,
     this.defaultTextColor = _defaultTextColor,
     this.lightSource = _defaultLightSource,
+    this.disableDepth = false
   })  : this._depth = depth,
         this._intensity = intensity;
 
@@ -76,12 +78,13 @@ class NeumorphicThemeData {
     this.disabledColor = NeumorphicColors.darkDisabled,
     this.defaultTextColor = NeumorphicColors.darkDefaultTextColor,
     this.lightSource = _defaultLightSource,
+    this.disableDepth = false
   })  : this._depth = depth,
         this._intensity = intensity;
 
   @override
   String toString() {
-    return 'NeumorphicTheme{baseColor: $baseColor, accentColor: $accentColor, variantColor: $variantColor, disabledColor: $disabledColor, _depth: $_depth, intensity: $intensity, lightSource: $lightSource}';
+    return 'NeumorphicTheme{baseColor: $baseColor, disableDepth: $disableDepth, accentColor: $accentColor, variantColor: $variantColor, disabledColor: $disabledColor, _depth: $_depth, intensity: $intensity, lightSource: $lightSource}';
   }
 
   @override
@@ -93,6 +96,7 @@ class NeumorphicThemeData {
           accentColor == other.accentColor &&
           disabledColor == other.disabledColor &&
           variantColor == other.variantColor &&
+          disableDepth == other.disableDepth &&
           defaultTextColor == other.defaultTextColor &&
           _depth == other._depth &&
           _intensity == other._intensity &&
@@ -105,6 +109,7 @@ class NeumorphicThemeData {
       variantColor.hashCode ^
       disabledColor.hashCode ^
       defaultTextColor.hashCode ^
+      disableDepth.hashCode ^
       _depth.hashCode ^
       _intensity.hashCode ^
       lightSource.hashCode;
@@ -117,6 +122,7 @@ class NeumorphicThemeData {
     Color variantColor,
     Color disabledColor,
     Color defaultTextColor,
+    bool disableDepth,
     double depth,
     double intensity,
     LightSource lightSource,
@@ -127,6 +133,7 @@ class NeumorphicThemeData {
       variantColor: variantColor ?? this.variantColor,
       disabledColor: disabledColor ?? this.disabledColor,
       defaultTextColor: defaultTextColor ?? this.defaultTextColor,
+      disableDepth: disableDepth ?? this.disableDepth,
       depth: depth ?? this._depth,
       intensity: intensity ?? this._intensity,
       lightSource: lightSource ?? this.lightSource,
@@ -142,6 +149,7 @@ class NeumorphicThemeData {
       baseColor: other.baseColor ?? this.baseColor,
       accentColor: other.accentColor ?? this.accentColor,
       variantColor: other.variantColor ?? this.variantColor,
+      disableDepth: other.disableDepth ?? this.disableDepth,
       disabledColor: other.disabledColor ?? this.disabledColor,
       defaultTextColor: other.defaultTextColor ?? this.defaultTextColor,
       depth: other.depth ?? this._depth,
@@ -177,6 +185,7 @@ class NeumorphicStyle {
   final double _intensity;
   final double _surfaceIntensity;
   final LightSource lightSource;
+  final bool disableDepth;
 
   final bool oppositeShadowLightSource;
 
@@ -190,6 +199,7 @@ class NeumorphicStyle {
     double depth,
     double intensity,
     double surfaceIntensity = 0.25,
+    this.disableDepth,
     this.oppositeShadowLightSource = false,
   })  : this._depth = depth,
         this.theme = null,
@@ -203,6 +213,7 @@ class NeumorphicStyle {
     this.lightSource,
     this.color,
     this.oppositeShadowLightSource = false,
+    this.disableDepth,
     double depth,
     double intensity,
     double surfaceIntensity = 0.25,
@@ -225,6 +236,7 @@ class NeumorphicStyle {
         shape: this.shape,
         depth: this.depth ?? theme.depth,
         intensity: this.intensity ?? theme.intensity,
+        disableDepth: this.disableDepth ?? theme.disableDepth,
         surfaceIntensity: this.surfaceIntensity,
         oppositeShadowLightSource: this.oppositeShadowLightSource,
         lightSource: this.lightSource ?? theme.lightSource);
@@ -236,6 +248,7 @@ class NeumorphicStyle {
       other is NeumorphicStyle &&
           runtimeType == other.runtimeType &&
           color == other.color &&
+          disableDepth == other.disableDepth &&
           _depth == other._depth &&
           _intensity == other._intensity &&
           _surfaceIntensity == other._surfaceIntensity &&
@@ -249,6 +262,7 @@ class NeumorphicStyle {
       color.hashCode ^
       _depth.hashCode ^
       _intensity.hashCode ^
+      disableDepth.hashCode ^
       _surfaceIntensity.hashCode ^
       lightSource.hashCode ^
       oppositeShadowLightSource.hashCode ^
@@ -271,6 +285,7 @@ class NeumorphicStyle {
       theme: this.theme,
       intensity: intensity ?? this.intensity,
       surfaceIntensity: surfaceIntensity ?? this.surfaceIntensity,
+      disableDepth: disableDepth ?? this.disableDepth,
       lightSource: lightSource ?? this.lightSource,
       oppositeShadowLightSource:
           oppositeShadowLightSource ?? this.oppositeShadowLightSource,
@@ -280,7 +295,15 @@ class NeumorphicStyle {
 
   @override
   String toString() {
-    return 'NeumorphicStyle{color: $color, _depth: $_depth, intensity: $intensity, lightSource: $lightSource, shape: $shape, theme: $theme, oppositeShadowLightSource: $oppositeShadowLightSource}';
+    return 'NeumorphicStyle{color: $color, _depth: $_depth, intensity: $intensity, disableDepth: $disableDepth, lightSource: $lightSource, shape: $shape, theme: $theme, oppositeShadowLightSource: $oppositeShadowLightSource}';
+  }
+
+  NeumorphicStyle applyDisableDepth() {
+    if(disableDepth == true){
+      return this.copyWith(depth: 0);
+    } else {
+      return this;
+    }
   }
 }
 //endregion
