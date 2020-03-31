@@ -56,30 +56,30 @@ class NeumorphicThemeData {
   double get intensity =>
       _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
-  const NeumorphicThemeData({
-    this.baseColor = _defaultBaseColor,
-    double depth = _defaultDepth,
-    double intensity = _defaultIntensity,
-    this.accentColor = _defaultAccent,
-    this.variantColor = _defaultVariant,
-    this.disabledColor = _defaultDisabledColor,
-    this.defaultTextColor = _defaultTextColor,
-    this.lightSource = _defaultLightSource,
-    this.disableDepth = false
-  })  : this._depth = depth,
+  const NeumorphicThemeData(
+      {this.baseColor = _defaultBaseColor,
+      double depth = _defaultDepth,
+      double intensity = _defaultIntensity,
+      this.accentColor = _defaultAccent,
+      this.variantColor = _defaultVariant,
+      this.disabledColor = _defaultDisabledColor,
+      this.defaultTextColor = _defaultTextColor,
+      this.lightSource = _defaultLightSource,
+      this.disableDepth = false})
+      : this._depth = depth,
         this._intensity = intensity;
 
-  const NeumorphicThemeData.dark({
-    this.baseColor = NeumorphicColors.darkBackground,
-    double depth = _defaultDepth,
-    double intensity = _defaultIntensity,
-    this.accentColor = _defaultAccent,
-    this.variantColor = NeumorphicColors.darkVariant,
-    this.disabledColor = NeumorphicColors.darkDisabled,
-    this.defaultTextColor = NeumorphicColors.darkDefaultTextColor,
-    this.lightSource = _defaultLightSource,
-    this.disableDepth = false
-  })  : this._depth = depth,
+  const NeumorphicThemeData.dark(
+      {this.baseColor = NeumorphicColors.darkBackground,
+      double depth = _defaultDepth,
+      double intensity = _defaultIntensity,
+      this.accentColor = _defaultAccent,
+      this.variantColor = NeumorphicColors.darkVariant,
+      this.disabledColor = NeumorphicColors.darkDisabled,
+      this.defaultTextColor = NeumorphicColors.darkDefaultTextColor,
+      this.lightSource = _defaultLightSource,
+      this.disableDepth = false})
+      : this._depth = depth,
         this._intensity = intensity;
 
   @override
@@ -299,7 +299,7 @@ class NeumorphicStyle {
   }
 
   NeumorphicStyle applyDisableDepth() {
-    if(disableDepth == true){
+    if (disableDepth == true) {
       return this.copyWith(depth: 0);
     } else {
       return this;

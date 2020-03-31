@@ -119,13 +119,20 @@ class NeumorphicTheme extends StatefulWidget {
   }
 }
 
-double applyThemeDepthEnable({@required BuildContext context, @required bool styleEnableDepth, @required double depth}){
+double applyThemeDepthEnable(
+    {@required BuildContext context,
+    @required bool styleEnableDepth,
+    @required double depth}) {
   final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
-  return wrapDepthWithThemeData(themeData: theme, styleEnableDepth: styleEnableDepth, depth: depth);
+  return wrapDepthWithThemeData(
+      themeData: theme, styleEnableDepth: styleEnableDepth, depth: depth);
 }
 
-double wrapDepthWithThemeData({@required NeumorphicThemeData themeData, @required bool styleEnableDepth, @required double depth}){
-  if(themeData.disableDepth) {
+double wrapDepthWithThemeData(
+    {@required NeumorphicThemeData themeData,
+    @required bool styleEnableDepth,
+    @required double depth}) {
+  if (themeData.disableDepth) {
     return 0;
   } else {
     return depth;

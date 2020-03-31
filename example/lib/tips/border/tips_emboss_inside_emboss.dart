@@ -69,7 +69,21 @@ class _EmbossmbossWidget extends StatefulWidget {
 class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
   Widget _buildCode(BuildContext context) {
     return Code("""
-
+ Widget _generateEmbosss({int number, Widget child, bool reverseEachPair = false}) {
+    Widget element = child;
+    for (int i = 0; i < number; ++i) {
+      element = Neumorphic(
+        padding: EdgeInsets.all(20),
+        boxShape: NeumorphicBoxShape.circle(),
+        style: NeumorphicStyle(
+          depth: -(NeumorphicTheme.depth(context).abs()), //force negative
+          oppositeShadowLightSource: (reverseEachPair && i % 2 == 0),
+        ),
+        child: element,
+      );
+    }
+    return element;
+  }
 """);
   }
 

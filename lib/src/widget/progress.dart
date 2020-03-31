@@ -176,7 +176,8 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
             alignment: Alignment.centerLeft,
             widthFactor: this.percent,
             child: _GradientProgress(
-              borderRadius: widget.style.gradientBorderRadius ?? widget.style.borderRadius,
+              borderRadius: widget.style.gradientBorderRadius ??
+                  widget.style.borderRadius,
               begin: widget.style.progressGradientStart ?? Alignment.centerLeft,
               end: widget.style.progressGradientEnd ?? Alignment.centerRight,
               colors: [
@@ -310,7 +311,8 @@ class _NeumorphicProgressIndeterminateState
                 alignment: Alignment.centerLeft,
                 widthFactor: this.percent,
                 child: _GradientProgress(
-                  borderRadius: widget.style.gradientBorderRadius ?? widget.style.borderRadius,
+                  borderRadius: widget.style.gradientBorderRadius ??
+                      widget.style.borderRadius,
                   begin: widget.style.progressGradientStart ??
                       Alignment.centerLeft,
                   end:

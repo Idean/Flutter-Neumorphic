@@ -166,8 +166,10 @@ class NeumorphicRadio<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
 
-    final double selectedDepth = -1 * (this.style.selectedDepth ?? theme.depth).abs();
-    final double unselectedDepth = (this.style.unselectedDepth ?? theme.depth).abs();
+    final double selectedDepth =
+        -1 * (this.style.selectedDepth ?? theme.depth).abs();
+    final double unselectedDepth =
+        (this.style.unselectedDepth ?? theme.depth).abs();
 
     double depth = isSelected ? selectedDepth : unselectedDepth;
     if (!this.isEnabled) {

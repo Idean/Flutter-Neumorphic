@@ -36,16 +36,16 @@ class NeumorphicSwitchStyle {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is NeumorphicSwitchStyle &&
-              runtimeType == other.runtimeType &&
-              trackDepth == other.trackDepth &&
-              activeTrackColor == other.activeTrackColor &&
-              inactiveTrackColor == other.inactiveTrackColor &&
-              activeThumbColor == other.activeThumbColor &&
-              inactiveThumbColor == other.inactiveThumbColor &&
-              thumbShape == other.thumbShape &&
-              thumbDepth == other.thumbDepth &&
-              disableDepth == other.disableDepth;
+      other is NeumorphicSwitchStyle &&
+          runtimeType == other.runtimeType &&
+          trackDepth == other.trackDepth &&
+          activeTrackColor == other.activeTrackColor &&
+          inactiveTrackColor == other.inactiveTrackColor &&
+          activeThumbColor == other.activeThumbColor &&
+          inactiveThumbColor == other.inactiveThumbColor &&
+          thumbShape == other.thumbShape &&
+          thumbDepth == other.thumbDepth &&
+          disableDepth == other.disableDepth;
 
   @override
   int get hashCode =>
@@ -57,9 +57,6 @@ class NeumorphicSwitchStyle {
       thumbShape.hashCode ^
       thumbDepth.hashCode ^
       disableDepth.hashCode;
-
-
-
 }
 
 /// Used to toggle the on/off state of a single setting.
@@ -243,14 +240,14 @@ class AnimatedThumb extends AnimatedWidget {
   final double depth;
   final bool disableDepth;
 
-  AnimatedThumb({
-    Key key,
-    Animation<Alignment> animation,
-    this.thumbColor,
-    this.shape,
-    this.disableDepth,
-    this.depth
-  }) : super(key: key, listenable: animation);
+  AnimatedThumb(
+      {Key key,
+      Animation<Alignment> animation,
+      this.thumbColor,
+      this.shape,
+      this.disableDepth,
+      this.depth})
+      : super(key: key, listenable: animation);
 
   @override
   Widget build(BuildContext context) {

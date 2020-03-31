@@ -156,9 +156,26 @@ class _CustomWidget extends StatefulWidget {
 }
 
 class _CustomWidgetState extends State<_CustomWidget> {
+
+  String _describe(NeumorphicStyle style) {
+    return "NeumorphicStyle(depth: ${style.depth}, oppositeShadowLightSource: ${style.oppositeShadowLightSource}, ...)";
+  }
+
   Widget _buildCode(BuildContext context) {
     return Code("""
-
+Neumorphic(
+      padding: EdgeInsets.all(20),
+      boxShape: NeumorphicBoxShape.circle(),
+      style: ${_describe(widget.firstStyle)},
+      child: Neumorphic(
+          boxShape: NeumorphicBoxShape.circle(),
+          style: ${_describe(widget.secondStyle)},
+          child: SizedBox(
+            height: 100,
+            width: 100,
+          ),
+      ),
+    ),
 """);
   }
 

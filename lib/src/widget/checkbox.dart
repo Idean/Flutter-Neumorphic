@@ -37,15 +37,15 @@ class NeumorphicCheckboxStyle {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is NeumorphicCheckboxStyle &&
-              runtimeType == other.runtimeType &&
-              selectedDepth == other.selectedDepth &&
-              unselectedDepth == other.unselectedDepth &&
-              disableDepth == other.disableDepth &&
-              selectedIntensity == other.selectedIntensity &&
-              unselectedIntensity == other.unselectedIntensity &&
-              selectedColor == other.selectedColor &&
-              disabledColor == other.disabledColor;
+      other is NeumorphicCheckboxStyle &&
+          runtimeType == other.runtimeType &&
+          selectedDepth == other.selectedDepth &&
+          unselectedDepth == other.unselectedDepth &&
+          disableDepth == other.disableDepth &&
+          selectedIntensity == other.selectedIntensity &&
+          unselectedIntensity == other.unselectedIntensity &&
+          selectedColor == other.selectedColor &&
+          disabledColor == other.disabledColor;
 
   @override
   int get hashCode =>
@@ -56,8 +56,6 @@ class NeumorphicCheckboxStyle {
       unselectedIntensity.hashCode ^
       selectedColor.hashCode ^
       disabledColor.hashCode;
-
-
 }
 
 /// A Neumorphic Checkbox
