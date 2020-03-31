@@ -1,4 +1,5 @@
 import 'package:example/lib/top_bar.dart';
+import 'package:example/widgets/toggle/widget_toggle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
@@ -81,6 +82,13 @@ class WidgetsHome extends StatelessWidget {
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return SwitchWidgetPage();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "Toggle",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return ToggleWidgetPage();
                         }));
                       }),
                   _buildButton(

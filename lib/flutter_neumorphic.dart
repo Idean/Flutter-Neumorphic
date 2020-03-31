@@ -11,6 +11,7 @@ export 'src/widget/checkbox.dart';
 export 'src/widget/slider.dart';
 export 'src/widget/progress.dart';
 export 'src/widget/switch.dart';
+export 'src/widget/toggle.dart';
 export 'src/NeumorphicBoxShape.dart';
 export 'src/shape.dart';
 export 'src/theme/neumorphic_theme.dart';
