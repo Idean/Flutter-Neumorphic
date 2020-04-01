@@ -100,7 +100,7 @@ class NeumorphicSwitchStyle {
 ///  ```
 ///
 @immutable
-class NeumorphicSwitch extends StatefulWidget {
+class NeumorphicSwitch extends StatelessWidget {
   static const MIN_EMBOSS_DEPTH = -1.0;
 
   final bool value;
@@ -121,67 +121,39 @@ class NeumorphicSwitch extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _NeumorphicSwitchState createState() => _NeumorphicSwitchState();
-}
-
-class _NeumorphicSwitchState extends State<NeumorphicSwitch>
-    with SingleTickerProviderStateMixin {
-  Animation<Alignment> animation;
-  AnimationController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    final defaultValue = widget.value ? 1.0 : 0.0;
-    controller = AnimationController(
-        duration: widget.duration, value: defaultValue, vsync: this);
-    animation = Tween<Alignment>(
-            begin: Alignment.centerLeft, end: Alignment.centerRight)
-        .animate(controller);
-  }
-
-  @override
-  void didUpdateWidget(NeumorphicSwitch oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.value != widget.value) {
-      if (widget.value) {
-        controller.forward();
-      } else {
-        controller.reverse();
-      }
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
     return SizedBox(
-      height: widget.height,
+      height: this.height,
       child: AspectRatio(
         aspectRatio: 2 / 1,
         child: GestureDetector(
           onTap: () {
             // animation breaking prevention
-            if (controller.isAnimating || !widget.isEnabled) {
+            if (!this.isEnabled) {
               return;
             }
-            _notifyOnChange(!widget.value);
+            if (this.onChanged != null) {
+              this.onChanged(!this.value);
+            }
           },
           child: Neumorphic(
             drawSurfaceAboveChild: false,
             boxShape: NeumorphicBoxShape.stadium(),
             style: NeumorphicStyle(
-                disableDepth: widget.style.disableDepth,
-                depth: _getTrackDepth(theme.depth),
-                shape: NeumorphicShape.flat,
-                color: _getTrackColor(theme)),
+              disableDepth: this.style.disableDepth,
+              depth: _getTrackDepth(theme.depth),
+              shape: NeumorphicShape.flat,
+              color: _getTrackColor(theme),
+            ),
             child: AnimatedScale(
-              scale: widget.isEnabled ? 1 : 0,
+              scale: this.isEnabled ? 1 : 0,
               child: AnimatedThumb(
-                disableDepth: this.widget.style.disableDepth,
-                depth: _thumbDepth(),
-                animation: animation,
-                shape: _getThumbShape(),
+                disableDepth: this.style.disableDepth,
+                depth: this._thumbDepth,
+                duration: this.duration,
+                alignment: this._alignment,
+                shape: _getThumbShape,
                 thumbColor: _getThumbColor(theme),
               ),
             ),
@@ -191,70 +163,57 @@ class _NeumorphicSwitchState extends State<NeumorphicSwitch>
     );
   }
 
-  double _thumbDepth() {
-    if (!widget.isEnabled) {
-      return 0;
-    } else
-      return widget.style.thumbDepth;
+  Alignment get _alignment {
+    if (this.value) {
+      return Alignment.centerLeft;
+    } else {
+      return Alignment.centerRight;
+    }
   }
 
-  NeumorphicShape _getThumbShape() {
-    return widget.style.thumbShape ?? NeumorphicShape.flat;
+  double get _thumbDepth {
+    if (!this.isEnabled) {
+      return 0;
+    } else
+      return this.style.thumbDepth;
+  }
+
+  NeumorphicShape get _getThumbShape {
+    return this.style.thumbShape ?? NeumorphicShape.flat;
   }
 
   double _getTrackDepth(double themeDepth) {
     //force negative to have emboss
-    final double depth = -1 * (widget.style.trackDepth ?? themeDepth).abs();
+    final double depth = -1 * (this.style.trackDepth ?? themeDepth).abs();
     return depth.clamp(Neumorphic.MIN_DEPTH, NeumorphicSwitch.MIN_EMBOSS_DEPTH);
   }
 
   Color _getTrackColor(NeumorphicThemeData theme) {
-    return widget.value == true
-        ? widget.style.activeTrackColor ?? theme.accentColor
-        : widget.style.inactiveTrackColor ?? theme.baseColor;
+    return this.value == true ? this.style.activeTrackColor ?? theme.accentColor : this.style.inactiveTrackColor ?? theme.baseColor;
   }
 
   Color _getThumbColor(NeumorphicThemeData theme) {
-    Color color = widget.value == true
-        ? widget.style.activeThumbColor
-        : widget.style.inactiveThumbColor;
+    Color color = this.value == true ? this.style.activeThumbColor : this.style.inactiveThumbColor;
     return color ?? theme.baseColor;
-  }
-
-  void _notifyOnChange(bool newValue) {
-    if (widget.onChanged != null) {
-      widget.onChanged(newValue);
-    }
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
   }
 }
 
-class AnimatedThumb extends AnimatedWidget {
+class AnimatedThumb extends StatelessWidget {
   final Color thumbColor;
+  final Alignment alignment;
+  final Duration duration;
   final NeumorphicShape shape;
   final double depth;
   final bool disableDepth;
 
-  AnimatedThumb(
-      {Key key,
-      Animation<Alignment> animation,
-      this.thumbColor,
-      this.shape,
-      this.disableDepth,
-      this.depth})
-      : super(key: key, listenable: animation);
+  AnimatedThumb({Key key, this.thumbColor, this.alignment, this.duration, this.shape, this.disableDepth, this.depth}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final animation = listenable as Animation<Alignment>;
     // This Container is actually the inner track containing the thumb
-    return Align(
-      alignment: animation.value,
+    return AnimatedAlign(
+      alignment: this.alignment,
+      duration: this.duration,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Neumorphic(

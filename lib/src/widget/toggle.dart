@@ -134,6 +134,7 @@ class NeumorphicToggle extends StatelessWidget {
   final Duration duration;
   final bool isEnabled;
 
+  final Curve alphaAnimationCurve;
   final bool displayForegroundOnlyIfSelected;
 
   const NeumorphicToggle({
@@ -144,6 +145,7 @@ class NeumorphicToggle extends StatelessWidget {
     this.padding = const EdgeInsets.all(2),
     this.duration = const Duration(milliseconds: 200),
     this.selectedIndex = 0,
+    this.alphaAnimationCurve = Curves.linear,
     this.onAnimationChangedFinished,
     this.onChanged,
     this.height = 40,
@@ -217,6 +219,7 @@ class NeumorphicToggle extends StatelessWidget {
     //wrap with opacity animation
     if (style.animateOpacity) {
       child = AnimatedOpacity(
+        curve: this.alphaAnimationCurve,
         opacity: this.selectedIndex == index ? 1 : 0,
         duration: this.duration,
         child: child,
