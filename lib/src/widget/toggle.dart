@@ -134,6 +134,8 @@ class NeumorphicToggle extends StatelessWidget {
   final Duration duration;
   final bool isEnabled;
 
+  final Curve movingCurve;
+
   final Curve alphaAnimationCurve;
   final bool displayForegroundOnlyIfSelected;
 
@@ -146,6 +148,7 @@ class NeumorphicToggle extends StatelessWidget {
     this.duration = const Duration(milliseconds: 200),
     this.selectedIndex = 0,
     this.alphaAnimationCurve = Curves.linear,
+    this.movingCurve = Curves.linear,
     this.onAnimationChangedFinished,
     this.onChanged,
     this.height = 40,
@@ -163,6 +166,7 @@ class NeumorphicToggle extends StatelessWidget {
           children: _generateBackgrounds(),
         ),
         AnimatedAlign(
+          curve: this.movingCurve,
           onEnd: (){
             if(onAnimationChangedFinished != null){
               onAnimationChangedFinished(this.selectedIndex);
