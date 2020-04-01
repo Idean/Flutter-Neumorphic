@@ -11,7 +11,7 @@ class GalaxySample extends StatelessWidget {
         baseColor: Color(0xFFE5E5E5),
         depth: 20,
         intensity: 1,
-        lightSource: LightSource.topLeft,
+        lightSource: LightSource.top,
       ),
       usedTheme: UsedTheme.LIGHT,
       child: Material(
@@ -67,11 +67,12 @@ class _PageState extends State<_Page> {
         angle: 0.5,
         child: Neumorphic(
           boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
-          style: NeumorphicStyle(),
+          style: NeumorphicStyle(lightSource: LightSource.topLeft),
           child: Neumorphic(
             style: NeumorphicStyle(
               depth: -1,
               oppositeShadowLightSource: true,
+              lightSource: LightSource.topLeft,
             ),
             child: SizedBox(
               width: 50,
