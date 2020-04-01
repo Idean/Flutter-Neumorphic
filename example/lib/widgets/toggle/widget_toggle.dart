@@ -200,7 +200,6 @@ NeumorphicToggle(
   height: 45,
   width: 100,
   selectedIndex: _selectedIndex,
-  displayForegroundOnlyIfSelected: true,
   children: [
     ToggleElement(
       background: Center(child: Icon(Icons.arrow_back, color: Colors.grey[800],)),
@@ -244,7 +243,6 @@ NeumorphicToggle(
             height: 45,
             width: 100,
             selectedIndex: _selectedIndex,
-            displayForegroundOnlyIfSelected: true,
             children: [
               ToggleElement(
                 background: Center(child: Icon(Icons.arrow_back, color: Colors.grey[800],)),
