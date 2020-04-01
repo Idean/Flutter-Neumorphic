@@ -62,9 +62,9 @@ class _PageState extends State<_Page> {
 
   Widget _secondBox() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 8.0, right: 4),
       child: Transform.rotate(
-        angle: 0.6  ,
+        angle: 0.79  ,
         child: Neumorphic(
           boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
           style: NeumorphicStyle(lightSource: LightSource.topLeft),
