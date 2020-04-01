@@ -53,7 +53,7 @@ class _PageState extends State<_Page> {
         ),
         padding: EdgeInsets.all(2),
         child: SizedBox(
-          width: 45,
+          width: 40,
           height: 60,
         ),
       ),
@@ -64,7 +64,7 @@ class _PageState extends State<_Page> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Transform.rotate(
-        angle: 0.5,
+        angle: 0.6  ,
         child: Neumorphic(
           boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
           style: NeumorphicStyle(lightSource: LightSource.topLeft),
