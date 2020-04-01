@@ -8,6 +8,7 @@ import 'package:example/samples/testla_sample.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+import 'galaxy_sample.dart';
 import 'widgets_sample.dart';
 
 class SamplesHome extends StatelessWidget {
@@ -66,6 +67,13 @@ class SamplesHome extends StatelessWidget {
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return ClockSample();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "Galaxy",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return GalaxySample();
                         }));
                       }),
                   _buildButton(
