@@ -53,7 +53,7 @@ class _PageState extends State<_Page> {
         ),
         padding: EdgeInsets.all(2),
         child: SizedBox(
-          width: 50,
+          width: 45,
           height: 60,
         ),
       ),
