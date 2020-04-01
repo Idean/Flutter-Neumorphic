@@ -109,10 +109,12 @@ class NeumorphicSwitch extends StatelessWidget {
   final double height;
   final Duration duration;
   final bool isEnabled;
+  final Curve curve;
 
   const NeumorphicSwitch({
     this.style = const NeumorphicSwitchStyle(),
     Key key,
+    this.curve = Curves.linear,
     this.duration = const Duration(milliseconds: 200),
     this.value = false,
     this.onChanged,
@@ -149,6 +151,7 @@ class NeumorphicSwitch extends StatelessWidget {
             child: AnimatedScale(
               scale: this.isEnabled ? 1 : 0,
               child: AnimatedThumb(
+                curve: this.curve,
                 disableDepth: this.style.disableDepth,
                 depth: this._thumbDepth,
                 duration: this.duration,
@@ -204,14 +207,25 @@ class AnimatedThumb extends StatelessWidget {
   final Duration duration;
   final NeumorphicShape shape;
   final double depth;
+  final Curve curve;
   final bool disableDepth;
 
-  AnimatedThumb({Key key, this.thumbColor, this.alignment, this.duration, this.shape, this.disableDepth, this.depth}) : super(key: key);
+  AnimatedThumb({
+    Key key,
+    this.thumbColor,
+    this.alignment,
+    this.duration,
+    this.shape,
+    this.disableDepth,
+    this.depth,
+    this.curve,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // This Container is actually the inner track containing the thumb
     return AnimatedAlign(
+      curve: this.curve,
       alignment: this.alignment,
       duration: this.duration,
       child: Padding(
