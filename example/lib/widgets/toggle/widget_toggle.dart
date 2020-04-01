@@ -1,6 +1,5 @@
 import 'package:example/lib/Code.dart';
 import 'package:example/lib/ThemeConfigurator.dart';
-import 'package:example/lib/color_selector.dart';
 import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -34,7 +33,6 @@ class _Page extends StatefulWidget {
 }
 
 class _PageState extends State<_Page> {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -54,6 +52,7 @@ class _PageState extends State<_Page> {
             mainAxisSize: MainAxisSize.max,
             children: [
               _DefaultWidget(),
+              _SmallWidget(),
               SizedBox(height: 30),
             ],
           ),
@@ -69,10 +68,9 @@ class _DefaultWidget extends StatefulWidget {
 }
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
-
   int _selectedIndex = 0;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 Expanded(
   child: NeumorphicToggle(
@@ -115,7 +113,7 @@ Expanded(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           Expanded(
@@ -125,16 +123,40 @@ Expanded(
               displayForegroundOnlyIfSelected: true,
               children: [
                 ToggleElement(
-                  background: Center(child: Text("This week", style: TextStyle(fontWeight: FontWeight.w500),)),
-                  foreground: Center(child: Text("This week", style: TextStyle(fontWeight: FontWeight.w700),)),
+                  background: Center(
+                      child: Text(
+                    "This week",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  )),
+                  foreground: Center(
+                      child: Text(
+                    "This week",
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  )),
                 ),
                 ToggleElement(
-                  background: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w500),)),
-                  foreground: Center(child: Text("This month", style: TextStyle(fontWeight: FontWeight.w700),)),
+                  background: Center(
+                      child: Text(
+                    "This month",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  )),
+                  foreground: Center(
+                      child: Text(
+                    "This month",
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  )),
                 ),
                 ToggleElement(
-                  background: Center(child: Text("This year", style: TextStyle(fontWeight: FontWeight.w500),)),
-                  foreground: Center(child: Text("This year", style: TextStyle(fontWeight: FontWeight.w700),)),
+                  background: Center(
+                      child: Text(
+                    "This year",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  )),
+                  foreground: Center(
+                      child: Text(
+                    "This year",
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  )),
                 )
               ],
               thumb: Neumorphic(
@@ -147,6 +169,106 @@ Expanded(
                 });
               },
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+}
+
+class _SmallWidget extends StatefulWidget {
+  @override
+  createState() => _SmallWidgetState();
+}
+
+class _SmallWidgetState extends State<_SmallWidget> {
+  int _selectedIndex = 1;
+
+  Widget _buildCode(BuildContext context) {
+    return Code("""
+NeumorphicToggle(
+  height: 45,
+  width: 100,
+  selectedIndex: _selectedIndex,
+  displayForegroundOnlyIfSelected: true,
+  children: [
+    ToggleElement(
+      background: Center(child: Icon(Icons.arrow_back, color: Colors.grey[800],)),
+    ),
+    ToggleElement(),
+  ],
+  thumb: Neumorphic(
+    boxShape: NeumorphicBoxShape.roundRect(
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+    ),
+    child: Icon(Icons.blur_on, color: Colors.grey,),
+  ),
+  onAnimationChangedFinished: (value){
+    if(value == 0) {
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text('on back !')));
+      print("onAnimationChangedFinished: $_selectedIndex");
+    }
+  },
+  onChanged: (value) {
+    setState(() {
+      _selectedIndex = value;
+      print("_firstSelected: $_selectedIndex");
+    });
+  },
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Text(
+            "Small",
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+          ),
+          SizedBox(width: 12),
+          NeumorphicToggle(
+            height: 45,
+            width: 100,
+            selectedIndex: _selectedIndex,
+            displayForegroundOnlyIfSelected: true,
+            children: [
+              ToggleElement(
+                background: Center(child: Icon(Icons.arrow_back, color: Colors.grey[800],)),
+              ),
+              ToggleElement(),
+            ],
+            thumb: Neumorphic(
+              boxShape: NeumorphicBoxShape.roundRect(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+              child: Icon(Icons.blur_on, color: Colors.grey,),
+            ),
+            onAnimationChangedFinished: (value){
+              if(value == 0) {
+                Scaffold.of(context).showSnackBar(SnackBar(content: Text('on back !')));
+                print("onAnimationChangedFinished: $_selectedIndex");
+              }
+            },
+            onChanged: (value) {
+              setState(() {
+                _selectedIndex = value;
+                print("_firstSelected: $_selectedIndex");
+              });
+            },
           ),
         ],
       ),

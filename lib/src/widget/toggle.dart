@@ -22,22 +22,15 @@ class NeumorphicToggleStyle {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is NeumorphicToggleStyle &&
-              runtimeType == other.runtimeType &&
-              depth == other.depth &&
-              disableDepth == other.disableDepth &&
-              borderRadius == other.borderRadius &&
-              animateOpacity == other.animateOpacity;
+      other is NeumorphicToggleStyle &&
+          runtimeType == other.runtimeType &&
+          depth == other.depth &&
+          disableDepth == other.disableDepth &&
+          borderRadius == other.borderRadius &&
+          animateOpacity == other.animateOpacity;
 
   @override
-  int get hashCode =>
-      depth.hashCode ^
-      disableDepth.hashCode ^
-      borderRadius.hashCode ^
-      animateOpacity.hashCode;
-
-
-
+  int get hashCode => depth.hashCode ^ disableDepth.hashCode ^ borderRadius.hashCode ^ animateOpacity.hashCode;
 }
 
 /// Direct child of NeumorphicToggle
@@ -80,8 +73,8 @@ class ToggleElement {
   final Widget foreground;
 
   ToggleElement({
-    this.background = const SizedBox(),
-    this.foreground = const SizedBox(),
+    this.background,
+    this.foreground,
   });
 }
 
@@ -133,9 +126,11 @@ class NeumorphicToggle extends StatelessWidget {
 
   final int selectedIndex;
   final ValueChanged<int> onChanged;
+  final Function(int) onAnimationChangedFinished;
 
   final NeumorphicToggleStyle style;
   final double height;
+  final double width;
   final Duration duration;
   final bool isEnabled;
 
@@ -149,8 +144,10 @@ class NeumorphicToggle extends StatelessWidget {
     this.padding = const EdgeInsets.all(2),
     this.duration = const Duration(milliseconds: 200),
     this.selectedIndex = 0,
+    this.onAnimationChangedFinished,
     this.onChanged,
     this.height = 40,
+    this.width,
     this.isEnabled = true,
     this.displayForegroundOnlyIfSelected = true,
   }) : super(key: key);
@@ -164,6 +161,11 @@ class NeumorphicToggle extends StatelessWidget {
           children: _generateBackgrounds(),
         ),
         AnimatedAlign(
+          onEnd: (){
+            if(onAnimationChangedFinished != null){
+              onAnimationChangedFinished(this.selectedIndex);
+            }
+          },
           alignment: _alignment(),
           duration: this.duration,
           child: FractionallySizedBox(
@@ -207,13 +209,13 @@ class NeumorphicToggle extends StatelessWidget {
   }
 
   Widget _backgroundAtIndex(int index) {
-    return Expanded(flex: 1, child: this.children[index].background);
+    return Expanded(flex: 1, child: this.children[index].background ?? SizedBox.expand());
   }
 
   Widget _foregroundAtIndex(int index) {
     Widget child = (!this.displayForegroundOnlyIfSelected) || (this.displayForegroundOnlyIfSelected && this.selectedIndex == index) ? this.children[index].foreground : SizedBox.expand();
     //wrap with opacity animation
-    if(style.animateOpacity) {
+    if (style.animateOpacity) {
       child = AnimatedOpacity(
         opacity: this.selectedIndex == index ? 1 : 0,
         duration: this.duration,
@@ -233,17 +235,29 @@ class NeumorphicToggle extends StatelessWidget {
 
   Widget _background(BuildContext context) {
     return Neumorphic(
-        boxShape: NeumorphicBoxShape.roundRect(borderRadius: this.style.borderRadius),
-        style: NeumorphicStyle(disableDepth: this.style.disableDepth, depth: _getTrackDepth(context), shape: NeumorphicShape.flat),
-        child: SizedBox.expand());
+      boxShape: NeumorphicBoxShape.roundRect(borderRadius: this.style.borderRadius),
+      style: NeumorphicStyle(disableDepth: this.style.disableDepth, depth: _getTrackDepth(context), shape: NeumorphicShape.flat),
+      child: SizedBox.expand(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: this.height,
-      child: _buildStack(context),
-    );
+    if (this.width != null) {
+      return SizedBox(
+        height: this.height,
+        width: this.width,
+        child: _buildStack(context),
+      );
+    } else {
+      return FractionallySizedBox(
+        widthFactor: 1.0,
+        child: SizedBox(
+          height: this.height,
+          child: _buildStack(context),
+        ),
+      );
+    }
   }
 
   double _getTrackDepth(BuildContext context) {
