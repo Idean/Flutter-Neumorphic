@@ -108,7 +108,7 @@ class __PageState extends State<_Page> {
       margin: EdgeInsets.all(8),
       elevation: 12,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      color: Colors.white,
+      color: Colors.grey[300],
       child: Column(
         children: <Widget>[
           Row(
