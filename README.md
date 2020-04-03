@@ -39,7 +39,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 </thead>
 <tbody>
 <tr>
-  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/container.gif"/></td>
+  <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/container.gif"/></td>
   <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/Neumorphic.md">Neumorphic</a></td>
   <td>The main Neumorphic Widget, a container which adds white/dark gradient depending on a lightsource and a depth </td>
 </tr>
