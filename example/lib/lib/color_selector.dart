@@ -22,7 +22,13 @@ class ColorSelector extends StatelessWidget {
       child: Container(
         height: this.height,
         width: this.width,
-        color: this.color,
+        decoration: BoxDecoration(
+          color: this.color,
+          border: Border.all(
+            color: Colors.black,
+            width: 1,
+          )
+        ),
       ),
     );
   }

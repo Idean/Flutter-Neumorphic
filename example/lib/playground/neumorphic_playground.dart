@@ -1,3 +1,4 @@
+import 'package:example/lib/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -29,8 +30,6 @@ class _Page extends StatefulWidget {
 }
 
 class __PageState extends State<_Page> {
-  final Color buttonActiveColor = Colors.yellow;
-  final Color buttonInnactiveColor = Colors.grey;
 
   LightSource lightSource = LightSource.topLeft;
   NeumorphicShape shape = NeumorphicShape.flat;
@@ -66,7 +65,9 @@ class __PageState extends State<_Page> {
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
                   child: RaisedButton(
-                    child: Text("back"),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    color: Theme.of(context).accentColor,
+                    child: Text("back", style: TextStyle(color: Colors.white),),
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -102,24 +103,38 @@ class __PageState extends State<_Page> {
           children: <Widget>[
             Expanded(
               flex: 1,
-              child: RaisedButton(
-                child: Text("Style"),
-                onPressed: () {
-                  setState(() {
-                    selectedConfiguratorIndex = 0;
-                  });
-                },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  color: Theme
+                      .of(context)
+                      .accentColor,
+                  child: Text("Style", style: TextStyle(color: Colors.white),),
+                  onPressed: () {
+                    setState(() {
+                      selectedConfiguratorIndex = 0;
+                    });
+                  },
+                ),
               ),
             ),
             Expanded(
               flex: 1,
-              child: RaisedButton(
-                child: Text("Element"),
-                onPressed: () {
-                  setState(() {
-                    selectedConfiguratorIndex = 1;
-                  });
-                },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  child: Text("Element", style: TextStyle(color: Colors.white),),
+                  color: Theme
+                      .of(context)
+                      .accentColor,
+                  onPressed: () {
+                    setState(() {
+                      selectedConfiguratorIndex = 1;
+                    });
+                  },
+                ),
               ),
             )
           ],
@@ -166,18 +181,20 @@ class __PageState extends State<_Page> {
   }
 
   Widget colorPicker() {
-    return Positioned(
-      right: 0,
-      child: Row(
-        children: <Widget>[
-          RaisedButton(
-            child: Text("Color"),
-            onPressed: () {
-              changeColor();
-            },
-          ),
-        ],
-      ),
+    return Row(
+      children: <Widget>[
+        SizedBox(width: 12,),
+        Text("Color "),
+        SizedBox(width: 4,),
+        ColorSelector(
+          onColorChanged: (color) {
+            setState(() {
+              NeumorphicTheme.of(context).updateCurrentTheme(NeumorphicThemeData(baseColor: color));
+            });
+          },
+          color: NeumorphicTheme.baseColor(context),
+        ),
+      ],
     );
   }
 
@@ -188,7 +205,10 @@ class __PageState extends State<_Page> {
         title: const Text('Pick a color!'),
         content: SingleChildScrollView(
           child: ColorPicker(
-            pickerColor: NeumorphicTheme.of(context).current.baseColor,
+            pickerColor: NeumorphicTheme
+                .of(context)
+                .current
+                .baseColor,
             onColorChanged: (color) {
               setState(() {
                 NeumorphicTheme.of(context).updateCurrentTheme(NeumorphicThemeData(baseColor: color));
@@ -229,7 +249,7 @@ class __PageState extends State<_Page> {
         height: height,
         width: width,
         child: Container(
-            //color: Colors.blue,
+          //color: Colors.blue,
             child: Center(child: Text(""))),
       ),
     );
@@ -383,6 +403,9 @@ class __PageState extends State<_Page> {
   }
 
   Widget boxshapeWidget() {
+    final Color buttonActiveColor = Colors.white;
+    final Color buttonInnactiveColor = Colors.grey;
+
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
@@ -418,40 +441,58 @@ class __PageState extends State<_Page> {
   }
 
   Widget shapeWidget() {
+    final Color buttonActiveColor = Theme.of(context).accentColor;
+    final Color buttonInnactiveColor = Colors.white;
+
+    final Color iconActiveColor = Colors.white;
+    final Color iconInactiveColor = Colors.black.withOpacity(0.3);
+
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Expanded(
-          child: RaisedButton(
-            onPressed: () {
-              setState(() {
-                shape = NeumorphicShape.concave;
-              });
-            },
-            color: shape == NeumorphicShape.concave ? buttonActiveColor : buttonInnactiveColor,
-            child: Text("Concave"),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              onPressed: () {
+                setState(() {
+                  shape = NeumorphicShape.concave;
+                });
+              },
+              color: shape == NeumorphicShape.concave ? buttonActiveColor : buttonInnactiveColor,
+              child: Image.asset("assets/images/concave.png", color: shape == NeumorphicShape.concave ? iconActiveColor: iconInactiveColor),
+            ),
           ),
         ),
         Expanded(
-          child: RaisedButton(
-            onPressed: () {
-              setState(() {
-                shape = NeumorphicShape.convex;
-              });
-            },
-            color: shape == NeumorphicShape.convex ? buttonActiveColor : buttonInnactiveColor,
-            child: Text("Convex"),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              onPressed: () {
+                setState(() {
+                  shape = NeumorphicShape.convex;
+                });
+              },
+              color: shape == NeumorphicShape.convex ? buttonActiveColor : buttonInnactiveColor,
+              child: Image.asset("assets/images/convex.png", color: shape ==NeumorphicShape.convex ? iconActiveColor: iconInactiveColor),
+            ),
           ),
         ),
         Expanded(
-          child: RaisedButton(
-            onPressed: () {
-              setState(() {
-                shape = NeumorphicShape.flat;
-              });
-            },
-            color: shape == NeumorphicShape.flat ? buttonActiveColor : buttonInnactiveColor,
-            child: Text("Flat"),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              onPressed: () {
+                setState(() {
+                  shape = NeumorphicShape.flat;
+                });
+              },
+              color: shape == NeumorphicShape.flat ? buttonActiveColor : buttonInnactiveColor,
+              child: Image.asset("assets/images/flat.png", color: shape == NeumorphicShape.flat ? iconActiveColor: iconInactiveColor),
+            ),
           ),
         ),
       ],
