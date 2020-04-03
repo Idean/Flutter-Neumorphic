@@ -84,11 +84,6 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
   <td>An inderminate progress-bar</td>
 </tr>
 <tr>
-  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/indicator.gif"/> </td>
-  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicIndicator.md">NeumorphicIndicator</a></td>
-  <td>A vertical / horizontal indicator bar, takes a percentage</td>
-</tr>
-<tr>
   <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/background.png"/> </td>
   <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicBackground.md">NeumorphicBackground</a></td>
   <td>Take the background color of the theme, can clip the screen with a borderRadius</td>
