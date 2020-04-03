@@ -27,22 +27,6 @@ The in your .dart files
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 ```
 
-# What's neumorphic
-
-[![neumorphic](./medias/neumorphic.jpg)]()
-
-## Material Cards
-
-A Modern / Material (upgraded) card usually is a surface floating on top of our perceived background and casting a shadow onto it. The shadow both gives it depth and also in many cases defines the shape itself — as it’s quite often borderless.
-
-## Neumorphic cards
-
-Neumorphic card however pretends to extrude from the background. It’s a raised shape made from the exact same material as the background. When we look at it from the side we see that it doesn’t “float”.
-
-[![neumorphic_button](./medias/button_press.gif)](https://github.com/Idean/Flutter-Neumorphic)
-
-Here's a Nereumorphic Button tap (slowed x2) from the sample app, you can see how the element seems to change its depth to its surface.
-
 # 🗂 Widgets
 
 <table>
@@ -244,6 +228,23 @@ if(NeumorphicTheme.of(context).isUsingDarkMode){
   
 }
 ```
+
+# What's neumorphic
+
+[![neumorphic](./medias/neumorphic.jpg)]()
+
+## Material Cards
+
+A Modern / Material (upgraded) card usually is a surface floating on top of our perceived background and casting a shadow onto it. The shadow both gives it depth and also in many cases defines the shape itself — as it’s quite often borderless.
+
+## Neumorphic cards
+
+Neumorphic card however pretends to extrude from the background. It’s a raised shape made from the exact same material as the background. When we look at it from the side we see that it doesn’t “float”.
+
+[![neumorphic_button](./medias/button_press.gif)](https://github.com/Idean/Flutter-Neumorphic)
+
+Here's a Nereumorphic Button tap (slowed x2) from the sample app, you can see how the element seems to change its depth to its surface.
+
 
 # 👥 Contributors
 
