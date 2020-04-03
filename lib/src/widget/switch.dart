@@ -108,13 +108,13 @@ class NeumorphicSwitch extends StatelessWidget {
   final NeumorphicSwitchStyle style;
   final double height;
   final Duration duration;
-  final bool isEnabled;
   final Curve curve;
+  final bool isEnabled;
 
   const NeumorphicSwitch({
     this.style = const NeumorphicSwitchStyle(),
     Key key,
-    this.curve = Curves.linear,
+    this.curve = Neumorphic.DEFAULT_CURVE,
     this.duration = const Duration(milliseconds: 200),
     this.value = false,
     this.onChanged,
@@ -168,9 +168,9 @@ class NeumorphicSwitch extends StatelessWidget {
 
   Alignment get _alignment {
     if (this.value) {
-      return Alignment.centerLeft;
-    } else {
       return Alignment.centerRight;
+    } else {
+      return Alignment.centerLeft;
     }
   }
 

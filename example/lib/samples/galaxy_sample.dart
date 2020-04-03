@@ -9,7 +9,7 @@ class GalaxySample extends StatelessWidget {
     return NeumorphicTheme(
       theme: NeumorphicThemeData(
         baseColor: Color(0xFFE5E5E5),
-        depth: 20,
+        depth:20,
         intensity: 1,
         lightSource: LightSource.top,
       ),

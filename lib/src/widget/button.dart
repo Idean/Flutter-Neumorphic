@@ -53,6 +53,7 @@ class NeumorphicButton extends StatefulWidget {
   final EdgeInsets margin;
   final bool pressed; //null, true, false
   final Duration duration;
+  final Curve curve;
   final NeumorphicButtonClickListener onClick;
   final bool drawSurfaceAboveChild;
   final bool isEnabled;
@@ -68,6 +69,7 @@ class NeumorphicButton extends StatefulWidget {
     this.boxShape = const NeumorphicBoxShape.roundRect(
         borderRadius: const BorderRadius.all(const Radius.circular(8))),
     this.duration = Neumorphic.DEFAULT_DURATION,
+    this.curve = Neumorphic.DEFAULT_CURVE,
     //this.accent,
     this.onClick,
     this.minDistance = 0,
@@ -184,6 +186,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
           margin: widget.margin,
           drawSurfaceAboveChild: widget.drawSurfaceAboveChild,
           duration: widget.duration,
+          curve: widget.curve,
           padding: widget.padding,
           boxShape: widget.boxShape,
           style: initialStyle.copyWith(depth: _getDepth()),

@@ -37,6 +37,7 @@ export '../theme/neumorphic_theme.dart';
 @immutable
 class Neumorphic extends StatelessWidget {
   static const DEFAULT_DURATION = const Duration(milliseconds: 100);
+  static const DEFAULT_CURVE = Curves.linear;
 
   static const double MIN_DEPTH = -20.0;
   static const double MAX_DEPTH = 20.0;
@@ -53,6 +54,7 @@ class Neumorphic extends StatelessWidget {
   final EdgeInsets padding;
   final EdgeInsets margin;
   final NeumorphicBoxShape boxShape;
+  final Curve curve;
   final Duration duration;
   final bool
       drawSurfaceAboveChild; //if true => boxDecoration & foreground decoration, else => boxDecoration does all the work
@@ -61,6 +63,7 @@ class Neumorphic extends StatelessWidget {
     Key key,
     this.child,
     this.duration = Neumorphic.DEFAULT_DURATION,
+    this.curve = Neumorphic.DEFAULT_CURVE,
     this.style,
     this.boxShape,
     this.margin = const EdgeInsets.all(0),
@@ -82,6 +85,7 @@ class Neumorphic extends StatelessWidget {
       drawSurfaceAboveChild: this.drawSurfaceAboveChild,
       duration: this.duration,
       style: style,
+      curve: this.curve,
       margin: this.margin,
       child: this.child,
     );
@@ -94,6 +98,7 @@ class _NeumorphicContainer extends StatelessWidget {
   final Widget child;
   final EdgeInsets margin;
   final Duration duration;
+  final Curve curve;
   final bool drawSurfaceAboveChild;
   final EdgeInsets padding;
 
@@ -103,6 +108,7 @@ class _NeumorphicContainer extends StatelessWidget {
     @required this.padding,
     @required this.margin,
     @required this.duration,
+    @required this.curve,
     @required this.style,
     @required this.drawSurfaceAboveChild,
     @required this.boxShape,
@@ -113,6 +119,7 @@ class _NeumorphicContainer extends StatelessWidget {
     return AnimatedContainer(
         margin: this.margin,
         duration: this.duration,
+        curve: this.curve,
         child: NeumorphicBoxShapeClipper(
           shape: this.boxShape,
           child: Padding(

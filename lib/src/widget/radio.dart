@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import '../NeumorphicBoxShape.dart';
 import '../theme/neumorphic_theme.dart';
 import 'button.dart';
+import 'container.dart';
 
 typedef void NeumorphicRadioListener<T>(T value);
 
@@ -138,11 +139,16 @@ class NeumorphicRadio<T> extends StatelessWidget {
   final NeumorphicRadioListener<T> onChanged;
   final bool isEnabled;
 
+  final Duration duration;
+  final Curve curve;
+
   NeumorphicRadio({
     this.child,
     this.style = const NeumorphicRadioStyle(),
     this.value,
     this.boxShape,
+    this.curve = Neumorphic.DEFAULT_CURVE,
+    this.duration = Neumorphic.DEFAULT_DURATION,
     this.padding = EdgeInsets.zero,
     this.groupValue,
     this.onChanged,
@@ -180,6 +186,8 @@ class NeumorphicRadio<T> extends StatelessWidget {
       onClick: () {
         _onClick();
       },
+      duration: this.duration,
+      curve: this.curve,
       padding: this.padding,
       pressed: isSelected,
       minDistance: selectedDepth,

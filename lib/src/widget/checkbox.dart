@@ -114,11 +114,15 @@ class NeumorphicCheckbox extends StatelessWidget {
   final isEnabled;
   final EdgeInsets padding;
   final EdgeInsets margin;
+  final Duration duration;
+  final Curve curve;
 
   NeumorphicCheckbox({
     this.style = const NeumorphicCheckboxStyle(),
     @required this.value,
     @required this.onChanged,
+    this.curve = Neumorphic.DEFAULT_CURVE,
+    this.duration = Neumorphic.DEFAULT_DURATION,
     this.padding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
     this.margin = const EdgeInsets.all(0),
     this.isEnabled = true,
@@ -167,6 +171,8 @@ class NeumorphicCheckbox extends StatelessWidget {
       padding: this.padding,
       pressed: isSelected,
       margin: this.margin,
+      duration: this.duration,
+      curve: this.curve,
       onClick: () {
         if (this.isEnabled) {
           _onClick();
