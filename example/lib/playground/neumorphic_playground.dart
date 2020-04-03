@@ -65,26 +65,26 @@ class __PageState extends State<_Page> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
-                  child: RaisedButton(child: Text("back"), onPressed: (){
-                    Navigator.pop(context);
-                  },),
+                  child: RaisedButton(
+                    child: Text("back"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
                 ),
-                shapeWidget(),
-                boxshapeWidget(),
-                intensitySelector(),
-                surfaceIntensitySelector(),
-                depthSelector(),
-                cornerRadiusSelector(),
-                sizeSelector(),
-                Expanded(
+                Flexible(
+                  flex: 1,
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
-                      ...lightSourceWidgets(),
+                      lightSourceWidgets(),
                       Center(child: neumorphic()),
-                      colorPicker(),
                     ],
                   ),
+                ),
+                Flexible(
+                  flex: 1,
+                  child: _configurators(),
                 )
               ],
             )),
@@ -92,10 +92,81 @@ class __PageState extends State<_Page> {
     );
   }
 
+  int selectedConfiguratorIndex = 0;
+
+  Widget _configurators() {
+    return Column(
+      children: <Widget>[
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: RaisedButton(
+                child: Text("Style"),
+                onPressed: () {
+                  setState(() {
+                    selectedConfiguratorIndex = 0;
+                  });
+                },
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: RaisedButton(
+                child: Text("Element"),
+                onPressed: () {
+                  setState(() {
+                    selectedConfiguratorIndex = 1;
+                  });
+                },
+              ),
+            )
+          ],
+        ),
+        _configuratorsChild(),
+      ],
+    );
+  }
+
+  Widget _configuratorsChild() {
+    switch (selectedConfiguratorIndex) {
+      case 0:
+        return styleCustomizer();
+        break;
+      case 1:
+        return elementCustomizer();
+        break;
+    }
+    return null;
+  }
+
+  Widget styleCustomizer() {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        depthSelector(),
+        intensitySelector(),
+        surfaceIntensitySelector(),
+        colorPicker(),
+      ],
+    );
+  }
+
+  Widget elementCustomizer() {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        boxshapeWidget(),
+        cornerRadiusSelector(),
+        shapeWidget(),
+        sizeSelector(),
+      ],
+    );
+  }
+
   Widget colorPicker() {
     return Positioned(
-      bottom: 0,
-      left: 0,
       right: 0,
       child: Row(
         children: <Widget>[
@@ -194,7 +265,9 @@ class __PageState extends State<_Page> {
   Widget sizeSelector() {
     return Row(
       children: <Widget>[
-        SizedBox(width: 12,),
+        SizedBox(
+          width: 12,
+        ),
         Text("W: "),
         Expanded(
           child: Slider(
@@ -385,40 +458,42 @@ class __PageState extends State<_Page> {
     );
   }
 
-  List<Widget> lightSourceWidgets() {
-    return [
-      Positioned(
-        left: 10,
-        right: 10,
-        child: Slider(
-          min: -1,
-          max: 1,
-          value: lightSource.dx,
-          onChanged: (value) {
-            setState(() {
-              lightSource = lightSource.copyWith(dx: value);
-            });
-          },
-        ),
-      ),
-      Positioned(
-        left: 0,
-        top: 10,
-        bottom: 10,
-        child: RotatedBox(
-          quarterTurns: 1,
+  Widget lightSourceWidgets() {
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          left: 10,
+          right: 10,
           child: Slider(
             min: -1,
             max: 1,
-            value: lightSource.dy,
+            value: lightSource.dx,
             onChanged: (value) {
               setState(() {
-                lightSource = lightSource.copyWith(dy: value);
+                lightSource = lightSource.copyWith(dx: value);
               });
             },
           ),
         ),
-      ),
-    ];
+        Positioned(
+          left: 0,
+          top: 10,
+          bottom: 10,
+          child: RotatedBox(
+            quarterTurns: 1,
+            child: Slider(
+              min: -1,
+              max: 1,
+              value: lightSource.dy,
+              onChanged: (value) {
+                setState(() {
+                  lightSource = lightSource.copyWith(dy: value);
+                });
+              },
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
