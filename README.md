@@ -97,6 +97,14 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 </tbody>
 </table>
 
+## 👀 Showcases
+
+[![Neumorphic](./medias/samples/sample_form.png)](https://github.com/Idean/Flutter-Neumorphic)
+[![Neumorphic](./medias/samples/sample_clock.png)](https://github.com/Idean/Flutter-Neumorphic)
+
+[![Neumorphic](./medias/samples/sample_galaxy.png)](https://github.com/Idean/Flutter-Neumorphic)
+[![Neumorphic](./medias/samples/sample_widgets.png)](https://github.com/Idean/Flutter-Neumorphic)
+
 ## 📦 Neumorphic
 
 ```dart
