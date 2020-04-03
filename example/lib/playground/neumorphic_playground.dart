@@ -30,7 +30,6 @@ class _Page extends StatefulWidget {
 }
 
 class __PageState extends State<_Page> {
-
   LightSource lightSource = LightSource.topLeft;
   NeumorphicShape shape = NeumorphicShape.flat;
   NeumorphicBoxShape boxShape;
@@ -67,7 +66,10 @@ class __PageState extends State<_Page> {
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     color: Theme.of(context).accentColor,
-                    child: Text("back", style: TextStyle(color: Colors.white),),
+                    child: Text(
+                      "back",
+                      style: TextStyle(color: Colors.white),
+                    ),
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -96,51 +98,69 @@ class __PageState extends State<_Page> {
   int selectedConfiguratorIndex = 0;
 
   Widget _configurators() {
-    return Column(
-      children: <Widget>[
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  color: Theme
-                      .of(context)
-                      .accentColor,
-                  child: Text("Style", style: TextStyle(color: Colors.white),),
-                  onPressed: () {
-                    setState(() {
-                      selectedConfiguratorIndex = 0;
-                    });
-                  },
+    final Color buttonActiveColor = Theme.of(context).accentColor;
+    final Color buttonInnactiveColor = Colors.white;
+
+    final Color textActiveColor = Colors.white;
+    final Color textInactiveColor = Colors.black.withOpacity(0.3);
+
+    return Card(
+      margin: EdgeInsets.all(8),
+      elevation: 12,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      color: Colors.white,
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    color: selectedConfiguratorIndex == 0 ? buttonActiveColor : buttonInnactiveColor,
+                    child: Text(
+                      "Style",
+                      style: TextStyle(
+                        color: selectedConfiguratorIndex == 0 ? textActiveColor : textInactiveColor,
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        selectedConfiguratorIndex = 0;
+                      });
+                    },
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  child: Text("Element", style: TextStyle(color: Colors.white),),
-                  color: Theme
-                      .of(context)
-                      .accentColor,
-                  onPressed: () {
-                    setState(() {
-                      selectedConfiguratorIndex = 1;
-                    });
-                  },
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    child: Text(
+                      "Element",
+                      style: TextStyle(
+                        color: selectedConfiguratorIndex == 1 ? textActiveColor : textInactiveColor,
+                      ),
+                    ),
+                    color: selectedConfiguratorIndex == 1 ? buttonActiveColor : buttonInnactiveColor,
+                    onPressed: () {
+                      setState(() {
+                        selectedConfiguratorIndex = 1;
+                      });
+                    },
+                  ),
                 ),
-              ),
-            )
-          ],
-        ),
-        _configuratorsChild(),
-      ],
+              )
+            ],
+          ),
+          _configuratorsChild(),
+        ],
+      ),
     );
   }
 
@@ -183,9 +203,13 @@ class __PageState extends State<_Page> {
   Widget colorPicker() {
     return Row(
       children: <Widget>[
-        SizedBox(width: 12,),
+        SizedBox(
+          width: 12,
+        ),
         Text("Color "),
-        SizedBox(width: 4,),
+        SizedBox(
+          width: 4,
+        ),
         ColorSelector(
           onColorChanged: (color) {
             setState(() {
@@ -195,38 +219,6 @@ class __PageState extends State<_Page> {
           color: NeumorphicTheme.baseColor(context),
         ),
       ],
-    );
-  }
-
-  void changeColor() {
-    showDialog(
-      context: context,
-      child: AlertDialog(
-        title: const Text('Pick a color!'),
-        content: SingleChildScrollView(
-          child: ColorPicker(
-            pickerColor: NeumorphicTheme
-                .of(context)
-                .current
-                .baseColor,
-            onColorChanged: (color) {
-              setState(() {
-                NeumorphicTheme.of(context).updateCurrentTheme(NeumorphicThemeData(baseColor: color));
-              });
-            },
-            showLabel: true,
-            pickerAreaHeightPercent: 0.8,
-          ),
-        ),
-        actions: <Widget>[
-          FlatButton(
-            child: const Text('Close'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      ),
     );
   }
 
@@ -249,7 +241,7 @@ class __PageState extends State<_Page> {
         height: height,
         width: width,
         child: Container(
-          //color: Colors.blue,
+            //color: Colors.blue,
             child: Center(child: Text(""))),
       ),
     );
@@ -403,38 +395,62 @@ class __PageState extends State<_Page> {
   }
 
   Widget boxshapeWidget() {
-    final Color buttonActiveColor = Colors.white;
-    final Color buttonInnactiveColor = Colors.grey;
+    final Color buttonActiveColor = Theme.of(context).accentColor;
+    final Color buttonInnactiveColor = Colors.white;
+
+    final Color textActiveColor = Colors.white;
+    final Color textInactiveColor = Colors.black.withOpacity(0.3);
 
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
-        RaisedButton(
-          onPressed: () {
-            setState(() {
-              boxShape = NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(this.cornerRadius));
-            });
-          },
-          color: boxShape.isRoundRect ? buttonActiveColor : buttonInnactiveColor,
-          child: Text("Rectangle"),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: RaisedButton(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            onPressed: () {
+              setState(() {
+                boxShape = NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(this.cornerRadius));
+              });
+            },
+            color: boxShape.isRoundRect ? buttonActiveColor : buttonInnactiveColor,
+            child: Text(
+              "Rectangle",
+              style: TextStyle(color: boxShape.isRoundRect ? textActiveColor : textInactiveColor),
+            ),
+          ),
         ),
-        RaisedButton(
-          onPressed: () {
-            setState(() {
-              boxShape = NeumorphicBoxShape.circle();
-            });
-          },
-          color: boxShape.isCircle ? buttonActiveColor : buttonInnactiveColor,
-          child: Text("Circle"),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: RaisedButton(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            onPressed: () {
+              setState(() {
+                boxShape = NeumorphicBoxShape.circle();
+              });
+            },
+            color: boxShape.isCircle ? buttonActiveColor : buttonInnactiveColor,
+            child: Text(
+              "Circle",
+              style: TextStyle(color: boxShape.isCircle ? textActiveColor : textInactiveColor),
+            ),
+          ),
         ),
-        RaisedButton(
-          onPressed: () {
-            setState(() {
-              boxShape = NeumorphicBoxShape.stadium();
-            });
-          },
-          color: boxShape.isStadium ? buttonActiveColor : buttonInnactiveColor,
-          child: Text("Stadium"),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: RaisedButton(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            onPressed: () {
+              setState(() {
+                boxShape = NeumorphicBoxShape.stadium();
+              });
+            },
+            color: boxShape.isStadium ? buttonActiveColor : buttonInnactiveColor,
+            child: Text(
+              "Stadium",
+              style: TextStyle(color: boxShape.isStadium ? textActiveColor : textInactiveColor),
+            ),
+          ),
         ),
       ],
     );
@@ -461,7 +477,7 @@ class __PageState extends State<_Page> {
                 });
               },
               color: shape == NeumorphicShape.concave ? buttonActiveColor : buttonInnactiveColor,
-              child: Image.asset("assets/images/concave.png", color: shape == NeumorphicShape.concave ? iconActiveColor: iconInactiveColor),
+              child: Image.asset("assets/images/concave.png", color: shape == NeumorphicShape.concave ? iconActiveColor : iconInactiveColor),
             ),
           ),
         ),
@@ -476,7 +492,7 @@ class __PageState extends State<_Page> {
                 });
               },
               color: shape == NeumorphicShape.convex ? buttonActiveColor : buttonInnactiveColor,
-              child: Image.asset("assets/images/convex.png", color: shape ==NeumorphicShape.convex ? iconActiveColor: iconInactiveColor),
+              child: Image.asset("assets/images/convex.png", color: shape == NeumorphicShape.convex ? iconActiveColor : iconInactiveColor),
             ),
           ),
         ),
@@ -491,7 +507,7 @@ class __PageState extends State<_Page> {
                 });
               },
               color: shape == NeumorphicShape.flat ? buttonActiveColor : buttonInnactiveColor,
-              child: Image.asset("assets/images/flat.png", color: shape == NeumorphicShape.flat ? iconActiveColor: iconInactiveColor),
+              child: Image.asset("assets/images/flat.png", color: shape == NeumorphicShape.flat ? iconActiveColor : iconInactiveColor),
             ),
           ),
         ),

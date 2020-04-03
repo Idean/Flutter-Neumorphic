@@ -23,9 +23,10 @@ class ColorSelector extends StatelessWidget {
         height: this.height,
         width: this.width,
         decoration: BoxDecoration(
+          shape: BoxShape.circle,
           color: this.color,
           border: Border.all(
-            color: Colors.black,
+            color: Colors.grey,
             width: 1,
           )
         ),
