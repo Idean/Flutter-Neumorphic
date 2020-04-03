@@ -64,7 +64,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
   <td>An On/Off toggle, associated with a value, if toggled, takes the accent color </td>
 </tr>
 <tr>
-  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/toggle_small.png"/> </td>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/toggle.png"/> </td>
   <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicSwitch.md">NeumorphicToggle</a></td>
   <td>An mutiple value toggle, associated with a selecteedIndex</td>
 </tr>
