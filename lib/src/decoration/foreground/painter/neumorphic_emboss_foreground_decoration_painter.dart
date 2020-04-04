@@ -93,10 +93,12 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
     }
 
     var cornerRadius = (shape?.borderRadius ?? BorderRadius.zero);
-    if ((this.invalidate || this.borderRadius != cornerRadius) && !shape.isCircle) {
+    if ((this.invalidate || this.borderRadius != cornerRadius) &&
+        !shape.isCircle) {
       this.borderRadius = cornerRadius;
 
-      this.buttonRRect = RRect.fromRectAndCorners(backgroundRect,
+      this.buttonRRect = RRect.fromRectAndCorners(
+        backgroundRect,
         topLeft: this.borderRadius.topLeft,
         topRight: this.borderRadius.topRight,
         bottomRight: this.borderRadius.bottomRight,
@@ -135,24 +137,24 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
         );
       } else {
         whiteShadowMaskRect = RRect.fromRectAndCorners(
-            getWhiteShadowMaskRect(
-              this.shadowLightSource,
-              configuration.size,
-              offset,
-              this.depth,
-            ),
+          getWhiteShadowMaskRect(
+            this.shadowLightSource,
+            configuration.size,
+            offset,
+            this.depth,
+          ),
           topLeft: this.borderRadius.topLeft,
           topRight: this.borderRadius.topRight,
           bottomRight: this.borderRadius.bottomRight,
           bottomLeft: this.borderRadius.bottomLeft,
         );
         blackShadowMaskRect = RRect.fromRectAndCorners(
-            getBlackShadowMaskRect(
-              this.shadowLightSource,
-              configuration.size,
-              offset,
-              this.depth,
-            ),
+          getBlackShadowMaskRect(
+            this.shadowLightSource,
+            configuration.size,
+            offset,
+            this.depth,
+          ),
           topLeft: this.borderRadius.topLeft,
           topRight: this.borderRadius.topRight,
           bottomRight: this.borderRadius.bottomRight,

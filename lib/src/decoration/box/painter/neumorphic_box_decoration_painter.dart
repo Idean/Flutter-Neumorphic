@@ -138,10 +138,12 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
     }
 
     var cornerRadius = (shape?.borderRadius ?? BorderRadius.zero);
-    if ((this.invalidate || this.borderRadius != cornerRadius) && !shape.isCircle) {
+    if ((this.invalidate || this.borderRadius != cornerRadius) &&
+        !shape.isCircle) {
       this.borderRadius = cornerRadius;
 
-      this.buttonRRect = RRect.fromRectAndCorners(rectRect,
+      this.buttonRRect = RRect.fromRectAndCorners(
+        rectRect,
         topLeft: this.borderRadius.topLeft,
         topRight: this.borderRadius.topRight,
         bottomRight: this.borderRadius.bottomRight,
