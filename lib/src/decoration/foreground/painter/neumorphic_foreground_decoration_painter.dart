@@ -29,8 +29,7 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
 
   MaskFilter maskFilter;
 
-  Radius shapeRadius;
-  Radius cornerRadius;
+  BorderRadius borderRadius;
 
   Rect layerRect;
   Rect rectRect;
@@ -137,21 +136,16 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
       }
     }
 
-    var shapeRadius = (shape?.borderRadius?.topLeft ?? Radius.zero);
+    final cornerRadius = (shape?.borderRadius ?? BorderRadius.zero);
+    if ((this.invalidate || this.borderRadius != cornerRadius) && !shape.isCircle) {
+      this.borderRadius = cornerRadius;
 
-    if ((this.invalidate || this.shapeRadius != shapeRadius) &&
-        !shape.isCircle) {
-      this.shapeRadius = shapeRadius;
-
-      var cornerRadius = Radius.circular(this.shapeRadius.x.clamp(
-            0.0,
-            this.radius,
-          ));
-
-      if (this.cornerRadius != cornerRadius) {
-        this.cornerRadius = cornerRadius;
-      }
-      this.buttonRRect = RRect.fromRectAndRadius(rectRect, this.cornerRadius);
+      this.buttonRRect = RRect.fromRectAndCorners(rectRect,
+        topLeft: this.borderRadius.topLeft,
+        topRight: this.borderRadius.topRight,
+        bottomRight: this.borderRadius.bottomRight,
+        bottomLeft: this.borderRadius.bottomLeft,
+      );
     }
 
     LightSource gradientLightSource = style.lightSource;
@@ -178,13 +172,19 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
           -depthOffset.dy,
         );
       } else {
-        whiteShadowRRect = RRect.fromRectAndRadius(
+        whiteShadowRRect = RRect.fromRectAndCorners(
           rectRect.translate(depthOffset.dx, depthOffset.dy),
-          cornerRadius,
+          topLeft: this.borderRadius.topLeft,
+          topRight: this.borderRadius.topRight,
+          bottomRight: this.borderRadius.bottomRight,
+          bottomLeft: this.borderRadius.bottomLeft,
         );
-        blackShadowRRect = RRect.fromRectAndRadius(
+        blackShadowRRect = RRect.fromRectAndCorners(
           rectRect.translate(-depthOffset.dx, -depthOffset.dy),
-          cornerRadius,
+          topLeft: this.borderRadius.topLeft,
+          topRight: this.borderRadius.topRight,
+          bottomRight: this.borderRadius.bottomRight,
+          bottomLeft: this.borderRadius.bottomLeft,
         );
       }
     }

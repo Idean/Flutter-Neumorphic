@@ -34,7 +34,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   Rect layerRect;
   Rect backgroundRect;
 
-  Radius cornerRadius;
+  BorderRadius borderRadius;
 
   LightSource shadowLightSource;
   Color backgroundColor;
@@ -97,12 +97,16 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       }
     }
 
-    var cornerRadius = (shape?.borderRadius?.topLeft ?? Radius.zero);
-    if ((this.invalidate || this.cornerRadius != cornerRadius) &&
-        !shape.isCircle) {
-      this.cornerRadius = Radius.circular(cornerRadius.x.clamp(0.0, radius));
-      this.buttonRRect =
-          RRect.fromRectAndRadius(backgroundRect, this.cornerRadius);
+    var cornerRadius = (shape?.borderRadius ?? BorderRadius.zero);
+    if ((this.invalidate || this.borderRadius != cornerRadius) && !shape.isCircle) {
+      this.borderRadius = cornerRadius;
+
+      this.buttonRRect = RRect.fromRectAndCorners(backgroundRect,
+        topLeft: cornerRadius.topLeft,
+        topRight: cornerRadius.topRight,
+        bottomRight: cornerRadius.bottomRight,
+        bottomLeft: cornerRadius.bottomLeft,
+      );
     }
 
     LightSource shadowLightSource = style.lightSource;
@@ -137,22 +141,30 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
           -this.depth * this.shadowLightSource.dy,
         );
       } else {
-        whiteShadowMaskRect = RRect.fromRectAndRadius(
+        this.whiteShadowMaskRect = RRect.fromRectAndCorners(
             getWhiteShadowMaskRect(
               this.shadowLightSource,
               configuration.size,
               offset,
               this.depth,
             ),
-            cornerRadius);
-        blackShadowMaskRect = RRect.fromRectAndRadius(
+          topLeft: this.borderRadius.topLeft,
+          topRight: this.borderRadius.topRight,
+          bottomRight: this.borderRadius.bottomRight,
+          bottomLeft: this.borderRadius.bottomLeft,
+        );
+        this.blackShadowMaskRect = RRect.fromRectAndCorners(
             getBlackShadowMaskRect(
               this.shadowLightSource,
               configuration.size,
               offset,
               this.depth,
             ),
-            cornerRadius);
+          topLeft: this.borderRadius.topLeft,
+          topRight: this.borderRadius.topRight,
+          bottomRight: this.borderRadius.bottomRight,
+          bottomLeft: this.borderRadius.bottomLeft,
+        );
       }
     }
 

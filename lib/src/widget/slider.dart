@@ -157,10 +157,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
       alignment: Alignment.center,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(
-              left: thumbSize / 2,
-              right: thumbSize / 2
-          ),
+          padding: EdgeInsets.only(left: thumbSize / 2, right: thumbSize / 2),
           child: _generateSlider(context),
         ),
         Align(
