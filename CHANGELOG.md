@@ -1,5 +1,6 @@
-## 1.0.3+4
+## 1.0.4
 
+* Fixed BorderRadius.only
 * Fixed Slider thumb position
 * Added `curve` on any widget to customize implicits animations
 * Added `NeumorphicToggle` widget
