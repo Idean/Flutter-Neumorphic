@@ -152,16 +152,23 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
   }
 
   Widget _widget(BuildContext context) {
+    double thumbSize = widget.height * 1.5;
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        _generateSlider(context),
+        Padding(
+          padding: EdgeInsets.only(
+              left: thumbSize / 2,
+              right: thumbSize / 2
+          ),
+          child: _generateSlider(context),
+        ),
         Align(
             alignment: Alignment(
                 //because left = -1 & right = 1, so the "width" = 2, and minValue = 1
                 (widget.percent * 2) - 1,
                 0),
-            child: _generateThumb(context))
+            child: _generateThumb(context, thumbSize))
       ],
     );
   }
@@ -173,12 +180,6 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
       percent: widget.percent,
       height: widget.height,
       style: ProgressStyle(
-        gradientBorderRadius: BorderRadius.only(
-          topLeft: widget.style.borderRadius.topLeft,
-          topRight: Radius.circular(0),
-          bottomLeft: widget.style.borderRadius.bottomLeft,
-          bottomRight: Radius.circular(0),
-        ),
         disableDepth: widget.style.disableDepth,
         depth: widget.style.depth,
         borderRadius: widget.style.borderRadius,
@@ -188,7 +189,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
     );
   }
 
-  Widget _generateThumb(BuildContext context) {
+  Widget _generateThumb(BuildContext context, double size) {
     final theme = NeumorphicTheme.currentTheme(context);
     return Neumorphic(
       style: NeumorphicStyle(
@@ -198,8 +199,8 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
       ),
       boxShape: NeumorphicBoxShape.circle(),
       child: SizedBox(
-        height: widget.height * 1.5,
-        width: widget.height * 1.5,
+        height: size,
+        width: size,
       ),
     );
   }
