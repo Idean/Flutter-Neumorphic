@@ -1,4 +1,8 @@
-## 1.0.4
+## 1.0.3+2
+
+* Added `curve` on any widget to customize implicits animations
+
+## 1.0.3+1
 
 * Added `NeumorphicToggle` widget
 
