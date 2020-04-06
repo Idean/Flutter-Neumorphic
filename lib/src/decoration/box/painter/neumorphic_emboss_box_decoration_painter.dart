@@ -33,6 +33,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
 
   Rect layerRect;
   Rect backgroundRect;
+  Path customPath;
 
   BorderRadius borderRadius;
 
@@ -91,9 +92,11 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
 
       if (shape.isCircle) {
         circleOffset = offset.translate(middleWidth, middleHeight);
-      } else {
+      } else if(shape.isRoundRect||shape.isStadium){
         backgroundRect = Rect.fromLTRB(offset.dx, offset.dy,
             offset.dx + this.width, offset.dy + this.height);
+      } else if(shape.isCustomShape){
+        this.customPath = shape.customShapePathProvider.getPath(configuration.size);
       }
     }
 
@@ -197,7 +200,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         );
         canvas.restore();
       }
-    } else {
+    } else if(shape.isStadium || shape.isRoundRect){
       //backgroundPaint..color = accent;
       canvas.drawRRect(buttonRRect, backgroundPaint);
 
@@ -211,6 +214,39 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         canvas.drawRRect(buttonRRect, blackShadowPaint);
         canvas.drawRRect(blackShadowMaskRect, blackShadowMaskPaint);
         canvas.restore();
+      }
+    } else if(shape.isCustomShape){
+
+      canvas.save();
+      canvas.translate(offset.dx, offset.dy);
+      canvas.drawPath(customPath, backgroundPaint);
+      canvas.restore();
+
+      if (drawShadow) {
+        print("emboss is not available for now on custom path");
+        /* TODO
+        canvas.saveLayer(layerRect, whiteShadowPaint);
+        canvas.translate(offset.dx - 10, offset.dy - 10);
+        canvas.drawPath(customPath, whiteShadowPaint);
+        canvas.restore();
+
+        canvas.saveLayer(layerRect, whiteShadowMaskPaint);
+        canvas.translate(offset.dx - 10, offset.dy - 10);
+        canvas.drawPath(customPath, whiteShadowMaskPaint);
+        //canvas.drawRRect(whiteShadowMaskRect, whiteShadowMaskPaint);
+        canvas.restore();
+
+        canvas.saveLayer(layerRect, blackShadowPaint);
+        canvas.translate(offset.dx + 10, offset.dy + 10);
+        canvas.drawPath(customPath, blackShadowPaint);
+        canvas.restore();
+
+        canvas.saveLayer(layerRect, blackShadowMaskPaint);
+        canvas.translate(offset.dx + 10, offset.dy + 10);
+        canvas.drawPath(customPath, blackShadowMaskPaint);
+        //canvas.drawRRect(blackShadowMaskRect, blackShadowMaskPaint);
+        canvas.restore();
+         */
       }
     }
   }

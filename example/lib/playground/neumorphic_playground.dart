@@ -1,6 +1,5 @@
 import 'package:example/lib/color_selector.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class NeumorphicPlayground extends StatefulWidget {
@@ -230,6 +229,7 @@ class __PageState extends State<_Page> {
         setState(() {});
       },
       boxShape: boxShape,
+      drawSurfaceAboveChild: true,
       style: NeumorphicStyle(
         shape: this.shape,
         intensity: this.intensity,
@@ -404,51 +404,75 @@ class __PageState extends State<_Page> {
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: RaisedButton(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            onPressed: () {
-              setState(() {
-                boxShape = NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(this.cornerRadius));
-              });
-            },
-            color: boxShape.isRoundRect ? buttonActiveColor : buttonInnactiveColor,
-            child: Text(
-              "Rectangle",
-              style: TextStyle(color: boxShape.isRoundRect ? textActiveColor : textInactiveColor),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              onPressed: () {
+                setState(() {
+                  boxShape = NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(this.cornerRadius));
+                });
+              },
+              color: boxShape.isRoundRect ? buttonActiveColor : buttonInnactiveColor,
+              child: Text(
+                "Rect",
+                style: TextStyle(color: boxShape.isRoundRect ? textActiveColor : textInactiveColor),
+              ),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: RaisedButton(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            onPressed: () {
-              setState(() {
-                boxShape = NeumorphicBoxShape.circle();
-              });
-            },
-            color: boxShape.isCircle ? buttonActiveColor : buttonInnactiveColor,
-            child: Text(
-              "Circle",
-              style: TextStyle(color: boxShape.isCircle ? textActiveColor : textInactiveColor),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              onPressed: () {
+                setState(() {
+                  boxShape = NeumorphicBoxShape.circle();
+                });
+              },
+              color: boxShape.isCircle ? buttonActiveColor : buttonInnactiveColor,
+              child: Text(
+                "Circle",
+                style: TextStyle(color: boxShape.isCircle ? textActiveColor : textInactiveColor),
+              ),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: RaisedButton(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            onPressed: () {
-              setState(() {
-                boxShape = NeumorphicBoxShape.stadium();
-              });
-            },
-            color: boxShape.isStadium ? buttonActiveColor : buttonInnactiveColor,
-            child: Text(
-              "Stadium",
-              style: TextStyle(color: boxShape.isStadium ? textActiveColor : textInactiveColor),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              onPressed: () {
+                setState(() {
+                  boxShape = NeumorphicBoxShape.stadium();
+                });
+              },
+              color: boxShape.isStadium ? buttonActiveColor : buttonInnactiveColor,
+              child: Text(
+                "Stadium",
+                style: TextStyle(color: boxShape.isStadium ? textActiveColor : textInactiveColor),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              onPressed: () {
+                setState(() {
+                  boxShape = NeumorphicBoxShape.path(MyNeumorphicTrianglePathProvider());
+                });
+              },
+              color: boxShape.isCustomShape ? buttonActiveColor : buttonInnactiveColor,
+              child: Text(
+                "Custom",
+                style: TextStyle(color: boxShape.isCustomShape ? textActiveColor : textInactiveColor),
+              ),
             ),
           ),
         ),
