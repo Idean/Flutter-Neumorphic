@@ -44,6 +44,11 @@ class __PageState extends State<_Page> {
   static final minHeight = 50.0;
   static final maxHeight = 200.0;
 
+  bool haveNeumorphicChild = false;
+  bool childOppositeLightsourceChild = false;
+  double childMargin = 5;
+  double childDepth = 5;
+
   @override
   void initState() {
     boxShape = NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(this.cornerRadius));
@@ -154,6 +159,27 @@ class __PageState extends State<_Page> {
                     },
                   ),
                 ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    child: Text(
+                      "Child",
+                      style: TextStyle(
+                        color: selectedConfiguratorIndex == 2 ? textActiveColor : textInactiveColor,
+                      ),
+                    ),
+                    color: selectedConfiguratorIndex == 2 ? buttonActiveColor : buttonInnactiveColor,
+                    onPressed: () {
+                      setState(() {
+                        selectedConfiguratorIndex = 2;
+                      });
+                    },
+                  ),
+                ),
               )
             ],
           ),
@@ -170,6 +196,9 @@ class __PageState extends State<_Page> {
         break;
       case 1:
         return elementCustomizer();
+        break;
+      case 2:
+        return childCustomizer();
         break;
     }
     return null;
@@ -195,6 +224,18 @@ class __PageState extends State<_Page> {
         cornerRadiusSelector(),
         shapeWidget(),
         sizeSelector(),
+      ],
+    );
+  }
+
+  Widget childCustomizer() {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        hasChildSelector(),
+        childDepthSelector(),
+        childMarginSelector(),
+        childOppositeLightsourceSelector(),
       ],
     );
   }
@@ -240,9 +281,33 @@ class __PageState extends State<_Page> {
       child: SizedBox(
         height: height,
         width: width,
-        child: Container(
-            //color: Colors.blue,
-            child: Center(child: Text(""))),
+        child: haveNeumorphicChild
+            ? neumorphicChild()
+            : Container(
+                //color: Colors.blue,
+                child: Center(child: Text("")),
+              ),
+      ),
+    );
+  }
+
+  Widget neumorphicChild() {
+    return Neumorphic(
+      padding: EdgeInsets.zero,
+      duration: Duration(milliseconds: 300),
+      boxShape: boxShape,
+      margin: EdgeInsets.all(this.childMargin),
+      drawSurfaceAboveChild: true,
+      style: NeumorphicStyle(
+        shape: this.shape,
+        intensity: this.intensity,
+        surfaceIntensity: this.surfaceIntensity,
+        depth: childDepth,
+        lightSource: this.lightSource,
+        oppositeShadowLightSource: this.childOppositeLightsourceChild
+      ),
+      child: SizedBox.expand(
+
       ),
     );
   }
@@ -273,6 +338,114 @@ class __PageState extends State<_Page> {
       ],
     );
   }
+
+  Widget childDepthSelector() {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(left: 12),
+          child: Text("Child Depth"),
+        ),
+        Expanded(
+          child: Slider(
+            min: Neumorphic.MIN_DEPTH,
+            max: Neumorphic.MAX_DEPTH,
+            value: childDepth,
+            onChanged: (value) {
+              setState(() {
+                childDepth = value;
+              });
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: 12),
+          child: Text(childDepth.floor().toString()),
+        ),
+      ],
+    );
+  }
+
+  Widget childMarginSelector() {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(left: 12),
+          child: Text("Child Margin"),
+        ),
+        Expanded(
+          child: Slider(
+            min: 0,
+            max: 40,
+            value: childMargin,
+            onChanged: (value) {
+              setState(() {
+                childMargin = value;
+              });
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: 12),
+          child: Text(childMargin.floor().toString()),
+        ),
+      ],
+    );
+  }
+
+
+  Widget hasChildSelector() {
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsets.only(left: 12),
+            child: Text("Has Child"),
+          ),
+        ),
+        Align(
+          alignment: Alignment.centerRight,
+          child: Checkbox(
+            value: this.haveNeumorphicChild,
+            onChanged: (value) {
+              setState(() {
+                haveNeumorphicChild = value;
+              });
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget childOppositeLightsourceSelector() {
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsets.only(left: 12),
+            child: Text("OppositeLight"),
+          ),
+        ),
+        Align(
+          alignment: Alignment.centerRight,
+          child: Checkbox(
+            value: this.childOppositeLightsourceChild,
+            onChanged: (value) {
+              setState(() {
+                childOppositeLightsourceChild = value;
+              });
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
 
   Widget sizeSelector() {
     return Row(
