@@ -52,16 +52,14 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
     this.backgroundColor = /*accent ??*/ style.color;
-    var blackShadowColor =
-        NeumorphicColors.embossDarkColor(
-            style.shadowDarkColorEmboss,
-            intensity: style.intensity,
-        );
-    var whiteShadowColor =
-        NeumorphicColors.embossWhiteColor(
-            style.shadowLightColorEmboss,
-            intensity: style.intensity,
-        );
+    var blackShadowColor = NeumorphicColors.embossDarkColor(
+      style.shadowDarkColorEmboss,
+      intensity: style.intensity,
+    );
+    var whiteShadowColor = NeumorphicColors.embossWhiteColor(
+      style.shadowLightColorEmboss,
+      intensity: style.intensity,
+    );
 
     whiteShadowPaint = Paint()..color = whiteShadowColor;
     whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
@@ -93,11 +91,12 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
 
       if (shape.isCircle) {
         circleOffset = offset.translate(middleWidth, middleHeight);
-      } else if(shape.isRoundRect || shape.isRoundRect) {
+      } else if (shape.isRoundRect || shape.isRoundRect) {
         backgroundRect = Rect.fromLTRB(offset.dx, offset.dy,
             offset.dx + this.width, offset.dy + this.height);
-      } else if(shape.isCustomShape){
-        this.customPath = shape.customShapePathProvider.getPath(configuration.size);
+      } else if (shape.isCustomShape) {
+        this.customPath =
+            shape.customShapePathProvider.getPath(configuration.size);
       }
     }
 
@@ -174,13 +173,13 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
 
     whiteShadowPaint
       ..color = NeumorphicColors.embossWhiteColor(
-          style.shadowLightColorEmboss,
-          intensity: style.intensity,
+        style.shadowLightColorEmboss,
+        intensity: style.intensity,
       );
     blackShadowPaint
       ..color = NeumorphicColors.embossDarkColor(
-          style.shadowDarkColorEmboss,
-          intensity: style.intensity,
+        style.shadowDarkColorEmboss,
+        intensity: style.intensity,
       );
 
     if (enabled) {
@@ -202,7 +201,7 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
           blackShadowMaskPaint,
         );
         canvas.restore();
-      } else if(shape.isRoundRect || shape.isStadium){
+      } else if (shape.isRoundRect || shape.isStadium) {
         canvas.saveLayer(layerRect, whiteShadowPaint);
         canvas.drawRRect(buttonRRect, whiteShadowPaint);
         canvas.drawRRect(whiteShadowMaskRect, whiteShadowMaskPaint);

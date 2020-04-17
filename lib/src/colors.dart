@@ -39,32 +39,32 @@ class NeumorphicColors {
   static Color decorationWhiteColor(Color color, {@required double intensity}) {
     // intensity act on opacity;
     return _applyPercentageOnOpacity(
-        maxColor: color,
-        percent: intensity,
+      maxColor: color,
+      percent: intensity,
     );
   }
 
   static Color decorationDarkColor(Color color, {@required double intensity}) {
     // intensity act on opacity;
     return _applyPercentageOnOpacity(
-        maxColor: color,
-        percent: intensity,
+      maxColor: color,
+      percent: intensity,
     );
   }
 
   static Color embossWhiteColor(Color color, {@required double intensity}) {
     // intensity act on opacity;
     return _applyPercentageOnOpacity(
-        maxColor: color,
-        percent: intensity,
+      maxColor: color,
+      percent: intensity,
     );
   }
 
   static Color embossDarkColor(Color color, {@required double intensity}) {
     // intensity act on opacity;
     return _applyPercentageOnOpacity(
-        maxColor: color,
-        percent: intensity,
+      maxColor: color,
+      percent: intensity,
     );
   }
 
