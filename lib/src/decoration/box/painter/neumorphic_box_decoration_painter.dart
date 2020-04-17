@@ -59,8 +59,10 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
         super(onChanged) {
     var color = /*accent ??*/ style.color;
     var blackShadowColor = NeumorphicColors.decorationDarkColor(
+        style.shadowDarkColor,
         intensity: style.intensity); //<-- intensity act on opacity
     var whiteShadowColor = NeumorphicColors.decorationWhiteColor(
+        style.shadowLightColor,
         intensity: style.intensity); //<-- intensity act on opacity
 
     backgroundPaint = Paint()..color = color;
@@ -215,9 +217,11 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
 
     whiteShadowPaint
       ..color = NeumorphicColors.decorationWhiteColor(
+          style.shadowLightColor,
           intensity: style.intensity); //<-- intensity act on opacity;
     blackShadowPaint
       ..color = NeumorphicColors.decorationDarkColor(
+          style.shadowDarkColor,
           intensity: style.intensity); //<-- intensity act on opacity;
 
     //print("style.depth ${style.depth}");

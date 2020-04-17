@@ -89,12 +89,14 @@ class NeumorphicForegroundDecoration extends Decoration {
         splitBackgroundForeground: a.splitBackgroundForeground,
         style: a.style.copyWith(
           intensity: lerpDouble(aStyle.intensity, bStyle.intensity, t),
-          surfaceIntensity:
-              lerpDouble(aStyle.surfaceIntensity, bStyle.surfaceIntensity, t),
+          surfaceIntensity: lerpDouble(aStyle.surfaceIntensity, bStyle.surfaceIntensity, t),
           depth: lerpDouble(aStyle.depth, bStyle.depth, t),
           color: Color.lerp(aStyle.color, bStyle.color, t),
-          lightSource:
-              LightSource.lerp(aStyle.lightSource, bStyle.lightSource, t),
+          shadowLightColor: Color.lerp(aStyle.shadowLightColor, bStyle.shadowLightColor, t),
+          shadowDarkColor: Color.lerp(aStyle.shadowDarkColor, bStyle.shadowDarkColor, t),
+          shadowLightColorEmboss: Color.lerp(aStyle.shadowLightColorEmboss, bStyle.shadowLightColorEmboss, t),
+          shadowDarkColorEmboss: Color.lerp(aStyle.shadowDarkColorEmboss, bStyle.shadowDarkColorEmboss, t),
+          lightSource: LightSource.lerp(aStyle.lightSource, bStyle.lightSource, t),
         ));
   }
 
