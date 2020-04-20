@@ -274,6 +274,12 @@ class __PageState extends State<_Page> {
       style: NeumorphicStyle(
         shape: this.shape,
         intensity: this.intensity,
+        /*
+        shadowLightColor: Colors.red,
+        shadowDarkColor: Colors.blue,
+        shadowLightColorEmboss: Colors.red,
+        shadowDarkColorEmboss: Colors.blue,
+         */
         surfaceIntensity: this.surfaceIntensity,
         depth: depth,
         lightSource: this.lightSource,

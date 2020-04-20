@@ -141,7 +141,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
             widget.onChangeStart(widget.value);
           }
         },
-        onTapUp: (details) {
+        onPanEnd: (details) {
           if (widget.onChangeEnd != null) {
             widget.onChangeEnd(widget.value);
           }
