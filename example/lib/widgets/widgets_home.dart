@@ -13,6 +13,7 @@ import 'progress/widget_progress.dart';
 import 'radiobutton/widget_radio_button.dart';
 import 'slider/widget_slider.dart';
 import 'switch/widget_switch.dart';
+import 'range_slider/widget_range_slider.dart';
 
 class WidgetsHome extends StatelessWidget {
   Widget _buildButton({String text, VoidCallback onClick}) {
@@ -96,6 +97,13 @@ class WidgetsHome extends StatelessWidget {
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return SliderWidgetPage();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "Range slider",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return RangeSliderWidgetPage();
                         }));
                       }),
                   _buildButton(
