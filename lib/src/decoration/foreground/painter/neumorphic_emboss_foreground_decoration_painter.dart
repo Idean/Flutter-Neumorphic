@@ -91,7 +91,7 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
 
       if (shape.isCircle) {
         circleOffset = offset.translate(middleWidth, middleHeight);
-      } else if (shape.isRoundRect || shape.isRoundRect) {
+      } else if (shape.isRoundRect || shape.isStadium) {
         backgroundRect = Rect.fromLTRB(offset.dx, offset.dy,
             offset.dx + this.width, offset.dy + this.height);
       } else if (shape.isCustomShape) {
