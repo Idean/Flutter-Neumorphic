@@ -108,7 +108,6 @@ class NeumorphicRangeSlider extends StatefulWidget {
   final NeumorphicRangeSliderLowListener onChangedLow;
   final NeumorphicRangeSliderHighListener onChangeHigh;
 
-  final Widget thumb;
 
   NeumorphicRangeSlider({
     Key key,
@@ -120,7 +119,6 @@ class NeumorphicRangeSlider extends StatefulWidget {
     this.height = 15,
     this.onChangedLow,
     this.onChangeHigh,
-    this.thumb,
   });
 
   double get percentLow => (((valueLow.clamp(min, max)) - min) / ((max - min)));
@@ -133,6 +131,9 @@ class NeumorphicRangeSlider extends StatefulWidget {
 }
 
 class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
+  _ActiveThumb _activeThumb;
+  bool _canChangeActiveThumb;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -142,6 +143,39 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
 
   Widget _widget(BuildContext context, BoxConstraints constraints) {
     double thumbSize = widget.height * 1.5;
+
+    Function panUpdate = (DragUpdateDetails details) {
+      final RenderBox box = context.findRenderObject();
+      final tapPos = box.globalToLocal(details.globalPosition);
+      final newPercent = tapPos.dx / constraints.maxWidth;
+      final newValue = ((widget.min + (widget.max - widget.min) * newPercent)).clamp(widget.min, widget.max);
+
+      switch (_activeThumb) {
+        case _ActiveThumb.low:
+          if (newValue < widget.valueHigh) {
+            _canChangeActiveThumb = false;
+            if (widget.onChangedLow != null) {
+              widget.onChangedLow(newValue);
+            }
+          } else if (_canChangeActiveThumb && details.delta.dx > 0) {
+            _canChangeActiveThumb = false;
+            _activeThumb = _ActiveThumb.high;
+          }
+          break;
+        case _ActiveThumb.high:
+          if (newValue > widget.valueLow) {
+            _canChangeActiveThumb = false;
+            if (widget.onChangeHigh != null) {
+              widget.onChangeHigh(newValue);
+            }
+          } else if (_canChangeActiveThumb && details.delta.dx < 0) {
+            _canChangeActiveThumb = false;
+            _activeThumb = _ActiveThumb.low;
+          }
+          break;
+      }
+    };
+
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
@@ -155,18 +189,12 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
               (widget.percentLow * 2) - 1,
               0),
           child: GestureDetector(
-              onPanUpdate: (DragUpdateDetails details) {
-                final RenderBox box = context.findRenderObject();
-                final tapPos = box.globalToLocal(details.globalPosition);
-                final newPercent = tapPos.dx / constraints.maxWidth;
-                final newValue =
-                    ((widget.min + (widget.max - widget.min) * newPercent))
-                        .clamp(widget.min, widget.max);
-
-                if (newValue < widget.valueHigh &&
-                    widget.onChangedLow != null) {
-                  widget.onChangedLow(newValue);
-                }
+              onHorizontalDragStart: (DragStartDetails details) {
+                _canChangeActiveThumb = true;
+                _activeThumb = _ActiveThumb.low;
+              },
+              onHorizontalDragUpdate: (DragUpdateDetails details) {
+                panUpdate(details);
               },
               child: _generateThumb(context, thumbSize, widget.style.variant)),
         ),
@@ -176,17 +204,12 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
               (widget.percentHigh * 2) - 1,
               0),
           child: GestureDetector(
-              onPanUpdate: (DragUpdateDetails details) {
-                final RenderBox box = context.findRenderObject();
-                final tapPos = box.globalToLocal(details.globalPosition);
-                final newPercent = tapPos.dx / constraints.maxWidth;
-                final newValue =
-                    ((widget.min + (widget.max - widget.min) * newPercent))
-                        .clamp(widget.min, widget.max);
-
-                if (newValue > widget.valueLow && widget.onChangeHigh != null) {
-                  widget.onChangeHigh(newValue);
-                }
+              onHorizontalDragStart: (DragStartDetails details) {
+                _canChangeActiveThumb = true;
+                _activeThumb = _ActiveThumb.high;
+              },
+              onHorizontalDragUpdate: (DragUpdateDetails details) {
+                panUpdate(details);
               },
               child: _generateThumb(context, thumbSize, widget.style.accent)),
         ),
@@ -250,3 +273,5 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
     );
   }
 }
+
+enum _ActiveThumb { low, high }
