@@ -14,7 +14,8 @@ class NeumorphicBoxShapeClipper extends StatelessWidget {
     if (shape.isCircle) {
       return CircleClipper();
     } else if (shape.isCustomShape) {
-      return shape.customShapePathProvider; //NeumorphicShape is extending CustomClipper
+      return shape
+          .customShapePathProvider; //NeumorphicShape is extending CustomClipper
     } else {
       return RRectClipper(borderRadius: shape.borderRadius);
     }

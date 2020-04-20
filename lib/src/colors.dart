@@ -19,14 +19,14 @@ class NeumorphicColors {
   static const darkDisabled = material.Colors.white70;
   static const darkDefaultTextColor = material.Colors.white70;
 
-  static const Color _decorationMaxWhiteColor =
+  static const Color decorationMaxWhiteColor =
       material.Colors.white; //for intensity = 1
-  static const Color _decorationMaxDarkColor =
+  static const Color decorationMaxDarkColor =
       material.Colors.black54; //for intensity = 1
 
-  static const Color _embossMaxWhiteColor =
+  static const Color embossMaxWhiteColor =
       material.Colors.white60; //for intensity = 1
-  static const Color _embossMaxDarkColor =
+  static const Color embossMaxDarkColor =
       material.Colors.black45; //for intensity = 1
 
   static const Color _gradientShaderDarkColor = material.Colors.black54;
@@ -36,29 +36,36 @@ class NeumorphicColors {
 
   NeumorphicColors._();
 
-  static Color decorationWhiteColor({@required double intensity}) {
+  static Color decorationWhiteColor(Color color, {@required double intensity}) {
     // intensity act on opacity;
     return _applyPercentageOnOpacity(
-        maxColor: NeumorphicColors._decorationMaxWhiteColor,
-        percent: intensity);
+      maxColor: color,
+      percent: intensity,
+    );
   }
 
-  static Color decorationDarkColor({@required double intensity}) {
+  static Color decorationDarkColor(Color color, {@required double intensity}) {
     // intensity act on opacity;
     return _applyPercentageOnOpacity(
-        maxColor: NeumorphicColors._decorationMaxDarkColor, percent: intensity);
+      maxColor: color,
+      percent: intensity,
+    );
   }
 
-  static Color embossWhiteColor({@required double intensity}) {
+  static Color embossWhiteColor(Color color, {@required double intensity}) {
     // intensity act on opacity;
     return _applyPercentageOnOpacity(
-        maxColor: NeumorphicColors._embossMaxWhiteColor, percent: intensity);
+      maxColor: color,
+      percent: intensity,
+    );
   }
 
-  static Color embossDarkColor({@required double intensity}) {
+  static Color embossDarkColor(Color color, {@required double intensity}) {
     // intensity act on opacity;
     return _applyPercentageOnOpacity(
-        maxColor: NeumorphicColors._embossMaxDarkColor, percent: intensity);
+      maxColor: color,
+      percent: intensity,
+    );
   }
 
   static Color gradientShaderDarkColor({@required double intensity}) {

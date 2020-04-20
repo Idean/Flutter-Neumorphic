@@ -1,3 +1,11 @@
+## 1.0.5
+
+* Added shadow colors customization 
+* - shadowLightColor,
+* - shadowDarkColor,
+* - shadowLightColorEmboss,
+* - shadowDarkColorEmboss,
+
 ## 1.0.4
 
 * Fixed BorderRadius.only
