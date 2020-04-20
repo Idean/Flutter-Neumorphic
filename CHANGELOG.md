@@ -1,4 +1,4 @@
-## 1.0.5
+## 1.0.5+1
 
 * Added shadow colors customization 
 * - shadowLightColor,
