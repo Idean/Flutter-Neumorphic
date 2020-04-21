@@ -107,6 +107,8 @@ class NeumorphicRangeSlider extends StatefulWidget {
   final double height;
   final NeumorphicRangeSliderLowListener onChangedLow;
   final NeumorphicRangeSliderHighListener onChangeHigh;
+  final Function(ActiveThumb) onPanStarted;
+  final Function(ActiveThumb) onPanEnded;
 
 
   NeumorphicRangeSlider({
@@ -119,6 +121,8 @@ class NeumorphicRangeSlider extends StatefulWidget {
     this.height = 15,
     this.onChangedLow,
     this.onChangeHigh,
+    this.onPanStarted,
+    this.onPanEnded,
   });
 
   double get percentLow => (((valueLow.clamp(min, max)) - min) / ((max - min)));
@@ -131,7 +135,7 @@ class NeumorphicRangeSlider extends StatefulWidget {
 }
 
 class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
-  _ActiveThumb _activeThumb;
+  ActiveThumb _activeThumb;
   bool _canChangeActiveThumb;
 
   @override
@@ -151,7 +155,7 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
       final newValue = ((widget.min + (widget.max - widget.min) * newPercent)).clamp(widget.min, widget.max);
 
       switch (_activeThumb) {
-        case _ActiveThumb.low:
+        case ActiveThumb.low:
           if (newValue < widget.valueHigh) {
             _canChangeActiveThumb = false;
             if (widget.onChangedLow != null) {
@@ -159,10 +163,10 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
             }
           } else if (_canChangeActiveThumb && details.delta.dx > 0) {
             _canChangeActiveThumb = false;
-            _activeThumb = _ActiveThumb.high;
+            _activeThumb = ActiveThumb.high;
           }
           break;
-        case _ActiveThumb.high:
+        case ActiveThumb.high:
           if (newValue > widget.valueLow) {
             _canChangeActiveThumb = false;
             if (widget.onChangeHigh != null) {
@@ -170,7 +174,7 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
             }
           } else if (_canChangeActiveThumb && details.delta.dx < 0) {
             _canChangeActiveThumb = false;
-            _activeThumb = _ActiveThumb.low;
+            _activeThumb = ActiveThumb.low;
           }
           break;
       }
@@ -191,10 +195,18 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
           child: GestureDetector(
               onHorizontalDragStart: (DragStartDetails details) {
                 _canChangeActiveThumb = true;
-                _activeThumb = _ActiveThumb.low;
+                _activeThumb = ActiveThumb.low;
+                if(widget.onPanStarted != null){
+                  widget.onPanStarted(_activeThumb);
+                }
               },
               onHorizontalDragUpdate: (DragUpdateDetails details) {
                 panUpdate(details);
+              },
+              onHorizontalDragEnd: (details){
+                if(widget.onPanEnded != null){
+                  widget.onPanEnded(_activeThumb);
+                }
               },
               child: _generateThumb(context, thumbSize, widget.style.variant)),
         ),
@@ -206,10 +218,18 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
           child: GestureDetector(
               onHorizontalDragStart: (DragStartDetails details) {
                 _canChangeActiveThumb = true;
-                _activeThumb = _ActiveThumb.high;
+                _activeThumb = ActiveThumb.high;
+                if(widget.onPanStarted != null){
+                  widget.onPanStarted(_activeThumb);
+                }
               },
               onHorizontalDragUpdate: (DragUpdateDetails details) {
                 panUpdate(details);
+              },
+              onHorizontalDragEnd: (details){
+                if(widget.onPanEnded != null){
+                  widget.onPanEnded(_activeThumb);
+                }
               },
               child: _generateThumb(context, thumbSize, widget.style.accent)),
         ),
@@ -274,4 +294,4 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
   }
 }
 
-enum _ActiveThumb { low, high }
+enum ActiveThumb { low, high }
