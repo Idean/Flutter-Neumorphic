@@ -2,9 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 
 import '../../../NeumorphicBoxShape.dart';
 import '../../../theme/theme.dart';
+
 export '../../../theme/theme.dart';
 
 class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
@@ -101,8 +103,7 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
     }
 
     var cornerRadius = (shape?.borderRadius ?? BorderRadius.zero);
-    if ((this.invalidate || this.borderRadius != cornerRadius) &&
-        !shape.isCircle) {
+    if ((this.invalidate || this.borderRadius != cornerRadius) && !shape.isCircle && !shape.isCustomShape) {
       this.borderRadius = cornerRadius;
 
       this.buttonRRect = RRect.fromRectAndCorners(
@@ -143,7 +144,7 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
           -this.depth * this.shadowLightSource.dx,
           -this.depth * this.shadowLightSource.dy,
         );
-      } else {
+      } else if (shape.isStadium || shape.isRoundRect) {
         whiteShadowMaskRect = RRect.fromRectAndCorners(
           getWhiteShadowMaskRect(
             this.shadowLightSource,
@@ -202,6 +203,7 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
         );
         canvas.restore();
       } else if (shape.isRoundRect || shape.isStadium) {
+
         canvas.saveLayer(layerRect, whiteShadowPaint);
         canvas.drawRRect(buttonRRect, whiteShadowPaint);
         canvas.drawRRect(whiteShadowMaskRect, whiteShadowMaskPaint);
@@ -211,32 +213,54 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
         canvas.drawRRect(buttonRRect, blackShadowPaint);
         canvas.drawRRect(blackShadowMaskRect, blackShadowMaskPaint);
         canvas.restore();
+
       } else {
-        print("emboss is not available for now on custom path");
 
-        /* TODO
+        final Rect pathBounds = customPath.getBounds();
+
+        var xDepth = this.shadowLightSource.dx * depth;
+        var yDepth = this.shadowLightSource.dy * depth;
+        var xPadding = 2 * (1 - this.shadowLightSource.dx.abs()) * depth;
+        var yPadding = 2 * (1 - this.shadowLightSource.dy.abs()) * depth;
+
+        var left = xDepth - xPadding;
+        var top = yDepth - yPadding;
+        var right = xDepth + xPadding;
+        var bottom = yDepth + yPadding;
+
+        var newWidth = (offset.dx + configuration.size.width + right) - (offset.dx + left);
+        var newHeight = (offset.dy + configuration.size.height + bottom) - (offset.dy + top);
+
+        Matrix4 matrix4 = Matrix4.identity();
+        matrix4.scale(newWidth / pathBounds.width, newHeight / pathBounds.height);
+        customPath.transform(matrix4.storage);
+
         canvas.saveLayer(layerRect, whiteShadowPaint);
-        canvas.translate(offset.dx - 1, offset.dy - 1);
+        canvas.translate(offset.dx, offset.dy);
         canvas.drawPath(customPath, whiteShadowPaint);
+        canvas.translate(left, top);
+        canvas.drawPath(customPath.transform(matrix4.storage), whiteShadowMaskPaint);
         canvas.restore();
 
-        canvas.saveLayer(layerRect, whiteShadowMaskPaint);
-        canvas.translate(offset.dx - 1, offset.dy - 1);
-        canvas.drawPath(customPath, whiteShadowMaskPaint);
-        //canvas.drawRRect(whiteShadowMaskRect, whiteShadowMaskPaint);
-        canvas.restore();
+        left = xDepth + xPadding;
+        top = yDepth + yPadding;
+        right = xDepth - xPadding;
+        bottom = yDepth - yPadding;
+
+        newWidth = (offset.dx + configuration.size.width - right) - (offset.dx - left);
+        newHeight = (offset.dy + configuration.size.height - bottom) - (offset.dy - top);
+
+        matrix4 = Matrix4.identity();
+        matrix4.scale(newWidth / pathBounds.width, newHeight / pathBounds.height);
+        customPath.transform(matrix4.storage);
 
         canvas.saveLayer(layerRect, blackShadowPaint);
-        canvas.translate(offset.dx + 1, offset.dy + 1);
+        canvas.translate(offset.dx, offset.dy);
         canvas.drawPath(customPath, blackShadowPaint);
+        canvas.translate(- left, - top);
+        canvas.drawPath(customPath.transform(matrix4.storage), blackShadowMaskPaint);
         canvas.restore();
 
-        canvas.saveLayer(layerRect, blackShadowMaskPaint);
-        canvas.translate(offset.dx + 1, offset.dy + 1);
-        canvas.drawPath(customPath, blackShadowMaskPaint);
-        //canvas.drawRRect(blackShadowMaskRect, blackShadowMaskPaint);
-        canvas.restore();
-         */
       }
     }
   }
