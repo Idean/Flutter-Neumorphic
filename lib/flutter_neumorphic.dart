@@ -9,6 +9,7 @@ export 'src/widget/radio.dart';
 export 'src/widget/indicator.dart';
 export 'src/widget/checkbox.dart';
 export 'src/widget/slider.dart';
+export 'src/widget/range_slider.dart';
 export 'src/widget/progress.dart';
 export 'src/widget/switch.dart';
 export 'src/widget/toggle.dart';
