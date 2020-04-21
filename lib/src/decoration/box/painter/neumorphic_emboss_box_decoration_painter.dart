@@ -5,6 +5,7 @@ import 'package:flutter/painting.dart';
 
 import '../../../NeumorphicBoxShape.dart';
 import '../../../theme/theme.dart';
+
 export '../../../theme/theme.dart';
 
 class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
@@ -105,7 +106,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
 
     var cornerRadius = (shape?.borderRadius ?? BorderRadius.zero);
     if ((this.invalidate || this.borderRadius != cornerRadius) &&
-        !shape.isCircle) {
+        !shape.isCircle && !shape.isCustomShape) {
       this.borderRadius = cornerRadius;
 
       this.buttonRRect = RRect.fromRectAndCorners(
