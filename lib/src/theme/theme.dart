@@ -13,7 +13,7 @@ export '../shape.dart';
 
 //region theme
 const double _defaultDepth = 4;
-const double _defaultIntensity = 0.5;
+const double _defaultIntensity = 0.7;
 const Color _defaultAccent = NeumorphicColors.accent;
 const Color _defaultVariant = NeumorphicColors.variant;
 const Color _defaultDisabledColor = NeumorphicColors.disabled;
