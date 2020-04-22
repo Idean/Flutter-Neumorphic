@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 
 import '../../NeumorphicBoxShape.dart';
 import 'painter/neumorphic_box_decoration_painter.dart';
-
 import 'painter/neumorphic_emboss_box_decoration_painter.dart';
+
 export 'painter/neumorphic_emboss_box_decoration_painter.dart';
 
 @immutable
@@ -29,7 +29,6 @@ class NeumorphicBoxDecoration extends Decoration {
         shape: shape,
       );
     } else {
-      //print("emboss : $accent");
       return NeumorphicEmbossBoxDecorationPainter(
         drawShadow: !splitBackgroundForeground,
         style: style,
