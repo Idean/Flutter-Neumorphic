@@ -48,11 +48,12 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
 
   bool drawShadow;
 
-  NeumorphicEmbossBoxDecorationPainter({ //this.accent,
-    @required this.style,
-    @required NeumorphicBoxShape shape,
-    @required this.drawShadow,
-    @required VoidCallback onChanged})
+  NeumorphicEmbossBoxDecorationPainter(
+      { //this.accent,
+      @required this.style,
+      @required NeumorphicBoxShape shape,
+      @required this.drawShadow,
+      @required VoidCallback onChanged})
       : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
     this.backgroundColor = /*accent ??*/ style.color;
@@ -63,18 +64,13 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         style.shadowLightColorEmboss,
         intensity: style.intensity);
 
-    backgroundPaint = Paint()
-      ..color = backgroundColor;
+    backgroundPaint = Paint()..color = backgroundColor;
 
-    whiteShadowPaint = Paint()
-      ..color = whiteShadowColor;
-    whiteShadowMaskPaint = Paint()
-      ..blendMode = BlendMode.dstOut;
+    whiteShadowPaint = Paint()..color = whiteShadowColor;
+    whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
 
-    blackShadowPaint = Paint()
-      ..color = blackShadowColor;
-    blackShadowMaskPaint = Paint()
-      ..blendMode = BlendMode.dstOut;
+    blackShadowPaint = Paint()..color = blackShadowColor;
+    blackShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
   }
 
   @override
@@ -111,7 +107,8 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
 
     var cornerRadius = (shape?.borderRadius ?? BorderRadius.zero);
     if ((this.invalidate || this.borderRadius != cornerRadius) &&
-        !shape.isCircle && !shape.isCustomShape) {
+        !shape.isCircle &&
+        !shape.isCustomShape) {
       this.borderRadius = cornerRadius;
 
       this.buttonRRect = RRect.fromRectAndCorners(
@@ -212,7 +209,6 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         canvas.restore();
       }
     } else if (shape.isStadium || shape.isRoundRect) {
-
       canvas.drawRRect(buttonRRect, backgroundPaint);
 
       if (drawShadow) {
@@ -225,17 +221,14 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         canvas.drawRRect(buttonRRect, blackShadowPaint);
         canvas.drawRRect(blackShadowMaskRect, blackShadowMaskPaint);
         canvas.restore();
-
       }
     } else if (shape.isCustomShape) {
-
       canvas.save();
       canvas.translate(offset.dx, offset.dy);
       canvas.drawPath(customPath, backgroundPaint);
       canvas.restore();
 
       if (drawShadow) {
-
         final Rect pathBounds = customPath.getBounds();
 
         var xDepth = this.shadowLightSource.dx * depth;
@@ -248,18 +241,22 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         var right = xDepth + xPadding;
         var bottom = yDepth + yPadding;
 
-        var newWidth = (offset.dx + configuration.size.width + right) - (offset.dx + left);
-        var newHeight = (offset.dy + configuration.size.height + bottom) - (offset.dy + top);
+        var newWidth =
+            (offset.dx + configuration.size.width + right) - (offset.dx + left);
+        var newHeight = (offset.dy + configuration.size.height + bottom) -
+            (offset.dy + top);
 
         Matrix4 matrix4 = Matrix4.identity();
-        matrix4.scale(newWidth / pathBounds.width, newHeight / pathBounds.height);
+        matrix4.scale(
+            newWidth / pathBounds.width, newHeight / pathBounds.height);
         customPath.transform(matrix4.storage);
 
         canvas.saveLayer(layerRect, whiteShadowPaint);
         canvas.translate(offset.dx, offset.dy);
         canvas.drawPath(customPath, whiteShadowPaint);
         canvas.translate(left, top);
-        canvas.drawPath(customPath.transform(matrix4.storage), whiteShadowMaskPaint);
+        canvas.drawPath(
+            customPath.transform(matrix4.storage), whiteShadowMaskPaint);
         canvas.restore();
 
         left = xDepth + xPadding;
@@ -267,26 +264,29 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         right = xDepth - xPadding;
         bottom = yDepth - yPadding;
 
-        newWidth = (offset.dx + configuration.size.width - right) - (offset.dx - left);
-        newHeight = (offset.dy + configuration.size.height - bottom) - (offset.dy - top);
+        newWidth =
+            (offset.dx + configuration.size.width - right) - (offset.dx - left);
+        newHeight = (offset.dy + configuration.size.height - bottom) -
+            (offset.dy - top);
 
         matrix4 = Matrix4.identity();
-        matrix4.scale(newWidth / pathBounds.width, newHeight / pathBounds.height);
+        matrix4.scale(
+            newWidth / pathBounds.width, newHeight / pathBounds.height);
         customPath.transform(matrix4.storage);
 
         canvas.saveLayer(layerRect, blackShadowPaint);
         canvas.translate(offset.dx, offset.dy);
         canvas.drawPath(customPath, blackShadowPaint);
-        canvas.translate(- left, - top);
-        canvas.drawPath(customPath.transform(matrix4.storage), blackShadowMaskPaint);
+        canvas.translate(-left, -top);
+        canvas.drawPath(
+            customPath.transform(matrix4.storage), blackShadowMaskPaint);
         canvas.restore();
-
       }
     }
   }
 
-  Rect getWhiteShadowMaskRect(LightSource source, Size size, Offset offset,
-      double depth) {
+  Rect getWhiteShadowMaskRect(
+      LightSource source, Size size, Offset offset, double depth) {
     var xDepth = source.dx * depth;
     var yDepth = source.dy * depth;
     var xPadding = 2 * (1 - source.dx.abs()) * depth;
@@ -305,8 +305,8 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
     );
   }
 
-  Rect getBlackShadowMaskRect(LightSource source, Size size, Offset offset,
-      double depth) {
+  Rect getBlackShadowMaskRect(
+      LightSource source, Size size, Offset offset, double depth) {
     var xDepth = source.dx * depth;
     var yDepth = source.dy * depth;
     var xPadding = 2 * (1 - source.dx.abs()) * depth;

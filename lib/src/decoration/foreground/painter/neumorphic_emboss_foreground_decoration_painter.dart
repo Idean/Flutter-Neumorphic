@@ -103,7 +103,9 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
     }
 
     var cornerRadius = (shape?.borderRadius ?? BorderRadius.zero);
-    if ((this.invalidate || this.borderRadius != cornerRadius) && !shape.isCircle && !shape.isCustomShape) {
+    if ((this.invalidate || this.borderRadius != cornerRadius) &&
+        !shape.isCircle &&
+        !shape.isCustomShape) {
       this.borderRadius = cornerRadius;
 
       this.buttonRRect = RRect.fromRectAndCorners(
@@ -203,7 +205,6 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
         );
         canvas.restore();
       } else if (shape.isRoundRect || shape.isStadium) {
-
         canvas.saveLayer(layerRect, whiteShadowPaint);
         canvas.drawRRect(buttonRRect, whiteShadowPaint);
         canvas.drawRRect(whiteShadowMaskRect, whiteShadowMaskPaint);
@@ -213,9 +214,7 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
         canvas.drawRRect(buttonRRect, blackShadowPaint);
         canvas.drawRRect(blackShadowMaskRect, blackShadowMaskPaint);
         canvas.restore();
-
       } else {
-
         final Rect pathBounds = customPath.getBounds();
 
         var xDepth = this.shadowLightSource.dx * depth;
@@ -228,18 +227,22 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
         var right = xDepth + xPadding;
         var bottom = yDepth + yPadding;
 
-        var newWidth = (offset.dx + configuration.size.width + right) - (offset.dx + left);
-        var newHeight = (offset.dy + configuration.size.height + bottom) - (offset.dy + top);
+        var newWidth =
+            (offset.dx + configuration.size.width + right) - (offset.dx + left);
+        var newHeight = (offset.dy + configuration.size.height + bottom) -
+            (offset.dy + top);
 
         Matrix4 matrix4 = Matrix4.identity();
-        matrix4.scale(newWidth / pathBounds.width, newHeight / pathBounds.height);
+        matrix4.scale(
+            newWidth / pathBounds.width, newHeight / pathBounds.height);
         customPath.transform(matrix4.storage);
 
         canvas.saveLayer(layerRect, whiteShadowPaint);
         canvas.translate(offset.dx, offset.dy);
         canvas.drawPath(customPath, whiteShadowPaint);
         canvas.translate(left, top);
-        canvas.drawPath(customPath.transform(matrix4.storage), whiteShadowMaskPaint);
+        canvas.drawPath(
+            customPath.transform(matrix4.storage), whiteShadowMaskPaint);
         canvas.restore();
 
         left = xDepth + xPadding;
@@ -247,20 +250,23 @@ class NeumorphicEmbossForegroundDecorationPainter extends BoxPainter {
         right = xDepth - xPadding;
         bottom = yDepth - yPadding;
 
-        newWidth = (offset.dx + configuration.size.width - right) - (offset.dx - left);
-        newHeight = (offset.dy + configuration.size.height - bottom) - (offset.dy - top);
+        newWidth =
+            (offset.dx + configuration.size.width - right) - (offset.dx - left);
+        newHeight = (offset.dy + configuration.size.height - bottom) -
+            (offset.dy - top);
 
         matrix4 = Matrix4.identity();
-        matrix4.scale(newWidth / pathBounds.width, newHeight / pathBounds.height);
+        matrix4.scale(
+            newWidth / pathBounds.width, newHeight / pathBounds.height);
         customPath.transform(matrix4.storage);
 
         canvas.saveLayer(layerRect, blackShadowPaint);
         canvas.translate(offset.dx, offset.dy);
         canvas.drawPath(customPath, blackShadowPaint);
-        canvas.translate(- left, - top);
-        canvas.drawPath(customPath.transform(matrix4.storage), blackShadowMaskPaint);
+        canvas.translate(-left, -top);
+        canvas.drawPath(
+            customPath.transform(matrix4.storage), blackShadowMaskPaint);
         canvas.restore();
-
       }
     }
   }

@@ -56,33 +56,27 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
     @required NeumorphicBoxShape shape,
     @required this.drawGradient,
     @required VoidCallback onChanged,
-  })
-      : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
+  })  : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
         super(onChanged) {
     var color = /*accent ??*/ style.color;
 
     var blackShadowColor = NeumorphicColors.decorationDarkColor(
         style.shadowDarkColor,
         intensity: style.intensity //<-- intensity act on opacity
-    );
+        );
 
     var whiteShadowColor = NeumorphicColors.decorationWhiteColor(
         style.shadowLightColor,
         intensity: style.intensity //<-- intensity act on opacity
-    );
+        );
 
-    backgroundPaint = Paint()
-      ..color = color;
+    backgroundPaint = Paint()..color = color;
 
-    whiteShadowPaint = Paint()
-      ..color = whiteShadowColor;
-    whiteShadowMaskPaint = Paint()
-      ..blendMode = BlendMode.dstOut;
+    whiteShadowPaint = Paint()..color = whiteShadowColor;
+    whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
 
-    blackShadowPaint = Paint()
-      ..color = blackShadowColor;
-    blackShadowMaskPaint = Paint()
-      ..blendMode = BlendMode.dstOut;
+    blackShadowPaint = Paint()..color = blackShadowColor;
+    blackShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
 
     gradientPaint = Paint();
   }
@@ -94,7 +88,8 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
     var width = configuration.size.width;
     var height = configuration.size.height;
 
-    if (this.originOffset != offset || this.width != width ||
+    if (this.originOffset != offset ||
+        this.width != width ||
         this.height != height) {
       this.width = width;
       this.height = height;
@@ -171,7 +166,8 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
 
     var cornerRadius = (shape?.borderRadius ?? BorderRadius.zero);
     if ((this.invalidate || this.borderRadius != cornerRadius) &&
-        !shape.isCircle && !shape.isCustomShape) {
+        !shape.isCircle &&
+        !shape.isCustomShape) {
       this.borderRadius = cornerRadius;
 
       this.buttonRRect = RRect.fromRectAndCorners(
@@ -288,14 +284,16 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
       if (style.depth.abs() >= 0.1) {
         //avoid binking on android if depth near 0
         canvas.saveLayer(layerRect, whiteShadowPaint);
-        canvas.translate(offset.dx + depthOffset.dx, offset.dy + depthOffset.dy);
+        canvas.translate(
+            offset.dx + depthOffset.dx, offset.dy + depthOffset.dy);
         canvas.drawPath(customPath, whiteShadowPaint);
         canvas.translate(-depthOffset.dx, -depthOffset.dy);
         canvas.drawPath(customPath, whiteShadowMaskPaint);
         canvas.restore();
 
         canvas.saveLayer(layerRect, blackShadowPaint);
-        canvas.translate(offset.dx - depthOffset.dx, offset.dy - depthOffset.dy);
+        canvas.translate(
+            offset.dx - depthOffset.dx, offset.dy - depthOffset.dy);
         canvas.drawPath(customPath, blackShadowPaint);
         canvas.translate(depthOffset.dx, depthOffset.dy);
         canvas.drawPath(customPath, blackShadowMaskPaint);
@@ -314,7 +312,8 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
           canvas.translate(offset.dx, offset.dy);
           canvas.drawPath(customPath, backgroundPaint);
           canvas.translate(-offset.dx, -offset.dy);
-          canvas.drawRect(dstRect, gradientPaint..blendMode = BlendMode.srcATop);
+          canvas.drawRect(
+              dstRect, gradientPaint..blendMode = BlendMode.srcATop);
           canvas.restore();
         }
       }

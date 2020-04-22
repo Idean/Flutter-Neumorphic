@@ -127,7 +127,6 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
                 : this.gradientLightSource.invert(),
           );
       } else if (shape.isRoundRect || shape.isStadium) {
-
         layerRect = Rect.fromLTRB(
           offset.dx - this.width,
           offset.dy - this.height,
@@ -143,8 +142,7 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
                 : this.gradientLightSource.invert(),
           );
       } else if (shape.isCustomShape) {
-
-        customPath =  shape.customShapePathProvider.getPath(configuration.size);
+        customPath = shape.customShapePathProvider.getPath(configuration.size);
 
         layerRect = Rect.fromLTRB(
           offset.dx - this.width,
@@ -244,7 +242,8 @@ class NeumorphicForegroundDecorationPainter extends BoxPainter {
           canvas.translate(offset.dx, offset.dy);
           canvas.drawPath(customPath, backgroundPaint);
           canvas.translate(-offset.dx, -offset.dy);
-          canvas.drawRect(dstRect, gradientPaint..blendMode = BlendMode.srcATop);
+          canvas.drawRect(
+              dstRect, gradientPaint..blendMode = BlendMode.srcATop);
           canvas.restore();
         }
       }

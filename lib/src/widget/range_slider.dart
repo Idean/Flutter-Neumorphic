@@ -110,7 +110,6 @@ class NeumorphicRangeSlider extends StatefulWidget {
   final Function(ActiveThumb) onPanStarted;
   final Function(ActiveThumb) onPanEnded;
 
-
   NeumorphicRangeSlider({
     Key key,
     this.style = const RangeSliderStyle(),
@@ -152,7 +151,8 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
       final RenderBox box = context.findRenderObject();
       final tapPos = box.globalToLocal(details.globalPosition);
       final newPercent = tapPos.dx / constraints.maxWidth;
-      final newValue = ((widget.min + (widget.max - widget.min) * newPercent)).clamp(widget.min, widget.max);
+      final newValue = ((widget.min + (widget.max - widget.min) * newPercent))
+          .clamp(widget.min, widget.max);
 
       switch (_activeThumb) {
         case ActiveThumb.low:
@@ -196,15 +196,15 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
               onHorizontalDragStart: (DragStartDetails details) {
                 _canChangeActiveThumb = true;
                 _activeThumb = ActiveThumb.low;
-                if(widget.onPanStarted != null){
+                if (widget.onPanStarted != null) {
                   widget.onPanStarted(_activeThumb);
                 }
               },
               onHorizontalDragUpdate: (DragUpdateDetails details) {
                 panUpdate(details);
               },
-              onHorizontalDragEnd: (details){
-                if(widget.onPanEnded != null){
+              onHorizontalDragEnd: (details) {
+                if (widget.onPanEnded != null) {
                   widget.onPanEnded(_activeThumb);
                 }
               },
@@ -219,15 +219,15 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
               onHorizontalDragStart: (DragStartDetails details) {
                 _canChangeActiveThumb = true;
                 _activeThumb = ActiveThumb.high;
-                if(widget.onPanStarted != null){
+                if (widget.onPanStarted != null) {
                   widget.onPanStarted(_activeThumb);
                 }
               },
               onHorizontalDragUpdate: (DragUpdateDetails details) {
                 panUpdate(details);
               },
-              onHorizontalDragEnd: (details){
-                if(widget.onPanEnded != null){
+              onHorizontalDragEnd: (details) {
+                if (widget.onPanEnded != null) {
                   widget.onPanEnded(_activeThumb);
                 }
               },
