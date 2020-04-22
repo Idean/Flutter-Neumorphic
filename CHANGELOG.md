@@ -1,3 +1,7 @@
+## 1.0.6+1
+
+* Added beta implementation of `custom path` shapes
+
 ## 1.0.5+1
 
 * Added shadow colors customization 
