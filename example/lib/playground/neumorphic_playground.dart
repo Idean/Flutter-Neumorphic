@@ -1,4 +1,5 @@
 import 'package:example/lib/color_selector.dart';
+import 'package:example/shapes/custom_shapes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
@@ -644,7 +645,7 @@ class __PageState extends State<_Page> {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               onPressed: () {
                 setState(() {
-                  boxShape = NeumorphicBoxShape.path(MyNeumorphicTrianglePathProvider());
+                  boxShape = NeumorphicBoxShape.path(TestNeumorphicKPathProvider());
                 });
               },
               color: boxShape.isCustomShape ? buttonActiveColor : buttonInnactiveColor,

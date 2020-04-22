@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 /// Define a Neumorphic container box shape
 ///
@@ -36,26 +37,6 @@ abstract class NeumorphicPathProvider extends CustomClipper<Path> {
   @override
   bool shouldReclip(NeumorphicPathProvider oldClipper) {
     return false;
-  }
-}
-
-//class to try
-class MyNeumorphicTrianglePathProvider extends NeumorphicPathProvider {
-  @override
-  bool shouldReclip(NeumorphicPathProvider oldClipper) {
-    return true;
-  }
-
-  @override
-  Path getPath(Size size) {
-    return Path()
-      ..moveTo(0, 0)
-      ..lineTo(size.width/2, 0)
-      ..lineTo(size.width, size.height/2)
-      ..lineTo(size.width/2, size.height/2)
-      ..lineTo(size.width, size.height)
-      ..lineTo(0, size.height)
-      ..close();
   }
 }
 
