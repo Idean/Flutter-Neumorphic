@@ -56,7 +56,7 @@ class __PageState extends State<_Page> {
             Neumorphic(
               margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(12)),
+              boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
               style: NeumorphicStyle(),
               child: Column(
                 children: <Widget>[

@@ -77,10 +77,10 @@ class _ClockPageState extends State<_Page> {
                   alignment: Alignment.topRight,
                   child: Neumorphic(
                     style: NeumorphicStyle(depth: 20, intensity: 0.4),
-                    boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
+                    boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
                     child: NeumorphicButton(
                       padding: EdgeInsets.all(12.0),
-                      boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
+                      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
                       child: Icon(
                         Icons.add,
                         color: Color(0xFFC1CDE5),

@@ -11,17 +11,15 @@ import 'indeterminate_progress/widget_indeterminate_progress.dart';
 import 'indicator/widget_indicator.dart';
 import 'progress/widget_progress.dart';
 import 'radiobutton/widget_radio_button.dart';
+import 'range_slider/widget_range_slider.dart';
 import 'slider/widget_slider.dart';
 import 'switch/widget_switch.dart';
-import 'range_slider/widget_range_slider.dart';
 
 class WidgetsHome extends StatelessWidget {
   Widget _buildButton({String text, VoidCallback onClick}) {
     return NeumorphicButton(
       margin: EdgeInsets.only(bottom: 12),
-      boxShape: NeumorphicBoxShape.roundRect(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12),),
       padding: EdgeInsets.symmetric(
         vertical: 18,
         horizontal: 24,

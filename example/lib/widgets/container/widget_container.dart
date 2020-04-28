@@ -193,7 +193,7 @@ Neumorphic(
           ),
           SizedBox(width: 12),
           Neumorphic(
-            boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
             padding: EdgeInsets.all(18.0),
             child: Icon(Icons.map),
           ),

@@ -1,4 +1,3 @@
-
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class TestNeumorphicTrianglePathProvider extends NeumorphicPathProvider {
@@ -28,28 +27,11 @@ class TestNeumorphicArcPathProvider extends NeumorphicPathProvider {
     return Path()
       ..moveTo(0, 0)
       ..lineTo(size.width, 0)
-      ..arcToPoint(Offset(size.width, size.height*0.5), radius: Radius.circular(20), clockwise: false)
-      ..arcToPoint(Offset(0, size.height*0.5), radius: Radius.circular(9), clockwise: true)
+      ..arcToPoint(Offset(size.width, size.height * 0.5),
+          radius: Radius.circular(20), clockwise: false)
+      ..arcToPoint(Offset(0, size.height * 0.5),
+          radius: Radius.circular(9), clockwise: true)
       ..arcToPoint(Offset(0, 0), radius: Radius.circular(1), clockwise: false)
-      ..close();
-  }
-}
-
-class TestNeumorphicKPathProvider extends NeumorphicPathProvider {
-  @override
-  bool shouldReclip(NeumorphicPathProvider oldClipper) {
-    return true;
-  }
-
-  @override
-  Path getPath(Size size) {
-    return Path()
-      ..moveTo(0, 0)
-      ..lineTo(size.width/2, 0)
-      ..lineTo(size.width, size.height/2)
-      ..lineTo(size.width/2, size.height/2)
-      ..lineTo(size.width, size.height)
-      ..lineTo(0, size.height)
       ..close();
   }
 }

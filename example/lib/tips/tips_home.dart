@@ -10,7 +10,7 @@ class TipsHome extends StatelessWidget {
     return NeumorphicButton(
       margin: EdgeInsets.only(bottom: 12),
       boxShape: NeumorphicBoxShape.roundRect(
-        borderRadius: BorderRadius.circular(12),
+        BorderRadius.circular(12),
       ),
       padding: EdgeInsets.symmetric(
         vertical: 18,

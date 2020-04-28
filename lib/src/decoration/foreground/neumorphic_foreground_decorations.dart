@@ -77,7 +77,7 @@ class NeumorphicForegroundDecoration extends Decoration {
     if (b == null) return a.scale(1.0 - t);
     if (t == 0.0) return a;
     if (t == 1.0) return b;
-    if (a.shape.boxShape != b.shape.boxShape) return b;
+    if (a.shape.customShapePathProvider != b.shape.customShapePathProvider) return b;
 
     var aStyle = a.style;
     var bStyle = b.style;

@@ -58,14 +58,14 @@ class __PageContentState extends State<_PageContent> {
   Widget _buildCard(BuildContext context) {
     return Container(
       child: Neumorphic(
-        boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(20)),
+        boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
         style: NeumorphicStyle(
           depth: 10,
           shape: NeumorphicShape.flat,
         ),
         child: Neumorphic(
           margin: EdgeInsets.all(8),
-          boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(20)),
+          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
           style: NeumorphicStyle(
             depth: 10,
             shape: NeumorphicShape.flat,
@@ -121,9 +121,7 @@ class __PageContentState extends State<_PageContent> {
                           height: 60,
                           child: Neumorphic(
                             style: NeumorphicStyle(depth: 5, intensity: 0.8, lightSource: LightSource.topLeft),
-                            boxShape: NeumorphicBoxShape.roundRect(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12),),
                             child: RotatedBox(quarterTurns: 1, child: Image.asset("assets/images/credit_card_chip.png")),
                           ),
                         ),

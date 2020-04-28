@@ -95,7 +95,7 @@ class _TopScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Neumorphic(
-      boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(12)),
+      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
       style: NeumorphicStyle(depth: -1 * NeumorphicTheme.of(context).current.depth),
       child: FractionallySizedBox(
         widthFactor: 1,

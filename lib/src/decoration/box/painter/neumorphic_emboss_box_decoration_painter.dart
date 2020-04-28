@@ -29,22 +29,13 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   double depth;
 
   Offset originOffset;
-  Offset circleOffset;
-  Offset whiteShadowMaskPaintOffset;
-  Offset blackShadowMaskPaintOffset;
 
   Rect layerRect;
   Rect backgroundRect;
   Path customPath;
 
-  BorderRadius borderRadius;
-
   LightSource shadowLightSource;
   Color backgroundColor;
-
-  RRect buttonRRect;
-  RRect whiteShadowMaskRect;
-  RRect blackShadowMaskRect;
 
   bool drawShadow;
 
@@ -54,7 +45,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       @required NeumorphicBoxShape shape,
       @required this.drawShadow,
       @required VoidCallback onChanged})
-      : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
+      : this.shape = shape ?? NeumorphicBoxShape.rect(),
         super(onChanged) {
     this.backgroundColor = /*accent ??*/ style.color;
     var blackShadowColor = NeumorphicColors.embossDarkColor(
@@ -91,33 +82,11 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       var middleWidth = this.width / 2;
       var middleHeight = this.height / 2;
 
-      layerRect = offset & configuration.size;
+      layerRect = originOffset & configuration.size;
       radius = min(middleWidth, middleHeight);
 
-      if (shape.isCircle) {
-        circleOffset = offset.translate(middleWidth, middleHeight);
-      } else if (shape.isRoundRect || shape.isStadium) {
-        backgroundRect = Rect.fromLTRB(offset.dx, offset.dy,
-            offset.dx + this.width, offset.dy + this.height);
-      } else if (shape.isCustomShape) {
         this.customPath =
             shape.customShapePathProvider.getPath(configuration.size);
-      }
-    }
-
-    var cornerRadius = (shape?.borderRadius ?? BorderRadius.zero);
-    if ((this.invalidate || this.borderRadius != cornerRadius) &&
-        !shape.isCircle &&
-        !shape.isCustomShape) {
-      this.borderRadius = cornerRadius;
-
-      this.buttonRRect = RRect.fromRectAndCorners(
-        backgroundRect,
-        topLeft: cornerRadius.topLeft,
-        topRight: cornerRadius.topRight,
-        bottomRight: cornerRadius.bottomRight,
-        bottomLeft: cornerRadius.bottomLeft,
-      );
     }
 
     LightSource shadowLightSource = style.lightSource;
@@ -141,42 +110,6 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       MaskFilter mask = MaskFilter.blur(BlurStyle.normal, depth);
       blackShadowMaskPaint..maskFilter = mask;
       whiteShadowMaskPaint..maskFilter = mask;
-
-      if (shape.isCircle) {
-        whiteShadowMaskPaintOffset = circleOffset.translate(
-          this.depth * this.shadowLightSource.dx,
-          this.depth * this.shadowLightSource.dy,
-        );
-        blackShadowMaskPaintOffset = circleOffset.translate(
-          -this.depth * this.shadowLightSource.dx,
-          -this.depth * this.shadowLightSource.dy,
-        );
-      } else if (shape.isStadium || shape.isRoundRect) {
-        this.whiteShadowMaskRect = RRect.fromRectAndCorners(
-          getWhiteShadowMaskRect(
-            this.shadowLightSource,
-            configuration.size,
-            offset,
-            this.depth,
-          ),
-          topLeft: this.borderRadius.topLeft,
-          topRight: this.borderRadius.topRight,
-          bottomRight: this.borderRadius.bottomRight,
-          bottomLeft: this.borderRadius.bottomLeft,
-        );
-        this.blackShadowMaskRect = RRect.fromRectAndCorners(
-          getBlackShadowMaskRect(
-            this.shadowLightSource,
-            configuration.size,
-            offset,
-            this.depth,
-          ),
-          topLeft: this.borderRadius.topLeft,
-          topRight: this.borderRadius.topRight,
-          bottomRight: this.borderRadius.bottomRight,
-          bottomLeft: this.borderRadius.bottomLeft,
-        );
-      }
     }
 
     whiteShadowPaint
@@ -186,45 +119,8 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       ..color = NeumorphicColors.embossDarkColor(style.shadowDarkColorEmboss,
           intensity: style.intensity);
 
-    if (shape.isCircle) {
-      canvas.drawCircle(circleOffset, radius, backgroundPaint);
-
-      if (drawShadow) {
-        canvas.saveLayer(layerRect, whiteShadowPaint);
-        canvas.drawCircle(circleOffset, radius, whiteShadowPaint);
-        canvas.drawCircle(
-          whiteShadowMaskPaintOffset,
-          radius,
-          whiteShadowMaskPaint,
-        );
-        canvas.restore();
-
-        canvas.saveLayer(layerRect, blackShadowPaint);
-        canvas.drawCircle(circleOffset, radius, blackShadowPaint);
-        canvas.drawCircle(
-          blackShadowMaskPaintOffset,
-          radius,
-          blackShadowMaskPaint,
-        );
-        canvas.restore();
-      }
-    } else if (shape.isStadium || shape.isRoundRect) {
-      canvas.drawRRect(buttonRRect, backgroundPaint);
-
-      if (drawShadow) {
-        canvas.saveLayer(layerRect, whiteShadowPaint);
-        canvas.drawRRect(buttonRRect, whiteShadowPaint);
-        canvas.drawRRect(whiteShadowMaskRect, whiteShadowMaskPaint);
-        canvas.restore();
-
-        canvas.saveLayer(layerRect, blackShadowPaint);
-        canvas.drawRRect(buttonRRect, blackShadowPaint);
-        canvas.drawRRect(blackShadowMaskRect, blackShadowMaskPaint);
-        canvas.restore();
-      }
-    } else if (shape.isCustomShape) {
       canvas.save();
-      canvas.translate(offset.dx, offset.dy);
+      canvas.translate(originOffset.dx, originOffset.dy);
       canvas.drawPath(customPath, backgroundPaint);
       canvas.restore();
 
@@ -242,9 +138,9 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         var bottom = yDepth + yPadding;
 
         var newWidth =
-            (offset.dx + configuration.size.width + right) - (offset.dx + left);
-        var newHeight = (offset.dy + configuration.size.height + bottom) -
-            (offset.dy + top);
+            (originOffset.dx + configuration.size.width + right) - (originOffset.dx + left);
+        var newHeight = (originOffset.dy + configuration.size.height + bottom) -
+            (originOffset.dy + top);
 
         Matrix4 matrix4 = Matrix4.identity();
         matrix4.scale(
@@ -252,7 +148,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         customPath.transform(matrix4.storage);
 
         canvas.saveLayer(layerRect, whiteShadowPaint);
-        canvas.translate(offset.dx, offset.dy);
+        canvas.translate(originOffset.dx, originOffset.dy);
         canvas.drawPath(customPath, whiteShadowPaint);
         canvas.translate(left, top);
         canvas.drawPath(
@@ -265,9 +161,9 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         bottom = yDepth - yPadding;
 
         newWidth =
-            (offset.dx + configuration.size.width - right) - (offset.dx - left);
-        newHeight = (offset.dy + configuration.size.height - bottom) -
-            (offset.dy - top);
+            (originOffset.dx + configuration.size.width - right) - (originOffset.dx - left);
+        newHeight = (originOffset.dy + configuration.size.height - bottom) -
+            (originOffset.dy - top);
 
         matrix4 = Matrix4.identity();
         matrix4.scale(
@@ -275,53 +171,12 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
         customPath.transform(matrix4.storage);
 
         canvas.saveLayer(layerRect, blackShadowPaint);
-        canvas.translate(offset.dx, offset.dy);
+        canvas.translate(originOffset.dx, originOffset.dy);
         canvas.drawPath(customPath, blackShadowPaint);
         canvas.translate(-left, -top);
         canvas.drawPath(
             customPath.transform(matrix4.storage), blackShadowMaskPaint);
         canvas.restore();
-      }
     }
-  }
-
-  Rect getWhiteShadowMaskRect(
-      LightSource source, Size size, Offset offset, double depth) {
-    var xDepth = source.dx * depth;
-    var yDepth = source.dy * depth;
-    var xPadding = 2 * (1 - source.dx.abs()) * depth;
-    var yPadding = 2 * (1 - source.dy.abs()) * depth;
-
-    var left = xDepth - xPadding;
-    var top = yDepth - yPadding;
-    var right = xDepth + xPadding;
-    var bottom = yDepth + yPadding;
-
-    return Rect.fromLTRB(
-      offset.dx + left,
-      offset.dy + top,
-      offset.dx + size.width + right,
-      offset.dy + size.height + bottom,
-    );
-  }
-
-  Rect getBlackShadowMaskRect(
-      LightSource source, Size size, Offset offset, double depth) {
-    var xDepth = source.dx * depth;
-    var yDepth = source.dy * depth;
-    var xPadding = 2 * (1 - source.dx.abs()) * depth;
-    var yPadding = 2 * (1 - source.dy.abs()) * depth;
-
-    var left = xDepth + xPadding;
-    var top = yDepth + yPadding;
-    var right = xDepth - xPadding;
-    var bottom = yDepth - yPadding;
-
-    return Rect.fromLTRB(
-      offset.dx - left,
-      offset.dy - top,
-      offset.dx + size.width - right,
-      offset.dy + size.height - bottom,
-    );
   }
 }

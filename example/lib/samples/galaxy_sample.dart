@@ -45,7 +45,7 @@ class _PageState extends State<_Page> {
     return Neumorphic(
       margin: EdgeInsets.symmetric(horizontal: 4),
       style: NeumorphicStyle(),
-      boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
+      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
       child: Neumorphic(
         style: NeumorphicStyle(
           depth: -1,
@@ -66,7 +66,7 @@ class _PageState extends State<_Page> {
       child: Transform.rotate(
         angle: 0.79  ,
         child: Neumorphic(
-          boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
+          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
           style: NeumorphicStyle(lightSource: LightSource.topLeft),
           child: Neumorphic(
             style: NeumorphicStyle(

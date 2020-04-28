@@ -30,24 +30,14 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
 
   MaskFilter maskFilter;
 
-  BorderRadius borderRadius;
-
   Rect layerRect;
   Rect dstRect;
   Path customPath;
 
-  RRect buttonRRect;
-  RRect whiteShadowRRect;
-  RRect blackShadowRRect;
-
   Offset originOffset;
-  Offset centerOffset;
   Offset depthOffset;
-  Offset whiteShadowOffset;
-  Offset blackShadowOffset;
 
   LightSource externalShadowLightSource;
-  LightSource gradientLightSource;
   bool drawGradient;
 
   NeumorphicBoxDecorationPainter({
@@ -56,7 +46,7 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
     @required NeumorphicBoxShape shape,
     @required this.drawGradient,
     @required VoidCallback onChanged,
-  })  : this.shape = shape ?? NeumorphicBoxShape.roundRect(),
+  })  : this.shape = shape ?? NeumorphicBoxShape.rect(),
         super(onChanged) {
     var color = /*accent ??*/ style.color;
 
@@ -106,124 +96,43 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
         this.height,
       );
 
-      this.gradientLightSource = style.lightSource;
-
       this.radius = min(middleWidth, middleHeight);
-      this.centerOffset = originOffset.translate(middleWidth, middleHeight);
 
-      if (shape.isCircle) {
-        layerRect = Rect.fromCircle(
-          center: centerOffset,
-          radius: this.radius * 2,
-        );
-        gradientPaint
-          ..shader = getGradientShader(
-            gradientRect: Rect.fromCircle(
-              center: centerOffset,
-              radius: radius,
-            ),
-            intensity: style.surfaceIntensity,
-            source: style.shape == NeumorphicShape.concave
-                ? this.gradientLightSource
-                : this.gradientLightSource.invert(),
-          );
-      } else if (shape.isRoundRect || shape.isStadium) {
-        layerRect = Rect.fromLTRB(
-          originOffset.dx - this.width,
-          originOffset.dy - this.height,
-          originOffset.dx + 2 * this.width,
-          originOffset.dy + 2 * this.height,
-        );
+      customPath = shape.customShapePathProvider.getPath(configuration.size);
 
-        gradientPaint
-          ..shader = getGradientShader(
-            gradientRect: dstRect,
-            intensity: style.surfaceIntensity,
-            source: style.shape == NeumorphicShape.concave
-                ? this.gradientLightSource
-                : this.gradientLightSource.invert(),
-          );
-      } else if (shape.isCustomShape) {
-        customPath = shape.customShapePathProvider.getPath(configuration.size);
-
-        layerRect = Rect.fromLTRB(
-          originOffset.dx - this.width,
-          originOffset.dy - this.height,
-          originOffset.dx + 2 * this.width,
-          originOffset.dy + 2 * this.height,
-        );
-
-        gradientPaint
-          ..shader = getGradientShader(
-            gradientRect: dstRect,
-            intensity: style.surfaceIntensity,
-            source: style.shape == NeumorphicShape.concave
-                ? this.gradientLightSource
-                : this.gradientLightSource.invert(),
-          );
-      }
-    }
-
-    var cornerRadius = (shape?.borderRadius ?? BorderRadius.zero);
-    if ((this.invalidate || this.borderRadius != cornerRadius) &&
-        !shape.isCircle &&
-        !shape.isCustomShape) {
-      this.borderRadius = cornerRadius;
-
-      this.buttonRRect = RRect.fromRectAndCorners(
-        dstRect,
-        topLeft: this.borderRadius.topLeft,
-        topRight: this.borderRadius.topRight,
-        bottomRight: this.borderRadius.bottomRight,
-        bottomLeft: this.borderRadius.bottomLeft,
+      layerRect = Rect.fromLTRB(
+        originOffset.dx - this.width,
+        originOffset.dy - this.height,
+        originOffset.dx + 2 * this.width,
+        originOffset.dy + 2 * this.height,
       );
+
+      gradientPaint
+        ..shader = getGradientShader(
+          gradientRect: dstRect,
+          intensity: style.surfaceIntensity,
+          source: style.shape == NeumorphicShape.concave
+              ? this.style.lightSource
+              : this.style.lightSource.invert(),
+        );
     }
 
     LightSource externalShadowLightSource = style.lightSource;
     if (style.oppositeShadowLightSource) {
       externalShadowLightSource = externalShadowLightSource.invert();
     }
-    LightSource gradientLightSource = style.lightSource;
     double depth = style.depth.abs().clamp(0.0, this.radius / 3);
 
     if (this.invalidate ||
         this.externalShadowLightSource != externalShadowLightSource ||
-        this.gradientLightSource != gradientLightSource ||
         this.depth != depth) {
       this.depth = depth;
       this.externalShadowLightSource = externalShadowLightSource;
-      this.gradientLightSource = gradientLightSource;
       this.depthOffset =
           this.externalShadowLightSource.offset.scale(this.depth, this.depth);
       this.maskFilter = MaskFilter.blur(BlurStyle.normal, this.depth);
       this.whiteShadowPaint..maskFilter = this.maskFilter;
       this.blackShadowPaint..maskFilter = this.maskFilter;
-
-      if (shape.isCircle) {
-        whiteShadowOffset = centerOffset.translate(
-          depthOffset.dx,
-          depthOffset.dy,
-        );
-        blackShadowOffset = centerOffset.translate(
-          -depthOffset.dx,
-          -depthOffset.dy,
-        );
-      } else if (shape.isRoundRect || shape.isStadium) {
-        whiteShadowRRect = RRect.fromRectAndCorners(
-          dstRect.translate(depthOffset.dx, depthOffset.dy),
-          topLeft: this.borderRadius.topLeft,
-          topRight: this.borderRadius.topRight,
-          bottomRight: this.borderRadius.bottomRight,
-          bottomLeft: this.borderRadius.bottomLeft,
-        );
-        blackShadowRRect = RRect.fromRectAndCorners(
-          dstRect.translate(-depthOffset.dx, -depthOffset.dy),
-          topLeft: this.borderRadius.topLeft,
-          topRight: this.borderRadius.topRight,
-          bottomRight: this.borderRadius.bottomRight,
-          bottomLeft: this.borderRadius.bottomLeft,
-        );
-      }
     }
 
     whiteShadowPaint
@@ -233,89 +142,36 @@ class NeumorphicBoxDecorationPainter extends BoxPainter {
       ..color = NeumorphicColors.decorationDarkColor(style.shadowDarkColor,
           intensity: style.intensity); //<-- intensity act on opacity;
 
-    //print("style.depth ${style.depth}");
-
-    if (shape.isCircle) {
-      if (style.depth.abs() >= 0.1) {
-        //avoid blinking on android if depth near 0
-        canvas.saveLayer(layerRect, whiteShadowPaint);
-        canvas.drawCircle(whiteShadowOffset, radius, whiteShadowPaint);
-        canvas.drawCircle(centerOffset, radius, whiteShadowMaskPaint);
-        canvas.restore();
-
-        canvas.saveLayer(layerRect, blackShadowPaint);
-        canvas.drawCircle(blackShadowOffset, radius, blackShadowPaint);
-        canvas.drawCircle(centerOffset, radius, blackShadowMaskPaint);
-        canvas.restore();
-      }
-
-      canvas.drawCircle(centerOffset, radius, backgroundPaint);
-
-      if (this.drawGradient) {
-        if (style.shape == NeumorphicShape.concave ||
-            style.shape == NeumorphicShape.convex) {
-          canvas.drawCircle(centerOffset, radius, gradientPaint);
-        }
-      }
-    } else if (shape.isRoundRect || shape.isStadium) {
-      if (style.depth.abs() >= 0.1) {
-        //avoid blinking on android if depth near 0
-
-        canvas.saveLayer(layerRect, whiteShadowPaint);
-        canvas.drawRRect(whiteShadowRRect, whiteShadowPaint);
-        canvas.drawRRect(buttonRRect, whiteShadowMaskPaint);
-        canvas.restore();
-
-        canvas.saveLayer(layerRect, blackShadowPaint);
-        canvas.drawRRect(blackShadowRRect, blackShadowPaint);
-        canvas.drawRRect(buttonRRect, blackShadowMaskPaint);
-        canvas.restore();
-      }
-
-      canvas.drawRRect(buttonRRect, backgroundPaint);
-
-      if (this.drawGradient) {
-        if (style.shape == NeumorphicShape.concave ||
-            style.shape == NeumorphicShape.convex) {
-          canvas.drawRRect(buttonRRect, gradientPaint);
-        }
-      }
-    } else if (shape.isCustomShape) {
-      if (style.depth.abs() >= 0.1) {
-        //avoid binking on android if depth near 0
-        canvas.saveLayer(layerRect, whiteShadowPaint);
-        canvas.translate(
-            offset.dx + depthOffset.dx, offset.dy + depthOffset.dy);
-        canvas.drawPath(customPath, whiteShadowPaint);
-        canvas.translate(-depthOffset.dx, -depthOffset.dy);
-        canvas.drawPath(customPath, whiteShadowMaskPaint);
-        canvas.restore();
-
-        canvas.saveLayer(layerRect, blackShadowPaint);
-        canvas.translate(
-            offset.dx - depthOffset.dx, offset.dy - depthOffset.dy);
-        canvas.drawPath(customPath, blackShadowPaint);
-        canvas.translate(depthOffset.dx, depthOffset.dy);
-        canvas.drawPath(customPath, blackShadowMaskPaint);
-        canvas.restore();
-      }
-
-      canvas.save();
-      canvas.translate(offset.dx, offset.dy);
-      canvas.drawPath(customPath, backgroundPaint);
+    if (style.depth.abs() >= 0.1) {
+      canvas.saveLayer(layerRect, whiteShadowPaint);
+      canvas.translate(offset.dx + depthOffset.dx, offset.dy + depthOffset.dy);
+      canvas.drawPath(customPath, whiteShadowPaint);
+      canvas.translate(-depthOffset.dx, -depthOffset.dy);
+      canvas.drawPath(customPath, whiteShadowMaskPaint);
       canvas.restore();
 
-      if (this.drawGradient) {
-        if (style.shape == NeumorphicShape.concave ||
-            style.shape == NeumorphicShape.convex) {
-          canvas.saveLayer(layerRect, gradientPaint);
-          canvas.translate(offset.dx, offset.dy);
-          canvas.drawPath(customPath, backgroundPaint);
-          canvas.translate(-offset.dx, -offset.dy);
-          canvas.drawRect(
-              dstRect, gradientPaint..blendMode = BlendMode.srcATop);
-          canvas.restore();
-        }
+      canvas.saveLayer(layerRect, blackShadowPaint);
+      canvas.translate(offset.dx - depthOffset.dx, offset.dy - depthOffset.dy);
+      canvas.drawPath(customPath, blackShadowPaint);
+      canvas.translate(depthOffset.dx, depthOffset.dy);
+      canvas.drawPath(customPath, blackShadowMaskPaint);
+      canvas.restore();
+    }
+
+    canvas.save();
+    canvas.translate(offset.dx, offset.dy);
+    canvas.drawPath(customPath, backgroundPaint);
+    canvas.restore();
+
+    if (this.drawGradient) {
+      if (style.shape == NeumorphicShape.concave ||
+          style.shape == NeumorphicShape.convex) {
+        canvas.saveLayer(layerRect, gradientPaint);
+        canvas.translate(offset.dx, offset.dy);
+        canvas.drawPath(customPath, backgroundPaint);
+        canvas.translate(-offset.dx, -offset.dy);
+        canvas.drawRect(dstRect, gradientPaint..blendMode = BlendMode.srcATop);
+        canvas.restore();
       }
     }
   }
