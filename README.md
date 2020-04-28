@@ -19,7 +19,7 @@ https://pub.dartlang.org/packages/flutter_neumorphic)
 
 ```dart
 dependencies:
-  flutter_neumorphic: ^1.0.6+1
+  flutter_neumorphic: ^1.0.7
 ```
 
 The in your .dart files 
@@ -183,6 +183,42 @@ Neumorphic(
 
 </tbody>
 </table>
+
+## 🎨 Custom Shape
+
+[![custom_shape](./medias/custom_shape.gif)](https://github.com/Idean/Flutter-Neumorphic)
+
+Flutter Neumorphic supports custom shapes, just provide a path to 
+
+```dart
+class MyShapePathProvider extends NeumorphicPathProvider {
+  @override
+  bool shouldReclip(NeumorphicPathProvider oldClipper) {
+    return true;
+  }
+
+  @override
+  Path getPath(Size size) {
+    return Path()
+      ..moveTo(0, 0)
+      ..lineTo(size.width/2, 0)
+      ..lineTo(size.width, size.height/2)
+      ..lineTo(size.width/2, size.height/2)
+      ..lineTo(size.width, size.height)
+      ..lineTo(0, size.height)
+      ..close();
+  }
+}
+```
+
+And use `NeumorphicBoxShape.path`
+
+```dart
+Neumorphic(
+  shape: NeumorphicBoxShape.path(MyShapePathProvider())
+  ...
+),
+```
 
 ## 🎨 Neumorphic Theme
 
