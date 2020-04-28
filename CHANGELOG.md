@@ -1,6 +1,6 @@
-## 1.0.6+1
+## 1.0.7
 
-* Added beta implementation of `custom path` shapes
+* Added implementation of `custom path` shapes
 
 ## 1.0.5+1
 
