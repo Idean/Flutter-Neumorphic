@@ -649,7 +649,7 @@ class __PageState extends State<_Page> {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               onPressed: () {
                 setState(() {
-                  boxShape = NeumorphicBoxShape.path(TestNeumorphicArcPathProvider());
+                  boxShape = NeumorphicBoxShape.path(TestNeumorphicFlutterLogoPathProvider());
                 });
               },
               color: boxShape.isCustomPath ? buttonActiveColor : buttonInnactiveColor,

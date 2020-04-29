@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
 
   Rect layerRect;
   Rect backgroundRect;
-  Path customPath;
+  Path path;
 
   LightSource shadowLightSource;
   Color backgroundColor;
@@ -40,8 +41,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   bool drawShadow;
 
   NeumorphicEmbossBoxDecorationPainter(
-      { //this.accent,
-      @required this.style,
+      {@required this.style,
       @required NeumorphicBoxShape shape,
       @required this.drawShadow,
       @required VoidCallback onChanged})
@@ -85,8 +85,7 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
       layerRect = originOffset & configuration.size;
       radius = min(middleWidth, middleHeight);
 
-        this.customPath =
-            shape.customShapePathProvider.getPath(configuration.size);
+      this.path = shape.customShapePathProvider.getPath(configuration.size);
     }
 
     LightSource shadowLightSource = style.lightSource;
@@ -95,8 +94,8 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
     }
 
     var depth = style.depth.abs().clamp(0.0, radius / 5);
-    var backgroundColor = /*accent ??*/ style.color;
-    //print("accent: $accent");
+    var backgroundColor = style.color;
+
     if (this.invalidate ||
         this.shadowLightSource != shadowLightSource ||
         this.depth != depth ||
@@ -113,70 +112,61 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
     }
 
     whiteShadowPaint
-      ..color = NeumorphicColors.embossWhiteColor(style.shadowLightColorEmboss,
-          intensity: style.intensity);
+      ..color = NeumorphicColors.embossWhiteColor(
+        style.shadowLightColorEmboss,
+        intensity: style.intensity,
+      );
     blackShadowPaint
-      ..color = NeumorphicColors.embossDarkColor(style.shadowDarkColorEmboss,
-          intensity: style.intensity);
+      ..color = NeumorphicColors.embossDarkColor(
+        style.shadowDarkColorEmboss,
+        intensity: style.intensity,
+      );
+
+    var pathMetrics = path.computeMetrics();
+
+    for (var item in pathMetrics) {
+      var subPath = item.extractPath(0, item.length);
 
       canvas.save();
       canvas.translate(originOffset.dx, originOffset.dy);
-      canvas.drawPath(customPath, backgroundPaint);
+      canvas.drawPath(subPath, backgroundPaint);
       canvas.restore();
 
       if (drawShadow) {
-        final Rect pathBounds = customPath.getBounds();
-
         var xDepth = this.shadowLightSource.dx * depth;
         var yDepth = this.shadowLightSource.dy * depth;
         var xPadding = 2 * (1 - this.shadowLightSource.dx.abs()) * depth;
         var yPadding = 2 * (1 - this.shadowLightSource.dy.abs()) * depth;
 
-        var left = xDepth - xPadding;
-        var top = yDepth - yPadding;
-        var right = xDepth + xPadding;
-        var bottom = yDepth + yPadding;
+        var witheShadowLeftTranslation = xDepth - xPadding;
+        var witheShadowTopTranslation = yDepth - yPadding;
 
-        var newWidth =
-            (originOffset.dx + configuration.size.width + right) - (originOffset.dx + left);
-        var newHeight = (originOffset.dy + configuration.size.height + bottom) -
-            (originOffset.dy + top);
+        var blackShadowLeftTranslation = -(xDepth + xPadding);
+        var blackShadowTopTranslation = -(yDepth + yPadding);
+
+        var scaledWidth = configuration.size.width + 2 * xPadding;
+        var scaledHeight = configuration.size.height + 2 * yPadding;
 
         Matrix4 matrix4 = Matrix4.identity();
-        matrix4.scale(
-            newWidth / pathBounds.width, newHeight / pathBounds.height);
-        customPath.transform(matrix4.storage);
+        matrix4.scale(scaledWidth / configuration.size.width,
+            scaledHeight / configuration.size.height);
 
         canvas.saveLayer(layerRect, whiteShadowPaint);
         canvas.translate(originOffset.dx, originOffset.dy);
-        canvas.drawPath(customPath, whiteShadowPaint);
-        canvas.translate(left, top);
+        canvas.drawPath(subPath, whiteShadowPaint);
+        canvas.translate(witheShadowLeftTranslation, witheShadowTopTranslation);
         canvas.drawPath(
-            customPath.transform(matrix4.storage), whiteShadowMaskPaint);
+            subPath.transform(matrix4.storage), whiteShadowMaskPaint);
         canvas.restore();
-
-        left = xDepth + xPadding;
-        top = yDepth + yPadding;
-        right = xDepth - xPadding;
-        bottom = yDepth - yPadding;
-
-        newWidth =
-            (originOffset.dx + configuration.size.width - right) - (originOffset.dx - left);
-        newHeight = (originOffset.dy + configuration.size.height - bottom) -
-            (originOffset.dy - top);
-
-        matrix4 = Matrix4.identity();
-        matrix4.scale(
-            newWidth / pathBounds.width, newHeight / pathBounds.height);
-        customPath.transform(matrix4.storage);
 
         canvas.saveLayer(layerRect, blackShadowPaint);
         canvas.translate(originOffset.dx, originOffset.dy);
-        canvas.drawPath(customPath, blackShadowPaint);
-        canvas.translate(-left, -top);
+        canvas.drawPath(subPath, blackShadowPaint);
+        canvas.translate(blackShadowLeftTranslation, blackShadowTopTranslation);
         canvas.drawPath(
-            customPath.transform(matrix4.storage), blackShadowMaskPaint);
+            subPath.transform(matrix4.storage), blackShadowMaskPaint);
         canvas.restore();
+      }
     }
   }
 }
