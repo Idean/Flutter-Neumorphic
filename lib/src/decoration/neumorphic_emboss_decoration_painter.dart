@@ -5,12 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
-import '../../../NeumorphicBoxShape.dart';
-import '../../../theme/theme.dart';
+import '../NeumorphicBoxShape.dart';
+import '../theme/theme.dart';
 
-export '../../../theme/theme.dart';
+export '../theme/theme.dart';
 
-class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
+class NeumorphicEmbossDecorationPainter extends BoxPainter {
   bool invalidate = false;
 
   //Color accent;
@@ -39,10 +39,12 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
   Color backgroundColor;
 
   bool drawShadow;
+  bool drawBackground;
 
-  NeumorphicEmbossBoxDecorationPainter(
+  NeumorphicEmbossDecorationPainter(
       {@required this.style,
       @required NeumorphicBoxShape shape,
+      @required this.drawBackground,
       @required this.drawShadow,
       @required VoidCallback onChanged})
       : this.shape = shape ?? NeumorphicBoxShape.rect(),
@@ -127,10 +129,12 @@ class NeumorphicEmbossBoxDecorationPainter extends BoxPainter {
     for (var item in pathMetrics) {
       var subPath = item.extractPath(0, item.length);
 
-      canvas.save();
-      canvas.translate(originOffset.dx, originOffset.dy);
-      canvas.drawPath(subPath, backgroundPaint);
-      canvas.restore();
+      if (drawBackground) {
+        canvas.save();
+        canvas.translate(originOffset.dx, originOffset.dy);
+        canvas.drawPath(subPath, backgroundPaint);
+        canvas.restore();
+      }
 
       if (drawShadow) {
         var xDepth = this.shadowLightSource.dx * depth;
