@@ -491,33 +491,37 @@ class __PageState extends State<_Page> {
   }
 
   Widget cornerRadiusSelector() {
-    return Row(
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(left: 12),
-          child: Text("Corner"),
-        ),
-        Expanded(
-          child: Slider(
-            min: 0,
-            max: 30,
-            value: cornerRadius,
-            onChanged: (value) {
-              setState(() {
-                cornerRadius = value;
-                if (boxShape.isRoundRect) {
-                  boxShape = NeumorphicBoxShape.roundRect(BorderRadius.circular(this.cornerRadius));
-                }
-              });
-            },
+    if (boxShape.isRoundRect) {
+      return Row(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(left: 12),
+            child: Text("Corner"),
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(right: 12),
-          child: Text(cornerRadius.floor().toString()),
-        ),
-      ],
-    );
+          Expanded(
+            child: Slider(
+              min: 0,
+              max: 30,
+              value: cornerRadius,
+              onChanged: (value) {
+                setState(() {
+                  cornerRadius = value;
+                  if (boxShape.isRoundRect) {
+                    boxShape = NeumorphicBoxShape.roundRect(BorderRadius.circular(this.cornerRadius));
+                  }
+                });
+              },
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: 12),
+            child: Text(cornerRadius.floor().toString()),
+          ),
+        ],
+      );
+    } else {
+      return SizedBox();
+    }
   }
 
   Widget intensitySelector() {
