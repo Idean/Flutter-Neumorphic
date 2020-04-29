@@ -1,0 +1,16 @@
+{
+  "name": "NeumorphicIcons",
+  "css_prefix_text": "",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "83b1dd96a1760c9d049edbba9b96f2b2",
+      "css": "check",
+      "code": 59392,
+      "src": "material"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic/src/neumorphic_icons.dart';
 import 'package:flutter_neumorphic/src/widget/container.dart';
 
 import '../NeumorphicBoxShape.dart';
@@ -181,7 +181,7 @@ class NeumorphicCheckbox extends StatelessWidget {
       minDistance: selectedDepth.abs(),
       boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(5),),
       child: Icon(
-        material.Icons.check,
+        NeumorphicIcons.check,
         color: iconColor,
         size: 20.0,
       ),
