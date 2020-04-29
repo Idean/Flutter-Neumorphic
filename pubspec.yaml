@@ -21,3 +21,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  fonts:
+   - family: NeumorphicIcons
+     fonts:
+      - asset: fonts/NeumorphicIcons.ttf
