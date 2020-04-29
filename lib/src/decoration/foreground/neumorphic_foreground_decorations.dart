@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/widgets.dart';
 
 import '../../NeumorphicBoxShape.dart';
-import 'painter/neumorphic_emboss_foreground_decoration_painter.dart';
+import '../neumorphic_emboss_decoration_painter.dart';
 import 'painter/neumorphic_foreground_decoration_painter.dart';
 
 @immutable
@@ -27,9 +27,10 @@ class NeumorphicForegroundDecoration extends Decoration {
         shape: shape,
       );
     } else {
-      return NeumorphicEmbossForegroundDecorationPainter(
+      return NeumorphicEmbossDecorationPainter(
+        drawBackground: false,
         style: style,
-        enabled: splitBackgroundForeground,
+        drawShadow: splitBackgroundForeground,
         onChanged: onChanged,
         shape: shape,
       );
