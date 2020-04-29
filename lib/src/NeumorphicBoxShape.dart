@@ -1,106 +1,84 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:flutter_neumorphic/src/shape/rrect_path_provider.dart';
+import 'package:flutter_neumorphic/src/shape/stadium_path_provider.dart';
+
+import 'shape/circle_path_provider.dart';
+import 'shape/neumorphic_path_provider.dart';
+import 'shape/rect_path_provider.dart';
 
 /// Define a Neumorphic container box shape
-///
-/// default used : NeumorphicBoxShape.roundRect();
-///
-/// @see Neumorphic
-///
-/// Neumorphic(
-///   boxShape: NeumorphicBoxShape.cicle()
-///   style: ...
-///   child: ...
-/// )
-///
-/// it can be for now :
-///
-/// A CIRLCE : NeumorphicBoxShape.circle()
-///
-/// A ROUND_RECT : NeumorphicBoxShape.roundRect(BorderRadius.circular(12));
-///
-/// A STADIUM :  NeumorphicBoxShape.stadium();
-///                                                             _______
-/// a stadium is a roundrect with two circles on both side :   (       )
-///                                                             ‾‾‾‾‾‾‾
-///
-///
-
-abstract class NeumorphicPathProvider extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    return getPath(size);
-  }
-
-  Path getPath(Size size);
-
-  @override
-  bool shouldReclip(NeumorphicPathProvider oldClipper) {
-    return false;
-  }
-}
 
 class NeumorphicBoxShape {
-  final BoxShape boxShape;
-  final BorderRadius borderRadius;
-  final bool _stadium;
-  final NeumorphicPathProvider
-      customShapePathProvider; //nullable, only set if using path
+  final NeumorphicPathProvider customShapePathProvider;
 
-  const NeumorphicBoxShape._(
-      {this.boxShape,
-      this.borderRadius,
-      bool stadium = false,
-      this.customShapePathProvider})
-      : this._stadium = stadium;
+  const NeumorphicBoxShape._(this.customShapePathProvider);
 
-  const NeumorphicBoxShape.circle() : this._(boxShape: BoxShape.circle);
+  const NeumorphicBoxShape.circle() : this._(const CirclePathProvider());
 
   const NeumorphicBoxShape.path(NeumorphicPathProvider pathProvider)
-      : this._(customShapePathProvider: pathProvider);
+      : this._(pathProvider);
 
-  const NeumorphicBoxShape.roundRect(
-      {BorderRadius borderRadius = BorderRadius.zero})
-      : this._(boxShape: BoxShape.rectangle, borderRadius: borderRadius);
+  const NeumorphicBoxShape.rect() : this._(const RectPathProvider());
 
-  ///                                                             _______
-  /// a stadium is a roundrect with two circles on both side :   (       )
-  ///                                                             ‾‾‾‾‾‾‾
-  NeumorphicBoxShape.stadium()
-      : this._(
-            boxShape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(
-                1000), //we handle this directly inside the neumorphic box decorator
-            stadium: true);
+  const NeumorphicBoxShape.stadium() : this._(const StadiumPathProvider());
 
-  bool get isCustomShape => customShapePathProvider != null;
+  NeumorphicBoxShape.roundRect(BorderRadius borderRadius)
+      : this._(RRectPathProvider(borderRadius));
 
-  bool get isStadium => boxShape == BoxShape.rectangle && this._stadium == true;
+  bool get isCustomPath => !isStadium && !isRect && !isCircle && !isRoundRect;
 
-  bool get isCircle => boxShape == BoxShape.circle;
+  bool get isStadium => customShapePathProvider.runtimeType == StadiumPathProvider;
 
-  bool get isRoundRect =>
-      boxShape == BoxShape.rectangle && this._stadium == false;
+  bool get isCircle => customShapePathProvider.runtimeType == CirclePathProvider;
+
+  bool get isRect => customShapePathProvider.runtimeType == RectPathProvider;
+
+  bool get isRoundRect => customShapePathProvider.runtimeType == RRectPathProvider;
 
   static NeumorphicBoxShape lerp(
       NeumorphicBoxShape a, NeumorphicBoxShape b, double t) {
     assert(t != null);
 
     if (a == null && b == null) return null;
+
     if (t == 0.0) return a;
     if (t == 1.0) return b;
-    if (b.isCustomShape) return b;
-    if (a.boxShape != b.boxShape) return b;
-    if (a.isCircle || a._stadium) return a;
+
     if (a == null) {
-      return NeumorphicBoxShape.roundRect(
-          borderRadius: BorderRadius.lerp(null, b.borderRadius, t));
+      if (b.isCircle || b.isRect || b.isStadium || b.isCustomPath) {
+        return b;
+      } else {
+        return NeumorphicBoxShape.roundRect(BorderRadius.lerp(
+          null,
+          (b.customShapePathProvider as RRectPathProvider).borderRadius,
+          t,
+        ));
+      }
     }
+    if (a.isCircle || a.isRect || a.isStadium || a.isCustomPath) {
+      return a;
+    }
+
     if (b == null) {
-      return NeumorphicBoxShape.roundRect(
-          borderRadius: BorderRadius.lerp(null, a.borderRadius, t));
+      if (a.isCircle || a.isRect || a.isStadium || a.isCustomPath) {
+        return a;
+      } else {
+        return NeumorphicBoxShape.roundRect(BorderRadius.lerp(
+          null,
+          (a.customShapePathProvider as RRectPathProvider).borderRadius,
+          t,
+        ));
+      }
     }
-    return NeumorphicBoxShape.roundRect(
-        borderRadius: BorderRadius.lerp(a.borderRadius, b.borderRadius, t));
+    if (b.isCircle || b.isRect || b.isStadium || b.isCustomPath) {
+      return b;
+    }
+
+    return NeumorphicBoxShape.roundRect(BorderRadius.lerp(
+      (a.customShapePathProvider as RRectPathProvider).borderRadius,
+      (b.customShapePathProvider as RRectPathProvider).borderRadius,
+      t,
+    ));
   }
 }

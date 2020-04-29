@@ -183,8 +183,7 @@ class NeumorphicToggle extends StatelessWidget {
             heightFactor: 1,
             child: Neumorphic(
               margin: this.padding,
-              boxShape: NeumorphicBoxShape.roundRect(
-                  borderRadius: this.style.borderRadius),
+              boxShape: NeumorphicBoxShape.roundRect(this.style.borderRadius),
               child: this.thumb,
             ),
           ),
@@ -253,7 +252,7 @@ class NeumorphicToggle extends StatelessWidget {
   Widget _background(BuildContext context) {
     return Neumorphic(
       boxShape:
-          NeumorphicBoxShape.roundRect(borderRadius: this.style.borderRadius),
+          NeumorphicBoxShape.roundRect(this.style.borderRadius),
       style: NeumorphicStyle(
           disableDepth: this.style.disableDepth,
           depth: _getTrackDepth(context),

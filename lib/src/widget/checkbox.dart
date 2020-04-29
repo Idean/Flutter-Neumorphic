@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/src/widget/container.dart';
 
 import '../NeumorphicBoxShape.dart';
-
 import '../theme/neumorphic_theme.dart';
 import 'button.dart';
 
@@ -180,9 +179,7 @@ class NeumorphicCheckbox extends StatelessWidget {
       },
       drawSurfaceAboveChild: true,
       minDistance: selectedDepth.abs(),
-      boxShape: NeumorphicBoxShape.roundRect(
-        borderRadius: BorderRadius.circular(5),
-      ),
+      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(5),),
       child: Icon(
         material.Icons.check,
         color: iconColor,

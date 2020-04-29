@@ -52,7 +52,7 @@ class __PageState extends State<_Page> {
 
   @override
   void initState() {
-    boxShape = NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(this.cornerRadius));
+    boxShape = NeumorphicBoxShape.roundRect(BorderRadius.circular(this.cornerRadius));
     super.initState();
   }
 
@@ -506,7 +506,7 @@ class __PageState extends State<_Page> {
               setState(() {
                 cornerRadius = value;
                 if (boxShape.isRoundRect) {
-                  boxShape = NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(this.cornerRadius));
+                  boxShape = NeumorphicBoxShape.roundRect(BorderRadius.circular(this.cornerRadius));
                 }
               });
             },
@@ -591,7 +591,7 @@ class __PageState extends State<_Page> {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               onPressed: () {
                 setState(() {
-                  boxShape = NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(this.cornerRadius));
+                  boxShape = NeumorphicBoxShape.roundRect(BorderRadius.circular(this.cornerRadius));
                 });
               },
               color: boxShape.isRoundRect ? buttonActiveColor : buttonInnactiveColor,
@@ -645,13 +645,13 @@ class __PageState extends State<_Page> {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               onPressed: () {
                 setState(() {
-                  boxShape = NeumorphicBoxShape.path(TestNeumorphicKPathProvider());
+                  boxShape = NeumorphicBoxShape.path(TestNeumorphicArcPathProvider());
                 });
               },
-              color: boxShape.isCustomShape ? buttonActiveColor : buttonInnactiveColor,
+              color: boxShape.isCustomPath ? buttonActiveColor : buttonInnactiveColor,
               child: Text(
                 "Custom",
-                style: TextStyle(color: boxShape.isCustomShape ? textActiveColor : textInactiveColor),
+                style: TextStyle(color: boxShape.isCustomPath ? textActiveColor : textInactiveColor),
               ),
             ),
           ),
