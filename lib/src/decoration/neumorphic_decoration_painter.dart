@@ -120,26 +120,27 @@ class NeumorphicDecorationPainter extends BoxPainter {
       ..color = NeumorphicColors.decorationDarkColor(style.shadowDarkColor,
           intensity: style.intensity);
 
-    var pathMetrics = path.computeMetrics();
+    final subPaths = path.computeMetrics().map((item) =>
+        item.extractPath(0, item.length)
+    ).toList();
 
-    for (var item in pathMetrics) {
-      var subPath = item.extractPath(0, item.length);
-
+    for (var subPath in subPaths) {
       if(drawShadow) {
         _drawShadow(offset: offset, canvas: canvas, path: subPath);
       }
+    }
 
+    for (var subPath in subPaths) {
       if(drawBackground) {
         _drawBackground(offset: offset, canvas: canvas, path: subPath);
       }
-
       if (this.drawGradient && renderingByPath) {
-        _drawPath(offset: offset, canvas: canvas, path: subPath);
+        _drawGradient(offset: offset, canvas: canvas, path: subPath);
       }
     }
 
     if (this.drawGradient && !renderingByPath) {
-      _drawPath(offset: offset, canvas: canvas, path: path);
+      _drawGradient(offset: offset, canvas: canvas, path: path);
     }
 
   }
@@ -171,7 +172,7 @@ class NeumorphicDecorationPainter extends BoxPainter {
     }
   }
 
-  void _drawPath({Canvas canvas, Offset offset, Path path}){
+  void _drawGradient({Canvas canvas, Offset offset, Path path}){
     if (style.shape == NeumorphicShape.concave ||
         style.shape == NeumorphicShape.convex) {
       var pathRect = path.getBounds();
