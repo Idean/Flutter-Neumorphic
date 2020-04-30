@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 import '../../../NeumorphicBoxShape.dart';
@@ -6,86 +7,90 @@ import '../../../theme/theme.dart';
 import '../../neumorphic_box_decoration_helper.dart';
 
 class NeumorphicForegroundDecorationPainter extends BoxPainter {
-
   NeumorphicStyle style;
   NeumorphicBoxShape shape;
 
   Paint backgroundPaint;
   Paint gradientPaint;
 
-  double width;
-  double height;
+  Size size;
 
-  Rect layerRect;
-  Rect dstRect;
-  Path customPath;
-
-  Offset originOffset;
+  Path path;
 
   bool enabled;
+  bool renderingByPath;
 
-  NeumorphicForegroundDecorationPainter({
-    /* this.accent, */
-    @required this.style,
-    @required NeumorphicBoxShape shape,
-    @required this.enabled,
-    @required VoidCallback onChanged,
-  })
-      : this.shape = shape ?? NeumorphicBoxShape.rect(),
-        super(onChanged) {
-    backgroundPaint = Paint()
-      ..color = style.color;
-
-    gradientPaint = Paint();
+  NeumorphicForegroundDecorationPainter(
+      {@required this.style,
+      @required this.shape,
+      @required this.enabled,
+      @required VoidCallback onChanged,
+      this.renderingByPath = true})
+      : super(onChanged) {
+    backgroundPaint = Paint();
+    gradientPaint = Paint()..blendMode = BlendMode.srcATop;
   }
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
 
-    var width = configuration.size.width;
-    var height = configuration.size.height;
+    backgroundPaint.color = style.color;
 
-    if (this.originOffset != offset ||
-        this.width != width ||
-        this.height != height) {
-      this.width = width;
-      this.height = height;
-      this.originOffset = offset;
-
-      this.dstRect = Rect.fromLTWH(
-        this.originOffset.dx,
-        this.originOffset.dy,
-        this.width,
-        this.height,
-      );
-
-      customPath = shape.customShapePathProvider.getPath(configuration.size);
-
-      layerRect = Rect.fromLTRB(
-        offset.dx - this.width,
-        offset.dy - this.height,
-        offset.dx + 2 * this.width,
-        offset.dy + 2 * this.height,
-      );
-      gradientPaint
-        ..shader = getGradientShader(
-          gradientRect: dstRect,
-          intensity: style.surfaceIntensity,
-          source: style.shape == NeumorphicShape.concave
-              ? this.style.lightSource
-              : this.style.lightSource.invert(),
-        );
+    if (size != configuration.size) {
+      size = configuration.size;
+      path = shape.customShapePathProvider.getPath(size);
     }
 
     if (enabled) {
       if (style.shape == NeumorphicShape.concave ||
           style.shape == NeumorphicShape.convex) {
-        canvas.saveLayer(layerRect, gradientPaint);
-        canvas.translate(offset.dx, offset.dy);
-        canvas.drawPath(customPath, backgroundPaint);
-        canvas.translate(-offset.dx, -offset.dy);
-        canvas.drawRect(dstRect, gradientPaint..blendMode = BlendMode.srcATop);
-        canvas.restore();
+        if (renderingByPath) {
+          var pathMetrics = path.computeMetrics();
+
+          for (var item in pathMetrics) {
+            var subPath = item.extractPath(0, item.length);
+
+            var subPathRect = subPath.getBounds();
+
+            gradientPaint
+              ..shader = getGradientShader(
+                gradientRect: subPathRect,
+                intensity: style.surfaceIntensity,
+                source: style.shape == NeumorphicShape.concave
+                    ? this.style.lightSource
+                    : this.style.lightSource.invert(),
+              );
+
+            canvas.saveLayer(
+              subPathRect.translate(offset.dx, offset.dy),
+              gradientPaint,
+            );
+            canvas.translate(offset.dx, offset.dy);
+            canvas.drawPath(subPath, backgroundPaint);
+            canvas.drawRect(subPathRect, gradientPaint);
+            canvas.restore();
+          }
+        } else {
+          var pathRect = path.getBounds();
+
+          gradientPaint
+            ..shader = getGradientShader(
+              gradientRect: pathRect,
+              intensity: style.surfaceIntensity,
+              source: style.shape == NeumorphicShape.concave
+                  ? this.style.lightSource
+                  : this.style.lightSource.invert(),
+            );
+
+          canvas.saveLayer(
+            pathRect.translate(offset.dx, offset.dy),
+            gradientPaint,
+          );
+          canvas.translate(offset.dx, offset.dy);
+          canvas.drawPath(path, backgroundPaint);
+          canvas.drawRect(pathRect, gradientPaint);
+          canvas.restore();
+        }
       }
     }
   }
