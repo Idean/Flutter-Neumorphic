@@ -8,12 +8,13 @@ import 'painter/neumorphic_foreground_decoration_painter.dart';
 
 @immutable
 class NeumorphicForegroundDecoration extends Decoration {
+
   final NeumorphicStyle style;
   final NeumorphicBoxShape shape;
   final bool splitBackgroundForeground;
 
-  const NeumorphicForegroundDecoration(
-      {@required this.style,
+  NeumorphicForegroundDecoration({
+      @required this.style,
       @required this.splitBackgroundForeground,
       @required this.shape});
 

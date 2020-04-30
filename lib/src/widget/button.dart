@@ -58,7 +58,7 @@ class NeumorphicButton extends StatefulWidget {
   final bool isEnabled;
   final bool provideHapticFeedback;
 
-  NeumorphicBoxShape _boxShape; //private
+  final NeumorphicBoxShape _boxShape; //private
   NeumorphicBoxShape get boxShape => _boxShape;
 
   NeumorphicButton({
@@ -68,7 +68,7 @@ class NeumorphicButton extends StatefulWidget {
     this.child,
     this.drawSurfaceAboveChild = true,
     this.pressed, //true/false if you want to change the state of the button
-    boxShape,
+    NeumorphicBoxShape boxShape,
     this.duration = Neumorphic.DEFAULT_DURATION,
     this.curve = Neumorphic.DEFAULT_CURVE,
     //this.accent,
@@ -77,10 +77,9 @@ class NeumorphicButton extends StatefulWidget {
     this.style = const NeumorphicStyle(),
     this.isEnabled = true,
     this.provideHapticFeedback = true,
-  }) : super(key: key) {
-    _boxShape = boxShape ?? NeumorphicBoxShape.roundRect(
-        BorderRadius.all(Radius.circular(8)));
-  }
+  }) :
+        _boxShape = boxShape ?? NeumorphicBoxShape.roundRect(BorderRadius.all(Radius.circular(8))),
+        super(key: key);
 
   @override
   _NeumorphicButtonState createState() => _NeumorphicButtonState();
