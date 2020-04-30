@@ -15,4 +15,7 @@ class RectPathProvider extends NeumorphicPathProvider {
       ..addRect(Rect.fromLTWH(0, 0, size.width, size.height))
       ..close();
   }
+
+  @override
+  bool get oneGradientPerPath => false;
 }

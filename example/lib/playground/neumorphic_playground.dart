@@ -1,5 +1,4 @@
 import 'package:example/lib/color_selector.dart';
-import 'package:example/shapes/custom_shapes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
@@ -47,6 +46,7 @@ class __PageState extends State<_Page> {
 
   bool haveNeumorphicChild = false;
   bool childOppositeLightsourceChild = false;
+  bool drawAboveChild = false;
   double childMargin = 5;
   double childDepth = 5;
 
@@ -234,6 +234,7 @@ class __PageState extends State<_Page> {
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         hasChildSelector(),
+        drawAboveChildSelector(),
         childDepthSelector(),
         childMarginSelector(),
         childOppositeLightsourceSelector(),
@@ -271,7 +272,7 @@ class __PageState extends State<_Page> {
         setState(() {});
       },
       boxShape: boxShape,
-      drawSurfaceAboveChild: true,
+      drawSurfaceAboveChild: this.drawAboveChild,
       style: NeumorphicStyle(
         shape: this.shape,
         intensity: this.intensity,
@@ -306,7 +307,7 @@ class __PageState extends State<_Page> {
       margin: EdgeInsets.all(this.childMargin),
       drawSurfaceAboveChild: true,
       style: NeumorphicStyle(
-        shape: this.shape,
+        //shape: this.shape,
         intensity: this.intensity,
         surfaceIntensity: this.surfaceIntensity,
         depth: childDepth,
@@ -419,6 +420,32 @@ class __PageState extends State<_Page> {
             onChanged: (value) {
               setState(() {
                 haveNeumorphicChild = value;
+              });
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget drawAboveChildSelector() {
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsets.only(left: 12),
+            child: Text("Draw above child"),
+          ),
+        ),
+        Align(
+          alignment: Alignment.centerRight,
+          child: Checkbox(
+            value: this.drawAboveChild,
+            onChanged: (value) {
+              setState(() {
+                drawAboveChild = value;
               });
             },
           ),
@@ -649,7 +676,7 @@ class __PageState extends State<_Page> {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               onPressed: () {
                 setState(() {
-                  boxShape = NeumorphicBoxShape.path(TestNeumorphicFlutterLogoPathProvider());
+                  boxShape = NeumorphicBoxShape.path(NeumorphicFlutterLogoPathProvider());
                 });
               },
               color: boxShape.isCustomPath ? buttonActiveColor : buttonInnactiveColor,

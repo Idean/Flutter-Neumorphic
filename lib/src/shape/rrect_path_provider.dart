@@ -21,4 +21,7 @@ class RRectPathProvider extends NeumorphicPathProvider {
           bottomRight: borderRadius.bottomRight))
       ..close();
   }
+
+  @override
+  bool get oneGradientPerPath => false; //because only 1 path
 }
