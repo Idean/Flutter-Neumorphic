@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import '../../../flutter_neumorphic.dart';
 
-class TestNeumorphicFlutterLogoPathProvider extends NeumorphicPathProvider {
+class NeumorphicFlutterLogoPathProvider extends NeumorphicPathProvider {
   @override
   bool shouldReclip(NeumorphicPathProvider oldClipper) {
     return true;
@@ -28,4 +27,7 @@ class TestNeumorphicFlutterLogoPathProvider extends NeumorphicPathProvider {
       ..close();
 
   }
+
+  @override
+  bool get oneGradientPerPath => true; //one shape(convex/concave) / subPath
 }

@@ -7,6 +7,8 @@ import 'shape/circle_path_provider.dart';
 import 'shape/neumorphic_path_provider.dart';
 import 'shape/rect_path_provider.dart';
 
+export 'shape/path/flutter_logo_path_provider.dart';
+
 /// Define a Neumorphic container box shape
 
 class NeumorphicBoxShape {

@@ -1,13 +1,12 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_neumorphic/src/decoration/foreground/neumorphic_foreground_decorations.dart';
 
 import '../NeumorphicBoxShape.dart';
-import '../decoration/box/neumorphic_box_decorations.dart';
+import '../decoration/neumorphic_decorations.dart';
 import '../theme/neumorphic_theme.dart';
 import 'clipper/NeumorphicBoxShapeClipper.dart';
 
 export '../NeumorphicBoxShape.dart';
-export '../decoration/box/neumorphic_box_decorations.dart';
+export '../decoration/neumorphic_decorations.dart';
 export '../theme/neumorphic_theme.dart';
 
 /// The main container of the Neumorphic UI KIT
@@ -127,15 +126,20 @@ class _NeumorphicContainer extends StatelessWidget {
             child: this.child,
           ),
         ),
-        foregroundDecoration: NeumorphicForegroundDecoration(
+        foregroundDecoration: NeumorphicDecoration(
+          isForeground: true,
+          renderingByPath: this.boxShape.customShapePathProvider.oneGradientPerPath,
           splitBackgroundForeground: this.drawSurfaceAboveChild,
           style: this.style,
           shape: this.boxShape,
         ),
-        decoration: NeumorphicBoxDecoration(
+        decoration: NeumorphicDecoration(
+          isForeground: false,
+          renderingByPath: this.boxShape.customShapePathProvider.oneGradientPerPath,
           splitBackgroundForeground: this.drawSurfaceAboveChild,
           style: this.style,
           shape: this.boxShape,
-        ));
+        ),
+    );
   }
 }
