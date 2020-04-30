@@ -12,10 +12,10 @@ class NeumorphicBoxDecoration extends Decoration {
   final NeumorphicBoxShape shape;
   final bool splitBackgroundForeground;
 
-  const NeumorphicBoxDecoration(
-      {@required this.style,
+  NeumorphicBoxDecoration({
+      @required this.style,
       @required this.splitBackgroundForeground,
-      @required this.shape});
+      @required this.shape,});
 
   @override
   BoxPainter createBoxPainter([onChanged]) {
