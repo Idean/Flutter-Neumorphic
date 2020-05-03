@@ -119,6 +119,9 @@ Expanded(
           Expanded(
             child: NeumorphicToggle(
               height: 50,
+              style: NeumorphicToggleStyle(
+                //backgroundColor: Colors.red,
+              ),
               selectedIndex: _selectedIndex,
               displayForegroundOnlyIfSelected: true,
               children: [
