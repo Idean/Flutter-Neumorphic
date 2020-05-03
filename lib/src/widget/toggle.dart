@@ -11,10 +11,12 @@ class NeumorphicToggleStyle {
   final bool disableDepth;
   final BorderRadius borderRadius;
   final bool animateOpacity;
+  final Color backgroundColor;
 
   const NeumorphicToggleStyle({
     this.depth,
     this.animateOpacity = true,
+    this.backgroundColor,
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.disableDepth,
   });
@@ -25,6 +27,7 @@ class NeumorphicToggleStyle {
       other is NeumorphicToggleStyle &&
           runtimeType == other.runtimeType &&
           depth == other.depth &&
+          backgroundColor == other.backgroundColor &&
           disableDepth == other.disableDepth &&
           borderRadius == other.borderRadius &&
           animateOpacity == other.animateOpacity;
@@ -32,6 +35,7 @@ class NeumorphicToggleStyle {
   @override
   int get hashCode =>
       depth.hashCode ^
+      backgroundColor.hashCode ^
       disableDepth.hashCode ^
       borderRadius.hashCode ^
       animateOpacity.hashCode;
@@ -254,6 +258,7 @@ class NeumorphicToggle extends StatelessWidget {
       boxShape:
           NeumorphicBoxShape.roundRect(this.style.borderRadius),
       style: NeumorphicStyle(
+          color: this.style.backgroundColor,
           disableDepth: this.style.disableDepth,
           depth: _getTrackDepth(context),
           shape: NeumorphicShape.flat),
