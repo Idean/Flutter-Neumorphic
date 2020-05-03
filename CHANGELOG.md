@@ -1,3 +1,7 @@
+## 1.0.8
+
+* Added `backgroundColor` in Toggle style
+
 ## 1.0.7
 
 * Added implementation of `custom path` shapes
