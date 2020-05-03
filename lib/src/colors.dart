@@ -18,10 +18,13 @@ class NeumorphicColors {
   static const darkDisabled = Color(0xB3FFFFFF);
   static const darkDefaultTextColor = Color(0xB3FFFFFF);
 
-  static const Color decorationMaxWhiteColor = Color(0xFFFFFFFF); //for intensity = 1
-  static const Color decorationMaxDarkColor = Color(0x8A000000); //for intensity = 1
+  static const Color decorationMaxWhiteColor =
+      Color(0xFFFFFFFF); //for intensity = 1
+  static const Color decorationMaxDarkColor =
+      Color(0x8A000000); //for intensity = 1
 
-  static const Color embossMaxWhiteColor = Color(0x99FFFFFF); //for intensity = 1
+  static const Color embossMaxWhiteColor =
+      Color(0x99FFFFFF); //for intensity = 1
   static const Color embossMaxDarkColor = Color(0x73000000); //for intensity = 1
 
   static const Color _gradientShaderDarkColor = Color(0x8A000000);

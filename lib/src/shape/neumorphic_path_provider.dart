@@ -1,7 +1,6 @@
 import '../../flutter_neumorphic.dart';
 
 abstract class NeumorphicPathProvider extends CustomClipper<Path> {
-
   const NeumorphicPathProvider({Listenable reclip}) : super(reclip: reclip);
 
   @override

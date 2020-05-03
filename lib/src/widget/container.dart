@@ -116,30 +116,32 @@ class _NeumorphicContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-        margin: this.margin,
-        duration: this.duration,
-        curve: this.curve,
-        child: NeumorphicBoxShapeClipper(
-          shape: this.boxShape,
-          child: Padding(
-            padding: this.padding,
-            child: this.child,
-          ),
+      margin: this.margin,
+      duration: this.duration,
+      curve: this.curve,
+      child: NeumorphicBoxShapeClipper(
+        shape: this.boxShape,
+        child: Padding(
+          padding: this.padding,
+          child: this.child,
         ),
-        foregroundDecoration: NeumorphicDecoration(
-          isForeground: true,
-          renderingByPath: this.boxShape.customShapePathProvider.oneGradientPerPath,
-          splitBackgroundForeground: this.drawSurfaceAboveChild,
-          style: this.style,
-          shape: this.boxShape,
-        ),
-        decoration: NeumorphicDecoration(
-          isForeground: false,
-          renderingByPath: this.boxShape.customShapePathProvider.oneGradientPerPath,
-          splitBackgroundForeground: this.drawSurfaceAboveChild,
-          style: this.style,
-          shape: this.boxShape,
-        ),
+      ),
+      foregroundDecoration: NeumorphicDecoration(
+        isForeground: true,
+        renderingByPath:
+            this.boxShape.customShapePathProvider.oneGradientPerPath,
+        splitBackgroundForeground: this.drawSurfaceAboveChild,
+        style: this.style,
+        shape: this.boxShape,
+      ),
+      decoration: NeumorphicDecoration(
+        isForeground: false,
+        renderingByPath:
+            this.boxShape.customShapePathProvider.oneGradientPerPath,
+        splitBackgroundForeground: this.drawSurfaceAboveChild,
+        style: this.style,
+        shape: this.boxShape,
+      ),
     );
   }
 }

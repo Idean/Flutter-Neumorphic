@@ -179,7 +179,9 @@ class NeumorphicCheckbox extends StatelessWidget {
       },
       drawSurfaceAboveChild: true,
       minDistance: selectedDepth.abs(),
-      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(5),),
+      boxShape: NeumorphicBoxShape.roundRect(
+        BorderRadius.circular(5),
+      ),
       child: Icon(
         NeumorphicIcons.check,
         color: iconColor,

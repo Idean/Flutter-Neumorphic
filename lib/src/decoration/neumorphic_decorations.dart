@@ -15,30 +15,32 @@ class NeumorphicDecoration extends Decoration {
   final bool isForeground;
 
   NeumorphicDecoration({
-      @required this.style,
-      @required this.isForeground,
-      @required this.renderingByPath,
-      @required this.splitBackgroundForeground,
-      @required this.shape,
+    @required this.style,
+    @required this.isForeground,
+    @required this.renderingByPath,
+    @required this.splitBackgroundForeground,
+    @required this.shape,
   });
 
   @override
   BoxPainter createBoxPainter([onChanged]) {
     if (style.depth >= 0) {
-        return NeumorphicDecorationPainter(
-          style: style,
-          drawGradient: (isForeground && splitBackgroundForeground) || !isForeground,
-          drawBackground: !isForeground, //only box draw background
-          drawShadow: !isForeground, //only box draw shadow
-          renderingByPath: this.renderingByPath,
-          onChanged: onChanged,
-          shape: shape,
-        );
+      return NeumorphicDecorationPainter(
+        style: style,
+        drawGradient:
+            (isForeground && splitBackgroundForeground) || !isForeground,
+        drawBackground: !isForeground, //only box draw background
+        drawShadow: !isForeground, //only box draw shadow
+        renderingByPath: this.renderingByPath,
+        onChanged: onChanged,
+        shape: shape,
+      );
     } else {
       return NeumorphicEmbossDecorationPainter(
         drawBackground: !isForeground,
         style: style,
-        drawShadow: (isForeground && splitBackgroundForeground) || !isForeground,
+        drawShadow:
+            (isForeground && splitBackgroundForeground) || !isForeground,
         onChanged: onChanged,
         shape: shape,
       );
@@ -48,16 +50,14 @@ class NeumorphicDecoration extends Decoration {
   @override
   NeumorphicDecoration lerpFrom(Decoration a, double t) {
     if (a == null) return scale(t);
-    if (a is NeumorphicDecoration)
-      return NeumorphicDecoration.lerp(a, this, t);
+    if (a is NeumorphicDecoration) return NeumorphicDecoration.lerp(a, this, t);
     return super.lerpFrom(a, t) as NeumorphicDecoration;
   }
 
   @override
   NeumorphicDecoration lerpTo(Decoration b, double t) {
     if (b == null) return scale(1.0 - t);
-    if (b is NeumorphicDecoration)
-      return NeumorphicDecoration.lerp(this, b, t);
+    if (b is NeumorphicDecoration) return NeumorphicDecoration.lerp(this, b, t);
     return super.lerpTo(b, t) as NeumorphicDecoration;
   }
 
@@ -79,7 +79,8 @@ class NeumorphicDecoration extends Decoration {
     if (b == null) return a.scale(1.0 - t);
     if (t == 0.0) return a;
     if (t == 1.0) return b;
-    if (a.shape.customShapePathProvider != b.shape.customShapePathProvider) return b;
+    if (a.shape.customShapePathProvider != b.shape.customShapePathProvider)
+      return b;
 
     var aStyle = a.style;
     var bStyle = b.style;
@@ -104,13 +105,13 @@ class NeumorphicDecoration extends Decoration {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is NeumorphicDecoration &&
-              runtimeType == other.runtimeType &&
-              style == other.style &&
-              shape == other.shape &&
-              splitBackgroundForeground == other.splitBackgroundForeground &&
-              isForeground == other.isForeground &&
-              renderingByPath == other.renderingByPath;
+      other is NeumorphicDecoration &&
+          runtimeType == other.runtimeType &&
+          style == other.style &&
+          shape == other.shape &&
+          splitBackgroundForeground == other.splitBackgroundForeground &&
+          isForeground == other.isForeground &&
+          renderingByPath == other.renderingByPath;
 
   @override
   int get hashCode =>
@@ -119,5 +120,4 @@ class NeumorphicDecoration extends Decoration {
       splitBackgroundForeground.hashCode ^
       isForeground.hashCode ^
       renderingByPath.hashCode;
-
 }

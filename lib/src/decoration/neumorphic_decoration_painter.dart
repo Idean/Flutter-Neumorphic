@@ -108,18 +108,19 @@ class NeumorphicDecorationPainter extends BoxPainter {
       ..color = NeumorphicColors.decorationDarkColor(style.shadowDarkColor,
           intensity: style.intensity);
 
-    final subPaths = path.computeMetrics().map((item) =>
-        item.extractPath(0, item.length)
-    ).toList();
+    final subPaths = path
+        .computeMetrics()
+        .map((item) => item.extractPath(0, item.length))
+        .toList();
 
     for (var subPath in subPaths) {
-      if(drawShadow) {
+      if (drawShadow) {
         _drawShadow(offset: offset, canvas: canvas, path: subPath);
       }
     }
 
     for (var subPath in subPaths) {
-      if(drawBackground) {
+      if (drawBackground) {
         _drawBackground(offset: offset, canvas: canvas, path: subPath);
       }
       if (this.drawGradient && renderingByPath) {
@@ -130,7 +131,6 @@ class NeumorphicDecorationPainter extends BoxPainter {
     if (this.drawGradient && !renderingByPath) {
       _drawGradient(offset: offset, canvas: canvas, path: path);
     }
-
   }
 
   void _drawBackground({Canvas canvas, Offset offset, Path path}) {
@@ -140,7 +140,7 @@ class NeumorphicDecorationPainter extends BoxPainter {
     canvas.restore();
   }
 
-  void _drawShadow({Canvas canvas, Offset offset, Path path}){
+  void _drawShadow({Canvas canvas, Offset offset, Path path}) {
     if (style.depth.abs() >= 0.1) {
       canvas
         ..saveLayer(layerRect, whiteShadowPaint)
@@ -160,7 +160,7 @@ class NeumorphicDecorationPainter extends BoxPainter {
     }
   }
 
-  void _drawGradient({Canvas canvas, Offset offset, Path path}){
+  void _drawGradient({Canvas canvas, Offset offset, Path path}) {
     if (style.shape == NeumorphicShape.concave ||
         style.shape == NeumorphicShape.convex) {
       var pathRect = path.getBounds();
@@ -175,13 +175,13 @@ class NeumorphicDecorationPainter extends BoxPainter {
         );
 
       canvas
-          ..saveLayer(
-            pathRect.translate(offset.dx, offset.dy),
-            gradientPaint,
-          )
-          ..translate(offset.dx, offset.dy)
-          ..drawPath(path, gradientPaint)
-          ..restore();
+        ..saveLayer(
+          pathRect.translate(offset.dx, offset.dy),
+          gradientPaint,
+        )
+        ..translate(offset.dx, offset.dy)
+        ..drawPath(path, gradientPaint)
+        ..restore();
     }
   }
 }

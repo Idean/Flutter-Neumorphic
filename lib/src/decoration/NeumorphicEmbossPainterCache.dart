@@ -4,7 +4,6 @@ import 'dart:ui';
 import '../../flutter_neumorphic.dart';
 
 class NeumorphicEmbossPainterCache {
-
   Offset _cacheOffset;
   Offset get originOffset => _cacheOffset;
 
@@ -19,11 +18,11 @@ class NeumorphicEmbossPainterCache {
 
   NeumorphicEmbossPainterCache();
 
-  bool updateSize({Offset newOffset, double newWidth, double newHeight, Size newSize}){
+  bool updateSize(
+      {Offset newOffset, double newWidth, double newHeight, Size newSize}) {
     if (this._cacheOffset != newOffset ||
         this._cacheWidth != newWidth ||
         this._cacheHeight != newHeight) {
-
       this._cacheWidth = newWidth;
       this._cacheHeight = newHeight;
       this._cacheOffset = newOffset;
@@ -43,8 +42,8 @@ class NeumorphicEmbossPainterCache {
   double _cacheStyleDepth; //old style depth
   double _depth; //depth used to draw
   double get depth => _depth; //depth used to draw
-  bool updateStyleDepth(double newStyleDepth){
-    if(_cacheStyleDepth != newStyleDepth){
+  bool updateStyleDepth(double newStyleDepth) {
+    if (_cacheStyleDepth != newStyleDepth) {
       _cacheStyleDepth = newStyleDepth;
 
       _depth = _cacheStyleDepth.abs().clamp(0.0, _cacheRadius / 5);
@@ -58,8 +57,8 @@ class NeumorphicEmbossPainterCache {
 
   Color _cacheColor;
   Color get backgroundColor => _cacheColor;
-  bool updateStyleColor(Color newColor){
-    if(_cacheColor != newColor){
+  bool updateStyleColor(Color newColor) {
+    if (_cacheColor != newColor) {
       _cacheColor = newColor;
 
       return true;
@@ -67,26 +66,28 @@ class NeumorphicEmbossPainterCache {
     return false;
   }
 
-  bool _cacheOppositeShadowLightSource; //store the old style lightsource property
+  bool
+      _cacheOppositeShadowLightSource; //store the old style lightsource property
   LightSource _cacheLightSource; //store the old style lightsource
 
   LightSource _lightSource; //used to draw
   LightSource get lightSource => _lightSource; //used to draw
-  bool updateLightSource(LightSource newLightSource, bool newOppositeShadowLightSource) {
+  bool updateLightSource(
+      LightSource newLightSource, bool newOppositeShadowLightSource) {
     bool invalidateLightSource = false;
-    if(newLightSource != _cacheLightSource){
+    if (newLightSource != _cacheLightSource) {
       _cacheLightSource = newLightSource;
       invalidateLightSource = true;
     }
 
     bool invalidateOppositeLightSource = false;
-    if(newOppositeShadowLightSource != _cacheOppositeShadowLightSource){
+    if (newOppositeShadowLightSource != _cacheOppositeShadowLightSource) {
       _cacheOppositeShadowLightSource = newOppositeShadowLightSource;
       invalidateOppositeLightSource = true;
     }
 
-    if(invalidateLightSource || invalidateOppositeLightSource){
-      if(_cacheOppositeShadowLightSource) {
+    if (invalidateLightSource || invalidateOppositeLightSource) {
+      if (_cacheOppositeShadowLightSource) {
         _lightSource = _cacheLightSource.invert();
       } else {
         _lightSource = _cacheLightSource;
@@ -112,16 +113,21 @@ class NeumorphicEmbossPainterCache {
   Color _shadowDarkColorEmboss;
   Color get shadowDarkColorEmboss => _shadowDarkColorEmboss;
 
-  bool updateShadowColor({Color newShadowLightColorEmboss, Color newShadowDarkColorEmboss, double newIntensity,}) {
+  bool updateShadowColor({
+    Color newShadowLightColorEmboss,
+    Color newShadowDarkColorEmboss,
+    double newIntensity,
+  }) {
     bool invalidateIntensity = false;
     bool invalidate = false;
-    if(_styleIntensity != newIntensity){
+    if (_styleIntensity != newIntensity) {
       invalidate = true;
       invalidateIntensity = true;
       _styleIntensity = newIntensity;
     }
     //light
-    if(invalidateIntensity || _styleShadowLightColorEmboss != newShadowLightColorEmboss){
+    if (invalidateIntensity ||
+        _styleShadowLightColorEmboss != newShadowLightColorEmboss) {
       _styleShadowLightColorEmboss = newShadowLightColorEmboss;
       _shadowLightColorEmboss = NeumorphicColors.embossWhiteColor(
         _styleShadowLightColorEmboss,
@@ -130,7 +136,7 @@ class NeumorphicEmbossPainterCache {
       invalidate = true;
     }
     //dark
-    if(invalidate || _styleShadowDarkColorEmboss != newShadowDarkColorEmboss){
+    if (invalidate || _styleShadowDarkColorEmboss != newShadowDarkColorEmboss) {
       _styleShadowDarkColorEmboss = newShadowDarkColorEmboss;
       _shadowDarkColorEmboss = NeumorphicColors.embossDarkColor(
         _styleShadowDarkColorEmboss,
@@ -156,7 +162,7 @@ class NeumorphicEmbossPainterCache {
   double scaleY;
 
   //call after _cacheWidth & _cacheHeight set
-  void updateTranslations(){
+  void updateTranslations() {
     this.xDepth = this.lightSource.dx * this.depth;
     this.yDepth = this.lightSource.dy * this.depth;
     this.xPadding = 2 * (1 - this.lightSource.dx.abs()) * this.depth;

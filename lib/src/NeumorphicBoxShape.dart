@@ -30,13 +30,16 @@ class NeumorphicBoxShape {
 
   bool get isCustomPath => !isStadium && !isRect && !isCircle && !isRoundRect;
 
-  bool get isStadium => customShapePathProvider.runtimeType == StadiumPathProvider;
+  bool get isStadium =>
+      customShapePathProvider.runtimeType == StadiumPathProvider;
 
-  bool get isCircle => customShapePathProvider.runtimeType == CirclePathProvider;
+  bool get isCircle =>
+      customShapePathProvider.runtimeType == CirclePathProvider;
 
   bool get isRect => customShapePathProvider.runtimeType == RectPathProvider;
 
-  bool get isRoundRect => customShapePathProvider.runtimeType == RRectPathProvider;
+  bool get isRoundRect =>
+      customShapePathProvider.runtimeType == RRectPathProvider;
 
   static NeumorphicBoxShape lerp(
       NeumorphicBoxShape a, NeumorphicBoxShape b, double t) {

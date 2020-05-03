@@ -77,8 +77,8 @@ class NeumorphicButton extends StatefulWidget {
     this.style = const NeumorphicStyle(),
     this.isEnabled = true,
     this.provideHapticFeedback = true,
-  }) :
-        _boxShape = boxShape ?? NeumorphicBoxShape.roundRect(BorderRadius.all(Radius.circular(8))),
+  })  : _boxShape = boxShape ??
+            NeumorphicBoxShape.roundRect(BorderRadius.all(Radius.circular(8))),
         super(key: key);
 
   @override

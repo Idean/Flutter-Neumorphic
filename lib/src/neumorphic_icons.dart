@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/NeumorphicIcons.ttf
 ///
-/// 
+///
 /// * Material Design Icons, Copyright (C) Google, Inc
 ///         Author:    Google
 ///         License:   Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
@@ -25,5 +25,6 @@ class NeumorphicIcons {
   static const _kFontFam = 'NeumorphicIcons';
   static const _kFontPkg = "flutter_neumorphic";
 
-  static const IconData check = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData check =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
