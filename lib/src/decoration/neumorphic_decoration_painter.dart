@@ -14,12 +14,12 @@ class NeumorphicDecorationPainter extends BoxPainter {
   NeumorphicStyle style;
   NeumorphicBoxShape shape;
 
-  Paint backgroundPaint;
-  Paint whiteShadowPaint;
-  Paint whiteShadowMaskPaint;
-  Paint blackShadowPaint;
-  Paint blackShadowMaskPaint;
-  Paint gradientPaint;
+  Paint backgroundPaint = Paint();
+  Paint whiteShadowPaint = Paint();
+  Paint whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
+  Paint blackShadowPaint = Paint();
+  Paint blackShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
+  Paint gradientPaint = Paint();
 
   double width;
   double height;
@@ -41,27 +41,15 @@ class NeumorphicDecorationPainter extends BoxPainter {
   bool drawBackground;
   bool renderingByPath;
 
-  NeumorphicDecorationPainter(
-      {@required this.style,
-      @required this.shape,
-      @required this.drawGradient,
-      @required this.drawShadow,
-      @required this.drawBackground,
-      @required VoidCallback onChanged,
-      this.renderingByPath = true})
-      : super(onChanged) {
-
-    backgroundPaint = Paint();
-
-    whiteShadowPaint = Paint();
-    whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
-
-    blackShadowPaint = Paint();
-    blackShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
-
-    gradientPaint = Paint();
-
-  }
+  NeumorphicDecorationPainter({
+    @required this.style,
+    @required this.shape,
+    @required this.drawGradient,
+    @required this.drawShadow,
+    @required this.drawBackground,
+    @required VoidCallback onChanged,
+    this.renderingByPath = true,
+  }) : super(onChanged);
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
@@ -154,21 +142,21 @@ class NeumorphicDecorationPainter extends BoxPainter {
 
   void _drawShadow({Canvas canvas, Offset offset, Path path}){
     if (style.depth.abs() >= 0.1) {
-      canvas.saveLayer(layerRect, whiteShadowPaint);
-      canvas.translate(
-          offset.dx + depthOffset.dx, offset.dy + depthOffset.dy);
-      canvas.drawPath(path, whiteShadowPaint);
-      canvas.translate(-depthOffset.dx, -depthOffset.dy);
-      canvas.drawPath(path, whiteShadowMaskPaint);
-      canvas.restore();
+      canvas
+        ..saveLayer(layerRect, whiteShadowPaint)
+        ..translate(offset.dx + depthOffset.dx, offset.dy + depthOffset.dy)
+        ..drawPath(path, whiteShadowPaint)
+        ..translate(-depthOffset.dx, -depthOffset.dy)
+        ..drawPath(path, whiteShadowMaskPaint)
+        ..restore();
 
-      canvas.saveLayer(layerRect, blackShadowPaint);
-      canvas.translate(
-          offset.dx - depthOffset.dx, offset.dy - depthOffset.dy);
-      canvas.drawPath(path, blackShadowPaint);
-      canvas.translate(depthOffset.dx, depthOffset.dy);
-      canvas.drawPath(path, blackShadowMaskPaint);
-      canvas.restore();
+      canvas
+        ..saveLayer(layerRect, blackShadowPaint)
+        ..translate(offset.dx - depthOffset.dx, offset.dy - depthOffset.dy)
+        ..drawPath(path, blackShadowPaint)
+        ..translate(depthOffset.dx, depthOffset.dy)
+        ..drawPath(path, blackShadowMaskPaint)
+        ..restore();
     }
   }
 
@@ -186,13 +174,14 @@ class NeumorphicDecorationPainter extends BoxPainter {
               : this.style.lightSource.invert(),
         );
 
-      canvas.saveLayer(
-        pathRect.translate(offset.dx, offset.dy),
-        gradientPaint,
-      );
-      canvas.translate(offset.dx, offset.dy);
-      canvas.drawPath(path, gradientPaint);
-      canvas.restore();
+      canvas
+          ..saveLayer(
+            pathRect.translate(offset.dx, offset.dy),
+            gradientPaint,
+          )
+          ..translate(offset.dx, offset.dy)
+          ..drawPath(path, gradientPaint)
+          ..restore();
     }
   }
 }
