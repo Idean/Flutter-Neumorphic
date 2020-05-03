@@ -20,4 +20,5 @@ abstract class NeumorphicPathProvider extends CustomClipper<Path> {
   bool shouldReclip(NeumorphicPathProvider oldClipper) {
     return false;
   }
+
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 
-import '../NeumorphicBoxShape.dart';
+import '../neumorphic_box_shape.dart';
 import '../decoration/neumorphic_decorations.dart';
 import '../theme/neumorphic_theme.dart';
-import 'clipper/NeumorphicBoxShapeClipper.dart';
+import 'clipper/neumorphic_box_shape_clipper.dart';
 
-export '../NeumorphicBoxShape.dart';
+export '../neumorphic_box_shape.dart';
 export '../decoration/neumorphic_decorations.dart';
 export '../theme/neumorphic_theme.dart';
 
@@ -118,9 +118,8 @@ class _NeumorphicContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedDefaultTextStyle(
+    return DefaultTextStyle(
       style: this.textStyle ?? material.Theme.of(context).textTheme.bodyText2,
-      duration: this.duration,
       child: AnimatedContainer(
         margin: this.margin,
         duration: this.duration,

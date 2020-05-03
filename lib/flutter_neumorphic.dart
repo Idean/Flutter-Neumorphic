@@ -2,7 +2,7 @@ library flutter_neumorphic;
 
 export 'package:flutter/widgets.dart';
 
-export 'src/NeumorphicBoxShape.dart';
+export 'src/neumorphic_box_shape.dart';
 export 'src/colors.dart';
 export 'src/shape.dart';
 export 'src/shape/neumorphic_path_provider.dart';
