@@ -1,3 +1,8 @@
+## 1.0.8+1
+
+* Added `textStyle` to Neumorphic Container, to avoid text coloration issues
+* Added `AnimatedDefaultTextStyle` inside Neumorphic, by default it takes the `material.Theme.of(context).textTheme.bodyText2`
+
 ## 1.0.8
 
 * Added `backgroundColor` in Toggle style
