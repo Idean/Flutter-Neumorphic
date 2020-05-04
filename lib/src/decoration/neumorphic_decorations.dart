@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
 
-import '../NeumorphicBoxShape.dart';
-import 'neumorphic_emboss_decoration_painter.dart';
+import '../neumorphic_box_shape.dart';
 import 'neumorphic_decoration_painter.dart';
+import 'neumorphic_emboss_decoration_painter.dart';
 
 @immutable
 class NeumorphicDecoration extends Decoration {
@@ -24,13 +24,15 @@ class NeumorphicDecoration extends Decoration {
 
   @override
   BoxPainter createBoxPainter([onChanged]) {
+    //print("createBoxPainter : ${style.depth}");
     if (style.depth >= 0) {
       return NeumorphicDecorationPainter(
         style: style,
-        drawGradient:
-            (isForeground && splitBackgroundForeground) || !isForeground,
-        drawBackground: !isForeground, //only box draw background
-        drawShadow: !isForeground, //only box draw shadow
+        drawGradient: (isForeground && splitBackgroundForeground) || (!isForeground && !splitBackgroundForeground),
+        drawBackground: !isForeground,
+        //only box draw background
+        drawShadow: !isForeground,
+        //only box draw shadow
         renderingByPath: this.renderingByPath,
         onChanged: onChanged,
         shape: shape,
@@ -39,8 +41,7 @@ class NeumorphicDecoration extends Decoration {
       return NeumorphicEmbossDecorationPainter(
         drawBackground: !isForeground,
         style: style,
-        drawShadow:
-            (isForeground && splitBackgroundForeground) || !isForeground,
+        drawShadow: (isForeground && splitBackgroundForeground) || (!isForeground && !splitBackgroundForeground),
         onChanged: onChanged,
         shape: shape,
       );
@@ -62,6 +63,7 @@ class NeumorphicDecoration extends Decoration {
   }
 
   NeumorphicDecoration scale(double factor) {
+    print("scale");
     return NeumorphicDecoration(
         isForeground: this.isForeground,
         renderingByPath: this.renderingByPath,
@@ -70,17 +72,22 @@ class NeumorphicDecoration extends Decoration {
         style: style.copyWith());
   }
 
-  static NeumorphicDecoration lerp(
-      NeumorphicDecoration a, NeumorphicDecoration b, double t) {
+  static NeumorphicDecoration lerp(NeumorphicDecoration a, NeumorphicDecoration b, double t) {
     assert(t != null);
+
+    //print("lerp $t ${a.style.depth}, ${b.style.depth}");
 
     if (a == null && b == null) return null;
     if (a == null) return b.scale(t);
     if (b == null) return a.scale(1.0 - t);
-    if (t == 0.0) return a;
-    if (t == 1.0) return b;
-    if (a.shape.customShapePathProvider != b.shape.customShapePathProvider)
+    if (t == 0.0) {
+      //print("return a");
+      return a;
+    }
+    if (t == 1.0) {
+      //print("return b (1.0)");
       return b;
+    }
 
     var aStyle = a.style;
     var bStyle = b.style;
@@ -94,8 +101,7 @@ class NeumorphicDecoration extends Decoration {
           intensity: lerpDouble(aStyle.intensity, bStyle.intensity, t),
           depth: lerpDouble(aStyle.depth, bStyle.depth, t),
           color: Color.lerp(aStyle.color, bStyle.color, t),
-          lightSource:
-              LightSource.lerp(aStyle.lightSource, bStyle.lightSource, t),
+          lightSource: LightSource.lerp(aStyle.lightSource, bStyle.lightSource, t),
         ));
   }
 
@@ -114,10 +120,5 @@ class NeumorphicDecoration extends Decoration {
           renderingByPath == other.renderingByPath;
 
   @override
-  int get hashCode =>
-      style.hashCode ^
-      shape.hashCode ^
-      splitBackgroundForeground.hashCode ^
-      isForeground.hashCode ^
-      renderingByPath.hashCode;
+  int get hashCode => style.hashCode ^ shape.hashCode ^ splitBackgroundForeground.hashCode ^ isForeground.hashCode ^ renderingByPath.hashCode;
 }

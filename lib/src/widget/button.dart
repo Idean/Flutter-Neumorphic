@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-import '../NeumorphicBoxShape.dart';
+import '../neumorphic_box_shape.dart';
 import '../theme/neumorphic_theme.dart';
 import 'animation/animated_scale.dart';
 import 'container.dart';
@@ -168,6 +168,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (detail) {
+        hasTapUp = false;
         if (clickable && !pressed) {
           _handlePress();
         }
