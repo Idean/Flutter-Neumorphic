@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 
 import '../NeumorphicBoxShape.dart';
@@ -50,13 +51,13 @@ class Neumorphic extends StatelessWidget {
   final Widget child;
 
   final NeumorphicStyle style;
+  final TextStyle textStyle;
   final EdgeInsets padding;
   final EdgeInsets margin;
   final NeumorphicBoxShape boxShape;
   final Curve curve;
   final Duration duration;
-  final bool
-      drawSurfaceAboveChild; //if true => boxDecoration & foreground decoration, else => boxDecoration does all the work
+  final bool drawSurfaceAboveChild; //if true => boxDecoration & foreground decoration, else => boxDecoration does all the work
 
   Neumorphic({
     Key key,
@@ -65,6 +66,7 @@ class Neumorphic extends StatelessWidget {
     this.curve = Neumorphic.DEFAULT_CURVE,
     this.style,
     this.boxShape,
+    this.textStyle,
     this.margin = const EdgeInsets.all(0),
     this.padding = const EdgeInsets.all(0),
     this.drawSurfaceAboveChild = true,
@@ -74,12 +76,11 @@ class Neumorphic extends StatelessWidget {
   Widget build(BuildContext context) {
     final boxShape = this.boxShape ?? NeumorphicBoxShape.rect();
     final theme = NeumorphicTheme.currentTheme(context);
-    final NeumorphicStyle style = (this.style ?? NeumorphicStyle())
-        .copyWithThemeIfNull(theme)
-        .applyDisableDepth();
+    final NeumorphicStyle style = (this.style ?? NeumorphicStyle()).copyWithThemeIfNull(theme).applyDisableDepth();
 
     return _NeumorphicContainer(
       padding: this.padding,
+      textStyle: this.textStyle,
       boxShape: boxShape,
       drawSurfaceAboveChild: this.drawSurfaceAboveChild,
       duration: this.duration,
@@ -93,6 +94,7 @@ class Neumorphic extends StatelessWidget {
 
 class _NeumorphicContainer extends StatelessWidget {
   final NeumorphicStyle style;
+  final TextStyle textStyle;
   final NeumorphicBoxShape boxShape;
   final Widget child;
   final EdgeInsets margin;
@@ -109,38 +111,41 @@ class _NeumorphicContainer extends StatelessWidget {
     @required this.duration,
     @required this.curve,
     @required this.style,
+    @required this.textStyle,
     @required this.drawSurfaceAboveChild,
     @required this.boxShape,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      margin: this.margin,
+    return AnimatedDefaultTextStyle(
+      style: this.textStyle ?? material.Theme.of(context).textTheme.bodyText2,
       duration: this.duration,
-      curve: this.curve,
-      child: NeumorphicBoxShapeClipper(
-        shape: this.boxShape,
-        child: Padding(
-          padding: this.padding,
-          child: this.child,
+      child: AnimatedContainer(
+        margin: this.margin,
+        duration: this.duration,
+        curve: this.curve,
+        child: NeumorphicBoxShapeClipper(
+          shape: this.boxShape,
+          child: Padding(
+            padding: this.padding,
+            child: this.child,
+          ),
         ),
-      ),
-      foregroundDecoration: NeumorphicDecoration(
-        isForeground: true,
-        renderingByPath:
-            this.boxShape.customShapePathProvider.oneGradientPerPath,
-        splitBackgroundForeground: this.drawSurfaceAboveChild,
-        style: this.style,
-        shape: this.boxShape,
-      ),
-      decoration: NeumorphicDecoration(
-        isForeground: false,
-        renderingByPath:
-            this.boxShape.customShapePathProvider.oneGradientPerPath,
-        splitBackgroundForeground: this.drawSurfaceAboveChild,
-        style: this.style,
-        shape: this.boxShape,
+        foregroundDecoration: NeumorphicDecoration(
+          isForeground: true,
+          renderingByPath: this.boxShape.customShapePathProvider.oneGradientPerPath,
+          splitBackgroundForeground: this.drawSurfaceAboveChild,
+          style: this.style,
+          shape: this.boxShape,
+        ),
+        decoration: NeumorphicDecoration(
+          isForeground: false,
+          renderingByPath: this.boxShape.customShapePathProvider.oneGradientPerPath,
+          splitBackgroundForeground: this.drawSurfaceAboveChild,
+          style: this.style,
+          shape: this.boxShape,
+        ),
       ),
     );
   }
