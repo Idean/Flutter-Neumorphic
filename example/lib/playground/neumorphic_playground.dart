@@ -52,7 +52,7 @@ class __PageState extends State<_Page> {
 
   @override
   void initState() {
-    boxShape = NeumorphicBoxShape.roundRect(BorderRadius.circular(this.cornerRadius));
+    boxShape = NeumorphicBoxShape.path(NeumorphicFlutterLogoPathProvider());
     super.initState();
   }
 
