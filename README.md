@@ -136,8 +136,8 @@ Neumorphic(
 | Color | any Color | The default color of  Neumorphic elements | 
 | Accent | any Color | The default accent color of the Neumorphic element when activated (eg: checkbox) | 
 | Variant | any Color | The default secondary color of the Neumorphic element (eg: used as second color on the progress gradient) | 
-| BoxShape | Circle, RoundRect(radius), Stadium | The box shape of a Neumorphic element. Stadium : roundrect with cirlces on each side | 
-| Border | NeumorphicBorder | A border (color/width) to enhance contrast with background and others elements | 
+| [BoxShape](#-custom-shape) | Circle, RoundRect(radius), Stadium, Path | The box shape of a Neumorphic element. Stadium : roundrect with cirlces on each side | 
+| [Border](#-accessibility--border) | NeumorphicBorder | A border (color/width) to enhance contrast with background and others elements | 
 
 ### 🔧 Shapes
 
