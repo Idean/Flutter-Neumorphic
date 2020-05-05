@@ -3,6 +3,7 @@ import 'package:example/widgets/widgets_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+import 'accessibility/neumorphic_accessibility.dart';
 import 'playground/neumorphic_playground.dart';
 import 'samples/sample_home.dart';
 
@@ -90,6 +91,14 @@ class FullSampleHomePage extends StatelessWidget {
                       onClick: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return TipsHome();
+                        }));
+                      }),
+                  SizedBox(height: 12),
+                  _buildButton(
+                      text: "Accessibility",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return NeumorphicAccessibility();
                         }));
                       }),
                   SizedBox(height: 12),
