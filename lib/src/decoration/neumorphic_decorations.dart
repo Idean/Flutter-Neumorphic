@@ -101,6 +101,7 @@ class NeumorphicDecoration extends Decoration {
         splitBackgroundForeground: a.splitBackgroundForeground,
         renderingByPath: a.renderingByPath,
         style: a.style.copyWith(
+          border: NeumorphicBorder.lerp(aStyle.border, bStyle.border, t),
           intensity: lerpDouble(aStyle.intensity, bStyle.intensity, t),
           depth: lerpDouble(aStyle.depth, bStyle.depth, t),
           color: Color.lerp(aStyle.color, bStyle.color, t),

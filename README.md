@@ -220,6 +220,37 @@ Neumorphic(
 ),
 ```
 
+## 🔲 Accessibility / Border
+
+For design purposes, or simply to enhance accessibility, 
+you can add a border on Neumorphic widgets 
+
+[![Neumorphic](./medias/border.gif)](https://github.com/Idean/Flutter-Neumorphic)
+
+```dart
+Neumorphic(
+      style: NeumorphicStyle(
+        border: NeumorphicBorder(
+          color: Color(0x33000000),
+          width: 0.8,
+        )
+      ),
+      ...
+)
+```
+
+You can enable/disable it (eg: listening an Accessibility Provider) with `isEnabled`
+
+```dart
+border: NeumorphicBorder(
+    isEnabled: true,
+    color: Color(0x33000000),
+    width: 0.8,
+)
+```
+
+Note that `borderColor` and `borderWidth` default values has been added to `NeumorphicThemeData`
+
 ## 🎨 Neumorphic Theme
 
 

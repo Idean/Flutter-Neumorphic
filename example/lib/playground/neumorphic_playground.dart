@@ -274,6 +274,7 @@ class __PageState extends State<_Page> {
       boxShape: boxShape,
       drawSurfaceAboveChild: this.drawAboveChild,
       style: NeumorphicStyle(
+        //border: NeumorphicBorder(),
         shape: this.shape,
         intensity: this.intensity,
         /*
