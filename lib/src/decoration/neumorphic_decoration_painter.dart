@@ -20,14 +20,22 @@ class NeumorphicDecorationPainter extends BoxPainter {
   Paint _blackShadowPaint;
   Paint _blackShadowMaskPaint;
   Paint _gradientPaint;
+  Paint _borderPaint;
 
   void generatePainters() {
     this._backgroundPaint = Paint();
     this._whiteShadowPaint = Paint();
-    this._whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
+    this._whiteShadowMaskPaint = Paint()
+      ..blendMode = BlendMode.dstOut;
     this._blackShadowPaint = Paint();
-    this._blackShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
+    this._blackShadowMaskPaint = Paint()
+      ..blendMode = BlendMode.dstOut;
     this._gradientPaint = Paint();
+
+    this._borderPaint = Paint()
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.bevel
+      ..style = PaintingStyle.stroke;
   }
 
   final bool drawGradient;
@@ -54,7 +62,7 @@ class NeumorphicDecorationPainter extends BoxPainter {
     }
 
     final bool invalidateSize =
-        this._cache.updateSize(newOffset: offset, newSize: configuration.size);
+    this._cache.updateSize(newOffset: offset, newSize: configuration.size);
     if (invalidateSize) {
       _cache.updatePath(
           newPath: shape.customShapePathProvider.getPath(configuration.size));
@@ -75,10 +83,10 @@ class NeumorphicDecorationPainter extends BoxPainter {
     }
 
     final bool invalidateShadowColors = this._cache.updateShadowColor(
-          newShadowLightColorEmboss: style.shadowLightColor,
-          newShadowDarkColorEmboss: style.shadowDarkColor,
-          newIntensity: style.intensity,
-        );
+      newShadowLightColorEmboss: style.shadowLightColor,
+      newShadowDarkColorEmboss: style.shadowDarkColor,
+      newIntensity: style.intensity,
+    );
     if (invalidateShadowColors) {
       _whiteShadowPaint..color = _cache.shadowLightColor;
       _blackShadowPaint..color = _cache.shadowDarkColor;
@@ -103,18 +111,37 @@ class NeumorphicDecorationPainter extends BoxPainter {
       }
     }
 
-    for (var subPath in _cache.subPaths) {
-      if (drawBackground) {
-        _drawBackground(offset: offset, canvas: canvas, path: subPath);
-      }
-      if (this.drawGradient && renderingByPath) {
-        _drawGradient(offset: offset, canvas: canvas, path: subPath);
+    if (renderingByPath) {
+      for (var subPath in _cache.subPaths) {
+        _drawElement(offset: offset, canvas: canvas, path: subPath);
       }
     }
+    else {
+      _drawElement(offset: offset, canvas: canvas, path: _cache.path);
+    }
+  }
 
-    if (this.drawGradient && !renderingByPath) {
-      _drawGradient(offset: offset, canvas: canvas, path: _cache.path);
+  void _drawElement({Canvas canvas, Offset offset, Path path}) {
+    if (drawBackground) {
+      _drawBackground(offset: offset, canvas: canvas, path: path);
     }
+    if (this.drawGradient) {
+      _drawGradient(offset: offset, canvas: canvas, path: path);
+    }
+    if (style.border != null && style.border.isEnabled) {
+      _drawBorder(canvas: canvas, offset: offset, path: path);
+    }
+  }
+
+  void _drawBorder({Canvas canvas, Offset offset, Path path}) {
+    canvas
+      ..save()
+      ..translate(offset.dx, offset.dy)
+      ..drawPath(path, _borderPaint
+        ..color = style.border.color ?? Color(0x00000000)
+        ..strokeWidth = style.border.width ?? 0
+      )
+      ..restore();
   }
 
   void _drawBackground({Canvas canvas, Offset offset, Path path}) {

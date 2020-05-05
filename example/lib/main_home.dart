@@ -34,6 +34,10 @@ class FullSampleHomePage extends StatelessWidget {
         horizontal: 24,
       ),
       style: NeumorphicStyle(
+        //border: NeumorphicBorder(
+        //  isEnabled: true,
+        //  width: 0.3,
+        //),
         shape: NeumorphicShape.flat,
       ),
       child: Center(child: Text(text)),

@@ -21,6 +21,7 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
   Paint _whiteShadowMaskPaint;
   Paint _blackShadowPaint;
   Paint _blackShadowMaskPaint;
+  Paint _borderPaint;
 
   final bool drawShadow;
   final bool drawBackground;
@@ -40,6 +41,11 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
     this._whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
     this._blackShadowPaint = Paint();
     this._blackShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
+
+    this._borderPaint = Paint()
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.bevel
+      ..style = PaintingStyle.stroke;
   }
 
   void _updateCache(
@@ -95,6 +101,17 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
       ..restore();
   }
 
+  void _drawBorder({Canvas canvas, Offset offset, Path path}) {
+    canvas
+      ..save()
+      ..translate(offset.dx, offset.dy)
+      ..drawPath(path, _borderPaint
+        ..color = style.border.color ?? Color(0x00000000)
+        ..strokeWidth = style.border.width ?? 0
+      )
+      ..restore();
+  }
+
   void _paintShadows(Canvas canvas, Path path) {
     final Matrix4 matrix4 = Matrix4.identity()
       ..scale(_cache.scaleX, _cache.scaleY);
@@ -125,6 +142,10 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
     for (var subPath in _cache.subPaths) {
       if (drawBackground) {
         _paintBackground(canvas, subPath);
+      }
+
+      if (style.border != null && style.border.isEnabled) {
+        _drawBorder(canvas: canvas, offset: offset, path: subPath);
       }
 
       if (drawShadow) {

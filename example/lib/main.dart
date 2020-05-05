@@ -19,13 +19,11 @@ class MyApp extends StatelessWidget {
           usedTheme: UsedTheme.LIGHT,
           theme: NeumorphicThemeData(
             baseColor: Color(0xFFFFFFFF),
-            intensity: 0.5,
             lightSource: LightSource.topLeft,
             depth: 10,
           ),
           darkTheme: NeumorphicThemeData(
             baseColor: Color(0xFF3E3E3E),
-            intensity: 0.5,
             lightSource: LightSource.topLeft,
             depth: 6,
           ),
@@ -75,7 +73,10 @@ class MyHomePage extends StatelessWidget {
                     return FullSampleHomePage();
                   }));
                 },
-                style: NeumorphicStyle(shape: NeumorphicShape.flat),
+                style: NeumorphicStyle(
+                  shape: NeumorphicShape.flat,
+                  border: NeumorphicBorder()
+                ),
                 boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
                 padding: const EdgeInsets.all(12.0),
                 child: Text(

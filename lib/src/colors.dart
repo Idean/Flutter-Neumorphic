@@ -18,6 +18,9 @@ class NeumorphicColors {
   static const darkDisabled = Color(0xB3FFFFFF);
   static const darkDefaultTextColor = Color(0xB3FFFFFF);
 
+  static const Color defaultBorder = Color(0x33000000);
+  static const Color darkDefaultBorder = Color(0x33FFFFFF);
+
   static const Color decorationMaxWhiteColor =
       Color(0xFFFFFFFF); //for intensity = 1
   static const Color decorationMaxDarkColor =
@@ -89,4 +92,5 @@ class NeumorphicColors {
         maxColor.withOpacity(newOpacity); //<-- intensity act on opacity;
     return newColor;
   }
+
 }
