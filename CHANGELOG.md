@@ -5,6 +5,7 @@
 * Full support of custom path
 * Added `NeumorphicPathProvider`
 * Added `NeumorphicFlutterLogoPathProvider`
+* Added `NeumorphicBorder` on styles / themes 
 
 ## 1.0.8+3
 

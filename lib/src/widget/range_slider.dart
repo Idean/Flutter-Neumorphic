@@ -24,22 +24,29 @@ class RangeSliderStyle {
   final Color accent;
   final Color variant;
 
+  final NeumorphicBorder border;
+  final NeumorphicBorder thumbBorder;
+
   const RangeSliderStyle({
     this.depth,
     this.disableDepth,
     this.borderRadius = const BorderRadius.all(Radius.circular(10)),
     this.accent,
     this.variant,
+    this.border = const NeumorphicBorder.none(),
+    this.thumbBorder = const NeumorphicBorder.none(),
   });
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ProgressStyle &&
+      other is RangeSliderStyle &&
           runtimeType == other.runtimeType &&
           depth == other.depth &&
           disableDepth == other.disableDepth &&
           borderRadius == other.borderRadius &&
+          thumbBorder == other.thumbBorder &&
+          border == other.border &&
           accent == other.accent &&
           variant == other.variant;
 
@@ -49,6 +56,8 @@ class RangeSliderStyle {
       disableDepth.hashCode ^
       borderRadius.hashCode ^
       accent.hashCode ^
+      border.hashCode ^
+      thumbBorder.hashCode ^
       variant.hashCode;
 }
 
@@ -247,6 +256,7 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
           style: ProgressStyle(
             disableDepth: widget.style.disableDepth,
             depth: widget.style.depth,
+            border: widget.style.border,
             borderRadius: widget.style.borderRadius,
             accent: widget.style.accent ?? theme.accentColor,
             variant: widget.style.variant ?? theme.variantColor,
@@ -284,6 +294,7 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
         disableDepth: widget.style.disableDepth,
         shape: NeumorphicShape.concave,
         color: color ?? theme.accentColor,
+        border: widget.style.thumbBorder,
       ),
       boxShape: NeumorphicBoxShape.circle(),
       child: SizedBox(

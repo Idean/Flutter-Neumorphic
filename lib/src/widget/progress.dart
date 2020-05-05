@@ -25,6 +25,8 @@ class ProgressStyle {
   final AlignmentGeometry progressGradientEnd;
   final bool disableDepth;
 
+  final NeumorphicBorder border;
+
   const ProgressStyle({
     this.depth,
     this.disableDepth,
@@ -34,6 +36,7 @@ class ProgressStyle {
     this.progressGradientStart,
     this.progressGradientEnd,
     this.variant,
+    this.border = const NeumorphicBorder.none(),
   });
 
   @override
@@ -42,6 +45,7 @@ class ProgressStyle {
       other is ProgressStyle &&
           runtimeType == other.runtimeType &&
           depth == other.depth &&
+          border == other.border &&
           disableDepth == other.disableDepth &&
           borderRadius == other.borderRadius &&
           gradientBorderRadius == other.gradientBorderRadius &&
@@ -56,6 +60,7 @@ class ProgressStyle {
       disableDepth.hashCode ^
       borderRadius.hashCode ^
       gradientBorderRadius.hashCode ^
+      border.hashCode ^
       accent.hashCode ^
       variant.hashCode ^
       progressGradientStart.hashCode ^
@@ -168,6 +173,7 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
           padding: EdgeInsets.zero,
           style: NeumorphicStyle(
             disableDepth: widget.style.disableDepth,
+            border: widget.style.border,
             depth: widget.style.depth,
             shape: NeumorphicShape.flat,
           ),
@@ -297,6 +303,7 @@ class _NeumorphicProgressIndeterminateState
           boxShape: NeumorphicBoxShape.roundRect(widget.style.borderRadius),
           padding: EdgeInsets.zero,
           style: NeumorphicStyle(
+            border: widget.style.border,
             disableDepth: widget.style.disableDepth,
             depth: widget.style.depth,
             shape: NeumorphicShape.flat,

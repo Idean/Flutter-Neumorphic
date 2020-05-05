@@ -75,7 +75,7 @@ class MyHomePage extends StatelessWidget {
                 },
                 style: NeumorphicStyle(
                   shape: NeumorphicShape.flat,
-                  border: NeumorphicBorder()
+                  //border: NeumorphicBorder()
                 ),
                 boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
                 padding: const EdgeInsets.all(12.0),

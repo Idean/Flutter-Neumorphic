@@ -93,7 +93,7 @@ class FullSampleHomePage extends StatelessWidget {
                           return TipsHome();
                         }));
                       }),
-                  SizedBox(height: 12),
+                  SizedBox(height: 24),
                   _buildButton(
                       text: "Accessibility",
                       onClick: () {

@@ -4,6 +4,8 @@
 
 A complete, ready to use, Neumorphic ui kit for Flutter
 
+[![flutter_logo](./medias/flutter_logo_small.gif)](https://github.com/Idean/Flutter-Neumorphic)
+
 Try Flutter-Neumorphic on your browser : 👉 https://flutter-neumorphic.firebaseapp.com/ 🌐
 
 [![neumorphic_playground](./medias/playground.gif)](https://github.com/Idean/Flutter-Neumorphic)
@@ -135,6 +137,7 @@ Neumorphic(
 | Accent | any Color | The default accent color of the Neumorphic element when activated (eg: checkbox) | 
 | Variant | any Color | The default secondary color of the Neumorphic element (eg: used as second color on the progress gradient) | 
 | BoxShape | Circle, RoundRect(radius), Stadium | The box shape of a Neumorphic element. Stadium : roundrect with cirlces on each side | 
+| Border | NeumorphicBorder | A border (color/width) to enhance contrast with background and others elements | 
 
 ### 🔧 Shapes
 
@@ -216,6 +219,15 @@ And use `NeumorphicBoxShape.path`
 ```dart
 Neumorphic(
   shape: NeumorphicBoxShape.path(MyShapePathProvider())
+  ...
+),
+```
+
+You can import the Flutter logo as a custom shape using 
+
+```dart
+Neumorphic(
+  shape: NeumorphicBoxShape.path(NeumorphicFlutterLogoPathProvider())
   ...
 ),
 ```

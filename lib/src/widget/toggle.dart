@@ -12,6 +12,7 @@ class NeumorphicToggleStyle {
   final BorderRadius borderRadius;
   final bool animateOpacity;
   final Color backgroundColor;
+  final NeumorphicBorder border;
 
   const NeumorphicToggleStyle({
     this.depth,
@@ -19,6 +20,7 @@ class NeumorphicToggleStyle {
     this.backgroundColor,
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.disableDepth,
+    this.border = const NeumorphicBorder.none(),
   });
 
   @override
@@ -27,18 +29,14 @@ class NeumorphicToggleStyle {
       other is NeumorphicToggleStyle &&
           runtimeType == other.runtimeType &&
           depth == other.depth &&
+          border == other.border &&
           backgroundColor == other.backgroundColor &&
           disableDepth == other.disableDepth &&
           borderRadius == other.borderRadius &&
           animateOpacity == other.animateOpacity;
 
   @override
-  int get hashCode =>
-      depth.hashCode ^
-      backgroundColor.hashCode ^
-      disableDepth.hashCode ^
-      borderRadius.hashCode ^
-      animateOpacity.hashCode;
+  int get hashCode => depth.hashCode ^ backgroundColor.hashCode ^ border.hashCode ^ disableDepth.hashCode ^ borderRadius.hashCode ^ animateOpacity.hashCode;
 }
 
 /// Direct child of NeumorphicToggle
@@ -223,16 +221,11 @@ class NeumorphicToggle extends StatelessWidget {
   }
 
   Widget _backgroundAtIndex(int index) {
-    return Expanded(
-        flex: 1, child: this.children[index].background ?? SizedBox.expand());
+    return Expanded(flex: 1, child: this.children[index].background ?? SizedBox.expand());
   }
 
   Widget _foregroundAtIndex(int index) {
-    Widget child = (!this.displayForegroundOnlyIfSelected) ||
-            (this.displayForegroundOnlyIfSelected &&
-                this.selectedIndex == index)
-        ? this.children[index].foreground
-        : SizedBox.expand();
+    Widget child = (!this.displayForegroundOnlyIfSelected) || (this.displayForegroundOnlyIfSelected && this.selectedIndex == index) ? this.children[index].foreground : SizedBox.expand();
     //wrap with opacity animation
     if (style.animateOpacity) {
       child = AnimatedOpacity(
@@ -257,10 +250,12 @@ class NeumorphicToggle extends StatelessWidget {
     return Neumorphic(
       boxShape: NeumorphicBoxShape.roundRect(this.style.borderRadius),
       style: NeumorphicStyle(
-          color: this.style.backgroundColor,
-          disableDepth: this.style.disableDepth,
-          depth: _getTrackDepth(context),
-          shape: NeumorphicShape.flat),
+        color: this.style.backgroundColor,
+        disableDepth: this.style.disableDepth,
+        depth: _getTrackDepth(context),
+        shape: NeumorphicShape.flat,
+        border: this.style.border,
+      ),
       child: SizedBox.expand(),
     );
   }
