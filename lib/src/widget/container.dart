@@ -57,7 +57,8 @@ class Neumorphic extends StatelessWidget {
   final NeumorphicBoxShape boxShape;
   final Curve curve;
   final Duration duration;
-  final bool drawSurfaceAboveChild; //if true => boxDecoration & foreground decoration, else => boxDecoration does all the work
+  final bool
+      drawSurfaceAboveChild; //if true => boxDecoration & foreground decoration, else => boxDecoration does all the work
 
   Neumorphic({
     Key key,
@@ -76,7 +77,9 @@ class Neumorphic extends StatelessWidget {
   Widget build(BuildContext context) {
     final boxShape = this.boxShape ?? NeumorphicBoxShape.rect();
     final theme = NeumorphicTheme.currentTheme(context);
-    final NeumorphicStyle style = (this.style ?? NeumorphicStyle()).copyWithThemeIfNull(theme).applyDisableDepth();
+    final NeumorphicStyle style = (this.style ?? NeumorphicStyle())
+        .copyWithThemeIfNull(theme)
+        .applyDisableDepth();
 
     return _NeumorphicContainer(
       padding: this.padding,
@@ -119,7 +122,7 @@ class _NeumorphicContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
-      style: this.textStyle ?? material.Theme.of(context).textTheme.bodyText2,
+      style: this.textStyle ?? material.Theme.of(context).textTheme.body2, //TODO migrate to textBody2
       child: AnimatedContainer(
         margin: this.margin,
         duration: this.duration,
@@ -133,14 +136,16 @@ class _NeumorphicContainer extends StatelessWidget {
         ),
         foregroundDecoration: NeumorphicDecoration(
           isForeground: true,
-          renderingByPath: this.boxShape.customShapePathProvider.oneGradientPerPath,
+          renderingByPath:
+              this.boxShape.customShapePathProvider.oneGradientPerPath,
           splitBackgroundForeground: this.drawSurfaceAboveChild,
           style: this.style,
           shape: this.boxShape,
         ),
         decoration: NeumorphicDecoration(
           isForeground: false,
-          renderingByPath: this.boxShape.customShapePathProvider.oneGradientPerPath,
+          renderingByPath:
+              this.boxShape.customShapePathProvider.oneGradientPerPath,
           splitBackgroundForeground: this.drawSurfaceAboveChild,
           style: this.style,
           shape: this.boxShape,

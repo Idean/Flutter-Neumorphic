@@ -21,7 +21,7 @@ class NeumorphicDecorationPainter extends BoxPainter {
   Paint _blackShadowMaskPaint;
   Paint _gradientPaint;
 
-  void generatePainters(){
+  void generatePainters() {
     this._backgroundPaint = Paint();
     this._whiteShadowPaint = Paint();
     this._whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
@@ -45,21 +45,24 @@ class NeumorphicDecorationPainter extends BoxPainter {
     this.renderingByPath = true,
   }) : super(onChanged);
 
-  void _updateCache(Offset offset, ImageConfiguration configuration){
-
-    if(_cache == null){
+  void _updateCache(Offset offset, ImageConfiguration configuration) {
+    if (_cache == null) {
       _cache = NeumorphicPainterCache();
       generatePainters();
     } else {
       //print("reuse painter");
     }
 
-    final bool invalidateSize = this._cache.updateSize(newOffset: offset, newSize: configuration.size);
+    final bool invalidateSize =
+        this._cache.updateSize(newOffset: offset, newSize: configuration.size);
     if (invalidateSize) {
-      _cache.updatePath(newPath: shape.customShapePathProvider.getPath(configuration.size));
+      _cache.updatePath(
+          newPath: shape.customShapePathProvider.getPath(configuration.size));
     }
 
-    final bool invalidateLightSource = this._cache.updateLightSource(style.lightSource, style.oppositeShadowLightSource);
+    final bool invalidateLightSource = this
+        ._cache
+        .updateLightSource(style.lightSource, style.oppositeShadowLightSource);
     final bool invalidateColor = this._cache.updateStyleColor(style.color);
     if (invalidateColor) {
       _backgroundPaint..color = _cache.backgroundColor;
@@ -72,10 +75,10 @@ class NeumorphicDecorationPainter extends BoxPainter {
     }
 
     final bool invalidateShadowColors = this._cache.updateShadowColor(
-      newShadowLightColorEmboss: style.shadowLightColor,
-      newShadowDarkColorEmboss: style.shadowDarkColor,
-      newIntensity: style.intensity,
-    );
+          newShadowLightColorEmboss: style.shadowLightColor,
+          newShadowDarkColorEmboss: style.shadowDarkColor,
+          newIntensity: style.intensity,
+        );
     if (invalidateShadowColors) {
       _whiteShadowPaint..color = _cache.shadowLightColor;
       _blackShadowPaint..color = _cache.shadowDarkColor;
@@ -115,7 +118,8 @@ class NeumorphicDecorationPainter extends BoxPainter {
   }
 
   void _drawBackground({Canvas canvas, Offset offset, Path path}) {
-    canvas..save()
+    canvas
+      ..save()
       ..translate(offset.dx, offset.dy)
       ..drawPath(path, _backgroundPaint)
       ..restore();
@@ -125,7 +129,8 @@ class NeumorphicDecorationPainter extends BoxPainter {
     if (style.depth.abs() >= 0.1) {
       canvas
         ..saveLayer(_cache.layerRect, _whiteShadowPaint)
-        ..translate(offset.dx + _cache.depthOffset.dx, offset.dy + _cache.depthOffset.dy)
+        ..translate(offset.dx + _cache.depthOffset.dx,
+            offset.dy + _cache.depthOffset.dy)
         ..drawPath(path, _whiteShadowPaint)
         ..translate(-_cache.depthOffset.dx, -_cache.depthOffset.dy)
         ..drawPath(path, _whiteShadowMaskPaint)
@@ -133,7 +138,8 @@ class NeumorphicDecorationPainter extends BoxPainter {
 
       canvas
         ..saveLayer(_cache.layerRect, _blackShadowPaint)
-        ..translate(offset.dx - _cache.depthOffset.dx, offset.dy - _cache.depthOffset.dy)
+        ..translate(offset.dx - _cache.depthOffset.dx,
+            offset.dy - _cache.depthOffset.dy)
         ..drawPath(path, _blackShadowPaint)
         ..translate(_cache.depthOffset.dx, _cache.depthOffset.dy)
         ..drawPath(path, _blackShadowMaskPaint)

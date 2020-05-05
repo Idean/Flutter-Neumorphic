@@ -11,7 +11,6 @@ import 'cache/neumorphic_emboss_painter_cache.dart';
 export '../theme/theme.dart';
 
 class NeumorphicEmbossDecorationPainter extends BoxPainter {
-
   NeumorphicEmbossPainterCache _cache;
 
   final NeumorphicStyle style;
@@ -35,8 +34,7 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
       : this.shape = shape ?? NeumorphicBoxShape.rect(),
         super(onChanged);
 
-
-  void _generatePainters(){
+  void _generatePainters() {
     this._backgroundPaint = Paint();
     this._whiteShadowPaint = Paint();
     this._whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
@@ -48,21 +46,21 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
       {Offset offset,
       ImageConfiguration configuration,
       NeumorphicStyle newStyle}) {
-
-    if(_cache == null){
+    if (_cache == null) {
       _cache = NeumorphicEmbossPainterCache();
       _generatePainters();
     }
 
-    final bool invalidateSize = this._cache.updateSize(
-        newOffset: offset,
-        newSize: configuration.size);
+    final bool invalidateSize =
+        this._cache.updateSize(newOffset: offset, newSize: configuration.size);
     if (invalidateSize) {
       _cache.updatePath(
           newPath: shape.customShapePathProvider.getPath(configuration.size));
     }
 
-    final bool invalidateLightSource = this._cache.updateLightSource(style.lightSource, style.oppositeShadowLightSource);
+    final bool invalidateLightSource = this
+        ._cache
+        .updateLightSource(style.lightSource, style.oppositeShadowLightSource);
     final bool invalidateColor = this._cache.updateStyleColor(style.color);
     if (invalidateColor) {
       _backgroundPaint..color = _cache.backgroundColor;

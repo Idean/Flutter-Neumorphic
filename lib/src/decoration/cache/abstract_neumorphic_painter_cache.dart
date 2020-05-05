@@ -4,7 +4,6 @@ import 'dart:ui';
 import '../../../flutter_neumorphic.dart';
 
 abstract class AbstractNeumorphicEmbossPainterCache {
-
   bool get isEmpty => _cacheOffset == null;
 
   Offset _cacheOffset;
@@ -21,11 +20,10 @@ abstract class AbstractNeumorphicEmbossPainterCache {
 
   AbstractNeumorphicEmbossPainterCache();
 
-  bool updateSize({Offset newOffset, Size newSize}){
+  bool updateSize({Offset newOffset, Size newSize}) {
     if (this._cacheOffset != newOffset ||
         this._cacheWidth != newSize.width ||
         this._cacheHeight != newSize.height) {
-
       this._cacheWidth = newSize.width;
       this._cacheHeight = newSize.height;
       this._cacheOffset = newOffset;
@@ -48,8 +46,8 @@ abstract class AbstractNeumorphicEmbossPainterCache {
   double _cacheStyleDepth; //old style depth
   double _depth; //depth used to draw
   double get depth => _depth; //depth used to draw
-  bool updateStyleDepth(double newStyleDepth, double radiusFactor){
-    if(_cacheStyleDepth != newStyleDepth){
+  bool updateStyleDepth(double newStyleDepth, double radiusFactor) {
+    if (_cacheStyleDepth != newStyleDepth) {
       _cacheStyleDepth = newStyleDepth;
 
       _depth = _cacheStyleDepth.abs().clamp(0.0, _cacheRadius / radiusFactor);
@@ -63,14 +61,14 @@ abstract class AbstractNeumorphicEmbossPainterCache {
 
   Offset _depthOffset;
   Offset get depthOffset => _depthOffset;
-  void updateDepthOffset(){
+  void updateDepthOffset() {
     _depthOffset = this.lightSource.offset.scale(_depth, _depth);
   }
 
   Color _cacheColor;
   Color get backgroundColor => _cacheColor;
-  bool updateStyleColor(Color newColor){
-    if(_cacheColor != newColor){
+  bool updateStyleColor(Color newColor) {
+    if (_cacheColor != newColor) {
       _cacheColor = newColor;
 
       return true;
@@ -78,26 +76,28 @@ abstract class AbstractNeumorphicEmbossPainterCache {
     return false;
   }
 
-  bool _cacheOppositeShadowLightSource; //store the old style lightsource property
+  bool
+      _cacheOppositeShadowLightSource; //store the old style lightsource property
   LightSource _cacheLightSource; //store the old style lightsource
 
   LightSource _lightSource; //used to draw
   LightSource get lightSource => _lightSource; //used to draw
-  bool updateLightSource(LightSource newLightSource, bool newOppositeShadowLightSource) {
+  bool updateLightSource(
+      LightSource newLightSource, bool newOppositeShadowLightSource) {
     bool invalidateLightSource = false;
-    if(newLightSource != _cacheLightSource){
+    if (newLightSource != _cacheLightSource) {
       _cacheLightSource = newLightSource;
       invalidateLightSource = true;
     }
 
     bool invalidateOppositeLightSource = false;
-    if(newOppositeShadowLightSource != _cacheOppositeShadowLightSource){
+    if (newOppositeShadowLightSource != _cacheOppositeShadowLightSource) {
       _cacheOppositeShadowLightSource = newOppositeShadowLightSource;
       invalidateOppositeLightSource = true;
     }
 
-    if(invalidateLightSource || invalidateOppositeLightSource){
-      if(_cacheOppositeShadowLightSource) {
+    if (invalidateLightSource || invalidateOppositeLightSource) {
+      if (_cacheOppositeShadowLightSource) {
         _lightSource = _cacheLightSource.invert();
       } else {
         _lightSource = _cacheLightSource;
@@ -125,30 +125,31 @@ abstract class AbstractNeumorphicEmbossPainterCache {
 
   Color generateShadowLightColor({Color color, double intensity});
 
-
   Color generateShadowDarkColor({Color color, double intensity});
 
-
-  bool updateShadowColor({Color newShadowLightColorEmboss, Color newShadowDarkColorEmboss, double newIntensity,}) {
+  bool updateShadowColor({
+    Color newShadowLightColorEmboss,
+    Color newShadowDarkColorEmboss,
+    double newIntensity,
+  }) {
     bool invalidateIntensity = false;
     bool invalidate = false;
-    if(_styleIntensity != newIntensity){
+    if (_styleIntensity != newIntensity) {
       invalidate = true;
       invalidateIntensity = true;
       _styleIntensity = newIntensity;
     }
     //light
-    if(invalidateIntensity || _styleShadowLightColor != newShadowLightColorEmboss){
+    if (invalidateIntensity ||
+        _styleShadowLightColor != newShadowLightColorEmboss) {
       _styleShadowLightColor = newShadowLightColorEmboss;
       _shadowLightColor = this.generateShadowLightColor(
-        color: _styleShadowLightColor,
-        intensity: _styleIntensity
-      );
+          color: _styleShadowLightColor, intensity: _styleIntensity);
 
       invalidate = true;
     }
     //dark
-    if(invalidate || _styleShadowDarkColor != newShadowDarkColorEmboss){
+    if (invalidate || _styleShadowDarkColor != newShadowDarkColorEmboss) {
       _styleShadowDarkColor = newShadowDarkColorEmboss;
       _shadowDarkColor = this.generateShadowDarkColor(
         color: _styleShadowDarkColor,

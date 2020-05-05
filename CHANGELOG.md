@@ -1,7 +1,7 @@
-## 1.0.8+2
+## 1.0.8+3
 
 * Added `textStyle` to Neumorphic Container, to avoid text coloration issues
-* Added `AnimatedDefaultTextStyle` inside Neumorphic, by default it takes the `material.Theme.of(context).textTheme.bodyText2`
+* Added `AnimatedDefaultTextStyle` inside Neumorphic, by default it takes the `material.Theme.of(context).textTheme.body2`
 
 ## 1.0.8
 

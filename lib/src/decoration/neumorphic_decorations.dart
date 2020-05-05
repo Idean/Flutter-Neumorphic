@@ -28,7 +28,8 @@ class NeumorphicDecoration extends Decoration {
     if (style.depth >= 0) {
       return NeumorphicDecorationPainter(
         style: style,
-        drawGradient: (isForeground && splitBackgroundForeground) || (!isForeground && !splitBackgroundForeground),
+        drawGradient: (isForeground && splitBackgroundForeground) ||
+            (!isForeground && !splitBackgroundForeground),
         drawBackground: !isForeground,
         //only box draw background
         drawShadow: !isForeground,
@@ -41,7 +42,8 @@ class NeumorphicDecoration extends Decoration {
       return NeumorphicEmbossDecorationPainter(
         drawBackground: !isForeground,
         style: style,
-        drawShadow: (isForeground && splitBackgroundForeground) || (!isForeground && !splitBackgroundForeground),
+        drawShadow: (isForeground && splitBackgroundForeground) ||
+            (!isForeground && !splitBackgroundForeground),
         onChanged: onChanged,
         shape: shape,
       );
@@ -72,7 +74,8 @@ class NeumorphicDecoration extends Decoration {
         style: style.copyWith());
   }
 
-  static NeumorphicDecoration lerp(NeumorphicDecoration a, NeumorphicDecoration b, double t) {
+  static NeumorphicDecoration lerp(
+      NeumorphicDecoration a, NeumorphicDecoration b, double t) {
     assert(t != null);
 
     //print("lerp $t ${a.style.depth}, ${b.style.depth}");
@@ -101,7 +104,8 @@ class NeumorphicDecoration extends Decoration {
           intensity: lerpDouble(aStyle.intensity, bStyle.intensity, t),
           depth: lerpDouble(aStyle.depth, bStyle.depth, t),
           color: Color.lerp(aStyle.color, bStyle.color, t),
-          lightSource: LightSource.lerp(aStyle.lightSource, bStyle.lightSource, t),
+          lightSource:
+              LightSource.lerp(aStyle.lightSource, bStyle.lightSource, t),
         ));
   }
 
@@ -120,5 +124,10 @@ class NeumorphicDecoration extends Decoration {
           renderingByPath == other.renderingByPath;
 
   @override
-  int get hashCode => style.hashCode ^ shape.hashCode ^ splitBackgroundForeground.hashCode ^ isForeground.hashCode ^ renderingByPath.hashCode;
+  int get hashCode =>
+      style.hashCode ^
+      shape.hashCode ^
+      splitBackgroundForeground.hashCode ^
+      isForeground.hashCode ^
+      renderingByPath.hashCode;
 }

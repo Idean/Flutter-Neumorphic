@@ -3,10 +3,10 @@ import 'dart:ui';
 import '../../../flutter_neumorphic.dart';
 import 'abstract_neumorphic_painter_cache.dart';
 
-class NeumorphicEmbossPainterCache extends AbstractNeumorphicEmbossPainterCache {
-
+class NeumorphicEmbossPainterCache
+    extends AbstractNeumorphicEmbossPainterCache {
   @override
-  Color generateShadowDarkColor({Color color, double intensity}){
+  Color generateShadowDarkColor({Color color, double intensity}) {
     return NeumorphicColors.embossDarkColor(
       color,
       intensity: intensity,
@@ -15,14 +15,13 @@ class NeumorphicEmbossPainterCache extends AbstractNeumorphicEmbossPainterCache 
 
   @override
   Color generateShadowLightColor({Color color, double intensity}) {
-    return  NeumorphicColors.embossWhiteColor(
+    return NeumorphicColors.embossWhiteColor(
       color,
       intensity: intensity,
     );
   }
 
-
-  Rect updateLayerRect({Offset newOffset, Size newSize}){
+  Rect updateLayerRect({Offset newOffset, Size newSize}) {
     return newOffset & newSize;
   }
 
@@ -44,7 +43,7 @@ class NeumorphicEmbossPainterCache extends AbstractNeumorphicEmbossPainterCache 
 
   //call after _cacheWidth & _cacheHeight set
   @override
-  void updateTranslations(){
+  void updateTranslations() {
     this.xDepth = this.lightSource.dx * this.depth;
     this.yDepth = this.lightSource.dy * this.depth;
     this.xPadding = 2 * (1 - this.lightSource.dx.abs()) * this.depth;
