@@ -1,3 +1,12 @@
+## 2.0.0
+
+* Rewritten all NeumorphicDecoration
+* Improved drawing cache & performances
+* Full support of custom path
+* Added `NeumorphicPathProvider`
+* Added `NeumorphicFlutterLogoPathProvider`
+* Added `NeumorphicBorder` on styles / themes 
+
 ## 1.0.8+3
 
 * Added `textStyle` to Neumorphic Container, to avoid text coloration issues

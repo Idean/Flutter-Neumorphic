@@ -22,9 +22,11 @@ class NeumorphicCheckboxStyle {
   final double unselectedIntensity;
   final Color selectedColor;
   final Color disabledColor;
+  final NeumorphicBorder border;
 
   const NeumorphicCheckboxStyle({
     this.selectedDepth,
+    this.border = const NeumorphicBorder.none(),
     this.selectedColor,
     this.unselectedDepth,
     this.disableDepth,
@@ -39,6 +41,7 @@ class NeumorphicCheckboxStyle {
       other is NeumorphicCheckboxStyle &&
           runtimeType == other.runtimeType &&
           selectedDepth == other.selectedDepth &&
+          border == other.border &&
           unselectedDepth == other.unselectedDepth &&
           disableDepth == other.disableDepth &&
           selectedIntensity == other.selectedIntensity &&
@@ -50,6 +53,7 @@ class NeumorphicCheckboxStyle {
   int get hashCode =>
       selectedDepth.hashCode ^
       unselectedDepth.hashCode ^
+      border.hashCode ^
       disableDepth.hashCode ^
       selectedIntensity.hashCode ^
       unselectedIntensity.hashCode ^
@@ -188,6 +192,7 @@ class NeumorphicCheckbox extends StatelessWidget {
         size: 20.0,
       ),
       style: NeumorphicStyle(
+        border: this.style.border,
         color: color,
         depth: depth,
         disableDepth: this.style.disableDepth,

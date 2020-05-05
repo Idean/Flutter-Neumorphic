@@ -22,22 +22,29 @@ class SliderStyle {
   final Color accent;
   final Color variant;
 
+  final NeumorphicBorder border;
+  final NeumorphicBorder thumbBorder;
+
   const SliderStyle({
     this.depth,
     this.disableDepth,
     this.borderRadius = const BorderRadius.all(Radius.circular(10)),
     this.accent,
     this.variant,
+    this.border = const NeumorphicBorder.none(),
+    this.thumbBorder = const NeumorphicBorder.none(),
   });
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ProgressStyle &&
+      other is SliderStyle &&
           runtimeType == other.runtimeType &&
           depth == other.depth &&
           disableDepth == other.disableDepth &&
           borderRadius == other.borderRadius &&
+          thumbBorder == other.thumbBorder &&
+          border == other.border &&
           accent == other.accent &&
           variant == other.variant;
 
@@ -46,6 +53,8 @@ class SliderStyle {
       depth.hashCode ^
       disableDepth.hashCode ^
       borderRadius.hashCode ^
+      border.hashCode ^
+      thumbBorder.hashCode ^
       accent.hashCode ^
       variant.hashCode;
 }
@@ -179,6 +188,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
       style: ProgressStyle(
         disableDepth: widget.style.disableDepth,
         depth: widget.style.depth,
+        border: widget.style.border,
         borderRadius: widget.style.borderRadius,
         accent: widget.style.accent ?? theme.accentColor,
         variant: widget.style.variant ?? theme.variantColor,
@@ -192,6 +202,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
       style: NeumorphicStyle(
         disableDepth: widget.style.disableDepth,
         shape: NeumorphicShape.concave,
+        border: widget.style.thumbBorder,
         color: widget.style.accent ?? theme.accentColor,
       ),
       boxShape: NeumorphicBoxShape.circle(),
