@@ -250,12 +250,11 @@ class AnimatedThumb extends StatelessWidget {
         child: Neumorphic(
           boxShape: NeumorphicBoxShape.circle(),
           style: NeumorphicStyle(
-            disableDepth: this.disableDepth,
-            shape: shape,
-            depth: this.depth,
-            color: thumbColor,
-            border: this.border
-          ),
+              disableDepth: this.disableDepth,
+              shape: shape,
+              depth: this.depth,
+              color: thumbColor,
+              border: this.border),
           child: AspectRatio(
             aspectRatio: 1,
             child: FractionallySizedBox(

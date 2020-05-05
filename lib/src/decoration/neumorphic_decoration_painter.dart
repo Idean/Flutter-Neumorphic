@@ -25,11 +25,9 @@ class NeumorphicDecorationPainter extends BoxPainter {
   void generatePainters() {
     this._backgroundPaint = Paint();
     this._whiteShadowPaint = Paint();
-    this._whiteShadowMaskPaint = Paint()
-      ..blendMode = BlendMode.dstOut;
+    this._whiteShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
     this._blackShadowPaint = Paint();
-    this._blackShadowMaskPaint = Paint()
-      ..blendMode = BlendMode.dstOut;
+    this._blackShadowMaskPaint = Paint()..blendMode = BlendMode.dstOut;
     this._gradientPaint = Paint();
 
     this._borderPaint = Paint()
@@ -62,7 +60,7 @@ class NeumorphicDecorationPainter extends BoxPainter {
     }
 
     final bool invalidateSize =
-    this._cache.updateSize(newOffset: offset, newSize: configuration.size);
+        this._cache.updateSize(newOffset: offset, newSize: configuration.size);
     if (invalidateSize) {
       _cache.updatePath(
           newPath: shape.customShapePathProvider.getPath(configuration.size));
@@ -83,10 +81,10 @@ class NeumorphicDecorationPainter extends BoxPainter {
     }
 
     final bool invalidateShadowColors = this._cache.updateShadowColor(
-      newShadowLightColorEmboss: style.shadowLightColor,
-      newShadowDarkColorEmboss: style.shadowDarkColor,
-      newIntensity: style.intensity,
-    );
+          newShadowLightColorEmboss: style.shadowLightColor,
+          newShadowDarkColorEmboss: style.shadowDarkColor,
+          newIntensity: style.intensity,
+        );
     if (invalidateShadowColors) {
       _whiteShadowPaint..color = _cache.shadowLightColor;
       _blackShadowPaint..color = _cache.shadowDarkColor;
@@ -115,8 +113,7 @@ class NeumorphicDecorationPainter extends BoxPainter {
       for (var subPath in _cache.subPaths) {
         _drawElement(offset: offset, canvas: canvas, path: subPath);
       }
-    }
-    else {
+    } else {
       _drawElement(offset: offset, canvas: canvas, path: _cache.path);
     }
   }
@@ -134,14 +131,15 @@ class NeumorphicDecorationPainter extends BoxPainter {
   }
 
   void _drawBorder({Canvas canvas, Offset offset, Path path}) {
-    if(style.border.width > 0) {
+    if (style.border.width > 0) {
       canvas
         ..save()
         ..translate(offset.dx, offset.dy)
-        ..drawPath(path, _borderPaint
-          ..color = style.border.color ?? Color(0x00000000)
-          ..strokeWidth = style.border.width ?? 0
-        )
+        ..drawPath(
+            path,
+            _borderPaint
+              ..color = style.border.color ?? Color(0x00000000)
+              ..strokeWidth = style.border.width ?? 0)
         ..restore();
     }
   }

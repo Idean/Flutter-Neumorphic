@@ -63,7 +63,8 @@ class NeumorphicThemeData {
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
 
   /// Get this theme's intensity, clamp to min/max neumorphic constants
-  double get intensity => _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
+  double get intensity =>
+      _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
   const NeumorphicThemeData({
     this.baseColor = _defaultBaseColor,
@@ -175,8 +176,10 @@ class NeumorphicThemeData {
       disableDepth: disableDepth ?? this.disableDepth,
       shadowDarkColor: shadowDarkColor ?? this.shadowDarkColor,
       shadowLightColor: shadowLightColor ?? this.shadowLightColor,
-      shadowDarkColorEmboss: shadowDarkColorEmboss ?? this.shadowDarkColorEmboss,
-      shadowLightColorEmboss: shadowLightColorEmboss ?? this.shadowLightColorEmboss,
+      shadowDarkColorEmboss:
+          shadowDarkColorEmboss ?? this.shadowDarkColorEmboss,
+      shadowLightColorEmboss:
+          shadowLightColorEmboss ?? this.shadowLightColorEmboss,
       depth: depth ?? this._depth,
       borderWidth: borderSize ?? this.borderWidth,
       borderColor: borderColor ?? this.borderColor,
@@ -199,8 +202,10 @@ class NeumorphicThemeData {
       defaultTextColor: other.defaultTextColor ?? this.defaultTextColor,
       shadowDarkColor: other.shadowDarkColor ?? this.shadowDarkColor,
       shadowLightColor: other.shadowLightColor ?? this.shadowLightColor,
-      shadowDarkColorEmboss: other.shadowDarkColorEmboss ?? this.shadowDarkColorEmboss,
-      shadowLightColorEmboss: other.shadowLightColorEmboss ?? this.shadowLightColorEmboss,
+      shadowDarkColorEmboss:
+          other.shadowDarkColorEmboss ?? this.shadowDarkColorEmboss,
+      shadowLightColorEmboss:
+          other.shadowLightColorEmboss ?? this.shadowLightColorEmboss,
       depth: other.depth ?? this._depth,
       borderColor: other.borderColor ?? this.borderColor,
       borderWidth: other.borderWidth ?? this.borderWidth,
@@ -236,7 +241,12 @@ class NeumorphicBorder {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || other is NeumorphicBorder && runtimeType == other.runtimeType && isEnabled == other.isEnabled && color == other.color && width == other.width;
+      identical(this, other) ||
+      other is NeumorphicBorder &&
+          runtimeType == other.runtimeType &&
+          isEnabled == other.isEnabled &&
+          color == other.color &&
+          width == other.width;
 
   @override
   int get hashCode => isEnabled.hashCode ^ color.hashCode ^ width.hashCode;
@@ -246,7 +256,8 @@ class NeumorphicBorder {
     return 'NeumorphicBorder{isEnabled: $isEnabled, color: $color, width: $width}';
   }
 
-  static NeumorphicBorder lerp(NeumorphicBorder a, NeumorphicBorder b, double t) {
+  static NeumorphicBorder lerp(
+      NeumorphicBorder a, NeumorphicBorder b, double t) {
     assert(t != null);
 
     if (a == null && b == null) return null;
@@ -254,14 +265,17 @@ class NeumorphicBorder {
     if (t == 0.0) return a;
     if (t == 1.0) return b;
 
-    return NeumorphicBorder(color: Color.lerp(a.color, b.color, t), isEnabled: a.isEnabled, width: lerpDouble(a.width, b.width, t));
+    return NeumorphicBorder(
+        color: Color.lerp(a.color, b.color, t),
+        isEnabled: a.isEnabled,
+        width: lerpDouble(a.width, b.width, t));
   }
 
   NeumorphicBorder copyWithThemeIfNull({Color color, double width}) {
     return NeumorphicBorder(
       isEnabled: this.isEnabled,
-      color: this.color ?? color, 
-      width: this.width ?? width, 
+      color: this.color ?? color,
+      width: this.width ?? width,
     );
   }
 }
@@ -334,20 +348,25 @@ class NeumorphicStyle {
 
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
 
-  double get intensity => _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
+  double get intensity =>
+      _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
-  double get surfaceIntensity => _surfaceIntensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
+  double get surfaceIntensity => _surfaceIntensity?.clamp(
+      Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
   NeumorphicStyle copyWithThemeIfNull(NeumorphicThemeData theme) {
     return NeumorphicStyle._withTheme(
         theme: theme,
         color: this.color ?? theme.baseColor,
         shape: this.shape,
-        border: this.border.copyWithThemeIfNull(color: theme.borderColor, width: theme.borderWidth),
+        border: this.border.copyWithThemeIfNull(
+            color: theme.borderColor, width: theme.borderWidth),
         shadowDarkColor: this.shadowDarkColor ?? theme.shadowDarkColor,
         shadowLightColor: this.shadowLightColor ?? theme.shadowLightColor,
-        shadowDarkColorEmboss: this.shadowDarkColorEmboss ?? theme.shadowDarkColorEmboss,
-        shadowLightColorEmboss: this.shadowLightColorEmboss ?? theme.shadowLightColorEmboss,
+        shadowDarkColorEmboss:
+            this.shadowDarkColorEmboss ?? theme.shadowDarkColorEmboss,
+        shadowLightColorEmboss:
+            this.shadowLightColorEmboss ?? theme.shadowLightColorEmboss,
         depth: this.depth ?? theme.depth,
         intensity: this.intensity ?? theme.intensity,
         disableDepth: this.disableDepth ?? theme.disableDepth,
@@ -414,15 +433,18 @@ class NeumorphicStyle {
       border: border ?? this.border,
       shadowDarkColor: shadowDarkColor ?? this.shadowDarkColor,
       shadowLightColor: shadowLightColor ?? this.shadowLightColor,
-      shadowDarkColorEmboss: shadowDarkColorEmboss ?? this.shadowDarkColorEmboss,
-      shadowLightColorEmboss: shadowLightColorEmboss ?? this.shadowLightColorEmboss,
+      shadowDarkColorEmboss:
+          shadowDarkColorEmboss ?? this.shadowDarkColorEmboss,
+      shadowLightColorEmboss:
+          shadowLightColorEmboss ?? this.shadowLightColorEmboss,
       depth: depth ?? this.depth,
       theme: this.theme,
       intensity: intensity ?? this.intensity,
       surfaceIntensity: surfaceIntensity ?? this.surfaceIntensity,
       disableDepth: disableDepth ?? this.disableDepth,
       lightSource: lightSource ?? this.lightSource,
-      oppositeShadowLightSource: oppositeShadowLightSource ?? this.oppositeShadowLightSource,
+      oppositeShadowLightSource:
+          oppositeShadowLightSource ?? this.oppositeShadowLightSource,
       shape: shape ?? this.shape,
     );
   }

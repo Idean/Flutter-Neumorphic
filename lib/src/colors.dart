@@ -92,5 +92,4 @@ class NeumorphicColors {
         maxColor.withOpacity(newOpacity); //<-- intensity act on opacity;
     return newColor;
   }
-
 }

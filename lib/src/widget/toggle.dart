@@ -36,7 +36,13 @@ class NeumorphicToggleStyle {
           animateOpacity == other.animateOpacity;
 
   @override
-  int get hashCode => depth.hashCode ^ backgroundColor.hashCode ^ border.hashCode ^ disableDepth.hashCode ^ borderRadius.hashCode ^ animateOpacity.hashCode;
+  int get hashCode =>
+      depth.hashCode ^
+      backgroundColor.hashCode ^
+      border.hashCode ^
+      disableDepth.hashCode ^
+      borderRadius.hashCode ^
+      animateOpacity.hashCode;
 }
 
 /// Direct child of NeumorphicToggle
@@ -221,11 +227,16 @@ class NeumorphicToggle extends StatelessWidget {
   }
 
   Widget _backgroundAtIndex(int index) {
-    return Expanded(flex: 1, child: this.children[index].background ?? SizedBox.expand());
+    return Expanded(
+        flex: 1, child: this.children[index].background ?? SizedBox.expand());
   }
 
   Widget _foregroundAtIndex(int index) {
-    Widget child = (!this.displayForegroundOnlyIfSelected) || (this.displayForegroundOnlyIfSelected && this.selectedIndex == index) ? this.children[index].foreground : SizedBox.expand();
+    Widget child = (!this.displayForegroundOnlyIfSelected) ||
+            (this.displayForegroundOnlyIfSelected &&
+                this.selectedIndex == index)
+        ? this.children[index].foreground
+        : SizedBox.expand();
     //wrap with opacity animation
     if (style.animateOpacity) {
       child = AnimatedOpacity(
