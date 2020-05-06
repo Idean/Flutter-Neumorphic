@@ -5,6 +5,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'accessibility/neumorphic_accessibility.dart';
 import 'playground/neumorphic_playground.dart';
+import 'playground/text_playground.dart';
 import 'samples/sample_home.dart';
 
 void main() => runApp(MyApp());
@@ -68,6 +69,15 @@ class FullSampleHomePage extends StatelessWidget {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         return NeumorphicPlayground();
+                      }));
+                    },
+                  ),
+                  SizedBox(height: 24),
+                  _buildButton(
+                    text: "Text Playground",
+                    onClick: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        return NeumorphicTextPlayground();
                       }));
                     },
                   ),
