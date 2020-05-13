@@ -1,6 +1,7 @@
-## 2.0.0+1
+## 2.0.1
 
 * Added selected/unselected color on Radio
+* Fixed min flutter version to `1.13.18`
 
 ## 2.0.0
 
