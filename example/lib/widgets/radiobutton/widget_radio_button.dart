@@ -102,6 +102,11 @@ NeumorphicRadio(
           ),
           SizedBox(width: 12),
           NeumorphicRadio(
+            //uncomment to test colors
+            //style: NeumorphicRadioStyle(
+            //  selectedColor: Colors.black,
+            //  unselectedColor: Colors.blue
+            //),
             groupValue: groupValue,
             value: 1991,
             onChanged: (value) {
