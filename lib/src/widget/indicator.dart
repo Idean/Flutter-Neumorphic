@@ -121,6 +121,7 @@ class NeumorphicIndicator extends StatefulWidget {
   createState() => _NeumorphicIndicatorState();
 
   @override
+  // ignore: invalid_override_of_non_virtual_member
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
@@ -134,6 +135,7 @@ class NeumorphicIndicator extends StatefulWidget {
           style == other.style;
 
   @override
+  // ignore: invalid_override_of_non_virtual_member
   int get hashCode =>
       super.hashCode ^
       percent.hashCode ^

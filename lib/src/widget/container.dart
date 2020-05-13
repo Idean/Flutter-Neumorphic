@@ -125,7 +125,7 @@ class _NeumorphicContainer extends StatelessWidget {
       style: this.textStyle ??
           material.Theme.of(context)
               .textTheme
-              .body2, //TODO migrate to textBody2
+              .bodyText2,
       child: AnimatedContainer(
         margin: this.margin,
         duration: this.duration,

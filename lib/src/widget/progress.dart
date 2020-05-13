@@ -103,6 +103,7 @@ class NeumorphicProgress extends StatefulWidget {
   double get percent => _percent.clamp(0, 1);
 
   @override
+  // ignore: invalid_override_of_non_virtual_member
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is NeumorphicProgress &&
@@ -112,6 +113,7 @@ class NeumorphicProgress extends StatefulWidget {
           style == other.style;
 
   @override
+  // ignore: invalid_override_of_non_virtual_member
   int get hashCode => percent.hashCode ^ height.hashCode ^ style.hashCode;
 }
 
@@ -229,6 +231,7 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
   createState() => _NeumorphicProgressIndeterminateState();
 
   @override
+  // ignore: invalid_override_of_non_virtual_member
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is NeumorphicProgressIndeterminate &&
@@ -238,6 +241,7 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
           duration == other.duration;
 
   @override
+  // ignore: invalid_override_of_non_virtual_member
   int get hashCode => height.hashCode ^ style.hashCode ^ duration.hashCode;
 }
 
