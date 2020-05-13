@@ -9,7 +9,13 @@ class ClockSample extends StatelessWidget {
   Widget build(BuildContext context) {
     return NeumorphicTheme(
       theme: NeumorphicThemeData(
-          defaultTextColor: Color(0xFF303E57), accentColor: Color(0xFF7B79FC), variantColor: Colors.black38, baseColor: Color(0xFFF8F9FC), depth: 8, intensity: 0.5, lightSource: LightSource.topLeft),
+          defaultTextColor: Color(0xFF303E57),
+          accentColor: Color(0xFF7B79FC),
+          variantColor: Colors.black38,
+          baseColor: Color(0xFFF8F9FC),
+          depth: 8,
+          intensity: 0.5,
+          lightSource: LightSource.topLeft),
       usedTheme: UsedTheme.LIGHT,
       child: Material(
         child: NeumorphicBackground(
@@ -47,7 +53,12 @@ class _ClockFirstPageState extends State<_ClockFirstPage> {
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 28,
-                      shadows: [Shadow(color: Colors.black38, offset: Offset(1.0, 1.0), blurRadius: 2)],
+                      shadows: [
+                        Shadow(
+                            color: Colors.black38,
+                            offset: Offset(1.0, 1.0),
+                            blurRadius: 2)
+                      ],
                       color: NeumorphicTheme.defaultTextColor(context),
                     ),
                   ),
@@ -56,16 +67,19 @@ class _ClockFirstPageState extends State<_ClockFirstPage> {
                   alignment: Alignment.topRight,
                   child: Neumorphic(
                     style: NeumorphicStyle(depth: 20, intensity: 0.4),
-                    boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+                    boxShape:
+                        NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
                     child: NeumorphicButton(
                       padding: EdgeInsets.all(12.0),
-                      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+                      boxShape: NeumorphicBoxShape.roundRect(
+                          BorderRadius.circular(8)),
                       child: Icon(
                         Icons.add,
                         color: Color(0xFFC1CDE5),
                       ),
-                      onClick: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                      onClick: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return ClockAlarmPage();
                         }));
                       },
@@ -83,7 +97,12 @@ class _ClockFirstPageState extends State<_ClockFirstPage> {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 36,
-              shadows: [Shadow(color: Colors.black38, offset: Offset(1.0, 1.0), blurRadius: 2)],
+              shadows: [
+                Shadow(
+                    color: Colors.black38,
+                    offset: Offset(1.0, 1.0),
+                    blurRadius: 2)
+              ],
               color: NeumorphicTheme.defaultTextColor(context),
             ),
           ),
@@ -197,7 +216,12 @@ class NeumorphicClock extends StatelessWidget {
     );
   }
 
-  Widget _buildLine({BuildContext context, double angle, double width, double height = 6, Color color}) {
+  Widget _buildLine(
+      {BuildContext context,
+      double angle,
+      double width,
+      double height = 6,
+      Color color}) {
     return Transform.rotate(
       angle: angle,
       child: Center(

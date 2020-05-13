@@ -33,7 +33,6 @@ class _Page extends StatefulWidget {
 }
 
 class _PageState extends State<_Page> {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -67,10 +66,9 @@ class _DefaultWidget extends StatefulWidget {
 }
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
-
   double percent = 0.2;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 double percent = 0.2;  
 
@@ -89,7 +87,7 @@ Expanded(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           Expanded(
@@ -120,10 +118,9 @@ class _ColorWidget extends StatefulWidget {
 }
 
 class _ColorWidgetState extends State<_ColorWidget> {
-
   double percent = 0.5;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 double percent = 0.5;  
 
@@ -139,7 +136,6 @@ Expanded(
 """);
   }
 
-
   Color accent = Colors.green;
   Color variant = Colors.purple;
 
@@ -152,7 +148,7 @@ Expanded(
             children: <Widget>[
               Text("Accent : "),
               ColorSelector(
-                onColorChanged: (color){
+                onColorChanged: (color) {
                   setState(() {
                     accent = color;
                   });
@@ -162,7 +158,7 @@ Expanded(
               SizedBox(width: 12),
               Text("Variant : "),
               ColorSelector(
-                onColorChanged: (color){
+                onColorChanged: (color) {
                   setState(() {
                     variant = color;
                   });
@@ -176,7 +172,8 @@ Expanded(
             children: <Widget>[
               Text(
                 "Default",
-                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                style:
+                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               Expanded(
@@ -213,10 +210,9 @@ class _SizedWidget extends StatefulWidget {
 }
 
 class _SizedWidgetState extends State<_SizedWidget> {
-
   double percent = 0.5;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 double percent = 0.5;  
 
@@ -239,7 +235,8 @@ Expanded(
             children: <Widget>[
               Text(
                 "Sized",
-                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                style:
+                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               Expanded(

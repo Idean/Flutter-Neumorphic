@@ -122,10 +122,7 @@ class _NeumorphicContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
-      style: this.textStyle ??
-          material.Theme.of(context)
-              .textTheme
-              .bodyText2,
+      style: this.textStyle ?? material.Theme.of(context).textTheme.bodyText2,
       child: AnimatedContainer(
         margin: this.margin,
         duration: this.duration,

@@ -33,8 +33,6 @@ class _Page extends StatefulWidget {
 }
 
 class _PageState extends State<_Page> {
-
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -71,10 +69,9 @@ class _DefaultWidget extends StatefulWidget {
 }
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
-
   int groupValue;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 int groupValue;
 
@@ -98,7 +95,7 @@ NeumorphicRadio(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicRadio(
@@ -163,10 +160,9 @@ class CircleRadios extends StatefulWidget {
 }
 
 class _CircleRadiosState extends State<CircleRadios> {
-
   String groupValue;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 String groupValue;
 
@@ -191,7 +187,7 @@ NeumorphicRadio(
         children: <Widget>[
           Text(
             "Circle",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicRadio(
@@ -248,25 +244,22 @@ NeumorphicRadio(
   }
 }
 
-
-
 class _EnabledDisabledWidget extends StatefulWidget {
   @override
   createState() => _EnabledDisabledWidgetState();
 }
 
 class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
-
   int groupValue;
 
-  Widget _buildWidget(BuildContext context){
+  Widget _buildWidget(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(12),
       child: Row(
         children: <Widget>[
           Text(
             "Enabled :",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicRadio(
@@ -283,7 +276,7 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
           SizedBox(width: 24),
           Text(
             "Disabled :",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicRadio(
@@ -303,7 +296,7 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
     );
   }
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""    
 int groupValue;
 

@@ -43,14 +43,16 @@ class TipsHome extends StatelessWidget {
                   _buildButton(
                       text: "Border",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return TipsBorderPage();
                         }));
                       }),
                   _buildButton(
                       text: "Recursive Emboss",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return TipsRecursiveeEmbossPage();
                         }));
                       }),

@@ -120,8 +120,8 @@ Expanded(
             child: NeumorphicToggle(
               height: 50,
               style: NeumorphicToggleStyle(
-                //backgroundColor: Colors.red,
-              ),
+                  //backgroundColor: Colors.red,
+                  ),
               selectedIndex: _selectedIndex,
               displayForegroundOnlyIfSelected: true,
               children: [
@@ -163,7 +163,8 @@ Expanded(
                 )
               ],
               thumb: Neumorphic(
-                boxShape: NeumorphicBoxShape.roundRect(BorderRadius.all(Radius.circular(12))),
+                boxShape: NeumorphicBoxShape.roundRect(
+                    BorderRadius.all(Radius.circular(12))),
               ),
               onChanged: (value) {
                 setState(() {
@@ -248,7 +249,11 @@ NeumorphicToggle(
             selectedIndex: _selectedIndex,
             children: [
               ToggleElement(
-                background: Center(child: Icon(Icons.arrow_back, color: Colors.grey[800],)),
+                background: Center(
+                    child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.grey[800],
+                )),
               ),
               ToggleElement(),
             ],
@@ -256,11 +261,15 @@ NeumorphicToggle(
               boxShape: NeumorphicBoxShape.roundRect(
                 BorderRadius.all(Radius.circular(12)),
               ),
-              child: Icon(Icons.blur_on, color: Colors.grey,),
+              child: Icon(
+                Icons.blur_on,
+                color: Colors.grey,
+              ),
             ),
-            onAnimationChangedFinished: (value){
-              if(value == 0) {
-                Scaffold.of(context).showSnackBar(SnackBar(content: Text('on back !')));
+            onAnimationChangedFinished: (value) {
+              if (value == 0) {
+                Scaffold.of(context)
+                    .showSnackBar(SnackBar(content: Text('on back !')));
                 print("onAnimationChangedFinished: $_selectedIndex");
               }
             },

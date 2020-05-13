@@ -14,7 +14,9 @@ class ThemeConfigurator extends StatelessWidget {
       ),
       child: Icon(
         Icons.settings,
-        color: NeumorphicTheme.isUsingDark(context) ? Colors.white70 : Colors.black87,
+        color: NeumorphicTheme.isUsingDark(context)
+            ? Colors.white70
+            : Colors.black87,
       ),
       onClick: () {
         _changeColor(context);

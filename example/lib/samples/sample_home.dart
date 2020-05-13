@@ -12,7 +12,6 @@ import 'galaxy_sample.dart';
 import 'widgets_sample.dart';
 
 class SamplesHome extends StatelessWidget {
-
   Widget _buildButton({String text, VoidCallback onClick}) {
     return NeumorphicButton(
       margin: EdgeInsets.only(bottom: 12),
@@ -51,56 +50,64 @@ class SamplesHome extends StatelessWidget {
                   _buildButton(
                       text: "Tesla",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return TeslaSample();
                         }));
                       }),
                   _buildButton(
                       text: "Audio Player",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return AudioPlayerSample();
                         }));
                       }),
                   _buildButton(
                       text: "Clock",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return ClockSample();
                         }));
                       }),
                   _buildButton(
                       text: "Galaxy",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return GalaxySample();
                         }));
                       }),
                   _buildButton(
                       text: "Calculator",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return CalculatorSample();
                         }));
                       }),
                   _buildButton(
                       text: "Form",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return FormSample();
                         }));
                       }),
                   _buildButton(
                       text: "CreditCard",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return CreditCardSample();
                         }));
                       }),
                   _buildButton(
                       text: "Widgets",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return WidgetsSample();
                         }));
                       }),

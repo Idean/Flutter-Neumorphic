@@ -9,7 +9,7 @@ class GalaxySample extends StatelessWidget {
     return NeumorphicTheme(
       theme: NeumorphicThemeData(
         baseColor: Color(0xFFE5E5E5),
-        depth:20,
+        depth: 20,
         intensity: 1,
         lightSource: LightSource.top,
       ),
@@ -38,7 +38,12 @@ class _Page extends StatefulWidget {
 
 class _PageState extends State<_Page> {
   Widget _letter(String letter) {
-    return Text(letter, style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontFamily: 'Samsung', fontSize: 80));
+    return Text(letter,
+        style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w700,
+            fontFamily: 'Samsung',
+            fontSize: 80));
   }
 
   Widget _firstBox() {
@@ -64,7 +69,7 @@ class _PageState extends State<_Page> {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 4),
       child: Transform.rotate(
-        angle: 0.79  ,
+        angle: 0.79,
         child: Neumorphic(
           boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
           style: NeumorphicStyle(lightSource: LightSource.topLeft),

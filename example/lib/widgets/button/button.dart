@@ -43,16 +43,17 @@ class __PageState extends State<_Page> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             RaisedButton(
-              onPressed: (){
+              onPressed: () {
                 Navigator.of(context).pop();
               },
               child: Text("back"),
             ),
             RaisedButton(
-              onPressed: (){
+              onPressed: () {
                 setState(() {
                   _useDark = !_useDark;
-                  NeumorphicTheme.of(context).usedTheme = _useDark ? UsedTheme.DARK : UsedTheme.LIGHT;
+                  NeumorphicTheme.of(context).usedTheme =
+                      _useDark ? UsedTheme.DARK : UsedTheme.LIGHT;
                 });
               },
               child: Text("toggle theme"),

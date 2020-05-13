@@ -26,7 +26,7 @@ class NeumorphicRadioStyle {
   final bool disableDepth;
 
   final Color selectedColor; //null for default
-  final Color unselectedColor;  //null for unchanged color
+  final Color unselectedColor; //null for unchanged color
 
   final double intensity;
   final NeumorphicShape shape;

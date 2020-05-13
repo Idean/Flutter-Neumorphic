@@ -19,10 +19,7 @@ class Code extends StatelessWidget {
   }
 }
 
-
-
 class MyIntWidget extends StatefulWidget {
-
   final int value;
 
   MyIntWidget({this.value});
@@ -31,8 +28,8 @@ class MyIntWidget extends StatefulWidget {
   _MyIntWidgetState createState() => _MyIntWidgetState();
 }
 
-class _MyIntWidgetState extends State<MyIntWidget> with TickerProviderStateMixin {
-
+class _MyIntWidgetState extends State<MyIntWidget>
+    with TickerProviderStateMixin {
   int _value;
   AnimationController _controller;
   Animation<int> _valueAnimation;
@@ -40,17 +37,20 @@ class _MyIntWidgetState extends State<MyIntWidget> with TickerProviderStateMixin
   @override
   void initState() {
     this._value = widget.value;
-    _controller = AnimationController(duration: Duration(milliseconds: 300), vsync: this);
+    _controller =
+        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
     super.initState();
   }
 
   @override
   void didUpdateWidget(MyIntWidget oldWidget) {
-    if(oldWidget.value != widget.value){
+    if (oldWidget.value != widget.value) {
       _controller.reset();
-      _valueAnimation = Tween(begin: _value, end: widget.value).animate(_controller)..addListener(() {
-        _value = _valueAnimation.value;
-      });
+      _valueAnimation =
+          Tween(begin: _value, end: widget.value).animate(_controller)
+            ..addListener(() {
+              _value = _valueAnimation.value;
+            });
       _controller.forward();
     }
     super.didUpdateWidget(oldWidget);
@@ -64,8 +64,6 @@ class _MyIntWidgetState extends State<MyIntWidget> with TickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "current : $_value"
-    );
+    return Text("current : $_value");
   }
 }

@@ -87,7 +87,8 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
 """);
   }
 
-  Widget _generateEmbosss({int number, Widget child, bool reverseEachPair = false}) {
+  Widget _generateEmbosss(
+      {int number, Widget child, bool reverseEachPair = false}) {
     Widget element = child;
     for (int i = 0; i < number; ++i) {
       element = Neumorphic(
@@ -117,7 +118,8 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
                     margin: EdgeInsets.only(left: 12, right: 12),
                     child: Text(
                       "Recursive Emboss",
-                      style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                      style: TextStyle(
+                          color: NeumorphicTheme.defaultTextColor(context)),
                     ),
                   ),
                   _generateEmbosss(
@@ -137,7 +139,8 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
                     margin: EdgeInsets.only(left: 12, right: 12),
                     child: Text(
                       "Each pair number\nLightsource is reversed",
-                      style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                      style: TextStyle(
+                          color: NeumorphicTheme.defaultTextColor(context)),
                     ),
                   ),
                   _generateEmbosss(
@@ -162,7 +165,8 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
                     margin: EdgeInsets.only(left: 12, right: 12),
                     child: Text(
                       "Recursive Emboss",
-                      style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                      style: TextStyle(
+                          color: NeumorphicTheme.defaultTextColor(context)),
                     ),
                   ),
                   _generateEmbosss(
@@ -182,7 +186,8 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
                     margin: EdgeInsets.only(left: 12, right: 12),
                     child: Text(
                       "Each pair number\nLightsource is reversed",
-                      style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                      style: TextStyle(
+                          color: NeumorphicTheme.defaultTextColor(context)),
                     ),
                   ),
                   _generateEmbosss(

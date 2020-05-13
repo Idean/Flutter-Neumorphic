@@ -34,7 +34,6 @@ class _Page extends StatefulWidget {
 }
 
 class _PageState extends State<_Page> {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -70,10 +69,9 @@ class _DefaultWidget extends StatefulWidget {
 }
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
-
   double age = 20;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 double age = 20;  
 
@@ -99,7 +97,7 @@ Expanded(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           Expanded(
@@ -117,7 +115,7 @@ Expanded(
           SizedBox(width: 12),
           Text(
             "${age.round()}",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
         ],
       ),
@@ -141,10 +139,9 @@ class _ColorWidget extends StatefulWidget {
 }
 
 class _ColorWidgetState extends State<_ColorWidget> {
-
   double age = 50;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 double age = 50;  
 
@@ -167,7 +164,6 @@ Expanded(
 """);
   }
 
-
   Color accent = Colors.green;
   Color variant = Colors.purple;
 
@@ -180,7 +176,7 @@ Expanded(
             children: <Widget>[
               Text("Accent : "),
               ColorSelector(
-                onColorChanged: (color){
+                onColorChanged: (color) {
                   setState(() {
                     accent = color;
                   });
@@ -190,7 +186,7 @@ Expanded(
               SizedBox(width: 12),
               Text("Variant : "),
               ColorSelector(
-                onColorChanged: (color){
+                onColorChanged: (color) {
                   setState(() {
                     variant = color;
                   });
@@ -204,7 +200,8 @@ Expanded(
             children: <Widget>[
               Text(
                 "Default",
-                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                style:
+                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               Expanded(
@@ -226,7 +223,8 @@ Expanded(
               SizedBox(width: 12),
               Text(
                 "${age.round()}",
-                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                style:
+                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
             ],
           ),

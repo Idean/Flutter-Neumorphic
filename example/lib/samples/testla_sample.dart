@@ -39,28 +39,17 @@ class __PageContentState extends State<_PageContent> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color(0xFF373C43),
-            Color(0xFF17181C),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter
-        )
-      ),
+          gradient: LinearGradient(colors: [
+        Color(0xFF373C43),
+        Color(0xFF17181C),
+      ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           _buildTopBar(context),
-          Expanded(
-              flex: 2,
-              child: _buildTitle(context)
-          ),
-          Expanded(
-              flex: 5,
-              child: _buildCenterContent(context)
-          ),
-           _buildBottomAction(context),
+          Expanded(flex: 2, child: _buildTitle(context)),
+          Expanded(flex: 5, child: _buildCenterContent(context)),
+          _buildBottomAction(context),
         ],
       ),
     );
@@ -74,7 +63,7 @@ class __PageContentState extends State<_PageContent> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
             child: Neumorphic(
-              drawSurfaceAboveChild:false,
+              drawSurfaceAboveChild: false,
               padding: EdgeInsets.all(2),
               boxShape: NeumorphicBoxShape.circle(),
               style: NeumorphicStyle(
@@ -84,7 +73,7 @@ class __PageContentState extends State<_PageContent> {
                 shape: NeumorphicShape.concave,
               ),
               child: NeumorphicButton(
-                onClick: (){
+                onClick: () {
                   Navigator.of(context).pop();
                 },
                 boxShape: NeumorphicBoxShape.circle(),
@@ -109,7 +98,7 @@ class __PageContentState extends State<_PageContent> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
             child: Neumorphic(
-              drawSurfaceAboveChild:false,
+              drawSurfaceAboveChild: false,
               padding: EdgeInsets.all(2),
               boxShape: NeumorphicBoxShape.circle(),
               style: NeumorphicStyle(
@@ -119,9 +108,7 @@ class __PageContentState extends State<_PageContent> {
                 shape: NeumorphicShape.concave,
               ),
               child: NeumorphicButton(
-                onClick: (){
-
-                },
+                onClick: () {},
                 boxShape: NeumorphicBoxShape.circle(),
                 style: NeumorphicStyle(
                   color: Color(0xFF17181C),
@@ -174,7 +161,10 @@ class __PageContentState extends State<_PageContent> {
           children: <Widget>[
             Text(
               "297",
-              style: TextStyle(color: Colors.white, fontSize: 120, fontWeight: FontWeight.w200),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 120,
+                  fontWeight: FontWeight.w200),
             ),
             Text(
               "km",
@@ -215,9 +205,7 @@ class __PageContentState extends State<_PageContent> {
           ),
           NeumorphicButton(
             drawSurfaceAboveChild: false,
-            onClick: (){
-
-            },
+            onClick: () {},
             padding: EdgeInsets.all(4),
             boxShape: NeumorphicBoxShape.circle(),
             style: NeumorphicStyle(
@@ -233,7 +221,6 @@ class __PageContentState extends State<_PageContent> {
                 shape: NeumorphicShape.concave,
                 color: NeumorphicTheme.accentColor(context),
               ),
-
               child: SizedBox(
                 height: 80,
                 width: 80,

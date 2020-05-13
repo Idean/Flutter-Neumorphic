@@ -68,7 +68,8 @@ class __PageState extends State<_Page> {
                     child: NeumorphicButton(
                       onClick: () {},
                       isEnabled: _isButtonEnabled(),
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       child: Text(
                         "Sign Up",
                         style: TextStyle(fontWeight: FontWeight.w800),

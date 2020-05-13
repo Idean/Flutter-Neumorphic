@@ -19,8 +19,7 @@ class _AudioPlayerSampleState extends State<AudioPlayerSample> {
           depth: 10,
         ),
         darkTheme: neumorphicDefaultDarkTheme.copyWith(
-          defaultTextColor: Colors.white70
-        ),
+            defaultTextColor: Colors.white70),
         child: _Page());
   }
 }
@@ -82,7 +81,8 @@ class __PageState extends State<_Page> {
             alignment: Alignment.center,
             child: Text(
               "Now Playing",
-              style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+              style:
+                  TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
             ),
           ),
           Align(
@@ -92,7 +92,8 @@ class __PageState extends State<_Page> {
               onClick: () {
                 setState(() {
                   _useDark = !_useDark;
-                  NeumorphicTheme.of(context).usedTheme = _useDark ? UsedTheme.DARK : UsedTheme.LIGHT;
+                  NeumorphicTheme.of(context).usedTheme =
+                      _useDark ? UsedTheme.DARK : UsedTheme.LIGHT;
                 });
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
@@ -125,11 +126,19 @@ class __PageState extends State<_Page> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Text("Blinding Lights", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 34, color: NeumorphicTheme.defaultTextColor(context))),
+        Text("Blinding Lights",
+            style: TextStyle(
+                fontWeight: FontWeight.w800,
+                fontSize: 34,
+                color: NeumorphicTheme.defaultTextColor(context))),
         const SizedBox(
           height: 4,
         ),
-        Text("The Weeknd", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: NeumorphicTheme.defaultTextColor(context))),
+        Text("The Weeknd",
+            style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 14,
+                color: NeumorphicTheme.defaultTextColor(context))),
       ],
     );
   }
@@ -146,13 +155,15 @@ class __PageState extends State<_Page> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "2.00",
-                    style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                    style: TextStyle(
+                        color: NeumorphicTheme.defaultTextColor(context)),
                   )),
               Align(
                   alignment: Alignment.centerRight,
                   child: Text(
                     "3.14",
-                    style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                    style: TextStyle(
+                        color: NeumorphicTheme.defaultTextColor(context)),
                   )),
             ],
           ),

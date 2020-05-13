@@ -34,7 +34,6 @@ class _Page extends StatefulWidget {
 }
 
 class _PageState extends State<_Page> {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -71,8 +70,7 @@ class _DefaultWidget extends StatefulWidget {
 }
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
-
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 NeumorphicIndicator(
     height: 100,
@@ -89,7 +87,7 @@ NeumorphicIndicator(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicIndicator(
@@ -120,8 +118,7 @@ class _DefaultOrientationWidget extends StatefulWidget {
 }
 
 class _DefaultOrientationWidgetState extends State<_DefaultOrientationWidget> {
-
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 NeumorphicIndicator(
      width: 150,
@@ -139,7 +136,7 @@ NeumorphicIndicator(
         children: <Widget>[
           Text(
             "Orientation\nHorizontal",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicIndicator(
@@ -171,8 +168,7 @@ class _ColorWidget extends StatefulWidget {
 }
 
 class _ColorWidgetState extends State<_ColorWidget> {
-
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 NeumorphicIndicator(
       width: 150,
@@ -187,7 +183,6 @@ NeumorphicIndicator(
 """);
   }
 
-
   Color accent = Colors.green;
   Color variant = Colors.purple;
 
@@ -200,7 +195,7 @@ NeumorphicIndicator(
             children: <Widget>[
               Text("Accent : "),
               ColorSelector(
-                onColorChanged: (color){
+                onColorChanged: (color) {
                   setState(() {
                     accent = color;
                   });
@@ -210,7 +205,7 @@ NeumorphicIndicator(
               SizedBox(width: 12),
               Text("Variant : "),
               ColorSelector(
-                onColorChanged: (color){
+                onColorChanged: (color) {
                   setState(() {
                     variant = color;
                   });
@@ -224,7 +219,8 @@ NeumorphicIndicator(
             children: <Widget>[
               Text(
                 "Colorized",
-                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                style:
+                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               NeumorphicIndicator(
@@ -232,10 +228,7 @@ NeumorphicIndicator(
                 height: 15,
                 orientation: NeumorphicIndicatorOrientation.horizontal,
                 percent: 0.7,
-                style: IndicatorStyle(
-                  variant: variant,
-                  accent: accent
-                ),
+                style: IndicatorStyle(variant: variant, accent: accent),
               ),
               SizedBox(width: 12),
             ],

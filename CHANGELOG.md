@@ -1,3 +1,7 @@
+## 2.0.0+1
+
+* Added selected/unselected color on Radio
+
 ## 2.0.0
 
 * Rewritten all NeumorphicDecoration

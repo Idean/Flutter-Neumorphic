@@ -34,7 +34,6 @@ class _Page extends StatefulWidget {
 }
 
 class _PageState extends State<_Page> {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -73,10 +72,9 @@ class _DefaultWidget extends StatefulWidget {
 }
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
-
   bool isChecked = false;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 bool isChecked;
 
@@ -98,7 +96,7 @@ NeumorphicSwitch(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           NeumorphicSwitch(
@@ -131,10 +129,9 @@ class _FlatConcaveConvexWidget extends StatefulWidget {
 }
 
 class _FlatConcaveConvexWidgetState extends State<_FlatConcaveConvexWidget> {
-
   bool isChecked = false;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 bool isChecked;
 
@@ -165,14 +162,13 @@ NeumorphicSwitch(
                 width: 100,
                 child: Text(
                   "Flat",
-                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               NeumorphicSwitch(
-                style: NeumorphicSwitchStyle(
-                  thumbShape: NeumorphicShape.flat
-                ),
+                style: NeumorphicSwitchStyle(thumbShape: NeumorphicShape.flat),
                 value: isChecked,
                 onChanged: (value) {
                   setState(() {
@@ -189,14 +185,14 @@ NeumorphicSwitch(
                 width: 100,
                 child: Text(
                   "Concave",
-                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               NeumorphicSwitch(
-                style: NeumorphicSwitchStyle(
-                    thumbShape: NeumorphicShape.concave
-                ),
+                style:
+                    NeumorphicSwitchStyle(thumbShape: NeumorphicShape.concave),
                 value: isChecked,
                 onChanged: (value) {
                   setState(() {
@@ -213,14 +209,14 @@ NeumorphicSwitch(
                 width: 100,
                 child: Text(
                   "Convex",
-                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               NeumorphicSwitch(
-                style: NeumorphicSwitchStyle(
-                    thumbShape: NeumorphicShape.convex
-                ),
+                style:
+                    NeumorphicSwitchStyle(thumbShape: NeumorphicShape.convex),
                 value: isChecked,
                 onChanged: (value) {
                   setState(() {
@@ -252,11 +248,10 @@ class _ColorizableWidget extends StatefulWidget {
 }
 
 class _ColorizableWidgetState extends State<_ColorizableWidget> {
-
   bool isChecked = false;
   Color currentColor = Colors.green;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 bool isChecked;
 
@@ -281,12 +276,12 @@ NeumorphicSwitch(
         children: <Widget>[
           Text(
             "Color",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           ColorSelector(
             color: currentColor,
-            onColorChanged: (color){
+            onColorChanged: (color) {
               setState(() {
                 currentColor = color;
               });
@@ -295,9 +290,7 @@ NeumorphicSwitch(
           SizedBox(width: 12),
           NeumorphicSwitch(
             value: isChecked,
-            style: NeumorphicSwitchStyle(
-              activeTrackColor: currentColor
-            ),
+            style: NeumorphicSwitchStyle(activeTrackColor: currentColor),
             onChanged: (value) {
               setState(() {
                 isChecked = value;
@@ -318,7 +311,6 @@ NeumorphicSwitch(
       ],
     );
   }
-
 }
 
 class ColorizableThumbSwitch extends StatefulWidget {
@@ -327,12 +319,11 @@ class ColorizableThumbSwitch extends StatefulWidget {
 }
 
 class _ColorizableThumbSwitchState extends State<ColorizableThumbSwitch> {
-
   bool isChecked = false;
   Color thumbColor = Colors.purple;
   Color trackColor = Colors.lightGreen;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 bool isChecked;
 
@@ -358,12 +349,12 @@ NeumorphicSwitch(
         children: <Widget>[
           Text(
             "Track",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           ColorSelector(
             color: trackColor,
-            onColorChanged: (color){
+            onColorChanged: (color) {
               setState(() {
                 trackColor = color;
               });
@@ -372,12 +363,12 @@ NeumorphicSwitch(
           SizedBox(width: 12),
           Text(
             "Thumb",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           ColorSelector(
             color: thumbColor,
-            onColorChanged: (color){
+            onColorChanged: (color) {
               setState(() {
                 thumbColor = color;
               });
@@ -387,9 +378,7 @@ NeumorphicSwitch(
           NeumorphicSwitch(
             value: isChecked,
             style: NeumorphicSwitchStyle(
-                activeTrackColor: trackColor,
-                activeThumbColor: thumbColor
-            ),
+                activeTrackColor: trackColor, activeThumbColor: thumbColor),
             onChanged: (value) {
               setState(() {
                 isChecked = value;
@@ -410,7 +399,6 @@ NeumorphicSwitch(
       ],
     );
   }
-
 }
 
 class _EnabledDisabledWidget extends StatefulWidget {
@@ -419,11 +407,10 @@ class _EnabledDisabledWidget extends StatefulWidget {
 }
 
 class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
-
   bool isChecked1 = false;
   bool isChecked2 = false;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 bool isChecked;
 
@@ -451,14 +438,14 @@ NeumorphicSwitch(
                 width: 100,
                 child: Text(
                   "Enabled",
-                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               NeumorphicSwitch(
-                style: NeumorphicSwitchStyle(
-                    thumbShape: NeumorphicShape.concave
-                ),
+                style:
+                    NeumorphicSwitchStyle(thumbShape: NeumorphicShape.concave),
                 value: isChecked1,
                 onChanged: (value) {
                   setState(() {
@@ -475,15 +462,15 @@ NeumorphicSwitch(
                 width: 100,
                 child: Text(
                   "Disabled",
-                  style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               NeumorphicSwitch(
                 isEnabled: false,
-                style: NeumorphicSwitchStyle(
-                    thumbShape: NeumorphicShape.convex
-                ),
+                style:
+                    NeumorphicSwitchStyle(thumbShape: NeumorphicShape.convex),
                 value: isChecked2,
                 onChanged: (value) {
                   setState(() {

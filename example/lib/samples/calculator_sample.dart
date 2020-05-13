@@ -65,7 +65,9 @@ class WidgetCalcButton extends StatelessWidget {
   }
 
   Color _backgroundColor(BuildContext context) {
-    return button.backgroundAccent ? NeumorphicTheme.accentColor(context) : null;
+    return button.backgroundAccent
+        ? NeumorphicTheme.accentColor(context)
+        : null;
   }
 
   @override
@@ -96,7 +98,8 @@ class _TopScreenWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Neumorphic(
       boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
-      style: NeumorphicStyle(depth: -1 * NeumorphicTheme.of(context).current.depth),
+      style: NeumorphicStyle(
+          depth: -1 * NeumorphicTheme.of(context).current.depth),
       child: FractionallySizedBox(
         widthFactor: 1,
         child: Padding(
@@ -193,28 +196,34 @@ class __PageContentState extends State<_PageContent> {
           Row(
             children: <Widget>[
               RaisedButton(
-                onPressed: (){
+                onPressed: () {
                   setState(() {
-                    NeumorphicTheme.of(context).updateCurrentTheme(NeumorphicThemeData(
+                    NeumorphicTheme.of(context)
+                        .updateCurrentTheme(NeumorphicThemeData(
                       depth: 1,
                       intensity: 0.5,
                       accentColor: Colors.cyan,
                     ));
                   });
                 },
-                child: Text("style 1",),
+                child: Text(
+                  "style 1",
+                ),
               ),
               RaisedButton(
-                onPressed: (){
+                onPressed: () {
                   setState(() {
-                    NeumorphicTheme.of(context).updateCurrentTheme(NeumorphicThemeData(
+                    NeumorphicTheme.of(context)
+                        .updateCurrentTheme(NeumorphicThemeData(
                       depth: 8,
                       intensity: 0.3,
                       accentColor: Colors.greenAccent,
                     ));
                   });
                 },
-                child: Text("style 2",),
+                child: Text(
+                  "style 2",
+                ),
               ),
             ],
           )

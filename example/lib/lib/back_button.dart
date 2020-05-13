@@ -13,7 +13,9 @@ class NeumorphicBack extends StatelessWidget {
       ),
       child: Icon(
         Icons.arrow_back,
-        color: NeumorphicTheme.isUsingDark(context) ? Colors.white70 : Colors.black87,
+        color: NeumorphicTheme.isUsingDark(context)
+            ? Colors.white70
+            : Colors.black87,
       ),
       onClick: () {
         Navigator.of(context).pop();

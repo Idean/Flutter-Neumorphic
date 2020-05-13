@@ -31,7 +31,8 @@ class _Page extends StatefulWidget {
 class __PageState extends State<_Page> {
   LightSource lightSource = LightSource.topLeft;
   NeumorphicShape shape = NeumorphicShape.flat;
-  NeumorphicBoxShape boxShape = NeumorphicBoxShape.roundRect(BorderRadius.circular(12));
+  NeumorphicBoxShape boxShape =
+      NeumorphicBoxShape.roundRect(BorderRadius.circular(12));
   double depth = 5;
   double intensity = 0.8;
   double surfaceIntensity = 0.5;
@@ -65,9 +66,11 @@ class __PageState extends State<_Page> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                  padding:
+                      const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
                   child: RaisedButton(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     color: Theme.of(context).accentColor,
                     child: Text(
                       "back",
@@ -122,12 +125,17 @@ class __PageState extends State<_Page> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    color: selectedConfiguratorIndex == 0 ? buttonActiveColor : buttonInnactiveColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    color: selectedConfiguratorIndex == 0
+                        ? buttonActiveColor
+                        : buttonInnactiveColor,
                     child: Text(
                       "Style",
                       style: TextStyle(
-                        color: selectedConfiguratorIndex == 0 ? textActiveColor : textInactiveColor,
+                        color: selectedConfiguratorIndex == 0
+                            ? textActiveColor
+                            : textInactiveColor,
                       ),
                     ),
                     onPressed: () {
@@ -143,14 +151,19 @@ class __PageState extends State<_Page> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     child: Text(
                       "Element",
                       style: TextStyle(
-                        color: selectedConfiguratorIndex == 1 ? textActiveColor : textInactiveColor,
+                        color: selectedConfiguratorIndex == 1
+                            ? textActiveColor
+                            : textInactiveColor,
                       ),
                     ),
-                    color: selectedConfiguratorIndex == 1 ? buttonActiveColor : buttonInnactiveColor,
+                    color: selectedConfiguratorIndex == 1
+                        ? buttonActiveColor
+                        : buttonInnactiveColor,
                     onPressed: () {
                       setState(() {
                         selectedConfiguratorIndex = 1;
@@ -164,14 +177,19 @@ class __PageState extends State<_Page> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     child: Text(
                       "Border",
                       style: TextStyle(
-                        color: selectedConfiguratorIndex == 2 ? textActiveColor : textInactiveColor,
+                        color: selectedConfiguratorIndex == 2
+                            ? textActiveColor
+                            : textInactiveColor,
                       ),
                     ),
-                    color: selectedConfiguratorIndex == 2 ? buttonActiveColor : buttonInnactiveColor,
+                    color: selectedConfiguratorIndex == 2
+                        ? buttonActiveColor
+                        : buttonInnactiveColor,
                     onPressed: () {
                       setState(() {
                         selectedConfiguratorIndex = 2;
@@ -249,7 +267,8 @@ class __PageState extends State<_Page> {
         ColorSelector(
           onColorChanged: (color) {
             setState(() {
-              NeumorphicTheme.of(context).updateCurrentTheme(NeumorphicThemeData(baseColor: color));
+              NeumorphicTheme.of(context)
+                  .updateCurrentTheme(NeumorphicThemeData(baseColor: color));
             });
           },
           color: NeumorphicTheme.baseColor(context),
@@ -290,10 +309,7 @@ class __PageState extends State<_Page> {
       boxShape: boxShape,
       style: NeumorphicStyle(
         border: NeumorphicBorder(
-          isEnabled: true,
-          width: this.borderWidth,
-          color: this.borderColor
-        ),
+            isEnabled: true, width: this.borderWidth, color: this.borderColor),
         shape: this.shape,
         intensity: this.intensity,
         /*
@@ -310,9 +326,9 @@ class __PageState extends State<_Page> {
         height: height,
         width: width,
         child: Container(
-                //color: Colors.blue,
-                child: Center(child: Text("")),
-              ),
+          //color: Colors.blue,
+          child: Center(child: Text("")),
+        ),
       ),
     );
   }
@@ -424,7 +440,8 @@ class __PageState extends State<_Page> {
                 setState(() {
                   cornerRadius = value;
                   if (boxShape.isRoundRect) {
-                    boxShape = NeumorphicBoxShape.roundRect(BorderRadius.circular(this.cornerRadius));
+                    boxShape = NeumorphicBoxShape.roundRect(
+                        BorderRadius.circular(this.cornerRadius));
                   }
                 });
               },
@@ -509,14 +526,20 @@ class __PageState extends State<_Page> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: RaisedButton(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
               onPressed: () {
                 setState(() {
                   shape = NeumorphicShape.concave;
                 });
               },
-              color: shape == NeumorphicShape.concave ? buttonActiveColor : buttonInnactiveColor,
-              child: Image.asset("assets/images/concave.png", color: shape == NeumorphicShape.concave ? iconActiveColor : iconInactiveColor),
+              color: shape == NeumorphicShape.concave
+                  ? buttonActiveColor
+                  : buttonInnactiveColor,
+              child: Image.asset("assets/images/concave.png",
+                  color: shape == NeumorphicShape.concave
+                      ? iconActiveColor
+                      : iconInactiveColor),
             ),
           ),
         ),
@@ -524,14 +547,20 @@ class __PageState extends State<_Page> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: RaisedButton(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
               onPressed: () {
                 setState(() {
                   shape = NeumorphicShape.convex;
                 });
               },
-              color: shape == NeumorphicShape.convex ? buttonActiveColor : buttonInnactiveColor,
-              child: Image.asset("assets/images/convex.png", color: shape == NeumorphicShape.convex ? iconActiveColor : iconInactiveColor),
+              color: shape == NeumorphicShape.convex
+                  ? buttonActiveColor
+                  : buttonInnactiveColor,
+              child: Image.asset("assets/images/convex.png",
+                  color: shape == NeumorphicShape.convex
+                      ? iconActiveColor
+                      : iconInactiveColor),
             ),
           ),
         ),
@@ -539,14 +568,20 @@ class __PageState extends State<_Page> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: RaisedButton(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
               onPressed: () {
                 setState(() {
                   shape = NeumorphicShape.flat;
                 });
               },
-              color: shape == NeumorphicShape.flat ? buttonActiveColor : buttonInnactiveColor,
-              child: Image.asset("assets/images/flat.png", color: shape == NeumorphicShape.flat ? iconActiveColor : iconInactiveColor),
+              color: shape == NeumorphicShape.flat
+                  ? buttonActiveColor
+                  : buttonInnactiveColor,
+              child: Image.asset("assets/images/flat.png",
+                  color: shape == NeumorphicShape.flat
+                      ? iconActiveColor
+                      : iconInactiveColor),
             ),
           ),
         ),

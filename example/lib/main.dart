@@ -57,10 +57,14 @@ class MyHomePage extends StatelessWidget {
             NeumorphicButton(
                 margin: EdgeInsets.only(top: 12),
                 onClick: () {
-                  NeumorphicTheme.of(context).usedTheme = NeumorphicTheme.isUsingDark(context) ? UsedTheme.LIGHT : UsedTheme.DARK;
+                  NeumorphicTheme.of(context).usedTheme =
+                      NeumorphicTheme.isUsingDark(context)
+                          ? UsedTheme.LIGHT
+                          : UsedTheme.DARK;
                 },
                 style: NeumorphicStyle(shape: NeumorphicShape.flat),
-                boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+                boxShape:
+                    NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
                   "Toggle Theme",
@@ -69,7 +73,8 @@ class MyHomePage extends StatelessWidget {
             NeumorphicButton(
                 margin: EdgeInsets.only(top: 12),
                 onClick: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+                  Navigator.of(context)
+                      .pushReplacement(MaterialPageRoute(builder: (context) {
                     return FullSampleHomePage();
                   }));
                 },
@@ -77,7 +82,8 @@ class MyHomePage extends StatelessWidget {
                   shape: NeumorphicShape.flat,
                   //border: NeumorphicBorder()
                 ),
-                boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+                boxShape:
+                    NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
                   "Go to full sample",

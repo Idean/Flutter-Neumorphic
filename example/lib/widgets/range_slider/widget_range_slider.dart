@@ -34,7 +34,6 @@ class _Page extends StatefulWidget {
 }
 
 class _PageState extends State<_Page> {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -70,11 +69,10 @@ class _DefaultWidget extends StatefulWidget {
 }
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
-
   double lowVal = 30;
   double highVal = 70;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
   double lowVal = 30;
   double highVal = 70;
@@ -107,7 +105,7 @@ class _DefaultWidgetState extends State<_DefaultWidget> {
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           Expanded(
@@ -131,7 +129,7 @@ class _DefaultWidgetState extends State<_DefaultWidget> {
           SizedBox(width: 12),
           Text(
             "${lowVal.round()} - ${highVal.round()}",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
         ],
       ),
@@ -155,11 +153,10 @@ class _ColorWidget extends StatefulWidget {
 }
 
 class _ColorWidgetState extends State<_ColorWidget> {
-
   double lowVal = 30;
   double highVal = 80;
 
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 double lowVal = 30;
 double highVal = 80;
@@ -190,7 +187,6 @@ double highVal = 80;
 """);
   }
 
-
   Color accent = Colors.green;
   Color variant = Colors.purple;
 
@@ -203,7 +199,7 @@ double highVal = 80;
             children: <Widget>[
               Text("Accent : "),
               ColorSelector(
-                onColorChanged: (color){
+                onColorChanged: (color) {
                   setState(() {
                     accent = color;
                   });
@@ -213,7 +209,7 @@ double highVal = 80;
               SizedBox(width: 12),
               Text("Variant : "),
               ColorSelector(
-                onColorChanged: (color){
+                onColorChanged: (color) {
                   setState(() {
                     variant = color;
                   });
@@ -227,7 +223,8 @@ double highVal = 80;
             children: <Widget>[
               Text(
                 "Default",
-                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                style:
+                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               Expanded(
@@ -255,7 +252,8 @@ double highVal = 80;
               SizedBox(width: 12),
               Text(
                 "${lowVal.round()} - ${highVal.round()}",
-                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                style:
+                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
             ],
           ),

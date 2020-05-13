@@ -34,7 +34,6 @@ class _Page extends StatefulWidget {
 }
 
 class _PageState extends State<_Page> {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -72,8 +71,7 @@ class _DefaultWidget extends StatefulWidget {
 }
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
-
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 Expanded(
   child: NeumorphicProgressIndeterminate(),
@@ -88,12 +86,11 @@ Expanded(
         children: <Widget>[
           Text(
             "Default",
-            style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
           ),
           SizedBox(width: 12),
           Expanded(
-            child: NeumorphicProgressIndeterminate(
-            ),
+            child: NeumorphicProgressIndeterminate(),
           ),
           SizedBox(width: 12),
         ],
@@ -118,8 +115,7 @@ class _ColorWidget extends StatefulWidget {
 }
 
 class _ColorWidgetState extends State<_ColorWidget> {
-
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 Expanded(
   child: NeumorphicProgressIndeterminate(
@@ -131,7 +127,6 @@ Expanded(
 ),
 """);
   }
-
 
   Color accent = Colors.green;
   Color variant = Colors.purple;
@@ -145,7 +140,7 @@ Expanded(
             children: <Widget>[
               Text("Accent : "),
               ColorSelector(
-                onColorChanged: (color){
+                onColorChanged: (color) {
                   setState(() {
                     accent = color;
                   });
@@ -155,7 +150,7 @@ Expanded(
               SizedBox(width: 12),
               Text("Variant : "),
               ColorSelector(
-                onColorChanged: (color){
+                onColorChanged: (color) {
                   setState(() {
                     variant = color;
                   });
@@ -169,7 +164,8 @@ Expanded(
             children: <Widget>[
               Text(
                 "Default",
-                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                style:
+                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               Expanded(
@@ -205,8 +201,7 @@ class _SizedWidget extends StatefulWidget {
 }
 
 class _SizedWidgetState extends State<_SizedWidget> {
-
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 Expanded(
   child: NeumorphicProgressIndeterminate(
@@ -226,7 +221,8 @@ Expanded(
             children: <Widget>[
               Text(
                 "Sized",
-                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                style:
+                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               Expanded(
@@ -259,8 +255,7 @@ class _DurationWidget extends StatefulWidget {
 }
 
 class _DurationWidgetState extends State<_DurationWidget> {
-
-  Widget _buildCode(BuildContext context){
+  Widget _buildCode(BuildContext context) {
     return Code("""
 Expanded(
   child: NeumorphicProgressIndeterminate(
@@ -280,7 +275,8 @@ Expanded(
             children: <Widget>[
               Text(
                 "Duration",
-                style: TextStyle(color:  NeumorphicTheme.defaultTextColor(context)),
+                style:
+                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               Expanded(

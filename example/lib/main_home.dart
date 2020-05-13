@@ -28,7 +28,8 @@ class FullSampleHomePage extends StatelessWidget {
   Widget _buildButton({String text, VoidCallback onClick}) {
     return NeumorphicButton(
       margin: EdgeInsets.only(bottom: 12),
-      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12),
+      boxShape: NeumorphicBoxShape.roundRect(
+        BorderRadius.circular(12),
       ),
       padding: EdgeInsets.symmetric(
         vertical: 18,
@@ -64,7 +65,8 @@ class FullSampleHomePage extends StatelessWidget {
                   _buildButton(
                     text: "Neumorphic Playground",
                     onClick: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
                         return NeumorphicPlayground();
                       }));
                     },
@@ -73,7 +75,8 @@ class FullSampleHomePage extends StatelessWidget {
                   _buildButton(
                       text: "Samples",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return SamplesHome();
                         }));
                       }),
@@ -81,7 +84,8 @@ class FullSampleHomePage extends StatelessWidget {
                   _buildButton(
                       text: "Widgets",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return WidgetsHome();
                         }));
                       }),
@@ -89,7 +93,8 @@ class FullSampleHomePage extends StatelessWidget {
                   _buildButton(
                       text: "Tips",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return TipsHome();
                         }));
                       }),
@@ -97,7 +102,8 @@ class FullSampleHomePage extends StatelessWidget {
                   _buildButton(
                       text: "Accessibility",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return NeumorphicAccessibility();
                         }));
                       }),

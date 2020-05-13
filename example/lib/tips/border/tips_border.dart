@@ -148,14 +148,16 @@ class _CustomWidget extends StatefulWidget {
   final NeumorphicStyle firstStyle;
   final NeumorphicStyle secondStyle;
 
-  _CustomWidget({@required this.title, @required this.firstStyle, @required this.secondStyle});
+  _CustomWidget(
+      {@required this.title,
+      @required this.firstStyle,
+      @required this.secondStyle});
 
   @override
   createState() => _CustomWidgetState();
 }
 
 class _CustomWidgetState extends State<_CustomWidget> {
-
   String _describe(NeumorphicStyle style) {
     return "NeumorphicStyle(depth: ${style.depth}, oppositeShadowLightSource: ${style.oppositeShadowLightSource}, ...)";
   }
@@ -192,7 +194,8 @@ Neumorphic(
                 width: 100,
                 child: Text(
                   widget.title,
-                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               Neumorphic(
@@ -219,7 +222,8 @@ Neumorphic(
                 width: 100,
                 child: Text(
                   "opposite\nchild\nlightsource",
-                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               Neumorphic(
@@ -228,7 +232,8 @@ Neumorphic(
                 style: widget.firstStyle,
                 child: Neumorphic(
                   boxShape: NeumorphicBoxShape.circle(),
-                  style: widget.secondStyle.copyWith(oppositeShadowLightSource: true),
+                  style: widget.secondStyle
+                      .copyWith(oppositeShadowLightSource: true),
                   child: SizedBox(
                     height: 100,
                     width: 100,
