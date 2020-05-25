@@ -59,14 +59,16 @@ class NeumorphicTextDecoration extends Decoration {
   @override
   NeumorphicTextDecoration lerpFrom(Decoration a, double t) {
     if (a == null) return scale(t);
-    if (a is NeumorphicTextDecoration) return NeumorphicTextDecoration.lerp(a, this, t);
+    if (a is NeumorphicTextDecoration)
+      return NeumorphicTextDecoration.lerp(a, this, t);
     return super.lerpFrom(a, t) as NeumorphicTextDecoration;
   }
 
   @override
   NeumorphicTextDecoration lerpTo(Decoration b, double t) {
     if (b == null) return scale(1.0 - t);
-    if (b is NeumorphicTextDecoration) return NeumorphicTextDecoration.lerp(this, b, t);
+    if (b is NeumorphicTextDecoration)
+      return NeumorphicTextDecoration.lerp(this, b, t);
     return super.lerpTo(b, t) as NeumorphicTextDecoration;
   }
 

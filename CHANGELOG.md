@@ -1,3 +1,9 @@
+## 2.1.0
+
+* Added NeumorphicText
+* Added NeumorphicIcon
+* Updated samples
+
 ## 2.0.1
 
 * Added selected/unselected color on Radio

@@ -1,11 +1,11 @@
 name: flutter_neumorphic
 description: A complete, ready to use, Neumorphic ui kit for Flutter. Dark theming compatible & fully customizable.
-version: 2.0.1
-authors: [
-  Florent Champigny <champigny.florent@gmail.com>,
-  Olivier Bonvila <olivier.bonvila@idean.com>,
-  Gyl Jean Lambert <almighty972@gmail.com>
-]
+version: 2.1.0
+#authors: [
+#  Florent Champigny <champigny.florent@gmail.com>,
+#  Olivier Bonvila <olivier.bonvila@idean.com>,
+#  Gyl Jean Lambert <almighty972@gmail.com>
+#]
 homepage: https://github.com/Idean/Flutter-Neumorphic
 issue_tracker: https://github.com/Idean/Flutter-Neumorphic/issues
 
