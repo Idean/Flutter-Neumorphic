@@ -263,7 +263,7 @@ class __TextFieldState extends State<_TextField> {
           margin: EdgeInsets.only(left: 8, right: 8, top: 2, bottom: 4),
           boxShape: NeumorphicBoxShape.stadium(),
           style: NeumorphicStyle(depth: NeumorphicTheme.embossDepth(context)),
-          padding: EdgeInsets.symmetric(vertical: 2, horizontal: 18),
+          padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18),
           child: TextField(
             onChanged: this.widget.onChanged,
             controller: _controller,

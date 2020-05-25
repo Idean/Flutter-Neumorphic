@@ -62,6 +62,23 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
   <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicCheckbox.md">NeumorphicCheckbox</a></td>
   <td> A button associated with a value, can be checked/unckecked, if checked, takes the accent color</td>
 </tr>
+
+<tr>
+  <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/checkbox.gif"/></td>
+  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicCheckbox.md">NeumorphicText</a></td>
+  <td> A button associated with a value, can be checked/unckecked, if checked, takes the accent color</td>
+</tr>
+<tr>
+  <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/checkbox.gif"/></td>
+  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicCheckbox.md">NeumorphicIcon</a></td>
+  <td> A button associated with a value, can be checked/unckecked, if checked, takes the accent color</td>
+</tr>
+<tr>
+  <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/textfield.gif"/></td>
+  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicCheckbox.md">material.TextField</a></td>
+  <td>For TextFields, just surround your existing material textfield widget with a Neumorphic (container)</td>
+</tr>
+
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/switch.gif"/> </td>
   <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicSwitch.md">NeumorphicSwitch</a></td>
