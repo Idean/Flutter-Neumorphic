@@ -70,7 +70,8 @@ class WidgetsHome extends StatelessWidget {
                   _buildButton(
                       text: "Icon",
                       onClick: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
                           return IconWidgetPage();
                         }));
                       }),

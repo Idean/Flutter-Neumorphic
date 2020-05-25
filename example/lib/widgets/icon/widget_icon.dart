@@ -34,7 +34,6 @@ class _Page extends StatefulWidget {
 }
 
 class _PageState extends State<_Page> {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicBackground(
@@ -48,7 +47,8 @@ class _PageState extends State<_Page> {
         ),
         backgroundColor: Colors.transparent,
         body: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
           itemCount: icons.length,
           itemBuilder: (context, index) {
             return Padding(
@@ -57,9 +57,9 @@ class _PageState extends State<_Page> {
                 icons[index],
                 size: 80,
                 style: NeumorphicStyle(
-                  //shape: NeumorphicShape.convex,
-                  //surfaceIntensity: 1.0
-                ),
+                    //shape: NeumorphicShape.convex,
+                    //surfaceIntensity: 1.0
+                    ),
               ),
             );
           },

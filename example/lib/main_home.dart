@@ -76,7 +76,8 @@ class FullSampleHomePage extends StatelessWidget {
                   _buildButton(
                     text: "Text Playground",
                     onClick: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
                         return NeumorphicTextPlayground();
                       }));
                     },
