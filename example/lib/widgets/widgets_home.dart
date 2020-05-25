@@ -7,6 +7,7 @@ import 'background/widget_background.dart';
 import 'button/widget_button.dart';
 import 'checkbox/widget_checkbox.dart';
 import 'container/widget_container.dart';
+import 'icon/widget_icon.dart';
 import 'indeterminate_progress/widget_indeterminate_progress.dart';
 import 'indicator/widget_indicator.dart';
 import 'progress/widget_progress.dart';
@@ -64,6 +65,13 @@ class WidgetsHome extends StatelessWidget {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
                           return ButtonWidgetPage();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "Icon",
+                      onClick: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return IconWidgetPage();
                         }));
                       }),
                   _buildButton(
