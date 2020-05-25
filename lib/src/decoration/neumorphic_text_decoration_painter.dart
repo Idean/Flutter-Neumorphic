@@ -9,6 +9,18 @@ import 'cache/neumorphic_painter_cache.dart';
 import 'neumorphic_box_decoration_helper.dart';
 import 'neumorphic_emboss_decoration_painter.dart';
 
+class NeumorphicEmptyTextPainter extends BoxPainter {
+
+  NeumorphicEmptyTextPainter({@required VoidCallback onChanged}) : super(onChanged);
+
+  @override
+  void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
+    //does nothing
+  }
+
+
+}
+
 class NeumorphicDecorationTextPainter extends BoxPainter {
   final NeumorphicStyle style;
   final String text;

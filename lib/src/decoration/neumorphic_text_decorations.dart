@@ -2,8 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
 
-import '../neumorphic_box_shape.dart';
-import 'neumorphic_decoration_painter.dart';
 import 'neumorphic_emboss_decoration_painter.dart';
 import 'neumorphic_text_decoration_painter.dart';
 
@@ -42,6 +40,8 @@ class NeumorphicTextDecoration extends Decoration {
         onChanged: onChanged,
         text: text,
       );
+    } else {
+      return NeumorphicEmptyTextPainter(onChanged: onChanged);
     }
     /* else {
       return NeumorphicEmbossDecorationPainter(
