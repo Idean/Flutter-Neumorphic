@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
@@ -57,6 +58,7 @@ class NeumorphicButton extends StatefulWidget {
   final bool drawSurfaceAboveChild;
   final bool isEnabled;
   final bool provideHapticFeedback;
+  final String tooltip;
 
   final NeumorphicBoxShape _boxShape; //private
   NeumorphicBoxShape get boxShape => _boxShape;
@@ -66,6 +68,7 @@ class NeumorphicButton extends StatefulWidget {
     this.padding = const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
     this.margin = EdgeInsets.zero,
     this.child,
+    this.tooltip,
     this.drawSurfaceAboveChild = true,
     this.pressed, //true/false if you want to change the state of the button
     NeumorphicBoxShape boxShape,
@@ -166,6 +169,18 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
 
   @override
   Widget build(BuildContext context) {
+    final result = _build(context);
+    if (widget.tooltip != null) {
+      return Tooltip(
+        message: widget.tooltip,
+        child: result,
+      );
+    } else {
+      return result;
+    }
+  }
+
+  Widget _build(BuildContext context) {
     return GestureDetector(
       onTapDown: (detail) {
         hasTapUp = false;

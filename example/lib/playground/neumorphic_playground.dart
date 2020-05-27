@@ -671,9 +671,8 @@ class __PageState extends State<_Page> {
                       BorderRadius.circular(this.cornerRadius));
                 });
               },
-              color: boxShape.isBeveled
-                  ? buttonActiveColor
-                  : buttonInnactiveColor,
+              color:
+                  boxShape.isBeveled ? buttonActiveColor : buttonInnactiveColor,
               child: Text(
                 "Beveled",
                 style: TextStyle(

@@ -1,3 +1,7 @@
+## 2.2.2
+
+* Added NeumorphicButton.tooltip optional parameter
+
 ## 2.2.1
 
 * Added Beveled shape
