@@ -11,7 +11,7 @@ class _NeumorphicAccessibilityState extends State<NeumorphicAccessibility> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
-      usedTheme: UsedTheme.LIGHT,
+      themeMode: ThemeMode.light,
       theme: NeumorphicThemeData(
         baseColor: Color(0xffDDDDDD),
         lightSource: LightSource.topLeft,

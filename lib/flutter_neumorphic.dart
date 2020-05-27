@@ -1,6 +1,6 @@
 library flutter_neumorphic;
 
-export 'package:flutter/material.dart' show TextTheme;
+export 'package:flutter/material.dart' show TextTheme, ThemeMode, RouteFactory, GenerateAppTitle, InitialRouteListFactory;
 export 'package:flutter/widgets.dart';
 
 export 'src/colors.dart';
@@ -9,7 +9,7 @@ export 'src/shape.dart';
 export 'src/shape/neumorphic_path_provider.dart';
 export 'src/theme/neumorphic_theme.dart';
 export 'src/theme/theme.dart';
-export 'src/theme/used_theme.dart';
+export 'src/widget/app.dart';
 export 'src/widget/app_bar.dart';
 export 'src/widget/back_button.dart';
 export 'src/widget/background.dart';

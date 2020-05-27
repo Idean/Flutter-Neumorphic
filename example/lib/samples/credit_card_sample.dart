@@ -232,8 +232,8 @@ class __PageContentState extends State<_PageContent> {
                 setState(() {
                   _useDark = !_useDark;
 
-                  NeumorphicTheme.of(context).usedTheme =
-                      _useDark ? UsedTheme.DARK : UsedTheme.LIGHT;
+                  NeumorphicTheme.of(context).themeMode =
+                      _useDark ? ThemeMode.dark : ThemeMode.light;
                 });
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),

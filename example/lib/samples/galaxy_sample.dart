@@ -13,7 +13,7 @@ class GalaxySample extends StatelessWidget {
         intensity: 1,
         lightSource: LightSource.top,
       ),
-      usedTheme: UsedTheme.LIGHT,
+      themeMode: ThemeMode.light,
       child: Material(
         child: Container(
             decoration: BoxDecoration(
