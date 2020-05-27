@@ -303,7 +303,7 @@ class __PageState extends State<_Page> {
     return NeumorphicButton(
       padding: EdgeInsets.zero,
       duration: Duration(milliseconds: 300),
-      onClick: () {
+      onPressed: () {
         setState(() {});
       },
       boxShape: boxShape,

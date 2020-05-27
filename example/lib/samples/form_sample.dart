@@ -66,7 +66,7 @@ class __PageState extends State<_Page> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: NeumorphicButton(
-                      onClick: () {},
+                      onPressed: () {},
                       isEnabled: _isButtonEnabled(),
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 20),

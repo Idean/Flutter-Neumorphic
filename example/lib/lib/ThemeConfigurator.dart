@@ -18,7 +18,7 @@ class ThemeConfigurator extends StatelessWidget {
             ? Colors.white70
             : Colors.black87,
       ),
-      onClick: () {
+      onPressed: () {
         _changeColor(context);
       },
     );
@@ -36,7 +36,7 @@ class ThemeConfigurator extends StatelessWidget {
         actions: <Widget>[
           NeumorphicButton(
             child: const Text('Close'),
-            onClick: () {
+            onPressed: () {
               Navigator.of(context).pop();
             },
           ),

@@ -17,7 +17,7 @@ class NeumorphicBack extends StatelessWidget {
             ? Colors.white70
             : Colors.black87,
       ),
-      onClick: () {
+      onPressed: () {
         Navigator.of(context).pop();
       },
     );

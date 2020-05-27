@@ -66,7 +66,7 @@ class __PageState extends State<_Page> {
             alignment: Alignment.centerLeft,
             child: NeumorphicButton(
               padding: const EdgeInsets.all(18.0),
-              onClick: () {
+              onPressed: () {
                 Navigator.of(context).pop();
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
@@ -89,7 +89,7 @@ class __PageState extends State<_Page> {
             alignment: Alignment.centerRight,
             child: NeumorphicButton(
               padding: const EdgeInsets.all(18.0),
-              onClick: () {
+              onPressed: () {
                 setState(() {
                   _useDark = !_useDark;
                   NeumorphicTheme.of(context).usedTheme =
@@ -188,7 +188,7 @@ class __PageState extends State<_Page> {
       children: <Widget>[
         NeumorphicButton(
           padding: const EdgeInsets.all(18.0),
-          onClick: () {},
+          onPressed: () {},
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
           boxShape: NeumorphicBoxShape.circle(),
           child: Icon(
@@ -199,7 +199,7 @@ class __PageState extends State<_Page> {
         const SizedBox(width: 12),
         NeumorphicButton(
           padding: const EdgeInsets.all(24.0),
-          onClick: () {},
+          onPressed: () {},
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
           boxShape: NeumorphicBoxShape.circle(),
           child: Icon(
@@ -211,7 +211,7 @@ class __PageState extends State<_Page> {
         const SizedBox(width: 12),
         NeumorphicButton(
           padding: const EdgeInsets.all(18.0),
-          onClick: () {},
+          onPressed: () {},
           style: NeumorphicStyle(shape: NeumorphicShape.flat),
           boxShape: NeumorphicBoxShape.circle(),
           child: Icon(

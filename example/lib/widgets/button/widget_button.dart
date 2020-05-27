@@ -96,7 +96,7 @@ NeumorphicButton(
           ),
           SizedBox(width: 12),
           NeumorphicButton(
-            onClick: () {
+            onPressed: () {
               setState(() {});
             },
             child: Text("Click me"),
@@ -149,7 +149,7 @@ NeumorphicButton(
           SizedBox(width: 12),
           NeumorphicButton(
             boxShape: NeumorphicBoxShape.circle(),
-            onClick: () {
+            onPressed: () {
               setState(() {});
             },
             padding: EdgeInsets.all(18.0),
@@ -205,7 +205,7 @@ NeumorphicButton(
           NeumorphicButton(
             minDistance: -5.0,
             boxShape: NeumorphicBoxShape.circle(),
-            onClick: () {
+            onPressed: () {
               setState(() {});
             },
             padding: EdgeInsets.all(18.0),
@@ -270,7 +270,7 @@ NeumorphicButton(
           ),
           SizedBox(width: 12),
           NeumorphicButton(
-            onClick: () {},
+            onPressed: () {},
             style: NeumorphicStyle(color: currentColor),
             child: Text("Click me"),
           ),
@@ -309,7 +309,7 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
           NeumorphicButton(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
             child: Text("First"),
-            onClick: () {
+            onPressed: () {
               setState(() {});
             },
           ),
@@ -323,7 +323,7 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
             isEnabled: false,
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
             child: Text("Second"),
-            onClick: () {
+            onPressed: () {
               setState(() {});
             },
           ),
@@ -388,7 +388,7 @@ NeumorphicButton(
               ),
               SizedBox(width: 12),
               NeumorphicButton(
-                onClick: () {},
+                onPressed: () {},
                 child: Text("Press me all night long"),
                 duration: Duration(seconds: 1),
               ),
@@ -454,7 +454,7 @@ NeumorphicButton(
               NeumorphicButton(
                 boxShape: NeumorphicBoxShape.circle(),
                 style: NeumorphicStyle(shape: NeumorphicShape.flat),
-                onClick: () {
+                onPressed: () {
                   setState(() {});
                 },
                 padding: EdgeInsets.all(18.0),
@@ -477,7 +477,7 @@ NeumorphicButton(
               NeumorphicButton(
                 boxShape: NeumorphicBoxShape.circle(),
                 style: NeumorphicStyle(shape: NeumorphicShape.concave),
-                onClick: () {
+                onPressed: () {
                   setState(() {});
                 },
                 padding: EdgeInsets.all(18.0),
@@ -500,7 +500,7 @@ NeumorphicButton(
               NeumorphicButton(
                 boxShape: NeumorphicBoxShape.circle(),
                 style: NeumorphicStyle(shape: NeumorphicShape.convex),
-                onClick: () {
+                onPressed: () {
                   setState(() {});
                 },
                 padding: EdgeInsets.all(18.0),

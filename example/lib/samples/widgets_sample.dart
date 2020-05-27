@@ -77,7 +77,7 @@ class _ContainersListPageState extends State<WidgetsSample> {
             "button 1",
             style: TextStyle(color: _textColor()),
           ),
-          onClick: () {
+          onPressed: () {
             setState(() {
               useDark = !useDark;
             });
@@ -92,7 +92,7 @@ class _ContainersListPageState extends State<WidgetsSample> {
             "button 2",
             style: TextStyle(color: _textColor()),
           ),
-          onClick: () {},
+          onPressed: () {},
         ),
       ],
     );

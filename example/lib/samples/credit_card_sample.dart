@@ -213,7 +213,7 @@ class __PageContentState extends State<_PageContent> {
           Align(
             alignment: Alignment.centerLeft,
             child: NeumorphicButton(
-              onClick: () {
+              onPressed: () {
                 Navigator.of(context).pop();
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
@@ -228,7 +228,7 @@ class __PageContentState extends State<_PageContent> {
           Align(
             alignment: Alignment.centerRight,
             child: NeumorphicButton(
-              onClick: () {
+              onPressed: () {
                 setState(() {
                   _useDark = !_useDark;
 

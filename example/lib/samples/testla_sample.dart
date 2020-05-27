@@ -73,7 +73,7 @@ class __PageContentState extends State<_PageContent> {
                 shape: NeumorphicShape.concave,
               ),
               child: NeumorphicButton(
-                onClick: () {
+                onPressed: () {
                   Navigator.of(context).pop();
                 },
                 boxShape: NeumorphicBoxShape.circle(),
@@ -108,7 +108,7 @@ class __PageContentState extends State<_PageContent> {
                 shape: NeumorphicShape.concave,
               ),
               child: NeumorphicButton(
-                onClick: () {},
+                onPressed: () {},
                 boxShape: NeumorphicBoxShape.circle(),
                 style: NeumorphicStyle(
                   color: Color(0xFF17181C),
@@ -205,7 +205,7 @@ class __PageContentState extends State<_PageContent> {
           ),
           NeumorphicButton(
             drawSurfaceAboveChild: false,
-            onClick: () {},
+            onPressed: () {},
             padding: EdgeInsets.all(4),
             boxShape: NeumorphicBoxShape.circle(),
             style: NeumorphicStyle(

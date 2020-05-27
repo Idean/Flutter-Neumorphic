@@ -75,7 +75,7 @@ class WidgetCalcButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 14),
       child: NeumorphicButton(
-        onClick: () {},
+        onPressed: () {},
         boxShape: NeumorphicBoxShape.circle(),
         style: NeumorphicStyle(
           surfaceIntensity: 0.15,
@@ -161,7 +161,7 @@ class __PageContentState extends State<_PageContent> {
             child: Padding(
               padding: const EdgeInsets.only(left: 18.0, top: 8),
               child: NeumorphicButton(
-                onClick: () {
+                onPressed: () {
                   Navigator.of(context).pop();
                 },
                 style: NeumorphicStyle(shape: NeumorphicShape.flat),
