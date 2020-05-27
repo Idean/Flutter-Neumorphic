@@ -3,6 +3,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_neumorphic/src/shape/rrect_path_provider.dart';
 import 'package:flutter_neumorphic/src/shape/stadium_path_provider.dart';
 
+import 'shape/beveled_path_provider.dart';
 import 'shape/circle_path_provider.dart';
 import 'shape/neumorphic_path_provider.dart';
 import 'shape/rect_path_provider.dart';
@@ -28,6 +29,9 @@ class NeumorphicBoxShape {
   NeumorphicBoxShape.roundRect(BorderRadius borderRadius)
       : this._(RRectPathProvider(borderRadius));
 
+  NeumorphicBoxShape.beveled(BorderRadius borderRadius)
+      : this._(BeveledPathProvider(borderRadius));
+
   bool get isCustomPath => !isStadium && !isRect && !isCircle && !isRoundRect;
 
   bool get isStadium =>
@@ -40,6 +44,9 @@ class NeumorphicBoxShape {
 
   bool get isRoundRect =>
       customShapePathProvider.runtimeType == RRectPathProvider;
+
+  bool get isBeveled =>
+      customShapePathProvider.runtimeType == BeveledPathProvider;
 
   static NeumorphicBoxShape lerp(
       NeumorphicBoxShape a, NeumorphicBoxShape b, double t) {

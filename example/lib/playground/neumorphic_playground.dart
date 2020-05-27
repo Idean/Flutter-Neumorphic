@@ -532,7 +532,7 @@ class __PageState extends State<_Page> {
   }
 
   Widget cornerRadiusSelector() {
-    if (boxShape.isRoundRect) {
+    if (boxShape.isRoundRect || boxShape.isBeveled) {
       return Row(
         children: <Widget>[
           Padding(
@@ -549,6 +549,10 @@ class __PageState extends State<_Page> {
                   cornerRadius = value;
                   if (boxShape.isRoundRect) {
                     boxShape = NeumorphicBoxShape.roundRect(
+                        BorderRadius.circular(this.cornerRadius));
+                  }
+                  if (boxShape.isBeveled) {
+                    boxShape = NeumorphicBoxShape.beveled(
                         BorderRadius.circular(this.cornerRadius));
                   }
                 });
@@ -649,6 +653,31 @@ class __PageState extends State<_Page> {
                 "Rect",
                 style: TextStyle(
                     color: boxShape.isRoundRect
+                        ? textActiveColor
+                        : textInactiveColor),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+              onPressed: () {
+                setState(() {
+                  boxShape = NeumorphicBoxShape.beveled(
+                      BorderRadius.circular(this.cornerRadius));
+                });
+              },
+              color: boxShape.isBeveled
+                  ? buttonActiveColor
+                  : buttonInnactiveColor,
+              child: Text(
+                "Beveled",
+                style: TextStyle(
+                    color: boxShape.isBeveled
                         ? textActiveColor
                         : textInactiveColor),
               ),
