@@ -77,7 +77,7 @@ class _ClockFirstPageState extends State<_ClockFirstPage> {
                         Icons.add,
                         color: Color(0xFFC1CDE5),
                       ),
-                      onClick: () {
+                      onPressed: () {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
                           return ClockAlarmPage();

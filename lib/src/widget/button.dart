@@ -53,7 +53,7 @@ class NeumorphicButton extends StatefulWidget {
   final bool pressed; //null, true, false
   final Duration duration;
   final Curve curve;
-  final NeumorphicButtonClickListener onClick;
+  final NeumorphicButtonClickListener onPressed;
   final bool drawSurfaceAboveChild;
   final bool isEnabled;
   final bool provideHapticFeedback;
@@ -72,7 +72,7 @@ class NeumorphicButton extends StatefulWidget {
     this.duration = Neumorphic.DEFAULT_DURATION,
     this.curve = Neumorphic.DEFAULT_CURVE,
     //this.accent,
-    this.onClick,
+    this.onPressed,
     this.minDistance = 0,
     this.style = const NeumorphicStyle(),
     this.isEnabled = true,
@@ -158,7 +158,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   }
 
   bool get clickable {
-    return widget.isEnabled && widget.onClick != null;
+    return widget.isEnabled && widget.onPressed != null;
   }
 
   bool hasFinishedAnimationDown = false;
@@ -175,7 +175,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       },
       onTapUp: (details) {
         if (clickable) {
-          widget.onClick();
+          widget.onPressed();
         }
         hasTapUp = true;
         _resetIfTapUp();

@@ -202,7 +202,7 @@ class NeumorphicRadio<T> extends StatelessWidget {
     final Color color = isSelected ? selectedColor : unselectedColor;
 
     return NeumorphicButton(
-      onClick: () {
+      onPressed: () {
         _onClick();
       },
       duration: this.duration,

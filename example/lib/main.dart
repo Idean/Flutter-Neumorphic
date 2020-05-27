@@ -43,7 +43,7 @@ class MyHomePage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             NeumorphicButton(
-              onClick: () {
+              onPressed: () {
                 print("onClick");
               },
               style: NeumorphicStyle(shape: NeumorphicShape.flat),
@@ -56,7 +56,7 @@ class MyHomePage extends StatelessWidget {
             ),
             NeumorphicButton(
                 margin: EdgeInsets.only(top: 12),
-                onClick: () {
+                onPressed: () {
                   NeumorphicTheme.of(context).usedTheme =
                       NeumorphicTheme.isUsingDark(context)
                           ? UsedTheme.LIGHT
@@ -72,7 +72,7 @@ class MyHomePage extends StatelessWidget {
                 )),
             NeumorphicButton(
                 margin: EdgeInsets.only(top: 12),
-                onClick: () {
+                onPressed: () {
                   Navigator.of(context)
                       .pushReplacement(MaterialPageRoute(builder: (context) {
                     return FullSampleHomePage();

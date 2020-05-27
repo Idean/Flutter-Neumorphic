@@ -176,7 +176,7 @@ class NeumorphicCheckbox extends StatelessWidget {
       margin: this.margin,
       duration: this.duration,
       curve: this.curve,
-      onClick: () {
+      onPressed: () {
         if (this.isEnabled) {
           _onClick();
         }

@@ -1,3 +1,8 @@
+## 2.2.0
+
+* Renamed NeumorphicButton.`onClick` to NeumorphicButton.`onPressed`
+* Added `NeumorphicTextStyle`
+
 ## 2.1.0+1
 
 * Added NeumorphicText
