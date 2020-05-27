@@ -32,7 +32,7 @@ class NeumorphicBoxShape {
   NeumorphicBoxShape.beveled(BorderRadius borderRadius)
       : this._(BeveledPathProvider(borderRadius));
 
-  bool get isCustomPath => !isStadium && !isRect && !isCircle && !isRoundRect;
+  bool get isCustomPath => !isStadium && !isRect && !isCircle && !isRoundRect && !isBeveled;
 
   bool get isStadium =>
       customShapePathProvider.runtimeType == StadiumPathProvider;
@@ -85,6 +85,14 @@ class NeumorphicBoxShape {
     }
     if (b.isCircle || b.isRect || b.isStadium || b.isCustomPath) {
       return b;
+    }
+
+    if(a.isBeveled && b.isBeveled){
+      return NeumorphicBoxShape.beveled(BorderRadius.lerp(
+        (a.customShapePathProvider as BeveledPathProvider).borderRadius,
+        (b.customShapePathProvider as BeveledPathProvider).borderRadius,
+        t,
+      ));
     }
 
     return NeumorphicBoxShape.roundRect(BorderRadius.lerp(
