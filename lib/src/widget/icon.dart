@@ -28,7 +28,7 @@ class NeumorphicIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return NeumorphicText(
       String.fromCharCode(icon.codePoint),
-      textStyle: TextStyle(
+      textStyle: NeumorphicTextStyle(
         fontSize: size,
         fontFamily: icon.fontFamily,
         package: icon.fontPackage,
