@@ -43,7 +43,7 @@ class __PageState extends State<_Page> {
 
   final _textController = TextEditingController(text: "Flutter");
 
-  bool displayIcon = true;
+  bool displayIcon = false;
 
   Widget neumorphicText() {
     if (displayIcon) {
@@ -61,7 +61,7 @@ class __PageState extends State<_Page> {
     } else {
       return NeumorphicText(
         this._textController.text,
-        textStyle: TextStyle(
+        textStyle: NeumorphicTextStyle(
           fontSize: this.fontSize,
           fontWeight: _fontWeight(),
         ),
