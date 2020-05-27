@@ -62,6 +62,9 @@ class __PageState extends State<_Page> {
       child: NeumorphicBackground(
         child: Scaffold(
             backgroundColor: Colors.transparent,
+            appBar: NeumorphicAppBar(
+              title: Text('Playground'),
+            ),
             body: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
