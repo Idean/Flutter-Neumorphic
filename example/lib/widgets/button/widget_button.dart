@@ -77,7 +77,7 @@ class _DefaultWidgetState extends State<_DefaultWidget> {
   Widget _buildCode(BuildContext context) {
     return Code("""
 NeumorphicButton(
-     onClick: () {
+     onPressed: () {
         
      },
      child: Text("Click me"),
@@ -128,7 +128,7 @@ class _CircleWidgetState extends State<_CircleWidget> {
     return Code("""
 NeumorphicButton(
      boxShape: NeumorphicBoxShape.circle(),
-     onClick: () {
+     onPressed: () {
        
      },
      padding: EdgeInsets.all(18.0),
@@ -183,7 +183,7 @@ class _MinDistanceWidgetState extends State<_MinDistanceWidget> {
 NeumorphicButton(
      boxShape: NeumorphicBoxShape.circle(),
      minDistance: -5.0,
-     onClick: () {
+     onPressed: () {
        
      },
      padding: EdgeInsets.all(18.0),
@@ -239,7 +239,7 @@ class _ColorizableWidgetState extends State<_ColorizableWidget> {
   Widget _buildCode(BuildContext context) {
     return Code("""
 NeumorphicButton(
-    onClick: (){
+    onPressed: (){
 
     },
     style: NeumorphicStyle(
@@ -337,7 +337,7 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
 NeumorphicButton(
      isEnabled: false,
      child: Text("Second"),
-     onClick: () {
+     onPressed: () {
        
      },
 ),
@@ -364,7 +364,7 @@ class _DurationWidgetState extends State<_DurationWidget> {
   Widget _buildCode(BuildContext context) {
     return Code("""
 NeumorphicButton(
-    onClick: (){
+    onPressed: (){
 
     },
     child: Text("Press me all night long"),
@@ -426,7 +426,7 @@ NeumorphicButton(
          shape: NeumorphicShape.flat 
          //or convex, concave
     ),
-    onClick: () {
+    onPressed: () {
         
     },
     child: ...
