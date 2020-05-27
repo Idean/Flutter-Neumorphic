@@ -1,3 +1,7 @@
+## 2.2.1
+
+* Added Beveled shape
+
 ## 2.2.0
 
 * Renamed NeumorphicButton.`onClick` to NeumorphicButton.`onPressed`

@@ -41,12 +41,12 @@ class BeveledPathProvider extends NeumorphicPathProvider {
     final List<Offset> vertices = <Offset>[
       Offset(rrect.left, math.min(centerLeft.dy, rrect.top + tlRadiusY)),
       Offset(math.min(centerTop.dx, rrect.left + tlRadiusX), rrect.top),
-      Offset(math.max(centerTop.dx, rrect.right -trRadiusX), rrect.top),
+      Offset(math.max(centerTop.dx, rrect.right - trRadiusX), rrect.top),
       Offset(rrect.right, math.min(centerRight.dy, rrect.top + trRadiusY)),
       Offset(rrect.right, math.max(centerRight.dy, rrect.bottom - brRadiusY)),
       Offset(math.max(centerBottom.dx, rrect.right - brRadiusX), rrect.bottom),
       Offset(math.min(centerBottom.dx, rrect.left + blRadiusX), rrect.bottom),
-      Offset(rrect.left, math.max(centerLeft.dy, rrect.bottom  - blRadiusY)),
+      Offset(rrect.left, math.max(centerLeft.dy, rrect.bottom - blRadiusY)),
     ];
 
     return Path()..addPolygon(vertices, true);
