@@ -3,9 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_neumorphic/src/widget/back_button.dart';
 
-const double _kToolbarHeight = kToolbarHeight + 16 * 2;
-
 class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
+  static const toolbarHeight = kToolbarHeight + 16 * 2;
+
   /// The primary widget displayed in the app bar.
   ///
   /// Typically a [Text] widget that contains a description of the current
@@ -58,18 +58,22 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// Defaults to [NavigationToolbar.kMiddleSpacing].
   final double titleSpacing;
 
+  /// Force background color of the app bar
+  final Color color;
+
   @override
   final Size preferredSize;
 
   NeumorphicAppBar({
     Key key,
     this.title,
+    this.color,
     this.actions,
     this.leading,
     this.automaticallyImplyLeading = true,
     this.centerTitle,
     this.titleSpacing = NavigationToolbar.kMiddleSpacing,
-  })  : preferredSize = Size.fromHeight(_kToolbarHeight),
+  })  : preferredSize = Size.fromHeight(toolbarHeight),
         super(key: key);
 
   @override
@@ -131,19 +135,6 @@ class _NeumorphicAppBarState extends State<NeumorphicAppBar> {
 
     Widget title = widget.title;
     if (title != null) {
-      bool namesRoute;
-      switch (theme.platform) {
-        case TargetPlatform.android:
-        case TargetPlatform.fuchsia:
-        case TargetPlatform.linux:
-        case TargetPlatform.windows:
-          namesRoute = true;
-          break;
-        case TargetPlatform.iOS:
-        case TargetPlatform.macOS:
-          break;
-      }
-
       final AppBarTheme appBarTheme = AppBarTheme.of(context);
       title = DefaultTextStyle(
         style: appBarTheme.textTheme?.headline6 ?? Theme.of(context).textTheme.headline6,
@@ -167,7 +158,8 @@ class _NeumorphicAppBarState extends State<NeumorphicAppBar> {
         tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
       );
     }
-    return NeumorphicBackground(
+    return Container(
+      color: widget.color ?? NeumorphicTheme.baseColor(context),
       child: SafeArea(
         bottom: false,
         child: Padding(

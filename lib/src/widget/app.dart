@@ -30,7 +30,7 @@ class NeumorphicApp extends StatelessWidget {
     this.initialRoute,
     this.routes = const {},
     this.home,
-    this.debugShowCheckedModeBanner,
+    this.debugShowCheckedModeBanner = true,
     this.navigatorKey,
     this.navigatorObservers = const [],
     this.onGenerateRoute,
@@ -48,9 +48,22 @@ class NeumorphicApp extends StatelessWidget {
   }) : super(key: key);
 
   ThemeData _getMaterialTheme(NeumorphicThemeData theme) {
+    final color = theme.accentColor;
+
+    if (color is MaterialColor) {
+      return ThemeData(
+        primarySwatch: color,
+        textTheme: theme.textTheme,
+        scaffoldBackgroundColor: theme.baseColor,
+      );
+    }
+
     return ThemeData(
       primaryColor: theme.accentColor,
       accentColor: theme.variantColor,
+      brightness: ThemeData.estimateBrightnessForColor(theme.baseColor),
+      primaryColorBrightness: ThemeData.estimateBrightnessForColor(theme.accentColor),
+      accentColorBrightness: ThemeData.estimateBrightnessForColor(theme.variantColor),
       textTheme: theme.textTheme,
       scaffoldBackgroundColor: theme.baseColor,
     );
