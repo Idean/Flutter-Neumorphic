@@ -100,6 +100,7 @@ class _NeumorphicAppBarState extends State<NeumorphicAppBar> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    final nTheme = NeumorphicTheme.of(context);
     final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
     final bool canPop = parentRoute?.canPop ?? false;
     final bool useCloseButton = parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
@@ -111,7 +112,8 @@ class _NeumorphicAppBarState extends State<NeumorphicAppBar> {
     if (leading == null && widget.automaticallyImplyLeading) {
       if (hasDrawer) {
         leading = NeumorphicButton(
-          child: const Icon(Icons.menu),
+          padding: const EdgeInsets.all(0),
+          child: Icon(Icons.menu, color: nTheme.current.accentColor),
           onPressed: _handleDrawerButton,
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
         );
@@ -119,7 +121,8 @@ class _NeumorphicAppBarState extends State<NeumorphicAppBar> {
         if (canPop)
           leading = useCloseButton
               ? NeumorphicButton(
-                  child: const Icon(Icons.close),
+                  padding: const EdgeInsets.all(0),
+                  child: Icon(Icons.close, color: nTheme.current.accentColor),
                   tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
                   onPressed: () => Navigator.maybePop(context),
                 )
@@ -152,10 +155,14 @@ class _NeumorphicAppBarState extends State<NeumorphicAppBar> {
         children: widget.actions,
       );
     } else if (hasEndDrawer) {
-      actions = NeumorphicButton(
-        child: const Icon(Icons.menu),
-        onPressed: _handleDrawerButtonEnd,
-        tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+      actions = ConstrainedBox(
+          constraints: const BoxConstraints.tightFor(width: kToolbarHeight, height: kToolbarHeight),
+          child: NeumorphicButton(
+            padding: const EdgeInsets.all(0),
+            child: Icon(Icons.menu, color: nTheme.current.accentColor),
+            onPressed: _handleDrawerButtonEnd,
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          ),
       );
     }
     return Container(
