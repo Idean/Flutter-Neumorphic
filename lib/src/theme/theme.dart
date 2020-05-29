@@ -61,8 +61,6 @@ class NeumorphicThemeData {
   final bool disableDepth;
   /// Default text theme to use and apply across the app
   final TextTheme textTheme;
-  /// Default style to use and apply across the app
-  final NeumorphicStyle defaultStyle;
 
   /// Get this theme's depth, clamp to min/max neumorphic constants
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
@@ -76,7 +74,6 @@ class NeumorphicThemeData {
     double depth = _defaultDepth,
     double intensity = _defaultIntensity,
     this.accentColor = _defaultAccent,
-    this.defaultStyle = const NeumorphicStyle(),
     this.variantColor = _defaultVariant,
     this.disabledColor = _defaultDisabledColor,
     this.shadowLightColor = NeumorphicColors.decorationMaxWhiteColor,
@@ -96,7 +93,6 @@ class NeumorphicThemeData {
     this.baseColor = NeumorphicColors.darkBackground,
     double depth = _defaultDepth,
     double intensity = _defaultIntensity,
-    this.defaultStyle = const NeumorphicStyle(),
     this.accentColor = _defaultAccent,
     this.textTheme = const TextTheme(),
     this.variantColor = NeumorphicColors.darkVariant,
@@ -124,7 +120,6 @@ class NeumorphicThemeData {
       other is NeumorphicThemeData &&
           runtimeType == other.runtimeType &&
           baseColor == other.baseColor &&
-          defaultStyle == other.defaultStyle &&
           textTheme == other.textTheme &&
           accentColor == other.accentColor &&
           shadowDarkColor == other.shadowDarkColor &&
@@ -144,7 +139,6 @@ class NeumorphicThemeData {
   @override
   int get hashCode =>
       baseColor.hashCode ^
-      defaultStyle.hashCode ^
       textTheme.hashCode ^
       accentColor.hashCode ^
       variantColor.hashCode ^
@@ -184,7 +178,6 @@ class NeumorphicThemeData {
   }) {
     return new NeumorphicThemeData(
       baseColor: baseColor ?? this.baseColor,
-      defaultStyle: defaultStyle ?? this.defaultStyle,
       textTheme: textTheme ?? this.textTheme,
       accentColor: accentColor ?? this.accentColor,
       variantColor: variantColor ?? this.variantColor,
@@ -224,7 +217,6 @@ class NeumorphicThemeData {
       shadowLightColorEmboss:
           other.shadowLightColorEmboss ?? this.shadowLightColorEmboss,
       textTheme: other.textTheme ?? this.textTheme,
-      defaultStyle: other.defaultStyle ?? this.defaultStyle,
       depth: other.depth ?? this._depth,
       borderColor: other.borderColor ?? this.borderColor,
       borderWidth: other.borderWidth ?? this.borderWidth,
