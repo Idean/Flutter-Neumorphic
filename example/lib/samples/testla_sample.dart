@@ -61,34 +61,11 @@ class __PageContentState extends State<_PageContent> {
         Align(
           alignment: Alignment.centerLeft,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
-            child: Neumorphic(
-              drawSurfaceAboveChild: false,
-              padding: EdgeInsets.all(2),
-              boxShape: NeumorphicBoxShape.circle(),
-              style: NeumorphicStyle(
-                color: Color(0xFF111111),
-                depth: 8,
-                intensity: 0.3,
-                shape: NeumorphicShape.concave,
-              ),
-              child: NeumorphicButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                boxShape: NeumorphicBoxShape.circle(),
-                style: NeumorphicStyle(
-                  color: Color(0xFF17181C),
-                  depth: 0,
-                  shape: NeumorphicShape.convex,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: Colors.grey,
-                  ),
-                ),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+            child: _bumpButton(
+              Icon(
+                Icons.arrow_back,
+                color: Colors.grey,
               ),
             ),
           ),
@@ -96,37 +73,40 @@ class __PageContentState extends State<_PageContent> {
         Align(
           alignment: Alignment.centerRight,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
-            child: Neumorphic(
-              drawSurfaceAboveChild: false,
-              padding: EdgeInsets.all(2),
-              boxShape: NeumorphicBoxShape.circle(),
-              style: NeumorphicStyle(
-                color: Color(0xFF111111),
-                depth: 8,
-                intensity: 0.3,
-                shape: NeumorphicShape.concave,
-              ),
-              child: NeumorphicButton(
-                onPressed: () {},
-                boxShape: NeumorphicBoxShape.circle(),
-                style: NeumorphicStyle(
-                  color: Color(0xFF17181C),
-                  depth: 0,
-                  shape: NeumorphicShape.convex,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.settings,
-                    color: Colors.grey,
-                  ),
-                ),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+            child: _bumpButton(
+              Icon(
+                Icons.settings,
+                color: Colors.grey,
               ),
             ),
           ),
         )
       ],
+    );
+  }
+
+  Widget _bumpButton(Widget child) {
+    return Neumorphic(
+      drawSurfaceAboveChild: false,
+      boxShape: NeumorphicBoxShape.circle(),
+      style: NeumorphicStyle(
+        color: Color(0xFF2D3238),
+        depth: 8,
+        intensity: 0.3,
+        shape: NeumorphicShape.concave,
+      ),
+      child: NeumorphicButton(
+          onPressed: () {},
+          margin: EdgeInsets.all(3),
+          padding: EdgeInsets.all(14.0),
+          boxShape: NeumorphicBoxShape.circle(),
+          style: NeumorphicStyle(
+            color: Color(0xFF212528),
+            depth: 0,
+            shape: NeumorphicShape.convex,
+          ),
+          child: child),
     );
   }
 
@@ -161,10 +141,7 @@ class __PageContentState extends State<_PageContent> {
           children: <Widget>[
             Text(
               "297",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 120,
-                  fontWeight: FontWeight.w200),
+              style: TextStyle(color: Colors.white, fontSize: 120, fontWeight: FontWeight.w200),
             ),
             Text(
               "km",
