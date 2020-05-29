@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return NeumorphicApp(
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.light,
       title: 'Flutter Neumorphic',
       home: FullSampleHomePage(),
     );
