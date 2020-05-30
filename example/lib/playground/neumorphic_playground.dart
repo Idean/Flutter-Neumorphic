@@ -60,9 +60,9 @@ class __PageState extends State<_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: NeumorphicTheme.baseColor(context),
-        appBar: NeumorphicAppBar(
-          title: Text('Playground'),
-        ),
+        //appBar: NeumorphicAppBar(
+        //  title: Text('Playground'),
+        //),
         body: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
