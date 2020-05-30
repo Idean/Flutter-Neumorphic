@@ -1,14 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'inherited_neumorphic_theme.dart';
 import 'theme.dart';
 import 'theme_wrapper.dart';
-import 'used_theme.dart';
 
+export 'inherited_neumorphic_theme.dart';
 export 'theme.dart';
 export 'theme_wrapper.dart';
-export 'used_theme.dart';
-export 'inherited_neumorphic_theme.dart';
 
 /// The NeumorphicTheme (provider)
 /// 1. Defines the used neumorphic theme used in child widgets
@@ -47,14 +46,14 @@ class NeumorphicTheme extends StatefulWidget {
   final NeumorphicThemeData theme;
   final NeumorphicThemeData darkTheme;
   final Widget child;
-  final UsedTheme usedTheme;
+  final ThemeMode themeMode;
 
   NeumorphicTheme({
     Key key,
     @required this.child,
     this.theme = neumorphicDefaultTheme,
     this.darkTheme = neumorphicDefaultDarkTheme,
-    this.usedTheme,
+    this.themeMode,
   });
 
   @override
@@ -147,7 +146,7 @@ class _NeumorphicThemeState extends State<NeumorphicTheme> {
     super.initState();
     _themeHost = ThemeWrapper(
       theme: widget.theme,
-      usedTheme: widget.usedTheme,
+      themeMode: widget.themeMode,
       darkTheme: widget.darkTheme,
     );
   }
@@ -158,7 +157,7 @@ class _NeumorphicThemeState extends State<NeumorphicTheme> {
     setState(() {
       _themeHost = ThemeWrapper(
         theme: widget.theme,
-        usedTheme: widget.usedTheme,
+        themeMode: widget.themeMode,
         darkTheme: widget.darkTheme,
       );
     });

@@ -10,7 +10,7 @@ class _ButtonSampleState extends State<ButtonSample> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
-        usedTheme: UsedTheme.LIGHT,
+        themeMode: ThemeMode.light,
         theme: NeumorphicThemeData(
           baseColor: Color(0xFFFFFFFF),
           intensity: 0.5,
@@ -52,8 +52,8 @@ class __PageState extends State<_Page> {
               onPressed: () {
                 setState(() {
                   _useDark = !_useDark;
-                  NeumorphicTheme.of(context).usedTheme =
-                      _useDark ? UsedTheme.DARK : UsedTheme.LIGHT;
+                  NeumorphicTheme.of(context).themeMode =
+                      _useDark ? ThemeMode.dark : ThemeMode.light;
                 });
               },
               child: Text("toggle theme"),

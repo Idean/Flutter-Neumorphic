@@ -14,7 +14,7 @@ class FormSample extends StatelessWidget {
         depth: 8,
         intensity: 0.65,
       ),
-      usedTheme: UsedTheme.LIGHT,
+      themeMode: ThemeMode.light,
       child: Material(
         child: NeumorphicBackground(
           child: _Page(),

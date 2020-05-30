@@ -1,13 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'theme.dart';
 import 'theme_wrapper.dart';
-import 'used_theme.dart';
 
 export 'theme.dart';
 export 'theme_wrapper.dart';
-export 'used_theme.dart';
 
 typedef NeumorphicThemeUpdater = NeumorphicThemeData Function(
     NeumorphicThemeData current);
@@ -34,9 +33,9 @@ class NeumorphicThemeInherited extends InheritedWidget {
     return value.useDark;
   }
 
-  UsedTheme get usedTheme => value.usedTheme;
+  ThemeMode get themeMode => value.themeMode;
 
-  set usedTheme(UsedTheme currentTheme) {
+  set themeMode(ThemeMode currentTheme) {
     this.onChanged(value.copyWith(currentTheme: currentTheme));
   }
 

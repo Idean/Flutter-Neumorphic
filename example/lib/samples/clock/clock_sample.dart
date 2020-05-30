@@ -16,7 +16,7 @@ class ClockSample extends StatelessWidget {
           depth: 8,
           intensity: 0.5,
           lightSource: LightSource.topLeft),
-      usedTheme: UsedTheme.LIGHT,
+      themeMode: ThemeMode.light,
       child: Material(
         child: NeumorphicBackground(
           child: _ClockFirstPage(),

@@ -15,7 +15,7 @@ class _WidgetPageState extends State<TipsBorderPage> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
-      usedTheme: UsedTheme.LIGHT,
+      themeMode: ThemeMode.light,
       theme: NeumorphicThemeData(
         lightSource: LightSource.topLeft,
         accentColor: NeumorphicColors.accent,

@@ -11,7 +11,7 @@ class _NeumorphicPlaygroundState extends State<NeumorphicPlayground> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
-      usedTheme: UsedTheme.LIGHT,
+      themeMode: ThemeMode.light,
       theme: NeumorphicThemeData(
         baseColor: Color(0xffDDDDDD),
         lightSource: LightSource.topLeft,
@@ -58,48 +58,46 @@ class __PageState extends State<_Page> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: NeumorphicBackground(
-        child: Scaffold(
-            backgroundColor: Colors.transparent,
-            body: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    color: Theme.of(context).accentColor,
-                    child: Text(
-                      "back",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
+    return Scaffold(
+        appBar: NeumorphicAppBar(
+          title: Text('Playground'),
+        ),
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                color: Theme.of(context).accentColor,
+                child: Text(
+                  "back",
+                  style: TextStyle(color: Colors.white),
                 ),
-                Flexible(
-                  flex: 1,
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      lightSourceWidgets(),
-                      Center(child: neumorphic()),
-                    ],
-                  ),
-                ),
-                Flexible(
-                  flex: 1,
-                  child: _configurators(),
-                )
-              ],
-            )),
-      ),
-    );
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  lightSourceWidgets(),
+                  Center(child: neumorphic()),
+                ],
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: _configurators(),
+            )
+          ],
+        ));
   }
 
   int selectedConfiguratorIndex = 0;

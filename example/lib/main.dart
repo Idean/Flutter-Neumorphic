@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: NeumorphicTheme(
-          usedTheme: UsedTheme.LIGHT,
+          themeMode: ThemeMode.light,
           theme: NeumorphicThemeData(
             baseColor: Color(0xFFFFFFFF),
             lightSource: LightSource.topLeft,
@@ -57,10 +57,10 @@ class MyHomePage extends StatelessWidget {
             NeumorphicButton(
                 margin: EdgeInsets.only(top: 12),
                 onPressed: () {
-                  NeumorphicTheme.of(context).usedTheme =
+                  NeumorphicTheme.of(context).themeMode =
                       NeumorphicTheme.isUsingDark(context)
-                          ? UsedTheme.LIGHT
-                          : UsedTheme.DARK;
+                          ? ThemeMode.light
+                          : ThemeMode.dark;
                 },
                 style: NeumorphicStyle(shape: NeumorphicShape.flat),
                 boxShape:
