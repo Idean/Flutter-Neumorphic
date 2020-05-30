@@ -59,6 +59,7 @@ class __PageState extends State<_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: NeumorphicTheme.baseColor(context),
         appBar: NeumorphicAppBar(
           title: Text('Playground'),
         ),
