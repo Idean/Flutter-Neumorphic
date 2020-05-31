@@ -93,8 +93,8 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
     for (int i = 0; i < number; ++i) {
       element = Neumorphic(
         padding: EdgeInsets.all(20),
-        boxShape: NeumorphicBoxShape.circle(),
         style: NeumorphicStyle(
+          boxShape: NeumorphicBoxShape.circle(),
           depth: -(NeumorphicTheme.depth(context).abs()), //force negative
           oppositeShadowLightSource: (reverseEachPair && i % 2 == 0),
         ),

@@ -56,8 +56,9 @@ class __PageState extends State<_Page> {
             Neumorphic(
               margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
-              style: NeumorphicStyle(),
+              style: NeumorphicStyle(
+                boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
+              ),
               child: Column(
                 children: <Widget>[
                   SizedBox(
@@ -66,10 +67,8 @@ class __PageState extends State<_Page> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: NeumorphicButton(
-                      onPressed: () {},
-                      isEnabled: _isButtonEnabled(),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      onPressed: _isButtonEnabled() ? () {} : null,
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       child: Text(
                         "Sign Up",
                         style: TextStyle(fontWeight: FontWeight.w800),
@@ -161,9 +160,9 @@ class _AvatarField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Neumorphic(
-        boxShape: NeumorphicBoxShape.circle(),
         padding: EdgeInsets.all(10),
         style: NeumorphicStyle(
+          boxShape: NeumorphicBoxShape.circle(),
           depth: NeumorphicTheme.embossDepth(context),
         ),
         child: Icon(
@@ -261,8 +260,10 @@ class __TextFieldState extends State<_TextField> {
         ),
         Neumorphic(
           margin: EdgeInsets.only(left: 8, right: 8, top: 2, bottom: 4),
-          boxShape: NeumorphicBoxShape.stadium(),
-          style: NeumorphicStyle(depth: NeumorphicTheme.embossDepth(context)),
+          style: NeumorphicStyle(
+            depth: NeumorphicTheme.embossDepth(context),
+            boxShape: NeumorphicBoxShape.stadium(),
+          ),
           padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18),
           child: TextField(
             onChanged: this.widget.onChanged,
@@ -305,7 +306,9 @@ class _GenderField extends StatelessWidget {
             NeumorphicRadio(
               groupValue: this.gender,
               padding: EdgeInsets.all(20),
-              boxShape: NeumorphicBoxShape.circle(),
+              style: NeumorphicRadioStyle(
+                boxShape: NeumorphicBoxShape.circle(),
+              ),
               value: Gender.MALE,
               child: Icon(Icons.account_box),
               onChanged: (value) => this.onChanged(value),
@@ -314,7 +317,9 @@ class _GenderField extends StatelessWidget {
             NeumorphicRadio(
               groupValue: this.gender,
               padding: EdgeInsets.all(20),
-              boxShape: NeumorphicBoxShape.circle(),
+              style: NeumorphicRadioStyle(
+                boxShape: NeumorphicBoxShape.circle(),
+              ),
               value: Gender.FEMALE,
               child: Icon(Icons.pregnant_woman),
               onChanged: (value) => this.onChanged(value),
@@ -323,7 +328,9 @@ class _GenderField extends StatelessWidget {
             NeumorphicRadio(
               groupValue: this.gender,
               padding: EdgeInsets.all(20),
-              boxShape: NeumorphicBoxShape.circle(),
+              style: NeumorphicRadioStyle(
+                boxShape: NeumorphicBoxShape.circle(),
+              ),
               value: Gender.NON_BINARY,
               child: Icon(Icons.supervised_user_circle),
               onChanged: (value) => this.onChanged(value),

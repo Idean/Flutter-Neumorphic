@@ -154,8 +154,8 @@ class NeumorphicSwitch extends StatelessWidget {
           },
           child: Neumorphic(
             drawSurfaceAboveChild: false,
-            boxShape: NeumorphicBoxShape.stadium(),
             style: NeumorphicStyle(
+              boxShape: NeumorphicBoxShape.stadium(),
               lightSource: this.style.lightSource ?? theme.lightSource,
               border: this.style.trackBorder,
               disableDepth: this.style.disableDepth,
@@ -256,14 +256,14 @@ class AnimatedThumb extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Neumorphic(
-          boxShape: NeumorphicBoxShape.circle(),
           style: NeumorphicStyle(
-              disableDepth: this.disableDepth,
-              shape: shape,
-              depth: this.depth,
-              color: thumbColor,
-              border: this.border,
-              lightSource: this.lightSource,
+            boxShape: NeumorphicBoxShape.circle(),
+            disableDepth: this.disableDepth,
+            shape: shape,
+            depth: this.depth,
+            color: thumbColor,
+            border: this.border,
+            lightSource: this.lightSource,
           ),
           child: AspectRatio(
             aspectRatio: 1,

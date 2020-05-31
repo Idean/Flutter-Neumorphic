@@ -6,9 +6,9 @@ class NeumorphicBack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NeumorphicButton(
-      boxShape: NeumorphicBoxShape.circle(),
       padding: EdgeInsets.all(18),
       style: NeumorphicStyle(
+        boxShape: NeumorphicBoxShape.circle(),
         shape: NeumorphicShape.flat,
       ),
       child: Icon(

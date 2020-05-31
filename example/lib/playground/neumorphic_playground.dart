@@ -288,9 +288,9 @@ class __PageState extends State<_Page> {
       onPressed: () {
         setState(() {});
       },
-      boxShape: boxShape,
       drawSurfaceAboveChild: this.drawAboveChild,
       style: NeumorphicStyle(
+        boxShape: boxShape,
         //border: NeumorphicBorder(),
         shape: this.shape,
         intensity: this.intensity,
@@ -321,10 +321,10 @@ class __PageState extends State<_Page> {
     return Neumorphic(
       padding: EdgeInsets.zero,
       duration: Duration(milliseconds: 300),
-      boxShape: boxShape,
       margin: EdgeInsets.all(this.childMargin),
       drawSurfaceAboveChild: true,
       style: NeumorphicStyle(
+          boxShape: boxShape,
           //shape: this.shape,
           intensity: this.intensity,
           surfaceIntensity: this.surfaceIntensity,

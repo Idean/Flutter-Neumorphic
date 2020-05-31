@@ -46,8 +46,10 @@ class MyHomePage extends StatelessWidget {
               onPressed: () {
                 print("onClick");
               },
-              style: NeumorphicStyle(shape: NeumorphicShape.flat),
-              boxShape: NeumorphicBoxShape.circle(),
+              style: NeumorphicStyle(
+                shape: NeumorphicShape.flat,
+                boxShape: NeumorphicBoxShape.circle(),
+              ),
               padding: const EdgeInsets.all(12.0),
               child: Icon(
                 Icons.favorite_border,
@@ -62,9 +64,10 @@ class MyHomePage extends StatelessWidget {
                           ? ThemeMode.light
                           : ThemeMode.dark;
                 },
-                style: NeumorphicStyle(shape: NeumorphicShape.flat),
-                boxShape:
-                    NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+                style: NeumorphicStyle(
+                    shape: NeumorphicShape.flat,
+                    boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+                ),
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
                   "Toggle Theme",
@@ -80,10 +83,9 @@ class MyHomePage extends StatelessWidget {
                 },
                 style: NeumorphicStyle(
                   shape: NeumorphicShape.flat,
+                  boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
                   //border: NeumorphicBorder()
                 ),
-                boxShape:
-                    NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
                   "Go to full sample",

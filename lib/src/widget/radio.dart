@@ -32,6 +32,7 @@ class NeumorphicRadioStyle {
   final NeumorphicShape shape;
 
   final NeumorphicBorder border;
+  final NeumorphicBoxShape boxShape;
 
   final LightSource lightSource;
 
@@ -42,6 +43,7 @@ class NeumorphicRadioStyle {
     this.unselectedColor,
     this.lightSource,
     this.disableDepth,
+    this.boxShape,
     this.border = const NeumorphicBorder.none(),
     this.intensity,
     this.shape,
@@ -59,6 +61,7 @@ class NeumorphicRadioStyle {
           unselectedDepth == other.unselectedDepth &&
           selectedColor == other.selectedColor &&
           unselectedColor == other.unselectedColor &&
+          boxShape == other.boxShape &&
           intensity == other.intensity &&
           shape == other.shape;
 
@@ -69,6 +72,7 @@ class NeumorphicRadioStyle {
       lightSource.hashCode ^
       selectedColor.hashCode ^
       unselectedColor.hashCode ^
+      boxShape.hashCode ^
       border.hashCode ^
       unselectedDepth.hashCode ^
       intensity.hashCode ^
@@ -152,7 +156,6 @@ class NeumorphicRadio<T> extends StatelessWidget {
   final Widget child;
   final T value;
   final T groupValue;
-  final NeumorphicBoxShape boxShape;
   final EdgeInsets padding;
   final NeumorphicRadioStyle style;
   final NeumorphicRadioListener<T> onChanged;
@@ -165,7 +168,6 @@ class NeumorphicRadio<T> extends StatelessWidget {
     this.child,
     this.style = const NeumorphicRadioStyle(),
     this.value,
-    this.boxShape,
     this.curve = Neumorphic.DEFAULT_CURVE,
     this.duration = Neumorphic.DEFAULT_DURATION,
     this.padding = EdgeInsets.zero,
@@ -215,12 +217,11 @@ class NeumorphicRadio<T> extends StatelessWidget {
       padding: this.padding,
       pressed: isSelected,
       minDistance: selectedDepth,
-      boxShape: this.boxShape ??
-          NeumorphicBoxShape.roundRect(BorderRadius.circular(5)),
       child: this.child,
       style: NeumorphicStyle(
         border: this.style.border,
         color: color,
+        boxShape: this.style.boxShape,
         lightSource: this.style.lightSource ?? theme.lightSource,
         disableDepth: this.style.disableDepth,
         intensity: this.style.intensity,

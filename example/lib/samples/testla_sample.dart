@@ -89,10 +89,10 @@ class __PageContentState extends State<_PageContent> {
   Widget _bumpButton(Widget child) {
     return Neumorphic(
       drawSurfaceAboveChild: false,
-      boxShape: NeumorphicBoxShape.circle(),
       style: NeumorphicStyle(
         color: Color(0xFF2D3238),
         depth: 8,
+        boxShape: NeumorphicBoxShape.circle(),
         intensity: 0.3,
         shape: NeumorphicShape.concave,
       ),
@@ -100,8 +100,8 @@ class __PageContentState extends State<_PageContent> {
           onPressed: () {},
           margin: EdgeInsets.all(3),
           padding: EdgeInsets.all(14.0),
-          boxShape: NeumorphicBoxShape.circle(),
           style: NeumorphicStyle(
+            boxShape: NeumorphicBoxShape.circle(),
             color: Color(0xFF212528),
             depth: 0,
             shape: NeumorphicShape.convex,
@@ -184,17 +184,17 @@ class __PageContentState extends State<_PageContent> {
             drawSurfaceAboveChild: false,
             onPressed: () {},
             padding: EdgeInsets.all(4),
-            boxShape: NeumorphicBoxShape.circle(),
             style: NeumorphicStyle(
               depth: 10,
+              boxShape: NeumorphicBoxShape.circle(),
               color: NeumorphicTheme.accentColor(context),
               shape: NeumorphicShape.flat,
             ),
             child: Neumorphic(
-              boxShape: NeumorphicBoxShape.circle(),
               style: NeumorphicStyle(
                 surfaceIntensity: 0.7,
                 depth: 0,
+                boxShape: NeumorphicBoxShape.circle(),
                 shape: NeumorphicShape.concave,
                 color: NeumorphicTheme.accentColor(context),
               ),

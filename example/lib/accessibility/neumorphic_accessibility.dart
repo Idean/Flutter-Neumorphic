@@ -306,8 +306,8 @@ class __PageState extends State<_Page> {
       onPressed: () {
         setState(() {});
       },
-      boxShape: boxShape,
       style: NeumorphicStyle(
+        boxShape: boxShape,
         border: NeumorphicBorder(
             isEnabled: true, width: this.borderWidth, color: this.borderColor),
         shape: this.shape,

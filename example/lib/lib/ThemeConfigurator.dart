@@ -7,10 +7,10 @@ class ThemeConfigurator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NeumorphicButton(
-      boxShape: NeumorphicBoxShape.circle(),
       padding: EdgeInsets.all(18),
       style: NeumorphicStyle(
         shape: NeumorphicShape.flat,
+        boxShape: NeumorphicBoxShape.circle(),
       ),
       child: Icon(
         Icons.settings,

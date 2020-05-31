@@ -27,14 +27,14 @@ class FullSampleHomePage extends StatelessWidget {
   Widget _buildButton({String text, VoidCallback onClick}) {
     return NeumorphicButton(
       margin: EdgeInsets.only(bottom: 12),
-      boxShape: NeumorphicBoxShape.roundRect(
-        BorderRadius.circular(12),
-      ),
       padding: EdgeInsets.symmetric(
         vertical: 18,
         horizontal: 24,
       ),
       style: NeumorphicStyle(
+        boxShape: NeumorphicBoxShape.roundRect(
+          BorderRadius.circular(12),
+        ),
         //border: NeumorphicBorder(
         //  isEnabled: true,
         //  width: 0.3,

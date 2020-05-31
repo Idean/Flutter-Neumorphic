@@ -175,9 +175,9 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
         widthFactor: 1,
         //width: constraints.maxWidth,
         child: Neumorphic(
-          boxShape: NeumorphicBoxShape.roundRect(widget.style.borderRadius),
           padding: EdgeInsets.zero,
           style: NeumorphicStyle(
+            boxShape: NeumorphicBoxShape.roundRect(widget.style.borderRadius),
             disableDepth: widget.style.disableDepth,
             border: widget.style.border,
             depth: widget.style.depth,
@@ -308,9 +308,9 @@ class _NeumorphicProgressIndeterminateState
       child: SizedBox(
         height: widget.height,
         child: Neumorphic(
-          boxShape: NeumorphicBoxShape.roundRect(widget.style.borderRadius),
           padding: EdgeInsets.zero,
           style: NeumorphicStyle(
+            boxShape: NeumorphicBoxShape.roundRect(widget.style.borderRadius),
             lightSource: widget.style.lightSource ?? theme.lightSource,
             border: widget.style.border,
             disableDepth: widget.style.disableDepth,

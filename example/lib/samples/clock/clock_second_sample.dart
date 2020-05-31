@@ -7,13 +7,7 @@ class ClockAlarmPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return NeumorphicTheme(
       theme: NeumorphicThemeData(
-          defaultTextColor: Color(0xFF303E57),
-          accentColor: Color(0xFF7B79FC),
-          variantColor: Colors.black38,
-          baseColor: Color(0xFFF8F9FC),
-          depth: 8,
-          intensity: 0.5,
-          lightSource: LightSource.topLeft),
+          defaultTextColor: Color(0xFF303E57), accentColor: Color(0xFF7B79FC), variantColor: Colors.black38, baseColor: Color(0xFFF8F9FC), depth: 8, intensity: 0.5, lightSource: LightSource.topLeft),
       themeMode: ThemeMode.light,
       child: Material(
         child: NeumorphicBackground(
@@ -74,12 +68,7 @@ class _ClockPageState extends State<_Page> {
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 28,
-                      shadows: [
-                        Shadow(
-                            color: Colors.black38,
-                            offset: Offset(1.0, 1.0),
-                            blurRadius: 2)
-                      ],
+                      shadows: [Shadow(color: Colors.black38, offset: Offset(1.0, 1.0), blurRadius: 2)],
                       color: NeumorphicTheme.defaultTextColor(context),
                     ),
                   ),
@@ -87,18 +76,21 @@ class _ClockPageState extends State<_Page> {
                 Align(
                   alignment: Alignment.topRight,
                   child: Neumorphic(
-                    style: NeumorphicStyle(depth: 20, intensity: 0.4),
-                    boxShape:
-                        NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+                    style: NeumorphicStyle(
+                      depth: 20,
+                      intensity: 0.4,
+                      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+                    ),
                     child: NeumorphicButton(
                       padding: EdgeInsets.all(12.0),
-                      boxShape: NeumorphicBoxShape.roundRect(
-                          BorderRadius.circular(8)),
                       child: Icon(
                         Icons.add,
                         color: Color(0xFFC1CDE5),
                       ),
-                      style: NeumorphicStyle(depth: -1),
+                      style: NeumorphicStyle(
+                          depth: -1,
+                          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+                      ),
                     ),
                   ),
                 ),
@@ -146,12 +138,7 @@ class AlarmCell extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 36,
-                        shadows: [
-                          Shadow(
-                              color: Colors.black38,
-                              offset: Offset(1.0, 1.0),
-                              blurRadius: 2)
-                        ],
+                        shadows: [Shadow(color: Colors.black38, offset: Offset(1.0, 1.0), blurRadius: 2)],
                         color: NeumorphicTheme.defaultTextColor(context),
                       ),
                     ),
@@ -178,11 +165,10 @@ class AlarmCell extends StatelessWidget {
                         style: NeumorphicStyle(
                           depth: 8,
                           intensity: 0.5,
+                          boxShape: NeumorphicBoxShape.stadium(),
                         ),
-                        boxShape: NeumorphicBoxShape.stadium(),
                         child: NeumorphicSwitch(
-                          style: NeumorphicSwitchStyle(
-                              inactiveTrackColor: Color(0xffC1CDE5)),
+                          style: NeumorphicSwitchStyle(inactiveTrackColor: Color(0xffC1CDE5)),
                           height: 30,
                           value: alarm.enabled,
                         ),
@@ -207,8 +193,10 @@ class _Divider extends StatelessWidget {
       widthFactor: 1,
       child: Neumorphic(
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        style: NeumorphicStyle(depth: -4),
-        boxShape: NeumorphicBoxShape.stadium(),
+        style: NeumorphicStyle(
+          depth: -4,
+          boxShape: NeumorphicBoxShape.stadium(),
+        ),
         child: SizedBox(
           height: 6,
         ),

@@ -210,8 +210,8 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
         border: widget.style.thumbBorder,
         lightSource: widget.style.lightSource ?? theme.lightSource,
         color: widget.style.accent ?? theme.accentColor,
+        boxShape: NeumorphicBoxShape.circle(),
       ),
-      boxShape: NeumorphicBoxShape.circle(),
       child: SizedBox(
         height: size,
         width: size,

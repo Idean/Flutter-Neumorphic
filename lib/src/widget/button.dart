@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-import '../neumorphic_box_shape.dart';
 import '../theme/neumorphic_theme.dart';
 import '../widget/app_bar.dart';
 import 'animation/animated_scale.dart';
@@ -58,12 +57,8 @@ class NeumorphicButton extends StatefulWidget {
   final Curve curve;
   final NeumorphicButtonClickListener onPressed;
   final bool drawSurfaceAboveChild;
-  final bool isEnabled;
   final bool provideHapticFeedback;
   final String tooltip;
-
-  final NeumorphicBoxShape _boxShape; //private
-  NeumorphicBoxShape get boxShape => _boxShape;
 
   NeumorphicButton({
     Key key,
@@ -73,18 +68,16 @@ class NeumorphicButton extends StatefulWidget {
     this.tooltip,
     this.drawSurfaceAboveChild = true,
     this.pressed, //true/false if you want to change the state of the button
-    NeumorphicBoxShape boxShape,
     this.duration = Neumorphic.DEFAULT_DURATION,
     this.curve = Neumorphic.DEFAULT_CURVE,
     //this.accent,
     this.onPressed,
     this.minDistance = 0,
     this.style,
-    this.isEnabled = true,
     this.provideHapticFeedback = true,
-  })  : _boxShape = boxShape ??
-            NeumorphicBoxShape.roundRect(BorderRadius.all(Radius.circular(8))),
-        super(key: key);
+  }) : super(key: key);
+
+  bool get isEnabled => onPressed != null;
 
   @override
   _NeumorphicButtonState createState() => _NeumorphicButtonState();
@@ -208,8 +201,9 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
           duration: widget.duration,
           curve: widget.curve,
           padding: widget.padding ?? (appBarPresent ? appBarTheme.buttonPadding : null) ?? const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-          boxShape: widget.boxShape,
-          style: initialStyle?.copyWith(depth: _getDepth()),
+          style: initialStyle.copyWith(
+            depth: _getDepth(),
+          ),
           child: widget.child,
         ),
       ),

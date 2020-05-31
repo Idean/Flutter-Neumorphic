@@ -52,8 +52,7 @@ class __PageState extends State<_Page> {
               onPressed: () {
                 setState(() {
                   _useDark = !_useDark;
-                  NeumorphicTheme.of(context).themeMode =
-                      _useDark ? ThemeMode.dark : ThemeMode.light;
+                  NeumorphicTheme.of(context).themeMode = _useDark ? ThemeMode.dark : ThemeMode.light;
                 });
               },
               child: Text("toggle theme"),
@@ -72,8 +71,10 @@ class __PageState extends State<_Page> {
         onPressed: () {
           print("click");
         },
-        style: NeumorphicStyle(shape: NeumorphicShape.flat),
-        boxShape: NeumorphicBoxShape.circle(),
+        style: NeumorphicStyle(
+          shape: NeumorphicShape.flat,
+          boxShape: NeumorphicBoxShape.circle(),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Icon(
