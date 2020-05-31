@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import '../neumorphic_box_shape.dart';
 import '../theme/neumorphic_theme.dart';
+import '../widget/app_bar.dart';
 import 'animation/animated_scale.dart';
 import 'container.dart';
 
@@ -181,6 +183,8 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   }
 
   Widget _build(BuildContext context) {
+    final appBarPresent = NeumorphicAppBarTheme.of(context) != null;
+
     return GestureDetector(
       onTapDown: (detail) {
         hasTapUp = false;

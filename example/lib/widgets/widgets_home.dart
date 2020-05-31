@@ -1,4 +1,5 @@
 import 'package:example/lib/top_bar.dart';
+import 'package:example/widgets/appbar/widget_app_bar.dart';
 import 'package:example/widgets/toggle/widget_toggle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -57,6 +58,14 @@ class WidgetsHome extends StatelessWidget {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
                           return ContainerWidgetPage();
+                        }));
+                      }),
+                  _buildButton(
+                      text: "App bar",
+                      onClick: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return AppBarWidgetPage();
                         }));
                       }),
                   _buildButton(

@@ -24,7 +24,6 @@ class NeumorphicBackButton extends StatelessWidget {
       tooltip: MaterialLocalizations.of(context).backButtonTooltip,
       child: Icon(
         [TargetPlatform.iOS, TargetPlatform.macOS].contains(theme.platform) ? Icons.arrow_back_ios : Icons.arrow_back,
-        color: nTheme.current.accentColor,
       ),
       onPressed: onPressed ?? () => Navigator.maybePop(context),
     );

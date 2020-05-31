@@ -61,14 +61,27 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// Force background color of the app bar
   final Color color;
 
+  /// Force color of the icon inside app bar
+  final IconThemeData iconTheme;
+
   @override
   final Size preferredSize;
+
+  final NeumorphicStyle buttonStyle;
+
+  final EdgeInsets buttonPadding;
+
+  final TextStyle textStyle;
 
   NeumorphicAppBar({
     Key key,
     this.title,
+    this.buttonPadding,
+    this.buttonStyle,
+    this.iconTheme,
     this.color,
     this.actions,
+    this.textStyle,
     this.leading,
     this.automaticallyImplyLeading = true,
     this.centerTitle,
@@ -77,7 +90,7 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
         super(key: key);
 
   @override
-  _NeumorphicAppBarState createState() => _NeumorphicAppBarState();
+  NeumorphicAppBarState createState() => NeumorphicAppBarState();
 
   bool _getEffectiveCenterTitle(ThemeData theme) {
     if (centerTitle != null) return centerTitle;
@@ -96,7 +109,22 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   }
 }
 
-class _NeumorphicAppBarState extends State<NeumorphicAppBar> {
+class NeumorphicAppBarTheme extends InheritedWidget {
+  final Widget child;
+
+  NeumorphicAppBarTheme({this.child}): super(child: child);
+
+  @override
+  bool updateShouldNotify(InheritedWidget oldWidget) {
+    return false;
+  }
+
+  static NeumorphicAppBarTheme of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType();
+  }
+}
+
+class NeumorphicAppBarState extends State<NeumorphicAppBar> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -112,8 +140,9 @@ class _NeumorphicAppBarState extends State<NeumorphicAppBar> {
     if (leading == null && widget.automaticallyImplyLeading) {
       if (hasDrawer) {
         leading = NeumorphicButton(
-          padding: const EdgeInsets.all(0),
-          child: Icon(Icons.menu, color: nTheme.current.accentColor),
+          padding: nTheme.current.appBarTheme.buttonPadding,
+          style: nTheme.current.appBarTheme.buttonStyle,
+          child: Icon(Icons.menu),
           onPressed: _handleDrawerButton,
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
         );
@@ -121,12 +150,16 @@ class _NeumorphicAppBarState extends State<NeumorphicAppBar> {
         if (canPop)
           leading = useCloseButton
               ? NeumorphicButton(
-                  padding: const EdgeInsets.all(0),
-                  child: Icon(Icons.close, color: nTheme.current.accentColor),
+                  padding: widget.buttonPadding ?? nTheme.current.appBarTheme.buttonPadding,
+                  style: widget.buttonStyle ?? nTheme.current.appBarTheme.buttonStyle,
+                  child: Icon(Icons.close),
                   tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
                   onPressed: () => Navigator.maybePop(context),
                 )
-              : const NeumorphicBackButton();
+              : NeumorphicBackButton(
+                  style: widget.buttonStyle ?? nTheme.current.appBarTheme.buttonStyle,
+                  padding: widget.buttonPadding ?? nTheme.current.appBarTheme.buttonPadding,
+                );
       }
     }
     if (leading != null) {
@@ -140,7 +173,7 @@ class _NeumorphicAppBarState extends State<NeumorphicAppBar> {
     if (title != null) {
       final AppBarTheme appBarTheme = AppBarTheme.of(context);
       title = DefaultTextStyle(
-        style: appBarTheme.textTheme?.headline6 ?? Theme.of(context).textTheme.headline6,
+        style: (appBarTheme.textTheme?.headline6 ?? Theme.of(context).textTheme.headline6).merge(widget.textStyle ?? nTheme.current.appBarTheme.textStyle),
         softWrap: false,
         overflow: TextOverflow.ellipsis,
         child: title,
@@ -152,31 +185,42 @@ class _NeumorphicAppBarState extends State<NeumorphicAppBar> {
       actions = Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: widget.actions,
+        children: widget.actions
+            .map((child) => ConstrainedBox(
+                  constraints: const BoxConstraints.tightFor(width: kToolbarHeight, height: kToolbarHeight),
+                  child: child,
+                ))
+            .toList(growable: false),
       );
     } else if (hasEndDrawer) {
       actions = ConstrainedBox(
-          constraints: const BoxConstraints.tightFor(width: kToolbarHeight, height: kToolbarHeight),
-          child: NeumorphicButton(
-            padding: const EdgeInsets.all(0),
-            child: Icon(Icons.menu, color: nTheme.current.accentColor),
-            onPressed: _handleDrawerButtonEnd,
-            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-          ),
+        constraints: const BoxConstraints.tightFor(width: kToolbarHeight, height: kToolbarHeight),
+        child: NeumorphicButton(
+          padding: widget.buttonPadding ?? nTheme.current.appBarTheme.buttonPadding,
+          style: widget.buttonStyle ?? nTheme.current.appBarTheme.buttonStyle,
+          child: Icon(Icons.menu),
+          onPressed: _handleDrawerButtonEnd,
+          tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+        ),
       );
     }
     return Container(
-      color: widget.color ?? NeumorphicTheme.baseColor(context),
+      color: widget.color ?? nTheme.current.appBarTheme.color,
       child: SafeArea(
         bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: NavigationToolbar(
-            leading: leading,
-            middle: title,
-            trailing: actions,
-            centerMiddle: widget._getEffectiveCenterTitle(theme),
-            middleSpacing: widget.titleSpacing,
+        child: NeumorphicAppBarTheme(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: IconTheme(
+              data: widget.iconTheme ?? nTheme.current.appBarTheme.iconTheme ?? IconThemeData(),
+              child: NavigationToolbar(
+                leading: leading,
+                middle: title,
+                trailing: actions,
+                centerMiddle: widget._getEffectiveCenterTitle(theme),
+                middleSpacing: widget.titleSpacing,
+              ),
+            ),
           ),
         ),
       ),
