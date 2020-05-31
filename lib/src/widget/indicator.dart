@@ -20,6 +20,7 @@ class IndicatorStyle {
   final bool disableDepth;
   final Color accent;
   final Color variant;
+  final LightSource lightSource;
 
   final AlignmentGeometry gradientStart;
   final AlignmentGeometry gradientEnd;
@@ -27,6 +28,7 @@ class IndicatorStyle {
   const IndicatorStyle({
     this.depth = -4,
     this.accent,
+    this.lightSource,
     this.variant,
     this.disableDepth,
     this.gradientStart,
@@ -41,6 +43,7 @@ class IndicatorStyle {
           depth == other.depth &&
           disableDepth == other.disableDepth &&
           accent == other.accent &&
+          lightSource == other.lightSource &&
           variant == other.variant &&
           gradientStart == other.gradientStart &&
           gradientEnd == other.gradientEnd;
@@ -51,6 +54,7 @@ class IndicatorStyle {
       disableDepth.hashCode ^
       accent.hashCode ^
       variant.hashCode ^
+      lightSource.hashCode ^
       gradientStart.hashCode ^
       gradientEnd.hashCode;
 }
@@ -193,6 +197,7 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator>
         boxShape: NeumorphicBoxShape.stadium(),
         padding: EdgeInsets.zero,
         style: NeumorphicStyle(
+          lightSource: widget.style.lightSource ?? theme.lightSource,
           disableDepth: widget.style.disableDepth,
           depth: widget.style.depth,
           shape: NeumorphicShape.flat,
@@ -213,6 +218,9 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator>
           child: Padding(
             padding: widget.padding,
             child: Neumorphic(
+              style: NeumorphicStyle(
+                lightSource: widget.style.lightSource ?? theme.lightSource,
+              ),
               boxShape: NeumorphicBoxShape.stadium(),
               child: Container(
                   decoration: BoxDecoration(

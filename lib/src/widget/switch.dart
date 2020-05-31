@@ -20,6 +20,7 @@ class NeumorphicSwitchStyle {
   final Color inactiveThumbColor;
   final NeumorphicShape thumbShape;
   final double thumbDepth;
+  final LightSource lightSource;
   final bool disableDepth;
 
   final NeumorphicBorder thumbBorder;
@@ -33,6 +34,7 @@ class NeumorphicSwitchStyle {
     this.activeThumbColor,
     this.inactiveThumbColor,
     this.thumbDepth,
+    this.lightSource,
     this.disableDepth,
     this.thumbBorder = const NeumorphicBorder.none(),
     this.trackBorder = const NeumorphicBorder.none(),
@@ -46,6 +48,7 @@ class NeumorphicSwitchStyle {
           trackDepth == other.trackDepth &&
           trackBorder == other.trackBorder &&
           thumbBorder == other.thumbBorder &&
+          lightSource == other.lightSource &&
           activeTrackColor == other.activeTrackColor &&
           inactiveTrackColor == other.inactiveTrackColor &&
           activeThumbColor == other.activeThumbColor &&
@@ -60,6 +63,7 @@ class NeumorphicSwitchStyle {
       activeTrackColor.hashCode ^
       trackBorder.hashCode ^
       thumbBorder.hashCode ^
+      lightSource.hashCode ^
       inactiveTrackColor.hashCode ^
       activeThumbColor.hashCode ^
       inactiveThumbColor.hashCode ^
@@ -152,6 +156,7 @@ class NeumorphicSwitch extends StatelessWidget {
             drawSurfaceAboveChild: false,
             boxShape: NeumorphicBoxShape.stadium(),
             style: NeumorphicStyle(
+              lightSource: this.style.lightSource ?? theme.lightSource,
               border: this.style.trackBorder,
               disableDepth: this.style.disableDepth,
               depth: _getTrackDepth(theme.depth),
@@ -167,6 +172,7 @@ class NeumorphicSwitch extends StatelessWidget {
                 duration: this.duration,
                 alignment: this._alignment,
                 shape: _getThumbShape,
+                lightSource: this.style.lightSource ?? theme.lightSource,
                 border: style.thumbBorder,
                 thumbColor: _getThumbColor(theme),
               ),
@@ -225,6 +231,7 @@ class AnimatedThumb extends StatelessWidget {
   final Curve curve;
   final bool disableDepth;
   final NeumorphicBorder border;
+  final LightSource lightSource;
 
   AnimatedThumb({
     Key key,
@@ -236,6 +243,7 @@ class AnimatedThumb extends StatelessWidget {
     this.depth,
     this.curve,
     this.border,
+    this.lightSource,
   }) : super(key: key);
 
   @override
@@ -254,7 +262,9 @@ class AnimatedThumb extends StatelessWidget {
               shape: shape,
               depth: this.depth,
               color: thumbColor,
-              border: this.border),
+              border: this.border,
+              lightSource: this.lightSource,
+          ),
           child: AspectRatio(
             aspectRatio: 1,
             child: FractionallySizedBox(
