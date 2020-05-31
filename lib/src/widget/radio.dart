@@ -33,11 +33,14 @@ class NeumorphicRadioStyle {
 
   final NeumorphicBorder border;
 
+  final LightSource lightSource;
+
   const NeumorphicRadioStyle({
     this.selectedDepth,
     this.unselectedDepth,
     this.selectedColor,
     this.unselectedColor,
+    this.lightSource,
     this.disableDepth,
     this.border = const NeumorphicBorder.none(),
     this.intensity,
@@ -50,6 +53,7 @@ class NeumorphicRadioStyle {
       other is NeumorphicRadioStyle &&
           runtimeType == other.runtimeType &&
           disableDepth == other.disableDepth &&
+          lightSource == other.lightSource &&
           border == other.border &&
           selectedDepth == other.selectedDepth &&
           unselectedDepth == other.unselectedDepth &&
@@ -62,6 +66,7 @@ class NeumorphicRadioStyle {
   int get hashCode =>
       disableDepth.hashCode ^
       selectedDepth.hashCode ^
+      lightSource.hashCode ^
       selectedColor.hashCode ^
       unselectedColor.hashCode ^
       border.hashCode ^
@@ -216,6 +221,7 @@ class NeumorphicRadio<T> extends StatelessWidget {
       style: NeumorphicStyle(
         border: this.style.border,
         color: color,
+        lightSource: this.style.lightSource ?? theme.lightSource,
         disableDepth: this.style.disableDepth,
         intensity: this.style.intensity,
         depth: depth,

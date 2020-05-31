@@ -23,6 +23,7 @@ class RangeSliderStyle {
   final BorderRadius borderRadius;
   final Color accent;
   final Color variant;
+  final LightSource lightSource;
 
   final NeumorphicBorder border;
   final NeumorphicBorder thumbBorder;
@@ -32,6 +33,7 @@ class RangeSliderStyle {
     this.disableDepth,
     this.borderRadius = const BorderRadius.all(Radius.circular(10)),
     this.accent,
+    this.lightSource,
     this.variant,
     this.border = const NeumorphicBorder.none(),
     this.thumbBorder = const NeumorphicBorder.none(),
@@ -43,6 +45,7 @@ class RangeSliderStyle {
       other is RangeSliderStyle &&
           runtimeType == other.runtimeType &&
           depth == other.depth &&
+          lightSource == other.lightSource &&
           disableDepth == other.disableDepth &&
           borderRadius == other.borderRadius &&
           thumbBorder == other.thumbBorder &&
@@ -55,6 +58,7 @@ class RangeSliderStyle {
       depth.hashCode ^
       disableDepth.hashCode ^
       borderRadius.hashCode ^
+      lightSource.hashCode ^
       accent.hashCode ^
       border.hashCode ^
       thumbBorder.hashCode ^
@@ -295,6 +299,7 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
         shape: NeumorphicShape.concave,
         color: color ?? theme.accentColor,
         border: widget.style.thumbBorder,
+        lightSource: widget.style.lightSource ?? theme.lightSource,
       ),
       boxShape: NeumorphicBoxShape.circle(),
       child: SizedBox(

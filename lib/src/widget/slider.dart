@@ -21,6 +21,7 @@ class SliderStyle {
   final BorderRadius borderRadius;
   final Color accent;
   final Color variant;
+  final LightSource lightSource;
 
   final NeumorphicBorder border;
   final NeumorphicBorder thumbBorder;
@@ -30,6 +31,7 @@ class SliderStyle {
     this.disableDepth,
     this.borderRadius = const BorderRadius.all(Radius.circular(10)),
     this.accent,
+    this.lightSource,
     this.variant,
     this.border = const NeumorphicBorder.none(),
     this.thumbBorder = const NeumorphicBorder.none(),
@@ -42,6 +44,7 @@ class SliderStyle {
           runtimeType == other.runtimeType &&
           depth == other.depth &&
           disableDepth == other.disableDepth &&
+          lightSource == other.lightSource &&
           borderRadius == other.borderRadius &&
           thumbBorder == other.thumbBorder &&
           border == other.border &&
@@ -54,6 +57,7 @@ class SliderStyle {
       disableDepth.hashCode ^
       borderRadius.hashCode ^
       border.hashCode ^
+      lightSource.hashCode ^
       thumbBorder.hashCode ^
       accent.hashCode ^
       variant.hashCode;
@@ -189,6 +193,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
         disableDepth: widget.style.disableDepth,
         depth: widget.style.depth,
         border: widget.style.border,
+        lightSource: widget.style.lightSource ?? theme.lightSource,
         borderRadius: widget.style.borderRadius,
         accent: widget.style.accent ?? theme.accentColor,
         variant: widget.style.variant ?? theme.variantColor,
@@ -203,6 +208,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
         disableDepth: widget.style.disableDepth,
         shape: NeumorphicShape.concave,
         border: widget.style.thumbBorder,
+        lightSource: widget.style.lightSource ?? theme.lightSource,
         color: widget.style.accent ?? theme.accentColor,
       ),
       boxShape: NeumorphicBoxShape.circle(),
