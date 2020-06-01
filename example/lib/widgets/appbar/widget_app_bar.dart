@@ -58,6 +58,7 @@ class _PageState extends State<_Page> {
                 accentColor: NeumorphicColors.accent,
                 appBarTheme: NeumorphicAppBarThemeData(
                   buttonStyle: NeumorphicStyle(
+                    boxShape: NeumorphicBoxShape.circle(),
                     shape: NeumorphicShape.concave,
                     depth: 10,
                     intensity: 1,
