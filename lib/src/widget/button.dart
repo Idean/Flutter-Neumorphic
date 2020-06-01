@@ -102,7 +102,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
       final theme = NeumorphicTheme.of(context).current;
       setState(() {
         this.initialStyle = widget.style ?? (appBarPresent ? theme.appBarTheme.buttonStyle : const NeumorphicStyle());
-        depth = widget.style?.depth ?? theme.depth;
+        depth = widget.style?.depth ?? (appBarPresent ? theme.appBarTheme.buttonStyle.depth : theme.depth);
       });
     }
   }

@@ -10,14 +10,12 @@ class NeumorphicCloseButton extends StatelessWidget {
   const NeumorphicCloseButton({
     Key key,
     this.onPressed,
-    this.style = const NeumorphicStyle(),
-    this.padding = const EdgeInsets.all(0),
+    this.style,
+    this.padding,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final nTheme = NeumorphicTheme.of(context);
     return NeumorphicButton(
       style: style,
       padding: padding,

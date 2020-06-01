@@ -63,7 +63,7 @@ class _PageState extends State<_Page> {
                     intensity: 1,
                   ),
                   textStyle: TextStyle(color: Colors.black),
-                  iconTheme: IconThemeData(color: Colors.black, size: 25),
+                  iconTheme: IconThemeData(color: Colors.green, size: 25),
                 ),
                 depth: 2,
                 intensity: 0.5,
@@ -101,7 +101,7 @@ class _MyDrawer extends StatelessWidget {
               title: Text('Menu'),
               leading: isLead ? NeumorphicBackButton() : NeumorphicCloseButton(),
               actions: <Widget>[
-                NeumorphicButton(child: Icon(Icons.style), isEnabled: false),
+                NeumorphicButton(child: Icon(Icons.style)),
                 isLead ? NeumorphicCloseButton() : NeumorphicBackButton(reversedArrow: true),
               ],
             ),

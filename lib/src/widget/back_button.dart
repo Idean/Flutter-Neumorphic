@@ -11,8 +11,8 @@ class NeumorphicBackButton extends StatelessWidget {
   const NeumorphicBackButton({
     Key key,
     this.onPressed,
-    this.style = const NeumorphicStyle(),
-    this.padding = const EdgeInsets.all(0),
+    this.style,
+    this.padding,
     this.reversedArrow = false,
   }) : super(key: key);
 
