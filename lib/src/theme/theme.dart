@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' show TextTheme;
+import 'package:flutter_neumorphic/src/theme/app_bar.dart';
 import 'package:flutter_neumorphic/src/widget/container.dart';
 
 import '../colors.dart';
@@ -61,6 +62,7 @@ class NeumorphicThemeData {
   final bool disableDepth;
   /// Default text theme to use and apply across the app
   final TextTheme textTheme;
+  final NeumorphicAppBarThemeData appBarTheme;
 
   /// Get this theme's depth, clamp to min/max neumorphic constants
   double get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
@@ -83,6 +85,7 @@ class NeumorphicThemeData {
     this.defaultTextColor = _defaultTextColor,
     this.lightSource = _defaultLightSource,
     this.textTheme = const TextTheme(),
+    this.appBarTheme = const NeumorphicAppBarThemeData(),
     this.borderColor = NeumorphicColors.defaultBorder,
     this.borderWidth = _defaultBorderSize,
     this.disableDepth = false,
@@ -95,6 +98,7 @@ class NeumorphicThemeData {
     double intensity = _defaultIntensity,
     this.accentColor = _defaultAccent,
     this.textTheme = const TextTheme(),
+    this.appBarTheme = const NeumorphicAppBarThemeData(),
     this.variantColor = NeumorphicColors.darkVariant,
     this.disabledColor = NeumorphicColors.darkDisabled,
     this.shadowLightColor = NeumorphicColors.decorationMaxWhiteColor,
@@ -121,6 +125,7 @@ class NeumorphicThemeData {
           runtimeType == other.runtimeType &&
           baseColor == other.baseColor &&
           textTheme == other.textTheme &&
+          appBarTheme == other.appBarTheme &&
           accentColor == other.accentColor &&
           shadowDarkColor == other.shadowDarkColor &&
           shadowLightColor == other.shadowLightColor &&
@@ -140,6 +145,7 @@ class NeumorphicThemeData {
   int get hashCode =>
       baseColor.hashCode ^
       textTheme.hashCode ^
+      appBarTheme.hashCode ^
       accentColor.hashCode ^
       variantColor.hashCode ^
       disabledColor.hashCode ^
@@ -168,6 +174,7 @@ class NeumorphicThemeData {
     Color shadowDarkColorEmboss,
     Color defaultTextColor,
     TextTheme textTheme,
+    NeumorphicAppBarThemeData appBarTheme,
     NeumorphicStyle defaultStyle,
     bool disableDepth,
     double depth,
@@ -179,6 +186,7 @@ class NeumorphicThemeData {
     return new NeumorphicThemeData(
       baseColor: baseColor ?? this.baseColor,
       textTheme: textTheme ?? this.textTheme,
+      appBarTheme: appBarTheme ?? this.appBarTheme,
       accentColor: accentColor ?? this.accentColor,
       variantColor: variantColor ?? this.variantColor,
       disabledColor: disabledColor ?? this.disabledColor,
@@ -217,6 +225,7 @@ class NeumorphicThemeData {
       shadowLightColorEmboss:
           other.shadowLightColorEmboss ?? this.shadowLightColorEmboss,
       textTheme: other.textTheme ?? this.textTheme,
+      appBarTheme: other.appBarTheme ?? this.appBarTheme,
       depth: other.depth ?? this._depth,
       borderColor: other.borderColor ?? this.borderColor,
       borderWidth: other.borderWidth ?? this.borderWidth,
