@@ -299,9 +299,9 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
         shape: NeumorphicShape.concave,
         color: color ?? theme.accentColor,
         border: widget.style.thumbBorder,
+        boxShape: NeumorphicBoxShape.circle(),
         lightSource: widget.style.lightSource ?? theme.lightSource,
       ),
-      boxShape: NeumorphicBoxShape.circle(),
       child: SizedBox(
         height: size,
         width: size,

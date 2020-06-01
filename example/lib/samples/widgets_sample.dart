@@ -70,8 +70,10 @@ class _ContainersListPageState extends State<WidgetsSample> {
         ),
         SizedBox(width: 4),
         NeumorphicButton(
-          boxShape: NeumorphicBoxShape.stadium(),
-          style: NeumorphicStyle(shape: NeumorphicShape.flat),
+          style: NeumorphicStyle(
+            shape: NeumorphicShape.flat,
+            boxShape: NeumorphicBoxShape.stadium(),
+          ),
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 18),
           child: Text(
             "button 1",
@@ -85,8 +87,10 @@ class _ContainersListPageState extends State<WidgetsSample> {
         ),
         SizedBox(width: 10),
         NeumorphicButton(
-          boxShape: NeumorphicBoxShape.stadium(),
-          style: NeumorphicStyle(shape: NeumorphicShape.flat),
+          style: NeumorphicStyle(
+            shape: NeumorphicShape.flat,
+            boxShape: NeumorphicBoxShape.stadium(),
+          ),
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 18),
           child: Text(
             "button 2",

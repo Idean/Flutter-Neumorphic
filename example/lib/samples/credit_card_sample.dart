@@ -13,8 +13,7 @@ class _CreditCardSampleState extends State<CreditCardSample> {
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
-      theme: NeumorphicThemeData(
-          intensity: 0.6, lightSource: LightSource.topLeft, depth: 5),
+      theme: NeumorphicThemeData(intensity: 0.6, lightSource: LightSource.topLeft, depth: 5),
       child: Scaffold(
         body: SafeArea(
           child: NeumorphicBackground(child: _PageContent()),
@@ -59,16 +58,16 @@ class __PageContentState extends State<_PageContent> {
   Widget _buildCard(BuildContext context) {
     return Container(
       child: Neumorphic(
-        boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
         style: NeumorphicStyle(
           depth: 10,
+          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
           shape: NeumorphicShape.flat,
         ),
         child: Neumorphic(
           margin: EdgeInsets.all(8),
-          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
           style: NeumorphicStyle(
             depth: 10,
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
             shape: NeumorphicShape.flat,
           ),
           child: SizedBox(
@@ -82,14 +81,7 @@ class __PageContentState extends State<_PageContent> {
                   BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
                     child: Container(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft,
-                              colors: [
-                            Colors.purple.withOpacity(0.5),
-                            Colors.red.withOpacity(0.5)
-                          ])),
+                      decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topRight, end: Alignment.bottomLeft, colors: [Colors.purple.withOpacity(0.5), Colors.red.withOpacity(0.5)])),
                     ),
                   ),
                   Stack(
@@ -102,28 +94,21 @@ class __PageContentState extends State<_PageContent> {
                           children: <Widget>[
                             Text(
                               "VISA",
-                              style: TextStyle(
-                                  fontSize: 40,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w800),
+                              style: TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.w800),
                             ),
                             SizedBox(
                               height: 30,
                             ),
                             Text(
                               "1234 5678",
-                              style: TextStyle(
-                                  fontSize: 30,
-                                  color: Colors.black.withOpacity(0.7)),
+                              style: TextStyle(fontSize: 30, color: Colors.black.withOpacity(0.7)),
                             ),
                             SizedBox(
                               height: 3,
                             ),
                             Text(
                               "1234 5678",
-                              style: TextStyle(
-                                  fontSize: 30,
-                                  color: Colors.black.withOpacity(0.7)),
+                              style: TextStyle(fontSize: 30, color: Colors.black.withOpacity(0.7)),
                             ),
                           ],
                         ),
@@ -135,16 +120,14 @@ class __PageContentState extends State<_PageContent> {
                           height: 60,
                           child: Neumorphic(
                             style: NeumorphicStyle(
-                                depth: 5,
-                                intensity: 0.8,
-                                lightSource: LightSource.topLeft),
-                            boxShape: NeumorphicBoxShape.roundRect(
-                              BorderRadius.circular(12),
+                              depth: 5,
+                              intensity: 0.8,
+                              lightSource: LightSource.topLeft,
+                              boxShape: NeumorphicBoxShape.roundRect(
+                                BorderRadius.circular(12),
+                              ),
                             ),
-                            child: RotatedBox(
-                                quarterTurns: 1,
-                                child: Image.asset(
-                                    "assets/images/credit_card_chip.png")),
+                            child: RotatedBox(quarterTurns: 1, child: Image.asset("assets/images/credit_card_chip.png")),
                           ),
                         ),
                       ),
@@ -155,9 +138,7 @@ class __PageContentState extends State<_PageContent> {
                           children: <Widget>[
                             Text(
                               "09/24",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white.withOpacity(0.7)),
+                              style: TextStyle(fontSize: 20, color: Colors.white.withOpacity(0.7)),
                             ),
                             SizedBox(
                               height: 8,
@@ -165,11 +146,7 @@ class __PageContentState extends State<_PageContent> {
                             Stack(
                               children: <Widget>[
                                 Neumorphic(
-                                  boxShape: NeumorphicBoxShape.circle(),
-                                  style: NeumorphicStyle(
-                                      shape: NeumorphicShape.convex,
-                                      depth: -10,
-                                      color: Colors.grey[300]),
+                                  style: NeumorphicStyle(shape: NeumorphicShape.convex, depth: -10, boxShape: NeumorphicBoxShape.circle(), color: Colors.grey[300]),
                                   child: const SizedBox(
                                     height: 30,
                                     width: 30,
@@ -178,10 +155,7 @@ class __PageContentState extends State<_PageContent> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 18),
                                   child: Neumorphic(
-                                    boxShape: NeumorphicBoxShape.circle(),
-                                    style: NeumorphicStyle(
-                                        shape: NeumorphicShape.convex,
-                                        depth: 10),
+                                    style: NeumorphicStyle(shape: NeumorphicShape.convex, boxShape: NeumorphicBoxShape.circle(), depth: 10),
                                     child: const SizedBox(
                                       height: 30,
                                       width: 30,
@@ -216,8 +190,10 @@ class __PageContentState extends State<_PageContent> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              style: NeumorphicStyle(shape: NeumorphicShape.flat),
-              boxShape: NeumorphicBoxShape.circle(),
+              style: NeumorphicStyle(
+                shape: NeumorphicShape.flat,
+                boxShape: NeumorphicBoxShape.circle(),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Icon(Icons.navigate_before),
@@ -232,12 +208,13 @@ class __PageContentState extends State<_PageContent> {
                 setState(() {
                   _useDark = !_useDark;
 
-                  NeumorphicTheme.of(context).themeMode =
-                      _useDark ? ThemeMode.dark : ThemeMode.light;
+                  NeumorphicTheme.of(context).themeMode = _useDark ? ThemeMode.dark : ThemeMode.light;
                 });
               },
-              style: NeumorphicStyle(shape: NeumorphicShape.flat),
-              boxShape: NeumorphicBoxShape.circle(),
+              style: NeumorphicStyle(
+                shape: NeumorphicShape.flat,
+                boxShape: NeumorphicBoxShape.circle(),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Icon(Icons.loop),
@@ -255,20 +232,8 @@ class __PageContentState extends State<_PageContent> {
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          Align(
-              alignment: Alignment.centerLeft,
-              child: Text("Balance",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 30,
-                      color: Color(0xFF3E3E3E)))),
-          Align(
-              alignment: Alignment.centerRight,
-              child: Text("\$ 14,020.44",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                      color: Color(0xFF3E3E3E)))),
+          Align(alignment: Alignment.centerLeft, child: Text("Balance", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 30, color: Color(0xFF3E3E3E)))),
+          Align(alignment: Alignment.centerRight, child: Text("\$ 14,020.44", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: Color(0xFF3E3E3E)))),
         ],
       ),
     );
@@ -298,11 +263,8 @@ class __PageContentState extends State<_PageContent> {
           ),
           Stack(
             children: <Widget>[
-              Align(
-                  alignment: Alignment.centerLeft, child: Text("Credit limit")),
-              Align(
-                  alignment: Alignment.centerRight,
-                  child: Text("\$ 220 / \$ 1000")),
+              Align(alignment: Alignment.centerLeft, child: Text("Credit limit")),
+              Align(alignment: Alignment.centerRight, child: Text("\$ 220 / \$ 1000")),
             ],
           ),
         ],
@@ -326,8 +288,8 @@ class __PageContentState extends State<_PageContent> {
                 _dotIndex = value;
               });
             },
-            boxShape: NeumorphicBoxShape.circle(),
             style: NeumorphicRadioStyle(
+              boxShape: NeumorphicBoxShape.circle(),
               shape: NeumorphicShape.convex,
             ),
           ),
@@ -346,8 +308,8 @@ class __PageContentState extends State<_PageContent> {
                 _dotIndex = value;
               });
             },
-            boxShape: NeumorphicBoxShape.circle(),
             style: NeumorphicRadioStyle(
+              boxShape: NeumorphicBoxShape.circle(),
               shape: NeumorphicShape.convex,
             ),
           ),
@@ -366,8 +328,8 @@ class __PageContentState extends State<_PageContent> {
                 _dotIndex = value;
               });
             },
-            boxShape: NeumorphicBoxShape.circle(),
             style: NeumorphicRadioStyle(
+              boxShape: NeumorphicBoxShape.circle(),
               shape: NeumorphicShape.convex,
             ),
           ),

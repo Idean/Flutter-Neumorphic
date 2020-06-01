@@ -38,19 +38,15 @@ class _Page extends StatefulWidget {
 
 class _PageState extends State<_Page> {
   Widget _letter(String letter) {
-    return Text(letter,
-        style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w700,
-            fontFamily: 'Samsung',
-            fontSize: 80));
+    return Text(letter, style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontFamily: 'Samsung', fontSize: 80));
   }
 
   Widget _firstBox() {
     return Neumorphic(
       margin: EdgeInsets.symmetric(horizontal: 4),
-      style: NeumorphicStyle(),
-      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+      style: NeumorphicStyle(
+        boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+      ),
       child: Neumorphic(
         style: NeumorphicStyle(
           depth: -1,
@@ -71,8 +67,10 @@ class _PageState extends State<_Page> {
       child: Transform.rotate(
         angle: 0.79,
         child: Neumorphic(
-          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
-          style: NeumorphicStyle(lightSource: LightSource.topLeft),
+          style: NeumorphicStyle(
+            lightSource: LightSource.topLeft,
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+          ),
           child: Neumorphic(
             style: NeumorphicStyle(
               depth: -1,

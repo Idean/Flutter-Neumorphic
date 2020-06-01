@@ -145,7 +145,9 @@ Neumorphic(
           ),
           SizedBox(width: 12),
           Neumorphic(
-            boxShape: NeumorphicBoxShape.circle(),
+            style: NeumorphicStyle(
+              boxShape: NeumorphicBoxShape.circle(),
+            ),
             padding: EdgeInsets.all(18.0),
             child: Icon(Icons.map),
           ),
@@ -175,9 +177,11 @@ class _RoundRectWidgetState extends State<_RoundRectWidget> {
   Widget _buildCode(BuildContext context) {
     return Code("""
 Neumorphic(
-     boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(8)),
-     padding: EdgeInsets.all(18.0),
-     child: Icon(Icons.map),
+    style: NeumorphicStyle(
+         boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+    ),
+    padding: EdgeInsets.all(18.0),
+    child: Icon(Icons.map),
 ),
 """);
   }
@@ -193,7 +197,9 @@ Neumorphic(
           ),
           SizedBox(width: 12),
           Neumorphic(
-            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+            style: NeumorphicStyle(
+              boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+            ),
             padding: EdgeInsets.all(18.0),
             child: Icon(Icons.map),
           ),
@@ -226,7 +232,8 @@ class _ColorizableWidgetState extends State<_ColorizableWidget> {
     return Code("""
 Neumorphic(
     style: NeumorphicStyle(
-        color: Colors.white
+        color: Colors.white,
+        boxShape: NeumorphicBoxShape.circle()
     ),
     child: SizedBox(
       height: 100, 
@@ -256,8 +263,7 @@ Neumorphic(
           ),
           SizedBox(width: 12),
           Neumorphic(
-            style: NeumorphicStyle(color: currentColor),
-            boxShape: NeumorphicBoxShape.circle(),
+            style: NeumorphicStyle(color: currentColor, boxShape: NeumorphicBoxShape.circle()),
             child: SizedBox(
               height: 100,
               width: 100,
@@ -312,14 +318,15 @@ Neumorphic(
                 width: 100,
                 child: Text(
                   "Flat",
-                  style: TextStyle(
-                      color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               Neumorphic(
-                boxShape: NeumorphicBoxShape.circle(),
-                style: NeumorphicStyle(shape: NeumorphicShape.flat),
+                style: NeumorphicStyle(
+                  shape: NeumorphicShape.flat,
+                  boxShape: NeumorphicBoxShape.circle(),
+                ),
                 padding: EdgeInsets.all(18.0),
                 child: Icon(Icons.play_arrow),
               ),
@@ -332,14 +339,15 @@ Neumorphic(
                 width: 100,
                 child: Text(
                   "Concave",
-                  style: TextStyle(
-                      color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               Neumorphic(
-                boxShape: NeumorphicBoxShape.circle(),
-                style: NeumorphicStyle(shape: NeumorphicShape.concave),
+                style: NeumorphicStyle(
+                  shape: NeumorphicShape.concave,
+                  boxShape: NeumorphicBoxShape.circle(),
+                ),
                 padding: EdgeInsets.all(18.0),
                 child: Icon(Icons.play_arrow),
               ),
@@ -352,14 +360,15 @@ Neumorphic(
                 width: 100,
                 child: Text(
                   "Convex",
-                  style: TextStyle(
-                      color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               NeumorphicButton(
-                boxShape: NeumorphicBoxShape.circle(),
-                style: NeumorphicStyle(shape: NeumorphicShape.convex),
+                style: NeumorphicStyle(
+                  shape: NeumorphicShape.convex,
+                  boxShape: NeumorphicBoxShape.circle()
+                ),
                 padding: EdgeInsets.all(18.0),
                 child: Icon(Icons.play_arrow),
               ),
@@ -408,8 +417,7 @@ Neumorphic(
             children: <Widget>[
               Text(
                 "Emboss",
-                style:
-                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               Neumorphic(
@@ -423,8 +431,8 @@ Neumorphic(
               Neumorphic(
                 padding: EdgeInsets.all(18),
                 child: Icon(Icons.play_arrow),
-                boxShape: NeumorphicBoxShape.circle(),
                 style: NeumorphicStyle(
+                  boxShape: NeumorphicBoxShape.circle(),
                   depth: -10.0,
                 ),
               ),
@@ -553,9 +561,9 @@ Neumorphic(
                   width: 100,
                   fit: BoxFit.cover,
                 ),
-                boxShape: NeumorphicBoxShape.circle(),
                 margin: EdgeInsets.all(8),
                 style: NeumorphicStyle(
+                  boxShape: NeumorphicBoxShape.circle(),
                   surfaceIntensity: 1,
                   shape: NeumorphicShape.concave,
                 ),
@@ -570,9 +578,9 @@ Neumorphic(
                 ),
                 drawSurfaceAboveChild: true,
                 margin: EdgeInsets.all(8),
-                boxShape: NeumorphicBoxShape.circle(),
                 style: NeumorphicStyle(
                   surfaceIntensity: 1,
+                  boxShape: NeumorphicBoxShape.circle(),
                   shape: NeumorphicShape.concave,
                 ),
               ),
@@ -586,9 +594,9 @@ Neumorphic(
                 ),
                 drawSurfaceAboveChild: true,
                 margin: EdgeInsets.all(8),
-                boxShape: NeumorphicBoxShape.circle(),
                 style: NeumorphicStyle(
                   surfaceIntensity: 1,
+                  boxShape: NeumorphicBoxShape.circle(),
                   shape: NeumorphicShape.convex,
                 ),
               ),

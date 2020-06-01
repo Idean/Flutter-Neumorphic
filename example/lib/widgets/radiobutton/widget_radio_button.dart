@@ -191,7 +191,9 @@ NeumorphicRadio(
           ),
           SizedBox(width: 12),
           NeumorphicRadio(
-            boxShape: NeumorphicBoxShape.circle(),
+            style: NeumorphicRadioStyle(
+              boxShape: NeumorphicBoxShape.circle(),
+            ),
             groupValue: groupValue,
             value: "A",
             onChanged: (value) {
@@ -205,7 +207,9 @@ NeumorphicRadio(
           SizedBox(width: 12),
           NeumorphicRadio(
             value: "B",
-            boxShape: NeumorphicBoxShape.circle(),
+            style: NeumorphicRadioStyle(
+              boxShape: NeumorphicBoxShape.circle(),
+            ),
             groupValue: groupValue,
             onChanged: (value) {
               setState(() {
@@ -217,8 +221,9 @@ NeumorphicRadio(
           ),
           SizedBox(width: 12),
           NeumorphicRadio(
-            boxShape: NeumorphicBoxShape.circle(),
-            groupValue: groupValue,
+            style: NeumorphicRadioStyle(
+              boxShape: NeumorphicBoxShape.circle(),
+            ),            groupValue: groupValue,
             value: "C",
             onChanged: (value) {
               setState(() {

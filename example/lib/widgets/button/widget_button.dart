@@ -148,7 +148,9 @@ NeumorphicButton(
           ),
           SizedBox(width: 12),
           NeumorphicButton(
-            boxShape: NeumorphicBoxShape.circle(),
+            style: NeumorphicStyle(
+              boxShape: NeumorphicBoxShape.circle(),
+            ),
             onPressed: () {
               setState(() {});
             },
@@ -204,7 +206,9 @@ NeumorphicButton(
           SizedBox(width: 12),
           NeumorphicButton(
             minDistance: -5.0,
-            boxShape: NeumorphicBoxShape.circle(),
+            style: NeumorphicStyle(
+              boxShape: NeumorphicBoxShape.circle(),
+            ),
             onPressed: () {
               setState(() {});
             },
@@ -320,12 +324,8 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
           ),
           SizedBox(width: 12),
           NeumorphicButton(
-            isEnabled: false,
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
             child: Text("Second"),
-            onPressed: () {
-              setState(() {});
-            },
           ),
         ],
       ),
@@ -383,8 +383,7 @@ NeumorphicButton(
             children: <Widget>[
               Text(
                 "Duration",
-                style:
-                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               NeumorphicButton(
@@ -446,14 +445,15 @@ NeumorphicButton(
                 width: 100,
                 child: Text(
                   "Flat",
-                  style: TextStyle(
-                      color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               NeumorphicButton(
-                boxShape: NeumorphicBoxShape.circle(),
-                style: NeumorphicStyle(shape: NeumorphicShape.flat),
+                style: NeumorphicStyle(
+                  shape: NeumorphicShape.flat,
+                  boxShape: NeumorphicBoxShape.circle(),
+                ),
                 onPressed: () {
                   setState(() {});
                 },
@@ -469,14 +469,15 @@ NeumorphicButton(
                 width: 100,
                 child: Text(
                   "Concave",
-                  style: TextStyle(
-                      color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               NeumorphicButton(
-                boxShape: NeumorphicBoxShape.circle(),
-                style: NeumorphicStyle(shape: NeumorphicShape.concave),
+                style: NeumorphicStyle(
+                  shape: NeumorphicShape.concave,
+                  boxShape: NeumorphicBoxShape.circle(),
+                ),
                 onPressed: () {
                   setState(() {});
                 },
@@ -492,14 +493,12 @@ NeumorphicButton(
                 width: 100,
                 child: Text(
                   "Convex",
-                  style: TextStyle(
-                      color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               NeumorphicButton(
-                boxShape: NeumorphicBoxShape.circle(),
-                style: NeumorphicStyle(shape: NeumorphicShape.convex),
+                style: NeumorphicStyle(shape: NeumorphicShape.convex, boxShape: NeumorphicBoxShape.circle()),
                 onPressed: () {
                   setState(() {});
                 },

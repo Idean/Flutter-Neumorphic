@@ -200,11 +200,13 @@ Neumorphic(
               ),
               Neumorphic(
                 padding: EdgeInsets.all(20),
-                boxShape: NeumorphicBoxShape.circle(),
-                style: widget.firstStyle,
-                child: Neumorphic(
+                style: widget.firstStyle.copyWith(
                   boxShape: NeumorphicBoxShape.circle(),
-                  style: widget.secondStyle,
+                ),
+                child: Neumorphic(
+                  style: widget.secondStyle.copyWith(
+                    boxShape: NeumorphicBoxShape.circle(),
+                  ),
                   child: SizedBox(
                     height: 100,
                     width: 100,
@@ -228,12 +230,14 @@ Neumorphic(
               ),
               Neumorphic(
                 padding: EdgeInsets.all(20),
-                boxShape: NeumorphicBoxShape.circle(),
-                style: widget.firstStyle,
+                style: widget.firstStyle.copyWith(
+                  boxShape:  NeumorphicBoxShape.circle(),
+                ),
                 child: Neumorphic(
-                  boxShape: NeumorphicBoxShape.circle(),
-                  style: widget.secondStyle
-                      .copyWith(oppositeShadowLightSource: true),
+                  style: widget.secondStyle.copyWith(
+                    boxShape: NeumorphicBoxShape.circle(),
+                    oppositeShadowLightSource: true,
+                  ),
                   child: SizedBox(
                     height: 100,
                     width: 100,

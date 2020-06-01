@@ -54,7 +54,6 @@ class Neumorphic extends StatelessWidget {
   final TextStyle textStyle;
   final EdgeInsets padding;
   final EdgeInsets margin;
-  final NeumorphicBoxShape boxShape;
   final Curve curve;
   final Duration duration;
   final bool
@@ -66,7 +65,6 @@ class Neumorphic extends StatelessWidget {
     this.duration = Neumorphic.DEFAULT_DURATION,
     this.curve = Neumorphic.DEFAULT_CURVE,
     this.style,
-    this.boxShape,
     this.textStyle,
     this.margin = const EdgeInsets.all(0),
     this.padding = const EdgeInsets.all(0),
@@ -75,7 +73,6 @@ class Neumorphic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final boxShape = this.boxShape ?? NeumorphicBoxShape.rect();
     final theme = NeumorphicTheme.currentTheme(context);
     final NeumorphicStyle style = (this.style ?? NeumorphicStyle())
         .copyWithThemeIfNull(theme)
@@ -84,7 +81,6 @@ class Neumorphic extends StatelessWidget {
     return _NeumorphicContainer(
       padding: this.padding,
       textStyle: this.textStyle,
-      boxShape: boxShape,
       drawSurfaceAboveChild: this.drawSurfaceAboveChild,
       duration: this.duration,
       style: style,
@@ -98,7 +94,6 @@ class Neumorphic extends StatelessWidget {
 class _NeumorphicContainer extends StatelessWidget {
   final NeumorphicStyle style;
   final TextStyle textStyle;
-  final NeumorphicBoxShape boxShape;
   final Widget child;
   final EdgeInsets margin;
   final Duration duration;
@@ -116,7 +111,6 @@ class _NeumorphicContainer extends StatelessWidget {
     @required this.style,
     @required this.textStyle,
     @required this.drawSurfaceAboveChild,
-    @required this.boxShape,
   }) : super(key: key);
 
   @override
@@ -128,7 +122,7 @@ class _NeumorphicContainer extends StatelessWidget {
         duration: this.duration,
         curve: this.curve,
         child: NeumorphicBoxShapeClipper(
-          shape: this.boxShape,
+          shape: this.style.boxShape,
           child: Padding(
             padding: this.padding,
             child: this.child,
@@ -137,18 +131,18 @@ class _NeumorphicContainer extends StatelessWidget {
         foregroundDecoration: NeumorphicDecoration(
           isForeground: true,
           renderingByPath:
-              this.boxShape.customShapePathProvider.oneGradientPerPath,
+              this.style.boxShape.customShapePathProvider.oneGradientPerPath,
           splitBackgroundForeground: this.drawSurfaceAboveChild,
           style: this.style,
-          shape: this.boxShape,
+          shape: this.style.boxShape,
         ),
         decoration: NeumorphicDecoration(
           isForeground: false,
           renderingByPath:
-              this.boxShape.customShapePathProvider.oneGradientPerPath,
+              this.style.boxShape.customShapePathProvider.oneGradientPerPath,
           splitBackgroundForeground: this.drawSurfaceAboveChild,
           style: this.style,
-          shape: this.boxShape,
+          shape: this.style.boxShape,
         ),
       ),
     );

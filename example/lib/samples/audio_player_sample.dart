@@ -69,8 +69,10 @@ class __PageState extends State<_Page> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              style: NeumorphicStyle(shape: NeumorphicShape.flat),
-              boxShape: NeumorphicBoxShape.circle(),
+              style: NeumorphicStyle(
+                  shape: NeumorphicShape.flat,
+                  boxShape: NeumorphicBoxShape.circle(),
+              ),
               child: Icon(
                 Icons.navigate_before,
                 color: _iconsColor(),
@@ -96,8 +98,10 @@ class __PageState extends State<_Page> {
                       _useDark ? ThemeMode.dark : ThemeMode.light;
                 });
               },
-              style: NeumorphicStyle(shape: NeumorphicShape.flat),
-              boxShape: NeumorphicBoxShape.circle(),
+              style: NeumorphicStyle(
+                  shape: NeumorphicShape.flat,
+                  boxShape: NeumorphicBoxShape.circle(),
+              ),
               child: Icon(
                 Icons.favorite_border,
                 color: _iconsColor(),
@@ -111,7 +115,9 @@ class __PageState extends State<_Page> {
 
   Widget _buildImage(BuildContext context) {
     return Neumorphic(
-      boxShape: NeumorphicBoxShape.circle(),
+      style: NeumorphicStyle(
+        boxShape: NeumorphicBoxShape.circle(),
+      ),
       child: Container(
           height: 200,
           width: 200,
@@ -189,8 +195,10 @@ class __PageState extends State<_Page> {
         NeumorphicButton(
           padding: const EdgeInsets.all(18.0),
           onPressed: () {},
-          style: NeumorphicStyle(shape: NeumorphicShape.flat),
-          boxShape: NeumorphicBoxShape.circle(),
+          style: NeumorphicStyle(
+              shape: NeumorphicShape.flat,
+              boxShape: NeumorphicBoxShape.circle(),
+          ),
           child: Icon(
             Icons.skip_previous,
             color: _iconsColor(),
@@ -200,8 +208,10 @@ class __PageState extends State<_Page> {
         NeumorphicButton(
           padding: const EdgeInsets.all(24.0),
           onPressed: () {},
-          style: NeumorphicStyle(shape: NeumorphicShape.flat),
-          boxShape: NeumorphicBoxShape.circle(),
+          style: NeumorphicStyle(
+              shape: NeumorphicShape.flat,
+              boxShape: NeumorphicBoxShape.circle(),
+          ),
           child: Icon(
             Icons.play_arrow,
             size: 42,
@@ -212,8 +222,10 @@ class __PageState extends State<_Page> {
         NeumorphicButton(
           padding: const EdgeInsets.all(18.0),
           onPressed: () {},
-          style: NeumorphicStyle(shape: NeumorphicShape.flat),
-          boxShape: NeumorphicBoxShape.circle(),
+          style: NeumorphicStyle(
+              shape: NeumorphicShape.flat,
+              boxShape: NeumorphicBoxShape.circle(),
+          ),
           child: Icon(
             Icons.skip_next,
             color: _iconsColor(),

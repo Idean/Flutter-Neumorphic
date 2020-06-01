@@ -163,8 +163,11 @@ Expanded(
                 )
               ],
               thumb: Neumorphic(
-                boxShape: NeumorphicBoxShape.roundRect(
-                    BorderRadius.all(Radius.circular(12))),
+                style: NeumorphicStyle(
+                  boxShape: NeumorphicBoxShape.roundRect(
+                      BorderRadius.all(Radius.circular(12))),
+                ),
+
               ),
               onChanged: (value) {
                 setState(() {
@@ -258,8 +261,10 @@ NeumorphicToggle(
               ToggleElement(),
             ],
             thumb: Neumorphic(
-              boxShape: NeumorphicBoxShape.roundRect(
-                BorderRadius.all(Radius.circular(12)),
+              style: NeumorphicStyle(
+                boxShape: NeumorphicBoxShape.roundRect(
+                  BorderRadius.all(Radius.circular(12)),
+                ),
               ),
               child: Icon(
                 Icons.blur_on,

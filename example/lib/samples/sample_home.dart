@@ -15,15 +15,15 @@ class SamplesHome extends StatelessWidget {
   Widget _buildButton({String text, VoidCallback onClick}) {
     return NeumorphicButton(
       margin: EdgeInsets.only(bottom: 12),
-      boxShape: NeumorphicBoxShape.roundRect(
-        BorderRadius.circular(12),
-      ),
       padding: EdgeInsets.symmetric(
         vertical: 18,
         horizontal: 24,
       ),
       style: NeumorphicStyle(
         shape: NeumorphicShape.flat,
+        boxShape: NeumorphicBoxShape.roundRect(
+          BorderRadius.circular(12),
+        ),
       ),
       child: Center(child: Text(text)),
       onPressed: onClick,
