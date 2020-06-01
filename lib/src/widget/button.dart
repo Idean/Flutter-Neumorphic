@@ -67,7 +67,7 @@ class NeumorphicButton extends StatefulWidget {
 
   NeumorphicButton({
     Key key,
-    this.padding = const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+    this.padding,
     this.margin = EdgeInsets.zero,
     this.child,
     this.tooltip,
@@ -79,7 +79,7 @@ class NeumorphicButton extends StatefulWidget {
     //this.accent,
     this.onPressed,
     this.minDistance = 0,
-    this.style = const NeumorphicStyle(),
+    this.style,
     this.isEnabled = true,
     this.provideHapticFeedback = true,
   })  : _boxShape = boxShape ??
@@ -97,18 +97,14 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   bool pressed = false; //overwrite widget.pressed when click for animation
 
   void updateInitialStyle() {
-    if (widget.style != initialStyle) {
+    final appBarPresent = NeumorphicAppBarTheme.of(context) != null;
+    if (widget.style != initialStyle || initialStyle == null) {
+      final theme = NeumorphicTheme.of(context).current;
       setState(() {
-        this.initialStyle = widget.style;
-        depth = widget.style.depth;
+        this.initialStyle = widget.style ?? (appBarPresent ? theme.appBarTheme.buttonStyle : const NeumorphicStyle());
+        depth = widget.style?.depth ?? theme.depth;
       });
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    updateInitialStyle();
   }
 
   @override
@@ -184,6 +180,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
 
   Widget _build(BuildContext context) {
     final appBarPresent = NeumorphicAppBarTheme.of(context) != null;
+    final appBarTheme = NeumorphicTheme.of(context).current.appBarTheme;
 
     return GestureDetector(
       onTapDown: (detail) {
@@ -210,9 +207,9 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
           drawSurfaceAboveChild: widget.drawSurfaceAboveChild,
           duration: widget.duration,
           curve: widget.curve,
-          padding: widget.padding,
+          padding: widget.padding ?? (appBarPresent ? appBarTheme.buttonPadding : null) ?? const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
           boxShape: widget.boxShape,
-          style: initialStyle.copyWith(depth: _getDepth()),
+          style: initialStyle?.copyWith(depth: _getDepth()),
           child: widget.child,
         ),
       ),

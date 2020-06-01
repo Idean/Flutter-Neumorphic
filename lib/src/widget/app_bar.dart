@@ -5,6 +5,7 @@ import 'package:flutter_neumorphic/src/widget/back_button.dart';
 
 class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   static const toolbarHeight = kToolbarHeight + 16 * 2;
+  static const defaultSpacing = 4.0;
 
   /// The primary widget displayed in the app bar.
   ///
@@ -58,6 +59,11 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// Defaults to [NavigationToolbar.kMiddleSpacing].
   final double titleSpacing;
 
+  /// The spacing [actions] left side, useful to have spacing between actions
+  ///
+  /// Defaults to [NeumorphicAppBar.defaultSpacing].
+  final double actionSpacing;
+
   /// Force background color of the app bar
   final Color color;
 
@@ -86,6 +92,7 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.automaticallyImplyLeading = true,
     this.centerTitle,
     this.titleSpacing = NavigationToolbar.kMiddleSpacing,
+    this.actionSpacing = defaultSpacing,
   })  : preferredSize = Size.fromHeight(toolbarHeight),
         super(key: key);
 
@@ -112,7 +119,7 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
 class NeumorphicAppBarTheme extends InheritedWidget {
   final Widget child;
 
-  NeumorphicAppBarTheme({this.child}): super(child: child);
+  NeumorphicAppBarTheme({this.child}) : super(child: child);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
@@ -140,8 +147,8 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
     if (leading == null && widget.automaticallyImplyLeading) {
       if (hasDrawer) {
         leading = NeumorphicButton(
-          padding: nTheme.current.appBarTheme.buttonPadding,
-          style: nTheme.current.appBarTheme.buttonStyle,
+          padding: widget.buttonPadding,
+          style: widget.buttonStyle,
           child: Icon(Icons.menu),
           onPressed: _handleDrawerButton,
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
@@ -149,16 +156,13 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
       } else {
         if (canPop)
           leading = useCloseButton
-              ? NeumorphicButton(
-                  padding: widget.buttonPadding ?? nTheme.current.appBarTheme.buttonPadding,
-                  style: widget.buttonStyle ?? nTheme.current.appBarTheme.buttonStyle,
-                  child: Icon(Icons.close),
-                  tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
-                  onPressed: () => Navigator.maybePop(context),
+              ? NeumorphicCloseButton(
+                  padding: widget.buttonPadding,
+                  style: widget.buttonStyle,
                 )
               : NeumorphicBackButton(
-                  style: widget.buttonStyle ?? nTheme.current.appBarTheme.buttonStyle,
-                  padding: widget.buttonPadding ?? nTheme.current.appBarTheme.buttonPadding,
+                  padding: widget.buttonPadding,
+                  style: widget.buttonStyle,
                 );
       }
     }
@@ -173,7 +177,7 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
     if (title != null) {
       final AppBarTheme appBarTheme = AppBarTheme.of(context);
       title = DefaultTextStyle(
-        style: (appBarTheme.textTheme?.headline6 ?? Theme.of(context).textTheme.headline6).merge(widget.textStyle ?? nTheme.current.appBarTheme.textStyle),
+        style: (appBarTheme.textTheme?.headline5 ?? Theme.of(context).textTheme.headline5).merge(widget.textStyle ?? nTheme.current.appBarTheme.textStyle),
         softWrap: false,
         overflow: TextOverflow.ellipsis,
         child: title,
@@ -186,18 +190,21 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: widget.actions
-            .map((child) => ConstrainedBox(
-                  constraints: const BoxConstraints.tightFor(width: kToolbarHeight, height: kToolbarHeight),
-                  child: child,
-                ))
+            .map((child) => Padding(
+              padding: EdgeInsets.only(left: widget.actionSpacing),
+              child: ConstrainedBox(
+                    constraints: const BoxConstraints.tightFor(width: kToolbarHeight, height: kToolbarHeight),
+                    child: child,
+                  ),
+            ))
             .toList(growable: false),
       );
     } else if (hasEndDrawer) {
       actions = ConstrainedBox(
         constraints: const BoxConstraints.tightFor(width: kToolbarHeight, height: kToolbarHeight),
         child: NeumorphicButton(
-          padding: widget.buttonPadding ?? nTheme.current.appBarTheme.buttonPadding,
-          style: widget.buttonStyle ?? nTheme.current.appBarTheme.buttonStyle,
+          padding: widget.buttonPadding,
+          style: widget.buttonStyle,
           child: Icon(Icons.menu),
           onPressed: _handleDrawerButtonEnd,
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,

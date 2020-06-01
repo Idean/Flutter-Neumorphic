@@ -16,6 +16,7 @@ export 'src/widget/back_button.dart';
 export 'src/widget/background.dart';
 export 'src/widget/button.dart';
 export 'src/widget/checkbox.dart';
+export 'src/widget/close_button.dart';
 export 'src/widget/container.dart';
 export 'src/widget/icon.dart';
 export 'src/widget/indicator.dart';
