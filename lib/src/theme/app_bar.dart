@@ -16,7 +16,7 @@ class NeumorphicAppBarThemeData {
     this.iconTheme,
     this.textStyle,
     this.buttonStyle = const NeumorphicStyle(),
-    this.centerTitle = true,
+    this.centerTitle,
     this.buttonPadding = const EdgeInsets.all(0),
   });
 }
