@@ -54,7 +54,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 </tr>
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/radio.gif"/></td>
-  <tdNeumorphicRadi</td>
+  <td>NeumorphicRadio</td>
   <td>A set of neumorphic button whith only one selected at time, depending on a value and groupValue</td>
 </tr>
 <tr>
