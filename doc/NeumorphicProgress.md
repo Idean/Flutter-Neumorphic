@@ -1,1 +1,0 @@
-# Documentation for the NeumorphicProgress Widget

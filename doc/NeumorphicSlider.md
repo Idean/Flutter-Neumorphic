@@ -1,1 +1,0 @@
-# Documentation for the NeumorphicSlider Widget

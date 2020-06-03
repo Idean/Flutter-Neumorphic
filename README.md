@@ -44,22 +44,22 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 <tbody>
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/container.gif"/></td>
-  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/Neumorphic.md">Neumorphic</a></td>
+  <td>Neumorphic</td>
   <td>The main Neumorphic Widget, a container which adds white/dark gradient depending on a lightsource and a depth </td>
 </tr>
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/button.gif"/></td>
-  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicButton.md">NeumorphicButton</a></td>
+  <td>NeumorphicButton</td>
   <td>A neumorphic button that plays with the depth to respond to user interraction</td>
 </tr>
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/radio.gif"/></td>
-  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicRadio.md">NeumorphicRadio</a></td>
+  <tdNeumorphicRadi</td>
   <td>A set of neumorphic button whith only one selected at time, depending on a value and groupValue</td>
 </tr>
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/checkbox.gif"/></td>
-  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicCheckbox.md">NeumorphicCheckbox</a></td>
+  <td>NeumorphicCheckbox</td>
   <td> A button associated with a value, can be checked/unckecked, if checked, takes the accent color</td>
 </tr>
 
@@ -70,43 +70,43 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 </tr>
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/icon.png"/></td>
-  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicCheckbox.md">NeumorphicIcon</a></td>
+  <td>NeumorphicIcon</td>
   <td>A Neumorphic icon (only work with positive depth)</td>
 </tr>
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/textfield.png"/></td>
-  <td><a href="https://api.flutter.dev/flutter/material/TextField-class.html">material.TextField</a></td>
+  <td>material.TextField</td>
   <td>For TextFields, just surround your existing material textfield widget with a Neumorphic (container)</td>
 </tr>
 
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/switch.gif"/> </td>
-  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicSwitch.md">NeumorphicSwitch</a></td>
+  <td>NeumorphicSwitch</td>
   <td>An On/Off toggle, associated with a value, if toggled, takes the accent color </td>
 </tr>
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/toggle.gif"/> </td>
-  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicSwitch.md">NeumorphicToggle</a></td>
+  <td>NeumorphicToggle</td>
   <td>An mutiple value toggle, associated with a selecteedIndex</td>
 </tr>
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/slider.gif"/></td>
-  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicSlider.md">NeumorphicSlider</a></td>
+  <td>NeumorphicSlider</td>
   <td>A Neumorphic seekbar (range slider), the user can select a value in a range</td>
 </tr>
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/progress.gif"/></td>
-  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicProgress.md">NeumorphicProgress</a></td>
+  <td>NeumorphicProgress</td>
   <td>A determinate progress, takes the displayed percentage</td>
 </tr>
 <tr>
   <td><img width="300px"src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/indeterminate.gif"/> </td>
-  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicProgress.md">NeumorphicIndeterminateProgress</a></td>
+  <td>NeumorphicIndeterminateProgress</td>
   <td>An inderminate progress-bar</td>
 </tr>
 <tr>
   <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/background.png"/> </td>
-  <td><a href="https://github.com/Idean/Flutter-Neumorphic/blob/master/doc/NeumorphicBackground.md">NeumorphicBackground</a></td>
+  <td>NeumorphicBackground</td>
   <td>Take the background color of the theme, can clip the screen with a borderRadius</td>
 </tr>
 
