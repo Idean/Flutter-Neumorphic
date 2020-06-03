@@ -149,29 +149,17 @@ Neumorphic(
 |------------|--------|-------------|
 | LightSource | TopLeft, BottomRight, etc. / (dx, dy) | The source of light specifit to the theme or the widget, used to project white/dark shadows on neumorphic elements |
 | [Shape](#-shapes) | Concave / Convex / Flat | The shape of the curve used in the neumorphic container |
-| Depth | -20 <= double <= 20 | The distance of the widget to his parent. Can be negative => emboss. It influences on the shadow's color and its size/blur |
-| Intensity | 0 <= double <= 1 | The intensity of the Light, it influences on the shadow's color |
-| SurfaceIntensity | 0 <= double <= 1 | The intensity of the Surface, it influences on the concave/convex darkness |
+| [Depth](#depth) | -20 <= double <= 20 | The distance of the widget to his parent. Can be negative => emboss. It influences on the shadow's color and its size/blur |
+| [Intensity](#intensity) | 0 <= double <= 1 | The intensity of the Light, it influences on the shadow's color |
+| [SurfaceIntensity](surfaceintensity) | 0 <= double <= 1 | The intensity of the Surface, it influences on the concave/convex darkness |
 | Color | any Color | The default color of  Neumorphic elements | 
 | Accent | any Color | The default accent color of the Neumorphic element when activated (eg: checkbox) | 
 | Variant | any Color | The default secondary color of the Neumorphic element (eg: used as second color on the progress gradient) | 
 | [BoxShape](#-custom-shape) | Circle, RoundRect(radius), Stadium, Path | The box shape of a Neumorphic element. Stadium : roundrect with cirlces on each side | 
 | [Border](#-accessibility--border) | NeumorphicBorder | A border (color/width) to enhance contrast with background and others elements | 
 
-#### Depth
-
 [![Neumorphic](./medias/doc/depth.gif)](https://github.com/Idean/Flutter-Neumorphic)
-
-#### Intensity
-
-The intensity of the Light, it influences on the shadow's color
-
 [![Neumorphic](./medias/doc/intensity.gif)](https://github.com/Idean/Flutter-Neumorphic)
-
-#### SurfaceIntensity
-
-The intensity of the Surface, it influences on the concave/convex darkness
-
 [![Neumorphic](./medias/doc/surface_intensity.gif)](https://github.com/Idean/Flutter-Neumorphic)
 
 
