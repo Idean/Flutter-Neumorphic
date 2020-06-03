@@ -126,9 +126,9 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 ```dart
 
 Neumorphic(
-  boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(12)), 
   style: NeumorphicStyle(
     shape: NeumorphicShape.concave,
+    boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(12)), 
     depth: 8,
     lightSource: LightSource.topLeft,
     color: Colors.grey
@@ -237,7 +237,9 @@ And use `NeumorphicBoxShape.path`
 
 ```dart
 Neumorphic(
-  shape: NeumorphicBoxShape.path(MyShapePathProvider())
+  style: NeumorphicStyle(
+     boxShape: NeumorphicBoxShape.path(MyShapePathProvider()),
+  ),
   ...
 ),
 ```
@@ -246,7 +248,9 @@ You can import the Flutter logo as a custom shape using
 
 ```dart
 Neumorphic(
-  shape: NeumorphicBoxShape.path(NeumorphicFlutterLogoPathProvider())
+  style: NeumorphicStyle(
+    shape: NeumorphicBoxShape.path(NeumorphicFlutterLogoPathProvider()),
+  ),
   ...
 ),
 ```
