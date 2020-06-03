@@ -161,6 +161,7 @@ Neumorphic(
 [![Neumorphic](./medias/doc/depth.gif)](https://github.com/Idean/Flutter-Neumorphic)
 [![Neumorphic](./medias/doc/intensity.gif)](https://github.com/Idean/Flutter-Neumorphic)
 [![Neumorphic](./medias/doc/surface_intensity.gif)](https://github.com/Idean/Flutter-Neumorphic)
+[![Neumorphic](./medias/doc/lightsource.gif)](https://github.com/Idean/Flutter-Neumorphic)
 
 
 ### 🔧 Shapes

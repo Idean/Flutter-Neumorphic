@@ -101,10 +101,10 @@ class __PageState extends State<_Page> {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
-        depthSelector(),
-        intensitySelector(),
-        surfaceIntensitySelector(),
-        shapeWidget(),
+        //depthSelector(),
+        //intensitySelector(),
+        //surfaceIntensitySelector(),
+        //shapeWidget(),
       ],
     );
   }
@@ -324,10 +324,9 @@ class __PageState extends State<_Page> {
   Widget lightSourceWidgets() {
     return Stack(
       children: <Widget>[
-        /*
         Positioned(
-          left: 10,
-          right: 10,
+          left: 20,
+          right: 20,
           child: Slider(
             min: -1,
             max: 1,
@@ -341,8 +340,8 @@ class __PageState extends State<_Page> {
         ),
         Positioned(
           left: 0,
-          top: 10,
-          bottom: 10,
+          top: 20,
+          bottom: 20,
           child: RotatedBox(
             quarterTurns: 1,
             child: Slider(
@@ -357,8 +356,6 @@ class __PageState extends State<_Page> {
             ),
           ),
         ),
-
-         */
       ],
     );
   }
