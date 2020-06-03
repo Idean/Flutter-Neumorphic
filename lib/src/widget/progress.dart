@@ -124,8 +124,9 @@ class NeumorphicProgress extends StatefulWidget {
 class _NeumorphicProgressState extends State<NeumorphicProgress>
     with TickerProviderStateMixin {
   double percent = 0;
+  double oldPercent = 0;
+
   AnimationController _controller;
-  Animation _animation;
 
   @override
   void initState() {
@@ -138,22 +139,8 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
   void didUpdateWidget(NeumorphicProgress oldWidget) {
     if (oldWidget.percent != widget.percent) {
       _controller.reset();
-      if (widget.duration.inMilliseconds == 0) {
-        setState(() {
-          this.percent = widget.percent;
-        });
-      } else {
-        _animation =
-            Tween<double>(begin: oldWidget.percent, end: widget.percent)
-                .animate(_controller)
-                  ..addListener(() {
-                    setState(() {
-                      this.percent = _animation.value;
-                    });
-                  });
-
-        _controller.forward();
-      }
+      oldPercent = oldWidget.percent;
+      _controller.forward();
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -183,20 +170,34 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
             depth: widget.style.depth,
             shape: NeumorphicShape.flat,
           ),
-          child: FractionallySizedBox(
-            alignment: Alignment.centerLeft,
-            widthFactor: this.percent,
-            child: _GradientProgress(
-              borderRadius: widget.style.gradientBorderRadius ??
-                  widget.style.borderRadius,
-              begin: widget.style.progressGradientStart ?? Alignment.centerLeft,
-              end: widget.style.progressGradientEnd ?? Alignment.centerRight,
-              colors: [
-                widget.style.variant ?? theme.variantColor,
-                widget.style.accent ?? theme.accentColor,
-              ],
-            ),
-          ),
+          child: AnimatedBuilder(
+              animation: _controller,
+              builder: (_, __) {
+                //evaluate percent according controller
+                var width;
+                if (_controller.status == AnimationStatus.dismissed) {
+                  width = widget.percent;
+                } else {
+                  width = Tween<double>(begin: oldPercent, end: widget.percent)
+                      .evaluate(_controller);
+                }
+                return FractionallySizedBox(
+                  alignment: Alignment.centerLeft,
+                  widthFactor: width,
+                  child: _GradientProgress(
+                    borderRadius: widget.style.gradientBorderRadius ??
+                        widget.style.borderRadius,
+                    begin: widget.style.progressGradientStart ??
+                        Alignment.centerLeft,
+                    end: widget.style.progressGradientEnd ??
+                        Alignment.centerRight,
+                    colors: [
+                      widget.style.variant ?? theme.variantColor,
+                      widget.style.accent ?? theme.accentColor,
+                    ],
+                  ),
+                );
+              }),
         ),
       ),
     );

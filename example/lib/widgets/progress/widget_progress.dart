@@ -4,6 +4,8 @@ import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+import 'dart:math' show Random;
+
 class ProgressWidgetPage extends StatefulWidget {
   ProgressWidgetPage({Key key}) : super(key: key);
 
@@ -106,6 +108,11 @@ Expanded(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         _buildWidget(context),
+        FlatButton(child: Text('Update'), onPressed: (){
+          setState(() {
+            percent = Random().nextDouble();
+          });
+        }),
         _buildCode(context),
       ],
     );
