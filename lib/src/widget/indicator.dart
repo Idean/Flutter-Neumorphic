@@ -111,6 +111,7 @@ class NeumorphicIndicator extends StatefulWidget {
   final NeumorphicIndicatorOrientation orientation;
   final IndicatorStyle style;
   final Duration duration;
+  final Curve curve;
 
   const NeumorphicIndicator({
     Key key,
@@ -120,7 +121,8 @@ class NeumorphicIndicator extends StatefulWidget {
     this.padding = EdgeInsets.zero,
     this.width = double.maxFinite,
     this.style = const IndicatorStyle(),
-    this.duration = const Duration(milliseconds: 150),
+    this.duration = const Duration(milliseconds: 300),
+    this.curve = Curves.easeOutCubic,
   }) : super(key: key);
 
   @override
@@ -139,7 +141,8 @@ class NeumorphicIndicator extends StatefulWidget {
           padding == other.padding &&
           orientation == other.orientation &&
           style == other.style &&
-          duration == other.duration;
+          duration == other.duration &&
+          curve == other.curve;
 
   @override
   // ignore: invalid_override_of_non_virtual_member
@@ -151,7 +154,8 @@ class NeumorphicIndicator extends StatefulWidget {
       padding.hashCode ^
       orientation.hashCode ^
       style.hashCode ^
-      duration.hashCode;
+      duration.hashCode ^
+      curve.hashCode;
 }
 
 class _NeumorphicIndicatorState extends State<NeumorphicIndicator>
@@ -164,7 +168,8 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator>
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this, duration: widget.duration);
-    _animation = Tween<double>(begin: widget.percent, end: oldPercent).animate(_controller);
+    _animation = Tween<double>(begin: widget.percent, end: oldPercent)
+        .animate(_controller);
   }
 
   @override
@@ -172,7 +177,8 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator>
     if (oldWidget.percent != widget.percent) {
       _controller.reset();
       oldPercent = oldWidget.percent;
-      _animation = Tween<double>(begin: oldPercent, end: widget.percent).animate(_controller);
+      _animation = Tween<double>(begin: oldPercent, end: widget.percent)
+          .animate(CurvedAnimation(parent: _controller, curve: widget.curve));
       _controller.forward();
     }
     super.didUpdateWidget(oldWidget);
@@ -201,7 +207,7 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator>
         ),
         child: AnimatedBuilder(
             animation: _animation,
-            builder: (_, __) { 
+            builder: (_, __) {
               return FractionallySizedBox(
                 heightFactor: widget.orientation ==
                         NeumorphicIndicatorOrientation.vertical
