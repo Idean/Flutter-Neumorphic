@@ -53,6 +53,8 @@ class _PageState extends State<_Page> {
               _DefaultWidget(),
               _ColorWidget(),
               _SizedWidget(),
+              _DurationWidget(),
+              _CurveWidget(),
               SizedBox(height: 30),
             ],
           ),
@@ -265,6 +267,125 @@ Expanded(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+}
+
+class _DurationWidget extends StatefulWidget {
+  @override
+  createState() => _DurationWidgetState();
+}
+
+class _DurationWidgetState extends State<_DurationWidget> {
+  double percent = 0.2;
+
+  Widget _buildCode(BuildContext context) {
+    return Code("""
+double percent = 0.2;  
+
+Expanded(
+  child: NeumorphicProgress(
+      percent: percent,
+      duration: Duration(seconds: 1),
+  ),
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Duration",
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+          ),
+          SizedBox(width: 12),
+          Expanded(
+            child: NeumorphicProgress(
+              percent: percent,
+              duration: Duration(seconds: 1),
+            ),
+          ),
+          SizedBox(width: 12),
+        ],
+      ),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        FlatButton(child: Text('Update'), onPressed: (){
+          setState(() {
+            percent = Random().nextDouble();
+          });
+        }),
+        _buildCode(context),
+      ],
+    );
+  }
+}
+
+
+class _CurveWidget extends StatefulWidget {
+  @override
+  createState() => _CurveWidgetState();
+}
+
+class _CurveWidgetState extends State<_CurveWidget> {
+  double percent = 0.2;
+
+  Widget _buildCode(BuildContext context) {
+    return Code("""
+double percent = 0.2;  
+
+Expanded(
+  child: NeumorphicProgress(
+      percent: percent,
+      curve: Curves.bounceOut,
+  ),
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Curve",
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+          ),
+          SizedBox(width: 12),
+          Expanded(
+            child: NeumorphicProgress(
+              percent: percent,
+              curve: Curves.bounceOut,
+            ),
+          ),
+          SizedBox(width: 12),
+        ],
+      ),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        FlatButton(child: Text('Update'), onPressed: (){
+          setState(() {
+            percent = Random().nextDouble();
+          });
+        }),
         _buildCode(context),
       ],
     );

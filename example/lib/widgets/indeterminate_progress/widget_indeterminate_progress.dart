@@ -56,6 +56,8 @@ class _PageState extends State<_Page> {
               _ColorWidget(),
               _SizedWidget(),
               _DurationWidget(),
+              _ReversedWidget(),
+              _CurveWidget(),
               SizedBox(height: 30),
             ],
           ),
@@ -287,6 +289,103 @@ Expanded(
               SizedBox(width: 12),
             ],
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+}
+
+
+class _ReversedWidget extends StatefulWidget {
+  @override
+  createState() => _ReversedWidgetState();
+}
+
+class _ReversedWidgetState extends State<_ReversedWidget> {
+  Widget _buildCode(BuildContext context) {
+    return Code("""
+Expanded(
+  child: NeumorphicProgressIndeterminate(
+       reverse: true,
+  ),
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Reversed",
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+          ),
+          SizedBox(width: 12),
+          Expanded(
+            child: NeumorphicProgressIndeterminate(
+              reverse: true,
+            ),
+          ),
+          SizedBox(width: 12),
+        ],
+      ),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+}
+
+class _CurveWidget extends StatefulWidget {
+  @override
+  createState() => _CurveWidgetState();
+}
+
+class _CurveWidgetState extends State<_CurveWidget> {
+  Widget _buildCode(BuildContext context) {
+    return Code("""
+Expanded(
+  child: NeumorphicProgressIndeterminate(
+       curve: Curves.bounceOut,
+  ),
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Curve",
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+          ),
+          SizedBox(width: 12),
+          Expanded(
+            child: NeumorphicProgressIndeterminate(
+              curve: Curves.bounceOut,
+            ),
+          ),
+          SizedBox(width: 12),
         ],
       ),
     );

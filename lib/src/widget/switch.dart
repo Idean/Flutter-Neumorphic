@@ -161,10 +161,11 @@ class NeumorphicSwitch extends StatelessWidget {
               disableDepth: this.style.disableDepth,
               depth: _getTrackDepth(theme.depth),
               shape: NeumorphicShape.flat,
-              color: _getTrackColor(theme),
+              color: _getTrackColor(theme, this.isEnabled),
             ),
             child: AnimatedScale(
               scale: this.isEnabled ? 1 : 0,
+              alignment: this.value ? Alignment(0.5, 0) : Alignment(-0.5, 0),
               child: AnimatedThumb(
                 curve: this.curve,
                 disableDepth: this.style.disableDepth,
@@ -208,7 +209,11 @@ class NeumorphicSwitch extends StatelessWidget {
     return depth.clamp(Neumorphic.MIN_DEPTH, NeumorphicSwitch.MIN_EMBOSS_DEPTH);
   }
 
-  Color _getTrackColor(NeumorphicThemeData theme) {
+  Color _getTrackColor(NeumorphicThemeData theme, bool enabled) {
+    if (!enabled) {
+      return this.style.inactiveTrackColor ?? theme.baseColor;
+    }
+
     return this.value == true
         ? this.style.activeTrackColor ?? theme.accentColor
         : this.style.inactiveTrackColor ?? theme.baseColor;

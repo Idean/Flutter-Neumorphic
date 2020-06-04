@@ -91,14 +91,16 @@ class NeumorphicProgress extends StatefulWidget {
   final double height;
   final Duration duration;
   final ProgressStyle style;
+  final Curve curve;
 
-  const NeumorphicProgress({
-    Key key,
-    double percent,
-    this.height = 10,
-    this.duration = const Duration(milliseconds: 150),
-    this.style = const ProgressStyle(),
-  })  : this._percent = percent,
+  const NeumorphicProgress(
+      {Key key,
+      double percent,
+      this.height = 10,
+      this.duration = const Duration(milliseconds: 300),
+      this.style = const ProgressStyle(),
+      this.curve = Curves.easeOutCubic})
+      : this._percent = percent,
         super(key: key);
 
   @override
@@ -114,25 +116,28 @@ class NeumorphicProgress extends StatefulWidget {
           runtimeType == other.runtimeType &&
           percent == other.percent &&
           height == other.height &&
-          style == other.style;
+          style == other.style &&
+          curve == other.curve;
 
   @override
   // ignore: invalid_override_of_non_virtual_member
-  int get hashCode => percent.hashCode ^ height.hashCode ^ style.hashCode;
+  int get hashCode =>
+      percent.hashCode ^ height.hashCode ^ style.hashCode ^ curve.hashCode;
 }
 
 class _NeumorphicProgressState extends State<NeumorphicProgress>
     with TickerProviderStateMixin {
-  double percent = 0;
   double oldPercent = 0;
 
   AnimationController _controller;
+  Animation _animation;
 
   @override
   void initState() {
     super.initState();
-    percent = widget.percent ?? 0;
     _controller = AnimationController(vsync: this, duration: widget.duration);
+    _animation = Tween<double>(begin: widget.percent, end: oldPercent)
+        .animate(_controller);
   }
 
   @override
@@ -140,6 +145,8 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
     if (oldWidget.percent != widget.percent) {
       _controller.reset();
       oldPercent = oldWidget.percent;
+      _animation = Tween<double>(begin: oldPercent, end: widget.percent)
+          .animate(CurvedAnimation(parent: _controller, curve: widget.curve));
       _controller.forward();
     }
     super.didUpdateWidget(oldWidget);
@@ -173,17 +180,9 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
           child: AnimatedBuilder(
               animation: _controller,
               builder: (_, __) {
-                //evaluate percent according controller
-                var width;
-                if (_controller.status == AnimationStatus.dismissed) {
-                  width = widget.percent;
-                } else {
-                  width = Tween<double>(begin: oldPercent, end: widget.percent)
-                      .evaluate(_controller);
-                }
                 return FractionallySizedBox(
                   alignment: Alignment.centerLeft,
-                  widthFactor: width,
+                  widthFactor: _animation.value,
                   child: _GradientProgress(
                     borderRadius: widget.style.gradientBorderRadius ??
                         widget.style.borderRadius,
@@ -224,13 +223,17 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
   final double height;
   final ProgressStyle style;
   final Duration duration;
+  final bool reverse;
+  final Curve curve;
 
-  const NeumorphicProgressIndeterminate(
-      {Key key,
-      this.height = 10,
-      this.style = const ProgressStyle(),
-      this.duration = const Duration(seconds: 3)})
-      : super(key: key);
+  const NeumorphicProgressIndeterminate({
+    Key key,
+    this.height = 10,
+    this.style = const ProgressStyle(),
+    this.duration = const Duration(seconds: 3),
+    this.reverse = false,
+    this.curve = Curves.easeInOut,
+  }) : super(key: key);
 
   @override
   createState() => _NeumorphicProgressIndeterminateState();
@@ -243,60 +246,46 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
           runtimeType == other.runtimeType &&
           height == other.height &&
           style == other.style &&
-          duration == other.duration;
+          duration == other.duration &&
+          reverse == other.reverse &&
+          curve == other.curve;
 
   @override
   // ignore: invalid_override_of_non_virtual_member
-  int get hashCode => height.hashCode ^ style.hashCode ^ duration.hashCode;
+  int get hashCode =>
+      height.hashCode ^
+      style.hashCode ^
+      duration.hashCode ^
+      reverse.hashCode ^
+      curve.hashCode;
 }
 
 class _NeumorphicProgressIndeterminateState
     extends State<NeumorphicProgressIndeterminate>
     with TickerProviderStateMixin {
-  double percent = 0;
-
   AnimationController _controller;
   Animation _animation;
-  bool disposed = false;
-  Alignment alignment = Alignment.centerLeft;
 
   @override
   void initState() {
     super.initState();
-    _createAnimation();
-  }
-
-  @override
-  void didUpdateWidget(NeumorphicProgressIndeterminate oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget != widget) {
-      _createAnimation();
-    }
-  }
-
-  void _createAnimation() {
-    _controller?.dispose();
     _controller = AnimationController(vsync: this, duration: widget.duration);
-    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller)
-      ..addListener(() {
-        setState(() {
-          this.percent = _animation.value;
-        });
-      });
-
-    loop();
+    _animation = Tween<double>(begin: 0, end: 1)
+        .animate(CurvedAnimation(parent: _controller, curve: widget.curve));
+    _loop();
   }
 
-  void loop() async {
+  void _loop() async {
     try {
-      await _controller.repeat(min: 0, max: 1, reverse: false).orCancel;
+      await _controller
+          .repeat(min: 0, max: 1, reverse: widget.reverse)
+          .orCancel;
     } on TickerCanceled {}
   }
 
   @override
   void dispose() {
     _controller.dispose();
-    disposed = true;
     super.dispose();
   }
 
@@ -319,26 +308,31 @@ class _NeumorphicProgressIndeterminateState
             shape: NeumorphicShape.flat,
           ),
           child: LayoutBuilder(builder: (context, constraints) {
-            return Padding(
-              padding: EdgeInsets.only(left: constraints.maxWidth * percent),
-              child: FractionallySizedBox(
-                heightFactor: 1,
-                alignment: Alignment.centerLeft,
-                widthFactor: this.percent,
-                child: _GradientProgress(
-                  borderRadius: widget.style.gradientBorderRadius ??
-                      widget.style.borderRadius,
-                  begin: widget.style.progressGradientStart ??
-                      Alignment.centerLeft,
-                  end:
-                      widget.style.progressGradientEnd ?? Alignment.centerRight,
-                  colors: [
-                    widget.style.accent ?? theme.accentColor,
-                    widget.style.variant ?? theme.variantColor
-                  ],
-                ),
-              ),
-            );
+            return AnimatedBuilder(
+                animation: _animation,
+                builder: (_, __) {
+                  return Padding(
+                    padding: EdgeInsets.only(
+                        left: constraints.maxWidth * _animation.value),
+                    child: FractionallySizedBox(
+                      heightFactor: 1,
+                      alignment: Alignment.centerLeft,
+                      widthFactor: _animation.value,
+                      child: _GradientProgress(
+                        borderRadius: widget.style.gradientBorderRadius ??
+                            widget.style.borderRadius,
+                        begin: widget.style.progressGradientStart ??
+                            Alignment.centerLeft,
+                        end: widget.style.progressGradientEnd ??
+                            Alignment.centerRight,
+                        colors: [
+                          widget.style.accent ?? theme.accentColor,
+                          widget.style.variant ?? theme.variantColor
+                        ],
+                      ),
+                    ),
+                  );
+                });
           }),
         ),
       ),
