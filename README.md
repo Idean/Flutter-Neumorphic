@@ -224,7 +224,7 @@ Neumorphic(
 
 ## Neumorphic Tewt
 
-[![custom_shape](./medias/widget/text.png)](https://github.com/Idean/Flutter-Neumorphic)
+[![text](./medias/widgets/text.png)](https://github.com/Idean/Flutter-Neumorphic)
 
 ```dart
 child: NeumorphicText(
