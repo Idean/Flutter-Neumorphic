@@ -109,6 +109,16 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
   <td>NeumorphicBackground</td>
   <td>Take the background color of the theme, can clip the screen with a borderRadius</td>
 </tr>
+<tr>
+  <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/background.png"/> </td>
+  <td>NeumorphicApp</td>
+  <td>An application that uses Neumorphic design. Handle theme, navigation, localisation, and much more</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/app_bar.png"/> </td>
+  <td>NeumorphicAppBar</td>
+  <td>A Neumorphhic design app bar. Can be used inside Scaffold</td>
+</tr>
 
 </tbody>
 </table>
