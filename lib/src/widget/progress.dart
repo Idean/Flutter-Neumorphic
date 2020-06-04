@@ -123,16 +123,17 @@ class NeumorphicProgress extends StatefulWidget {
 
 class _NeumorphicProgressState extends State<NeumorphicProgress>
     with TickerProviderStateMixin {
-  double percent = 0;
   double oldPercent = 0;
 
   AnimationController _controller;
+  Animation _animation;
 
   @override
   void initState() {
     super.initState();
-    percent = widget.percent ?? 0;
     _controller = AnimationController(vsync: this, duration: widget.duration);
+    _animation = Tween<double>(begin: widget.percent, end: oldPercent)
+        .animate(_controller);
   }
 
   @override
@@ -140,6 +141,8 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
     if (oldWidget.percent != widget.percent) {
       _controller.reset();
       oldPercent = oldWidget.percent;
+      _animation = Tween<double>(begin: oldPercent, end: widget.percent)
+          .animate(_controller);
       _controller.forward();
     }
     super.didUpdateWidget(oldWidget);
@@ -173,17 +176,9 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
           child: AnimatedBuilder(
               animation: _controller,
               builder: (_, __) {
-                //evaluate percent according controller
-                var width;
-                if (_controller.status == AnimationStatus.dismissed) {
-                  width = widget.percent;
-                } else {
-                  width = Tween<double>(begin: oldPercent, end: widget.percent)
-                      .evaluate(_controller);
-                }
                 return FractionallySizedBox(
                   alignment: Alignment.centerLeft,
-                  widthFactor: width,
+                  widthFactor: _animation.value,
                   child: _GradientProgress(
                     borderRadius: widget.style.gradientBorderRadius ??
                         widget.style.borderRadius,
