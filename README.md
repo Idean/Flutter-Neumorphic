@@ -310,7 +310,7 @@ Note that `borderColor` and `borderWidth` default values has been added to `Neum
 
 ```dart
 NeumorphicTheme(
-    usedTheme: UsedTheme.LIGHT, //or DARK / SYSTEM
+    themeMode: ThemeMode.light, //or dark / system
     darkTheme: NeumorphicThemeData(
         baseColor: Color(0xff333333),
         accentColor: Colors.green,
@@ -340,7 +340,7 @@ final accentColor = theme.accentColor;
 
 Toggle from light to dark
 ```dart
-NeumorphicTheme.of(context).currentTheme = CurrentTheme.DARK;
+NeumorphicTheme.of(context).themeMode = ThemeMode.dark;
 ```
 
 Know if using dark
