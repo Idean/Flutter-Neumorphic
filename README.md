@@ -254,7 +254,7 @@ child: NeumorphicIcon(
     ),
 ```
 
-How to display SVG icons ?
+How to display **SVG** icons ?
 
 Simply use [https://fluttericon.com/](https://fluttericon.com/) to export your svg as .ttf & use NeumorphicIcon(YOUR_ICON) 
 
