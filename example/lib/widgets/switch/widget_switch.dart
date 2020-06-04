@@ -73,6 +73,7 @@ class _DefaultWidget extends StatefulWidget {
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
   bool isChecked = false;
+  bool isEnabled = true;
 
   Widget _buildCode(BuildContext context) {
     return Code("""
@@ -100,6 +101,7 @@ NeumorphicSwitch(
           ),
           SizedBox(width: 12),
           NeumorphicSwitch(
+            isEnabled: isEnabled,
             value: isChecked,
             onChanged: (value) {
               setState(() {
@@ -107,6 +109,14 @@ NeumorphicSwitch(
               });
             },
           ),
+          SizedBox(width: 12),
+          FlatButton(
+              onPressed: () {
+                setState(() {
+                  isEnabled = !isEnabled;
+                });
+              },
+              child: Text(isEnabled ? 'Disable' : 'Enable'))
         ],
       ),
     );
