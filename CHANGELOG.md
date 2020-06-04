@@ -1,3 +1,13 @@
+## 3.0.0
+
+* Added `NeumorphicText` (only positive depth)
+* Added `NeumorphicIcon` (work with svg)
+* `NeumorphicBoxShape` is now an element of `NeumorphicStyle`
+* Added NeumorphicApp, NeumorphicAppBar
+* Improved NeumorphicTheme (handles more styles)
+* Neumorphic now include Material
+* Refactored Progress animations
+
 ## 2.2.2
 
 * Added NeumorphicButton.tooltip optional parameter
@@ -13,7 +23,7 @@
 
 ## 2.1.0+1
 
-* Added NeumorphicText
+* Added NeumorphicText (beta)
 * Added NeumorphicIcon
 * Updated samples
 

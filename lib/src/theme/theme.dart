@@ -64,6 +64,7 @@ class NeumorphicThemeData {
   final double _intensity;
   final LightSource lightSource;
   final bool disableDepth;
+
   /// Default text theme to use and apply across the app
   final TextTheme textTheme;
   final NeumorphicAppBarThemeData appBarTheme;

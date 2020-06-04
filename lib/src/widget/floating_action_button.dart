@@ -11,7 +11,6 @@ const BoxConstraints _kMiniSizeConstraints = BoxConstraints.tightFor(
 );
 
 class NeumorphicFloatingActionButton extends StatelessWidget {
-
   final Widget child;
   final NeumorphicButtonClickListener onPressed;
   final bool mini;
@@ -35,10 +34,10 @@ class NeumorphicFloatingActionButton extends StatelessWidget {
         padding: EdgeInsets.all(0),
         onPressed: this.onPressed,
         tooltip: this.tooltip,
-        style: this.style ?? NeumorphicTheme.currentTheme(context).appBarTheme.buttonStyle,
+        style: this.style ??
+            NeumorphicTheme.currentTheme(context).appBarTheme.buttonStyle,
         child: this.child,
       ),
     );
   }
-
 }

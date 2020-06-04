@@ -47,7 +47,7 @@ class _AnimatedScaleState extends State<AnimatedScale>
   void initState() {
     _controller = AnimationController(duration: widget.duration, vsync: this);
     _animation = Tween<double>(begin: widget.scale, end: widget.scale)
-          .animate(_controller);
+        .animate(_controller);
     super.initState();
   }
 

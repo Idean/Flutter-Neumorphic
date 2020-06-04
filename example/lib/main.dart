@@ -32,14 +32,12 @@ class MyHomePage extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      /*
       floatingActionButton: NeumorphicFloatingActionButton(
-        child: Icon(Icons.add, color: NeumorphicTheme.accentColor(context), size: 30),
+        child: Icon(Icons.add, size: 30),
         onPressed: (){
 
         },
       ),
-       */
       backgroundColor: NeumorphicTheme.baseColor(context),
       body: Center(
         child: Column(

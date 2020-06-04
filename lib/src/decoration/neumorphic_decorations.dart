@@ -103,7 +103,8 @@ class NeumorphicDecoration extends Decoration {
         style: a.style.copyWith(
           border: NeumorphicBorder.lerp(aStyle.border, bStyle.border, t),
           intensity: lerpDouble(aStyle.intensity, bStyle.intensity, t),
-          surfaceIntensity: lerpDouble(aStyle.surfaceIntensity, bStyle.surfaceIntensity, t),
+          surfaceIntensity:
+              lerpDouble(aStyle.surfaceIntensity, bStyle.surfaceIntensity, t),
           depth: lerpDouble(aStyle.depth, bStyle.depth, t),
           color: Color.lerp(aStyle.color, bStyle.color, t),
           lightSource:

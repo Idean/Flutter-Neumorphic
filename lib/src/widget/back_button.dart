@@ -30,8 +30,12 @@ class NeumorphicBackButton extends StatelessWidget {
 
   IconData _getIcon(ThemeData theme) {
     if (reversedArrow) {
-      return [TargetPlatform.iOS, TargetPlatform.macOS].contains(theme.platform) ? Icons.arrow_forward_ios : Icons.arrow_forward;
+      return [TargetPlatform.iOS, TargetPlatform.macOS].contains(theme.platform)
+          ? Icons.arrow_forward_ios
+          : Icons.arrow_forward;
     }
-    return [TargetPlatform.iOS, TargetPlatform.macOS].contains(theme.platform) ? Icons.arrow_back_ios : Icons.arrow_back;
+    return [TargetPlatform.iOS, TargetPlatform.macOS].contains(theme.platform)
+        ? Icons.arrow_back_ios
+        : Icons.arrow_back;
   }
 }

@@ -100,7 +100,8 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   NeumorphicAppBarState createState() => NeumorphicAppBarState();
 
   bool _getEffectiveCenterTitle(ThemeData theme, NeumorphicThemeData nTheme) {
-    if (centerTitle != null || nTheme.appBarTheme.centerTitle != null) return centerTitle ?? nTheme.appBarTheme.centerTitle;
+    if (centerTitle != null || nTheme.appBarTheme.centerTitle != null)
+      return centerTitle ?? nTheme.appBarTheme.centerTitle;
     assert(theme.platform != null);
     switch (theme.platform) {
       case TargetPlatform.android:
@@ -138,7 +139,8 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
     final nTheme = NeumorphicTheme.of(context);
     final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
     final bool canPop = parentRoute?.canPop ?? false;
-    final bool useCloseButton = parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
+    final bool useCloseButton =
+        parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
     final ScaffoldState scaffold = Scaffold.of(context, nullOk: true);
     final bool hasDrawer = scaffold?.hasDrawer ?? false;
     final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
@@ -177,7 +179,9 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
     if (title != null) {
       final AppBarTheme appBarTheme = AppBarTheme.of(context);
       title = DefaultTextStyle(
-        style: (appBarTheme.textTheme?.headline5 ?? Theme.of(context).textTheme.headline5).merge(widget.textStyle ?? nTheme.current.appBarTheme.textStyle),
+        style: (appBarTheme.textTheme?.headline5 ??
+                Theme.of(context).textTheme.headline5)
+            .merge(widget.textStyle ?? nTheme.current.appBarTheme.textStyle),
         softWrap: false,
         overflow: TextOverflow.ellipsis,
         child: title,
@@ -191,17 +195,19 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: widget.actions
             .map((child) => Padding(
-              padding: EdgeInsets.only(left: widget.actionSpacing),
-              child: ConstrainedBox(
-                    constraints: const BoxConstraints.tightFor(width: kToolbarHeight, height: kToolbarHeight),
+                  padding: EdgeInsets.only(left: widget.actionSpacing),
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints.tightFor(
+                        width: kToolbarHeight, height: kToolbarHeight),
                     child: child,
                   ),
-            ))
+                ))
             .toList(growable: false),
       );
     } else if (hasEndDrawer) {
       actions = ConstrainedBox(
-        constraints: const BoxConstraints.tightFor(width: kToolbarHeight, height: kToolbarHeight),
+        constraints: const BoxConstraints.tightFor(
+            width: kToolbarHeight, height: kToolbarHeight),
         child: NeumorphicButton(
           padding: widget.buttonPadding,
           style: widget.buttonStyle,
@@ -219,12 +225,15 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: IconTheme(
-              data: widget.iconTheme ?? nTheme.current.appBarTheme.iconTheme ?? IconThemeData(),
+              data: widget.iconTheme ??
+                  nTheme.current.appBarTheme.iconTheme ??
+                  IconThemeData(),
               child: NavigationToolbar(
                 leading: leading,
                 middle: title,
                 trailing: actions,
-                centerMiddle: widget._getEffectiveCenterTitle(theme, nTheme.current),
+                centerMiddle:
+                    widget._getEffectiveCenterTitle(theme, nTheme.current),
                 middleSpacing: widget.titleSpacing,
               ),
             ),

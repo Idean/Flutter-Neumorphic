@@ -1,7 +1,5 @@
 # flutter_neumorphic
 
-[![top_banner](./medias/top_banner.png)](https://www.idean.com/)
-
 A complete, ready to use, Neumorphic ui kit for Flutter
 
 [![flutter_logo](./medias/flutter_logo_small.gif)](https://github.com/Idean/Flutter-Neumorphic)
@@ -21,7 +19,7 @@ https://pub.dartlang.org/packages/flutter_neumorphic)
 
 ```dart
 dependencies:
-  flutter_neumorphic: ^2.2.2
+  flutter_neumorphic: ^3.0.0
 
 //requires flutter > 1.13.18
 ```
