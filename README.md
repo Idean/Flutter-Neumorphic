@@ -226,6 +226,8 @@ Neumorphic(
 
 [![text](./medias/widgets/text.png)](https://github.com/Idean/Flutter-Neumorphic)
 
+**Text only handle positive depth**
+
 ```dart
 child: NeumorphicText(
         "I love flutter",
