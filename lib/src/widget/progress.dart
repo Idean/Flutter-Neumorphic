@@ -220,14 +220,16 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
   final ProgressStyle style;
   final Duration duration;
   final bool reverse;
+  final Curve curve;
 
-  const NeumorphicProgressIndeterminate(
-      {Key key,
-      this.height = 10,
-      this.style = const ProgressStyle(),
-      this.duration = const Duration(seconds: 3),
-      this.reverse = false})
-      : super(key: key);
+  const NeumorphicProgressIndeterminate({
+    Key key,
+    this.height = 10,
+    this.style = const ProgressStyle(),
+    this.duration = const Duration(seconds: 3),
+    this.reverse = false,
+    this.curve = Curves.easeInOut,
+  }) : super(key: key);
 
   @override
   createState() => _NeumorphicProgressIndeterminateState();
@@ -241,12 +243,17 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
           height == other.height &&
           style == other.style &&
           duration == other.duration &&
-          reverse == other.reverse;
+          reverse == other.reverse &&
+          curve == other.curve;
 
   @override
   // ignore: invalid_override_of_non_virtual_member
   int get hashCode =>
-      height.hashCode ^ style.hashCode ^ duration.hashCode ^ reverse.hashCode;
+      height.hashCode ^
+      style.hashCode ^
+      duration.hashCode ^
+      reverse.hashCode ^
+      curve.hashCode;
 }
 
 class _NeumorphicProgressIndeterminateState
@@ -259,7 +266,8 @@ class _NeumorphicProgressIndeterminateState
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this, duration: widget.duration);
-    _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
+    _animation = Tween<double>(begin: 0, end: 1)
+        .animate(CurvedAnimation(parent: _controller, curve: widget.curve));
     _loop();
   }
 
