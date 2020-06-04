@@ -448,6 +448,7 @@ Here's a Nereumorphic Button tap (slowed x2) from the sample app, you can see ho
 | [![gyl](./medias/contributors/gyl.png)](https://github.com/almighty972)        | [Gyl Jean Lambert](https://github.com/almighty972)  |
 | [![jaumard](./medias/contributors/jaumard.jpeg)](https://github.com/jaumard)    | [Jaumard](https://github.com/jaumard)  |
 | [![Overman775](./medias/contributors/overman775.jpeg)](https://github.com/Overman775)    | [Overman775](https://github.com/Overman775)  |
+| [![schopy](./medias/contributors/schopy.jpeg)](https://github.com/schopy)    | [schopy](https://github.com/schopy)  |
 
 
 ## 📄 License
