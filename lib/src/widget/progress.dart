@@ -219,12 +219,14 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
   final double height;
   final ProgressStyle style;
   final Duration duration;
+  final bool reverse;
 
   const NeumorphicProgressIndeterminate(
       {Key key,
       this.height = 10,
       this.style = const ProgressStyle(),
-      this.duration = const Duration(seconds: 3)})
+      this.duration = const Duration(seconds: 3),
+      this.reverse = false})
       : super(key: key);
 
   @override
@@ -238,60 +240,40 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
           runtimeType == other.runtimeType &&
           height == other.height &&
           style == other.style &&
-          duration == other.duration;
+          duration == other.duration &&
+          reverse == other.reverse;
 
   @override
   // ignore: invalid_override_of_non_virtual_member
-  int get hashCode => height.hashCode ^ style.hashCode ^ duration.hashCode;
+  int get hashCode =>
+      height.hashCode ^ style.hashCode ^ duration.hashCode ^ reverse.hashCode;
 }
 
 class _NeumorphicProgressIndeterminateState
     extends State<NeumorphicProgressIndeterminate>
     with TickerProviderStateMixin {
-  double percent = 0;
-
   AnimationController _controller;
   Animation _animation;
-  bool disposed = false;
-  Alignment alignment = Alignment.centerLeft;
 
   @override
   void initState() {
     super.initState();
-    _createAnimation();
-  }
-
-  @override
-  void didUpdateWidget(NeumorphicProgressIndeterminate oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget != widget) {
-      _createAnimation();
-    }
-  }
-
-  void _createAnimation() {
-    _controller?.dispose();
     _controller = AnimationController(vsync: this, duration: widget.duration);
-    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller)
-      ..addListener(() {
-        setState(() {
-          this.percent = _animation.value;
-        });
-      });
-
-    loop();
+    _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
+    _loop();
   }
 
-  void loop() async {
+  void _loop() async {
     try {
-      await _controller.repeat(min: 0, max: 1, reverse: false).orCancel;
+      await _controller
+          .repeat(min: 0, max: 1, reverse: widget.reverse)
+          .orCancel;
     } on TickerCanceled {}
   }
 
   @override
   void dispose() {
     _controller.dispose();
-    disposed = true;
     super.dispose();
   }
 
@@ -314,26 +296,31 @@ class _NeumorphicProgressIndeterminateState
             shape: NeumorphicShape.flat,
           ),
           child: LayoutBuilder(builder: (context, constraints) {
-            return Padding(
-              padding: EdgeInsets.only(left: constraints.maxWidth * percent),
-              child: FractionallySizedBox(
-                heightFactor: 1,
-                alignment: Alignment.centerLeft,
-                widthFactor: this.percent,
-                child: _GradientProgress(
-                  borderRadius: widget.style.gradientBorderRadius ??
-                      widget.style.borderRadius,
-                  begin: widget.style.progressGradientStart ??
-                      Alignment.centerLeft,
-                  end:
-                      widget.style.progressGradientEnd ?? Alignment.centerRight,
-                  colors: [
-                    widget.style.accent ?? theme.accentColor,
-                    widget.style.variant ?? theme.variantColor
-                  ],
-                ),
-              ),
-            );
+            return AnimatedBuilder(
+                animation: _animation,
+                builder: (_, __) {
+                  return Padding(
+                    padding: EdgeInsets.only(
+                        left: constraints.maxWidth * _animation.value),
+                    child: FractionallySizedBox(
+                      heightFactor: 1,
+                      alignment: Alignment.centerLeft,
+                      widthFactor: _animation.value,
+                      child: _GradientProgress(
+                        borderRadius: widget.style.gradientBorderRadius ??
+                            widget.style.borderRadius,
+                        begin: widget.style.progressGradientStart ??
+                            Alignment.centerLeft,
+                        end: widget.style.progressGradientEnd ??
+                            Alignment.centerRight,
+                        colors: [
+                          widget.style.accent ?? theme.accentColor,
+                          widget.style.variant ?? theme.variantColor
+                        ],
+                      ),
+                    ),
+                  );
+                });
           }),
         ),
       ),
