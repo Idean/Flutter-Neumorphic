@@ -263,7 +263,8 @@ Neumorphic(
           ),
           SizedBox(width: 12),
           Neumorphic(
-            style: NeumorphicStyle(color: currentColor, boxShape: NeumorphicBoxShape.circle()),
+            style: NeumorphicStyle(
+                color: currentColor, boxShape: NeumorphicBoxShape.circle()),
             child: SizedBox(
               height: 100,
               width: 100,
@@ -318,7 +319,8 @@ Neumorphic(
                 width: 100,
                 child: Text(
                   "Flat",
-                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -339,7 +341,8 @@ Neumorphic(
                 width: 100,
                 child: Text(
                   "Concave",
-                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -360,15 +363,15 @@ Neumorphic(
                 width: 100,
                 child: Text(
                   "Convex",
-                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               NeumorphicButton(
                 style: NeumorphicStyle(
-                  shape: NeumorphicShape.convex,
-                  boxShape: NeumorphicBoxShape.circle()
-                ),
+                    shape: NeumorphicShape.convex,
+                    boxShape: NeumorphicBoxShape.circle()),
                 padding: EdgeInsets.all(18.0),
                 child: Icon(Icons.play_arrow),
               ),
@@ -417,7 +420,8 @@ Neumorphic(
             children: <Widget>[
               Text(
                 "Emboss",
-                style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                style:
+                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               Neumorphic(

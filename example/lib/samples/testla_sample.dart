@@ -141,7 +141,10 @@ class __PageContentState extends State<_PageContent> {
           children: <Widget>[
             Text(
               "297",
-              style: TextStyle(color: Colors.white, fontSize: 120, fontWeight: FontWeight.w200),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 120,
+                  fontWeight: FontWeight.w200),
             ),
             Text(
               "km",

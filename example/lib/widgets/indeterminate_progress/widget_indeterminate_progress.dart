@@ -305,7 +305,6 @@ Expanded(
   }
 }
 
-
 class _ReversedWidget extends StatefulWidget {
   @override
   createState() => _ReversedWidgetState();

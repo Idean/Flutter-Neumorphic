@@ -65,7 +65,9 @@ class WidgetCalcButton extends StatelessWidget {
   }
 
   Color _backgroundColor(BuildContext context) {
-    return button.backgroundAccent ? NeumorphicTheme.accentColor(context) : null;
+    return button.backgroundAccent
+        ? NeumorphicTheme.accentColor(context)
+        : null;
   }
 
   @override
@@ -199,7 +201,8 @@ class __PageContentState extends State<_PageContent> {
               RaisedButton(
                 onPressed: () {
                   setState(() {
-                    NeumorphicTheme.of(context).updateCurrentTheme(NeumorphicThemeData(
+                    NeumorphicTheme.of(context)
+                        .updateCurrentTheme(NeumorphicThemeData(
                       depth: 1,
                       intensity: 0.5,
                       accentColor: Colors.cyan,
@@ -213,7 +216,8 @@ class __PageContentState extends State<_PageContent> {
               RaisedButton(
                 onPressed: () {
                   setState(() {
-                    NeumorphicTheme.of(context).updateCurrentTheme(NeumorphicThemeData(
+                    NeumorphicTheme.of(context)
+                        .updateCurrentTheme(NeumorphicThemeData(
                       depth: 8,
                       intensity: 0.3,
                       accentColor: Colors.greenAccent,

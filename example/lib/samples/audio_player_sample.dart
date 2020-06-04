@@ -70,8 +70,8 @@ class __PageState extends State<_Page> {
                 Navigator.of(context).pop();
               },
               style: NeumorphicStyle(
-                  shape: NeumorphicShape.flat,
-                  boxShape: NeumorphicBoxShape.circle(),
+                shape: NeumorphicShape.flat,
+                boxShape: NeumorphicBoxShape.circle(),
               ),
               child: Icon(
                 Icons.navigate_before,
@@ -99,8 +99,8 @@ class __PageState extends State<_Page> {
                 });
               },
               style: NeumorphicStyle(
-                  shape: NeumorphicShape.flat,
-                  boxShape: NeumorphicBoxShape.circle(),
+                shape: NeumorphicShape.flat,
+                boxShape: NeumorphicBoxShape.circle(),
               ),
               child: Icon(
                 Icons.favorite_border,
@@ -196,8 +196,8 @@ class __PageState extends State<_Page> {
           padding: const EdgeInsets.all(18.0),
           onPressed: () {},
           style: NeumorphicStyle(
-              shape: NeumorphicShape.flat,
-              boxShape: NeumorphicBoxShape.circle(),
+            shape: NeumorphicShape.flat,
+            boxShape: NeumorphicBoxShape.circle(),
           ),
           child: Icon(
             Icons.skip_previous,
@@ -209,8 +209,8 @@ class __PageState extends State<_Page> {
           padding: const EdgeInsets.all(24.0),
           onPressed: () {},
           style: NeumorphicStyle(
-              shape: NeumorphicShape.flat,
-              boxShape: NeumorphicBoxShape.circle(),
+            shape: NeumorphicShape.flat,
+            boxShape: NeumorphicBoxShape.circle(),
           ),
           child: Icon(
             Icons.play_arrow,
@@ -223,8 +223,8 @@ class __PageState extends State<_Page> {
           padding: const EdgeInsets.all(18.0),
           onPressed: () {},
           style: NeumorphicStyle(
-              shape: NeumorphicShape.flat,
-              boxShape: NeumorphicBoxShape.circle(),
+            shape: NeumorphicShape.flat,
+            boxShape: NeumorphicBoxShape.circle(),
           ),
           child: Icon(
             Icons.skip_next,

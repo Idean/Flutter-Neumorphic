@@ -57,7 +57,8 @@ class __PageState extends State<_Page> {
               margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               style: NeumorphicStyle(
-                boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
+                boxShape:
+                    NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
               ),
               child: Column(
                 children: <Widget>[
@@ -68,7 +69,8 @@ class __PageState extends State<_Page> {
                     alignment: Alignment.centerRight,
                     child: NeumorphicButton(
                       onPressed: _isButtonEnabled() ? () {} : null,
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       child: Text(
                         "Sign Up",
                         style: TextStyle(fontWeight: FontWeight.w800),

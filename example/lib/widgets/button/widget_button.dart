@@ -383,7 +383,8 @@ NeumorphicButton(
             children: <Widget>[
               Text(
                 "Duration",
-                style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                style:
+                    TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
               ),
               SizedBox(width: 12),
               NeumorphicButton(
@@ -445,7 +446,8 @@ NeumorphicButton(
                 width: 100,
                 child: Text(
                   "Flat",
-                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -469,7 +471,8 @@ NeumorphicButton(
                 width: 100,
                 child: Text(
                   "Concave",
-                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -493,12 +496,15 @@ NeumorphicButton(
                 width: 100,
                 child: Text(
                   "Convex",
-                  style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+                  style: TextStyle(
+                      color: NeumorphicTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               NeumorphicButton(
-                style: NeumorphicStyle(shape: NeumorphicShape.convex, boxShape: NeumorphicBoxShape.circle()),
+                style: NeumorphicStyle(
+                    shape: NeumorphicShape.convex,
+                    boxShape: NeumorphicBoxShape.circle()),
                 onPressed: () {
                   setState(() {});
                 },

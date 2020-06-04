@@ -231,7 +231,7 @@ Neumorphic(
               Neumorphic(
                 padding: EdgeInsets.all(20),
                 style: widget.firstStyle.copyWith(
-                  boxShape:  NeumorphicBoxShape.circle(),
+                  boxShape: NeumorphicBoxShape.circle(),
                 ),
                 child: Neumorphic(
                   style: widget.secondStyle.copyWith(

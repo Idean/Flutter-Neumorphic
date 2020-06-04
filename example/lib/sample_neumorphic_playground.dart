@@ -34,7 +34,8 @@ class _Page extends StatefulWidget {
 class __PageState extends State<_Page> {
   LightSource lightSource = LightSource.topLeft;
   NeumorphicShape shape = NeumorphicShape.flat;
-  NeumorphicBoxShape boxShape = NeumorphicBoxShape.roundRect(BorderRadius.circular(12));
+  NeumorphicBoxShape boxShape =
+      NeumorphicBoxShape.roundRect(BorderRadius.circular(12));
 
   double depth = 5;
   double intensity = 0.5;

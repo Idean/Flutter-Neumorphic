@@ -52,7 +52,8 @@ class __PageState extends State<_Page> {
               onPressed: () {
                 setState(() {
                   _useDark = !_useDark;
-                  NeumorphicTheme.of(context).themeMode = _useDark ? ThemeMode.dark : ThemeMode.light;
+                  NeumorphicTheme.of(context).themeMode =
+                      _useDark ? ThemeMode.dark : ThemeMode.light;
                 });
               },
               child: Text("toggle theme"),

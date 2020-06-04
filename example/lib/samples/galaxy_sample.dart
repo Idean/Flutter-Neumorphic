@@ -38,7 +38,12 @@ class _Page extends StatefulWidget {
 
 class _PageState extends State<_Page> {
   Widget _letter(String letter) {
-    return Text(letter, style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontFamily: 'Samsung', fontSize: 80));
+    return Text(letter,
+        style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w700,
+            fontFamily: 'Samsung',
+            fontSize: 80));
   }
 
   Widget _firstBox() {

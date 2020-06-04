@@ -351,11 +351,10 @@ NeumorphicIndicator(
           ),
           SizedBox(width: 12),
           NeumorphicIndicator(
-            height: 100,
-            width: 20,
-            percent: percent,
-            curve: Curves.bounceOut
-          ),
+              height: 100,
+              width: 20,
+              percent: percent,
+              curve: Curves.bounceOut),
           SizedBox(width: 12),
           FlatButton(
               child: Text('Update'),

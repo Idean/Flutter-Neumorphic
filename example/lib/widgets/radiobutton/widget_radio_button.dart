@@ -223,7 +223,8 @@ NeumorphicRadio(
           NeumorphicRadio(
             style: NeumorphicRadioStyle(
               boxShape: NeumorphicBoxShape.circle(),
-            ),            groupValue: groupValue,
+            ),
+            groupValue: groupValue,
             value: "C",
             onChanged: (value) {
               setState(() {

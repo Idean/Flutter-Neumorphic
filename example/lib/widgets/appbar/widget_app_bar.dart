@@ -20,7 +20,6 @@ class AppBarWidgetPage extends StatelessWidget {
 }
 
 class _FirstThemeWidgetPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
@@ -29,9 +28,7 @@ class _FirstThemeWidgetPage extends StatelessWidget {
         lightSource: LightSource.topLeft,
         accentColor: NeumorphicColors.accent,
         appBarTheme: NeumorphicAppBarThemeData(
-          buttonStyle: NeumorphicStyle(
-              boxShape: NeumorphicBoxShape.circle()
-          ),
+          buttonStyle: NeumorphicStyle(boxShape: NeumorphicBoxShape.circle()),
           textStyle: TextStyle(color: Colors.black54),
           iconTheme: IconThemeData(color: Colors.black54, size: 30),
         ),
@@ -44,7 +41,6 @@ class _FirstThemeWidgetPage extends StatelessWidget {
 }
 
 class _SecondThemeWidgetPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
@@ -54,8 +50,7 @@ class _SecondThemeWidgetPage extends StatelessWidget {
         accentColor: NeumorphicColors.accent,
         appBarTheme: NeumorphicAppBarThemeData(
           buttonStyle: NeumorphicStyle(
-              boxShape: NeumorphicBoxShape.beveled(BorderRadius.circular(12))
-          ),
+              boxShape: NeumorphicBoxShape.beveled(BorderRadius.circular(12))),
           textStyle: TextStyle(color: Colors.black54),
           iconTheme: IconThemeData(color: Colors.black54, size: 30),
         ),
@@ -68,7 +63,6 @@ class _SecondThemeWidgetPage extends StatelessWidget {
 }
 
 class _ThirdThemeWidgetPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return NeumorphicTheme(
@@ -79,8 +73,8 @@ class _ThirdThemeWidgetPage extends StatelessWidget {
         appBarTheme: NeumorphicAppBarThemeData(
           buttonStyle: NeumorphicStyle(
               color: Colors.black54,
-              boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12))
-          ),
+              boxShape:
+                  NeumorphicBoxShape.roundRect(BorderRadius.circular(12))),
           textStyle: TextStyle(color: Colors.black54),
           iconTheme: IconThemeData(color: Colors.white, size: 30),
         ),
@@ -131,7 +125,6 @@ class FirstThemeContent extends StatelessWidget {
     );
   }
 }
-
 
 class _DrawerPage extends StatelessWidget {
   @override
@@ -201,15 +194,20 @@ class _MyDrawer extends StatelessWidget {
         child: Column(
           children: [
             ConstrainedBox(
-              constraints: BoxConstraints.tightFor(height: NeumorphicAppBar.toolbarHeight),
+              constraints: BoxConstraints.tightFor(
+                  height: NeumorphicAppBar.toolbarHeight),
               child: NeumorphicAppBar(
                 title: Text('Menu'),
-                leading: isLead ? NeumorphicBackButton() : NeumorphicCloseButton(),
+                leading:
+                    isLead ? NeumorphicBackButton() : NeumorphicCloseButton(),
                 actions: <Widget>[
-                  NeumorphicButton(child: Icon(Icons.style), onPressed: (){
-
-                  },),
-                  isLead ? NeumorphicCloseButton() : NeumorphicBackButton(reversedArrow: true),
+                  NeumorphicButton(
+                    child: Icon(Icons.style),
+                    onPressed: () {},
+                  ),
+                  isLead
+                      ? NeumorphicCloseButton()
+                      : NeumorphicBackButton(reversedArrow: true),
                 ],
               ),
             ),

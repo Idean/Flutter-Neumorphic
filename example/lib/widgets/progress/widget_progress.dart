@@ -110,11 +110,13 @@ Expanded(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         _buildWidget(context),
-        FlatButton(child: Text('Update'), onPressed: (){
-          setState(() {
-            percent = Random().nextDouble();
-          });
-        }),
+        FlatButton(
+            child: Text('Update'),
+            onPressed: () {
+              setState(() {
+                percent = Random().nextDouble();
+              });
+            }),
         _buildCode(context),
       ],
     );
@@ -321,17 +323,18 @@ Expanded(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         _buildWidget(context),
-        FlatButton(child: Text('Update'), onPressed: (){
-          setState(() {
-            percent = Random().nextDouble();
-          });
-        }),
+        FlatButton(
+            child: Text('Update'),
+            onPressed: () {
+              setState(() {
+                percent = Random().nextDouble();
+              });
+            }),
         _buildCode(context),
       ],
     );
   }
 }
-
 
 class _CurveWidget extends StatefulWidget {
   @override
@@ -381,11 +384,13 @@ Expanded(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         _buildWidget(context),
-        FlatButton(child: Text('Update'), onPressed: (){
-          setState(() {
-            percent = Random().nextDouble();
-          });
-        }),
+        FlatButton(
+            child: Text('Update'),
+            onPressed: () {
+              setState(() {
+                percent = Random().nextDouble();
+              });
+            }),
         _buildCode(context),
       ],
     );

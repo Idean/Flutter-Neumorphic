@@ -34,9 +34,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: NeumorphicFloatingActionButton(
         child: Icon(Icons.add, size: 30),
-        onPressed: (){
-
-        },
+        onPressed: () {},
       ),
       backgroundColor: NeumorphicTheme.baseColor(context),
       body: Center(
@@ -66,8 +64,9 @@ class MyHomePage extends StatelessWidget {
                           : ThemeMode.dark;
                 },
                 style: NeumorphicStyle(
-                    shape: NeumorphicShape.flat,
-                    boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+                  shape: NeumorphicShape.flat,
+                  boxShape:
+                      NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
                 ),
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
@@ -84,7 +83,8 @@ class MyHomePage extends StatelessWidget {
                 },
                 style: NeumorphicStyle(
                   shape: NeumorphicShape.flat,
-                  boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
+                  boxShape:
+                      NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
                   //border: NeumorphicBorder()
                 ),
                 padding: const EdgeInsets.all(12.0),
