@@ -110,6 +110,7 @@ class NeumorphicIndicator extends StatefulWidget {
   final EdgeInsets padding;
   final NeumorphicIndicatorOrientation orientation;
   final IndicatorStyle style;
+  final Duration duration;
 
   const NeumorphicIndicator({
     Key key,
@@ -119,6 +120,7 @@ class NeumorphicIndicator extends StatefulWidget {
     this.padding = EdgeInsets.zero,
     this.width = double.maxFinite,
     this.style = const IndicatorStyle(),
+    this.duration = const Duration(milliseconds: 150),
   }) : super(key: key);
 
   @override
@@ -136,7 +138,8 @@ class NeumorphicIndicator extends StatefulWidget {
           height == other.height &&
           padding == other.padding &&
           orientation == other.orientation &&
-          style == other.style;
+          style == other.style &&
+          duration == other.duration;
 
   @override
   // ignore: invalid_override_of_non_virtual_member
@@ -147,35 +150,29 @@ class NeumorphicIndicator extends StatefulWidget {
       height.hashCode ^
       padding.hashCode ^
       orientation.hashCode ^
-      style.hashCode;
+      style.hashCode ^
+      duration.hashCode;
 }
 
 class _NeumorphicIndicatorState extends State<NeumorphicIndicator>
     with TickerProviderStateMixin {
-  double percent = 0;
+  double oldPercent = 0;
   AnimationController _controller;
   Animation _animation;
 
   @override
   void initState() {
     super.initState();
-    percent = widget.percent ?? 0;
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 150));
+    _controller = AnimationController(vsync: this, duration: widget.duration);
+    _animation = Tween<double>(begin: widget.percent, end: oldPercent).animate(_controller);
   }
 
   @override
   void didUpdateWidget(NeumorphicIndicator oldWidget) {
     if (oldWidget.percent != widget.percent) {
       _controller.reset();
-      _animation = Tween<double>(begin: oldWidget.percent, end: widget.percent)
-          .animate(_controller)
-            ..addListener(() {
-              setState(() {
-                this.percent = _animation.value;
-              });
-            });
-
+      oldPercent = oldWidget.percent;
+      _animation = Tween<double>(begin: oldPercent, end: widget.percent).animate(_controller);
       _controller.forward();
     }
     super.didUpdateWidget(oldWidget);
@@ -202,40 +199,46 @@ class _NeumorphicIndicatorState extends State<NeumorphicIndicator>
           depth: widget.style.depth,
           shape: NeumorphicShape.flat,
         ),
-        child: FractionallySizedBox(
-          heightFactor:
-              widget.orientation == NeumorphicIndicatorOrientation.vertical
-                  ? widget.percent
-                  : 1,
-          widthFactor:
-              widget.orientation == NeumorphicIndicatorOrientation.horizontal
-                  ? widget.percent
-                  : 1,
-          alignment:
-              widget.orientation == NeumorphicIndicatorOrientation.horizontal
-                  ? Alignment.centerLeft
-                  : Alignment.bottomCenter,
-          child: Padding(
-            padding: widget.padding,
-            child: Neumorphic(
-              style: NeumorphicStyle(
-                boxShape: NeumorphicBoxShape.stadium(),
-                lightSource: widget.style.lightSource ?? theme.lightSource,
-              ),
-              child: Container(
-                  decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: widget.style.gradientStart ?? Alignment.topCenter,
-                  end: widget.style.gradientEnd ?? Alignment.bottomCenter,
-                  colors: [
-                    widget.style.accent ?? theme.accentColor,
-                    widget.style.variant ?? theme.variantColor
-                  ],
+        child: AnimatedBuilder(
+            animation: _animation,
+            builder: (_, __) { 
+              return FractionallySizedBox(
+                heightFactor: widget.orientation ==
+                        NeumorphicIndicatorOrientation.vertical
+                    ? _animation.value
+                    : 1,
+                widthFactor: widget.orientation ==
+                        NeumorphicIndicatorOrientation.horizontal
+                    ? _animation.value
+                    : 1,
+                alignment: widget.orientation ==
+                        NeumorphicIndicatorOrientation.horizontal
+                    ? Alignment.centerLeft
+                    : Alignment.bottomCenter,
+                child: Padding(
+                  padding: widget.padding,
+                  child: Neumorphic(
+                    style: NeumorphicStyle(
+                      boxShape: NeumorphicBoxShape.stadium(),
+                      lightSource:
+                          widget.style.lightSource ?? theme.lightSource,
+                    ),
+                    child: Container(
+                        decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin:
+                            widget.style.gradientStart ?? Alignment.topCenter,
+                        end: widget.style.gradientEnd ?? Alignment.bottomCenter,
+                        colors: [
+                          widget.style.accent ?? theme.accentColor,
+                          widget.style.variant ?? theme.variantColor
+                        ],
+                      ),
+                    )),
+                  ),
                 ),
-              )),
-            ),
-          ),
-        ),
+              );
+            }),
       ),
     );
   }
