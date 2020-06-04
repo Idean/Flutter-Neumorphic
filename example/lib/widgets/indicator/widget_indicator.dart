@@ -56,6 +56,7 @@ class _PageState extends State<_Page> {
             children: [
               _DefaultWidget(),
               _DefaultOrientationWidget(),
+              _DurationWidget(),
               _ColorWidget(),
               SizedBox(height: 30),
             ],
@@ -244,6 +245,65 @@ NeumorphicIndicator(
               SizedBox(width: 12),
             ],
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildWidget(context),
+        _buildCode(context),
+      ],
+    );
+  }
+}
+
+class _DurationWidget extends StatefulWidget {
+  @override
+  createState() => _DurationWidgetState();
+}
+
+class _DurationWidgetState extends State<_DurationWidget> {
+  double percent = 0.3;
+
+  Widget _buildCode(BuildContext context) {
+    return Code("""
+NeumorphicIndicator(
+    height: 100,
+    width: 20,
+    percent: 0.3,
+    duration: Duration(seconds: 1),
+),
+""");
+  }
+
+  Widget _buildWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(12),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Duration",
+            style: TextStyle(color: NeumorphicTheme.defaultTextColor(context)),
+          ),
+          SizedBox(width: 12),
+          NeumorphicIndicator(
+            height: 100,
+            width: 20,
+            percent: percent,
+            duration: Duration(seconds: 1),
+          ),
+          SizedBox(width: 12),
+          FlatButton(
+              child: Text('Update'),
+              onPressed: () {
+                setState(() {
+                  percent = Random().nextDouble();
+                });
+              }),
         ],
       ),
     );
