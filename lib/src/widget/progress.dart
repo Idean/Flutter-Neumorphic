@@ -91,14 +91,16 @@ class NeumorphicProgress extends StatefulWidget {
   final double height;
   final Duration duration;
   final ProgressStyle style;
+  final Curve curve;
 
-  const NeumorphicProgress({
-    Key key,
-    double percent,
-    this.height = 10,
-    this.duration = const Duration(milliseconds: 150),
-    this.style = const ProgressStyle(),
-  })  : this._percent = percent,
+  const NeumorphicProgress(
+      {Key key,
+      double percent,
+      this.height = 10,
+      this.duration = const Duration(milliseconds: 300),
+      this.style = const ProgressStyle(),
+      this.curve = Curves.easeOutCubic})
+      : this._percent = percent,
         super(key: key);
 
   @override
@@ -114,11 +116,13 @@ class NeumorphicProgress extends StatefulWidget {
           runtimeType == other.runtimeType &&
           percent == other.percent &&
           height == other.height &&
-          style == other.style;
+          style == other.style &&
+          curve == other.curve;
 
   @override
   // ignore: invalid_override_of_non_virtual_member
-  int get hashCode => percent.hashCode ^ height.hashCode ^ style.hashCode;
+  int get hashCode =>
+      percent.hashCode ^ height.hashCode ^ style.hashCode ^ curve.hashCode;
 }
 
 class _NeumorphicProgressState extends State<NeumorphicProgress>
@@ -142,7 +146,7 @@ class _NeumorphicProgressState extends State<NeumorphicProgress>
       _controller.reset();
       oldPercent = oldWidget.percent;
       _animation = Tween<double>(begin: oldPercent, end: widget.percent)
-          .animate(_controller);
+          .animate(CurvedAnimation(parent: _controller, curve: widget.curve));
       _controller.forward();
     }
     super.didUpdateWidget(oldWidget);
