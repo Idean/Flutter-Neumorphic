@@ -222,6 +222,25 @@ Neumorphic(
 </tbody>
 </table>
 
+## Neumorphic Tewt
+
+[![custom_shape](./medias/widget/text.png)](https://github.com/Idean/Flutter-Neumorphic)
+
+```dart
+child: NeumorphicText(
+        "I love flutter",
+        style: NeumorphicStyle(
+          depth: 4,  //customize depth here
+          color: Colors.white, //customize color here
+        ),
+        textStyle: NeumorphicTextStyle(
+          fontSize: 18, //customize size here
+          // AND others usual text style properties (fontFamily, fontWeight, ...)
+        ),
+    ),
+```
+
+
 ## Neumorphic Icon
 
 [![custom_shape](./medias/neumorphic_icon.png)](https://github.com/Idean/Flutter-Neumorphic)
