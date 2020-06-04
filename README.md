@@ -222,6 +222,23 @@ Neumorphic(
 </tbody>
 </table>
 
+## Neumorphic Icon
+
+[![custom_shape](./medias/neumorphic_icon.png)](https://github.com/Idean/Flutter-Neumorphic)
+
+```dart
+child: NeumorphicIcon(
+        Icons.add_circle,
+        size: 80,
+    ),
+```
+
+How to display SVG icons ?
+
+Simply use [https://fluttericon.com/](https://fluttericon.com/) to export your svg as .ttf & use NeumorphicIcon(YOUR_ICON) 
+
+[![custom_shape](./medias/flutter_svg.png)](https://fluttericon.com/)
+
 ## 🎨 Custom Shape
 
 [![custom_shape](./medias/custom_shape.gif)](https://github.com/Idean/Flutter-Neumorphic)
