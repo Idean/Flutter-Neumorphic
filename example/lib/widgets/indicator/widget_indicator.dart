@@ -5,6 +5,8 @@ import 'package:example/lib/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+import 'dart:math' show Random;
+
 class IndicatorWidgetPage extends StatefulWidget {
   IndicatorWidgetPage({Key key}) : super(key: key);
 
@@ -70,6 +72,8 @@ class _DefaultWidget extends StatefulWidget {
 }
 
 class _DefaultWidgetState extends State<_DefaultWidget> {
+  double percent = 0.6;
+
   Widget _buildCode(BuildContext context) {
     return Code("""
 NeumorphicIndicator(
@@ -93,9 +97,16 @@ NeumorphicIndicator(
           NeumorphicIndicator(
             height: 100,
             width: 20,
-            percent: 0.6,
+            percent: percent,
           ),
           SizedBox(width: 12),
+          FlatButton(
+              child: Text('Update'),
+              onPressed: () {
+                setState(() {
+                  percent = Random().nextDouble();
+                });
+              }),
         ],
       ),
     );
