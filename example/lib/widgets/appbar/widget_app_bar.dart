@@ -75,13 +75,13 @@ class _ThirdThemeWidgetPage extends StatelessWidget {
               color: Colors.black54,
               boxShape:
                   NeumorphicBoxShape.roundRect(BorderRadius.circular(12))),
-          textStyle: TextStyle(color: Colors.black54),
-          iconTheme: IconThemeData(color: Colors.white, size: 30),
+          textStyle: TextStyle(color: Colors.black54, fontSize: 20),
+          iconTheme: IconThemeData(color: Colors.white, size: 20),
         ),
         depth: 4,
         intensity: 0.9,
       ),
-      child: AppBarPageUsingTheme(),
+      child: SizedAppBarPageUsingTheme(),
     );
   }
 }
@@ -100,6 +100,29 @@ class AppBarPageUsingTheme extends StatelessWidget {
                 onPressed: () {},
               ),
             ],
+          ),
+          body: Container()),
+    );
+  }
+}
+
+class SizedAppBarPageUsingTheme extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 100,
+      child: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(60.0),
+            child: NeumorphicAppBar(
+              title: Text("App bar custom size"),
+              actions: <Widget>[
+                NeumorphicButton(
+                  child: Icon(Icons.add),
+                  onPressed: () {},
+                ),
+              ],
+            ),
           ),
           body: Container()),
     );
@@ -186,8 +209,7 @@ class _CustomIcon extends StatelessWidget {
               icons: NeumorphicAppBarIcons(
                   menuIcon: Icon(Icons.list, color: Colors.pink),
                   closeIcon: Icon(Icons.delete),
-                  backIcon: Icon(Icons.reply)
-                  )),
+                  backIcon: Icon(Icons.reply))),
           depth: 2,
           intensity: 0.5,
         ),
