@@ -13,7 +13,7 @@ class AppBarWidgetPage extends StatelessWidget {
         _FirstThemeWidgetPage(),
         _SecondThemeWidgetPage(),
         _ThirdThemeWidgetPage(),
-        _DrawerPage(),
+        _CustomIcon(),
       ],
     );
   }
@@ -126,61 +126,6 @@ class FirstThemeContent extends StatelessWidget {
   }
 }
 
-class _DrawerPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
-      child: NeumorphicTheme(
-        themeMode: ThemeMode.light,
-        theme: NeumorphicThemeData(
-          lightSource: LightSource.topLeft,
-          accentColor: NeumorphicColors.accent,
-          appBarTheme: NeumorphicAppBarThemeData(
-            buttonStyle: NeumorphicStyle(
-              boxShape: NeumorphicBoxShape.circle(),
-              shape: NeumorphicShape.concave,
-              depth: 10,
-              intensity: 1,
-            ),
-            textStyle: TextStyle(color: Colors.black),
-            iconTheme: IconThemeData(color: Colors.green, size: 25),
-          ),
-          depth: 2,
-          intensity: 0.5,
-        ),
-        child: Scaffold(
-          appBar: NeumorphicAppBar(
-            title: Text("Imply drawer"),
-          ),
-          drawer: _MyDrawer(),
-          endDrawer: _MyDrawer(isLead: false),
-          body: NeumorphicTheme(
-            themeMode: ThemeMode.light,
-            theme: NeumorphicThemeData(
-              lightSource: LightSource.topLeft,
-              accentColor: NeumorphicColors.accent,
-              appBarTheme: NeumorphicAppBarThemeData(
-                buttonStyle: NeumorphicStyle(
-                  boxShape: NeumorphicBoxShape.circle(),
-                  shape: NeumorphicShape.concave,
-                  depth: 10,
-                  intensity: 1,
-                ),
-                textStyle: TextStyle(color: Colors.black),
-                iconTheme: IconThemeData(color: Colors.green, size: 25),
-              ),
-              depth: 2,
-              intensity: 0.5,
-            ),
-            child: Container(),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class _MyDrawer extends StatelessWidget {
   final bool isLead;
 
@@ -207,12 +152,51 @@ class _MyDrawer extends StatelessWidget {
                   ),
                   isLead
                       ? NeumorphicCloseButton()
-                      : NeumorphicBackButton(reversedArrow: true),
+                      : NeumorphicBackButton(reversedIcon: true),
                 ],
               ),
             ),
             Spacer(),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CustomIcon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 300,
+      child: NeumorphicTheme(
+        themeMode: ThemeMode.light,
+        theme: NeumorphicThemeData(
+          lightSource: LightSource.topLeft,
+          accentColor: NeumorphicColors.accent,
+          appBarTheme: NeumorphicAppBarThemeData(
+              buttonStyle: NeumorphicStyle(
+                boxShape: NeumorphicBoxShape.circle(),
+                shape: NeumorphicShape.concave,
+                depth: 10,
+                intensity: 1,
+              ),
+              textStyle: TextStyle(color: Colors.black, fontSize: 20),
+              iconTheme: IconThemeData(color: Colors.green, size: 25),
+              icons: NeumorphicAppBarIcons(
+                  menuIcon: Icon(Icons.list, color: Colors.pink),
+                  closeIcon: Icon(Icons.delete),
+                  backIcon: Icon(Icons.reply)
+                  )),
+          depth: 2,
+          intensity: 0.5,
+        ),
+        child: Scaffold(
+          appBar: NeumorphicAppBar(
+            title: Text("Custom icons + drawer"),
+          ),
+          endDrawer: _MyDrawer(isLead: false),
+          body: Container(),
         ),
       ),
     );
