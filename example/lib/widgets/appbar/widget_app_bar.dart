@@ -175,7 +175,7 @@ class _MyDrawer extends StatelessWidget {
                   ),
                   isLead
                       ? NeumorphicCloseButton()
-                      : NeumorphicBackButton(reversedIcon: true),
+                      : NeumorphicBackButton(forward: true),
                 ],
               ),
             ),
