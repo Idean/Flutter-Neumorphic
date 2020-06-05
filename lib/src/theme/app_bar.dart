@@ -30,12 +30,15 @@ class NeumorphicAppBarIcons {
   final Icon closeIcon;
   final Icon menuIcon;
   final Icon _backIcon;
+  final Icon _forwardIcon;
 
   const NeumorphicAppBarIcons({
     this.menuIcon = const Icon(Icons.menu),
     this.closeIcon = const Icon(Icons.close),
     Icon backIcon,
-  }) : _backIcon = backIcon;
+    Icon forwardIcon,
+  })  : _backIcon = backIcon,
+        _forwardIcon = forwardIcon;
 
   //if back icon null then get platform oriented icon
   Icon get backIcon => _backIcon ?? _getBackIcon;
@@ -43,15 +46,22 @@ class NeumorphicAppBarIcons {
       ? const Icon(Icons.arrow_back_ios)
       : const Icon(Icons.arrow_back);
 
+  Icon get forwardIcon => _forwardIcon ?? _getForwardIcon;
+  Icon get _getForwardIcon => Platform.isIOS || Platform.isMacOS
+      ? const Icon(Icons.arrow_forward_ios)
+      : const Icon(Icons.arrow_forward);
+
   NeumorphicAppBarIcons copyWith({
     Icon backIcon,
     Icon closeIcon,
     Icon menuIcon,
+    Icon forwardIcon,
   }) {
     return NeumorphicAppBarIcons(
       backIcon: backIcon ?? this.backIcon,
       closeIcon: closeIcon ?? this.closeIcon,
       menuIcon: menuIcon ?? this.menuIcon,
+      forwardIcon: forwardIcon ?? this.forwardIcon,
     );
   }
 
@@ -62,14 +72,18 @@ class NeumorphicAppBarIcons {
     return o is NeumorphicAppBarIcons &&
         o.backIcon == backIcon &&
         o.closeIcon == closeIcon &&
-        o.menuIcon == menuIcon;
+        o.menuIcon == menuIcon &&
+        o.forwardIcon == forwardIcon;
   }
 
   @override
   int get hashCode =>
-      backIcon.hashCode ^ closeIcon.hashCode ^ menuIcon.hashCode;
+      backIcon.hashCode ^
+      closeIcon.hashCode ^
+      menuIcon.hashCode ^
+      forwardIcon.hashCode;
 
   @override
   String toString() =>
-      'NeumorphicAppBarIcons(backIcon: $backIcon, closeIcon: $closeIcon, menuIcon: $menuIcon)';
+      'NeumorphicAppBarIcons(backIcon: $backIcon, closeIcon: $closeIcon, menuIcon: $menuIcon, forwardIcon: $forwardIcon)';
 }
