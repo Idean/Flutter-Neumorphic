@@ -1,3 +1,8 @@
+## 3.0.1
+
+* Added customization of icons in NeumorphicAppBar
+* Updated NeumorphicAppBar samples
+
 ## 3.0.0
 
 * Added `NeumorphicText` (only positive depth)
