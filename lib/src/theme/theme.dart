@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' show TextTheme;
+import 'package:flutter/material.dart' show IconTheme, IconThemeData, TextTheme;
 import 'package:flutter/painting.dart';
 import 'package:flutter_neumorphic/src/theme/app_bar.dart';
 import 'package:flutter_neumorphic/src/widget/container.dart';
@@ -67,6 +67,10 @@ class NeumorphicThemeData {
 
   /// Default text theme to use and apply across the app
   final TextTheme textTheme;
+  /// Default button style to use and apply across the app
+  final NeumorphicStyle buttonStyle;
+  /// Default icon theme to use and apply across the app
+  final IconThemeData iconTheme;
   final NeumorphicAppBarThemeData appBarTheme;
 
   /// Get this theme's depth, clamp to min/max neumorphic constants
@@ -91,6 +95,8 @@ class NeumorphicThemeData {
     this.defaultTextColor = _defaultTextColor,
     this.lightSource = _defaultLightSource,
     this.textTheme = const TextTheme(),
+    this.iconTheme = const IconThemeData(),
+    this.buttonStyle,
     this.appBarTheme = const NeumorphicAppBarThemeData(),
     this.borderColor = NeumorphicColors.defaultBorder,
     this.borderWidth = _defaultBorderSize,
@@ -106,6 +112,8 @@ class NeumorphicThemeData {
     double intensity = _defaultIntensity,
     this.accentColor = _defaultAccent,
     this.textTheme = const TextTheme(),
+    this.buttonStyle,
+    this.iconTheme = const IconThemeData(),
     this.appBarTheme = const NeumorphicAppBarThemeData(),
     this.variantColor = NeumorphicColors.darkVariant,
     this.disabledColor = NeumorphicColors.darkDisabled,
@@ -135,6 +143,8 @@ class NeumorphicThemeData {
           baseColor == other.baseColor &&
           boxShape == other.boxShape &&
           textTheme == other.textTheme &&
+          iconTheme == other.iconTheme &&
+          buttonStyle == other.buttonStyle &&
           appBarTheme == other.appBarTheme &&
           accentColor == other.accentColor &&
           shadowDarkColor == other.shadowDarkColor &&
@@ -155,6 +165,8 @@ class NeumorphicThemeData {
   int get hashCode =>
       baseColor.hashCode ^
       textTheme.hashCode ^
+      iconTheme.hashCode ^
+      buttonStyle.hashCode ^
       appBarTheme.hashCode ^
       accentColor.hashCode ^
       variantColor.hashCode ^
@@ -186,6 +198,8 @@ class NeumorphicThemeData {
     Color defaultTextColor,
     NeumorphicBoxShape boxShape,
     TextTheme textTheme,
+    NeumorphicStyle buttonStyle,
+    IconThemeData iconTheme,
     NeumorphicAppBarThemeData appBarTheme,
     NeumorphicStyle defaultStyle,
     bool disableDepth,
@@ -198,6 +212,8 @@ class NeumorphicThemeData {
     return new NeumorphicThemeData(
       baseColor: baseColor ?? this.baseColor,
       textTheme: textTheme ?? this.textTheme,
+      iconTheme: iconTheme ?? this.iconTheme,
+      buttonStyle: buttonStyle ?? this.buttonStyle,
       boxShape: boxShape ?? this.boxShape,
       appBarTheme: appBarTheme ?? this.appBarTheme,
       accentColor: accentColor ?? this.accentColor,
@@ -238,6 +254,8 @@ class NeumorphicThemeData {
       shadowLightColorEmboss:
           other.shadowLightColorEmboss ?? this.shadowLightColorEmboss,
       textTheme: other.textTheme ?? this.textTheme,
+      iconTheme: other.iconTheme ?? this.iconTheme,
+      buttonStyle: other.buttonStyle ?? this.buttonStyle,
       appBarTheme: other.appBarTheme ?? this.appBarTheme,
       depth: other.depth ?? this._depth,
       boxShape: other.boxShape ?? this.boxShape,
