@@ -54,6 +54,7 @@ class NeumorphicApp extends StatelessWidget {
       return ThemeData(
         primarySwatch: color,
         textTheme: theme.textTheme,
+        iconTheme: theme.iconTheme,
         scaffoldBackgroundColor: theme.baseColor,
       );
     }
@@ -61,6 +62,7 @@ class NeumorphicApp extends StatelessWidget {
     return ThemeData(
       primaryColor: theme.accentColor,
       accentColor: theme.variantColor,
+      iconTheme: theme.iconTheme,
       brightness: ThemeData.estimateBrightnessForColor(theme.baseColor),
       primaryColorBrightness:
           ThemeData.estimateBrightnessForColor(theme.accentColor),
@@ -80,25 +82,30 @@ class NeumorphicApp extends StatelessWidget {
       theme: theme,
       darkTheme: darkTheme,
       themeMode: themeMode,
-      child: MaterialApp(
-        title: title,
-        color: color,
-        theme: materialTheme,
-        darkTheme: materialDarkTheme,
-        initialRoute: initialRoute,
-        routes: routes,
-        themeMode: themeMode,
-        localizationsDelegates: localizationsDelegates,
-        supportedLocales: supportedLocales,
-        locale: locale,
-        home: home,
-        onGenerateRoute: onGenerateRoute,
-        onUnknownRoute: onUnknownRoute,
-        onGenerateTitle: onGenerateTitle,
-        onGenerateInitialRoutes: onGenerateInitialRoutes,
-        navigatorKey: navigatorKey,
-        navigatorObservers: navigatorObservers,
-        debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+      child: Builder(
+        builder: (context) => IconTheme(
+          data: NeumorphicTheme.currentTheme(context).iconTheme,
+          child: MaterialApp(
+            title: title,
+            color: color,
+            theme: materialTheme,
+            darkTheme: materialDarkTheme,
+            initialRoute: initialRoute,
+            routes: routes,
+            themeMode: themeMode,
+            localizationsDelegates: localizationsDelegates,
+            supportedLocales: supportedLocales,
+            locale: locale,
+            home: home,
+            onGenerateRoute: onGenerateRoute,
+            onUnknownRoute: onUnknownRoute,
+            onGenerateTitle: onGenerateTitle,
+            onGenerateInitialRoutes: onGenerateInitialRoutes,
+            navigatorKey: navigatorKey,
+            navigatorObservers: navigatorObservers,
+            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+          ),
+        ),
       ),
     );
   }
