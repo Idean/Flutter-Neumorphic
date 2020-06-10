@@ -381,7 +381,7 @@ NeumorphicTheme.of(context).themeMode = ThemeMode.dark;
 
 Know if using dark
 ```dart
-if(NeumorphicTheme.of(context).isUsingDarkMode){
+if(NeumorphicTheme.of(context).isUsingDark){
   
 }
 ```
