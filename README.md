@@ -220,7 +220,7 @@ Neumorphic(
 </tbody>
 </table>
 
-## Neumorphic Tewt
+## Neumorphic Text
 
 [![text](./medias/widgets/text.png)](https://github.com/Idean/Flutter-Neumorphic)
 
