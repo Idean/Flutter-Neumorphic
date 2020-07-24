@@ -22,6 +22,9 @@ class NeumorphicApp extends StatelessWidget {
   final List<NavigatorObserver> navigatorObservers;
   final InitialRouteListFactory onGenerateInitialRoutes;
   final bool debugShowCheckedModeBanner;
+  final Function(BuildContext, Widget) builder;
+  final Function(Locale, Iterable<Locale>) localeResolutionCallback;
+
 
   const NeumorphicApp({
     Key key,
@@ -45,6 +48,8 @@ class NeumorphicApp extends StatelessWidget {
     this.themeMode = ThemeMode.system,
     this.materialDarkTheme,
     this.materialTheme,
+    this.builder,
+    this.localeResolutionCallback
   }) : super(key: key);
 
   ThemeData _getMaterialTheme(NeumorphicThemeData theme) {
@@ -104,6 +109,8 @@ class NeumorphicApp extends StatelessWidget {
             navigatorKey: navigatorKey,
             navigatorObservers: navigatorObservers,
             debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+            builder: builder,
+            localeResolutionCallback: localeResolutionCallback
           ),
         ),
       ),
