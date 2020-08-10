@@ -136,7 +136,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 Neumorphic(
   style: NeumorphicStyle(
     shape: NeumorphicShape.concave,
-    boxShape: NeumorphicBoxShape.roundRect(borderRadius: BorderRadius.circular(12)), 
+    boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)), 
     depth: 8,
     lightSource: LightSource.topLeft,
     color: Colors.grey
