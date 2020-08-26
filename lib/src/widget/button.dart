@@ -92,7 +92,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
   void updateInitialStyle() {
     final appBarPresent = NeumorphicAppBarTheme.of(context) != null;
     if (widget.style != initialStyle || initialStyle == null) {
-      final theme = NeumorphicTheme.of(context).current;
+      final theme = NeumorphicTheme.currentTheme(context);
       setState(() {
         this.initialStyle = widget.style ??
             (appBarPresent
