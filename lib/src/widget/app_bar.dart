@@ -79,6 +79,8 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   final TextStyle textStyle;
 
+  final double padding;
+
   NeumorphicAppBar({
     Key key,
     this.title,
@@ -93,6 +95,7 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.centerTitle,
     this.titleSpacing = NavigationToolbar.kMiddleSpacing,
     this.actionSpacing = defaultSpacing,
+    this.padding = 16,
   })  : preferredSize = Size.fromHeight(toolbarHeight),
         super(key: key);
 
@@ -223,7 +226,7 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
         bottom: false,
         child: NeumorphicAppBarTheme(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(widget.padding),
             child: IconTheme(
               data: widget.iconTheme ??
                   nTheme.current.appBarTheme.iconTheme ??
