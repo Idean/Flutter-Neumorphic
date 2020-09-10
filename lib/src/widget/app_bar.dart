@@ -230,7 +230,8 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
             child: IconTheme(
               data: widget.iconTheme ??
                   nTheme.current.appBarTheme.iconTheme ??
-                  nTheme.current.iconTheme ?? const IconThemeData(),
+                  nTheme.current.iconTheme ??
+                  const IconThemeData(),
               child: NavigationToolbar(
                 leading: leading,
                 middle: title,

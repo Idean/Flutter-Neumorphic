@@ -67,8 +67,10 @@ class NeumorphicThemeData {
 
   /// Default text theme to use and apply across the app
   final TextTheme textTheme;
+
   /// Default button style to use and apply across the app
   final NeumorphicStyle buttonStyle;
+
   /// Default icon theme to use and apply across the app
   final IconThemeData iconTheme;
   final NeumorphicAppBarThemeData appBarTheme;
