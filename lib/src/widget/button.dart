@@ -177,7 +177,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
 
   Widget _build(BuildContext context) {
     final appBarPresent = NeumorphicAppBarTheme.of(context) != null;
-    final appBarTheme = NeumorphicTheme.of(context)?.current?.appBarTheme;
+    final appBarTheme = NeumorphicTheme.currentTheme(context).appBarTheme;
 
     return GestureDetector(
       onTapDown: (detail) {
