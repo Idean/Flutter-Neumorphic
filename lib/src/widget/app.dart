@@ -6,8 +6,8 @@ class NeumorphicApp extends StatelessWidget {
   final ThemeMode themeMode;
   final NeumorphicThemeData theme;
   final NeumorphicThemeData darkTheme;
-  final NeumorphicThemeData materialDarkTheme;
-  final NeumorphicThemeData materialTheme;
+  final ThemeData materialDarkTheme;
+  final ThemeData materialTheme;
   final String initialRoute;
   final Color color;
   final Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates;
