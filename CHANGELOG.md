@@ -1,3 +1,8 @@
+## 3.0.3
+
+* Fixed issue on button / theme
+* Improved NeumorphicApp
+
 ## 3.0.2
 
 * Fixed issue on NeumorphicButton + Theme
