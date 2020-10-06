@@ -225,7 +225,8 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
                   widget.onPanEnded(_activeThumb);
                 }
               },
-              child: widget.thumb ?? _generateThumb(context, thumbSize, widget.style.variant)),
+              child: widget.thumb ??
+                  _generateThumb(context, thumbSize, widget.style.variant)),
         ),
         Align(
           alignment: Alignment(
@@ -248,7 +249,8 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
                   widget.onPanEnded(_activeThumb);
                 }
               },
-              child: widget.thumb ?? _generateThumb(context, thumbSize, widget.style.accent)),
+              child: widget.thumb ??
+                  _generateThumb(context, thumbSize, widget.style.accent)),
         ),
       ],
     );
