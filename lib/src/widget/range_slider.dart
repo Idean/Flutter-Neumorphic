@@ -118,10 +118,12 @@ class NeumorphicRangeSlider extends StatefulWidget {
   final double valueHigh;
   final double max;
   final double height;
+  final double sliderHeight;
   final NeumorphicRangeSliderLowListener onChangedLow;
   final NeumorphicRangeSliderHighListener onChangeHigh;
   final Function(ActiveThumb) onPanStarted;
   final Function(ActiveThumb) onPanEnded;
+  final Widget thumb;
 
   NeumorphicRangeSlider({
     Key key,
@@ -135,6 +137,8 @@ class NeumorphicRangeSlider extends StatefulWidget {
     this.onChangeHigh,
     this.onPanStarted,
     this.onPanEnded,
+    this.sliderHeight,
+    this.thumb,
   });
 
   double get percentLow => (((valueLow.clamp(min, max)) - min) / ((max - min)));
@@ -221,7 +225,7 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
                   widget.onPanEnded(_activeThumb);
                 }
               },
-              child: _generateThumb(context, thumbSize, widget.style.variant)),
+              child: widget.thumb ?? _generateThumb(context, thumbSize, widget.style.variant)),
         ),
         Align(
           alignment: Alignment(
@@ -244,7 +248,7 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
                   widget.onPanEnded(_activeThumb);
                 }
               },
-              child: _generateThumb(context, thumbSize, widget.style.accent)),
+              child: widget.thumb ?? _generateThumb(context, thumbSize, widget.style.accent)),
         ),
       ],
     );
@@ -256,7 +260,7 @@ class _NeumorphicRangeSliderState extends State<NeumorphicRangeSlider> {
       NeumorphicProgress(
           duration: Duration.zero,
           percent: 0,
-          height: widget.height,
+          height: widget.sliderHeight ?? widget.height,
           style: ProgressStyle(
             disableDepth: widget.style.disableDepth,
             depth: widget.style.depth,
