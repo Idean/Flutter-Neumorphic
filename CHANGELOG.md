@@ -1,3 +1,7 @@
+## 3.0.4
+
+* Fixed build for new dialog api
+
 ## 3.0.3
 
 * Fixed issue on button / theme

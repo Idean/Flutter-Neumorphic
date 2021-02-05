@@ -11,8 +11,7 @@ class ColorSelector extends StatelessWidget {
   final double height;
   final double width;
 
-  const ColorSelector(
-      {this.height = 40, this.width = 40, this.color, this.onColorChanged});
+  const ColorSelector({this.height = 40, this.width = 40, this.color, this.onColorChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -36,26 +35,27 @@ class ColorSelector extends StatelessWidget {
 
   void _changeColor(BuildContext context) {
     showDialog(
-      context: context,
-      child: AlertDialog(
-        title: const Text('Pick a color!'),
-        content: SingleChildScrollView(
-          child: ColorPicker(
-            pickerColor: color,
-            onColorChanged: this.onColorChanged,
-            showLabel: true,
-            pickerAreaHeightPercent: 0.8,
-          ),
-        ),
-        actions: <Widget>[
-          FlatButton(
-            child: const Text('Close'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      ),
-    );
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Pick a color!'),
+            content: SingleChildScrollView(
+              child: ColorPicker(
+                pickerColor: color,
+                onColorChanged: this.onColorChanged,
+                showLabel: true,
+                pickerAreaHeightPercent: 0.8,
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: const Text('Close'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
   }
 }
