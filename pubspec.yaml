@@ -25,4 +25,4 @@ flutter:
   fonts:
    - family: NeumorphicIcons
      fonts:
-      - asset: fonts/Neumorphgit tag icIcons.ttf
+      - asset: fonts/NeumorphicIcons.ttf
