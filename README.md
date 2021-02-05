@@ -99,7 +99,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 </tr>
 <tr>
   <td><img width="300px"src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/indeterminate.gif"/> </td>
-  <td>NeumorphicIndeterminateProgress</td>
+  <td>NeumorphicProgressIndeterminate</td>
   <td>An inderminate progress-bar</td>
 </tr>
 <tr>
