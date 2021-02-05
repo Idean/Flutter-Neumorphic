@@ -1,4 +1,4 @@
-## 3.0.4
+## 3.0.4+1
 
 * Fixed build for new dialog api
 
