@@ -1,13 +1,12 @@
-import 'package:example/lib/top_bar.dart';
-import 'package:example/samples/audio_player_sample.dart';
-import 'package:example/samples/calculator_sample.dart';
-import 'package:example/samples/clock/clock_sample.dart';
-import 'package:example/samples/credit_card_sample.dart';
-import 'package:example/samples/form_sample.dart';
-import 'package:example/samples/testla_sample.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-
+import '../lib/top_bar.dart';
+import '../samples/audio_player_sample.dart';
+import '../samples/calculator_sample.dart';
+import '../samples/clock/clock_sample.dart';
+import '../samples/credit_card_sample.dart';
+import '../samples/form_sample.dart';
+import '../samples/testla_sample.dart';
 import 'galaxy_sample.dart';
 import 'widgets_sample.dart';
 
