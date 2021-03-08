@@ -6,6 +6,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_neumorphic/src/theme/app_bar.dart';
 import 'package:flutter_neumorphic/src/widget/container.dart';
 
+import '../../flutter_neumorphic.dart';
 import '../colors.dart';
 import '../light_source.dart';
 import '../shape.dart';
@@ -338,7 +339,7 @@ class NeumorphicStyle {
   final double? _depth;
   final double? _intensity;
   final double _surfaceIntensity;
-  final LightSource? lightSource;
+  final LightSource lightSource;
   final bool? disableDepth;
 
   final NeumorphicBorder border;
@@ -363,7 +364,7 @@ class NeumorphicStyle {
 
   const NeumorphicStyle({
     this.shape = _defaultShape,
-    this.lightSource,
+    this.lightSource = LightSource.topLeft,
     this.border = const NeumorphicBorder.none(),
     this.color,
     this.boxShape, //nullable by default, will use the one defined in theme if not set
@@ -385,7 +386,7 @@ class NeumorphicStyle {
   const NeumorphicStyle._withTheme({
     this.theme,
     this.shape = _defaultShape,
-    this.lightSource,
+    this.lightSource = LightSource.topLeft,
     this.color,
     this.boxShape,
     this.border = const NeumorphicBorder.none(),
@@ -429,7 +430,7 @@ class NeumorphicStyle {
         disableDepth: this.disableDepth ?? theme.disableDepth,
         surfaceIntensity: this.surfaceIntensity,
         oppositeShadowLightSource: this.oppositeShadowLightSource,
-        lightSource: this.lightSource ?? theme.lightSource);
+        lightSource: this.lightSource);
   }
 
   @override
