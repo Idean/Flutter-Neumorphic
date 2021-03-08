@@ -15,18 +15,18 @@ class NeumorphicTextDecoration extends Decoration {
   final TextAlign textAlign;
 
   NeumorphicTextDecoration({
-    @required this.style,
-    @required this.textStyle,
-    @required this.isForeground,
-    @required this.renderingByPath,
-    @required this.text,
-    @required this.textAlign,
+    required this.style,
+    required this.textStyle,
+    required this.isForeground,
+    required this.renderingByPath,
+    required this.text,
+    required this.textAlign,
   });
 
   @override
-  BoxPainter createBoxPainter([onChanged]) {
+  BoxPainter createBoxPainter([VoidCallback? onChanged]) {
     //print("createBoxPainter : ${style.depth}");
-    if (style.depth >= 0) {
+    if (style.depth != null && style.depth! >= 0) {
       return NeumorphicDecorationTextPainter(
         style: style,
         textStyle: textStyle,
@@ -37,11 +37,11 @@ class NeumorphicTextDecoration extends Decoration {
         drawShadow: !isForeground,
         //only box draw shadow
         renderingByPath: this.renderingByPath,
-        onChanged: onChanged,
+        onChanged: onChanged ?? (){},
         text: text,
       );
     } else {
-      return NeumorphicEmptyTextPainter(onChanged: onChanged);
+      return NeumorphicEmptyTextPainter(onChanged: onChanged ?? (){});
     }
     /* else {
       return NeumorphicEmbossDecorationPainter(
@@ -57,7 +57,7 @@ class NeumorphicTextDecoration extends Decoration {
   }
 
   @override
-  NeumorphicTextDecoration lerpFrom(Decoration a, double t) {
+  NeumorphicTextDecoration? lerpFrom(Decoration? a, double t) {
     if (a == null) return scale(t);
     if (a is NeumorphicTextDecoration)
       return NeumorphicTextDecoration.lerp(a, this, t);
@@ -65,7 +65,7 @@ class NeumorphicTextDecoration extends Decoration {
   }
 
   @override
-  NeumorphicTextDecoration lerpTo(Decoration b, double t) {
+  NeumorphicTextDecoration? lerpTo(Decoration? b, double t) {
     if (b == null) return scale(1.0 - t);
     if (b is NeumorphicTextDecoration)
       return NeumorphicTextDecoration.lerp(this, b, t);
@@ -83,14 +83,12 @@ class NeumorphicTextDecoration extends Decoration {
         style: style.copyWith());
   }
 
-  static NeumorphicTextDecoration lerp(
-      NeumorphicTextDecoration a, NeumorphicTextDecoration b, double t) {
-    assert(t != null);
-
+  static NeumorphicTextDecoration? lerp(
+      NeumorphicTextDecoration? a, NeumorphicTextDecoration? b, double t) {
     //print("lerp $t ${a.style.depth}, ${b.style.depth}");
 
     if (a == null && b == null) return null;
-    if (a == null) return b.scale(t);
+    if (a == null) return b!.scale(t);
     if (b == null) return a.scale(1.0 - t);
     if (t == 0.0) {
       //print("return a");
@@ -108,7 +106,7 @@ class NeumorphicTextDecoration extends Decoration {
         isForeground: a.isForeground,
         text: a.text,
         textAlign: a.textAlign,
-        textStyle: TextStyle.lerp(a.textStyle, b.textStyle, t),
+        textStyle: TextStyle.lerp(a.textStyle, b.textStyle, t) ?? TextStyle(),
         renderingByPath: a.renderingByPath,
         style: a.style.copyWith(
           border: NeumorphicBorder.lerp(aStyle.border, bStyle.border, t),
