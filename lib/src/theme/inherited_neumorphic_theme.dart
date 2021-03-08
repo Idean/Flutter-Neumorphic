@@ -9,7 +9,7 @@ export 'theme.dart';
 export 'theme_wrapper.dart';
 
 typedef NeumorphicThemeUpdater = NeumorphicThemeData Function(
-    NeumorphicThemeData current);
+    NeumorphicThemeData? current);
 
 class NeumorphicThemeInherited extends InheritedWidget {
   final Widget child;
@@ -17,15 +17,15 @@ class NeumorphicThemeInherited extends InheritedWidget {
   final ValueChanged<ThemeWrapper> onChanged;
 
   NeumorphicThemeInherited(
-      {Key key,
-      @required this.child,
-      @required this.value,
-      @required this.onChanged});
+      {Key? key,
+      required this.child,
+      required this.value,
+      required this.onChanged}) : super(key: key, child: child);
 
   @override
   bool updateShouldNotify(NeumorphicThemeInherited old) => value != old.value;
 
-  NeumorphicThemeData get current {
+  NeumorphicThemeData? get current {
     return this.value.current;
   }
 

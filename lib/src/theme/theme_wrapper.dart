@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'theme.dart';
@@ -12,11 +11,11 @@ export 'theme.dart';
 /// It will be accessible to the childs widgets by an InheritedWidget
 class ThemeWrapper {
   final NeumorphicThemeData theme;
-  final NeumorphicThemeData darkTheme;
+  final NeumorphicThemeData? darkTheme;
   final ThemeMode themeMode;
 
   const ThemeWrapper({
-    @required this.theme,
+    required this.theme,
     this.darkTheme,
     this.themeMode = ThemeMode.system,
   });
@@ -28,7 +27,7 @@ class ThemeWrapper {
       (themeMode == ThemeMode.system &&
           window.platformBrightness == Brightness.dark);
 
-  NeumorphicThemeData get current {
+  NeumorphicThemeData? get current {
     if (useDark) {
       return darkTheme;
     } else {
@@ -49,9 +48,9 @@ class ThemeWrapper {
   int get hashCode => theme.hashCode ^ darkTheme.hashCode ^ themeMode.hashCode;
 
   ThemeWrapper copyWith({
-    NeumorphicThemeData theme,
-    NeumorphicThemeData darkTheme,
-    ThemeMode currentTheme,
+    NeumorphicThemeData? theme,
+    NeumorphicThemeData? darkTheme,
+    ThemeMode? currentTheme,
   }) {
     return new ThemeWrapper(
       theme: theme ?? this.theme,

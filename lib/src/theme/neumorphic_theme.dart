@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../flutter_neumorphic.dart';
 import 'inherited_neumorphic_theme.dart';
 import 'theme.dart';
 import 'theme_wrapper.dart';
@@ -49,17 +50,17 @@ class NeumorphicTheme extends StatefulWidget {
   final ThemeMode themeMode;
 
   NeumorphicTheme({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.theme = neumorphicDefaultTheme,
     this.darkTheme = neumorphicDefaultDarkTheme,
-    this.themeMode,
+    this.themeMode = ThemeMode.system,
   });
 
   @override
   _NeumorphicThemeState createState() => _NeumorphicThemeState();
 
-  static NeumorphicThemeInherited of(BuildContext context) {
+  static NeumorphicThemeInherited? of(BuildContext context) {
     try {
       return context
           .dependOnInheritedWidgetOfExactType<NeumorphicThemeInherited>();
@@ -69,11 +70,15 @@ class NeumorphicTheme extends StatefulWidget {
   }
 
   static void update(BuildContext context, NeumorphicThemeUpdater updater) {
-    return of(context).update(updater);
+    final theme = of(context);
+    if (theme == null) return;
+    return theme.update(updater);
   }
 
   static bool isUsingDark(BuildContext context) {
-    return of(context).isUsingDark;
+    final theme = of(context);
+    if (theme == null) return false;
+    return theme.isUsingDark;
   }
 
   static Color accentColor(BuildContext context) {
@@ -92,16 +97,16 @@ class NeumorphicTheme extends StatefulWidget {
     return currentTheme(context).disabledColor;
   }
 
-  static double intensity(BuildContext context) {
+  static double? intensity(BuildContext context) {
     return currentTheme(context).intensity;
   }
 
-  static double depth(BuildContext context) {
+  static double? depth(BuildContext context) {
     return currentTheme(context).depth;
   }
 
-  static double embossDepth(BuildContext context) {
-    return -(currentTheme(context).depth.abs());
+  static double? embossDepth(BuildContext context) {
+    return -(currentTheme(context).depth?.abs())!;
   }
 
   static Color defaultTextColor(BuildContext context) {
@@ -109,28 +114,25 @@ class NeumorphicTheme extends StatefulWidget {
   }
 
   static NeumorphicThemeData currentTheme(BuildContext context) {
-    try {
-      final provider = NeumorphicTheme.of(context);
-      return provider.current;
-    } catch (t) {
-      return neumorphicDefaultTheme;
-    }
+    final provider = NeumorphicTheme.of(context);
+    if (provider == null) return neumorphicDefaultTheme;
+    return provider.current == null ? neumorphicDefaultTheme : provider.current!;
   }
 }
 
 double applyThemeDepthEnable(
-    {@required BuildContext context,
-    @required bool styleEnableDepth,
-    @required double depth}) {
+    {required BuildContext context,
+    required bool styleEnableDepth,
+    required double depth}) {
   final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
   return wrapDepthWithThemeData(
       themeData: theme, styleEnableDepth: styleEnableDepth, depth: depth);
 }
 
 double wrapDepthWithThemeData(
-    {@required NeumorphicThemeData themeData,
-    @required bool styleEnableDepth,
-    @required double depth}) {
+    {required NeumorphicThemeData themeData,
+    required bool styleEnableDepth,
+    required double depth}) {
   if (themeData.disableDepth) {
     return 0;
   } else {
@@ -139,7 +141,7 @@ double wrapDepthWithThemeData(
 }
 
 class _NeumorphicThemeState extends State<NeumorphicTheme> {
-  ThemeWrapper _themeHost;
+  late ThemeWrapper _themeHost;
 
   @override
   void initState() {
