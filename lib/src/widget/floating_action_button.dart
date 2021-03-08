@@ -11,14 +11,14 @@ const BoxConstraints _kMiniSizeConstraints = BoxConstraints.tightFor(
 );
 
 class NeumorphicFloatingActionButton extends StatelessWidget {
-  final Widget child;
-  final NeumorphicButtonClickListener onPressed;
+  final Widget? child;
+  final NeumorphicButtonClickListener? onPressed;
   final bool mini;
-  final String tooltip;
-  final NeumorphicStyle style;
+  final String? tooltip;
+  final NeumorphicStyle? style;
 
   const NeumorphicFloatingActionButton({
-    Key key,
+    Key? key,
     this.mini = false,
     this.style,
     this.tooltip,

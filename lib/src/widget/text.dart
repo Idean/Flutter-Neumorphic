@@ -13,20 +13,20 @@ export '../theme/neumorphic_theme.dart';
 
 class NeumorphicTextStyle {
   final bool inherit;
-  final double fontSize;
-  final FontWeight fontWeight;
-  final FontStyle fontStyle;
-  final double letterSpacing;
-  final double wordSpacing;
-  final TextBaseline textBaseline;
-  final double height;
-  final Locale locale;
-  final List<ui.FontFeature> fontFeatures;
-  final TextDecoration decoration;
-  final String debugLabel;
-  final String fontFamily;
-  final List<String> fontFamilyFallback;
-  final String package;
+  final double? fontSize;
+  final FontWeight? fontWeight;
+  final FontStyle? fontStyle;
+  final double? letterSpacing;
+  final double? wordSpacing;
+  final TextBaseline? textBaseline;
+  final double? height;
+  final Locale? locale;
+  final List<ui.FontFeature>? fontFeatures;
+  final TextDecoration? decoration;
+  final String? debugLabel;
+  final String? fontFamily;
+  final List<String>? fontFamilyFallback;
+  final String? package;
   //final Color color;
   //final Color backgroundColor;
   //final Paint foreground,
@@ -94,19 +94,19 @@ class NeumorphicTextStyle {
   });
 
   NeumorphicTextStyle copyWith({
-    bool inherit,
-    String fontFamily,
-    List<String> fontFamilyFallback,
-    double fontSize,
-    FontWeight fontWeight,
-    FontStyle fontStyle,
-    double letterSpacing,
-    double wordSpacing,
-    TextBaseline textBaseline,
-    double height,
-    Locale locale,
-    List<ui.FontFeature> fontFeatures,
-    String debugLabel,
+    bool? inherit,
+    String? fontFamily,
+    List<String>? fontFamilyFallback,
+    double? fontSize,
+    FontWeight? fontWeight,
+    FontStyle? fontStyle,
+    double? letterSpacing,
+    double? wordSpacing,
+    TextBaseline? textBaseline,
+    double? height,
+    Locale? locale,
+    List<ui.FontFeature>? fontFeatures,
+    String? debugLabel,
     //Color color,
     //Color backgroundColor,
     //Paint foreground,
@@ -146,15 +146,15 @@ class NeumorphicTextStyle {
 @immutable
 class NeumorphicText extends StatelessWidget {
   final String text;
-  final NeumorphicStyle style;
+  final NeumorphicStyle? style;
   final TextAlign textAlign;
-  final NeumorphicTextStyle textStyle;
+  final NeumorphicTextStyle? textStyle;
   final Curve curve;
   final Duration duration;
 
   NeumorphicText(
     this.text, {
-    Key key,
+    Key? key,
     this.duration = Neumorphic.DEFAULT_DURATION,
     this.curve = Neumorphic.DEFAULT_CURVE,
     this.style,
@@ -191,13 +191,13 @@ class _NeumorphicText extends material.StatefulWidget {
   final TextAlign textAlign;
 
   _NeumorphicText({
-    Key key,
-    @required this.duration,
-    @required this.curve,
-    @required this.textAlign,
-    @required this.style,
-    @required this.textStyle,
-    @required this.text,
+    Key? key,
+    required this.duration,
+    required this.curve,
+    required this.textAlign,
+    required this.style,
+    required this.textStyle,
+    required this.text,
   }) : super(key: key);
 
   @override
@@ -209,8 +209,7 @@ class __NeumorphicTextState extends material.State<_NeumorphicText> {
   Widget build(BuildContext context) {
     final TextPainter _textPainter = TextPainter(
         textDirection: TextDirection.ltr, textAlign: this.widget.textAlign);
-    final textStyle =
-        this.widget.textStyle ?? material.Theme.of(context).textTheme.bodyText2;
+    final textStyle = this.widget.textStyle;
     _textPainter.text = TextSpan(
       text: this.widget.text,
       style: this.widget.textStyle,

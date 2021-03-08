@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/src/widget/animation/animated_scale.dart';
 
+import '../../flutter_neumorphic.dart';
 import '../neumorphic_box_shape.dart';
 import '../theme/neumorphic_theme.dart';
 import 'container.dart';
@@ -13,14 +14,14 @@ import 'container.dart';
 /// and [thumbShape] @see [NeumorphicShape]
 ///
 class NeumorphicSwitchStyle {
-  final double trackDepth;
-  final Color activeTrackColor;
-  final Color inactiveTrackColor;
-  final Color activeThumbColor;
-  final Color inactiveThumbColor;
-  final NeumorphicShape thumbShape;
-  final double thumbDepth;
-  final LightSource lightSource;
+  final double? trackDepth;
+  final Color? activeTrackColor;
+  final Color? inactiveTrackColor;
+  final Color? activeThumbColor;
+  final Color? inactiveThumbColor;
+  final NeumorphicShape? thumbShape;
+  final double? thumbDepth;
+  final LightSource? lightSource;
   final bool disableDepth;
 
   final NeumorphicBorder thumbBorder;
@@ -35,7 +36,7 @@ class NeumorphicSwitchStyle {
     this.inactiveThumbColor,
     this.thumbDepth,
     this.lightSource,
-    this.disableDepth,
+    this.disableDepth = false,
     this.thumbBorder = const NeumorphicBorder.none(),
     this.trackBorder = const NeumorphicBorder.none(),
   });
@@ -117,7 +118,7 @@ class NeumorphicSwitch extends StatelessWidget {
   static const MIN_EMBOSS_DEPTH = -1.0;
 
   final bool value;
-  final ValueChanged<bool> onChanged;
+  final ValueChanged<bool>? onChanged;
   final NeumorphicSwitchStyle style;
   final double height;
   final Duration duration;
@@ -126,7 +127,7 @@ class NeumorphicSwitch extends StatelessWidget {
 
   const NeumorphicSwitch({
     this.style = const NeumorphicSwitchStyle(),
-    Key key,
+    Key? key,
     this.curve = Neumorphic.DEFAULT_CURVE,
     this.duration = const Duration(milliseconds: 200),
     this.value = false,
@@ -149,7 +150,7 @@ class NeumorphicSwitch extends StatelessWidget {
               return;
             }
             if (this.onChanged != null) {
-              this.onChanged(!this.value);
+              this.onChanged!(!this.value);
             }
           },
           child: Neumorphic(
@@ -193,17 +194,18 @@ class NeumorphicSwitch extends StatelessWidget {
   }
 
   double get _thumbDepth {
-    if (!this.isEnabled) {
+    if (!this.isEnabled || this.style.thumbDepth != null) {
       return 0;
     } else
-      return this.style.thumbDepth;
+      return this.style.thumbDepth!;
   }
 
   NeumorphicShape get _getThumbShape {
     return this.style.thumbShape ?? NeumorphicShape.flat;
   }
 
-  double _getTrackDepth(double themeDepth) {
+  double? _getTrackDepth(double? themeDepth) {
+    if (themeDepth == null) return themeDepth;
     //force negative to have emboss
     final double depth = -1 * (this.style.trackDepth ?? themeDepth).abs();
     return depth.clamp(Neumorphic.MIN_DEPTH, NeumorphicSwitch.MIN_EMBOSS_DEPTH);
@@ -220,7 +222,7 @@ class NeumorphicSwitch extends StatelessWidget {
   }
 
   Color _getThumbColor(NeumorphicThemeData theme) {
-    Color color = this.value == true
+    Color? color = this.value == true
         ? this.style.activeThumbColor
         : this.style.inactiveThumbColor;
     return color ?? theme.baseColor;
@@ -228,27 +230,27 @@ class NeumorphicSwitch extends StatelessWidget {
 }
 
 class AnimatedThumb extends StatelessWidget {
-  final Color thumbColor;
+  final Color? thumbColor;
   final Alignment alignment;
   final Duration duration;
   final NeumorphicShape shape;
-  final double depth;
+  final double? depth;
   final Curve curve;
   final bool disableDepth;
   final NeumorphicBorder border;
   final LightSource lightSource;
 
   AnimatedThumb({
-    Key key,
+    Key? key,
     this.thumbColor,
-    this.alignment,
-    this.duration,
-    this.shape,
-    this.disableDepth,
+    required this.alignment,
+    required this.duration,
+    required this.shape,
     this.depth,
-    this.curve,
-    this.border,
-    this.lightSource,
+    this.curve = Curves.linear,
+    this.border = const NeumorphicBorder.none(),
+    this.lightSource = LightSource.topLeft,
+    this.disableDepth = false,
   }) : super(key: key);
 
   @override

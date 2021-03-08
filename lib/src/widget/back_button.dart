@@ -3,13 +3,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class NeumorphicBackButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  final NeumorphicStyle style;
-  final EdgeInsets padding;
+  final VoidCallback? onPressed;
+  final NeumorphicStyle? style;
+  final EdgeInsets? padding;
   final bool forward;
 
   const NeumorphicBackButton({
-    Key key,
+    Key? key,
     this.onPressed,
     this.style,
     this.padding,
@@ -18,7 +18,7 @@ class NeumorphicBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nThemeIcons = NeumorphicTheme.of(context).current.appBarTheme.icons;
+    final nThemeIcons = NeumorphicTheme.of(context)!.current!.appBarTheme.icons;
     return NeumorphicButton(
       style: style,
       padding: padding,

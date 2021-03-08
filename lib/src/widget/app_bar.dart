@@ -11,7 +11,7 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   /// Typically a [Text] widget that contains a description of the current
   /// contents of the app.
-  final Widget title;
+  final Widget? title;
 
   /// A widget to display before the [title].
   ///
@@ -27,12 +27,12 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// widget with an [IconButton] that opens the drawer (using [Icons.menu]). If
   /// there's no [Drawer] and the parent [Navigator] can go back, the [NeumorphicAppBar]
   /// will use a [NeumorphicBackButton] that calls [Navigator.maybePop].
-  final Widget leading;
+  final Widget? leading;
 
   /// Whether the title should be centered.
   ///
   /// Defaults to being adapted to the current [TargetPlatform].
-  final bool centerTitle;
+  final bool? centerTitle;
 
   /// Widgets to display in a row after the [title] widget.
   ///
@@ -43,7 +43,7 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// The [actions] become the trailing component of the [NavigationToolBar] built
   /// by this widget. The height of each action is constrained to be no bigger
   /// than the toolbar's height, which is [kToolbarHeight].
-  final List<Widget> actions;
+  final List<Widget>? actions;
 
   /// Controls whether we should try to imply the leading widget if null.
   ///
@@ -65,24 +65,24 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   final double actionSpacing;
 
   /// Force background color of the app bar
-  final Color color;
+  final Color? color;
 
   /// Force color of the icon inside app bar
-  final IconThemeData iconTheme;
+  final IconThemeData? iconTheme;
 
   @override
   final Size preferredSize;
 
-  final NeumorphicStyle buttonStyle;
+  final NeumorphicStyle? buttonStyle;
 
-  final EdgeInsets buttonPadding;
+  final EdgeInsets? buttonPadding;
 
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   final double padding;
 
   NeumorphicAppBar({
-    Key key,
+    Key? key,
     this.title,
     this.buttonPadding,
     this.buttonStyle,
@@ -104,8 +104,7 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   bool _getEffectiveCenterTitle(ThemeData theme, NeumorphicThemeData nTheme) {
     if (centerTitle != null || nTheme.appBarTheme.centerTitle != null)
-      return centerTitle ?? nTheme.appBarTheme.centerTitle;
-    assert(theme.platform != null);
+      return centerTitle ?? nTheme.appBarTheme.centerTitle!;
     switch (theme.platform) {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
@@ -114,23 +113,22 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
         return false;
       case TargetPlatform.iOS:
       case TargetPlatform.macOS:
-        return actions == null || actions.length < 2;
+        return actions == null || actions!.length < 2;
     }
-    return null;
   }
 }
 
 class NeumorphicAppBarTheme extends InheritedWidget {
   final Widget child;
 
-  NeumorphicAppBarTheme({this.child}) : super(child: child);
+  NeumorphicAppBarTheme({required this.child}) : super(child: child);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
     return false;
   }
 
-  static NeumorphicAppBarTheme of(BuildContext context) {
+  static NeumorphicAppBarTheme? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType();
   }
 }
@@ -140,21 +138,21 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final nTheme = NeumorphicTheme.of(context);
-    final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
+    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     final bool canPop = parentRoute?.canPop ?? false;
     final bool useCloseButton =
         parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
-    final ScaffoldState scaffold = Scaffold.maybeOf(context);
+    final ScaffoldState? scaffold = Scaffold.maybeOf(context);
     final bool hasDrawer = scaffold?.hasDrawer ?? false;
     final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
 
-    Widget leading = widget.leading;
+    Widget? leading = widget.leading;
     if (leading == null && widget.automaticallyImplyLeading) {
       if (hasDrawer) {
         leading = NeumorphicButton(
           padding: widget.buttonPadding,
           style: widget.buttonStyle,
-          child: nTheme.current.appBarTheme.icons.menuIcon,
+          child: nTheme?.current?.appBarTheme.icons.menuIcon,
           onPressed: _handleDrawerButton,
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
         );
@@ -178,25 +176,25 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
       );
     }
 
-    Widget title = widget.title;
+    Widget? title = widget.title;
     if (title != null) {
       final AppBarTheme appBarTheme = AppBarTheme.of(context);
       title = DefaultTextStyle(
         style: (appBarTheme.textTheme?.headline5 ??
-                Theme.of(context).textTheme.headline5)
-            .merge(widget.textStyle ?? nTheme.current.appBarTheme.textStyle),
+                Theme.of(context).textTheme.headline5!)
+            .merge(widget.textStyle ?? nTheme?.current?.appBarTheme.textStyle),
         softWrap: false,
         overflow: TextOverflow.ellipsis,
         child: title,
       );
     }
 
-    Widget actions;
-    if (widget.actions != null && widget.actions.isNotEmpty) {
+    Widget? actions;
+    if (widget.actions != null && widget.actions!.isNotEmpty) {
       actions = Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: widget.actions
+        children: widget.actions!
             .map((child) => Padding(
                   padding: EdgeInsets.only(left: widget.actionSpacing),
                   child: ConstrainedBox(
@@ -214,14 +212,14 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
         child: NeumorphicButton(
           padding: widget.buttonPadding,
           style: widget.buttonStyle,
-          child: nTheme.current.appBarTheme.icons.menuIcon,
+          child: nTheme?.current?.appBarTheme.icons.menuIcon,
           onPressed: _handleDrawerButtonEnd,
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
         ),
       );
     }
     return Container(
-      color: widget.color ?? nTheme.current.appBarTheme.color,
+      color: widget.color ?? nTheme?.current?.appBarTheme.color,
       child: SafeArea(
         bottom: false,
         child: NeumorphicAppBarTheme(
@@ -229,15 +227,15 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
             padding: EdgeInsets.all(widget.padding),
             child: IconTheme(
               data: widget.iconTheme ??
-                  nTheme.current.appBarTheme.iconTheme ??
-                  nTheme.current.iconTheme ??
+                  nTheme?.current?.appBarTheme.iconTheme ??
+                  nTheme?.current?.iconTheme ??
                   const IconThemeData(),
               child: NavigationToolbar(
                 leading: leading,
                 middle: title,
                 trailing: actions,
                 centerMiddle:
-                    widget._getEffectiveCenterTitle(theme, nTheme.current),
+                    widget._getEffectiveCenterTitle(theme, nTheme!.current!),
                 middleSpacing: widget.titleSpacing,
               ),
             ),
