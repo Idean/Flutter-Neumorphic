@@ -47,8 +47,7 @@ class LightSource {
 
   LightSource invert() => LightSource(dx * -1, dy * -1);
 
-  static LightSource lerp(LightSource a, LightSource b, double t) {
-    assert(t != null);
+  static LightSource? lerp(LightSource? a, LightSource? b, double t) {
 
     if (a == null && b == null) return null;
     if (a == null) return b;
@@ -58,14 +57,14 @@ class LightSource {
     if (t == 1.0) return b;
 
     return LightSource(
-      a.dx != b.dx ? lerpDouble(a.dx, b.dx, t) : a.dx,
-      a.dy != b.dy ? lerpDouble(a.dy, b.dy, t) : a.dy,
+      (a.dx != b.dx ? lerpDouble(a.dx, b.dx, t) : a.dx)!,
+      (a.dy != b.dy ? lerpDouble(a.dy, b.dy, t) : a.dy)!,
     );
   }
 
   LightSource copyWith({
-    double dx,
-    double dy,
+    double? dx,
+    double? dy,
   }) {
     return LightSource(
       dx ?? this.dx,
