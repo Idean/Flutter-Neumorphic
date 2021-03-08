@@ -8,11 +8,11 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 @immutable
 class NeumorphicAppBarThemeData {
   final Color color;
-  final IconThemeData iconTheme;
+  final IconThemeData? iconTheme;
   final NeumorphicStyle buttonStyle;
   final EdgeInsets buttonPadding;
-  final bool centerTitle;
-  final TextStyle textStyle;
+  final bool? centerTitle;
+  final TextStyle? textStyle;
   final NeumorphicAppBarIcons icons;
 
   const NeumorphicAppBarThemeData({
@@ -29,14 +29,14 @@ class NeumorphicAppBarThemeData {
 class NeumorphicAppBarIcons {
   final Icon closeIcon;
   final Icon menuIcon;
-  final Icon _backIcon;
-  final Icon _forwardIcon;
+  final Icon? _backIcon;
+  final Icon? _forwardIcon;
 
   const NeumorphicAppBarIcons({
     this.menuIcon = const Icon(Icons.menu),
     this.closeIcon = const Icon(Icons.close),
-    Icon backIcon,
-    Icon forwardIcon,
+    Icon? backIcon,
+    Icon? forwardIcon,
   })  : _backIcon = backIcon,
         _forwardIcon = forwardIcon;
 
@@ -52,10 +52,10 @@ class NeumorphicAppBarIcons {
       : const Icon(Icons.arrow_forward);
 
   NeumorphicAppBarIcons copyWith({
-    Icon backIcon,
-    Icon closeIcon,
-    Icon menuIcon,
-    Icon forwardIcon,
+    Icon? backIcon,
+    Icon? closeIcon,
+    Icon? menuIcon,
+    Icon? forwardIcon,
   }) {
     return NeumorphicAppBarIcons(
       backIcon: backIcon ?? this.backIcon,
