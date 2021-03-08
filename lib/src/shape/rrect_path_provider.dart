@@ -4,7 +4,7 @@ import 'neumorphic_path_provider.dart';
 class RRectPathProvider extends NeumorphicPathProvider {
   final BorderRadius borderRadius;
 
-  const RRectPathProvider(this.borderRadius, {Listenable reclip});
+  const RRectPathProvider(this.borderRadius, {Listenable? reclip});
 
   @override
   bool shouldReclip(NeumorphicPathProvider oldClipper) {
