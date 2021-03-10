@@ -93,8 +93,12 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
           newIntensity: style.intensity ?? 0.25,
         );
     if (invalidateShadowColors) {
-      _whiteShadowPaint..color = _cache.shadowLightColor;
-      _blackShadowPaint..color = _cache.shadowDarkColor;
+      if(_cache.shadowLightColor != null) {
+        _whiteShadowPaint..color = _cache.shadowLightColor!;
+      }
+      if(_cache.shadowDarkColor != null) {
+        _blackShadowPaint..color = _cache.shadowDarkColor!;
+      }
     }
 
     if (invalidateLightSource || invalidateDepth || invalidateSize) {

@@ -12,7 +12,7 @@ class NeumorphicDecorationPainter extends BoxPainter {
   final NeumorphicStyle style;
   final NeumorphicBoxShape shape;
 
-  NeumorphicPainterCache _cache;
+  NeumorphicPainterCache _cache = NeumorphicPainterCache();
 
   late Paint _backgroundPaint;
   late Paint _whiteShadowPaint;
@@ -49,7 +49,7 @@ class NeumorphicDecorationPainter extends BoxPainter {
     required this.drawBackground,
     required VoidCallback onChanged,
     this.renderingByPath = true,
-  }) : _cache = NeumorphicPainterCache(), super(onChanged) {
+  }) : super(onChanged) {
     generatePainters();
   }
 
@@ -96,8 +96,12 @@ class NeumorphicDecorationPainter extends BoxPainter {
         newIntensity: style.intensity!,
       );
       if (invalidateShadowColors) {
-        _whiteShadowPaint..color = _cache.shadowLightColor;
-        _blackShadowPaint..color = _cache.shadowDarkColor;
+        if(_cache.shadowLightColor != null) {
+          _whiteShadowPaint..color = _cache.shadowLightColor!;
+        }
+        if(_cache.shadowDarkColor != null) {
+          _blackShadowPaint..color = _cache.shadowDarkColor!;
+        }
       }
     }
 

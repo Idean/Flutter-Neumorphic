@@ -91,17 +91,17 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
 
   void updateInitialStyle() {
     final appBarPresent = NeumorphicAppBarTheme.of(context) != null;
-    if (widget.style != initialStyle || initialStyle == null) {
-      final theme = NeumorphicTheme.currentTheme(context);
-      setState(() {
-        this.initialStyle = widget.style ??
-            (appBarPresent
-                ? theme.appBarTheme.buttonStyle
-                : (theme.buttonStyle ?? const NeumorphicStyle()));
-        depth = widget.style?.depth ??
-            (appBarPresent ? theme.appBarTheme.buttonStyle.depth : theme.depth) ?? 0.0;
-      });
-    }
+
+    final theme = NeumorphicTheme.currentTheme(context);
+    this.initialStyle = widget.style ??
+          (appBarPresent
+              ? theme.appBarTheme.buttonStyle
+              : (theme.buttonStyle ?? const NeumorphicStyle()));
+      depth = widget.style?.depth ??
+          (appBarPresent ? theme.appBarTheme.buttonStyle.depth : theme.depth) ?? 0.0;
+
+    setState(() {});
+
   }
 
   @override
@@ -147,7 +147,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
     if (hasFinishedAnimationDown == true && hasTapUp == true && !hasDisposed) {
       setState(() {
         pressed = false;
-        depth = initialStyle.depth!;
+        depth = initialStyle.depth ?? neumorphicDefaultTheme.depth;
 
         hasFinishedAnimationDown = false;
         hasTapUp = false;

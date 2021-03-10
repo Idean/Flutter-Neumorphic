@@ -301,7 +301,7 @@ class NeumorphicToggle extends StatelessWidget {
     final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
 
     //force negative to have emboss
-    final double depth = -1 * (this.style?.depth ?? theme.depth)!.abs();
+    final double depth = -1 * (this.style?.depth ?? theme.depth).abs();
     return depth.clamp(Neumorphic.MIN_DEPTH, NeumorphicToggle.MIN_EMBOSS_DEPTH);
   }
 

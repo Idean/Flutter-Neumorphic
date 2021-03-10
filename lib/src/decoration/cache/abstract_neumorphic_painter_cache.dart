@@ -4,17 +4,18 @@ import 'dart:ui';
 import '../../../flutter_neumorphic.dart';
 
 abstract class AbstractNeumorphicEmbossPainterCache {
-  late Offset _cacheOffset;
-  Offset get originOffset => _cacheOffset;
+  Offset? _cacheOffset;
+  Offset get originOffset => _cacheOffset ?? Offset.zero;
 
-  late double _cacheWidth;
-  double get width => _cacheWidth;
-  late double _cacheHeight;
-  double get height => _cacheHeight;
-  late double _cacheRadius;
+  double? _cacheWidth;
+  double get width => _cacheWidth ?? 0;
+  double? _cacheHeight;
+  double get height => _cacheHeight ?? 0 ;
+  double? _cacheRadius;
+  double get cacheRadius => _cacheRadius ?? 0 ;
 
-  late Rect _layerRect;
-  Rect get layerRect => _layerRect;
+  Rect? _layerRect;
+  Rect? get layerRect => _layerRect;
 
   AbstractNeumorphicEmbossPainterCache();
 
@@ -26,8 +27,8 @@ abstract class AbstractNeumorphicEmbossPainterCache {
       this._cacheHeight = newSize.height;
       this._cacheOffset = newOffset;
 
-      var middleWidth = this._cacheWidth / 2;
-      var middleHeight = this._cacheHeight / 2;
+      var middleWidth = newSize.width / 2;
+      var middleHeight = newSize.height / 2;
 
       _layerRect = this.updateLayerRect(newOffset: newOffset, newSize: newSize);
 
@@ -41,30 +42,33 @@ abstract class AbstractNeumorphicEmbossPainterCache {
 
   Rect updateLayerRect({required Offset newOffset, required Size newSize});
 
-  late double _cacheStyleDepth; //old style depth
-  late double _depth; //depth used to draw
-  double get depth => _depth; //depth used to draw
+  double? _cacheStyleDepth; //old style depth
+  double? _depth; //depth used to draw
+  double get depth => _depth ?? 0; //depth used to draw
   bool updateStyleDepth(double newStyleDepth, double radiusFactor) {
     if (_cacheStyleDepth != newStyleDepth) {
       _cacheStyleDepth = newStyleDepth;
 
-      _depth = _cacheStyleDepth.abs().clamp(0.0, _cacheRadius / radiusFactor);
+      final depth = newStyleDepth.abs().clamp(0.0, _cacheRadius ?? 0 / radiusFactor);
+      _depth = depth;
 
-      this._updateMaskFilter(newDepth: _depth);
+      this._updateMaskFilter(newDepth: depth);
 
       return true;
     }
     return false;
   }
 
-  late Offset _depthOffset;
-  Offset get depthOffset => _depthOffset;
+  Offset? _depthOffset;
+  Offset get depthOffset => _depthOffset ?? Offset.zero;
   void updateDepthOffset() {
-    _depthOffset = this.lightSource.offset.scale(_depth, _depth);
+    if(_depth != null) {
+      _depthOffset = this.lightSource.offset.scale(_depth!, _depth!);
+    }
   }
 
-  late Color _cacheColor;
-  Color get backgroundColor => _cacheColor;
+  Color? _cacheColor;
+  Color get backgroundColor => _cacheColor ?? Colors.transparent;
   bool updateStyleColor(Color newColor) {
     if (_cacheColor != newColor) {
       _cacheColor = newColor;
@@ -74,12 +78,11 @@ abstract class AbstractNeumorphicEmbossPainterCache {
     return false;
   }
 
-  late bool
-      _cacheOppositeShadowLightSource; //store the old style lightsource property
-  late LightSource _cacheLightSource; //store the old style lightsource
+  bool? _cacheOppositeShadowLightSource; //store the old style lightsource property
+  LightSource? _cacheLightSource; //store the old style lightsource
 
-  late LightSource _lightSource; //used to draw
-  LightSource get lightSource => _lightSource; //used to draw
+  LightSource? _lightSource; //used to draw
+  LightSource get lightSource => _lightSource ?? LightSource.bottom; //used to draw
   bool updateLightSource(
       LightSource newLightSource, bool newOppositeShadowLightSource) {
     bool invalidateLightSource = false;
@@ -94,11 +97,13 @@ abstract class AbstractNeumorphicEmbossPainterCache {
       invalidateOppositeLightSource = true;
     }
 
-    if (invalidateLightSource || invalidateOppositeLightSource) {
-      if (_cacheOppositeShadowLightSource) {
-        _lightSource = _cacheLightSource.invert();
+    final cacheLightSource = this._cacheLightSource;
+    final cacheOppositeShadowLightSource = this._cacheOppositeShadowLightSource;
+    if (cacheOppositeShadowLightSource != null && cacheLightSource != null && (invalidateLightSource || invalidateOppositeLightSource)) {
+      if (cacheOppositeShadowLightSource) {
+        _lightSource = cacheLightSource.invert();
       } else {
-        _lightSource = _cacheLightSource;
+        _lightSource = cacheLightSource;
       }
 
       return true;
@@ -107,19 +112,19 @@ abstract class AbstractNeumorphicEmbossPainterCache {
     return false;
   }
 
-  late MaskFilter _maskFilterBlur;
-  MaskFilter get maskFilterBlur => _maskFilterBlur;
+  MaskFilter? _maskFilterBlur;
+  MaskFilter? get maskFilterBlur => _maskFilterBlur;
   void _updateMaskFilter({required double newDepth}) {
     this._maskFilterBlur = MaskFilter.blur(BlurStyle.normal, newDepth);
   }
 
-  late double _styleIntensity;
-  late Color _styleShadowLightColor;
-  late Color _shadowLightColor;
-  Color get shadowLightColor => _shadowLightColor;
-  late Color _styleShadowDarkColor;
-  late Color _shadowDarkColor;
-  Color get shadowDarkColor => _shadowDarkColor;
+  double? _styleIntensity;
+  Color? _styleShadowLightColor;
+  Color? _shadowLightColor;
+  Color? get shadowLightColor => _shadowLightColor;
+  Color? _styleShadowDarkColor;
+  Color? _shadowDarkColor;
+  Color? get shadowDarkColor => _shadowDarkColor;
 
   Color generateShadowLightColor({required Color color, required double intensity});
 
@@ -142,7 +147,8 @@ abstract class AbstractNeumorphicEmbossPainterCache {
         _styleShadowLightColor != newShadowLightColorEmboss) {
       _styleShadowLightColor = newShadowLightColorEmboss;
       _shadowLightColor = this.generateShadowLightColor(
-          color: _styleShadowLightColor, intensity: _styleIntensity);
+          color: newShadowLightColorEmboss,
+          intensity: newIntensity);
 
       invalidate = true;
     }
@@ -150,8 +156,8 @@ abstract class AbstractNeumorphicEmbossPainterCache {
     if (invalidate || _styleShadowDarkColor != newShadowDarkColorEmboss) {
       _styleShadowDarkColor = newShadowDarkColorEmboss;
       _shadowDarkColor = this.generateShadowDarkColor(
-        color: _styleShadowDarkColor,
-        intensity: _styleIntensity,
+        color: newShadowDarkColorEmboss,
+        intensity: newIntensity,
       );
       invalidate = true;
     }
@@ -162,8 +168,8 @@ abstract class AbstractNeumorphicEmbossPainterCache {
   void updateTranslations();
 
   final List<Path> subPaths = [];
-  late Path _path;
-  Path get path => _path;
+  Path? _path;
+  Path get path => _path ?? Path();
   void updatePath({required Path newPath}) {
     this._path = newPath;
     subPaths.clear();

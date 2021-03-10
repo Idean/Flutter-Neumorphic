@@ -77,10 +77,10 @@ class NeumorphicThemeData {
   final NeumorphicAppBarThemeData appBarTheme;
 
   /// Get this theme's depth, clamp to min/max neumorphic constants
-  double? get depth => _depth.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
+  double get depth => _depth.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
 
   /// Get this theme's intensity, clamp to min/max neumorphic constants
-  double? get intensity =>
+  double get intensity =>
       _intensity.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);
 
   const NeumorphicThemeData({
@@ -260,11 +260,11 @@ class NeumorphicThemeData {
       iconTheme: other.iconTheme,
       buttonStyle: other.buttonStyle,
       appBarTheme: other.appBarTheme,
-      depth: other.depth ?? this._depth,
+      depth: other.depth,
       boxShape: other.boxShape,
       borderColor: other.borderColor,
       borderWidth: other.borderWidth,
-      intensity: other.intensity ?? this._intensity,
+      intensity: other.intensity,
       lightSource: other.lightSource,
     );
   }

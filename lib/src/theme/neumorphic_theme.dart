@@ -107,7 +107,7 @@ class NeumorphicTheme extends StatefulWidget {
 
   static double? embossDepth(BuildContext context) {
     if (currentTheme(context).depth == null) return null;
-    return -currentTheme(context).depth!.abs();
+    return -currentTheme(context).depth.abs();
   }
 
   static Color defaultTextColor(BuildContext context) {
