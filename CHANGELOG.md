@@ -1,3 +1,7 @@
+## 3.1.0
+
+* Null safety
+
 ## 3.0.4+1
 
 * Fixed build for new dialog api
