@@ -15,17 +15,17 @@ class NeumorphicDecoration extends Decoration {
   final bool isForeground;
 
   NeumorphicDecoration({
-    @required this.style,
-    @required this.isForeground,
-    @required this.renderingByPath,
-    @required this.splitBackgroundForeground,
-    @required this.shape,
+    required this.style,
+    required this.isForeground,
+    required this.renderingByPath,
+    required this.splitBackgroundForeground,
+    required this.shape,
   });
 
   @override
-  BoxPainter createBoxPainter([onChanged]) {
+  BoxPainter createBoxPainter([VoidCallback? onChanged]) {
     //print("createBoxPainter : ${style.depth}");
-    if (style.depth >= 0) {
+    if (style.depth != null && style.depth! >= 0) {
       return NeumorphicDecorationPainter(
         style: style,
         drawGradient: (isForeground && splitBackgroundForeground) ||
@@ -35,7 +35,7 @@ class NeumorphicDecoration extends Decoration {
         drawShadow: !isForeground,
         //only box draw shadow
         renderingByPath: this.renderingByPath,
-        onChanged: onChanged,
+        onChanged: onChanged ?? (){},
         shape: shape,
       );
     } else {
@@ -44,23 +44,23 @@ class NeumorphicDecoration extends Decoration {
         style: style,
         drawShadow: (isForeground && splitBackgroundForeground) ||
             (!isForeground && !splitBackgroundForeground),
-        onChanged: onChanged,
+        onChanged: onChanged ?? (){},
         shape: shape,
       );
     }
   }
 
   @override
-  NeumorphicDecoration lerpFrom(Decoration a, double t) {
+  NeumorphicDecoration lerpFrom(Decoration? a, double t) {
     if (a == null) return scale(t);
-    if (a is NeumorphicDecoration) return NeumorphicDecoration.lerp(a, this, t);
+    if (a is NeumorphicDecoration) return NeumorphicDecoration.lerp(a, this, t)!;
     return super.lerpFrom(a, t) as NeumorphicDecoration;
   }
 
   @override
-  NeumorphicDecoration lerpTo(Decoration b, double t) {
+  NeumorphicDecoration lerpTo(Decoration? b, double t) {
     if (b == null) return scale(1.0 - t);
-    if (b is NeumorphicDecoration) return NeumorphicDecoration.lerp(this, b, t);
+    if (b is NeumorphicDecoration) return NeumorphicDecoration.lerp(this, b, t)!;
     return super.lerpTo(b, t) as NeumorphicDecoration;
   }
 
@@ -70,18 +70,16 @@ class NeumorphicDecoration extends Decoration {
         isForeground: this.isForeground,
         renderingByPath: this.renderingByPath,
         splitBackgroundForeground: this.splitBackgroundForeground,
-        shape: NeumorphicBoxShape.lerp(null, shape, factor),
+        shape: NeumorphicBoxShape.lerp(null, shape, factor)!,
         style: style.copyWith());
   }
 
-  static NeumorphicDecoration lerp(
-      NeumorphicDecoration a, NeumorphicDecoration b, double t) {
-    assert(t != null);
-
+  static NeumorphicDecoration? lerp(
+      NeumorphicDecoration? a, NeumorphicDecoration? b, double t) {
     //print("lerp $t ${a.style.depth}, ${b.style.depth}");
 
     if (a == null && b == null) return null;
-    if (a == null) return b.scale(t);
+    if (a == null) return b!.scale(t);
     if (b == null) return a.scale(1.0 - t);
     if (t == 0.0) {
       //print("return a");
@@ -97,7 +95,7 @@ class NeumorphicDecoration extends Decoration {
 
     return NeumorphicDecoration(
         isForeground: a.isForeground,
-        shape: NeumorphicBoxShape.lerp(a.shape, b.shape, t),
+        shape: NeumorphicBoxShape.lerp(a.shape, b.shape, t)!,
         splitBackgroundForeground: a.splitBackgroundForeground,
         renderingByPath: a.renderingByPath,
         style: a.style.copyWith(

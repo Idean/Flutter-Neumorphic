@@ -21,20 +21,20 @@ typedef void NeumorphicRadioListener<T>(T value);
 ///   @see [NeumorphicShape] (concave, convex, flat)
 ///
 class NeumorphicRadioStyle {
-  final double selectedDepth;
-  final double unselectedDepth;
+  final double? selectedDepth;
+  final double? unselectedDepth;
   final bool disableDepth;
 
-  final Color selectedColor; //null for default
-  final Color unselectedColor; //null for unchanged color
+  final Color? selectedColor; //null for default
+  final Color? unselectedColor; //null for unchanged color
 
-  final double intensity;
-  final NeumorphicShape shape;
+  final double? intensity;
+  final NeumorphicShape? shape;
 
   final NeumorphicBorder border;
-  final NeumorphicBoxShape boxShape;
+  final NeumorphicBoxShape? boxShape;
 
-  final LightSource lightSource;
+  final LightSource? lightSource;
 
   const NeumorphicRadioStyle({
     this.selectedDepth,
@@ -42,7 +42,7 @@ class NeumorphicRadioStyle {
     this.selectedColor,
     this.unselectedColor,
     this.lightSource,
-    this.disableDepth,
+    this.disableDepth = false,
     this.boxShape,
     this.border = const NeumorphicBorder.none(),
     this.intensity,
@@ -153,12 +153,12 @@ class NeumorphicRadioStyle {
 ///
 @immutable
 class NeumorphicRadio<T> extends StatelessWidget {
-  final Widget child;
-  final T value;
-  final T groupValue;
+  final Widget? child;
+  final T? value;
+  final T? groupValue;
   final EdgeInsets padding;
   final NeumorphicRadioStyle style;
-  final NeumorphicRadioListener<T> onChanged;
+  final NeumorphicRadioListener<T?>? onChanged;
   final bool isEnabled;
 
   final Duration duration;
@@ -182,9 +182,9 @@ class NeumorphicRadio<T> extends StatelessWidget {
     if (this.onChanged != null) {
       if (this.value == this.groupValue) {
         //unselect
-        this.onChanged(null);
+        this.onChanged!(null);
       } else {
-        this.onChanged(this.value);
+        this.onChanged!(this.value);
       }
     }
   }
@@ -194,9 +194,9 @@ class NeumorphicRadio<T> extends StatelessWidget {
     final NeumorphicThemeData theme = NeumorphicTheme.currentTheme(context);
 
     final double selectedDepth =
-        -1 * (this.style.selectedDepth ?? theme.depth).abs();
+        -1 * (this.style.selectedDepth ?? theme.depth ?? 0).abs();
     final double unselectedDepth =
-        (this.style.unselectedDepth ?? theme.depth).abs();
+        (this.style.unselectedDepth ?? theme.depth ?? 0).abs();
 
     double depth = isSelected ? selectedDepth : unselectedDepth;
     if (!this.isEnabled) {

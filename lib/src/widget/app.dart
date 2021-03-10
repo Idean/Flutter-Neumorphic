@@ -6,38 +6,38 @@ class NeumorphicApp extends StatelessWidget {
   final ThemeMode themeMode;
   final NeumorphicThemeData theme;
   final NeumorphicThemeData darkTheme;
-  final ThemeData materialDarkTheme;
-  final ThemeData materialTheme;
-  final String initialRoute;
-  final Color color;
-  final Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates;
-  final Locale locale;
-  final Widget home;
+  final ThemeData? materialDarkTheme;
+  final ThemeData? materialTheme;
+  final String? initialRoute;
+  final Color? color;
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
+  final Locale? locale;
+  final Widget? home;
   final Iterable<Locale> supportedLocales;
   final Map<String, WidgetBuilder> routes;
-  final RouteFactory onGenerateRoute;
-  final RouteFactory onUnknownRoute;
-  final GenerateAppTitle onGenerateTitle;
-  final GlobalKey<NavigatorState> navigatorKey;
+  final RouteFactory? onGenerateRoute;
+  final RouteFactory? onUnknownRoute;
+  final GenerateAppTitle? onGenerateTitle;
+  final GlobalKey<NavigatorState>? navigatorKey;
   final List<NavigatorObserver> navigatorObservers;
-  final InitialRouteListFactory onGenerateInitialRoutes;
+  final InitialRouteListFactory? onGenerateInitialRoutes;
   final bool debugShowCheckedModeBanner;
-  final Function(BuildContext, Widget) builder;
-  final Function(Locale, Iterable<Locale>) localeResolutionCallback;
-  final ThemeData highContrastTheme;
-  final ThemeData highContrastDarkTheme;
-  final LocaleListResolutionCallback localeListResolutionCallback;
+  final Widget Function(BuildContext, Widget?)? builder;
+  final Locale? Function(Locale?, Iterable<Locale>)? localeResolutionCallback;
+  final ThemeData? highContrastTheme;
+  final ThemeData? highContrastDarkTheme;
+  final LocaleListResolutionCallback? localeListResolutionCallback;
   final bool showPerformanceOverlay;
   final bool checkerboardRasterCacheImages;
   final bool checkerboardOffscreenLayers;
   final bool showSemanticsDebugger;
-  final Map<LogicalKeySet, Intent> shortcuts;
-  final Map<Type, Action<Intent>> actions;
+  final Map<LogicalKeySet, Intent>? shortcuts;
+  final Map<Type, Action<Intent>>? actions;
 
   final bool debugShowMaterialGrid;
 
   const NeumorphicApp({
-    Key key,
+    Key? key,
     this.title = '',
     this.color,
     this.initialRoute,

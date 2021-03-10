@@ -5,12 +5,12 @@ import 'abstract_neumorphic_painter_cache.dart';
 
 class NeumorphicPainterCache extends AbstractNeumorphicEmbossPainterCache {
   @override
-  Color generateShadowDarkColor({Color color, double intensity}) {
+  Color generateShadowDarkColor({required Color color, required double intensity}) {
     return NeumorphicColors.decorationDarkColor(color, intensity: intensity);
   }
 
   @override
-  Color generateShadowLightColor({Color color, double intensity}) {
+  Color generateShadowLightColor({required Color color, required double intensity}) {
     return NeumorphicColors.decorationWhiteColor(color, intensity: intensity);
   }
 
@@ -20,7 +20,7 @@ class NeumorphicPainterCache extends AbstractNeumorphicEmbossPainterCache {
   }
 
   @override
-  Rect updateLayerRect({Offset newOffset, Size newSize}) {
+  Rect updateLayerRect({required Offset newOffset, required Size newSize}) {
     return Rect.fromLTRB(
       originOffset.dx - newSize.width,
       originOffset.dy - newSize.height,

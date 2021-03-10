@@ -49,9 +49,8 @@ class NeumorphicBoxShape {
   bool get isBeveled =>
       customShapePathProvider.runtimeType == BeveledPathProvider;
 
-  static NeumorphicBoxShape lerp(
-      NeumorphicBoxShape a, NeumorphicBoxShape b, double t) {
-    assert(t != null);
+  static NeumorphicBoxShape? lerp(
+      NeumorphicBoxShape? a, NeumorphicBoxShape? b, double t) {
 
     if (a == null && b == null) return null;
 
@@ -59,14 +58,14 @@ class NeumorphicBoxShape {
     if (t == 1.0) return b;
 
     if (a == null) {
-      if (b.isCircle || b.isRect || b.isStadium || b.isCustomPath) {
+      if (b!.isCircle || b.isRect || b.isStadium || b.isCustomPath) {
         return b;
       } else {
         return NeumorphicBoxShape.roundRect(BorderRadius.lerp(
           null,
           (b.customShapePathProvider as RRectPathProvider).borderRadius,
           t,
-        ));
+        )!);
       }
     }
     if (a.isCircle || a.isRect || a.isStadium || a.isCustomPath) {
@@ -81,7 +80,7 @@ class NeumorphicBoxShape {
           null,
           (a.customShapePathProvider as RRectPathProvider).borderRadius,
           t,
-        ));
+        )!);
       }
     }
     if (b.isCircle || b.isRect || b.isStadium || b.isCustomPath) {
@@ -93,13 +92,13 @@ class NeumorphicBoxShape {
         (a.customShapePathProvider as BeveledPathProvider).borderRadius,
         (b.customShapePathProvider as BeveledPathProvider).borderRadius,
         t,
-      ));
+      )!);
     }
 
     return NeumorphicBoxShape.roundRect(BorderRadius.lerp(
       (a.customShapePathProvider as RRectPathProvider).borderRadius,
       (b.customShapePathProvider as RRectPathProvider).borderRadius,
       t,
-    ));
+    )!);
   }
 }

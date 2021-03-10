@@ -3,8 +3,8 @@ import 'package:flutter/widgets.dart';
 import '../theme/theme.dart';
 
 Shader getGradientShader(
-    {@required Rect gradientRect,
-    @required LightSource source,
+    {required Rect gradientRect,
+    required LightSource source,
     double intensity = 0.25}) {
   var sourceInvert = source.invert();
 

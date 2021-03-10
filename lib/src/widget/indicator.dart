@@ -17,13 +17,13 @@ import 'container.dart';
 class IndicatorStyle {
   //final double borderRadius;
   final double depth;
-  final bool disableDepth;
-  final Color accent;
-  final Color variant;
-  final LightSource lightSource;
+  final bool? disableDepth;
+  final Color? accent;
+  final Color? variant;
+  final LightSource? lightSource;
 
-  final AlignmentGeometry gradientStart;
-  final AlignmentGeometry gradientEnd;
+  final AlignmentGeometry? gradientStart;
+  final AlignmentGeometry? gradientEnd;
 
   const IndicatorStyle({
     this.depth = -4,
@@ -114,7 +114,7 @@ class NeumorphicIndicator extends StatefulWidget {
   final Curve curve;
 
   const NeumorphicIndicator({
-    Key key,
+    Key? key,
     this.percent = 0.5,
     this.orientation = NeumorphicIndicatorOrientation.vertical,
     this.height = double.maxFinite,
@@ -161,8 +161,8 @@ class NeumorphicIndicator extends StatefulWidget {
 class _NeumorphicIndicatorState extends State<NeumorphicIndicator>
     with TickerProviderStateMixin {
   double oldPercent = 0;
-  AnimationController _controller;
-  Animation _animation;
+  late AnimationController _controller;
+  late Animation _animation;
 
   @override
   void initState() {

@@ -17,20 +17,20 @@ import 'container.dart';
 class ProgressStyle {
   final double depth;
   final BorderRadius borderRadius;
-  final BorderRadius gradientBorderRadius;
-  final Color accent;
-  final Color variant;
-  final LightSource lightSource;
+  final BorderRadius? gradientBorderRadius;
+  final Color? accent;
+  final Color? variant;
+  final LightSource? lightSource;
 
-  final AlignmentGeometry progressGradientStart;
-  final AlignmentGeometry progressGradientEnd;
+  final AlignmentGeometry? progressGradientStart;
+  final AlignmentGeometry? progressGradientEnd;
   final bool disableDepth;
 
   final NeumorphicBorder border;
 
   const ProgressStyle({
-    this.depth,
-    this.disableDepth,
+    this.depth = 0,
+    this.disableDepth = false,
     this.borderRadius = const BorderRadius.all(Radius.circular(10.0)),
     this.gradientBorderRadius,
     this.accent,
@@ -87,15 +87,15 @@ class ProgressStyle {
 ///  ```
 ///
 class NeumorphicProgress extends StatefulWidget {
-  final double _percent;
+  final double? _percent;
   final double height;
   final Duration duration;
   final ProgressStyle style;
   final Curve curve;
 
   const NeumorphicProgress(
-      {Key key,
-      double percent,
+      {Key? key,
+      double? percent,
       this.height = 10,
       this.duration = const Duration(milliseconds: 300),
       this.style = const ProgressStyle(),
@@ -106,7 +106,7 @@ class NeumorphicProgress extends StatefulWidget {
   @override
   _NeumorphicProgressState createState() => _NeumorphicProgressState();
 
-  double get percent => _percent.clamp(0, 1);
+  double? get percent => _percent?.clamp(0, 1);
 
   @override
   // ignore: invalid_override_of_non_virtual_member
@@ -127,10 +127,10 @@ class NeumorphicProgress extends StatefulWidget {
 
 class _NeumorphicProgressState extends State<NeumorphicProgress>
     with TickerProviderStateMixin {
-  double oldPercent = 0;
+  double? oldPercent = 0;
 
-  AnimationController _controller;
-  Animation _animation;
+  late AnimationController _controller;
+  late Animation _animation;
 
   @override
   void initState() {
@@ -227,7 +227,7 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
   final Curve curve;
 
   const NeumorphicProgressIndeterminate({
-    Key key,
+    Key? key,
     this.height = 10,
     this.style = const ProgressStyle(),
     this.duration = const Duration(seconds: 3),
@@ -263,8 +263,8 @@ class NeumorphicProgressIndeterminate extends StatefulWidget {
 class _NeumorphicProgressIndeterminateState
     extends State<NeumorphicProgressIndeterminate>
     with TickerProviderStateMixin {
-  AnimationController _controller;
-  Animation _animation;
+  late AnimationController _controller;
+  late Animation _animation;
 
   @override
   void initState() {
@@ -358,9 +358,9 @@ class _GradientProgress extends StatelessWidget {
   }
 
   const _GradientProgress({
-    @required this.begin,
-    @required this.end,
-    @required this.colors,
-    @required this.borderRadius,
+    required this.begin,
+    required this.end,
+    required this.colors,
+    required this.borderRadius,
   });
 }

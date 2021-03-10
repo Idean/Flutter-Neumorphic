@@ -10,7 +10,7 @@ import 'neumorphic_box_decoration_helper.dart';
 import 'neumorphic_emboss_decoration_painter.dart';
 
 class NeumorphicEmptyTextPainter extends BoxPainter {
-  NeumorphicEmptyTextPainter({@required VoidCallback onChanged})
+  NeumorphicEmptyTextPainter({required VoidCallback onChanged})
       : super(onChanged);
 
   @override
@@ -27,21 +27,21 @@ class NeumorphicDecorationTextPainter extends BoxPainter {
 
   NeumorphicPainterCache _cache;
 
-  Paint _backgroundPaint;
-  Paint _whiteShadowPaint;
-  Paint _whiteShadowMaskPaint;
-  Paint _blackShadowPaint;
-  Paint _blackShadowMaskPaint;
-  Paint _gradientPaint;
-  Paint _borderPaint;
+  late Paint _backgroundPaint;
+  late Paint _whiteShadowPaint;
+  late Paint _whiteShadowMaskPaint;
+  late Paint _blackShadowPaint;
+  late Paint _blackShadowMaskPaint;
+  late Paint _gradientPaint;
+  late Paint _borderPaint;
 
-  ui.Paragraph _textParagraph;
-  ui.Paragraph _innerTextParagraph;
-  ui.Paragraph _whiteShadowParagraph;
-  ui.Paragraph _whiteShadowMaskParagraph;
-  ui.Paragraph _blackShadowTextParagraph;
-  ui.Paragraph _blackShadowTextMaskParagraph;
-  ui.Paragraph _gradientParagraph;
+  late ui.Paragraph _textParagraph;
+  late ui.Paragraph _innerTextParagraph;
+  late ui.Paragraph _whiteShadowParagraph;
+  late ui.Paragraph _whiteShadowMaskParagraph;
+  late ui.Paragraph _blackShadowTextParagraph;
+  late ui.Paragraph _blackShadowTextMaskParagraph;
+  late ui.Paragraph _gradientParagraph;
 
   void generatePainters() {
     this._backgroundPaint = Paint();
@@ -55,8 +55,8 @@ class NeumorphicDecorationTextPainter extends BoxPainter {
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.bevel
       ..style = PaintingStyle.stroke
-      ..strokeWidth = style.border.width
-      ..color = style.border.color;
+      ..strokeWidth = style.border.width ?? 0.0
+      ..color = style.border.color ?? Color(0xFFFFFFFF);
   }
 
   final bool drawGradient;
@@ -65,50 +65,57 @@ class NeumorphicDecorationTextPainter extends BoxPainter {
   final bool renderingByPath;
 
   NeumorphicDecorationTextPainter({
-    @required this.style,
-    @required this.textStyle,
-    @required this.text,
-    @required this.drawGradient,
-    @required this.drawShadow,
-    @required this.drawBackground,
-    @required VoidCallback onChanged,
+    required this.style,
+    required this.textStyle,
+    required this.text,
+    required this.drawGradient,
+    required this.drawShadow,
+    required this.drawBackground,
+    required VoidCallback onChanged,
+    required this.textAlign,
     this.renderingByPath = true,
-    @required this.textAlign,
-  }) : super(onChanged);
+  }) : _cache = NeumorphicPainterCache(), super(onChanged) {
+    generatePainters();
+  }
 
   void _updateCache(Offset offset, ImageConfiguration configuration) {
-    if (_cache == null) {
-      _cache = NeumorphicPainterCache();
-      generatePainters();
-    } else {
-      //print("reuse painter");
+    bool invalidateSize = false;
+    if (configuration.size != null) {
+      invalidateSize = this._cache.updateSize(newOffset: offset, newSize: configuration.size!);
     }
-
-    final bool invalidateSize =
-        this._cache.updateSize(newOffset: offset, newSize: configuration.size);
 
     final bool invalidateLightSource = this
         ._cache
         .updateLightSource(style.lightSource, style.oppositeShadowLightSource);
-    final bool invalidateColor = this._cache.updateStyleColor(style.color);
-    if (invalidateColor) {
-      _backgroundPaint..color = _cache.backgroundColor;
+
+    bool invalidateColor = false;
+    if (style.color != null) {
+      invalidateColor = this._cache.updateStyleColor(style.color!);
+      if (invalidateColor) {
+        _backgroundPaint..color = _cache.backgroundColor;
+      }
     }
 
-    final bool invalidateDepth = this._cache.updateStyleDepth(style.depth, 3);
-    if (invalidateDepth) {
-      _blackShadowPaint..maskFilter = _cache.maskFilterBlur;
-      _whiteShadowPaint..maskFilter = _cache.maskFilterBlur;
+    bool invalidateDepth = false;
+    if (style.depth != null) {
+      invalidateDepth = this._cache.updateStyleDepth(style.depth!, 3);
+      if (invalidateDepth) {
+        _blackShadowPaint..maskFilter = _cache.maskFilterBlur;
+        _whiteShadowPaint..maskFilter = _cache.maskFilterBlur;
+      }
     }
 
-    final bool invalidateShadowColors = this._cache.updateShadowColor(
-          newShadowLightColorEmboss: style.shadowLightColor,
-          newShadowDarkColorEmboss: style.shadowDarkColor,
-          newIntensity: style.intensity,
-        );
-    if (invalidateShadowColors) {
-      _whiteShadowPaint..color = _cache.shadowLightColor;
-      _blackShadowPaint..color = _cache.shadowDarkColor;
+    bool invalidateShadowColors = false;
+    if (style.shadowLightColor != null && style.shadowDarkColor != null && style.intensity != null) {
+      invalidateShadowColors = this._cache.updateShadowColor(
+        newShadowLightColorEmboss: style.shadowLightColor!,
+        newShadowDarkColorEmboss: style.shadowDarkColor!,
+        newIntensity: style.intensity!,
+      );
+      if (invalidateShadowColors) {
+        _whiteShadowPaint..color = _cache.shadowLightColor;
+        _blackShadowPaint..color = _cache.shadowDarkColor;
+      }
     }
 
     final constraints = ui.ParagraphConstraints(width: _cache.width);
@@ -201,20 +208,20 @@ class NeumorphicDecorationTextPainter extends BoxPainter {
     _drawElement(offset: offset, canvas: canvas, path: _cache.path);
   }
 
-  void _drawElement({Canvas canvas, Offset offset, Path path}) {
+  void _drawElement({required Canvas canvas, required Offset offset, required Path path}) {
     if (true) {
       _drawBackground(offset: offset, canvas: canvas, path: path);
     }
     if (this.drawGradient) {
       _drawGradient(offset: offset, canvas: canvas, path: path);
     }
-    if (style.border != null && style.border.isEnabled) {
+    if (style.border.isEnabled) {
       _drawBorder(canvas: canvas, offset: offset, path: path);
     }
   }
 
-  void _drawBorder({Canvas canvas, Offset offset, Path path}) {
-    if (style.border.width > 0) {
+  void _drawBorder({required Canvas canvas, required Offset offset, required Path path}) {
+    if (style.border.width != null && style.border.width! > 0) {
       canvas
         ..save()
         ..translate(offset.dx, offset.dy)
@@ -223,7 +230,7 @@ class NeumorphicDecorationTextPainter extends BoxPainter {
     }
   }
 
-  void _drawBackground({Canvas canvas, Offset offset, Path path}) {
+  void _drawBackground({required Canvas canvas, required Offset offset, required Path path}) {
     canvas
       ..save()
       ..translate(offset.dx, offset.dy)
@@ -231,8 +238,8 @@ class NeumorphicDecorationTextPainter extends BoxPainter {
       ..restore();
   }
 
-  void _drawShadow({Canvas canvas, Offset offset, Path path}) {
-    if (style.depth.abs() >= 0.1) {
+  void _drawShadow({required Canvas canvas, required Offset offset, required Path path}) {
+    if (style.depth != null && style.depth!.abs() >= 0.1) {
       canvas
         ..saveLayer(_cache.layerRect, _whiteShadowPaint)
         ..translate(offset.dx + _cache.depthOffset.dx,
@@ -253,7 +260,7 @@ class NeumorphicDecorationTextPainter extends BoxPainter {
     }
   }
 
-  void _drawGradient({Canvas canvas, Offset offset, Path path}) {
+  void _drawGradient({required Canvas canvas, required Offset offset, required Path path}) {
     if (style.shape == NeumorphicShape.concave ||
         style.shape == NeumorphicShape.convex) {
       canvas

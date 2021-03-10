@@ -10,14 +10,14 @@ export '../theme/neumorphic_theme.dart';
 @immutable
 class NeumorphicIcon extends StatelessWidget {
   final IconData icon;
-  final NeumorphicStyle style;
+  final NeumorphicStyle? style;
   final Curve curve;
   final double size;
   final Duration duration;
 
   NeumorphicIcon(
     this.icon, {
-    Key key,
+    Key? key,
     this.duration = Neumorphic.DEFAULT_DURATION,
     this.curve = Neumorphic.DEFAULT_CURVE,
     this.style,

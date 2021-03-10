@@ -19,16 +19,16 @@ class SliderStyle {
   final double depth;
   final bool disableDepth;
   final BorderRadius borderRadius;
-  final Color accent;
-  final Color variant;
-  final LightSource lightSource;
+  final Color? accent;
+  final Color? variant;
+  final LightSource? lightSource;
 
   final NeumorphicBorder border;
   final NeumorphicBorder thumbBorder;
 
   const SliderStyle({
-    this.depth,
-    this.disableDepth,
+    this.depth = 0,
+    this.disableDepth = false,
     this.borderRadius = const BorderRadius.all(Radius.circular(10)),
     this.accent,
     this.lightSource,
@@ -107,15 +107,15 @@ class NeumorphicSlider extends StatefulWidget {
   final double value;
   final double max;
   final double height;
-  final NeumorphicSliderListener onChanged;
-  final NeumorphicSliderListener onChangeStart;
-  final NeumorphicSliderListener onChangeEnd;
+  final NeumorphicSliderListener? onChanged;
+  final NeumorphicSliderListener? onChangeStart;
+  final NeumorphicSliderListener? onChangeEnd;
 
-  final Widget thumb;
-  final double sliderHeight;
+  final Widget? thumb;
+  final double? sliderHeight;
 
   NeumorphicSlider({
-    Key key,
+    Key? key,
     this.style = const SliderStyle(),
     this.min = 0,
     this.value = 0,
@@ -140,25 +140,24 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
     return LayoutBuilder(builder: (context, constraints) {
       return GestureDetector(
         onPanUpdate: (DragUpdateDetails details) {
-          final RenderBox box = context.findRenderObject();
-          final tapPos = box.globalToLocal(details.globalPosition);
+          final tapPos = details.localPosition;
           final newPercent = tapPos.dx / constraints.maxWidth;
           final newValue =
               ((widget.min + (widget.max - widget.min) * newPercent))
                   .clamp(widget.min, widget.max);
 
           if (widget.onChanged != null) {
-            widget.onChanged(newValue);
+            widget.onChanged!(newValue);
           }
         },
         onPanStart: (DragStartDetails details) {
           if (widget.onChangeStart != null) {
-            widget.onChangeStart(widget.value);
+            widget.onChangeStart!(widget.value);
           }
         },
         onPanEnd: (details) {
           if (widget.onChangeEnd != null) {
-            widget.onChangeEnd(widget.value);
+            widget.onChangeEnd!(widget.value);
           }
         },
         child: _widget(context),
