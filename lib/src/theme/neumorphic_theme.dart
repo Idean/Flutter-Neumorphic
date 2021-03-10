@@ -117,7 +117,9 @@ class NeumorphicTheme extends StatefulWidget {
   static NeumorphicThemeData currentTheme(BuildContext context) {
     final provider = NeumorphicTheme.of(context);
     if (provider == null) return neumorphicDefaultTheme;
-    return provider.current == null ? neumorphicDefaultTheme : provider.current!;
+    return provider.current == null
+        ? neumorphicDefaultTheme
+        : provider.current!;
   }
 }
 

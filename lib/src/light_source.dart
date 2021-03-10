@@ -48,7 +48,6 @@ class LightSource {
   LightSource invert() => LightSource(dx * -1, dy * -1);
 
   static LightSource? lerp(LightSource? a, LightSource? b, double t) {
-
     if (a == null && b == null) return null;
     if (a == null) return b;
     if (b == null) return a;

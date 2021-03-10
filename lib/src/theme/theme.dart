@@ -252,10 +252,8 @@ class NeumorphicThemeData {
       defaultTextColor: other.defaultTextColor,
       shadowDarkColor: other.shadowDarkColor,
       shadowLightColor: other.shadowLightColor,
-      shadowDarkColorEmboss:
-          other.shadowDarkColorEmboss,
-      shadowLightColorEmboss:
-          other.shadowLightColorEmboss,
+      shadowDarkColorEmboss: other.shadowDarkColorEmboss,
+      shadowLightColorEmboss: other.shadowLightColorEmboss,
       textTheme: other.textTheme,
       iconTheme: other.iconTheme,
       buttonStyle: other.buttonStyle,
@@ -319,9 +317,9 @@ class NeumorphicBorder {
     if (t == 1.0) return b;
 
     return NeumorphicBorder(
-        color: Color.lerp(a!.color, b!.color, t),
-        isEnabled: a.isEnabled,
-        width: lerpDouble(a.width, b.width, t),
+      color: Color.lerp(a!.color, b!.color, t),
+      isEnabled: a.isEnabled,
+      width: lerpDouble(a.width, b.width, t),
     );
   }
 
@@ -403,7 +401,8 @@ class NeumorphicStyle {
         this._intensity = intensity,
         this._surfaceIntensity = surfaceIntensity;
 
-  double? get depth => _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
+  double? get depth =>
+      _depth?.clamp(Neumorphic.MIN_DEPTH, Neumorphic.MAX_DEPTH);
 
   double? get intensity =>
       _intensity?.clamp(Neumorphic.MIN_INTENSITY, Neumorphic.MAX_INTENSITY);

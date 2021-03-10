@@ -37,11 +37,11 @@ class NeumorphicTextDecoration extends Decoration {
         drawShadow: !isForeground,
         //only box draw shadow
         renderingByPath: this.renderingByPath,
-        onChanged: onChanged ?? (){},
+        onChanged: onChanged ?? () {},
         text: text,
       );
     } else {
-      return NeumorphicEmptyTextPainter(onChanged: onChanged ?? (){});
+      return NeumorphicEmptyTextPainter(onChanged: onChanged ?? () {});
     }
     /* else {
       return NeumorphicEmbossDecorationPainter(

@@ -57,19 +57,20 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
       required NeumorphicStyle newStyle}) {
     bool invalidateSize = false;
     if (configuration.size != null) {
-      invalidateSize =
-          this._cache.updateSize(newOffset: offset, newSize: configuration.size!);
+      invalidateSize = this
+          ._cache
+          .updateSize(newOffset: offset, newSize: configuration.size!);
       if (invalidateSize) {
         _cache.updatePath(
-            newPath: shape.customShapePathProvider.getPath(configuration.size!));
+            newPath:
+                shape.customShapePathProvider.getPath(configuration.size!));
       }
     }
 
     bool invalidateLightSource = false;
     invalidateLightSource = this
         ._cache
-        .updateLightSource(
-        style.lightSource, style.oppositeShadowLightSource);
+        .updateLightSource(style.lightSource, style.oppositeShadowLightSource);
 
     bool invalidateColor = false;
     if (style.color != null) {
@@ -88,15 +89,17 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
     }
 
     final bool invalidateShadowColors = this._cache.updateShadowColor(
-          newShadowLightColorEmboss: style.shadowLightColorEmboss ?? Color(0xFFFFFFFF),
-          newShadowDarkColorEmboss: style.shadowDarkColorEmboss ?? Color(0xFF000000),
+          newShadowLightColorEmboss:
+              style.shadowLightColorEmboss ?? Color(0xFFFFFFFF),
+          newShadowDarkColorEmboss:
+              style.shadowDarkColorEmboss ?? Color(0xFF000000),
           newIntensity: style.intensity ?? 0.25,
         );
     if (invalidateShadowColors) {
-      if(_cache.shadowLightColor != null) {
+      if (_cache.shadowLightColor != null) {
         _whiteShadowPaint..color = _cache.shadowLightColor!;
       }
-      if(_cache.shadowDarkColor != null) {
+      if (_cache.shadowDarkColor != null) {
         _blackShadowPaint..color = _cache.shadowDarkColor!;
       }
     }
@@ -114,7 +117,8 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
       ..restore();
   }
 
-  void _drawBorder({required Canvas canvas, required Offset offset, required Path path}) {
+  void _drawBorder(
+      {required Canvas canvas, required Offset offset, required Path path}) {
     if (style.border.width != null && style.border.width! > 0) {
       canvas
         ..save()

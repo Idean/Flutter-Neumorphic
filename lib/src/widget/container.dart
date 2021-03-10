@@ -139,8 +139,7 @@ class _NeumorphicContainer extends StatelessWidget {
         ),
         decoration: NeumorphicDecoration(
           isForeground: false,
-          renderingByPath:
-              shape.customShapePathProvider.oneGradientPerPath,
+          renderingByPath: shape.customShapePathProvider.oneGradientPerPath,
           splitBackgroundForeground: this.drawSurfaceAboveChild,
           style: this.style,
           shape: shape,

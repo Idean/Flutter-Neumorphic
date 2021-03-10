@@ -51,7 +51,6 @@ class NeumorphicBoxShape {
 
   static NeumorphicBoxShape? lerp(
       NeumorphicBoxShape? a, NeumorphicBoxShape? b, double t) {
-
     if (a == null && b == null) return null;
 
     if (t == 0.0) return a;

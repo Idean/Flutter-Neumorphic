@@ -35,7 +35,7 @@ class NeumorphicDecoration extends Decoration {
         drawShadow: !isForeground,
         //only box draw shadow
         renderingByPath: this.renderingByPath,
-        onChanged: onChanged ?? (){},
+        onChanged: onChanged ?? () {},
         shape: shape,
       );
     } else {
@@ -44,7 +44,7 @@ class NeumorphicDecoration extends Decoration {
         style: style,
         drawShadow: (isForeground && splitBackgroundForeground) ||
             (!isForeground && !splitBackgroundForeground),
-        onChanged: onChanged ?? (){},
+        onChanged: onChanged ?? () {},
         shape: shape,
       );
     }
@@ -53,14 +53,16 @@ class NeumorphicDecoration extends Decoration {
   @override
   NeumorphicDecoration lerpFrom(Decoration? a, double t) {
     if (a == null) return scale(t);
-    if (a is NeumorphicDecoration) return NeumorphicDecoration.lerp(a, this, t)!;
+    if (a is NeumorphicDecoration)
+      return NeumorphicDecoration.lerp(a, this, t)!;
     return super.lerpFrom(a, t) as NeumorphicDecoration;
   }
 
   @override
   NeumorphicDecoration lerpTo(Decoration? b, double t) {
     if (b == null) return scale(1.0 - t);
-    if (b is NeumorphicDecoration) return NeumorphicDecoration.lerp(this, b, t)!;
+    if (b is NeumorphicDecoration)
+      return NeumorphicDecoration.lerp(this, b, t)!;
     return super.lerpTo(b, t) as NeumorphicDecoration;
   }
 
