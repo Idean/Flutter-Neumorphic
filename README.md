@@ -85,7 +85,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/toggle.gif"/> </td>
   <td>NeumorphicToggle</td>
-  <td>An mutiple value toggle, associated with a selecteedIndex</td>
+  <td>An mutiple value toggle, associated with a selectedIndex</td>
 </tr>
 <tr>
   <td><img width="300px" src="https://github.com/Idean/Flutter-Neumorphic/raw/master/medias/widgets/slider.gif"/></td>
