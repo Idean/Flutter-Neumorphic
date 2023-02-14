@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'ThemeColorSelector.dart';
@@ -50,7 +49,7 @@ class ThemeConfigurator extends StatelessWidget {
 class _ThemeConfiguratorDialog extends StatefulWidget {
   final BuildContext contextContainingTheme;
 
-  _ThemeConfiguratorDialog({this.contextContainingTheme});
+  _ThemeConfiguratorDialog({required this.contextContainingTheme});
 
   @override
   _ThemeConfiguratorState createState() => _ThemeConfiguratorState();
@@ -82,12 +81,12 @@ class _ThemeConfiguratorState extends State<_ThemeConfiguratorDialog> {
           child: Slider(
             min: Neumorphic.MIN_INTENSITY, //in case of != 0
             max: Neumorphic.MAX_INTENSITY,
-            value: intensity,
+            value: intensity!,
             onChanged: (value) {
               setState(() {
                 NeumorphicTheme.update(
                   widget.contextContainingTheme,
-                  (current) => current.copyWith(
+                  (current) => current!.copyWith(
                     intensity: value,
                   ),
                 );
@@ -119,12 +118,12 @@ class _ThemeConfiguratorState extends State<_ThemeConfiguratorDialog> {
           child: Slider(
             min: Neumorphic.MIN_DEPTH,
             max: Neumorphic.MAX_DEPTH,
-            value: depth,
+            value: depth!,
             onChanged: (value) {
               setState(() {
                 NeumorphicTheme.update(
                   widget.contextContainingTheme,
-                  (current) => current.copyWith(depth: value),
+                  (current) => current!.copyWith(depth: value),
                 );
               });
             },

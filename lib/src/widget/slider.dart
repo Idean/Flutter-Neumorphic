@@ -139,7 +139,7 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return GestureDetector(
-        onPanUpdate: (DragUpdateDetails details) {
+        onHorizontalDragUpdate: (DragUpdateDetails details) {
           final tapPos = details.localPosition;
           final newPercent = tapPos.dx / constraints.maxWidth;
           final newValue =
@@ -150,12 +150,12 @@ class _NeumorphicSliderState extends State<NeumorphicSlider> {
             widget.onChanged!(newValue);
           }
         },
-        onPanStart: (DragStartDetails details) {
+        onHorizontalDragStart: (DragStartDetails details) {
           if (widget.onChangeStart != null) {
             widget.onChangeStart!(widget.value);
           }
         },
-        onPanEnd: (details) {
+        onHorizontalDragEnd: (details) {
           if (widget.onChangeEnd != null) {
             widget.onChangeEnd!(widget.value);
           }

@@ -1,5 +1,4 @@
 import 'package:example/lib/top_bar.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class ClockAlarmPage extends StatelessWidget {
@@ -61,7 +60,9 @@ class _ClockPageState extends State<_Page> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 9.0),
-            child: TopBar(),
+            child: TopBar(
+              actions: [],
+            ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -230,8 +231,8 @@ class Alarm {
   final String label;
 
   const Alarm({
-    @required this.enabled,
-    @required this.time,
-    @required this.label,
+    required this.enabled,
+    required this.time,
+    required this.label,
   });
 }

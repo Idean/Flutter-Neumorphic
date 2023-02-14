@@ -1,11 +1,10 @@
 import 'package:example/lib/Code.dart';
 import 'package:example/lib/ThemeConfigurator.dart';
 import 'package:example/lib/top_bar.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class TipsBorderPage extends StatefulWidget {
-  TipsBorderPage({Key key}) : super(key: key);
+  TipsBorderPage({Key? key}) : super(key: key);
 
   @override
   createState() => _WidgetPageState();
@@ -149,9 +148,9 @@ class _CustomWidget extends StatefulWidget {
   final NeumorphicStyle secondStyle;
 
   _CustomWidget(
-      {@required this.title,
-      @required this.firstStyle,
-      @required this.secondStyle});
+      {required this.title,
+      required this.firstStyle,
+      required this.secondStyle});
 
   @override
   createState() => _CustomWidgetState();

@@ -193,15 +193,7 @@ class NeumorphicToggle extends StatelessWidget {
           child: FractionallySizedBox(
             widthFactor: 1 / this.children.length,
             heightFactor: 1,
-            child: Neumorphic(
-              style: NeumorphicStyle(
-                boxShape: NeumorphicBoxShape.roundRect(
-                    this.style?.borderRadius ??
-                        BorderRadius.all(Radius.circular(12))),
-              ),
-              margin: this.padding,
-              child: this.thumb,
-            ),
+            child: this.thumb,
           ),
         ),
         Row(

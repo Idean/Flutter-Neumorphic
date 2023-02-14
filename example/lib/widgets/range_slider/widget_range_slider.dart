@@ -2,11 +2,10 @@ import 'package:example/lib/Code.dart';
 import 'package:example/lib/ThemeConfigurator.dart';
 import 'package:example/lib/color_selector.dart';
 import 'package:example/lib/top_bar.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class RangeSliderWidgetPage extends StatefulWidget {
-  RangeSliderWidgetPage({Key key}) : super(key: key);
+  RangeSliderWidgetPage({Key? key}) : super(key: key);
 
   @override
   createState() => _RangeWidgetPageState();
