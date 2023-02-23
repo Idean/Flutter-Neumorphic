@@ -14,12 +14,12 @@ class NeumorphicApp extends StatelessWidget {
   final Locale? locale;
   final Widget? home;
   final Iterable<Locale> supportedLocales;
-  final Map<String, WidgetBuilder> routes;
+  final Map<String, WidgetBuilder>? routes;
   final RouteFactory? onGenerateRoute;
   final RouteFactory? onUnknownRoute;
   final GenerateAppTitle? onGenerateTitle;
   final GlobalKey<NavigatorState>? navigatorKey;
-  final List<NavigatorObserver> navigatorObservers;
+  final List<NavigatorObserver>? navigatorObservers;
   final InitialRouteListFactory? onGenerateInitialRoutes;
   final bool debugShowCheckedModeBanner;
   final Widget Function(BuildContext, Widget?)? builder;
@@ -34,7 +34,21 @@ class NeumorphicApp extends StatelessWidget {
   final Map<LogicalKeySet, Intent>? shortcuts;
   final Map<Type, Action<Intent>>? actions;
 
+  /// {@macro flutter.widgets.widgetsApp.routeInformationProvider}
+  final RouteInformationProvider? routeInformationProvider;
+
+  /// {@macro flutter.widgets.widgetsApp.routeInformationParser}
+  final RouteInformationParser<Object>? routeInformationParser;
+
+  /// {@macro flutter.widgets.widgetsApp.routerDelegate}
+  final RouterDelegate<Object>? routerDelegate;
+
+  /// {@macro flutter.widgets.widgetsApp.backButtonDispatcher}
+  final BackButtonDispatcher? backButtonDispatcher;
+
   final bool debugShowMaterialGrid;
+
+  bool get _usesRouter => routerDelegate != null;
 
   const NeumorphicApp({
     Key? key,
@@ -70,7 +84,51 @@ class NeumorphicApp extends StatelessWidget {
     this.debugShowMaterialGrid = false,
     this.shortcuts,
     this.actions,
-  }) : super(key: key);
+  })  : routeInformationProvider = null,
+        routeInformationParser = null,
+        routerDelegate = null,
+        backButtonDispatcher = null,
+        super(key: key);
+
+  const NeumorphicApp.router({
+    Key? key,
+    required RouterDelegate<Object> this.routerDelegate,
+    required RouteInformationParser<Object> this.routeInformationParser,
+    this.routeInformationProvider,
+    this.backButtonDispatcher,
+    this.title = '',
+    this.color,
+    this.debugShowCheckedModeBanner = true,
+    this.onGenerateTitle,
+    this.theme = neumorphicDefaultTheme,
+    this.darkTheme = neumorphicDefaultDarkTheme,
+    this.locale,
+    this.localizationsDelegates,
+    this.supportedLocales = const <Locale>[Locale('en', 'US')],
+    this.themeMode = ThemeMode.system,
+    this.materialDarkTheme,
+    this.materialTheme,
+    this.builder,
+    this.localeResolutionCallback,
+    this.highContrastTheme,
+    this.highContrastDarkTheme,
+    this.localeListResolutionCallback,
+    this.showPerformanceOverlay = false,
+    this.checkerboardRasterCacheImages = false,
+    this.checkerboardOffscreenLayers = false,
+    this.showSemanticsDebugger = false,
+    this.debugShowMaterialGrid = false,
+    this.shortcuts,
+    this.actions,
+  })  : navigatorObservers = null,
+        navigatorKey = null,
+        onGenerateRoute = null,
+        home = null,
+        onGenerateInitialRoutes = null,
+        onUnknownRoute = null,
+        routes = null,
+        initialRoute = null,
+        super(key: key);
 
   ThemeData _getMaterialTheme(NeumorphicThemeData theme) {
     final color = theme.accentColor;
@@ -110,37 +168,68 @@ class NeumorphicApp extends StatelessWidget {
       child: Builder(
         builder: (context) => IconTheme(
           data: NeumorphicTheme.currentTheme(context).iconTheme,
-          child: MaterialApp(
-              title: title,
-              color: color,
-              theme: materialTheme,
-              darkTheme: materialDarkTheme,
-              initialRoute: initialRoute,
-              routes: routes,
-              themeMode: themeMode,
-              localizationsDelegates: localizationsDelegates,
-              supportedLocales: supportedLocales,
-              locale: locale,
-              home: home,
-              onGenerateRoute: onGenerateRoute,
-              onUnknownRoute: onUnknownRoute,
-              onGenerateTitle: onGenerateTitle,
-              onGenerateInitialRoutes: onGenerateInitialRoutes,
-              navigatorKey: navigatorKey,
-              navigatorObservers: navigatorObservers,
-              debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-              builder: builder,
-              localeResolutionCallback: localeResolutionCallback,
-              highContrastTheme: highContrastTheme,
-              highContrastDarkTheme: highContrastDarkTheme,
-              localeListResolutionCallback: localeListResolutionCallback,
-              showPerformanceOverlay: showPerformanceOverlay,
-              checkerboardRasterCacheImages: checkerboardRasterCacheImages,
-              checkerboardOffscreenLayers: checkerboardOffscreenLayers,
-              showSemanticsDebugger: showSemanticsDebugger,
-              shortcuts: shortcuts,
-              actions: actions,
-              debugShowMaterialGrid: debugShowMaterialGrid),
+          child: _usesRouter
+              ? MaterialApp.router(
+                  routeInformationParser: routeInformationParser!,
+                  routerDelegate: routerDelegate!,
+                  routeInformationProvider: routeInformationProvider,
+                  backButtonDispatcher: backButtonDispatcher,
+                  title: title,
+                  color: color,
+                  theme: materialTheme,
+                  darkTheme: materialDarkTheme,
+                  themeMode: themeMode,
+                  localizationsDelegates: localizationsDelegates,
+                  supportedLocales: supportedLocales,
+                  locale: locale,
+                  onGenerateTitle: onGenerateTitle,
+                  debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+                  builder: builder,
+                  localeResolutionCallback: localeResolutionCallback,
+                  highContrastTheme: highContrastTheme,
+                  highContrastDarkTheme: highContrastDarkTheme,
+                  localeListResolutionCallback: localeListResolutionCallback,
+                  showPerformanceOverlay: showPerformanceOverlay,
+                  checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+                  checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+                  showSemanticsDebugger: showSemanticsDebugger,
+                  shortcuts: shortcuts,
+                  actions: actions,
+                  debugShowMaterialGrid: debugShowMaterialGrid,
+                )
+              : MaterialApp(
+                  title: title,
+                  color: color,
+                  theme: materialTheme,
+                  darkTheme: materialDarkTheme,
+                  initialRoute: initialRoute,
+                  routes: routes ?? {},
+                  themeMode: themeMode,
+                  localizationsDelegates: localizationsDelegates,
+                  supportedLocales: supportedLocales,
+                  locale: locale,
+                  home: home,
+                  onGenerateRoute: onGenerateRoute,
+                  onUnknownRoute: onUnknownRoute,
+                  onGenerateTitle: onGenerateTitle,
+                  onGenerateInitialRoutes: onGenerateInitialRoutes,
+                  navigatorKey: navigatorKey,
+                  navigatorObservers:
+                      navigatorObservers ?? const <NavigatorObserver>[],
+                  debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+                  builder: builder,
+                  localeResolutionCallback: localeResolutionCallback,
+                  highContrastTheme: highContrastTheme,
+                  highContrastDarkTheme: highContrastDarkTheme,
+                  localeListResolutionCallback: localeListResolutionCallback,
+                  showPerformanceOverlay: showPerformanceOverlay,
+                  checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+                  checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+                  showSemanticsDebugger: showSemanticsDebugger,
+                  shortcuts: shortcuts,
+                  actions: actions,
+                  debugShowMaterialGrid: debugShowMaterialGrid,
+                ),
         ),
       ),
     );
