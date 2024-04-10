@@ -114,6 +114,8 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
       case TargetPlatform.iOS:
       case TargetPlatform.macOS:
         return actions == null || actions!.length < 2;
+      default:
+        return false;
     }
   }
 }
