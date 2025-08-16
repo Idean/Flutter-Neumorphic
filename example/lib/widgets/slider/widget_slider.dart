@@ -2,11 +2,10 @@ import 'package:example/lib/Code.dart';
 import 'package:example/lib/ThemeConfigurator.dart';
 import 'package:example/lib/color_selector.dart';
 import 'package:example/lib/top_bar.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class SliderWidgetPage extends StatefulWidget {
-  SliderWidgetPage({Key key}) : super(key: key);
+  SliderWidgetPage({Key? key}) : super(key: key);
 
   @override
   createState() => _WidgetPageState();
@@ -73,7 +72,7 @@ class _DefaultWidgetState extends State<_DefaultWidget> {
 
   Widget _buildCode(BuildContext context) {
     return Code("""
-double age = 20;  
+double age = 20;
 
 Expanded(
   child: NeumorphicSlider(
@@ -143,7 +142,7 @@ class _ColorWidgetState extends State<_ColorWidget> {
 
   Widget _buildCode(BuildContext context) {
     return Code("""
-double age = 50;  
+double age = 50;
 
 Expanded(
   child: NeumorphicSlider(

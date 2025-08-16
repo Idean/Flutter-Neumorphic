@@ -1,5 +1,4 @@
 import 'package:example/lib/top_bar.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'clock_second_sample.dart';
@@ -229,11 +228,11 @@ class NeumorphicClock extends StatelessWidget {
   }
 
   Widget _buildLine(
-      {BuildContext context,
-      double angle,
-      double width,
+      {required BuildContext context,
+      required double angle,
+      required double width,
       double height = 6,
-      Color color}) {
+      required Color color}) {
     return Transform.rotate(
       angle: angle,
       child: Center(

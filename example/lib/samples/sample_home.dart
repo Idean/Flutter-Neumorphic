@@ -5,14 +5,13 @@ import 'package:example/samples/clock/clock_sample.dart';
 import 'package:example/samples/credit_card_sample.dart';
 import 'package:example/samples/form_sample.dart';
 import 'package:example/samples/testla_sample.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'galaxy_sample.dart';
 import 'widgets_sample.dart';
 
 class SamplesHome extends StatelessWidget {
-  Widget _buildButton({String text, VoidCallback onClick}) {
+  Widget _buildButton({required String text, required VoidCallback onClick}) {
     return NeumorphicButton(
       margin: EdgeInsets.only(bottom: 12),
       padding: EdgeInsets.symmetric(

@@ -2,11 +2,10 @@ import 'package:example/lib/Code.dart';
 import 'package:example/lib/ThemeConfigurator.dart';
 import 'package:example/lib/color_selector.dart';
 import 'package:example/lib/top_bar.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class ButtonWidgetPage extends StatefulWidget {
-  ButtonWidgetPage({Key key}) : super(key: key);
+  ButtonWidgetPage({Key? key}) : super(key: key);
 
   @override
   createState() => _WidgetPageState();
@@ -78,7 +77,7 @@ class _DefaultWidgetState extends State<_DefaultWidget> {
     return Code("""
 NeumorphicButton(
      onPressed: () {
-        
+
      },
      child: Text("Click me"),
 ),
@@ -129,7 +128,7 @@ class _CircleWidgetState extends State<_CircleWidget> {
 NeumorphicButton(
      boxShape: NeumorphicBoxShape.circle(),
      onPressed: () {
-       
+
      },
      padding: EdgeInsets.all(18.0),
      child: Icon(Icons.play_arrow),
@@ -186,7 +185,7 @@ NeumorphicButton(
      boxShape: NeumorphicBoxShape.circle(),
      minDistance: -5.0,
      onPressed: () {
-       
+
      },
      padding: EdgeInsets.all(18.0),
      child: Icon(Icons.play_arrow),
@@ -333,12 +332,12 @@ class _EnabledDisabledWidgetState extends State<_EnabledDisabledWidget> {
   }
 
   Widget _buildCode(BuildContext context) {
-    return Code("""    
+    return Code("""
 NeumorphicButton(
      isEnabled: false,
      child: Text("Second"),
      onPressed: () {
-       
+
      },
 ),
 """);
@@ -423,11 +422,11 @@ class _FlatConcaveConvexWidgetState extends State<_FlatConcaveConvexWidget> {
     return Code("""
 NeumorphicButton(
     style: NeumorphicStyle(
-         shape: NeumorphicShape.flat 
+         shape: NeumorphicShape.flat
          //or convex, concave
     ),
     onPressed: () {
-        
+
     },
     child: ...
 ),

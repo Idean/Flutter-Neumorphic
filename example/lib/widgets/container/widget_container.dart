@@ -2,11 +2,10 @@ import 'package:example/lib/Code.dart';
 import 'package:example/lib/ThemeConfigurator.dart';
 import 'package:example/lib/color_selector.dart';
 import 'package:example/lib/top_bar.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class ContainerWidgetPage extends StatefulWidget {
-  ContainerWidgetPage({Key key}) : super(key: key);
+  ContainerWidgetPage({Key? key}) : super(key: key);
 
   @override
   createState() => _WidgetPageState();
@@ -236,7 +235,7 @@ Neumorphic(
         boxShape: NeumorphicBoxShape.circle()
     ),
     child: SizedBox(
-      height: 100, 
+      height: 100,
       width: 100,
     ),
 ),
@@ -298,10 +297,10 @@ class _FlatConcaveConvexWidgetState extends State<_FlatConcaveConvexWidget> {
     return Code("""
 Neumorphic(
     style: NeumorphicStyle(
-         shape: NeumorphicShape.flat 
+         shape: NeumorphicShape.flat
          //or convex, concave
     ),
-    
+
     child: ...
 ),
 """);

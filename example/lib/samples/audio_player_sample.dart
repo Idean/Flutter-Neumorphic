@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class AudioPlayerSample extends StatefulWidget {
@@ -94,7 +93,7 @@ class __PageState extends State<_Page> {
               onPressed: () {
                 setState(() {
                   _useDark = !_useDark;
-                  NeumorphicTheme.of(context).themeMode =
+                  NeumorphicTheme.of(context)?.themeMode =
                       _useDark ? ThemeMode.dark : ThemeMode.light;
                 });
               },
@@ -237,10 +236,10 @@ class __PageState extends State<_Page> {
 
   Color _iconsColor() {
     final theme = NeumorphicTheme.of(context);
-    if (theme.isUsingDark) {
-      return theme.current.accentColor;
+    if (theme?.isUsingDark ?? false) {
+      return theme?.current?.accentColor ?? Colors.black;
     } else {
-      return null;
+      return Colors.black;
     }
   }
 }

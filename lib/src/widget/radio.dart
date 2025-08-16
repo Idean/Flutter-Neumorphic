@@ -1,7 +1,5 @@
 import 'package:flutter/widgets.dart';
 
-import '../neumorphic_box_shape.dart';
-import '../theme/neumorphic_theme.dart';
 import 'button.dart';
 import 'container.dart';
 

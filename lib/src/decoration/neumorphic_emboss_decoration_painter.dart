@@ -1,8 +1,4 @@
-import 'dart:ui';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 import '../neumorphic_box_shape.dart';
 import '../theme/theme.dart';
@@ -134,6 +130,7 @@ class NeumorphicEmbossDecorationPainter extends BoxPainter {
 
   void _paintShadows(Canvas canvas, Path path) {
     final Matrix4 matrix4 = Matrix4.identity()
+      // ignore: deprecated_member_use
       ..scale(_cache.scaleX, _cache.scaleY);
 
     canvas

@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +58,7 @@ class MyHomePage extends StatelessWidget {
             NeumorphicButton(
                 margin: EdgeInsets.only(top: 12),
                 onPressed: () {
-                  NeumorphicTheme.of(context).themeMode =
+                  NeumorphicTheme.of(context)?.themeMode =
                       NeumorphicTheme.isUsingDark(context)
                           ? ThemeMode.light
                           : ThemeMode.dark;
@@ -100,10 +100,10 @@ class MyHomePage extends StatelessWidget {
 
   Color _iconsColor(BuildContext context) {
     final theme = NeumorphicTheme.of(context);
-    if (theme.isUsingDark) {
-      return theme.current.accentColor;
+    if (theme?.isUsingDark ?? false) {
+      return theme?.current?.accentColor ?? Colors.black;
     } else {
-      return null;
+      return Colors.black;
     }
   }
 

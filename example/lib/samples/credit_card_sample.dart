@@ -1,7 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class CreditCardSample extends StatefulWidget {
@@ -87,8 +85,8 @@ class __PageContentState extends State<_PageContent> {
                               begin: Alignment.topRight,
                               end: Alignment.bottomLeft,
                               colors: [
-                            Colors.purple.withOpacity(0.5),
-                            Colors.red.withOpacity(0.5)
+                            Colors.purple.withValues(alpha: 0.5),
+                            Colors.red.withValues(alpha: 0.5)
                           ])),
                     ),
                   ),
@@ -114,7 +112,7 @@ class __PageContentState extends State<_PageContent> {
                               "1234 5678",
                               style: TextStyle(
                                   fontSize: 30,
-                                  color: Colors.black.withOpacity(0.7)),
+                                  color: Colors.black.withValues(alpha: 0.7)),
                             ),
                             SizedBox(
                               height: 3,
@@ -123,7 +121,7 @@ class __PageContentState extends State<_PageContent> {
                               "1234 5678",
                               style: TextStyle(
                                   fontSize: 30,
-                                  color: Colors.black.withOpacity(0.7)),
+                                  color: Colors.black.withValues(alpha: 0.7)),
                             ),
                           ],
                         ),
@@ -158,7 +156,7 @@ class __PageContentState extends State<_PageContent> {
                               "09/24",
                               style: TextStyle(
                                   fontSize: 20,
-                                  color: Colors.white.withOpacity(0.7)),
+                                  color: Colors.white.withValues(alpha: 0.7)),
                             ),
                             SizedBox(
                               height: 8,
@@ -235,7 +233,7 @@ class __PageContentState extends State<_PageContent> {
                 setState(() {
                   _useDark = !_useDark;
 
-                  NeumorphicTheme.of(context).themeMode =
+                  NeumorphicTheme.of(context)?.themeMode =
                       _useDark ? ThemeMode.dark : ThemeMode.light;
                 });
               },
@@ -328,7 +326,7 @@ class __PageContentState extends State<_PageContent> {
             value: 0,
             onChanged: (value) {
               setState(() {
-                _dotIndex = value;
+                _dotIndex = value ?? 0;
               });
             },
             style: NeumorphicRadioStyle(
@@ -348,7 +346,7 @@ class __PageContentState extends State<_PageContent> {
             value: 1,
             onChanged: (value) {
               setState(() {
-                _dotIndex = value;
+                _dotIndex = value ?? 0;
               });
             },
             style: NeumorphicRadioStyle(
@@ -368,7 +366,7 @@ class __PageContentState extends State<_PageContent> {
             value: 2,
             onChanged: (value) {
               setState(() {
-                _dotIndex = value;
+                _dotIndex = value ?? 0;
               });
             },
             style: NeumorphicRadioStyle(

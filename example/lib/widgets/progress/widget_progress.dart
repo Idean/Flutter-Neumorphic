@@ -1,13 +1,12 @@
+import 'dart:math' show Random;
+
 import 'package:example/lib/Code.dart';
 import 'package:example/lib/color_selector.dart';
 import 'package:example/lib/top_bar.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-import 'dart:math' show Random;
-
 class ProgressWidgetPage extends StatefulWidget {
-  ProgressWidgetPage({Key key}) : super(key: key);
+  ProgressWidgetPage({Key? key}) : super(key: key);
 
   @override
   createState() => _WidgetPageState();
@@ -74,7 +73,7 @@ class _DefaultWidgetState extends State<_DefaultWidget> {
 
   Widget _buildCode(BuildContext context) {
     return Code("""
-double percent = 0.2;  
+double percent = 0.2;
 
 Expanded(
   child: NeumorphicProgress(
@@ -110,7 +109,7 @@ Expanded(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         _buildWidget(context),
-        FlatButton(
+        ElevatedButton(
             child: Text('Update'),
             onPressed: () {
               setState(() {
@@ -133,7 +132,7 @@ class _ColorWidgetState extends State<_ColorWidget> {
 
   Widget _buildCode(BuildContext context) {
     return Code("""
-double percent = 0.5;  
+double percent = 0.5;
 
 Expanded(
   child: NeumorphicProgress(
@@ -225,7 +224,7 @@ class _SizedWidgetState extends State<_SizedWidget> {
 
   Widget _buildCode(BuildContext context) {
     return Code("""
-double percent = 0.5;  
+double percent = 0.5;
 
 Expanded(
   child: NeumorphicProgress(
@@ -285,7 +284,7 @@ class _DurationWidgetState extends State<_DurationWidget> {
 
   Widget _buildCode(BuildContext context) {
     return Code("""
-double percent = 0.2;  
+double percent = 0.2;
 
 Expanded(
   child: NeumorphicProgress(
@@ -323,7 +322,7 @@ Expanded(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         _buildWidget(context),
-        FlatButton(
+        ElevatedButton(
             child: Text('Update'),
             onPressed: () {
               setState(() {
@@ -346,7 +345,7 @@ class _CurveWidgetState extends State<_CurveWidget> {
 
   Widget _buildCode(BuildContext context) {
     return Code("""
-double percent = 0.2;  
+double percent = 0.2;
 
 Expanded(
   child: NeumorphicProgress(
@@ -384,7 +383,7 @@ Expanded(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         _buildWidget(context),
-        FlatButton(
+        ElevatedButton(
             child: Text('Update'),
             onPressed: () {
               setState(() {

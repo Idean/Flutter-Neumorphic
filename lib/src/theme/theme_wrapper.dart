@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 import 'theme.dart';
@@ -25,7 +23,9 @@ class ThemeWrapper {
       themeMode == ThemeMode.dark ||
       //The setting indicating the current brightness mode of the host platform. If the platform has no preference, platformBrightness defaults to Brightness.light.
       (themeMode == ThemeMode.system &&
-          window.platformBrightness == Brightness.dark);
+          WidgetsBinding.instance.platformDispatcher.views.first
+                  .platformDispatcher.platformBrightness ==
+              Brightness.dark);
 
   NeumorphicThemeData? get current {
     if (useDark) {

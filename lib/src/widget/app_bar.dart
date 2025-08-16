@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:flutter_neumorphic/src/widget/back_button.dart';
 
 class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   static const toolbarHeight = kToolbarHeight + 16 * 2;
@@ -102,9 +99,9 @@ class NeumorphicAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   NeumorphicAppBarState createState() => NeumorphicAppBarState();
 
-  bool _getEffectiveCenterTitle(ThemeData theme, NeumorphicThemeData nTheme) {
-    if (centerTitle != null || nTheme.appBarTheme.centerTitle != null)
-      return centerTitle ?? nTheme.appBarTheme.centerTitle!;
+  bool _getEffectiveCenterTitle(ThemeData theme, NeumorphicThemeData? nTheme) {
+    if (centerTitle != null || nTheme?.appBarTheme.centerTitle != null)
+      return centerTitle ?? nTheme?.appBarTheme.centerTitle ?? false;
     switch (theme.platform) {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
@@ -178,11 +175,12 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
 
     Widget? title = widget.title;
     if (title != null) {
-      final AppBarTheme appBarTheme = AppBarTheme.of(context);
       title = DefaultTextStyle(
-        style: (appBarTheme.textTheme?.headline5 ??
-                Theme.of(context).textTheme.headline5!)
-            .merge(widget.textStyle ?? nTheme?.current?.appBarTheme.textStyle),
+        style: (AppBarTheme.of(context).titleTextStyle ??
+                Theme.of(context).textTheme.titleMedium!)
+            .merge(widget.textStyle ??
+                nTheme?.current?.appBarTheme.textStyle ??
+                const TextStyle()),
         softWrap: false,
         overflow: TextOverflow.ellipsis,
         child: title,
@@ -235,7 +233,7 @@ class NeumorphicAppBarState extends State<NeumorphicAppBar> {
                 middle: title,
                 trailing: actions,
                 centerMiddle:
-                    widget._getEffectiveCenterTitle(theme, nTheme!.current!),
+                    widget._getEffectiveCenterTitle(theme, nTheme?.current),
                 middleSpacing: widget.titleSpacing,
               ),
             ),
